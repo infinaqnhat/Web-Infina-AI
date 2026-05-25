@@ -942,101 +942,70 @@
     </div>
   </section>
 
-  <!-- ===== Agents Section (tabbed) ===== -->
+  <!-- ===== Agents Section ===== -->
   <style>
     .agents-section {
       padding: var(--section-gap, 120px) 0;
       background: var(--bg, #fff);
     }
-    .agents-section .section-header {
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto 48px;
+    .agents-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 72px;
+      align-items: start;
     }
-    .agents-section .section-eyebrow {
+    .agents-layout-left {
+      position: sticky;
+      top: 100px;
+    }
+    .agents-layout-left .section-eyebrow-w {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 0;
-      background: none;
-      border: none;
-      border-radius: 0;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--muted, #94a3b8);
       margin-bottom: 20px;
-      box-shadow: none;
     }
-    .agents-section .section-eyebrow::before { content: none; }
-    .agents-section .section-header h2 {
-      text-align: center;
-      max-width: none;
-      font-size: clamp(36px, 4.6vw, 56px);
-      line-height: 1.08;
+    .agents-layout-left h2 {
+      font-size: clamp(32px, 3.6vw, 48px);
+      font-weight: 700;
+      line-height: 1.1;
       letter-spacing: -0.025em;
-      margin-bottom: 0;
+      color: var(--fg, #1e293b);
+      margin: 0;
     }
-    .agents-section .section-header h2 .accent {
-      background: linear-gradient(135deg, var(--accent, #001F5C) 0%, #6fa8ff 100%);
+    .agents-layout-left h2 .accent {
+      background: linear-gradient(135deg, #149a6e 0%, #34d399 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       color: transparent;
     }
-    .agents-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-    }
-    .agents-tab {
+    .agents-work-audience-t { margin-bottom: 40px; }
+    .agents-work-audience-t:last-child { margin-bottom: 0; }
+    .agents-audience-label-t {
       display: inline-block;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.10em;
       text-transform: uppercase;
-      background: transparent;
-      border: 2px solid var(--border, #e2e8f0);
+      letter-spacing: 0.1em;
       color: var(--muted, #94a3b8);
-      padding: 8px 22px;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .agents-tab[data-tab="inside"]   { --tab-color: #1863dc; }
-    .agents-tab[data-tab="work"]     { --tab-color: #149a6e; }
-    .agents-tab[data-tab="personal"] { --tab-color: #7e57c2; }
-    .agents-tab:hover  { border-color: var(--tab-color); color: var(--tab-color); }
-    .agents-tab.active { background: transparent; border-color: var(--tab-color); color: var(--tab-color); box-shadow: none; }
-    .agents-panel { display: none; }
-    .agents-panel.active { display: block; animation: fade-up 0.4s ease-out both; }
-    .agents-panel-tagline {
-      text-align: center;
-      font-size: 16px;
-      font-weight: 600;
-      font-style: italic;
-      color: var(--muted, #94a3b8);
-      margin-bottom: 32px;
+      border-left: 3px solid var(--muted, #94a3b8);
+      padding-left: 10px;
+      margin-bottom: 16px;
     }
     .agents-grid-tabs {
       display: grid;
-      gap: 20px;
-      max-width: 1100px;
-      margin: 0 auto;
+      gap: 16px;
     }
-    .agents-grid-tabs.agents-grid-4 { grid-template-columns: repeat(4, 1fr); }
-    @media (max-width: 900px) { .agents-grid-tabs.agents-grid-4 { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 520px) { .agents-grid-tabs.agents-grid-4 { grid-template-columns: 1fr; } }
-    #atab-inside   .agents-card-t { --card-color: #1863dc; }
-    #atab-work     .agents-card-t { --card-color: #149a6e; }
-    #atab-personal .agents-card-t { --card-color: #7e57c2; }
+    .agents-grid-tabs.agents-grid-2 { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 640px) { .agents-grid-tabs.agents-grid-2 { grid-template-columns: 1fr; } }
     .agents-card-t {
       background: #fff;
       border: 1.5px solid var(--border-light, #f1f5f9);
-      border-top: 4px solid var(--card-color, var(--accent, #001F5C));
+      border-top: 4px solid #149a6e;
       border-radius: 18px;
       padding: 26px 22px;
       display: flex;
@@ -1045,20 +1014,16 @@
       transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
     }
     .agents-card-t:hover {
-      transform: translateY(-5px);
-      border-color: color-mix(in oklab, var(--card-color, var(--accent, #001F5C)) 35%, transparent);
-      border-top-color: var(--card-color, var(--accent, #001F5C));
-      box-shadow: 0 20px 48px -16px color-mix(in oklab, var(--card-color, var(--accent, #001F5C)) 25%, transparent);
+      transform: translateY(-4px);
+      border-color: rgba(20,154,110,0.3);
+      border-top-color: #149a6e;
+      box-shadow: 0 20px 48px -16px rgba(20,154,110,0.18);
     }
-    .agents-card-t .agents-card-title-t {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
+    .agents-card-title-t { display: flex; flex-direction: column; gap: 3px; }
     .agents-title-main-t {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
-      color: var(--card-color, var(--accent, #001F5C));
+      color: #149a6e;
       line-height: 1.2;
       letter-spacing: -0.02em;
     }
@@ -1068,19 +1033,14 @@
       color: var(--muted, #94a3b8);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      line-height: 1.3;
     }
     .agents-context-badge-t {
       display: block;
-      background: none;
       color: var(--muted, #94a3b8);
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
       font-style: italic;
-      padding: 0;
-      border-radius: 0;
       line-height: 1.4;
-      margin-bottom: 2px;
     }
     .agents-list-t {
       list-style: none;
@@ -1107,21 +1067,8 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--muted, #94a3b8);
+      background: #149a6e;
       margin-top: 6px;
-    }
-    .agents-work-audience-t { margin-bottom: 40px; }
-    .agents-work-audience-t:last-child { margin-bottom: 0; }
-    .agents-audience-label-t {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted, #94a3b8);
-      border-left: 3px solid var(--muted, #94a3b8);
-      padding-left: 10px;
-      margin-bottom: 16px;
     }
     .agents-card-t.agents-card-row-t {
       flex-direction: row;
@@ -1132,7 +1079,7 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      min-width: 180px;
+      min-width: 170px;
       flex-shrink: 0;
     }
     .agents-list-t.agents-list-row-t {
@@ -1143,160 +1090,82 @@
       margin: 0;
       flex: 1;
     }
+    @media (max-width: 1024px) {
+      .agents-layout { grid-template-columns: 1fr; gap: 40px; }
+      .agents-layout-left { position: static; }
+    }
     @media (max-width: 640px) {
       .agents-card-t.agents-card-row-t { flex-direction: column; }
       .agents-list-t.agents-list-row-t { border-left: none; border-top: 1.5px solid var(--border-light, #f1f5f9); padding-left: 0; padding-top: 14px; }
     }
-    #aw-inside-grid .agents-card-left-t,
-    #aw-inside-grid .agents-card-right-t,
-    #aw-work-grid   .agents-card-left-t,
-    #aw-work-grid   .agents-card-right-t { display: contents; }
   </style>
 
   <section class="agents-section">
     <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">Meet the Specialists</span>
-        <h2>The right specialist, <span class="accent">exactly where you need them</span></h2>
-      </div>
+      <div class="agents-layout">
 
-      <div class="agents-tabs" role="tablist">
-        <button class="agents-tab" data-tab-aw="inside" role="tab" aria-selected="false">Infina AI Inside</button>
-        <button class="agents-tab active" data-tab-aw="work" role="tab" aria-selected="true">Infina AI Work</button>
-        <button class="agents-tab" data-tab-aw="personal" role="tab" aria-selected="false">Infina AI Personal</button>
-      </div>
-
-      <!-- TAB: AI Inside -->
-      <div class="agents-panel" id="atab-inside">
-        <p class="agents-panel-tagline">Live inside your platforms. Get the experts 24/7.</p>
-        <div class="agents-grid-tabs agents-grid-4" id="aw-inside-grid">
-          <div class="agents-card-t">
-            <div class="agents-card-left-t">
-              <h3 class="agents-card-title-t"><span class="agents-title-main-t">Stock</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
-              <div class="agents-context-badge-t">Inside stock trading apps</div>
-            </div>
-            <div class="agents-card-right-t">
-              <ul class="agents-list-t">
-                <li>Market insights tailored to each user's holdings</li>
-                <li>Surfaces risks and opportunities in their portfolio</li>
-                <li>Alerts on moves that matter, nothing else</li>
-              </ul>
-            </div>
-          </div>
-          <div class="agents-card-t">
-            <div class="agents-card-left-t">
-              <h3 class="agents-card-title-t"><span class="agents-title-main-t">Wealth Management</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
-              <div class="agents-context-badge-t">Inside fund management apps/web</div>
-            </div>
-            <div class="agents-card-right-t">
-              <ul class="agents-list-t">
-                <li>Fund questions answered instantly</li>
-                <li>Investing plans built around real goals</li>
-                <li>Asset mix matched to risk profile and timeline</li>
-                <li>Flags when to rebalance, and why</li>
-              </ul>
-            </div>
-          </div>
-          <div class="agents-card-t">
-            <div class="agents-card-left-t">
-              <h3 class="agents-card-title-t"><span class="agents-title-main-t">Personal Finance</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
-              <div class="agents-context-badge-t">Inside banking/e-wallet apps</div>
-            </div>
-            <div class="agents-card-right-t">
-              <ul class="agents-list-t">
-                <li>Matches users to products that fit their situation</li>
-                <li>Shows where money goes and where to improve</li>
-                <li>Clarifies loan options and credit improvement steps</li>
-                <li>Builds financial confidence in plain language</li>
-              </ul>
-            </div>
-          </div>
-          <div class="agents-card-t">
-            <div class="agents-card-left-t">
-              <h3 class="agents-card-title-t"><span class="agents-title-main-t">Insurance</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
-              <div class="agents-context-badge-t">Inside insurance apps/web</div>
-            </div>
-            <div class="agents-card-right-t">
-              <ul class="agents-list-t">
-                <li>Finds coverage that fits, not just what's available</li>
-                <li>Answers policy questions any time, in plain language</li>
-                <li>Guides users through claims to get what they're entitled to</li>
-              </ul>
-            </div>
-          </div>
+        <!-- Left: headline -->
+        <div class="agents-layout-left">
+          <span class="section-eyebrow-w">Meet the Specialists</span>
+          <h2>The right specialist, <span class="accent">exactly where you need them</span></h2>
         </div>
-      </div>
 
-      <!-- TAB: AI Work (default active) -->
-      <div class="agents-panel active" id="atab-work">
-        <p class="agents-panel-tagline">Less chasing tasks. More closing them.</p>
+        <!-- Right: work content -->
+        <div class="agents-layout-right">
 
-        <div class="agents-work-audience-t">
-          <span class="agents-audience-label-t">For Sales Teams</span>
-          <div class="agents-grid-tabs">
-            <div class="agents-card-t agents-card-row-t">
-              <div class="agents-card-row-meta-t">
-                <h3 class="agents-card-title-t">
-                  <span class="agents-title-main-t">CRM &amp; Sales Pipeline</span>
-                  <span class="agents-title-sub-t">Specialist Agent</span>
-                </h3>
-                <div class="agents-context-badge-t">Inside your CRM</div>
+          <!-- For Sales Teams -->
+          <div class="agents-work-audience-t">
+            <span class="agents-audience-label-t">For Sales Teams</span>
+            <div class="agents-grid-tabs">
+              <div class="agents-card-t agents-card-row-t">
+                <div class="agents-card-row-meta-t">
+                  <h3 class="agents-card-title-t">
+                    <span class="agents-title-main-t">CRM &amp; Sales Pipeline</span>
+                    <span class="agents-title-sub-t">Specialist Agent</span>
+                  </h3>
+                  <div class="agents-context-badge-t">Inside your CRM</div>
+                </div>
+                <ul class="agents-list-t agents-list-row-t">
+                  <li>Works alongside your existing CRM and tools. No migration required.</li>
+                  <li>Handles CRM updates, follow-up emails, and task logging automatically</li>
+                  <li>Pre-configured for your industry: real estate, insurance, finance, and more</li>
+                  <li>Accessible via Slack, WhatsApp, web, or your own app</li>
+                </ul>
               </div>
-              <ul class="agents-list-t agents-list-row-t">
-                <li>Works alongside your existing CRM and tools. No migration required.</li>
-                <li>Handles CRM updates, follow-up emails, and task logging automatically</li>
-                <li>Pre-configured for your industry: real estate, insurance, finance, and more</li>
-                <li>Accessible via Slack, WhatsApp, web, or your own app</li>
-              </ul>
             </div>
           </div>
-        </div>
 
-        <div class="agents-work-audience-t">
-          <span class="agents-audience-label-t">For Operations &amp; Company</span>
-          <div class="agents-grid-tabs agents-grid-4" id="aw-work-grid">
-            <div class="agents-card-t">
-              <div class="agents-card-left-t">
+          <!-- For Operations & Company -->
+          <div class="agents-work-audience-t">
+            <span class="agents-audience-label-t">For Operations &amp; Company</span>
+            <div class="agents-grid-tabs agents-grid-2">
+              <div class="agents-card-t">
                 <h3 class="agents-card-title-t"><span class="agents-title-main-t">Focus &amp; Alignment</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
                 <div class="agents-context-badge-t">Across your org</div>
-              </div>
-              <div class="agents-card-right-t">
                 <ul class="agents-list-t">
                   <li>Aligns weekly priorities across team, department, and company goals</li>
                   <li>Resolves conflicts by understanding where OKRs overlap or clash</li>
                 </ul>
               </div>
-            </div>
-            <div class="agents-card-t">
-              <div class="agents-card-left-t">
+              <div class="agents-card-t">
                 <h3 class="agents-card-title-t"><span class="agents-title-main-t">Expense Management</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
                 <div class="agents-context-badge-t">Across your tools and accounts</div>
-              </div>
-              <div class="agents-card-right-t">
                 <ul class="agents-list-t">
                   <li>Analyzes all spending across SaaS, cloud, credit card, and bank statements</li>
                   <li>Surfaces ways to cut costs across your accounts</li>
                 </ul>
               </div>
-            </div>
-            <div class="agents-card-t">
-              <div class="agents-card-left-t">
+              <div class="agents-card-t">
                 <h3 class="agents-card-title-t"><span class="agents-title-main-t">Expertise</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
                 <div class="agents-context-badge-t">Across your data sources</div>
-              </div>
-              <div class="agents-card-right-t">
                 <ul class="agents-list-t">
                   <li>Slack threads explained, company context surfaced. Answers ready instantly.</li>
                   <li>Research pulled from internal data sources and the web in one place</li>
                 </ul>
               </div>
-            </div>
-            <div class="agents-card-t">
-              <div class="agents-card-left-t">
+              <div class="agents-card-t">
                 <h3 class="agents-card-title-t"><span class="agents-title-main-t">Workflow</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
                 <div class="agents-context-badge-t">Any repeatable process</div>
-              </div>
-              <div class="agents-card-right-t">
                 <ul class="agents-list-t">
                   <li>Any repeatable workflow gets fully automated with a dedicated agent</li>
                   <li>Built and customized to fit exactly what your team needs</li>
@@ -1304,58 +1173,11 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
-
-      <!-- TAB: AI Personal -->
-      <div class="agents-panel" id="atab-personal">
-        <p class="agents-panel-tagline">A specialist for every financial decision you face.</p>
-        <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:32px;max-width:1000px;margin:0 auto;align-items:start;">
-          <div style="background:linear-gradient(135deg,#5e35b1 0%,#9575cd 100%);border-radius:18px;padding:26px 22px;display:flex;flex-direction:column;gap:14px;color:#fff;">
-            <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;width:fit-content;">
-              <span style="width:7px;height:7px;border-radius:50%;background:#4cd584;box-shadow:0 0 8px rgba(76,213,132,.8);"></span>Available now
-            </span>
-            <h3 style="font-size:18px;font-weight:700;line-height:1.3;color:#fff;letter-spacing:-.02em;">Personal Finance Specialist Agent</h3>
-            <p style="font-size:14px;line-height:1.65;color:rgba(255,255,255,.85);">Your AI advisor for budgeting, loans, credit scores, and everyday financial guidance.</p>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:16px;">
-            <div class="agents-card-t" style="flex-direction:row;align-items:flex-start;gap:16px;">
-              <div style="width:40px;height:40px;border-radius:12px;background:rgba(126,87,194,.08);color:#7e57c2;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-              </div>
-              <div><strong style="display:block;font-size:15px;font-weight:700;color:var(--fg,#1e293b);margin-bottom:6px;">Coming Soon</strong><p style="font-size:13.5px;color:var(--muted,#94a3b8);line-height:1.6;margin:0;">Stock, Wealth, Personal Finance, and Insurance specialist agents will all be available for personal use soon.</p></div>
-            </div>
-            <div class="agents-card-t" style="flex-direction:row;align-items:flex-start;gap:16px;">
-              <div style="width:40px;height:40px;border-radius:12px;background:rgba(126,87,194,.08);color:#7e57c2;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-              </div>
-              <div><strong style="display:block;font-size:15px;font-weight:700;color:var(--fg,#1e293b);margin-bottom:6px;">Available via WhatsApp</strong><p style="font-size:13.5px;color:var(--muted,#94a3b8);line-height:1.6;margin:0;">All specialist agents accessible directly through WhatsApp.</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
-
-  <script>
-    (function() {
-      document.querySelectorAll('[data-tab-aw]').forEach(function(tab) {
-        tab.addEventListener('click', function() {
-          document.querySelectorAll('[data-tab-aw]').forEach(function(t) {
-            t.classList.remove('active');
-            t.setAttribute('aria-selected', 'false');
-          });
-          document.querySelectorAll('#atab-inside, #atab-work, #atab-personal').forEach(function(p) {
-            p.classList.remove('active');
-          });
-          tab.classList.add('active');
-          tab.setAttribute('aria-selected', 'true');
-          document.getElementById('atab-' + tab.getAttribute('data-tab-aw')).classList.add('active');
-        });
-      });
-    })();
-  </script>
 
   <!-- Specialist Agents -->
   <section class="section" id="agents">
