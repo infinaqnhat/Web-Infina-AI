@@ -969,6 +969,110 @@
     </div>
   </section>
 
+  <!-- ===== How It Works ===== -->
+  <style>
+    .how-section {
+      padding: clamp(64px, 8vw, 96px) 0;
+      background: #fff;
+      border-bottom: 1px solid var(--border-light, #f1f5f9);
+    }
+    .how-eyebrow {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent, #149a6e);
+      margin-bottom: 48px;
+    }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .how-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(16.66% + 20px);
+      right: calc(16.66% + 20px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent, #149a6e), #34d399, var(--accent, #149a6e));
+      opacity: 0.3;
+    }
+    .how-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 28px;
+    }
+    .how-step-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent-light, rgba(20,154,110,0.08));
+      border: 1.5px solid rgba(20,154,110,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent, #149a6e);
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+    .how-step h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--fg, #1e293b);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .how-step p {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.65;
+      margin: 0;
+    }
+    @media (max-width: 640px) {
+      .how-steps { grid-template-columns: 1fr; gap: 40px; }
+      .how-steps::before { display: none; }
+    }
+  </style>
+
+  <section class="how-section">
+    <div class="container">
+      <p class="how-eyebrow">How it works</p>
+      <div class="how-steps">
+
+        <div class="how-step">
+          <div class="how-step-number">1</div>
+          <h3>Plug into your stack</h3>
+          <p>Connects to your CRM, Slack, and existing tools in hours. No migration, no setup headache.</p>
+        </div>
+
+        <div class="how-step">
+          <div class="how-step-number">2</div>
+          <h3>Learns how you work</h3>
+          <p>Maps your team's workflows, priorities, and company context — becoming a specialist in how your business actually runs.</p>
+        </div>
+
+        <div class="how-step">
+          <div class="how-step-number">3</div>
+          <h3>Gets the work done</h3>
+          <p>Handles the operational load automatically so your team stays focused on the work that actually moves the business.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Agents Section ===== -->
   <style>
     .agents-section {
