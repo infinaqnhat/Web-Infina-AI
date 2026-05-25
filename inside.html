@@ -5538,8 +5538,9 @@
   <!-- ============================================================ -->
   <style>
     .delivers-section {
-      background: #0d1117;
+      background: var(--surface, #fafafa);
       padding: clamp(80px, 10vw, 120px) 0;
+      border-top: 1px solid var(--border-light);
     }
     .delivers-layout {
       display: grid;
@@ -5556,7 +5557,7 @@
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #4d9fff;
+      color: var(--accent);
       margin-bottom: 20px;
       display: block;
     }
@@ -5565,12 +5566,12 @@
       font-weight: 700;
       line-height: 1.15;
       letter-spacing: -0.025em;
-      color: #ffffff;
+      color: var(--fg);
       margin-bottom: 20px;
     }
     .delivers-left p {
       font-size: 15px;
-      color: rgba(255,255,255,0.5);
+      color: var(--muted);
       line-height: 1.7;
       margin: 0;
     }
@@ -5580,21 +5581,23 @@
       gap: 16px;
     }
     .delivers-card {
-      background: #161b22;
-      border: 1px solid rgba(255,255,255,0.07);
+      background: #fff;
+      border: 1.5px solid var(--border-light);
+      border-top: 4px solid var(--accent);
       border-radius: 16px;
       padding: 28px 24px;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .delivers-card:hover {
-      border-color: rgba(77,159,255,0.25);
-      background: #1a2030;
+      border-color: rgba(0,31,92,0.2);
+      border-top-color: var(--accent);
+      box-shadow: 0 16px 40px -16px rgba(0,31,92,0.12);
       transform: translateY(-3px);
     }
     .delivers-card-icon {
       width: 40px;
       height: 40px;
-      color: #4d9fff;
+      color: var(--accent);
       margin-bottom: 20px;
     }
     .delivers-card-icon svg {
@@ -5604,14 +5607,14 @@
     .delivers-card h3 {
       font-size: 16px;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--fg);
       margin-bottom: 10px;
       letter-spacing: -0.01em;
       line-height: 1.3;
     }
     .delivers-card p {
       font-size: 13.5px;
-      color: rgba(255,255,255,0.5);
+      color: var(--muted);
       line-height: 1.65;
       margin: 0;
     }
