@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base target="_top">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infina AI Personal · AI Specialists for every decision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff;--surface:#fafafa;--fg:#000;--fg-secondary:#212121;
+  --muted:#6b6b76;--border:#e5e7eb;--border-light:#f2f2f2;
+  --accent:#001F5C;--accent-dark:#001340;
+  --accent-light:rgba(0,31,92,.08);--accent-tint:rgba(0,31,92,.04);
+  --font-display:'Be Vietnam Pro',-apple-system,system-ui,sans-serif;
+  --font-body:'Be Vietnam Pro',-apple-system,system-ui,sans-serif;
+  --section-gap:120px;--radius:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+
+@keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.8;transform:scale(1.05)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes shine{0%{left:-100%}100%{left:100%}}
+@keyframes progress{0%{width:0%}50%{width:60%}100%{width:0%}}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes stock-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    @keyframes stock-glow{0%,100%{box-shadow:0 0 0 rgba(16,185,129,0)}50%{box-shadow:0 0 12px rgba(16,185,129,0.3)}}
+    
+    .insurance-logo {
+      animation: stock-float 2s ease-in-out infinite;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .insurance-logo:hover {
+      transform: translateY(-6px) scale(1.05);
+    }
+    .insurance-logo:hover > div {
+      box-shadow: 0 8px 20px rgba(59,130,246,0.2);
+      border-color: #3b82f6;
+    }
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border-light);z-index:1000}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1200px;margin:0 auto;padding:0 32px}
+.logo{font-family:var(--font-display);font-size:22px;font-weight:600;letter-spacing:-.03em;display:flex;align-items:center;gap:10px}
+.logo-img{height:23px;width:auto;display:block}
+.nav-center{display:flex;align-items:center;gap:40px}
+.nav-center a{font-size:15px;font-weight:500;color:var(--fg-secondary);transition:color .2s;position:relative}
+.nav-center a.active{color:var(--fg)}
+.nav-center a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s}
+.nav-center a.active::after,.nav-center a:hover::after{width:100%}
+.nav-cta{background:var(--accent);color:#fff;padding:11px 22px;border-radius:9999px;font-size:14px;font-weight:500;transition:all .3s}
+.nav-cta:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 20px rgba(24,99,220,.25)}
+@media(max-width:768px){.nav-center,.nav-cta{display:none}}
+
+/* Hero */
+.hero{position:relative;padding:clamp(140px,18vw,180px) 0 clamp(40px,5vw,60px);text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(24,99,220,.12),transparent 60%);z-index:-2}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(to right,rgba(24,99,220,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(24,99,220,.05) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 20%,transparent 75%);z-index:-2;pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.14em;margin-bottom:22px;opacity:0;animation:fade-up .6s ease-out .1s forwards}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 10px var(--accent);animation:pulse-dot 2s ease-in-out infinite}
+.hero h1{font-family:var(--font-display);font-size:clamp(40px,5.5vw,72px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-bottom:18px;opacity:0;animation:fade-up .7s ease-out .2s forwards}
+.hero h1 .accent{background:linear-gradient(135deg,var(--accent) 0%,#4c6ee6 50%,var(--accent) 100%);background-size:200% 200%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradient-shift 4s ease infinite}
+@keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hero-sub{font-size:16px;color:var(--muted);max-width:540px;margin:0 auto 32px;line-height:1.65;opacity:0;animation:fade-up .7s ease-out .3s forwards}
+
+/* Chat bar — AI website style */
+.cbar-wrap{max-width:680px;margin:0 auto;opacity:0;animation:fade-up .7s ease-out .4s forwards}
+.cbar{background:#fff;border:1.5px solid var(--border);border-radius:28px;padding:14px 14px 14px 22px;box-shadow:0 20px 50px -16px rgba(15,23,42,.14),0 4px 12px rgba(15,23,42,.04);transition:all .25s;display:flex;align-items:flex-end;gap:10px;position:relative}
+.cbar:focus-within{border-color:var(--accent);box-shadow:0 20px 50px -8px rgba(24,99,220,.22),0 0 0 4px rgba(24,99,220,.1)}
+.cbar-input-wrap{flex:1;position:relative;min-height:32px;display:flex;align-items:center;padding:8px 0}
+.cbar-input{width:100%;border:none;outline:none;font-family:var(--font-body);font-size:16px;color:var(--fg);background:transparent;resize:none;line-height:1.5;min-height:24px;max-height:120px;position:relative;z-index:2;padding:0}
+.cbar-ghost{position:absolute;top:50%;transform:translateY(-50%);left:0;right:0;font-family:var(--font-body);font-size:16px;color:#9ca3af;line-height:1.5;pointer-events:none;white-space:nowrap;overflow:hidden;z-index:1}
+.cbar-ghost::after{content:'';display:inline-block;width:2px;height:1em;background:var(--accent);margin-left:2px;vertical-align:-2px;animation:blink 1s step-end infinite}
+.cbar-ghost.hidden{display:none}
+.cbar-icons{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.cbar-icon-btn{all:unset;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .15s}
+.cbar-icon-btn:hover{background:var(--surface);color:var(--fg)}
+.cbar-icon-btn svg{width:18px;height:18px}
+.cbar-send{background:var(--accent);color:#fff;border:none;cursor:pointer;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.cbar-send:hover{background:var(--accent-dark);transform:scale(1.05)}
+.cbar-send svg{width:18px;height:18px}
+.cbar-hint{font-size:11.5px;color:var(--muted);margin-top:14px;text-align:center;opacity:0;animation:fade-up .7s ease-out .5s forwards}
+.cbar-hint kbd{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-family:inherit;font-size:10.5px;color:var(--fg-secondary)}
+
+/* ===== Jobs Section (Job-to-be-done) ===== */
+.jobs{padding:80px 0 var(--section-gap);background:#fff}
+.jobs-head{text-align:center;max-width:720px;margin:0 auto 56px}
+.jobs-head h2{font-family:var(--font-display);font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.3;margin-bottom:14px;color:var(--fg-secondary)}
+.jobs-head p{font-size:16px;color:var(--muted);line-height:1.65}
+
+.jobs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px;max-width:1200px;margin:0 auto}
+@media(max-width:768px){.jobs-grid{grid-template-columns:1fr;gap:18px}}
+
+.job-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:0;transition:all .3s ease;position:relative;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.job-card:hover{border-color:#3b82f6;box-shadow:0 8px 24px rgba(59,130,246,0.15);transform:translateY(-4px)}
+
+.job-visual{padding:16px 18px;height:240px;display:flex;align-items:center;justify-content:center;position:relative;transition:all .3s ease}
+.job-card:hover .job-visual{transform:scale(1.02)}
+.job-card:nth-child(1) .job-visual{background:linear-gradient(135deg,#e0f2fe 0%,#f0f9ff 100%)}
+.job-card:nth-child(2) .job-visual{background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 100%)}
+.job-card:nth-child(3) .job-visual{background:linear-gradient(135deg,#e0f2fe 0%,#f0f9ff 100%)}
+.job-card:nth-child(4) .job-visual{background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 100%)}
+.job-card:nth-child(5) .job-visual{background:linear-gradient(135deg,#e0f2fe 0%,#f0f9ff 100%)}
+.job-card:nth-child(6) .job-visual{background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 100%)}
+
+.job-tag{position:absolute;top:16px;right:16px;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);padding:6px 11px;border-radius:99px;transition:all .25s;box-shadow:0 4px 12px rgba(59,130,246,0.4);border:2px solid rgba(255,255,255,0.3)}
+.job-card:hover .job-tag{transform:translateY(-3px) scale(1.05);box-shadow:0 6px 20px rgba(59,130,246,0.5)}
+
+.job-body{padding:16px 20px 8px;flex:1;display:flex;flex-direction:column}
+.job-title{font-family:var(--font-display);font-size:16px;font-weight:700;line-height:1.3;color:var(--fg);margin-bottom:8px}
+.job-desc{font-size:13px;line-height:1.5;color:var(--muted);margin-bottom:auto}
+
+.job-footer{display:flex;align-items:center;justify-content:space-between;padding:12px 20px 16px;border-top:none}
+.job-stats{font-size:14px;color:var(--fg-secondary);display:flex;align-items:center;gap:8px;font-weight:600}
+.job-stats svg{width:18px;height:18px;opacity:.6}
+.job-chat-btn{background:linear-gradient(135deg,var(--accent) 0%,#4c6ee6 100%);color:#fff;border:none;border-radius:20px;padding:10px 24px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.3s ease;box-shadow:0 2px 12px rgba(0,31,92,0.2)}
+.job-chat-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,31,92,0.3);background:linear-gradient(135deg,#0029a3 0%,#3b5ed9 100%)}
+
+/* ===== Slack section ===== */
+.slack{padding:var(--section-gap) 0;background:var(--surface)}
+.slack-head{text-align:center;max-width:640px;margin:0 auto 56px}
+.slack-eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:rgba(24,99,220,.1);padding:5px 14px;border-radius:99px;margin-bottom:18px}
+.slack-head h2{font-family:var(--font-display);font-size:clamp(28px,3.6vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.15;margin-bottom:14px}
+.slack-head p{font-size:15px;color:var(--muted);line-height:1.6}
+
+/* Slack mockup with animated cursor + typing */
+.slack-mock-wrap{max-width:920px;margin:0 auto;position:relative}
+.slack-mock{background:#19171D;border-radius:18px;overflow:hidden;box-shadow:0 32px 80px -24px rgba(15,23,42,.45),0 8px 24px -12px rgba(15,23,42,.2);display:grid;grid-template-columns:220px 1fr;min-height:480px;position:relative}
+@media(max-width:600px){.slack-mock{grid-template-columns:52px 1fr;min-height:520px}}
+
+.sm-side{background:#3F0E40;padding:14px 12px;color:#fff;border-right:1px solid rgba(255,255,255,.06)}
+.sm-ws{display:flex;align-items:center;gap:8px;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sm-ws-mark{width:24px;height:24px;border-radius:5px;background:#fff;color:#3F0E40;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0}
+.sm-ws-name{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:600px){.sm-ws-name,.sm-side-section,.sm-ch-name{display:none}}
+.sm-side-section{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);font-weight:700;padding:8px 6px 4px}
+.sm-ch{display:flex;align-items:center;gap:6px;padding:5px 6px;border-radius:4px;color:rgba(255,255,255,.65);font-size:13px;cursor:pointer;transition:all .15s}
+.sm-ch:hover{background:rgba(255,255,255,.06);color:#fff}
+.sm-ch.active{background:rgba(24,99,220,.9);color:#fff}
+.sm-ch-prefix{flex-shrink:0;font-weight:400}
+.sm-ch-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sm-ch-dot{margin-left:auto;width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+
+.sm-main{display:flex;flex-direction:column;background:#fff}
+.sm-main-hd{padding:14px 18px;border-bottom:1px solid #e9e9e9;display:flex;justify-content:space-between;align-items:center}
+.sm-main-hd b{font-size:14px;font-weight:700}
+.sm-main-hd small{font-size:11px;color:#616061}
+.sm-body{flex:1;padding:14px 18px;display:flex;flex-direction:column;gap:14px;overflow:hidden;position:relative;min-height:280px}
+.sm-msg{display:flex;gap:10px;align-items:flex-start;opacity:0;transform:translateY(6px);transition:all .4s cubic-bezier(.16,1,.3,1)}
+.sm-msg.show{opacity:1;transform:translateY(0)}
+.sm-av{width:32px;height:32px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.sm-av.u1{background:#36C5F0}
+.sm-av.ai{background:linear-gradient(135deg,var(--accent),#4c6ee6)}
+.sm-msg-content{flex:1;min-width:0}
+.sm-msg-meta{display:flex;align-items:baseline;gap:8px;margin-bottom:3px}
+.sm-msg-meta b{font-size:13px;font-weight:700;color:#1d1c1d}
+.sm-msg-meta small{font-size:11px;color:#616061}
+.sm-ai-badge{display:inline-block;background:var(--accent-light);color:var(--accent);padding:1px 6px;border-radius:3px;font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-left:4px}
+.sm-msg-text{font-size:13.5px;color:#1d1c1d;line-height:1.55}
+.sm-msg-text b{color:var(--accent)}
+.sm-list{padding-left:18px;margin-top:6px;display:flex;flex-direction:column;gap:3px}
+.sm-list li{list-style:disc;font-size:13px}
+.sm-typing{display:inline-flex;gap:3px;align-items:center;padding:6px 0}
+.sm-typing span{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:type-dot 1.4s ease-in-out infinite}
+.sm-typing span:nth-child(2){animation-delay:.15s}
+.sm-typing span:nth-child(3){animation-delay:.3s}
+@keyframes type-dot{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+
+.sm-input{padding:10px 16px 14px;border-top:1px solid #e9e9e9;background:#fff;position:relative}
+.sm-input-box{border:1.5px solid #bbb;border-radius:8px;padding:9px 12px;font-size:12.5px;color:#1d1c1d;background:#fff;min-height:38px;position:relative;display:flex;align-items:center}
+.sm-input-box.is-typing{border-color:var(--accent);box-shadow:0 0 0 3px rgba(24,99,220,.08)}
+.sm-input-typed{position:relative;color:#1d1c1d}
+.sm-input-typed::after{content:'';display:inline-block;width:2px;height:1em;background:var(--accent);margin-left:1px;vertical-align:-2px;animation:blink 1s step-end infinite}
+.sm-input-placeholder{color:#9c9c9c}
+
+/* Animated cursor */
+.sm-cursor{position:absolute;width:18px;height:18px;pointer-events:none;z-index:50;transition:all .9s cubic-bezier(.34,1.1,.64,1);opacity:0;filter:drop-shadow(0 2px 6px rgba(15,23,42,.3))}
+.sm-cursor.show{opacity:1}
+.sm-cursor svg{width:100%;height:100%;display:block;color:#1863dc}
+.sm-cursor.click::after{content:'';position:absolute;left:9px;top:9px;width:0;height:0;border-radius:50%;background:rgba(24,99,220,.4);animation:cursor-ripple .55s ease-out forwards}
+@keyframes cursor-ripple{from{width:0;height:0;margin-left:0;margin-top:0;opacity:.6}to{width:40px;height:40px;margin-left:-20px;margin-top:-20px;opacity:0}}
+
+/* ===== Waitlist modal ===== */
+.modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(8px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .25s}
+.modal-bg.open{display:flex;opacity:1}
+.modal{background:#fff;border-radius:24px;max-width:440px;width:100%;padding:36px 32px 32px;position:relative;box-shadow:0 40px 100px rgba(15,23,42,.3);transform:scale(.9);transition:transform .3s cubic-bezier(.34,1.4,.64,1)}
+.modal-bg.open .modal{transform:scale(1)}
+.modal-close{position:absolute;top:14px;right:14px;all:unset;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .15s}
+.modal-close:hover{background:var(--surface);color:var(--fg)}
+.modal-close svg{width:16px;height:16px}
+.modal-emoji{font-size:48px;margin-bottom:14px;animation:wiggle 1.6s ease-in-out infinite}
+@keyframes wiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.modal h3{font-family:var(--font-display);font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.2;margin-bottom:8px}
+.modal p{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:22px}
+.modal-form{display:flex;gap:8px}
+.modal-form input{flex:1;padding:12px 16px;font-family:var(--font-body);font-size:14px;border:1.5px solid var(--border);border-radius:99px;outline:none;background:#fff;transition:all .2s}
+.modal-form input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light)}
+.modal-form button{background:var(--accent);color:#fff;border:none;cursor:pointer;padding:0 22px;border-radius:99px;font-family:inherit;font-size:13.5px;font-weight:600;transition:all .2s;white-space:nowrap}
+.modal-form button:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.modal-success{display:none;text-align:center;padding:20px 0}
+.modal-success-icon{width:56px;height:56px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:24px}
+.modal-success b{font-family:var(--font-display);font-size:18px;font-weight:700;display:block;margin-bottom:6px}
+.modal-success span{font-size:13.5px;color:var(--muted);line-height:1.55}
+.modal.done .modal-form-wrap{display:none}
+.modal.done .modal-success{display:block}
+
+/* CTA */
+.cta{padding:var(--section-gap) 0;background:linear-gradient(135deg, #e8eaf6 0%, #f5f7ff 100%);text-align:center;position:relative;overflow:hidden}
+.cta .container{position:relative;z-index:1}
+.cta h2{font-family:var(--font-display);font-size:clamp(28px,4vw,46px);font-weight:700;letter-spacing:-.035em;line-height:1.12;color:#1a1a1a;margin-bottom:18px}
+.cta p{font-size:16px;color:rgba(255,255,255,.55);max-width:460px;margin:0 auto 32px;line-height:1.7}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-w{background:var(--accent);color:#fff;padding:14px 28px;border-radius:9999px;font-size:14px;font-weight:600;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-w:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(24,99,220,.3)}
+.btn-ow{background:transparent;color:#fff;padding:13px 28px;border-radius:9999px;font-size:14px;font-weight:600;border:1.5px solid rgba(255,255,255,.2);transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-ow:hover{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.06)}
+
+/* Footer */
+footer{background:#fff;padding:48px 0;border-top:1px solid var(--border-light)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+.footer-logo{font-family:var(--font-display);font-size:22px;font-weight:600;letter-spacing:-.03em;display:flex;align-items:center;gap:10px}
+.footer-logo img{height:64px;width:auto;display:block}
+.footer-links{display:flex;gap:32px}
+.footer-links a{font-size:14px;color:var(--muted);transition:color .2s}
+.footer-links a:hover{color:var(--accent)}
+.footer-copy{font-size:13px;color:var(--muted)}
+@media(max-width:640px){.footer-inner{flex-direction:column;text-align:center}}
+
+    /* ============================================================
+       === Modern Use Cases Section                            ===
+       ============================================================ */
+    .usecases-modern {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #ffffff 0%, #f8f9fb 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .usecases-modern::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(24,99,220,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .usecases-headline {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 60px;
+      color: #0a0f1e;
+      letter-spacing: -0.02em;
+    }
+    .usecases-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .usecase-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 32px 24px;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: usecase-fade-in 0.6s ease forwards;
+    }
+    .usecase-card[data-index="0"] { animation-delay: 0.1s; }
+    .usecase-card[data-index="1"] { animation-delay: 0.2s; }
+    .usecase-card[data-index="2"] { animation-delay: 0.3s; }
+    .usecase-card[data-index="3"] { animation-delay: 0.4s; }
+    
+    @keyframes usecase-fade-in {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .usecase-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+    .usecase-card:hover::before {
+      opacity: 0.06;
+    }
+    .usecase-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 16px 40px rgba(0,31,92,0.15);
+    }
+    
+    .usecase-icon-wrapper {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 24px;
+    }
+    .usecase-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(24,99,220,0.25);
+      transition: all 0.4s ease;
+    }
+    .usecase-card:hover .usecase-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 12px 32px rgba(24,99,220,0.35);
+    }
+    .usecase-icon svg {
+      color: #ffffff;
+    }
+    
+    .usecase-title {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: #0a0f1e;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .usecase-subtitle {
+      position: relative;
+      z-index: 1;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .usecase-list {
+      position: relative;
+      z-index: 1;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .usecase-list li {
+      font-size: 14px;
+      color: #4b5563;
+      padding-left: 24px;
+      position: relative;
+      line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+    .usecase-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      transition: all 0.3s ease;
+    }
+    .usecase-card:hover .usecase-list li::before {
+      transform: scale(1.5);
+      box-shadow: 0 0 8px rgba(24,99,220,0.4);
+    }
+    .usecase-card:hover .usecase-list li {
+      padding-left: 28px;
+      color: #1f2937;
+    }
+    
+    @media (max-width: 1024px) {
+      .usecases-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .usecases-grid {
+        grid-template-columns: 1fr;
+      }
+      .usecases-headline {
+        font-size: 32px;
+        margin-bottom: 40px;
+      }
+      .usecases-modern {
+        padding: 60px 0;
+      }
+    }
+
+    /* ============================================================
+       === Deployments Section (Tab-based with Demos)            ===
+       ============================================================ */
+    .deployments {
+      padding: 120px 0;
+      background: #fafbfc;
+      position: relative;
+    }
+    .deployments .container { 
+      position: relative; 
+      z-index: 2; 
+      max-width: 1200px;
+    }
+    .deploy-headline {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 48px;
+      line-height: 1.15;
+      color: var(--accent);
+    }
+    .deploy-tabs {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .deploy-tab {
+      background: #ffffff;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 14px 24px;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      outline: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .deploy-tab-icon {
+      font-size: 20px;
+    }
+    .deploy-tab:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(24,99,220,0.1);
+    }
+    .deploy-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(24,99,220,0.25);
+    }
+    .deploy-content {
+      display: none;
+    }
+    .deploy-specialist-card {
+      background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 32px 28px;
+      box-shadow: 0 2px 8px rgba(0,31,92,0.04);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .deploy-specialist-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent) 0%, #4c6ee6 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .deploy-specialist-card:hover::before {
+      opacity: 1;
+    }
+    .deploy-specialist-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,31,92,0.12);
+      border-color: rgba(0,31,92,0.2);
+    }
+    @media (max-width: 1024px) {
+      .deploy-specialist-card {
+        grid-column: span 2;
+      }
+    }
+    @media (max-width: 640px) {
+      .deploy-specialist-card {
+        grid-column: span 1;
+      }
+    }
+    @media (max-width: 968px) {
+      .deploy-content.active {
+        padding: 32px 24px;
+      }
+      .deployments { padding: 80px 0; }
+      .deploy-headline { font-size: 38px; margin-bottom: 48px; }
+    }
+    
+    /* Left: Use cases list */
+    .deploy-usecases-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding-bottom: 24px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .deploy-usecases-header h3 {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--fg);
+      margin: 0 0 5px 0;
+      letter-spacing: -0.01em;
+    }
+    .deploy-usecases-header p {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.4;
+    }
+    .deploy-specialist-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0,31,92,0.2);
+    }
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f0f4ff, #e8f1ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .deploy-bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .deploy-bullet {
+      padding: 0 0 0 20px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--fg-secondary);
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      line-height: 1.6;
+      transition: all 0.2s ease;
+      position: relative;
+      list-style: none;
+    }
+    .deploy-bullet::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+    .deploy-bullet:hover {
+      color: var(--accent);
+      padding-left: 24px;
+    }
+    .deploy-bullet:hover::before {
+      background: var(--accent);
+      transform: scale(1.4);
+    }
+    @media (max-width: 1024px) {
+      .deployments .container > div {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .deployments .container > div {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Right demo area */
+    .deploy-demo-container {
+      position: relative;
+      min-height: 480px;
+    }
+    .deploy-panel {
+      display: none;
+      animation: deploy-fade-in 0.4s ease;
+    }
+    .deploy-panel.active {
+      display: block;
+    }
+    @keyframes deploy-fade-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .deploy-demo-inner {
+      background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+      border: 2px solid #60a5fa;
+      border-radius: 16px;
+      padding: 20px;
+      min-height: 240px;
+      max-height: 340px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(96,165,250,0.15);
+    }
+    .deploy-demo-inner::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(59,130,246,0.18), transparent 60%);
+      pointer-events: none;
+    }
+    .deploy-demo-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(24,99,220,0.1);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(24,99,220,0.2);
+      z-index: 3;
+    }
+    .deploy-demo-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Chat-style demos */
+    .demo-chat {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .chat-msg {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .chat-msg.user {
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+    }
+    .chat-msg.ai {
+      flex-direction: row;
+    }
+    .chat-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f0f4ff, #e8f1ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .chat-msg.ai .chat-avatar {
+      background: linear-gradient(135deg, var(--accent), #5594e8);
+    }
+    .chat-bubble {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--fg);
+      max-width: 100%;
+    }
+    .chat-msg.user .chat-bubble {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+    .chat-msg.ai .chat-bubble {
+      background: linear-gradient(135deg, #f8fafe 0%, #ffffff 100%);
+      border-color: rgba(24,99,220,0.15);
+    }
+    .chat-bubble p {
+      margin: 0 0 10px 0;
+    }
+    .chat-bubble p:last-child {
+      margin-bottom: 0;
+    }
+    .chat-bubble b {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .chat-data {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin: 8px 0;
+      font-size: 12px;
+    }
+    .chat-data-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid #f1f5f9;
+      gap: 12px;
+    }
+    .chat-data-row:last-of-type {
+      border-bottom: none;
+    }
+    .chat-data-row.highlight {
+      background: rgba(24,99,220,0.06);
+      margin: -4px -8px 4px -8px;
+      padding: 8px 8px;
+      border-radius: 6px;
+      border-bottom: none;
+    }
+    .chat-data-sub {
+      font-size: 11px;
+      color: var(--fg-secondary);
+      line-height: 1.5;
+      padding: 4px 0 8px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .chat-data-sub:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .chat-data .pos {
+      color: #0e7c3e;
+      font-weight: 600;
+    }
+    .chat-data .neg {
+      color: #dc2626;
+      font-weight: 600;
+    }
+    
+    .deploy-demo {
+      display: none;
+      animation: deploy-fade-in 0.4s ease;
+    }
+    .deploy-demo.active {
+      display: block;
+    }
+    .deploy-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 8px;
+      top: 12px;
+      width: 22px;
+      height: 22px;
+      background: linear-gradient(135deg, var(--accent), #5594e8);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s ease;
+    }
+    .deploy-features li.is-active::before {
+      transform: scale(1.15);
+      box-shadow: 0 4px 12px rgba(24,99,220,0.3);
+    }
+    .deploy-info-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(24,99,220,0.2);
+    }
+    .deploy-info-cta:hover {
+      background: #1554c0;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(24,99,220,0.3);
+    }
+    
+    /* Right demo area */
+    .deploy-demo-area {
+      background: linear-gradient(135deg, #f8fafe 0%, #ffffff 100%);
+      border: 2px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 32px;
+      min-height: 480px;
+      position: relative;
+      overflow: hidden;
+    }
+    .deploy-demo-area::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(24,99,220,0.08), transparent 60%);
+      pointer-events: none;
+    }
+    .deploy-demo-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+    }
+    .deploy-use-case {
+      display: none;
+      animation: deploy-uc-in 0.4s ease;
+    }
+    .deploy-use-case.is-active {
+      display: block;
+    }
+    @keyframes deploy-uc-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Demo mockup styles */
+    .demo-phone {
+      width: 320px;
+      height: 420px;
+      margin: 0 auto;
+      background: #1a1d2e;
+      border-radius: 32px;
+      padding: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      position: relative;
+    }
+    .demo-phone-screen {
+      background: #ffffff;
+      border-radius: 24px;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .demo-phone-status {
+      padding: 12px 16px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #64748b;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .demo-content-area {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .demo-chart {
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(135deg, rgba(24,99,220,0.1), rgba(24,99,220,0.02));
+      border-radius: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+      gap: 4px;
+    }
+    .demo-chart-bar {
+      flex: 1;
+      background: linear-gradient(180deg, var(--accent), #5594e8);
+      border-radius: 4px 4px 0 0;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+    .demo-chart-bar:hover {
+      opacity: 1;
+      transform: translateY(-4px);
+    }
+    .demo-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .demo-stat-card {
+      background: #f8fafe;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .demo-stat-label {
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .demo-stat-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .demo-stat-value.green {
+      color: #3b82f6;
+    }
+    .demo-stat-value.red {
+      color: #ef4444;
+    }
+    .demo-ai-chat {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .demo-ai-msg {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #475569;
+      margin-bottom: 8px;
+    }
+    .demo-ai-msg strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .deploy-msg {
+      display: flex;
+      gap: 12px;
+      align-items: start;
+      opacity: 0;
+      animation: deploy-msg-in 0.5s ease forwards;
+    }
+    .deploy-msg:nth-child(1) { animation-delay: 0.2s; }
+    .deploy-msg:nth-child(2) { animation-delay: 0.5s; }
+    .deploy-msg:nth-child(3) { animation-delay: 0.8s; }
+    @keyframes deploy-msg-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .deploy-msg.user {
+      flex-direction: row-reverse;
+    }
+    .deploy-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #5594e8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .deploy-msg.user .deploy-avatar {
+      background: rgba(255,255,255,0.15);
+    }
+    .deploy-bubble {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 14px 18px;
+      color: rgba(255,255,255,0.9);
+      font-size: 14.5px;
+      line-height: 1.55;
+      max-width: 420px;
+    }
+    .deploy-msg.user .deploy-bubble {
+      background: linear-gradient(135deg, var(--accent), #5594e8);
+      border-color: transparent;
+      color: #fff;
+    }
+    .deploy-demo-panel {
+      display: none;
+    }
+    .deploy-demo-panel.is-active {
+      display: block;
+    }
+    .deploy-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .deploy-mini-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .deploy-mini-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 6px;
+    }
+    .deploy-mini-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .deploy-mini-value.red { color: #ff6b6b; }
+    .deploy-mini-value.green { color: #3b82f6; }
+    .deploy-mini-footer {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+/* === MOBILE RESPONSIVE OVERRIDES === */
+
+/* 1. Slack mockup — compact sidebar in the 601-768px gap (existing 600px rule handles narrower) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .slack-mock { grid-template-columns: 52px 1fr; min-height: 420px; }
+  .sm-ws-name, .sm-side-section, .sm-ch-name { display: none; }
+}
+
+/* 2. Deployments headline + section padding */
+@media (max-width: 768px) {
+  .deploy-headline { font-size: 32px; margin-bottom: 40px; }
+  .deployments { padding: 80px 0; }
+}
+
+/* 3. Hero padding */
+@media (max-width: 768px) {
+  .hero { padding: 80px 0 20px; }
+}
+
+/* 4. CTA section padding */
+@media (max-width: 768px) {
+  .cta { padding: 60px 0; }
+}
+
+/* 5. Modal — full-width on small screens */
+@media (max-width: 640px) {
+  .modal { padding: 28px 24px 24px; max-width: 100%; }
+  .modal-form { flex-direction: column; }
+  .modal-form button { width: 100%; }
+}
+
+/* 6. Container + nav padding */
+@media (max-width: 480px) {
+  .container, .nav-inner { padding: 0 16px; }
+}
+
+/* 7. Hero compact — keep padding-top above fixed nav (72px) */
+@media (max-width: 480px) {
+  .hero { padding: 88px 0 16px; }
+}
+
+/* 8. Hero subtitle */
+@media (max-width: 480px) {
+  .hero-sub { font-size: 14px; max-width: 100%; }
+}
+
+/* 9. Use cases decorative blob — hide on very small screens to prevent overflow */
+@media (max-width: 480px) {
+  .usecases-modern::before { display: none; }
+}
+
+/* 10. CTA buttons */
+@media (max-width: 480px) {
+  .btn-w, .btn-ow { padding: 12px 20px; font-size: 13px; }
+}
+
+/* 11. Chat input — hide attach + voice icons so placeholder is readable (M3) */
+@media (max-width: 480px) {
+  .cbar-icons { display: none; }
+}
+
+/* ===== Mobile nav panel ===== */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--fg-secondary);
+}
+.nav-toggle svg { width: 24px; height: 24px; display: block; }
+.nav-mobile-panel { display: none; }
+@media (max-width: 768px) {
+  .nav-toggle { display: block; }
+  .nav-mobile-panel {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    padding: 8px 24px 20px;
+    gap: 0;
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    transform: translateY(-12px);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 999;
+  }
+  body.nav-open .nav-mobile-panel {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  .nav-mobile-panel a {
+    padding: 14px 6px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--fg-secondary);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .nav-mobile-panel a:last-child { border-bottom: none; }
+  .nav-mobile-panel a.nav-mobile-cta {
+    margin-top: 14px;
+    text-align: center;
+    justify-content: center;
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 9999px;
+    border: none;
+    font-weight: 600;
+  }
+  body.nav-open { overflow: hidden; }
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="home.html" class="logo"><img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img"></a>
+    <div class="nav-center">
+      <a href="inside.html">AI Inside</a>
+      <a href="work.html">AI Work</a>
+      <a href="personal.html" class="active">AI Personal</a>
+      <a href="about.html">About Us</a>
+    </div>
+    <a href="https://infina.ai" target="_blank" class="nav-cta">Chat with AI</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <h1>AI Specialist Agents<br>for <span class="accent">Personal</span></h1>
+
+      <div class="cbar-wrap">
+        <div class="cbar">
+          <div class="cbar-input-wrap">
+            <div class="cbar-ghost" id="ghostText"></div>
+            <textarea class="cbar-input" id="heroInput" rows="1" aria-label="Ask specialist"></textarea>
+          </div>
+          <div class="cbar-icons">
+            <button type="button" class="cbar-icon-btn" aria-label="Attach">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+            </button>
+            <button type="button" class="cbar-icon-btn" aria-label="Voice">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2"/><path d="M12 19v3"/></svg>
+            </button>
+          </div>
+          <button class="cbar-send" onclick="handleSend()" aria-label="Send">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Jobs Section -->
+<section class="jobs" id="jobs">
+  <div class="container">
+    <div class="jobs-head">
+      <h2>Top AI Specialist Agents</h2>
+    </div>
+
+    <div class="jobs-grid">
+
+      <!-- Job 1: Stock Analysis -->
+      <article class="job-card" onclick="goNow()">
+        <div class="job-visual">
+          <span class="job-tag">Only for brokers</span>
+          <div style="width:100%;max-width:300px;display:flex;flex-direction:column;gap:16px">
+            <!-- Stock logos grid -->
+            <div style="background:#fff;border-radius:16px;padding:24px;box-shadow:0 4px 16px rgba(0,0,0,0.06);border:1px solid #f0f0f0">
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+                <div class="stock-item" style="animation-delay:0.1s">
+                  <div style="width:36px;height:36px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;box-shadow:0 4px 12px rgba(0,128,96,0.25);border:1px solid #f0f0f0">
+                    <img src="uploads/vcb-logo.png" alt="VCB" style="width:28px;height:28px;object-fit:contain">
+                  </div>
+                  <div style="font-size:11px;color:#10b981;font-weight:600;text-align:center">+12.5%</div>
+                </div>
+                <div class="stock-item" style="animation-delay:0.2s">
+                  <div style="width:36px;height:36px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;box-shadow:0 4px 12px rgba(227,6,19,0.25);border:1px solid #f0f0f0">
+                    <img src="uploads/mbb-logo.png" alt="MBB" style="width:28px;height:28px;object-fit:contain">
+                  </div>
+                  <div style="font-size:11px;color:#10b981;font-weight:600;text-align:center">+8.3%</div>
+                </div>
+                <div class="stock-item" style="animation-delay:0.3s">
+                  <div style="width:36px;height:36px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;box-shadow:0 4px 12px rgba(0,107,107,0.25);border:1px solid #f0f0f0">
+                    <img src="uploads/bidv-logo.png" alt="BID" style="width:28px;height:28px;object-fit:contain">
+                  </div>
+                  <div style="font-size:11px;color:#10b981;font-weight:600;text-align:center">+15.7%</div>
+                </div>
+                <div class="stock-item" style="animation-delay:0.4s">
+                  <div style="width:36px;height:36px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;box-shadow:0 4px 12px rgba(227,6,19,0.25);border:1px solid #f0f0f0">
+                    <img src="uploads/vic-logo.png" alt="VIC" style="width:28px;height:28px;object-fit:contain">
+                  </div>
+                  <div style="font-size:11px;color:#10b981;font-weight:600;text-align:center">+9.2%</div>
+                </div>
+                <div class="stock-item" style="animation-delay:0.5s">
+                  <div style="width:36px;height:36px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;box-shadow:0 4px 12px rgba(0,91,170,0.25);border:1px solid #f0f0f0">
+                    <img src="uploads/hpg-logo.png" alt="HPG" style="width:28px;height:28px;object-fit:contain">
+                  </div>
+                  <div style="font-size:11px;color:#10b981;font-weight:600;text-align:center">+11.4%</div>
+                </div>
+                <div class="stock-item" style="animation-delay:0.6s">
+                  <div style="width:36px;height:36px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;box-shadow:0 4px 12px rgba(253,185,19,0.25);border:1px solid #f0f0f0">
+                    <img src="uploads/mwg-logo.png" alt="MWG" style="width:28px;height:28px;object-fit:contain">
+                  </div>
+                  <div style="font-size:11px;color:#10b981;font-weight:600;text-align:center">+14.1%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="job-body">
+          <h3 class="job-title">Stock Analyst</h3>
+          <p class="job-desc">Is ACB stock at 23k VND a good buy right now?</p>
+        </div>
+        <div class="job-footer">
+          <span class="job-stats">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            45.2K
+          </span>
+          <button class="job-chat-btn">Chat</button>
+        </div>
+      </article>
+
+      <!-- Job 2: Goal-based Investing -->
+      <article class="job-card" onclick="goNow()">
+        <div class="job-visual">
+          <span class="job-tag">Investment Advisor</span>
+          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:20px">
+            <div style="width:100%;max-width:300px;height:180px;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.08)">
+              <img src="uploads/house-interior-clean.jpg" alt="Modern House Interior" style="width:100%;height:100%;object-fit:cover">
+            </div>
+          </div>
+        </div>
+        <div class="job-body">
+          <h3 class="job-title">Investment Advisor</h3>
+          <p class="job-desc">I have 1B VND, want to buy a 3B house in 2 years - how should I invest?</p>
+        </div>
+        <div class="job-footer">
+          <span class="job-stats">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            32.8K
+          </span>
+          <button class="job-chat-btn">Chat</button>
+        </div>
+      </article>
+
+      <!-- Job 3: Budget Planning -->
+      <article class="job-card" onclick="goNow()">
+        <div class="job-visual">
+          <span class="job-tag">Budget Planner</span>
+          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:20px">
+            <div style="width:100%;max-width:300px;height:180px;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.08)">
+              <img src="uploads/grocery-shopping.png" alt="Grocery Shopping" style="width:100%;height:100%;object-fit:cover">
+            </div>
+          </div>
+        </div>
+        <div class="job-body">
+          <h3 class="job-title">Budget Planner</h3>
+          <p class="job-desc">Income 20M VND/month, how much should I spend on rent to save enough?</p>
+        </div>
+        <div class="job-footer">
+          <span class="job-stats">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            24.5K
+          </span>
+          <button class="job-chat-btn">Chat</button>
+        </div>
+      </article>
+
+      <!-- Job 5: Market News -->
+      <article class="job-card" onclick="goNow()">
+        <div class="job-visual">
+          <span class="job-tag">Market Analyst</span>
+          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:20px">
+            <div style="width:100%;max-width:300px;height:180px;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.08)">
+              <img src="uploads/petrolimex.png" alt="Petrolimex Gas Station" style="width:100%;height:100%;object-fit:cover">
+            </div>
+          </div>
+        </div>
+        <div class="job-body">
+          <h3 class="job-title">Market Analyst</h3>
+          <p class="job-desc">Any important news affecting Vietnam market today?</p>
+        </div>
+        <div class="job-footer">
+          <span class="job-stats">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            19.3K
+          </span>
+          <button class="job-chat-btn">Chat</button>
+        </div>
+      </article>
+
+      <!-- Job 5: Insurance Review (Coming Soon) -->
+      <article class="job-card" style="opacity:0.7;cursor:default" onclick="return false;">
+        <div class="job-visual" style="background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 100%)">
+          <span class="job-tag" style="background:#3b82f6;color:#fff">✨ Coming Soon</span>
+          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:20px">
+            <div style="background:#fff;border-radius:12px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,0.04);border:1px solid #f0f0f0;width:100%;max-width:280px">
+              <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px">
+                <div class="insurance-logo" style="animation-delay:0.1s">
+                  <div style="background:#f8fafc;border-radius:8px;padding:12px;display:flex;align-items:center;justify-content:center;height:60px;border:1px solid #e2e8f0">
+                    <img src="uploads/pvi-insurance.png" alt="PVI" style="max-width:100%;max-height:100%;object-fit:contain">
+                  </div>
+                </div>
+                <div class="insurance-logo" style="animation-delay:0.2s">
+                  <div style="background:#f8fafc;border-radius:8px;padding:12px;display:flex;align-items:center;justify-content:center;height:60px;border:1px solid #e2e8f0">
+                    <img src="uploads/prudential.png" alt="Prudential" style="max-width:100%;max-height:100%;object-fit:contain">
+                  </div>
+                </div>
+                <div class="insurance-logo" style="animation-delay:0.3s">
+                  <div style="background:#f8fafc;border-radius:8px;padding:12px;display:flex;align-items:center;justify-content:center;height:60px;border:1px solid #e2e8f0">
+                    <img src="uploads/baoviet.png" alt="Bao Viet" style="max-width:100%;max-height:100%;object-fit:contain">
+                  </div>
+                </div>
+                <div class="insurance-logo" style="animation-delay:0.4s">
+                  <div style="background:#f8fafc;border-radius:8px;padding:12px;display:flex;align-items:center;justify-content:center;height:60px;border:1px solid #e2e8f0">
+                    <img src="uploads/aia.png" alt="AIA" style="max-width:100%;max-height:100%;object-fit:contain">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="job-body">
+          <h3 class="job-title">Compare Insurance Plans</h3>
+          <p class="job-desc">What should I do immediately after a car accident? Which insurance covers what?</p>
+        </div>
+        <div class="job-footer">
+          <span class="job-stats">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            --
+          </span>
+          <button class="job-chat-btn" style="opacity:0.5;cursor:not-allowed" disabled>Soon</button>
+        </div>
+      </article>
+
+      <!-- Job 6: Travel Planning (Coming Soon) -->
+      <article class="job-card" style="opacity:0.7;cursor:default" onclick="return false;">
+        <div class="job-visual" style="background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 100%)">
+          <span class="job-tag" style="background:#3b82f6;color:#fff">✨ Coming Soon</span>
+          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:20px">
+            <div style="width:100%;max-width:300px;height:180px;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.08)">
+              <img src="uploads/luxury-resort.png" alt="Luxury Resort" style="width:100%;height:100%;object-fit:cover">
+            </div>
+          </div>
+        </div>
+        <div class="job-body">
+          <h3 class="job-title">Travel Planner</h3>
+          <p class="job-desc">Japan trip in 7 days, budget $3000. Create itinerary + cost breakdown?</p>
+        </div>
+        <div class="job-footer">
+          <span class="job-stats">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            --
+          </span>
+          <button class="job-chat-btn" style="opacity:0.5;cursor:not-allowed" disabled>Soon</button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+  <!-- Deployments: Interactive Use Case Demos -->
+  <!-- ============================================================ -->
+  <section class="usecases-modern">
+    <div class="container">
+      <h2 class="usecases-headline">Popular Use Cases</h2>
+      
+      <div class="usecases-grid">
+        
+        <!-- Stock Analysis -->
+        <div class="usecase-card" data-index="0">
+          <div class="usecase-icon-wrapper">
+            <div class="usecase-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="usecase-title">Stock Analysis</h3>
+          <p class="usecase-subtitle">Portfolio insights & trends</p>
+          <ul class="usecase-list">
+            <li>Analyze user portfolio, offer insights</li>
+            <li>Real-time market trends analysis</li>
+            <li>Send smart alerts & recommendations</li>
+          </ul>
+        </div>
+
+        <!-- Insurance -->
+        <div class="usecase-card" data-index="1">
+          <div class="usecase-icon-wrapper">
+            <div class="usecase-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="usecase-title">Insurance</h3>
+          <p class="usecase-subtitle">Policy comparison & claims</p>
+          <ul class="usecase-list">
+            <li>Compare policies & recommend</li>
+            <li>Guide through claims process</li>
+            <li>Analyze coverage gaps</li>
+          </ul>
+        </div>
+
+        <!-- Personal Finance -->
+        <div class="usecase-card" data-index="2">
+          <div class="usecase-icon-wrapper">
+            <div class="usecase-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="usecase-title">Personal Finance</h3>
+          <p class="usecase-subtitle">Budget tracking & insights</p>
+          <ul class="usecase-list">
+            <li>Track spending & budget optimization</li>
+            <li>Manage wallet balance & transactions</li>
+            <li>Detect unusual transactions & fraud</li>
+          </ul>
+        </div>
+
+        <!-- Wealth Management -->
+        <div class="usecase-card" data-index="3">
+          <div class="usecase-icon-wrapper">
+            <div class="usecase-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="usecase-title">Wealth Management</h3>
+          <p class="usecase-subtitle">Fund analysis & goals</p>
+          <ul class="usecase-list">
+            <li>Compare funds & recommend options</li>
+            <li>Analyze portfolio allocation</li>
+            <li>Goal-based investing & tracking</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+  // Deployments tab and bullet interaction
+  (function() {
+    const tabs = document.querySelectorAll('.deploy-tab');
+    const contents = document.querySelectorAll('.deploy-content');
+    
+    // Tab click handler
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const specialist = tab.getAttribute('data-specialist');
+        
+        // Update active tab
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        // Show corresponding content
+        contents.forEach(c => c.classList.remove('active'));
+        const targetContent = document.querySelector(`.deploy-content[data-content="${specialist}"]`);
+        if (targetContent) {
+          targetContent.classList.add('active');
+        }
+      });
+    });
+    
+    // Bullet click handler - delegate from document
+    document.addEventListener('click', (e) => {
+      const bullet = e.target.closest('.deploy-bullet');
+      if (!bullet) return;
+      
+      const demo = bullet.getAttribute('data-demo');
+      const content = bullet.closest('.deploy-content');
+      if (!content) return;
+      
+      // Update active bullet
+      content.querySelectorAll('.deploy-bullet').forEach(b => b.classList.remove('active'));
+      bullet.classList.add('active');
+      
+      // Show corresponding demo
+      content.querySelectorAll('.deploy-demo').forEach(d => d.classList.remove('active'));
+      const targetDemo = content.querySelector(`.deploy-demo[data-demo="${demo}"]`);
+      if (targetDemo) {
+        targetDemo.classList.add('active');
+      }
+    });
+  })();
+  </script>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>Start a conversation<br>with your specialist</h2>
+    <div class="cta-btns">
+      <a href="https://infina.ai" target="_blank" class="btn-w">Chat with AI Specialist ↑</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-logo"><img src="uploads/image (109).png" alt="Infina AI"></div>
+    <div class="footer-links">
+      <a href="inside.html">AI Inside</a>
+      <a href="work.html">AI Work</a>
+      <a href="personal.html">AI Personal</a>
+    </div>
+    <p class="footer-copy">© 2026 Infina. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Waitlist modal -->
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="Đóng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="modal-form-wrap">
+      <div class="modal-emoji">👀</div>
+      <h3>Wow, you seem eager!</h3>
+      <p id="modalDesc">This AI Specialist is in development. Leave your email and we'll notify you when it's ready.</p>
+      <form class="modal-form" onsubmit="handleWaitlist(event)">
+        <input type="email" placeholder="Your email" required id="modalEmail">
+        <button type="submit">Sign up</button>
+      </form>
+    </div>
+    <div class="modal-success">
+      <div class="modal-success-icon">✓</div>
+      <b>Thank you!</b>
+      <span>We'll email you as soon as the product launches.</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ========== Hero chat — typewriter cycling personal-finance prompts ==========
+const prompts = [
+  'ACB stock at 23k, should I buy now?',
+  'I have 1B, want to buy 3B house in 2 years - invest how?',
+  'Income 20M/month, how much rent to save enough?',
+  'Any important news affecting VN market today?'
+];
+const inp = document.getElementById('heroInput');
+const ghost = document.getElementById('ghostText');
+let typeIdx = 0, charIdx = 0, isDel = false, typeTimer = null, userTyped = false;
+function typeStep(){
+  if (userTyped) return;
+  const cur = prompts[typeIdx];
+  let delay;
+  if (!isDel) {
+    charIdx++;
+    ghost.textContent = cur.substring(0, charIdx);
+    if (charIdx >= cur.length) { isDel = true; delay = 1800; }
+    else delay = 40 + Math.random() * 40;
+  } else {
+    charIdx--;
+    ghost.textContent = cur.substring(0, charIdx);
+    if (charIdx <= 0) { isDel = false; typeIdx = (typeIdx + 1) % prompts.length; delay = 300; }
+    else delay = 20;
+  }
+  typeTimer = setTimeout(typeStep, delay);
+}
+typeStep();
+inp.addEventListener('input', () => {
+  if (inp.value.length > 0 && !userTyped) { userTyped = true; clearTimeout(typeTimer); ghost.classList.add('hidden'); }
+  else if (inp.value.length === 0 && userTyped) { userTyped = false; ghost.classList.remove('hidden'); ghost.textContent=''; typeIdx=0; charIdx=0; isDel=false; typeStep(); }
+  inp.style.height='auto'; inp.style.height=Math.min(inp.scrollHeight,120)+'px';
+});
+function handleSend(){ if(inp.value.trim() || ghost.textContent) window.open('https://infina.ai','_blank'); }
+function goNow(){ window.open('https://infina.ai','_blank'); }
+inp.addEventListener('keydown', e=>{ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); handleSend(); }});
+
+// ========== Featured plan stepper — animated loop ==========
+const planSteps = document.querySelectorAll('#planStepper .plan-step');
+const planResult = document.getElementById('planResult');
+if (planSteps.length > 0 && planResult) {
+  function runPlanCycle(){
+    // reset
+    planSteps.forEach(s => s.classList.remove('show','active','done'));
+    planResult.classList.remove('show');
+    // reveal each
+    planSteps.forEach((s, i) => setTimeout(() => s.classList.add('show'), 200 + i*120));
+    // sequence active → done
+    const totalSteps = planSteps.length;
+    for (let i=0; i<totalSteps; i++) {
+      setTimeout(() => {
+        planSteps.forEach((s,j) => {
+          s.classList.remove('active');
+          if (j < i) s.classList.add('done');
+          if (j === i) s.classList.add('active');
+        });
+      }, 800 + i*600);
+    }
+    // finalize
+    setTimeout(() => {
+      planSteps.forEach(s => { s.classList.remove('active'); s.classList.add('done'); });
+      planResult.classList.add('show');
+    }, 800 + totalSteps*600);
+    // restart
+    setTimeout(runPlanCycle, 800 + totalSteps*600 + 2200);
+  }
+  runPlanCycle();
+}
+
+// ========== Soon card → waitlist modal ==========
+const modalBg = document.getElementById('modalBg');
+const modal = document.getElementById('modal');
+const modalDesc = document.getElementById('modalDesc');
+document.querySelectorAll('.is-soon').forEach(card => {
+  card.addEventListener('click', () => {
+    const name = card.dataset.soon || 'This AI Specialist';
+    modalDesc.textContent = `${name} is in development. Leave your email and we'll notify you when it's ready.`;
+    modal.classList.remove('done');
+    document.getElementById('modalEmail').value = '';
+    modalBg.classList.add('open');
+  });
+});
+document.querySelectorAll('.is-now').forEach(card => {
+  card.addEventListener('click', () => window.open('https://infina.ai','_blank'));
+});
+function closeModal(){ modalBg.classList.remove('open'); }
+function handleWaitlist(e){ e.preventDefault(); modal.classList.add('done'); setTimeout(closeModal, 2400); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ========== Slack demo: cursor + click + type + reveal messages ==========
+(function(){
+  const cursor = document.getElementById('smCursor');
+  const ch1 = document.getElementById('smCh1');
+  const input = document.getElementById('smInput');
+  const typed = document.getElementById('smTyped');
+  const placeholder = document.getElementById('smPlaceholder');
+  const msgs = document.querySelectorAll('#smBody .sm-msg');
+  const mock = document.querySelector('.slack-mock');
+  
+  // Check if elements exist before proceeding
+  if (!cursor || !ch1 || !input || !typed || !placeholder || !mock || msgs.length === 0) {
+    return; // Exit if Slack section was removed
+  }
+
+  function moveCursor(targetEl, delay){
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const mockRect = mock.getBoundingClientRect();
+        const t = targetEl.getBoundingClientRect();
+        const x = t.left - mockRect.left + t.width * 0.5;
+        const y = t.top - mockRect.top + t.height * 0.5;
+        cursor.style.left = (x - 9) + 'px';
+        cursor.style.top = (y - 9) + 'px';
+        cursor.classList.add('show');
+        setTimeout(resolve, 950);
+      }, delay);
+    });
+  }
+  function click(){
+    cursor.classList.add('click');
+    setTimeout(() => cursor.classList.remove('click'), 600);
+    return new Promise(r => setTimeout(r, 500));
+  }
+  function typeText(text, speed=55){
+    typed.textContent = '';
+    placeholder.style.display = 'none';
+    input.classList.add('is-typing');
+    return new Promise(resolve => {
+      let i = 0;
+      const tick = () => {
+        if (i >= text.length) return resolve();
+        typed.textContent = text.substring(0, ++i);
+        setTimeout(tick, speed + Math.random()*30);
+      };
+      tick();
+    });
+  }
+  function clearInput(){
+    typed.textContent = '';
+    placeholder.style.display = '';
+    input.classList.remove('is-typing');
+  }
+  function showMsg(idx){
+    if (msgs[idx]) msgs[idx].classList.add('show');
+    return new Promise(r => setTimeout(r, 800));
+  }
+  function hideAllMsgs(){
+    msgs.forEach(m => m.classList.remove('show'));
+  }
+
+  async function cycle(){
+    hideAllMsgs();
+    clearInput();
+    cursor.classList.remove('show');
+    await new Promise(r => setTimeout(r, 600));
+
+    // Move to input, click, type message 1
+    await moveCursor(input, 200);
+    await click();
+    await typeText('@AI summarize today\'s #project-launch thread for me');
+    await new Promise(r => setTimeout(r, 400));
+    clearInput();
+    cursor.classList.remove('show');
+    await showMsg(0);
+    await showMsg(1);
+    await new Promise(r => setTimeout(r, 1400));
+
+    // Type second message
+    await moveCursor(input, 200);
+    await click();
+    await typeText('Draft an email reminder for Hung to review');
+    await new Promise(r => setTimeout(r, 400));
+    clearInput();
+    cursor.classList.remove('show');
+    await showMsg(2);
+    await showMsg(3);
+    await new Promise(r => setTimeout(r, 3000));
+
+    cycle();
+  }
+
+  // Start when visible
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { cycle(); io.disconnect(); }
+    });
+  }, {threshold: 0.3});
+  io.observe(document.querySelector('.slack-mock'));
+})();
+</script>
+
+<script>
+/* ===== Mobile nav toggle ===== */
+(function () {
+  const nav = document.querySelector('nav');
+  if (!nav) return;
+  const navInner = nav.querySelector('.nav-inner');
+  if (!navInner) return;
+
+  let toggle = navInner.querySelector('.nav-toggle');
+  if (!toggle) {
+    toggle = document.createElement('button');
+    toggle.className = 'nav-toggle';
+    toggle.setAttribute('aria-label', 'Menu');
+    toggle.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
+    navInner.appendChild(toggle);
+  }
+  toggle.setAttribute('aria-expanded', 'false');
+
+  const panel = document.createElement('div');
+  panel.className = 'nav-mobile-panel';
+  panel.setAttribute('aria-hidden', 'true');
+  const center = navInner.querySelector('.nav-center');
+  const cta = navInner.querySelector('.nav-cta');
+  if (center) {
+    center.querySelectorAll('a').forEach(a => panel.appendChild(a.cloneNode(true)));
+  }
+  if (cta) {
+    const ctaClone = cta.cloneNode(true);
+    ctaClone.classList.add('nav-mobile-cta');
+    panel.appendChild(ctaClone);
+  }
+  nav.appendChild(panel);
+
+  const setOpen = (open) => {
+    document.body.classList.toggle('nav-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  };
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setOpen(!document.body.classList.contains('nav-open'));
+  });
+
+  panel.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => setOpen(false));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!document.body.classList.contains('nav-open')) return;
+    if (panel.contains(e.target) || toggle.contains(e.target)) return;
+    setOpen(false);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('nav-open')) setOpen(false);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && document.body.classList.contains('nav-open')) {
+      setOpen(false);
+    }
+  });
+})();
+</script>
+</body>
+</html>

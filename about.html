@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base target="_top">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - Infina AI · We Built the AI First. Then We Made It Available to You.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #fafafa;
+  --fg: #000000;
+  --fg-secondary: #212121;
+  --muted: #6b6b76;
+  --border: #e5e7eb;
+  --border-light: #f2f2f2;
+  --accent: #001F5C;
+  --accent-dark: #001340;
+  --accent-light: rgba(0, 31, 92, 0.08);
+  --font-display: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
+  --font-body: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
+  --section-gap: clamp(72px, 9vw, 112px);
+  --radius: 22px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(3deg); }
+}
+
+@keyframes hero-float-reverse {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(20px) rotate(-3deg); }
+}
+
+@keyframes hero-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+/* Nav */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-light);
+  z-index: 1000;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img { height: 23px; width: auto; display: block; }
+
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav-center a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-center a.active {
+  color: var(--fg);
+}
+
+.nav-center a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.nav-center a.active::after,
+.nav-center a:hover::after { width: 100%; }
+
+.nav-cta {
+  background: var(--accent);
+  color: white;
+  padding: 11px 22px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.nav-cta:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .nav-center, .nav-cta { display: none; }
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  padding: clamp(140px, 18vw, 180px) 0 clamp(80px, 10vw, 120px);
+  text-align: center;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 70% 30%, rgba(24, 99, 220, 0.14), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(126, 87, 194, 0.08), transparent 60%);
+  z-index: -2;
+}
+
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(24, 99, 220, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(24, 99, 220, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%);
+  z-index: -2;
+  pointer-events: none;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-grid { display: block; text-align: center; }
+.hero-grid .hero-text { max-width: 900px; margin: 0 auto; }
+
+.shape { position: absolute; border-radius: 50%; z-index: -1; pointer-events: none; }
+.shape-1 { width: 400px; height: 400px; background: linear-gradient(135deg, rgba(24, 99, 220, 0.08), transparent); top: 10%; right: -10%; animation: hero-float 8s ease-in-out infinite; }
+.shape-2 { width: 300px; height: 300px; background: linear-gradient(135deg, rgba(24, 99, 220, 0.05), transparent); bottom: 20%; left: -5%; animation: hero-float-reverse 10s ease-in-out infinite; }
+.shape-3 { width: 200px; height: 200px; border: 1px solid var(--border-light); top: 30%; left: 10%; animation: hero-pulse 6s ease-in-out infinite; }
+.shape-4 { width: 150px; height: 150px; border: 1px solid var(--border-light); bottom: 30%; right: 15%; animation: hero-pulse 8s ease-in-out infinite; animation-delay: 2s; }
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 28px;
+  color: var(--fg);
+  opacity: 0;
+  animation: fade-up 0.8s ease-out 0.2s forwards;
+}
+
+.hero h1 .line { white-space: normal; display: inline-block; padding: 0.12em 0 0.05em; line-height: 1.15; max-width: 100%; }
+.hero h1 .line-accent,
+.hero h1 .accent {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 50%, var(--accent) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 680px;
+  margin: 0 auto 44px;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fade-up 0.8s ease-out 0.3s forwards;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fade-up 0.8s ease-out 0.4s forwards;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+.btn-primary:hover::before { transform: translateX(100%); }
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--fg);
+  padding: 15px 32px;
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s;
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+  border-color: var(--fg);
+  background: var(--surface);
+}
+
+/* Story Section */
+.story {
+  padding: var(--section-gap) 0;
+  background: var(--bg);
+}
+
+.story-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.story-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--fg);
+  margin-bottom: 16px;
+}
+
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent) 0%, #4c8df0 100%);
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 56px;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+.timeline-item:nth-child(1) { animation-delay: 0.1s; }
+.timeline-item:nth-child(2) { animation-delay: 0.2s; }
+.timeline-item:nth-child(3) { animation-delay: 0.3s; }
+.timeline-item:nth-child(4) { animation-delay: 0.4s; }
+.timeline-item:nth-child(5) { animation-delay: 0.5s; }
+
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 4px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.timeline-date {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4c8df0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.timeline-desc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Mission Quote */
+.mission {
+  padding: var(--section-gap) 0;
+  background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+  text-align: center;
+}
+
+.mission blockquote {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--fg);
+  max-width: 900px;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+.mission .accent-quote {
+  background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.mission-sub {
+  margin-top: 24px;
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Different Section */
+.different {
+  padding: var(--section-gap) 0;
+  background: linear-gradient(180deg, #f8f9fc 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.different::before {
+  content: '';
+  position: absolute;
+  top: -300px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(0, 31, 92, 0.06), transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  animation: float 8s ease-in-out infinite;
+}
+
+.different-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.different-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--accent) 0%, #1863dc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.different-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .different-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.different-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 28px 24px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  animation: fade-up 0.6s ease-out forwards;
+  position: relative;
+}
+
+.different-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(0, 31, 92, 0.03), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.different-card:hover::before {
+  opacity: 1;
+}
+
+.different-card:nth-child(1) { animation-delay: 0.1s; }
+.different-card:nth-child(2) { animation-delay: 0.2s; }
+.different-card:nth-child(3) { animation-delay: 0.3s; }
+.different-card:nth-child(4) { animation-delay: 0.4s; }
+
+.different-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 31, 92, 0.2);
+  box-shadow: 0 20px 40px -12px rgba(0, 31, 92, 0.15);
+}
+
+.different-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #001F5C 0%, #1863dc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+  box-shadow: 0 8px 20px -6px rgba(0, 31, 92, 0.4);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.different-icon::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #001F5C, #1863dc);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.different-card:hover .different-icon {
+  transform: scale(1.1) rotate(-8deg);
+  box-shadow: 0 12px 30px -8px rgba(0, 31, 92, 0.5);
+}
+
+.different-card:hover .different-icon::after {
+  opacity: 0.3;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.different-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.different-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.different-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-30px); }
+}
+
+/* CTA Section */
+.cta {
+  padding: var(--section-gap) 0;
+  background: linear-gradient(135deg, #e8eaf6 0%, #f5f7ff 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta .container {
+  position: relative;
+  z-index: 1;
+}
+
+.cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4.5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  color: var(--fg);
+  margin-bottom: 20px;
+}
+
+.cta p {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0 auto 36px;
+  line-height: 1.7;
+}
+
+.cta-btns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ===== Lead form ===== */
+.lead-section {
+  padding: var(--section-gap) 0;
+  background: linear-gradient(180deg, #f0f3f9 0%, #e8edf7 100%);
+  color: var(--fg);
+  position: relative;
+  overflow: hidden;
+}
+.lead-section::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(0,31,92,0.08), transparent 65%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+.lead-section::after {
+  content: '';
+  position: absolute;
+  bottom: -300px; left: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,31,92,0.05), transparent 65%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+.lead-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 80px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  .lead-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+.lead-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 24px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), #2278f6);
+  box-shadow: 0 6px 16px -8px rgba(24,99,220,0.55);
+}
+.lead-eyebrow::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.25);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+.lead-copy h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 56px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 20px;
+  color: var(--fg);
+}
+.lead-copy h2 .accent {
+  background: linear-gradient(135deg, var(--accent) 0%, #1863dc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lead-sub {
+  font-size: 17px;
+  color: var(--fg-secondary);
+  margin-bottom: 36px;
+  max-width: 460px;
+  line-height: 1.55;
+}
+.lead-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 40px;
+}
+.lead-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 15px;
+  color: var(--fg);
+  line-height: 1.5;
+}
+.lead-check {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  border-radius: 8px;
+  background: var(--accent-light);
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+.lead-form {
+  background: #fff;
+  color: var(--fg);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+.lead-form-header {
+  margin-bottom: 4px;
+}
+.lead-form-title {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: 2px;
+}
+.lead-form-sub {
+  font-size: 12px; color: var(--muted);
+}
+@media (max-width: 600px) {
+  .lead-form { padding: 24px 20px; }
+}
+.lead-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 480px) {
+  .lead-row-2 { grid-template-columns: 1fr; }
+}
+.lead-field {
+  position: relative;
+}
+.lead-field input,
+.lead-field select,
+.lead-field textarea,
+.lead-combo-trigger {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 14px 6px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  appearance: none;
+  -webkit-appearance: none;
+  text-align: left;
+  cursor: pointer;
+  min-height: 50px;
+}
+.lead-field input,
+.lead-field textarea {
+  cursor: text;
+}
+.lead-field textarea {
+  resize: none;
+  min-height: 70px;
+  line-height: 1.5;
+  padding-top: 22px;
+}
+.lead-field input:focus,
+.lead-field select:focus,
+.lead-field textarea:focus,
+.lead-combo.open .lead-combo-trigger {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+.lead-field input.invalid,
+.lead-field select.invalid,
+.lead-field textarea.invalid {
+  border-color: #dc2626;
+}
+.lead-field label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--muted);
+  pointer-events: none;
+  transition: all 0.15s ease;
+  background: transparent;
+}
+.lead-field.lead-textarea label {
+  top: 18px;
+  transform: none;
+}
+.lead-field input:focus + label,
+.lead-field input:not(:placeholder-shown) + label,
+.lead-field textarea:focus + label,
+.lead-field textarea:not(:placeholder-shown) + label,
+.lead-combo.has-value .lead-combo-trigger + label,
+.lead-combo.open .lead-combo-trigger + label {
+  top: 8px;
+  transform: none;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lead-caret {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--fg-secondary);
+  pointer-events: none;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+.lead-combo.open .lead-caret { transform: translateY(-50%) rotate(180deg); }
+
+/* Custom combo (replaces select for prettier dropdown) */
+.lead-combo { position: relative; }
+.lead-combo-trigger {
+  display: flex; align-items: center; justify-content: flex-start;
+  padding-right: 36px;
+  color: var(--fg);
+}
+.lead-combo-trigger.placeholder { color: transparent; }
+.lead-combo-menu {
+  position: absolute;
+  top: calc(100% + 6px); left: 0; right: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  padding: 6px;
+  max-height: 240px; overflow-y: auto;
+  z-index: 20;
+  display: none;
+  animation: lead-combo-in 0.15s ease;
+}
+.lead-combo.open .lead-combo-menu { display: block; }
+@keyframes lead-combo-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.lead-combo-option {
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--fg);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.1s;
+  display: flex; align-items: center; gap: 10px;
+}
+.lead-combo-option:hover,
+.lead-combo-option.active {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+.lead-combo-option.selected::after {
+  content: '✓';
+  margin-left: auto;
+  color: var(--accent);
+  font-weight: 700;
+}
+.lead-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+  cursor: pointer;
+  margin-top: 2px;
+}
+.lead-consent input {
+  margin-top: 2px;
+  accent-color: var(--accent);
+  width: 14px; height: 14px;
+  flex-shrink: 0;
+}
+.lead-submit {
+  align-self: stretch;
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.15s, opacity 0.15s, background 0.15s, box-shadow 0.2s;
+  margin-top: 4px;
+  position: relative;
+  overflow: hidden;
+}
+.lead-submit:hover {
+  background: color-mix(in oklab, var(--accent) 85%, #000);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(24,99,220,0.35);
+}
+.lead-submit::after {
+  content: '→';
+  font-size: 18px;
+  transition: transform 0.2s;
+}
+.lead-submit:hover::after { transform: translateX(4px); }
+.lead-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.lead-submit-spinner {
+  display: none;
+  width: 14px; height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: lead-spin 0.7s linear infinite;
+}
+.lead-submit.loading .lead-submit-spinner { display: inline-block; }
+@keyframes lead-spin { to { transform: rotate(360deg); } }
+.lead-status {
+  font-size: 14px;
+  min-height: 20px;
+}
+.lead-status.success { color: #059669; }
+.lead-status.error { color: #dc2626; }
+
+/* Footer */
+footer {
+  background: var(--bg);
+  padding: 48px 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo .logo-img {
+  height: 23px;
+  width: auto;
+  display: block;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+}
+
+.footer-links a {
+  font-size: 14px;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero h1 { font-size: clamp(34px, 9vw, 52px); }
+  .hero h1 .line { display: inline; }
+  .hero h1 br { display: inline; }
+  .hero-sub { font-size: 17px; }
+}
+@media (max-width: 640px) {
+  .mission blockquote { font-size: 22px; }
+  .different-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 420px) {
+  .hero h1 { font-size: clamp(30px, 8.5vw, 38px); letter-spacing: -0.03em; }
+}
+
+/* === MOBILE RESPONSIVE OVERRIDES === */
+@media (max-width: 768px) {
+  /* Critical: collapse different-grid to single column at 768px */
+  .different-grid { grid-template-columns: 1fr; }
+
+  /* Critical: tighten timeline vertical line and item indent */
+  .timeline::before { left: 7px; }
+  .timeline-item { padding-left: 36px; }
+
+  /* Critical: hide decorative overflow blobs to prevent horizontal scroll */
+  .different::before { display: none; }
+  .lead-section::before, .lead-section::after { display: none; }
+
+  /* Moderate: reduce different-card padding on mobile */
+  .different-card { padding: 20px 16px; }
+
+  /* Moderate: reduce lead-form padding at 768px */
+  .lead-form { padding: 24px 20px; }
+}
+
+@media (max-width: 480px) {
+  /* Moderate: tighter container padding on small screens */
+  .container { padding: 0 16px; }
+
+  /* Moderate: reduce mission blockquote font size on small screens */
+  .mission blockquote { font-size: 20px; }
+
+  /* Moderate: compact button padding and font size on small screens */
+  .btn-primary, .btn-ghost { padding: 14px 24px; font-size: 14px; }
+}
+
+/* ===== Mobile nav panel ===== */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--fg-secondary);
+}
+.nav-toggle svg { width: 24px; height: 24px; display: block; }
+.nav-mobile-panel { display: none; }
+@media (max-width: 768px) {
+  .nav-toggle { display: block; }
+  .nav-mobile-panel {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    padding: 8px 24px 20px;
+    gap: 0;
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    transform: translateY(-12px);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 999;
+  }
+  body.nav-open .nav-mobile-panel {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  .nav-mobile-panel a {
+    padding: 14px 6px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--fg-secondary);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .nav-mobile-panel a:last-child { border-bottom: none; }
+  .nav-mobile-panel a.nav-mobile-cta {
+    margin-top: 14px;
+    text-align: center;
+    justify-content: center;
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 9999px;
+    border: none;
+    font-weight: 600;
+  }
+  body.nav-open { overflow: hidden; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="home.html" class="logo">
+        <img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img">
+      </a>
+      <div class="nav-center">
+        <a href="inside.html">AI Inside</a>
+        <a href="work.html">AI Work</a>
+        <a href="personal.html">AI Personal</a>
+        <a href="about.html" class="active">About Us</a>
+      </div>
+      <a href="#lead-form" class="nav-cta">Book a demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  <div class="shape shape-4"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1><span class="line">We Built the AI First.</span><br><span class="line line-accent">Then We Made It Available to You.</span></h1>
+        <p class="hero-sub">Cutting-edge AI used to be a luxury. We built Infina.ai so that world-class AI is accessible to more users. Now financial institutions embed the same technology in their own apps.</p>
+        <div class="hero-ctas">
+          <a href="#lead-form" class="btn-primary">Book a demo →</a>
+          <a href="personal.html" class="btn-ghost">See the live product</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Story -->
+<section class="story">
+  <div class="container">
+    <div class="story-header">
+      <h2>Our Story</h2>
+    </div>
+    
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">January 2024</div>
+        <h3 class="timeline-title">Infina.ai web app launched</h3>
+        <p class="timeline-desc">Introduced Infina.ai as a chatbot for "Personal Finance" in Vietnam — a production product loved by real everyday users.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">March 2024</div>
+        <h3 class="timeline-title">Infina.ai mobile app launched</h3>
+        <p class="timeline-desc">Expanded to mobile, delivering immersive AI-powered financial guidance and deeper insights.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">August 2024</div>
+        <h3 class="timeline-title">Infina AI Inside launched</h3>
+        <p class="timeline-desc">Introduced Infina AI Inside, the embedded AI sensory platform for financial institutions — built on our own tech, tested behind Infina.ai.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">November 2024</div>
+        <h3 class="timeline-title">Introduced Infina AI Inside to securities firms</h3>
+        <p class="timeline-desc">Presented our embedded AI platform for institutional integrations.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">January 2025</div>
+        <h3 class="timeline-title">First embedded production deployment</h3>
+        <p class="timeline-desc">Infina AI Inside went live inside a securities firm, delivering AI-powered goal-based investing to production.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission Quote -->
+<section class="mission">
+  <div class="container">
+    <blockquote>
+      <span class="accent-quote">Democratize financial advice and services through AI</span>
+    </blockquote>
+    <p class="mission-sub">In most markets, personalized financial advice is only available to the wealthy. A couple banker for every retail investor isn't economically viable — until now. We believe AI can close that gap. Not by replacing human advisors, but by making good-enough advice accessible to anyone at a manageable cost.</p>
+  </div>
+</section>
+
+<!-- What Makes Us Different -->
+<section class="different">
+  <div class="container">
+    <div class="different-header">
+      <h2>What Makes Us Different</h2>
+    </div>
+    
+    <div class="different-grid">
+      <div class="different-card">
+        <div class="different-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3 class="different-title">Proven in Production, Not a Prototype</h3>
+        <p class="different-desc">Infina AI Inside isn't a demo. It's built on AI that's already tested by real users with real money — not built speculatively for a sales deck.</p>
+      </div>
+      
+      <div class="different-card">
+        <div class="different-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3 class="different-title">Multi-Agent Architecture</h3>
+        <p class="different-desc">A flexible family of multi-agent specialists — stocks agents, investing, budgeting, wealth management — each fine-tuned on real financial conversations.</p>
+      </div>
+      
+      <div class="different-card">
+        <div class="different-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <h3 class="different-title">Country-Specific Expertise</h3>
+        <p class="different-desc">Deep understanding of local markets, regulations, and language nuances. Built for Southeast Asia, expanding globally.</p>
+      </div>
+      
+      <div class="different-card">
+        <div class="different-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <h3 class="different-title">Fastest Path to Live AI</h3>
+        <p class="different-desc">Live in 3 weeks from decision to live AI in your app. No drawn-out roadmap. You're embedding what's already running.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>Ready to Embed the AI That's Already Live?</h2>
+    <p>Try Infina.ai to experience the product yourself, or book a call to discuss embedding it in your app.</p>
+    <div class="cta-btns">
+      <a href="#lead-form" class="btn-primary">Book a Demo</a>
+      <a href="personal.html" class="btn-ghost">Try Infina.ai →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Book a Demo Section -->
+<section class="lead-section" id="lead-form">
+  <div class="container lead-grid">
+    <div class="lead-copy">
+      <span class="lead-eyebrow">BOOK A DEMO</span>
+      <h2>Accelerate AI Deployment with <span class="accent">Infina AI</span></h2>
+      <p class="lead-sub">Connect with Infina AI team to optimize your product effectiveness and business results.</p>
+      <ul class="lead-bullets">
+        <li><span class="lead-check">✓</span>AI solution consultation aligned with business goals</li>
+        <li><span class="lead-check">✓</span>Flexible deployment model options</li>
+        <li><span class="lead-check">✓</span>Go from pilot to production in 2–3 weeks, secure and compliant</li>
+      </ul>
+    </div>
+
+    <form class="lead-form" id="lead-form" novalidate="">
+      <div class="lead-form-header">
+        <h3 class="lead-form-title">Contact us</h3>
+        <p class="lead-form-sub">Infina AI team will respond within 24 hours.</p>
+      </div>
+
+      <div class="lead-field">
+        <input type="text" id="lf-name" name="fullName" required="" autocomplete="name" placeholder=" ">
+        <label for="lf-name">Full name</label>
+      </div>
+
+      <div class="lead-field">
+        <input type="email" id="lf-email" name="email" required="" autocomplete="email" placeholder=" ">
+        <label for="lf-email">Work email</label>
+      </div>
+
+      <div class="lead-row lead-row-2">
+        <div class="lead-field">
+          <input type="text" id="lf-company" name="company" required="" autocomplete="organization" placeholder=" ">
+          <label for="lf-company">Company name</label>
+        </div>
+        <div class="lead-field">
+          <input type="text" id="lf-title" name="jobTitle" autocomplete="organization-title" placeholder=" ">
+          <label for="lf-title">Job title</label>
+        </div>
+      </div>
+
+      <div class="lead-row lead-row-2">
+        <div class="lead-field lead-combo" data-combo="companySize" data-required="true">
+          <button type="button" class="lead-combo-trigger placeholder">Select to continue...</button>
+          <label>Company size</label>
+          <span class="lead-caret">▾</span>
+          <input type="hidden" name="companySize" required="">
+          <div class="lead-combo-menu" role="listbox">
+            <div class="lead-combo-option" data-value="1-10">1–10 employees</div>
+            <div class="lead-combo-option" data-value="11-50">11–50 employees</div>
+            <div class="lead-combo-option" data-value="51-200">51–200 employees</div>
+            <div class="lead-combo-option" data-value="201-1000">201–1.000 employees</div>
+            <div class="lead-combo-option" data-value="1000+">Over 1,000 employees</div>
+          </div>
+        </div>
+        <div class="lead-field">
+          <input type="tel" id="lf-phone" name="phone" autocomplete="tel" placeholder=" ">
+          <label for="lf-phone">Phone number</label>
+        </div>
+      </div>
+
+      <div class="lead-row lead-row-2">
+        <div class="lead-field lead-combo" data-combo="product" data-required="true">
+          <button type="button" class="lead-combo-trigger placeholder">Select to continue...</button>
+          <label>Product of interest</label>
+          <span class="lead-caret">▾</span>
+          <input type="hidden" name="product" required="">
+          <div class="lead-combo-menu" role="listbox">
+            <div class="lead-combo-option" data-value="Inside">Infina AI — Inside</div>
+            <div class="lead-combo-option" data-value="Work">Infina AI — Work</div>
+            <div class="lead-combo-option" data-value="Personal">Infina AI — Personal</div>
+            <div class="lead-combo-option" data-value="Not sure">Not sure — need consultation</div>
+          </div>
+        </div>
+        <div class="lead-field lead-combo" data-combo="industry">
+          <button type="button" class="lead-combo-trigger placeholder">Select...</button>
+          <label>Industry (optional)</label>
+          <span class="lead-caret">▾</span>
+          <input type="hidden" name="industry">
+          <div class="lead-combo-menu" role="listbox">
+            <div class="lead-combo-option" data-value="Finance / Securities">Finance / Securities</div>
+            <div class="lead-combo-option" data-value="Banking">Banking</div>
+            <div class="lead-combo-option" data-value="Insurance">Insurance</div>
+            <div class="lead-combo-option" data-value="Fintech / E-wallet">Fintech / E-wallet</div>
+            <div class="lead-combo-option" data-value="Real Estate">Real Estate</div>
+            <div class="lead-combo-option" data-value="Retail / E-commerce">Retail / E-commerce</div>
+            <div class="lead-combo-option" data-value="Education">Education</div>
+            <div class="lead-combo-option" data-value="Other">Other</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lead-field lead-textarea">
+        <textarea id="lf-usecase" name="useCase" rows="2" placeholder=" "></textarea>
+        <label for="lf-usecase">How do you plan to use AI? (optional)</label>
+      </div>
+
+      <label class="lead-consent">
+        <input type="checkbox" id="lf-consent" name="consent">
+        <span>I agree to receive product information and updates from Infina AI.</span>
+      </label>
+
+      <button type="submit" class="lead-submit" id="lf-submit">
+        <span class="lead-submit-label">Book a demo</span>
+        <span class="lead-submit-spinner" aria-hidden="true"></span>
+      </button>
+
+      <div class="lead-status" id="lf-status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<script>
+(function() {
+  const SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyO618yfsKfO4nHni2qBe62GWp9fM0vEb0h-Gccw-1wV-w5wJpN3Zayhai1OFxPl98x/exec';
+
+  const form = document.getElementById('lead-form');
+  const submitBtn = document.getElementById('lf-submit');
+  const status = document.getElementById('lf-status');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.className = 'lead-status';
+    status.textContent = '';
+
+    // Validate
+    const required = form.querySelectorAll('[required]');
+    let firstInvalid = null;
+    required.forEach(el => {
+      const ok = el.checkValidity();
+      el.classList.toggle('invalid', !ok);
+      if (!ok && !firstInvalid) firstInvalid = el;
+    });
+    if (firstInvalid) {
+      status.className = 'lead-status error';
+      status.textContent = 'Please fill in all required fields.';
+      firstInvalid.focus();
+      return;
+    }
+
+    const data = {
+      fullName:    form.fullName.value.trim(),
+      email:       form.email.value.trim(),
+      company:     form.company.value.trim(),
+      jobTitle:    form.jobTitle.value.trim(),
+      companySize: form.companySize.value,
+      phone:       form.phone.value.trim(),
+      product:     form.product.value,
+      industry:    form.industry.value,
+      useCase:     form.useCase.value.trim(),
+      consent:     form.consent.checked,
+      source:      'infina-ai-about-us',
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+    submitBtn.querySelector('.lead-submit-label').textContent = 'Sending...';
+
+    try {
+      if (!SHEETS_ENDPOINT) {
+        await new Promise(r => setTimeout(r, 600));
+        console.log('[Lead form] SHEETS_ENDPOINT not configured. Data:', data);
+      } else {
+        console.log('[Lead form] Sending to:', SHEETS_ENDPOINT);
+        console.log('[Lead form] Payload:', data);
+        const fd = new FormData();
+        Object.keys(data).forEach(k => fd.append(k, typeof data[k] === 'boolean' ? (data[k] ? 'true' : 'false') : data[k]));
+        const res = await fetch(SHEETS_ENDPOINT, { method: 'POST', body: fd });
+        const txt = await res.text();
+        console.log('[Lead form] Response:', res.status, txt);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        try {
+          const json = JSON.parse(txt);
+          if (json && json.ok === false) throw new Error(json.error || 'Sheet error');
+        } catch (parseErr) {
+          if (txt.indexOf('<!DOCTYPE') === 0 || txt.indexOf('<html') >= 0) {
+            throw new Error('Endpoint not public — go to Apps Script → Deploy → Manage deployments → change "Who has access" to "Anyone".');
+          }
+        }
+      }
+
+      status.className = 'lead-status success';
+      status.textContent = '✓ Thank you! Infina AI team will contact you within 24 hours.';
+      form.reset();
+    } catch (err) {
+      status.className = 'lead-status error';
+      status.textContent = 'An error occurred. Please try again or email contact@infina.ai.';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+      submitBtn.querySelector('.lead-submit-label').textContent = 'Book a demo';
+    }
+  });
+
+  // Clear invalid state on input
+  form.querySelectorAll('input, select, textarea').forEach(el => {
+    el.addEventListener('input', () => el.classList.remove('invalid'));
+    el.addEventListener('change', () => el.classList.remove('invalid'));
+  });
+
+  // ===== Custom combo (replaces native <select>) =====
+  const combos = form.querySelectorAll('.lead-combo');
+  combos.forEach(combo => {
+    const trigger = combo.querySelector('.lead-combo-trigger');
+    const menu = combo.querySelector('.lead-combo-menu');
+    const hidden = combo.querySelector('input[type="hidden"]');
+    const options = combo.querySelectorAll('.lead-combo-option');
+
+    const close = () => combo.classList.remove('open');
+    const open = () => {
+      combos.forEach(c => { if (c !== combo) c.classList.remove('open'); });
+      combo.classList.add('open');
+    };
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      combo.classList.contains('open') ? close() : open();
+    });
+
+    options.forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const val = opt.dataset.value;
+        const label = opt.textContent;
+        hidden.value = val;
+        trigger.textContent = label;
+        trigger.classList.remove('placeholder');
+        combo.classList.add('has-value');
+        combo.classList.remove('invalid');
+        hidden.classList.remove('invalid');
+        options.forEach(o => o.classList.toggle('selected', o === opt));
+        close();
+      });
+    });
+
+    form.addEventListener('reset', () => {
+      hidden.value = '';
+      trigger.textContent = 'Select...';
+      trigger.classList.add('placeholder');
+      combo.classList.remove('has-value');
+      options.forEach(o => o.classList.remove('selected'));
+    });
+  });
+  document.addEventListener('click', () => {
+    combos.forEach(c => c.classList.remove('open'));
+  });
+})();
+</script>
+
+<!-- Footer -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-logo">
+      <img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img">
+    </div>
+    <div class="footer-links">
+      <a href="inside.html">Inside</a>
+      <a href="work.html">Work</a>
+      <a href="personal.html">Personal</a>
+      <a href="about.html">About</a>
+    </div>
+    <p class="footer-copy">© 2026 Infina. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Language selector placeholder
+const langSelect = document.querySelector('.lang-select');
+if (langSelect) {
+  langSelect.addEventListener('click', function(e) {
+    e.preventDefault();
+  });
+}
+</script>
+
+<script>
+/* ===== Mobile nav toggle ===== */
+(function () {
+  const nav = document.querySelector('nav');
+  if (!nav) return;
+  const navInner = nav.querySelector('.nav-inner');
+  if (!navInner) return;
+
+  let toggle = navInner.querySelector('.nav-toggle');
+  if (!toggle) {
+    toggle = document.createElement('button');
+    toggle.className = 'nav-toggle';
+    toggle.setAttribute('aria-label', 'Menu');
+    toggle.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
+    navInner.appendChild(toggle);
+  }
+  toggle.setAttribute('aria-expanded', 'false');
+
+  const panel = document.createElement('div');
+  panel.className = 'nav-mobile-panel';
+  panel.setAttribute('aria-hidden', 'true');
+  const center = navInner.querySelector('.nav-center');
+  const cta = navInner.querySelector('.nav-cta');
+  if (center) {
+    center.querySelectorAll('a').forEach(a => panel.appendChild(a.cloneNode(true)));
+  }
+  if (cta) {
+    const ctaClone = cta.cloneNode(true);
+    ctaClone.classList.add('nav-mobile-cta');
+    panel.appendChild(ctaClone);
+  }
+  nav.appendChild(panel);
+
+  const setOpen = (open) => {
+    document.body.classList.toggle('nav-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  };
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setOpen(!document.body.classList.contains('nav-open'));
+  });
+
+  panel.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => setOpen(false));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!document.body.classList.contains('nav-open')) return;
+    if (panel.contains(e.target) || toggle.contains(e.target)) return;
+    setOpen(false);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('nav-open')) setOpen(false);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && document.body.classList.contains('nav-open')) {
+      setOpen(false);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

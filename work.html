@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infina AI Work · Specialist Agents for Your Company</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #fafafa;
+      --fg: #1a1f2e;
+      --fg-secondary: #334155;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --border-light: #f2f2f2;
+      --accent: #001F5C;
+      --accent-dark: #001340;
+      --accent-light: rgba(0, 31, 92, 0.08);
+      --font-display: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
+      --font-body: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
+      --section-gap: 120px;
+      --radius: 20px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--fg); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+    @keyframes float { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-20px) rotate(3deg)} }
+    @keyframes float-reverse { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(20px) rotate(-3deg)} }
+    @keyframes pulse { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:.8;transform:scale(1.05)} }
+    @keyframes gradient-shift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes fade-up { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes pulse-ring { 0%{transform:scale(0.8);opacity:1} 100%{transform:scale(2);opacity:0} }
+    @keyframes spin-slow { to{transform:rotate(360deg)} }
+    @keyframes icon-pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+    @keyframes shimmer { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+
+    /* Nav */
+    nav { position: fixed; top:0; left:0; right:0; background: rgba(255,255,255,.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-light); z-index: 1000; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    .logo { font-family: var(--font-display); font-size: 22px; font-weight: 600; letter-spacing: -.03em; display: flex; align-items: center; gap: 10px; }
+    .logo-img { height: 23px; width: auto; display: block; }
+    .logo:hover .logo-img { height: 23px; width: auto; display: block; }
+    .nav-center { display: flex; align-items: center; gap: 40px; }
+    .nav-center a { font-size: 15px; font-weight: 500; color: var(--fg-secondary); transition: color .2s; position: relative; }
+    .nav-center a.active { color: var(--fg); }
+    .nav-center a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width .3s; }
+    .nav-center a.active::after, .nav-center a:hover::after { width: 100%; }
+    .nav-cta { background: var(--accent); color: #fff; padding: 11px 22px; border-radius: 9999px; font-size: 14px; font-weight: 500; transition: all .3s; }
+    .nav-cta:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(24,99,220,.25); }
+    @media (max-width: 768px) { .nav-center { display: none; } }
+
+    /* Hero */
+    .hero { position: relative; padding: clamp(140px, 18vw, 180px) 0 clamp(64px, 8vw, 96px); overflow: hidden; background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%); }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 70% 30%, rgba(24,99,220,.14), transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(126,87,194,.08), transparent 60%); z-index: -2; pointer-events: none; }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(24,99,220,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(24,99,220,.06) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); z-index: -2; pointer-events: none; }
+    .shape { position: absolute; border-radius: 50%; z-index: -1; pointer-events: none; }
+    .shape-1 { width: 400px; height: 400px; background: linear-gradient(135deg, rgba(24,99,220,.08), transparent); top: 10%; right: -10%; animation: float 8s ease-in-out infinite; }
+    .shape-2 { width: 300px; height: 300px; background: linear-gradient(135deg, rgba(24,99,220,.05), transparent); bottom: 20%; left: -5%; animation: float-reverse 10s ease-in-out infinite; }
+    .shape-3 { width: 200px; height: 200px; border: 1px solid var(--border-light); top: 30%; left: 10%; animation: pulse 6s ease-in-out infinite; }
+    .shape-4 { width: 150px; height: 150px; border: 1px solid var(--border-light); bottom: 30%; right: 15%; animation: pulse 8s ease-in-out infinite; animation-delay: 2s; }
+    .hero .container { position: relative; z-index: 1; text-align: center; }
+    .hero-grid { display: block; text-align: center; }
+    .hero-grid .hero-text { max-width: 900px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; padding: 8px 16px; border: 1px solid rgba(24,99,220,.2); border-radius: 999px; background: var(--accent-light); margin-bottom: 28px; opacity: 0; animation: fade-up .6s ease-out .2s forwards; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 72px); font-weight: 700; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 28px; opacity: 0; animation: fade-up .8s ease-out .3s forwards; }
+    .hero h1 .line { white-space: normal; display: inline-block; padding: .12em 0 .05em; line-height: 1.15; max-width: 100%; }
+    .hero h1 .line-accent { background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 50%, var(--accent) 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 4s ease infinite; }
+    .hero-sub { font-size: 20px; color: #64748b; line-height: 1.65; margin: 0 auto 44px; opacity: 0; animation: fade-up .8s ease-out .4s forwards; max-width: 580px; font-weight: 400; }
+    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fade-up .8s ease-out .5s forwards; }
+    .btn-primary { background: var(--accent); color: #fff; padding: 16px 32px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s; display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer; }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(24,99,220,.3); }
+    .btn-ghost { background: transparent; color: var(--fg); padding: 15px 32px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s; border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--fg); background: var(--surface); }
+
+    /* Section header */
+    .section { padding: var(--section-gap) 0; }
+    .section-header { margin-bottom: 64px; text-align: center; }
+    .section-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--accent); margin-bottom: 16px; }
+    .section-header h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 700; letter-spacing: -.03em; line-height: 1.2; margin-bottom: 20px; color: var(--fg); }
+    .section-header p { font-size: 17px; color: #64748b; max-width: 660px; line-height: 1.7; margin: 0 auto; font-weight: 400; }
+
+    /* Agents Grid */
+    .agents-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 80px; }
+    @media (max-width: 1100px) { .agents-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .agents-grid { grid-template-columns: 1fr; } }
+    .agent-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0; overflow: hidden; transition: all .4s cubic-bezier(.16,1,.3,1); position: relative; }
+    .agent-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.16,1,.3,1); }
+    .agent-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -16px rgba(24,99,220,.18); border-color: rgba(24,99,220,.3); }
+    .agent-card:hover::before { transform: scaleX(1); }
+    .agent-icon-wrap { padding: 36px 28px 24px; background: linear-gradient(160deg, var(--accent-light) 0%, transparent 80%); border-bottom: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; min-height: 140px; position: relative; overflow: hidden; }
+    .agent-icon-wrap::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, var(--accent-light), transparent 70%); opacity: 0; transition: opacity .5s; }
+    .agent-card:hover .agent-icon-wrap::before { opacity: 1; }
+    .agent-icon { width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, var(--accent) 0%, #0e4eb8 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(24,99,220,.2); position: relative; transition: all .4s cubic-bezier(.16,1,.3,1); overflow: hidden; }
+    .agent-icon::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent); transform: translateX(-100%); }
+    .agent-card:hover .agent-icon::after { animation: shimmer 1.5s ease-in-out; }
+    .agent-card:hover .agent-icon { transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 32px rgba(24,99,220,.35); animation: icon-pulse 2s ease-in-out infinite; }
+    .agent-icon svg { width: 24px; height: 24px; stroke-width: 2.5; transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .agent-card:hover .agent-icon svg { transform: scale(1.1); }
+    .agent-icon::before { content: ''; position: absolute; inset: -2px; border-radius: 16px; background: linear-gradient(135deg, rgba(255,255,255,.3), transparent); opacity: 0; transition: opacity .4s; }
+    .agent-card:hover .agent-icon::before { opacity: 1; }
+    .agent-body { padding: 28px; }
+    .agent-num { display: none; }
+    .agent-card h3 { font-family: var(--font-display); font-size: 19px; font-weight: 700; letter-spacing: -.015em; margin-bottom: 12px; line-height: 1.35; color: var(--fg); }
+    .agent-card p { font-size: 15px; color: #64748b; line-height: 1.7; font-weight: 400; }
+
+    /* Sales Section - Redesigned Clean */
+    .sales-section { background: var(--surface); }
+    .sales-features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 1100px) {
+      .sales-features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .sales-features-grid { grid-template-columns: 1fr; }
+    }
+    .sales-feature-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .sales-feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,31,92,0.12);
+      border-color: rgba(0,31,92,0.2);
+    }
+    .sales-card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      margin-bottom: 20px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .sales-feature-card:hover .sales-card-icon {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0,31,92,0.3);
+    }
+    .sales-card-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke-width: 2.5;
+    }
+    .sales-feature-card h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      color: var(--fg);
+    }
+    .sales-feature-card p {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* Context-Aware AI Section */
+    .context-ai-section { 
+      padding: var(--section-gap) 0; 
+      background: #fff;
+    }
+    .context-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    @media (max-width: 1000px) {
+      .context-grid { grid-template-columns: 1fr; gap: 60px; }
+      .context-visual { order: -1; }
+    }
+    .context-visual {
+      position: relative;
+    }
+    .context-chat-window {
+      background: #f8f9fa;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+    .context-chat-header {
+      background: #fff;
+      padding: 12px 16px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .context-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .context-dots span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .context-chat-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      min-height: 320px;
+    }
+    .context-msg {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .context-msg-user {
+      flex-direction: row-reverse;
+    }
+    .context-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .context-avatar-user {
+      background: #64748b;
+    }
+    .context-avatar-ai {
+      background: var(--accent);
+    }
+    .context-bubble {
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 420px;
+    }
+    .context-bubble-user {
+      background: #3b82f6;
+      color: #fff;
+    }
+    .context-bubble-ai {
+      background: #fff;
+      color: var(--fg);
+      border: 1px solid #e5e7eb;
+    }
+    .context-priority-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .context-priority-item:last-child {
+      margin-bottom: 0;
+    }
+    .context-priority-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .context-priority-bar {
+      height: 8px;
+      border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+    .context-metric-card {
+      position: absolute;
+      bottom: -20px;
+      left: 20px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .context-metric-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(16, 185, 129, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .context-metric-label {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+    .context-metric-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--fg);
+    }
+    .context-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59, 130, 246, 0.1);
+      color: #3b82f6;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .context-content h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: var(--fg);
+    }
+    .context-highlight {
+      background: linear-gradient(135deg, var(--accent) 0%, #1863dc 50%, var(--accent) 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-shift 4s ease infinite;
+    }
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Gradient text animation utility */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent) 0%, #1863dc 50%, var(--accent) 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-shift 4s ease infinite;
+    }
+    
+    .context-description {
+      font-size: 17px;
+      color: #64748b;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .context-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .context-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--fg);
+      line-height: 1.5;
+    }
+    .context-check {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      background: rgba(59, 130, 246, 0.1);
+      color: #3b82f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    /* Lead Section - Light Theme like AI Inside */
+    .lead-section {
+      padding: var(--section-gap) 0;
+      background: linear-gradient(180deg, #f0f3f9 0%, #e8edf7 100%);
+      color: var(--fg);
+      position: relative;
+      overflow: hidden;
+    }
+    .lead-section::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(0,31,92,0.08), transparent 65%);
+      filter: blur(40px);
+      pointer-events: none;
+    }
+    .lead-section::after {
+      content: '';
+      position: absolute;
+      bottom: -300px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,31,92,0.05), transparent 65%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+    .lead-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 80px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 900px) {
+      .lead-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+    .lead-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 24px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), #2278f6);
+      box-shadow: 0 6px 16px -8px rgba(24,99,220,0.55);
+    }
+    .lead-eyebrow::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.25);
+    }
+    .lead-copy h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 20px;
+      color: var(--fg);
+    }
+    .lead-copy h2 .accent {
+      background: linear-gradient(135deg, var(--accent) 0%, #1863dc 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lead-sub {
+      font-size: 17px;
+      color: var(--fg-secondary);
+      margin-bottom: 36px;
+      max-width: 460px;
+      line-height: 1.55;
+    }
+    .lead-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+    .lead-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15px;
+      color: var(--fg);
+      line-height: 1.5;
+    }
+    .lead-check {
+      flex-shrink: 0;
+      width: 24px; height: 24px;
+      border-radius: 8px;
+      background: var(--accent-light);
+      border: 1px solid rgba(0, 31, 92, 0.35);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+    .lead-form {
+      background: #fff;
+      color: var(--fg);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+    }
+    .lead-form-header {
+      margin-bottom: 4px;
+    }
+    .lead-form-title {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 700;
+      letter-spacing: -0.015em;
+      margin-bottom: 2px;
+    }
+    .lead-form-sub {
+      font-size: 12px; color: var(--muted);
+    }
+    @media (max-width: 600px) {
+      .lead-form { padding: 24px 20px; }
+    }
+    .lead-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 480px) {
+      .lead-row-2 { grid-template-columns: 1fr; }
+    }
+    .lead-field {
+      position: relative;
+    }
+    .lead-field input,
+    .lead-field select,
+    .lead-field textarea,
+    .lead-combo-trigger {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--fg);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 14px 6px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+      text-align: left;
+      cursor: pointer;
+      min-height: 50px;
+    }
+    .lead-field input,
+    .lead-field textarea {
+      cursor: text;
+    }
+    .lead-field textarea {
+      resize: none;
+      min-height: 70px;
+      line-height: 1.5;
+      padding-top: 22px;
+    }
+    .lead-field input:focus,
+    .lead-field select:focus,
+    .lead-field textarea:focus,
+    .lead-combo.open .lead-combo-trigger {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+    .lead-field input.invalid,
+    .lead-field select.invalid,
+    .lead-field textarea.invalid {
+      border-color: #dc2626;
+    }
+    .lead-field label {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: var(--muted);
+      pointer-events: none;
+      transition: all 0.15s ease;
+      background: transparent;
+    }
+    .lead-field.lead-textarea label {
+      top: 18px;
+      transform: none;
+    }
+    .lead-field input:focus + label,
+    .lead-field input:not(:placeholder-shown) + label,
+    .lead-field textarea:focus + label,
+    .lead-field textarea:not(:placeholder-shown) + label,
+    .lead-combo.has-value .lead-combo-trigger + label,
+    .lead-combo.open .lead-combo-trigger + label {
+      top: 8px;
+      transform: none;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .lead-caret {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--fg-secondary);
+      pointer-events: none;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1;
+      transition: transform 0.2s;
+    }
+    .lead-combo.open .lead-caret { transform: translateY(-50%) rotate(180deg); }
+    .lead-combo { position: relative; }
+    .lead-combo-trigger {
+      display: flex; align-items: center; justify-content: flex-start;
+      padding-right: 36px;
+      color: var(--fg);
+    }
+    .lead-combo-trigger.placeholder { color: transparent; }
+    .lead-combo-menu {
+      position: absolute;
+      top: calc(100% + 6px); left: 0; right: 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+      padding: 6px;
+      max-height: 240px; overflow-y: auto;
+      z-index: 20;
+      display: none;
+      animation: lead-combo-in 0.15s ease;
+    }
+    .lead-combo.open .lead-combo-menu { display: block; }
+    @keyframes lead-combo-in {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .lead-combo-option {
+      padding: 10px 12px;
+      font-size: 14px;
+      color: var(--fg);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.1s;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .lead-combo-option:hover,
+    .lead-combo-option.active {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+    .lead-combo-option.selected::after {
+      content: '✓';
+      margin-left: auto;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .lead-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+      cursor: pointer;
+      margin-top: 2px;
+    }
+    .lead-consent input {
+      margin-top: 2px;
+      accent-color: var(--accent);
+      width: 14px; height: 14px;
+      flex-shrink: 0;
+    }
+    .lead-submit {
+      align-self: stretch;
+      justify-content: center;
+      background: var(--accent);
+      color: #fff;
+      border: 0;
+      border-radius: 12px;
+      padding: 14px 28px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.15s, opacity 0.15s, background 0.15s, box-shadow 0.2s;
+      margin-top: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+    .lead-submit:hover {
+      background: #001340;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(0,31,92,0.35);
+    }
+    .lead-submit::after {
+      content: '→';
+      font-size: 18px;
+      transition: transform 0.2s;
+    }
+    .lead-submit:hover::after { transform: translateX(4px); }
+    .lead-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .lead-submit-spinner {
+      display: none;
+      width: 14px; height: 14px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: lead-spin 0.7s linear infinite;
+    }
+    .lead-submit.loading .lead-submit-spinner { display: inline-block; }
+    @keyframes lead-spin { to { transform: rotate(360deg); } }
+    .lead-status {
+      font-size: 14px;
+      min-height: 20px;
+    }
+    .lead-status.success { color: #059669; }
+    .lead-status.error { color: #dc2626; }
+
+    /* Footer */
+    footer { padding: 48px 0; border-top: 1px solid var(--border-light); background: var(--bg); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-size: 14px; color: var(--muted); transition: color .2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: 13px; color: var(--muted); }
+    @media (max-width: 640px) { .footer-inner { flex-direction: column; text-align: center; } }
+
+    /* Coworkers Section */
+    .coworkers-section { background: #fafafa; }
+    .coworkers-header { max-width: 800px; margin-bottom: 64px; }
+    .coworkers-badges { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+    .coworkers-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: #64748b; }
+    .slack-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #1a1f2e; background: #fff; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); }
+    .coworkers-header h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 700; letter-spacing: -.03em; line-height: 1.2; margin-bottom: 20px; color: var(--fg); }
+    .coworkers-sub { font-size: 17px; color: #64748b; line-height: 1.7; margin-bottom: 32px; font-weight: 400; }
+    .btn-slack { display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #1a1f2e; padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; border: 1px solid var(--border); cursor: pointer; transition: all .2s; }
+    .btn-slack:hover { border-color: #1a1f2e; box-shadow: 0 4px 12px rgba(0,0,0,.08); transform: translateY(-1px); }
+
+    .coworkers-grid { display: grid; grid-template-columns: 380px 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 1000px) { .coworkers-grid { grid-template-columns: 1fr; gap: 48px; } }
+    
+    .coworkers-features { display: flex; flex-direction: column; gap: 16px; }
+    .feature-item { background: #fff; border: 2px solid var(--border-light); border-radius: 16px; padding: 24px; transition: all .3s; cursor: pointer; }
+    .feature-item:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(24,99,220,.1); }
+    .feature-item.feature-active { border-color: var(--accent); background: linear-gradient(135deg, rgba(24,99,220,.04) 0%, #fff 100%); box-shadow: 0 8px 24px rgba(24,99,220,.12); }
+    .feature-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; position: relative; overflow: hidden; transition: all .4s cubic-bezier(.16,1,.3,1); }
+    .feature-icon::before { content: ''; position: absolute; inset: -50%; background: radial-gradient(circle, rgba(24,99,220,.2), transparent 70%); transform: scale(0); transition: transform .5s cubic-bezier(.16,1,.3,1); }
+    .feature-item:hover .feature-icon::before { transform: scale(1); animation: pulse-ring 2s ease-in-out infinite; }
+    .feature-icon svg { position: relative; z-index: 1; transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .feature-item:hover .feature-icon svg { transform: scale(1.1) rotate(5deg); }
+    .feature-active .feature-icon { background: var(--accent); color: #fff; box-shadow: 0 8px 20px rgba(24,99,220,.3); }
+    .feature-active .feature-icon svg { animation: icon-pulse 2s ease-in-out infinite; }
+    .feature-content h4 { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: -.015em; margin-bottom: 8px; color: var(--fg); }
+    .feature-content p { font-size: 14px; color: #64748b; line-height: 1.65; }
+    .text-highlight { color: var(--accent); font-weight: 500; }
+
+    /* Slack Mockup */
+    .slack-mockup { position: relative; }
+    .slack-window { background: #1a1f2e; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+    .slack-header { background: #0f1419; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .slack-channel { font-size: 15px; font-weight: 700; color: #fff; }
+    .slack-time { font-size: 12px; color: rgba(255,255,255,.5); }
+    .slack-messages { padding: 24px; display: flex; flex-direction: column; gap: 20px; min-height: 400px; }
+    .slack-message { display: flex; gap: 12px; }
+    .slack-avatar { width: 36px; height: 36px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .slack-bot-avatar { background: var(--accent); }
+    .slack-msg-content { flex: 1; }
+    .slack-msg-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .slack-username { font-size: 14px; font-weight: 700; color: #fff; }
+    .slack-app-badge { font-size: 9px; font-weight: 700; letter-spacing: .08em; color: rgba(255,255,255,.6); background: rgba(255,255,255,.1); padding: 2px 6px; border-radius: 4px; }
+    .slack-timestamp { font-size: 12px; color: rgba(255,255,255,.4); }
+    .slack-msg-text { font-size: 14px; color: rgba(255,255,255,.9); line-height: 1.6; }
+    .slack-mention { color: #5b9cff; font-weight: 600; }
+    .slack-card { background: #0f1419; border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 20px; margin-top: 12px; }
+    .slack-card-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; color: rgba(255,255,255,.5); margin-bottom: 12px; }
+    .slack-card-item { display: flex; gap: 12px; margin-bottom: 16px; }
+    .slack-warning-bar { width: 3px; background: #f59e0b; border-radius: 999px; flex-shrink: 0; }
+    .slack-card-title { font-size: 14px; font-weight: 700; color: #f59e0b; margin-bottom: 4px; }
+    .slack-card-desc { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.6; }
+    .slack-card-actions { display: flex; gap: 10px; }
+    .slack-btn-primary { background: var(--accent); color: #fff; border: 0; padding: 10px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; }
+    .slack-btn-primary:hover { background: var(--accent-dark); }
+    .slack-btn-ghost { background: transparent; color: rgba(255,255,255,.7); border: 0; padding: 10px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; }
+    .slack-btn-ghost:hover { background: rgba(255,255,255,.05); color: #fff; }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease-out, transform .6s ease-out; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* === HERO MOBILE RESPONSIVENESS (C1) === */
+    @media (max-width: 720px) {
+      .hero h1 { font-size: clamp(28px, 7vw, 40px); overflow-wrap: anywhere; }
+      .hero h1 .line { white-space: normal; display: inline; }
+      .hero h1 br { display: inline; }
+      .hero-sub { font-size: 17px; }
+    }
+
+    /* === MOBILE RESPONSIVE OVERRIDES (≤480px) === */
+    @media (max-width: 480px) {
+      /* 1. Container padding */
+      .container { padding: 0 16px; }
+      .nav-inner { padding: 0 16px; }
+      .footer-inner { padding: 0 16px; }
+
+      /* 2. Hero padding — keep above fixed nav (72px), match home.html spacing */
+      .hero { padding: 140px 0 48px; }
+
+      /* 3. Section vertical spacing */
+      .section { padding: 48px 0; }
+
+      /* 4. Context metric card absolute positioning */
+      .context-metric-card { position: static; margin-top: 16px; }
+
+      /* 5. Context bubble max-width */
+      .context-bubble { max-width: 100%; }
+
+      /* 6. Card padding */
+      .agent-icon-wrap { padding: 24px 20px 16px; }
+      .agent-body { padding: 20px; }
+      .sales-feature-card { padding: 20px 16px; }
+
+      /* 7. Context chat min-height */
+      .context-chat-body { min-height: 240px; }
+
+      /* 8. Slack mockup min-height + actions wrap */
+      .slack-messages { min-height: 280px; }
+      .slack-card-actions { flex-wrap: wrap; }
+
+      /* 9. Excessive grid gaps on stacked mobile */
+      .context-grid { gap: 40px; }
+      .lead-grid { gap: 32px; }
+    }
+
+    /* ===== Mobile nav panel ===== */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--fg-secondary);
+    }
+    .nav-toggle svg { width: 24px; height: 24px; display: block; }
+    .nav-mobile-panel { display: none; }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-mobile-panel {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        padding: 8px 24px 20px;
+        gap: 0;
+        border-bottom: 1px solid var(--border-light);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        transform: translateY(-12px);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
+        z-index: 999;
+      }
+      body.nav-open .nav-mobile-panel {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      .nav-mobile-panel a {
+        padding: 14px 6px;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--fg-secondary);
+        border-bottom: 1px solid var(--border-light);
+      }
+      .nav-mobile-panel a:last-child { border-bottom: none; }
+      .nav-mobile-panel a.nav-mobile-cta {
+        margin-top: 14px;
+        text-align: center;
+        justify-content: center;
+        background: var(--accent);
+        color: #fff;
+        padding: 14px 24px;
+        border-radius: 9999px;
+        border: none;
+        font-weight: 600;
+      }
+      body.nav-open { overflow: hidden; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="home.html" class="logo"><img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img"></a>
+      <div class="nav-center">
+        <a href="inside.html">AI Inside</a>
+        <a href="work.html" class="active">AI Work</a>
+        <a href="personal.html">AI Personal</a>
+        <a href="about.html">About Us</a>
+      </div>
+      <a href="#demo" class="nav-cta">Book a demo</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-bg"></div>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <h1><span class="line">Specialist Agents that</span><br><span class="line line-accent">Get The Job Done for Your Company</span></h1>
+          <p class="hero-sub">AI Specialist Agents designed for company workflows. Automate repetitive tasks, empower your team to focus on strategic initiatives, and accelerate business outcomes.</p>
+          <div class="hero-ctas">
+            <a href="#demo" class="btn-primary">Book a demo →</a>
+            <a href="#agents" class="btn-ghost">Explore agents</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialist Agents -->
+  <section class="section" id="agents">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Specialist Agents</p>
+        <h2>AI Agents for <span class="gradient-text">Every Company Function</span></h2>
+        <p>Four specialist agents customized to your internal processes. Each agent integrates seamlessly with existing tools and workflows.</p>
+      </div>
+
+      <div class="agents-grid">
+        <!-- Agent 1 -->
+        <div class="agent-card reveal">
+          <div class="agent-icon-wrap">
+            <div class="agent-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+          </div>
+          <div class="agent-body">
+            <h3>Focus & Alignment Agent</h3>
+            <p>Agent helps employees <span class="text-highlight">focus weekly and align their priorities</span> with team, department, and company goals by understanding company OKRs and resolving conflicts.</p>
+          </div>
+        </div>
+
+        <!-- Agent 2 -->
+        <div class="agent-card reveal">
+          <div class="agent-icon-wrap">
+            <div class="agent-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+          </div>
+          <div class="agent-body">
+            <h3>Expense Management Agent</h3>
+            <p>Analyze all <span class="text-highlight">spending data from all the SaaS, Cloud, credit card statements, bank statements</span>, etc… and suggest ways to cut costs.</p>
+          </div>
+        </div>
+
+        <!-- Agent 3 -->
+        <div class="agent-card reveal">
+          <div class="agent-icon-wrap">
+            <div class="agent-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="agent-body">
+            <h3>Knowledge Base & Expertise Agent</h3>
+            <p>A user can ask AI to <span class="text-highlight">explain a Slack thread or research related context</span> on the web or across company data sources.</p>
+          </div>
+        </div>
+
+        <!-- Agent 4 -->
+        <div class="agent-card reveal">
+          <div class="agent-icon-wrap">
+            <div class="agent-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                <path d="M9 12h6M9 16h6"/>
+              </svg>
+            </div>
+          </div>
+          <div class="agent-body">
+            <h3>Custom Workflow Agent</h3>
+            <p>Take a workflow that can be <span class="text-highlight">fully automated and done by an Agent</span>. This is customizable for applicable workflow requested by clients.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sales Team Section -->
+  <section class="section sales-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Sales Solution</p>
+        <h2>Specialist Agent for <span class="gradient-text">CRM & Sales Pipeline Management</span></h2>
+        <p>Like Salesforce's AgentForce but more affordable and customizable</p>
+      </div>
+
+      <div class="sales-features-grid">
+        <div class="sales-feature-card reveal">
+          <div class="sales-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"/>
+              <rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </div>
+          <h3>Intelligent Integration Layer</h3>
+          <p>Works with existing CRM, ERP, etc… Seamlessly connects to your current systems without disruption.</p>
+        </div>
+
+        <div class="sales-feature-card reveal">
+          <div class="sales-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              <path d="M8 10h8M8 14h4"/>
+            </svg>
+          </div>
+          <h3>Multi-Channel Communication</h3>
+          <p>Chat via Slack, WhatsApp, Web, or app. Meet your sales team where they already work.</p>
+        </div>
+
+        <div class="sales-feature-card reveal">
+          <div class="sales-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3>Automated Actions</h3>
+          <p>Agent take actions for sales person, including updating CRM, send email, etc… Reduce manual data entry.</p>
+        </div>
+
+        <div class="sales-feature-card reveal">
+          <div class="sales-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="12" y1="18" x2="12" y2="12"/>
+              <line x1="9" y1="15" x2="15" y2="15"/>
+            </svg>
+          </div>
+          <h3>Vertical Customization</h3>
+          <p>Customized for a certain vertical like real-estate, insurance, etc… Industry-specific workflows built-in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Coworkers Section -->
+  <section class="section coworkers-section">
+    <div class="container">
+      <div class="coworkers-header reveal">
+        <div class="coworkers-badges">
+          <span class="coworkers-label">FOR BUSINESSES</span>
+          <span class="slack-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M6 15a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2h2v2zm1 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2v5a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-5z" fill="#E01E5A"/>
+              <path d="M9 6a2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2v2H9zm0 1a2 2 0 0 1 2 2 2 2 0 0 1-2 2H4a2 2 0 0 1-2-2 2 2 0 0 1 2-2h5z" fill="#36C5F0"/>
+              <path d="M18 9a2 2 0 0 1 2-2 2 2 0 0 1 2 2 2 2 0 0 1-2 2h-2V9zm-1 0a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2 2 2 0 0 1 2 2v5z" fill="#2EB67D"/>
+              <path d="M15 18a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2h2zm0-1a2 2 0 0 1-2-2 2 2 0 0 1 2-2h5a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-5z" fill="#ECB22E"/>
+            </svg>
+            NOW ON SLACK
+          </span>
+        </div>
+        <h2>AI Coworkers. Ready to handle <span class="gradient-text">everything, together</span>.</h2>
+        <p class="coworkers-sub">Your AI coworker, operates in Slack. Ask questions, receive comprehensive reports — execute workflows — all without breaking context.</p>
+      </div>
+
+      <div class="coworkers-grid reveal">
+        <div class="coworkers-features">
+          <div class="feature-item feature-active">
+            <div class="feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <h4>Real-time Support</h4>
+              <p>Resolves tier-1 and tier-2 queries instantly, providing insights and unblocking your team in seconds.</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <h4>Instant Solutions</h4>
+              <p>Retrieves accurate answers and actionable guidance instantly, helping teams execute workflows 5x faster.</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <h4>Simplify Operations</h4>
+              <p>Automates data retrieval, synthesis, and operational checks, empowering your team to focus on high-impact tasks.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slack-mockup">
+          <div class="slack-window">
+            <div class="slack-header">
+              <span class="slack-channel"># support-queries</span>
+              <span class="slack-time">10:22 AM</span>
+            </div>
+            <div class="slack-messages">
+              <div class="slack-message">
+                <div class="slack-avatar" style="background: #1863dc;">SL</div>
+                <div class="slack-msg-content">
+                  <div class="slack-msg-header">
+                    <span class="slack-username">Sarah L.</span>
+                    <span class="slack-timestamp">10:22 AM</span>
+                  </div>
+                  <div class="slack-msg-text">
+                    <span class="slack-mention">@Infina AI</span> What's the tax impact if I sell my AAPL position today?
+                  </div>
+                </div>
+              </div>
+
+              <div class="slack-message slack-bot">
+                <div class="slack-avatar slack-bot-avatar">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                    <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
+                  </svg>
+                </div>
+                <div class="slack-msg-content">
+                  <div class="slack-msg-header">
+                    <span class="slack-username">Infina AI</span>
+                    <span class="slack-app-badge">APP</span>
+                    <span class="slack-timestamp">10:22 AM</span>
+                  </div>
+                  <div class="slack-msg-text">
+                    Selling today realises a <span style="color: #22c55e; font-weight: 600;">long-term gain of $4,280</span>.
+                  </div>
+                  <div class="slack-card">
+                    <div class="slack-card-label">TAX SUMMARY</div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+                      <span style="color: rgba(255,255,255,.6);">Cost basis</span>
+                      <span style="color: #fff; font-weight: 600;">$12,400</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+                      <span style="color: rgba(255,255,255,.6);">Proceeds</span>
+                      <span style="color: #fff; font-weight: 600;">$16,680</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+                      <span style="color: rgba(255,255,255,.6);">Est. tax (15%)</span>
+                      <span style="color: #f59e0b; font-weight: 600;">$642</span>
+                    </div>
+                    <div class="slack-card-actions" style="margin-top: 16px;">
+                      <button class="slack-btn-primary">See full analysis</button>
+                      <button class="slack-btn-ghost">Dismiss</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Context-Aware AI Section -->
+  <section class="section context-ai-section">
+    <div class="container">
+      <div class="context-grid reveal">
+        <div class="context-visual">
+          <div class="context-chat-window">
+            <div class="context-chat-header">
+              <div class="context-dots">
+                <span style="background: #ff5f57;"></span>
+                <span style="background: #ffbd2e;"></span>
+                <span style="background: #28ca42;"></span>
+              </div>
+            </div>
+            <div class="context-chat-body">
+              <div class="context-msg context-msg-user">
+                <div class="context-avatar context-avatar-user">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </div>
+                <div class="context-bubble context-bubble-user">
+                  What are my top priorities for this week?
+                </div>
+              </div>
+
+              <div class="context-msg context-msg-ai">
+                <div class="context-avatar context-avatar-ai">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                    <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
+                  </svg>
+                </div>
+                <div class="context-bubble context-bubble-ai">
+                  <div style="margin-bottom: 12px; font-weight: 600;">Here are your top 3 Strategic High Priorities:</div>
+                  <div class="context-priority-item">
+                    <div class="context-priority-dot" style="background: #ef4444;"></div>
+                    <div class="context-priority-bar" style="width: 85%; background: linear-gradient(90deg, #ef4444, #fca5a5);"></div>
+                  </div>
+                  <div class="context-priority-item">
+                    <div class="context-priority-dot" style="background: #f59e0b;"></div>
+                    <div class="context-priority-bar" style="width: 68%; background: linear-gradient(90deg, #f59e0b, #fcd34d);"></div>
+                  </div>
+                  <div class="context-priority-item">
+                    <div class="context-priority-dot" style="background: #3b82f6;"></div>
+                    <div class="context-priority-bar" style="width: 45%; background: linear-gradient(90deg, #3b82f6, #93c5fd);"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="context-metric-card">
+            <div class="context-metric-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <div class="context-metric-content">
+              <div class="context-metric-label">Efficiency</div>
+              <div class="context-metric-value">Trending Up</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="context-content">
+          <div class="context-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
+            </svg>
+            AI Intelligence
+          </div>
+          <h2>AI that understands <span class="context-highlight">your context</span></h2>
+          <p class="context-description">Our AI doesn't just answer questions—it understands your priorities, team structure, and progress to provide meaningful insights tailored to your organization.</p>
+          
+          <ul class="context-features">
+            <li>
+              <div class="context-check">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+              <span>Context-aware AI that understands your priorities</span>
+            </li>
+            <li>
+              <div class="context-check">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+              <span>Role-based access for robust security</span>
+            </li>
+            <li>
+              <div class="context-check">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+              <span>Automated daily reporting & blocker tracking</span>
+            </li>
+            <li>
+              <div class="context-check">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+              <span>Real-time team collaboration & sync</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book a Demo Section -->
+  <section class="lead-section" id="demo">
+    <div class="container lead-grid">
+      <div class="lead-copy">
+        <h2><span style="background: #FFE066; padding: 2px 6px; border-radius: 4px;">Book a demo</span> and watch your job get done by <span class="accent">Infina AI</span></h2>
+        <p class="lead-sub">30 minutes. We'll show you exactly how Infina AI works and map out what a live deployment looks like for your specific situation.</p>
+      </div>
+
+      <form class="lead-form" id="lead-form" novalidate>
+        <div class="lead-form-header">
+          <h3 class="lead-form-title">Contact us</h3>
+          <p class="lead-form-sub">Infina AI team will respond within 24 hours.</p>
+        </div>
+
+        <div class="lead-field">
+          <input type="text" id="lf-name" name="fullName" required autocomplete="name" placeholder=" ">
+          <label for="lf-name">Name</label>
+        </div>
+
+        <div class="lead-field">
+          <input type="email" id="lf-email" name="email" required autocomplete="email" placeholder=" ">
+          <label for="lf-email">Work email</label>
+        </div>
+
+        <div class="lead-field">
+          <input type="text" id="lf-company" name="company" autocomplete="organization" placeholder=" ">
+          <label for="lf-company">Company (optional)</label>
+        </div>
+
+        <div class="lead-field">
+          <input type="tel" id="lf-phone" name="phone" autocomplete="tel" placeholder=" ">
+          <label for="lf-phone">Phone</label>
+        </div>
+
+        <div class="lead-field lead-textarea">
+          <textarea id="lf-usecase" name="useCase" rows="2" placeholder=" "></textarea>
+          <label for="lf-usecase">Message (optional)</label>
+        </div>
+
+        <button type="submit" class="lead-submit" id="lf-submit">
+          <span class="lead-submit-label">Book a demo</span>
+          <span class="lead-submit-spinner" aria-hidden="true"></span>
+        </button>
+
+        <div class="lead-status" id="lf-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="logo">
+        <img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img">
+      </div>
+      <div class="footer-links">
+        <a href="inside.html">AI Inside</a>
+        <a href="work.html">AI Work</a>
+        <a href="personal.html">AI Personal</a>
+      </div>
+      <p class="footer-copy">© 2026 Infina. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    document.querySelectorAll('.reveal').forEach(el => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(el);
+    });
+
+    // Feature cards interaction
+    (function() {
+      const scenarios = {
+        'real-time': {
+          channel: 'support-queries',
+          time: '10:22 AM',
+          user: 'Sarah L.',
+          userInitials: 'SL',
+          userColor: '#1863dc',
+          userMessage: '<span class="slack-mention">@Infina AI</span> What\'s the tax impact if I sell my AAPL position today?',
+          botResponse: 'Selling today realises a <span style="color: #22c55e; font-weight: 600;">long-term gain of $4,280</span>.',
+          cardLabel: 'TAX SUMMARY',
+          cardItems: [
+            { label: 'Cost basis', value: '$12,400' },
+            { label: 'Proceeds', value: '$16,680' },
+            { label: 'Est. tax (15%)', value: '$642', highlight: true }
+          ],
+          buttons: ['See full analysis', 'Dismiss']
+        },
+        'instant': {
+          channel: 'compliance-review',
+          time: '2:15 PM',
+          user: 'Peter W.',
+          userInitials: 'PW',
+          userColor: '#9333ea',
+          userMessage: '<span class="slack-mention">@Infina AI Work</span> Check this marketing draft against SEC Rule 206(4)-1.',
+          botResponse: 'Compliance Analysis — SEC Rule 206(4)-1<br>Reviewed 847 words. <span style="color: #22c55e; font-weight: 600;">12 rules passed</span>, <span style="color: #f59e0b; font-weight: 600;">1 flagged</span>.',
+          cardLabel: 'FLAGGED ISSUE',
+          cardWarning: true,
+          cardTitle: 'Missing Disclosure',
+          cardDesc: 'Requires standard performance disclaimer — past results do not guarantee future returns.',
+          buttons: ['View suggested fix', 'Ignore']
+        },
+        'simplify': {
+          channel: 'finops-team',
+          time: '9:47 AM',
+          user: 'Maria Kim',
+          userInitials: 'MK',
+          userColor: '#9333ea',
+          userMessage: '<span class="slack-mention">@Infina AI</span> Run the month-end close.',
+          botResponse: 'Running month-end close for November…',
+          cardLabel: 'RECONCILIATION RESULTS',
+          cardChecks: [
+            { text: 'Transactions matched', done: true },
+            { text: 'Ledger reconciled', done: true },
+            { text: '1 exception flagged', warning: true }
+          ],
+          buttons: ['View exception', 'Download report']
+        }
+      };
+
+      const features = document.querySelectorAll('.feature-item');
+      const slackChannel = document.querySelector('.slack-channel');
+      const slackTime = document.querySelector('.slack-time');
+      const slackMessages = document.querySelector('.slack-messages');
+
+      function renderSlackMockup(scenario) {
+        slackChannel.textContent = `# ${scenario.channel}`;
+        slackTime.textContent = scenario.time;
+
+        let cardHTML = '';
+        if (scenario.cardItems) {
+          cardHTML = `<div class="slack-card">
+            <div class="slack-card-label">${scenario.cardLabel}</div>
+            ${scenario.cardItems.map(item => `
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+                <span style="color: rgba(255,255,255,.6);">${item.label}</span>
+                <span style="color: ${item.highlight ? '#f59e0b' : '#fff'}; font-weight: 600;">${item.value}</span>
+              </div>
+            `).join('')}
+            <div class="slack-card-actions" style="margin-top: 16px;">
+              ${scenario.buttons.map((btn, i) => 
+                `<button class="slack-btn-${i === 0 ? 'primary' : 'ghost'}">${btn}</button>`
+              ).join('')}
+            </div>
+          </div>`;
+        } else if (scenario.cardWarning) {
+          cardHTML = `<div class="slack-card">
+            <div class="slack-card-label">${scenario.cardLabel}</div>
+            <div class="slack-card-item">
+              <div class="slack-warning-bar"></div>
+              <div>
+                <div class="slack-card-title">${scenario.cardTitle}</div>
+                <div class="slack-card-desc">${scenario.cardDesc}</div>
+              </div>
+            </div>
+            <div class="slack-card-actions">
+              ${scenario.buttons.map((btn, i) => 
+                `<button class="slack-btn-${i === 0 ? 'primary' : 'ghost'}">${btn}</button>`
+              ).join('')}
+            </div>
+          </div>`;
+        } else if (scenario.cardChecks) {
+          cardHTML = `<div class="slack-card">
+            <div class="slack-card-label">${scenario.cardLabel}</div>
+            ${scenario.cardChecks.map(check => `
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                <span style="color: ${check.warning ? '#f59e0b' : '#22c55e'}; font-size: 16px;">${check.done ? '✓' : '⚠'}</span>
+                <span style="font-size: 13px; color: ${check.warning ? '#f59e0b' : 'rgba(255,255,255,.8)'};">${check.text}</span>
+              </div>
+            `).join('')}
+            <div class="slack-card-actions" style="margin-top: 16px;">
+              ${scenario.buttons.map((btn, i) => 
+                `<button class="slack-btn-${i === 0 ? 'primary' : 'ghost'}">${btn}</button>`
+              ).join('')}
+            </div>
+          </div>`;
+        }
+
+        slackMessages.innerHTML = `
+          <div class="slack-message">
+            <div class="slack-avatar" style="background: ${scenario.userColor};">${scenario.userInitials}</div>
+            <div class="slack-msg-content">
+              <div class="slack-msg-header">
+                <span class="slack-username">${scenario.user}</span>
+                <span class="slack-timestamp">${scenario.time}</span>
+              </div>
+              <div class="slack-msg-text">${scenario.userMessage}</div>
+            </div>
+          </div>
+
+          <div class="slack-message slack-bot">
+            <div class="slack-avatar slack-bot-avatar">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
+              </svg>
+            </div>
+            <div class="slack-msg-content">
+              <div class="slack-msg-header">
+                <span class="slack-username">Infina AI${scenario.channel === 'finops-team' ? '' : ' Work'}</span>
+                <span class="slack-app-badge">APP</span>
+                <span class="slack-timestamp">${scenario.time}</span>
+              </div>
+              <div class="slack-msg-text">${scenario.botResponse}</div>
+              ${cardHTML}
+            </div>
+          </div>
+        `;
+      }
+
+      features.forEach((feature, index) => {
+        const scenarioKey = ['real-time', 'instant', 'simplify'][index];
+        feature.addEventListener('click', () => {
+          features.forEach(f => f.classList.remove('feature-active'));
+          feature.classList.add('feature-active');
+          renderSlackMockup(scenarios[scenarioKey]);
+        });
+      });
+    })();
+
+    // Fix select label positioning
+    document.querySelectorAll('.form-field select').forEach(select => {
+      const updateLabel = () => {
+        const field = select.closest('.form-field');
+        if (select.value && select.value !== '') {
+          field.classList.add('has-value');
+        } else {
+          field.classList.remove('has-value');
+        }
+      };
+      
+      select.addEventListener('change', updateLabel);
+      select.addEventListener('blur', updateLabel);
+      updateLabel(); // Initial check
+    });
+
+    // Form handling
+    (function() {
+      const SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyO618yfsKfO4nHni2qBe62GWp9fM0vEb0h-Gccw-1wV-w5wJpN3Zayhai1OFxPl98x/exec';
+      const form = document.getElementById('lead-form');
+      const submitBtn = document.getElementById('df-submit');
+      const status = document.getElementById('df-status');
+      
+      if (!form) return;
+
+      // ===== Custom combo (replaces native <select>) =====
+      const combos = document.querySelectorAll('.lead-combo');
+      console.log('Found combos:', combos.length);
+      
+      combos.forEach((combo, idx) => {
+        const trigger = combo.querySelector('.lead-combo-trigger');
+        const menu = combo.querySelector('.lead-combo-menu');
+        const hidden = combo.querySelector('input[type="hidden"]');
+        const options = combo.querySelectorAll('.lead-combo-option');
+
+        console.log(`Combo ${idx}:`, { trigger: !!trigger, menu: !!menu, hidden: !!hidden, options: options.length });
+
+        if (!trigger || !menu || !hidden || !options.length) {
+          console.warn('Combo missing elements:', combo);
+          return;
+        }
+
+        const close = () => {
+          combo.classList.remove('open');
+          console.log('Closed combo', idx);
+        };
+        
+        const open = () => {
+          combo.classList.add('open');
+          console.log('Opened combo', idx);
+        };
+
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('Trigger clicked', idx, 'current open:', combo.classList.contains('open'));
+          combo.classList.toggle('open');
+        });
+
+        options.forEach((opt, optIdx) => {
+          opt.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const val = opt.dataset.value;
+            const label = opt.textContent.trim();
+            console.log('Option clicked:', val);
+            hidden.value = val;
+            trigger.textContent = label;
+            trigger.classList.remove('placeholder');
+            combo.classList.add('has-value');
+            close();
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!combo.contains(e.target)) {
+            close();
+          }
+        });
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.className = 'form-status';
+        status.textContent = '';
+
+        // Validate required fields
+        const required = form.querySelectorAll('[required]');
+        let isValid = true;
+        required.forEach(el => {
+          if (!el.value.trim()) {
+            isValid = false;
+          }
+        });
+
+        if (!isValid) {
+          status.className = 'form-status error';
+          status.textContent = 'Please fill in all required fields.';
+          return;
+        }
+
+        // Collect data
+        const data = {
+          fullName: form.fullName.value.trim(),
+          email: form.email.value.trim(),
+          company: form.company.value.trim(),
+          jobTitle: form.jobTitle.value.trim(),
+          companySize: form.companySize.value,
+          phone: form.phone.value.trim(),
+          product: form.product.value,
+          industry: form.industry.value,
+          useCase: form.useCase.value.trim(),
+          consent: form.consent.checked,
+          source: 'ai-work-en',
+        };
+
+        submitBtn.disabled = true;
+        submitBtn.querySelector('span').textContent = 'Submitting...';
+
+        try {
+          const fd = new FormData();
+          Object.keys(data).forEach(k => fd.append(k, typeof data[k] === 'boolean' ? (data[k] ? 'true' : 'false') : data[k]));
+          
+          const res = await fetch(SHEETS_ENDPOINT, { method: 'POST', body: fd });
+          const txt = await res.text();
+          
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+
+          status.className = 'form-status success';
+          status.textContent = 'Thank you! We\'ll be in touch soon.';
+          form.reset();
+          
+        } catch (err) {
+          console.error('Form error:', err);
+          status.className = 'form-status error';
+          status.textContent = 'Something went wrong. Please try again or email us directly.';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.querySelector('span').textContent = 'Book a demo';
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    /* ===== Mobile nav toggle ===== */
+    (function () {
+      const nav = document.querySelector('nav');
+      if (!nav) return;
+      const navInner = nav.querySelector('.nav-inner');
+      if (!navInner) return;
+
+      let toggle = navInner.querySelector('.nav-toggle');
+      if (!toggle) {
+        toggle = document.createElement('button');
+        toggle.className = 'nav-toggle';
+        toggle.setAttribute('aria-label', 'Menu');
+        toggle.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
+        navInner.appendChild(toggle);
+      }
+      toggle.setAttribute('aria-expanded', 'false');
+
+      const panel = document.createElement('div');
+      panel.className = 'nav-mobile-panel';
+      panel.setAttribute('aria-hidden', 'true');
+      const center = navInner.querySelector('.nav-center');
+      const cta = navInner.querySelector('.nav-cta');
+      if (center) {
+        center.querySelectorAll('a').forEach(a => panel.appendChild(a.cloneNode(true)));
+      }
+      if (cta) {
+        const ctaClone = cta.cloneNode(true);
+        ctaClone.classList.add('nav-mobile-cta');
+        panel.appendChild(ctaClone);
+      }
+      nav.appendChild(panel);
+
+      const setOpen = (open) => {
+        document.body.classList.toggle('nav-open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+      };
+
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setOpen(!document.body.classList.contains('nav-open'));
+      });
+
+      panel.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => setOpen(false));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!document.body.classList.contains('nav-open')) return;
+        if (panel.contains(e.target) || toggle.contains(e.target)) return;
+        setOpen(false);
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.body.classList.contains('nav-open')) setOpen(false);
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && document.body.classList.contains('nav-open')) {
+          setOpen(false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
