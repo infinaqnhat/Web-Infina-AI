@@ -17,9 +17,9 @@
       --muted: #64748b;
       --border: #e5e7eb;
       --border-light: #f2f2f2;
-      --accent: #149a6e;
-      --accent-dark: #0d7a58;
-      --accent-light: rgba(20, 154, 110, 0.08);
+      --accent: #001F5C;
+      --accent-dark: #001340;
+      --accent-light: rgba(0, 31, 92, 0.08);
       --font-display: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
       --font-body: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
       --section-gap: 120px;
@@ -53,37 +53,41 @@
     .nav-center a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width .3s; }
     .nav-center a.active::after, .nav-center a:hover::after { width: 100%; }
     .nav-cta { background: var(--accent); color: #fff; padding: 11px 22px; border-radius: 9999px; font-size: 14px; font-weight: 500; transition: all .3s; }
-    .nav-cta:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20,154,110,.25); }
-    @media (max-width: 768px) { .nav-center { display: none; } }
+    .nav-cta:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(24,99,220,.25); }
+    /* Dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle { font-size: 15px; font-weight: 500; color: var(--fg-secondary); transition: color .2s; position: relative; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+    .nav-dropdown-toggle.active { color: var(--fg); }
+    .nav-dropdown-toggle::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width .3s; }
+    .nav-dropdown:hover .nav-dropdown-toggle::after { width: 100%; }
+    .nav-dropdown-toggle svg { transition: transform .2s; }
+    .nav-dropdown:hover .nav-dropdown-toggle svg { transform: rotate(180deg); }
+    .nav-dropdown-menu { position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(-4px); background: #fff; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,.1); padding: 6px; min-width: 200px; opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s, transform .2s; }
+    .nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .nav-dropdown-menu a { display: block; padding: 10px 14px; font-size: 14px; font-weight: 500; color: var(--fg-secondary); border-radius: 8px; transition: background .15s, color .15s; white-space: nowrap; }
+    .nav-dropdown-menu a::after { display: none; }
+    .nav-dropdown-menu a:hover, .nav-dropdown-menu a.active { background: var(--accent-light); color: var(--accent); }
 
     /* Hero */
     .hero { position: relative; padding: clamp(140px, 18vw, 180px) 0 clamp(64px, 8vw, 96px); overflow: hidden; background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%); }
-    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 70% 30%, rgba(20,154,110,.14), transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(126,87,194,.08), transparent 60%); z-index: -2; pointer-events: none; }
-    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(20,154,110,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(20,154,110,.06) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); z-index: -2; pointer-events: none; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 70% 30%, rgba(24,99,220,.14), transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(126,87,194,.08), transparent 60%); z-index: -2; pointer-events: none; }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(24,99,220,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(24,99,220,.06) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); z-index: -2; pointer-events: none; }
     .shape { position: absolute; border-radius: 50%; z-index: -1; pointer-events: none; }
-    .shape-1 { width: 400px; height: 400px; background: linear-gradient(135deg, rgba(20,154,110,.08), transparent); top: 10%; right: -10%; animation: float 8s ease-in-out infinite; }
-    .shape-2 { width: 300px; height: 300px; background: linear-gradient(135deg, rgba(20,154,110,.05), transparent); bottom: 20%; left: -5%; animation: float-reverse 10s ease-in-out infinite; }
+    .shape-1 { width: 400px; height: 400px; background: linear-gradient(135deg, rgba(24,99,220,.08), transparent); top: 10%; right: -10%; animation: float 8s ease-in-out infinite; }
+    .shape-2 { width: 300px; height: 300px; background: linear-gradient(135deg, rgba(24,99,220,.05), transparent); bottom: 20%; left: -5%; animation: float-reverse 10s ease-in-out infinite; }
     .shape-3 { width: 200px; height: 200px; border: 1px solid var(--border-light); top: 30%; left: 10%; animation: pulse 6s ease-in-out infinite; }
     .shape-4 { width: 150px; height: 150px; border: 1px solid var(--border-light); bottom: 30%; right: 15%; animation: pulse 8s ease-in-out infinite; animation-delay: 2s; }
-    .hero .container { position: relative; z-index: 1; text-align: left; }
-    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-    .hero-grid .hero-text { max-width: none; margin: 0; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; padding: 8px 16px; border: 1px solid rgba(20,154,110,.2); border-radius: 999px; background: var(--accent-light); margin-bottom: 28px; opacity: 0; animation: fade-up .6s ease-out .2s forwards; }
-    .hero h1 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 54px); font-weight: 700; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 28px; opacity: 0; animation: fade-up .8s ease-out .3s forwards; }
+    .hero .container { position: relative; z-index: 1; text-align: center; }
+    .hero-grid { display: block; text-align: center; }
+    .hero-grid .hero-text { max-width: 900px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; padding: 8px 16px; border: 1px solid rgba(24,99,220,.2); border-radius: 999px; background: var(--accent-light); margin-bottom: 28px; opacity: 0; animation: fade-up .6s ease-out .2s forwards; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 72px); font-weight: 700; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 28px; opacity: 0; animation: fade-up .8s ease-out .3s forwards; }
     .hero h1 .line { white-space: normal; display: inline-block; padding: .12em 0 .05em; line-height: 1.15; max-width: 100%; }
-    .hero h1 .line-accent { background: linear-gradient(135deg, var(--accent) 0%, #34d399 50%, var(--accent) 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 4s ease infinite; }
-    .hero-sub { font-size: 18px; color: #64748b; line-height: 1.65; margin: 0 0 44px; opacity: 0; animation: fade-up .8s ease-out .4s forwards; max-width: none; font-weight: 400; }
-    .hero-ctas { display: flex; gap: 16px; justify-content: flex-start; flex-wrap: wrap; opacity: 0; animation: fade-up .8s ease-out .5s forwards; }
-    .hero-video-wrap { opacity: 0; animation: fade-up .8s ease-out .6s forwards; }
-    .hero-video-frame { position: relative; border-radius: 20px; overflow: hidden; background: #0f1a14; box-shadow: 0 32px 80px -24px rgba(20,154,110,.25), 0 0 0 1px rgba(20,154,110,.12); aspect-ratio: 16/9; }
-    .hero-video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero-video-frame .video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: linear-gradient(135deg, #0f1a14 0%, #1a3328 100%); }
-    .video-play-btn { width: 64px; height: 64px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .25s; box-shadow: 0 8px 24px rgba(20,154,110,.4); }
-    .video-play-btn:hover { transform: scale(1.08); box-shadow: 0 12px 32px rgba(20,154,110,.55); }
-    .video-play-btn svg { width: 24px; height: 24px; fill: #fff; margin-left: 3px; }
-    .video-placeholder p { font-size: 14px; color: rgba(255,255,255,.5); font-weight: 500; margin: 0; }
+    .hero h1 .line-accent { background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 50%, var(--accent) 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 4s ease infinite; }
+    .hero-sub { font-size: 20px; color: #64748b; line-height: 1.65; margin: 0 auto 44px; opacity: 0; animation: fade-up .8s ease-out .4s forwards; max-width: 580px; font-weight: 400; }
+    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fade-up .8s ease-out .5s forwards; }
     .btn-primary { background: var(--accent); color: #fff; padding: 16px 32px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s; display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer; }
-    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(20,154,110,.3); }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(24,99,220,.3); }
     .btn-ghost { background: transparent; color: var(--fg); padding: 15px 32px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s; border: 1.5px solid var(--border); }
     .btn-ghost:hover { border-color: var(--fg); background: var(--surface); }
 
@@ -100,15 +104,15 @@
     @media (max-width: 600px) { .agents-grid { grid-template-columns: 1fr; } }
     .agent-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0; overflow: hidden; transition: all .4s cubic-bezier(.16,1,.3,1); position: relative; }
     .agent-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.16,1,.3,1); }
-    .agent-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -16px rgba(20,154,110,.18); border-color: rgba(20,154,110,.3); }
+    .agent-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -16px rgba(24,99,220,.18); border-color: rgba(24,99,220,.3); }
     .agent-card:hover::before { transform: scaleX(1); }
     .agent-icon-wrap { padding: 36px 28px 24px; background: linear-gradient(160deg, var(--accent-light) 0%, transparent 80%); border-bottom: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; min-height: 140px; position: relative; overflow: hidden; }
     .agent-icon-wrap::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, var(--accent-light), transparent 70%); opacity: 0; transition: opacity .5s; }
     .agent-card:hover .agent-icon-wrap::before { opacity: 1; }
-    .agent-icon { width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, var(--accent) 0%, #0a7a56 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(20,154,110,.2); position: relative; transition: all .4s cubic-bezier(.16,1,.3,1); overflow: hidden; }
+    .agent-icon { width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, var(--accent) 0%, #0e4eb8 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(24,99,220,.2); position: relative; transition: all .4s cubic-bezier(.16,1,.3,1); overflow: hidden; }
     .agent-icon::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent); transform: translateX(-100%); }
     .agent-card:hover .agent-icon::after { animation: shimmer 1.5s ease-in-out; }
-    .agent-card:hover .agent-icon { transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 32px rgba(20,154,110,.35); animation: icon-pulse 2s ease-in-out infinite; }
+    .agent-card:hover .agent-icon { transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 32px rgba(24,99,220,.35); animation: icon-pulse 2s ease-in-out infinite; }
     .agent-icon svg { width: 24px; height: 24px; stroke-width: 2.5; transition: transform .4s cubic-bezier(.16,1,.3,1); }
     .agent-card:hover .agent-icon svg { transform: scale(1.1); }
     .agent-icon::before { content: ''; position: absolute; inset: -2px; border-radius: 16px; background: linear-gradient(135deg, rgba(255,255,255,.3), transparent); opacity: 0; transition: opacity .4s; }
@@ -340,7 +344,7 @@
       color: var(--fg);
     }
     .context-highlight {
-      background: linear-gradient(135deg, var(--accent) 0%, #149a6e 50%, var(--accent) 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, #1863dc 50%, var(--accent) 100%);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -355,7 +359,7 @@
     
     /* Gradient text animation utility */
     .gradient-text {
-      background: linear-gradient(135deg, var(--accent) 0%, #149a6e 50%, var(--accent) 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, #1863dc 50%, var(--accent) 100%);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -441,8 +445,8 @@
       margin-bottom: 24px;
       padding: 6px 14px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), #1aab7a);
-      box-shadow: 0 6px 16px -8px rgba(20,154,110,0.55);
+      background: linear-gradient(135deg, var(--accent), #2278f6);
+      box-shadow: 0 6px 16px -8px rgba(24,99,220,0.55);
     }
     .lead-eyebrow::before {
       content: ''; width: 6px; height: 6px; border-radius: 50%;
@@ -459,7 +463,7 @@
       color: var(--fg);
     }
     .lead-copy h2 .accent {
-      background: linear-gradient(135deg, var(--accent) 0%, #149a6e 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, #1863dc 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -762,14 +766,14 @@
     
     .coworkers-features { display: flex; flex-direction: column; gap: 16px; }
     .feature-item { background: #fff; border: 2px solid var(--border-light); border-radius: 16px; padding: 24px; transition: all .3s; cursor: pointer; }
-    .feature-item:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(20,154,110,.1); }
-    .feature-item.feature-active { border-color: var(--accent); background: linear-gradient(135deg, rgba(20,154,110,.04) 0%, #fff 100%); box-shadow: 0 8px 24px rgba(20,154,110,.12); }
+    .feature-item:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(24,99,220,.1); }
+    .feature-item.feature-active { border-color: var(--accent); background: linear-gradient(135deg, rgba(24,99,220,.04) 0%, #fff 100%); box-shadow: 0 8px 24px rgba(24,99,220,.12); }
     .feature-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; position: relative; overflow: hidden; transition: all .4s cubic-bezier(.16,1,.3,1); }
-    .feature-icon::before { content: ''; position: absolute; inset: -50%; background: radial-gradient(circle, rgba(20,154,110,.2), transparent 70%); transform: scale(0); transition: transform .5s cubic-bezier(.16,1,.3,1); }
+    .feature-icon::before { content: ''; position: absolute; inset: -50%; background: radial-gradient(circle, rgba(24,99,220,.2), transparent 70%); transform: scale(0); transition: transform .5s cubic-bezier(.16,1,.3,1); }
     .feature-item:hover .feature-icon::before { transform: scale(1); animation: pulse-ring 2s ease-in-out infinite; }
     .feature-icon svg { position: relative; z-index: 1; transition: transform .4s cubic-bezier(.16,1,.3,1); }
     .feature-item:hover .feature-icon svg { transform: scale(1.1) rotate(5deg); }
-    .feature-active .feature-icon { background: var(--accent); color: #fff; box-shadow: 0 8px 20px rgba(20,154,110,.3); }
+    .feature-active .feature-icon { background: var(--accent); color: #fff; box-shadow: 0 8px 20px rgba(24,99,220,.3); }
     .feature-active .feature-icon svg { animation: icon-pulse 2s ease-in-out infinite; }
     .feature-content h4 { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: -.015em; margin-bottom: 0; color: var(--fg); }
     .feature-content p { font-size: 14px; color: #64748b; line-height: 1.65; max-height: 0; overflow: hidden; opacity: 0; margin-top: 0; transition: max-height .35s ease, opacity .3s ease, margin-top .3s ease; }
@@ -810,12 +814,6 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* === HERO MOBILE RESPONSIVENESS (C1) === */
-    @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-      .hero .container { text-align: center; }
-      .hero-ctas { justify-content: center; }
-      .hero-sub { margin: 0 auto 44px; }
-    }
     @media (max-width: 720px) {
       .hero h1 { font-size: clamp(28px, 7vw, 40px); overflow-wrap: anywhere; }
       .hero h1 .line { white-space: normal; display: inline; }
@@ -926,7 +924,15 @@
       <a href="home.html" class="logo"><img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img"></a>
       <div class="nav-center">
         <a href="inside.html">AI Inside</a>
-        <a href="work.html" class="active">AI Work</a>
+        <div class="nav-dropdown">
+          <span class="nav-dropdown-toggle active">AI Work
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+          <div class="nav-dropdown-menu">
+            <a href="work.html" class="active">Overview</a>
+            <a href="focus-alignment.html">Focus &amp; Alignment</a>
+          </div>
+        </div>
         <a href="personal.html">AI Personal</a>
         <a href="about.html">About Us</a>
       </div>
@@ -949,194 +955,108 @@
           <p class="hero-sub">Not workflow software. But <span style="font-weight: 700; color: var(--accent);">AI business specialists</span> that plug into your team, handle the operational load, and give your people time back for the work that actually moves the business.</p>
           <div class="hero-ctas">
             <a href="#demo" class="btn-primary">Book a demo →</a>
-          </div>
-        </div>
-        <div class="hero-video-wrap">
-          <div class="hero-video-frame">
-            <!-- Replace src with your video file or embed URL -->
-            <video autoplay muted loop playsinline poster="">
-              <source src="" type="video/mp4">
-            </video>
-            <div class="video-placeholder">
-              <div class="video-play-btn">
-                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              </div>
-              <p>Product demo video</p>
-            </div>
+            <a href="#agents" class="btn-ghost">Explore agents</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== How It Works ===== -->
-  <style>
-    .how-section {
-      padding: clamp(64px, 8vw, 96px) 0;
-      background: #fff;
-      border-bottom: 1px solid var(--border-light, #f1f5f9);
-    }
-    .how-eyebrow {
-      text-align: center;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent, #149a6e);
-      margin-bottom: 48px;
-    }
-    .how-steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      max-width: 900px;
-      margin: 0 auto;
-      position: relative;
-    }
-    .how-steps::before {
-      content: '';
-      position: absolute;
-      top: 28px;
-      left: calc(16.66% + 20px);
-      right: calc(16.66% + 20px);
-      height: 1px;
-      background: linear-gradient(90deg, var(--accent, #149a6e), #34d399, var(--accent, #149a6e));
-      opacity: 0.3;
-    }
-    .how-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0 28px;
-    }
-    .how-step-number {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: var(--accent-light, rgba(20,154,110,0.08));
-      border: 1.5px solid rgba(20,154,110,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--accent, #149a6e);
-      margin-bottom: 24px;
-      position: relative;
-      z-index: 1;
-      flex-shrink: 0;
-    }
-    .how-step h3 {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--fg, #1e293b);
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-    .how-step p {
-      font-size: 14px;
-      color: #64748b;
-      line-height: 1.65;
-      margin: 0;
-    }
-    @media (max-width: 640px) {
-      .how-steps { grid-template-columns: 1fr; gap: 40px; }
-      .how-steps::before { display: none; }
-    }
-  </style>
-
-  <section class="how-section">
-    <div class="container">
-      <p class="how-eyebrow">How it works</p>
-      <div class="how-steps">
-
-        <div class="how-step">
-          <div class="how-step-number">1</div>
-          <h3>Plug into your stack</h3>
-          <p>Connects to your CRM, Slack, and existing tools in hours. No migration, no setup headache.</p>
-        </div>
-
-        <div class="how-step">
-          <div class="how-step-number">2</div>
-          <h3>Learns how you work</h3>
-          <p>Maps your team's workflows, priorities, and company context — becoming a specialist in how your business actually runs.</p>
-        </div>
-
-        <div class="how-step">
-          <div class="how-step-number">3</div>
-          <h3>Gets the work done</h3>
-          <p>Handles the operational load automatically so your team stays focused on the work that actually moves the business.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Agents Section ===== -->
+  <!-- ===== Agents Section (tabbed) ===== -->
   <style>
     .agents-section {
       padding: var(--section-gap, 120px) 0;
       background: var(--bg, #fff);
     }
-    .agents-layout {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 72px;
-      align-items: start;
+    .agents-section .section-header {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 48px;
     }
-    .agents-layout-left {
-      position: sticky;
-      top: 100px;
-    }
-    .agents-layout-left .section-eyebrow-w {
+    .agents-section .section-eyebrow {
       display: inline-flex;
       align-items: center;
+      gap: 8px;
+      padding: 0;
+      background: none;
+      border: none;
+      border-radius: 0;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--muted, #94a3b8);
       margin-bottom: 20px;
+      box-shadow: none;
     }
-    .agents-layout-left h2 {
-      font-size: clamp(32px, 3.6vw, 48px);
-      font-weight: 700;
-      line-height: 1.1;
+    .agents-section .section-eyebrow::before { content: none; }
+    .agents-section .section-header h2 {
+      text-align: center;
+      max-width: none;
+      font-size: clamp(36px, 4.6vw, 56px);
+      line-height: 1.08;
       letter-spacing: -0.025em;
-      color: var(--fg, #1e293b);
-      margin: 0;
+      margin-bottom: 0;
     }
-    .agents-layout-left h2 .accent {
-      background: linear-gradient(135deg, #149a6e 0%, #34d399 100%);
+    .agents-section .section-header h2 .accent {
+      background: linear-gradient(135deg, var(--accent, #001F5C) 0%, #6fa8ff 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       color: transparent;
     }
-    .agents-work-audience-t { margin-bottom: 40px; }
-    .agents-work-audience-t:last-child { margin-bottom: 0; }
-    .agents-audience-label-t {
+    .agents-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .agents-tab {
       display: inline-block;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
+      letter-spacing: 0.10em;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      background: transparent;
+      border: 2px solid var(--border, #e2e8f0);
       color: var(--muted, #94a3b8);
-      border-left: 3px solid var(--muted, #94a3b8);
-      padding-left: 10px;
-      margin-bottom: 16px;
+      padding: 8px 22px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .agents-tab[data-tab="inside"]   { --tab-color: #1863dc; }
+    .agents-tab[data-tab="work"]     { --tab-color: #149a6e; }
+    .agents-tab[data-tab="personal"] { --tab-color: #7e57c2; }
+    .agents-tab:hover  { border-color: var(--tab-color); color: var(--tab-color); }
+    .agents-tab.active { background: transparent; border-color: var(--tab-color); color: var(--tab-color); box-shadow: none; }
+    .agents-panel { display: none; }
+    .agents-panel.active { display: block; animation: fade-up 0.4s ease-out both; }
+    .agents-panel-tagline {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--muted, #94a3b8);
+      margin-bottom: 32px;
     }
     .agents-grid-tabs {
       display: grid;
-      gap: 16px;
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
-    .agents-grid-tabs.agents-grid-2 { grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: 640px) { .agents-grid-tabs.agents-grid-2 { grid-template-columns: 1fr; } }
+    .agents-grid-tabs.agents-grid-4 { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 900px) { .agents-grid-tabs.agents-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .agents-grid-tabs.agents-grid-4 { grid-template-columns: 1fr; } }
+    #atab-inside   .agents-card-t { --card-color: #1863dc; }
+    #atab-work     .agents-card-t { --card-color: #149a6e; }
+    #atab-personal .agents-card-t { --card-color: #7e57c2; }
     .agents-card-t {
       background: #fff;
       border: 1.5px solid var(--border-light, #f1f5f9);
-      border-top: 4px solid #149a6e;
+      border-top: 4px solid var(--card-color, var(--accent, #001F5C));
       border-radius: 18px;
       padding: 26px 22px;
       display: flex;
@@ -1145,16 +1065,20 @@
       transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
     }
     .agents-card-t:hover {
-      transform: translateY(-4px);
-      border-color: rgba(20,154,110,0.3);
-      border-top-color: #149a6e;
-      box-shadow: 0 20px 48px -16px rgba(20,154,110,0.18);
+      transform: translateY(-5px);
+      border-color: color-mix(in oklab, var(--card-color, var(--accent, #001F5C)) 35%, transparent);
+      border-top-color: var(--card-color, var(--accent, #001F5C));
+      box-shadow: 0 20px 48px -16px color-mix(in oklab, var(--card-color, var(--accent, #001F5C)) 25%, transparent);
     }
-    .agents-card-title-t { display: flex; flex-direction: column; gap: 3px; }
+    .agents-card-t .agents-card-title-t {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
     .agents-title-main-t {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 700;
-      color: #149a6e;
+      color: var(--card-color, var(--accent, #001F5C));
       line-height: 1.2;
       letter-spacing: -0.02em;
     }
@@ -1164,14 +1088,19 @@
       color: var(--muted, #94a3b8);
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      line-height: 1.3;
     }
     .agents-context-badge-t {
       display: block;
+      background: none;
       color: var(--muted, #94a3b8);
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 600;
       font-style: italic;
+      padding: 0;
+      border-radius: 0;
       line-height: 1.4;
+      margin-bottom: 2px;
     }
     .agents-list-t {
       list-style: none;
@@ -1198,8 +1127,21 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #149a6e;
+      background: var(--muted, #94a3b8);
       margin-top: 6px;
+    }
+    .agents-work-audience-t { margin-bottom: 40px; }
+    .agents-work-audience-t:last-child { margin-bottom: 0; }
+    .agents-audience-label-t {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted, #94a3b8);
+      border-left: 3px solid var(--muted, #94a3b8);
+      padding-left: 10px;
+      margin-bottom: 16px;
     }
     .agents-card-t.agents-card-row-t {
       flex-direction: row;
@@ -1210,7 +1152,7 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      min-width: 170px;
+      min-width: 180px;
       flex-shrink: 0;
     }
     .agents-list-t.agents-list-row-t {
@@ -1221,82 +1163,160 @@
       margin: 0;
       flex: 1;
     }
-    @media (max-width: 1024px) {
-      .agents-layout { grid-template-columns: 1fr; gap: 40px; }
-      .agents-layout-left { position: static; }
-    }
     @media (max-width: 640px) {
       .agents-card-t.agents-card-row-t { flex-direction: column; }
       .agents-list-t.agents-list-row-t { border-left: none; border-top: 1.5px solid var(--border-light, #f1f5f9); padding-left: 0; padding-top: 14px; }
     }
+    #aw-inside-grid .agents-card-left-t,
+    #aw-inside-grid .agents-card-right-t,
+    #aw-work-grid   .agents-card-left-t,
+    #aw-work-grid   .agents-card-right-t { display: contents; }
   </style>
 
   <section class="agents-section">
     <div class="container">
-      <div class="agents-layout">
+      <div class="section-header">
+        <span class="section-eyebrow">Meet the Specialists</span>
+        <h2>The right specialist, <span class="accent">exactly where you need them</span></h2>
+      </div>
 
-        <!-- Left: headline -->
-        <div class="agents-layout-left">
-          <span class="section-eyebrow-w">Meet the Specialists</span>
-          <h2>The right specialist, <span class="accent">exactly where you need them</span></h2>
-        </div>
+      <div class="agents-tabs" role="tablist">
+        <button class="agents-tab" data-tab-aw="inside" role="tab" aria-selected="false">Infina AI Inside</button>
+        <button class="agents-tab active" data-tab-aw="work" role="tab" aria-selected="true">Infina AI Work</button>
+        <button class="agents-tab" data-tab-aw="personal" role="tab" aria-selected="false">Infina AI Personal</button>
+      </div>
 
-        <!-- Right: work content -->
-        <div class="agents-layout-right">
-
-          <!-- For Sales Teams -->
-          <div class="agents-work-audience-t">
-            <span class="agents-audience-label-t">For Sales Teams</span>
-            <div class="agents-grid-tabs">
-              <div class="agents-card-t agents-card-row-t">
-                <div class="agents-card-row-meta-t">
-                  <h3 class="agents-card-title-t">
-                    <span class="agents-title-main-t">CRM &amp; Sales Pipeline</span>
-                    <span class="agents-title-sub-t">Specialist Agent</span>
-                  </h3>
-                  <div class="agents-context-badge-t">Inside your CRM</div>
-                </div>
-                <ul class="agents-list-t agents-list-row-t">
-                  <li>Works alongside your existing CRM and tools. No migration required.</li>
-                  <li>Handles CRM updates, follow-up emails, and task logging automatically</li>
-                  <li>Pre-configured for your industry: real estate, insurance, finance, and more</li>
-                  <li>Accessible via Slack, WhatsApp, web, or your own app</li>
-                </ul>
-              </div>
+      <!-- TAB: AI Inside -->
+      <div class="agents-panel" id="atab-inside">
+        <p class="agents-panel-tagline">Live inside your platforms. Get the experts 24/7.</p>
+        <div class="agents-grid-tabs agents-grid-4" id="aw-inside-grid">
+          <div class="agents-card-t">
+            <div class="agents-card-left-t">
+              <h3 class="agents-card-title-t"><span class="agents-title-main-t">Stock</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
+              <div class="agents-context-badge-t">Inside stock trading apps</div>
+            </div>
+            <div class="agents-card-right-t">
+              <ul class="agents-list-t">
+                <li>Market insights tailored to each user's holdings</li>
+                <li>Surfaces risks and opportunities in their portfolio</li>
+                <li>Alerts on moves that matter, nothing else</li>
+              </ul>
             </div>
           </div>
+          <div class="agents-card-t">
+            <div class="agents-card-left-t">
+              <h3 class="agents-card-title-t"><span class="agents-title-main-t">Wealth Management</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
+              <div class="agents-context-badge-t">Inside fund management apps/web</div>
+            </div>
+            <div class="agents-card-right-t">
+              <ul class="agents-list-t">
+                <li>Fund questions answered instantly</li>
+                <li>Investing plans built around real goals</li>
+                <li>Asset mix matched to risk profile and timeline</li>
+                <li>Flags when to rebalance, and why</li>
+              </ul>
+            </div>
+          </div>
+          <div class="agents-card-t">
+            <div class="agents-card-left-t">
+              <h3 class="agents-card-title-t"><span class="agents-title-main-t">Personal Finance</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
+              <div class="agents-context-badge-t">Inside banking/e-wallet apps</div>
+            </div>
+            <div class="agents-card-right-t">
+              <ul class="agents-list-t">
+                <li>Matches users to products that fit their situation</li>
+                <li>Shows where money goes and where to improve</li>
+                <li>Clarifies loan options and credit improvement steps</li>
+                <li>Builds financial confidence in plain language</li>
+              </ul>
+            </div>
+          </div>
+          <div class="agents-card-t">
+            <div class="agents-card-left-t">
+              <h3 class="agents-card-title-t"><span class="agents-title-main-t">Insurance</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
+              <div class="agents-context-badge-t">Inside insurance apps/web</div>
+            </div>
+            <div class="agents-card-right-t">
+              <ul class="agents-list-t">
+                <li>Finds coverage that fits, not just what's available</li>
+                <li>Answers policy questions any time, in plain language</li>
+                <li>Guides users through claims to get what they're entitled to</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
-          <!-- For Operations & Company -->
-          <div class="agents-work-audience-t">
-            <span class="agents-audience-label-t">For Operations &amp; Company</span>
-            <div class="agents-grid-tabs agents-grid-2">
-              <div class="agents-card-t">
+      <!-- TAB: AI Work (default active) -->
+      <div class="agents-panel active" id="atab-work">
+        <p class="agents-panel-tagline">Less chasing tasks. More closing them.</p>
+
+        <div class="agents-work-audience-t">
+          <span class="agents-audience-label-t">For Sales Teams</span>
+          <div class="agents-grid-tabs">
+            <div class="agents-card-t agents-card-row-t">
+              <div class="agents-card-row-meta-t">
+                <h3 class="agents-card-title-t">
+                  <span class="agents-title-main-t">CRM &amp; Sales Pipeline</span>
+                  <span class="agents-title-sub-t">Specialist Agent</span>
+                </h3>
+                <div class="agents-context-badge-t">Inside your CRM</div>
+              </div>
+              <ul class="agents-list-t agents-list-row-t">
+                <li>Works alongside your existing CRM and tools. No migration required.</li>
+                <li>Handles CRM updates, follow-up emails, and task logging automatically</li>
+                <li>Pre-configured for your industry: real estate, insurance, finance, and more</li>
+                <li>Accessible via Slack, WhatsApp, web, or your own app</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="agents-work-audience-t">
+          <span class="agents-audience-label-t">For Operations &amp; Company</span>
+          <div class="agents-grid-tabs agents-grid-4" id="aw-work-grid">
+            <div class="agents-card-t">
+              <div class="agents-card-left-t">
                 <h3 class="agents-card-title-t"><span class="agents-title-main-t">Focus &amp; Alignment</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
                 <div class="agents-context-badge-t">Across your org</div>
+              </div>
+              <div class="agents-card-right-t">
                 <ul class="agents-list-t">
                   <li>Aligns weekly priorities across team, department, and company goals</li>
                   <li>Resolves conflicts by understanding where OKRs overlap or clash</li>
                 </ul>
               </div>
-              <div class="agents-card-t">
+            </div>
+            <div class="agents-card-t">
+              <div class="agents-card-left-t">
                 <h3 class="agents-card-title-t"><span class="agents-title-main-t">Expense Management</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
                 <div class="agents-context-badge-t">Across your tools and accounts</div>
+              </div>
+              <div class="agents-card-right-t">
                 <ul class="agents-list-t">
                   <li>Analyzes all spending across SaaS, cloud, credit card, and bank statements</li>
                   <li>Surfaces ways to cut costs across your accounts</li>
                 </ul>
               </div>
-              <div class="agents-card-t">
+            </div>
+            <div class="agents-card-t">
+              <div class="agents-card-left-t">
                 <h3 class="agents-card-title-t"><span class="agents-title-main-t">Expertise</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
                 <div class="agents-context-badge-t">Across your data sources</div>
+              </div>
+              <div class="agents-card-right-t">
                 <ul class="agents-list-t">
                   <li>Slack threads explained, company context surfaced. Answers ready instantly.</li>
                   <li>Research pulled from internal data sources and the web in one place</li>
                 </ul>
               </div>
-              <div class="agents-card-t">
+            </div>
+            <div class="agents-card-t">
+              <div class="agents-card-left-t">
                 <h3 class="agents-card-title-t"><span class="agents-title-main-t">Workflow</span><span class="agents-title-sub-t">Specialist Agent</span></h3>
                 <div class="agents-context-badge-t">Any repeatable process</div>
+              </div>
+              <div class="agents-card-right-t">
                 <ul class="agents-list-t">
                   <li>Any repeatable workflow gets fully automated with a dedicated agent</li>
                   <li>Built and customized to fit exactly what your team needs</li>
@@ -1304,12 +1324,195 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
+      <!-- TAB: AI Personal -->
+      <div class="agents-panel" id="atab-personal">
+        <p class="agents-panel-tagline">A specialist for every financial decision you face.</p>
+        <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:32px;max-width:1000px;margin:0 auto;align-items:start;">
+          <div style="background:linear-gradient(135deg,#5e35b1 0%,#9575cd 100%);border-radius:18px;padding:26px 22px;display:flex;flex-direction:column;gap:14px;color:#fff;">
+            <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;width:fit-content;">
+              <span style="width:7px;height:7px;border-radius:50%;background:#4cd584;box-shadow:0 0 8px rgba(76,213,132,.8);"></span>Available now
+            </span>
+            <h3 style="font-size:18px;font-weight:700;line-height:1.3;color:#fff;letter-spacing:-.02em;">Personal Finance Specialist Agent</h3>
+            <p style="font-size:14px;line-height:1.65;color:rgba(255,255,255,.85);">Your AI advisor for budgeting, loans, credit scores, and everyday financial guidance.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div class="agents-card-t" style="flex-direction:row;align-items:flex-start;gap:16px;">
+              <div style="width:40px;height:40px;border-radius:12px;background:rgba(126,87,194,.08);color:#7e57c2;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+              </div>
+              <div><strong style="display:block;font-size:15px;font-weight:700;color:var(--fg,#1e293b);margin-bottom:6px;">Coming Soon</strong><p style="font-size:13.5px;color:var(--muted,#94a3b8);line-height:1.6;margin:0;">Stock, Wealth, Personal Finance, and Insurance specialist agents will all be available for personal use soon.</p></div>
+            </div>
+            <div class="agents-card-t" style="flex-direction:row;align-items:flex-start;gap:16px;">
+              <div style="width:40px;height:40px;border-radius:12px;background:rgba(126,87,194,.08);color:#7e57c2;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </div>
+              <div><strong style="display:block;font-size:15px;font-weight:700;color:var(--fg,#1e293b);margin-bottom:6px;">Available via WhatsApp</strong><p style="font-size:13.5px;color:var(--muted,#94a3b8);line-height:1.6;margin:0;">All specialist agents accessible directly through WhatsApp.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      document.querySelectorAll('[data-tab-aw]').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          document.querySelectorAll('[data-tab-aw]').forEach(function(t) {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          document.querySelectorAll('#atab-inside, #atab-work, #atab-personal').forEach(function(p) {
+            p.classList.remove('active');
+          });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          document.getElementById('atab-' + tab.getAttribute('data-tab-aw')).classList.add('active');
+        });
+      });
+    })();
+  </script>
+
+  <!-- Specialist Agents -->
+  <section class="section" id="agents">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Specialist Agents</p>
+        <h2>AI Agents for <span class="gradient-text">Every Company Function</span></h2>
+        <p>Four specialist agents customized to your internal processes. Each agent integrates seamlessly with existing tools and workflows.</p>
+      </div>
+
+      <div class="agents-grid">
+        <!-- Agent 1 -->
+        <div class="agent-card reveal">
+          <div class="agent-icon-wrap">
+            <div class="agent-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+          </div>
+          <div class="agent-body">
+            <h3>Focus & Alignment Agent</h3>
+            <p>Agent helps employees <span class="text-highlight">focus weekly and align their priorities</span> with team, department, and company goals by understanding company OKRs and resolving conflicts.</p>
+          </div>
+        </div>
+
+        <!-- Agent 2 -->
+        <div class="agent-card reveal">
+          <div class="agent-icon-wrap">
+            <div class="agent-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+          </div>
+          <div class="agent-body">
+            <h3>Expense Management Agent</h3>
+            <p>Analyze all <span class="text-highlight">spending data from all the SaaS, Cloud, credit card statements, bank statements</span>, etc… and suggest ways to cut costs.</p>
+          </div>
+        </div>
+
+        <!-- Agent 3 -->
+        <div class="agent-card reveal">
+          <div class="agent-icon-wrap">
+            <div class="agent-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="agent-body">
+            <h3>Knowledge Base & Expertise Agent</h3>
+            <p>A user can ask AI to <span class="text-highlight">explain a Slack thread or research related context</span> on the web or across company data sources.</p>
+          </div>
+        </div>
+
+        <!-- Agent 4 -->
+        <div class="agent-card reveal">
+          <div class="agent-icon-wrap">
+            <div class="agent-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                <path d="M9 12h6M9 16h6"/>
+              </svg>
+            </div>
+          </div>
+          <div class="agent-body">
+            <h3>Custom Workflow Agent</h3>
+            <p>Take a workflow that can be <span class="text-highlight">fully automated and done by an Agent</span>. This is customizable for applicable workflow requested by clients.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Sales Team Section -->
+  <section class="section sales-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Sales Solution</p>
+        <h2>Specialist Agent for <span class="gradient-text">CRM & Sales Pipeline Management</span></h2>
+        <p>Like Salesforce's AgentForce but more affordable and customizable</p>
+      </div>
+
+      <div class="sales-features-grid">
+        <div class="sales-feature-card reveal">
+          <div class="sales-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"/>
+              <rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </div>
+          <h3>Intelligent Integration Layer</h3>
+          <p>Works with existing CRM, ERP, etc… Seamlessly connects to your current systems without disruption.</p>
+        </div>
+
+        <div class="sales-feature-card reveal">
+          <div class="sales-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              <path d="M8 10h8M8 14h4"/>
+            </svg>
+          </div>
+          <h3>Multi-Channel Communication</h3>
+          <p>Chat via Slack, WhatsApp, Web, or app. Meet your sales team where they already work.</p>
+        </div>
+
+        <div class="sales-feature-card reveal">
+          <div class="sales-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3>Automated Actions</h3>
+          <p>Agent take actions for sales person, including updating CRM, send email, etc… Reduce manual data entry.</p>
+        </div>
+
+        <div class="sales-feature-card reveal">
+          <div class="sales-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="12" y1="18" x2="12" y2="12"/>
+              <line x1="9" y1="15" x2="15" y2="15"/>
+            </svg>
+          </div>
+          <h3>Vertical Customization</h3>
+          <p>Customized for a certain vertical like real-estate, insurance, etc… Industry-specific workflows built-in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- AI Coworkers Section -->
   <section class="section coworkers-section">
@@ -1389,7 +1592,7 @@
             </div>
             <div class="slack-messages">
               <div class="slack-message">
-                <div class="slack-avatar" style="background: #149a6e;">SL</div>
+                <div class="slack-avatar" style="background: #1863dc;">SL</div>
                 <div class="slack-msg-content">
                   <div class="slack-msg-header">
                     <span class="slack-username">Sarah L.</span>
@@ -1643,7 +1846,7 @@
           time: '10:22 AM',
           user: 'Sarah L.',
           userInitials: 'SL',
-          userColor: '#149a6e',
+          userColor: '#1863dc',
           userMessage: '<span class="slack-mention">@Infina AI</span> What\'s the tax impact if I sell my AAPL position today?',
           botResponse: 'Selling today realises a <span style="color: #22c55e; font-weight: 600;">long-term gain of $4,280</span>.',
           cardLabel: 'TAX SUMMARY',
