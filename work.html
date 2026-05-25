@@ -65,15 +65,23 @@
     .shape-2 { width: 300px; height: 300px; background: linear-gradient(135deg, rgba(20,154,110,.05), transparent); bottom: 20%; left: -5%; animation: float-reverse 10s ease-in-out infinite; }
     .shape-3 { width: 200px; height: 200px; border: 1px solid var(--border-light); top: 30%; left: 10%; animation: pulse 6s ease-in-out infinite; }
     .shape-4 { width: 150px; height: 150px; border: 1px solid var(--border-light); bottom: 30%; right: 15%; animation: pulse 8s ease-in-out infinite; animation-delay: 2s; }
-    .hero .container { position: relative; z-index: 1; text-align: center; }
-    .hero-grid { display: block; text-align: center; }
-    .hero-grid .hero-text { max-width: 900px; margin: 0 auto; }
+    .hero .container { position: relative; z-index: 1; text-align: left; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .hero-grid .hero-text { max-width: none; margin: 0; }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; padding: 8px 16px; border: 1px solid rgba(20,154,110,.2); border-radius: 999px; background: var(--accent-light); margin-bottom: 28px; opacity: 0; animation: fade-up .6s ease-out .2s forwards; }
-    .hero h1 { font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 72px); font-weight: 700; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 28px; opacity: 0; animation: fade-up .8s ease-out .3s forwards; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 54px); font-weight: 700; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 28px; opacity: 0; animation: fade-up .8s ease-out .3s forwards; }
     .hero h1 .line { white-space: normal; display: inline-block; padding: .12em 0 .05em; line-height: 1.15; max-width: 100%; }
     .hero h1 .line-accent { background: linear-gradient(135deg, var(--accent) 0%, #34d399 50%, var(--accent) 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 4s ease infinite; }
-    .hero-sub { font-size: 20px; color: #64748b; line-height: 1.65; margin: 0 auto 44px; opacity: 0; animation: fade-up .8s ease-out .4s forwards; max-width: 580px; font-weight: 400; }
-    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fade-up .8s ease-out .5s forwards; }
+    .hero-sub { font-size: 18px; color: #64748b; line-height: 1.65; margin: 0 0 44px; opacity: 0; animation: fade-up .8s ease-out .4s forwards; max-width: none; font-weight: 400; }
+    .hero-ctas { display: flex; gap: 16px; justify-content: flex-start; flex-wrap: wrap; opacity: 0; animation: fade-up .8s ease-out .5s forwards; }
+    .hero-video-wrap { opacity: 0; animation: fade-up .8s ease-out .6s forwards; }
+    .hero-video-frame { position: relative; border-radius: 20px; overflow: hidden; background: #0f1a14; box-shadow: 0 32px 80px -24px rgba(20,154,110,.25), 0 0 0 1px rgba(20,154,110,.12); aspect-ratio: 16/9; }
+    .hero-video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-video-frame .video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: linear-gradient(135deg, #0f1a14 0%, #1a3328 100%); }
+    .video-play-btn { width: 64px; height: 64px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .25s; box-shadow: 0 8px 24px rgba(20,154,110,.4); }
+    .video-play-btn:hover { transform: scale(1.08); box-shadow: 0 12px 32px rgba(20,154,110,.55); }
+    .video-play-btn svg { width: 24px; height: 24px; fill: #fff; margin-left: 3px; }
+    .video-placeholder p { font-size: 14px; color: rgba(255,255,255,.5); font-weight: 500; margin: 0; }
     .btn-primary { background: var(--accent); color: #fff; padding: 16px 32px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s; display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer; }
     .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(20,154,110,.3); }
     .btn-ghost { background: transparent; color: var(--fg); padding: 15px 32px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s; border: 1.5px solid var(--border); }
@@ -802,6 +810,12 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* === HERO MOBILE RESPONSIVENESS (C1) === */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero .container { text-align: center; }
+      .hero-ctas { justify-content: center; }
+      .hero-sub { margin: 0 auto 44px; }
+    }
     @media (max-width: 720px) {
       .hero h1 { font-size: clamp(28px, 7vw, 40px); overflow-wrap: anywhere; }
       .hero h1 .line { white-space: normal; display: inline; }
@@ -935,7 +949,20 @@
           <p class="hero-sub">Not workflow software. But <span style="font-weight: 700; color: var(--accent);">AI business specialists</span> that plug into your team, handle the operational load, and give your people time back for the work that actually moves the business.</p>
           <div class="hero-ctas">
             <a href="#demo" class="btn-primary">Book a demo →</a>
-            <a href="#agents" class="btn-ghost">Explore agents</a>
+          </div>
+        </div>
+        <div class="hero-video-wrap">
+          <div class="hero-video-frame">
+            <!-- Replace src with your video file or embed URL -->
+            <video autoplay muted loop playsinline poster="">
+              <source src="" type="video/mp4">
+            </video>
+            <div class="video-placeholder">
+              <div class="video-play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <p>Product demo video</p>
+            </div>
           </div>
         </div>
       </div>
