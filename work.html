@@ -745,6 +745,9 @@
     .coworkers-sub { font-size: 17px; color: #64748b; line-height: 1.7; margin-bottom: 32px; font-weight: 400; }
     .btn-slack { display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #1a1f2e; padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; border: 1px solid var(--border); cursor: pointer; transition: all .2s; }
     .btn-slack:hover { border-color: #1a1f2e; box-shadow: 0 4px 12px rgba(0,0,0,.08); transform: translateY(-1px); }
+    .btn-whatsapp { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #fff; padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; border: 1px solid #25D366; cursor: pointer; transition: all .2s; }
+    .btn-whatsapp:hover { background: #1ebe5d; border-color: #1ebe5d; box-shadow: 0 4px 12px rgba(37,211,102,.3); transform: translateY(-1px); }
+    .coworkers-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
 
     .coworkers-grid { display: grid; grid-template-columns: 380px 1fr; gap: 48px; align-items: start; }
     @media (max-width: 1000px) { .coworkers-grid { grid-template-columns: 1fr; gap: 48px; } }
@@ -1082,6 +1085,7 @@
       <div class="coworkers-header reveal">
         <div class="coworkers-badges">
           <span class="coworkers-label">FOR BUSINESSES</span>
+          <span class="coworkers-label" style="color:#94a3b8;">NOW INTEGRATED ON</span>
           <span class="slack-badge">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M6 15a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2h2v2zm1 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2v5a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-5z" fill="#E01E5A"/>
@@ -1089,11 +1093,36 @@
               <path d="M18 9a2 2 0 0 1 2-2 2 2 0 0 1 2 2 2 2 0 0 1-2 2h-2V9zm-1 0a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2 2 2 0 0 1 2 2v5z" fill="#2EB67D"/>
               <path d="M15 18a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2h2zm0-1a2 2 0 0 1-2-2 2 2 0 0 1 2-2h5a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-5z" fill="#ECB22E"/>
             </svg>
-            NOW ON SLACK
+            Slack
+          </span>
+          <span class="slack-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path fill="#25D366" d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.22-3.48-8.52z"/>
+              <path fill="#fff" d="M17.47 14.93c-.28-.14-1.64-.81-1.89-.9-.26-.1-.44-.14-.63.14-.19.28-.72.9-.88 1.08-.16.19-.33.21-.61.07-.28-.14-1.18-.44-2.25-1.39-.83-.74-1.39-1.66-1.55-1.94-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.63-1.52-.86-2.08-.23-.55-.46-.47-.63-.48H8.3c-.17 0-.45.06-.69.33-.23.26-.89.87-.89 2.12s.91 2.46 1.04 2.63c.13.17 1.8 2.74 4.36 3.85.61.26 1.08.42 1.45.54.61.19 1.17.16 1.6.1.49-.07 1.64-.67 1.87-1.32.23-.65.23-1.21.16-1.32-.07-.11-.26-.17-.54-.31z"/>
+            </svg>
+            WhatsApp
           </span>
         </div>
         <h2>AI Coworkers. Ready to handle <span class="gradient-text">everything, together</span>.</h2>
         <p class="coworkers-sub">Your AI coworker, operates in Slack. Ask questions, receive comprehensive reports — execute workflows — all without breaking context.</p>
+        <div class="coworkers-ctas">
+          <button class="btn-slack">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M6 15a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2h2v2zm1 0a2 2 0 0 1 2-2 2 2 0 0 1 2 2v5a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-5z" fill="#E01E5A"/>
+              <path d="M9 6a2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2v2H9zm0 1a2 2 0 0 1 2 2 2 2 0 0 1-2 2H4a2 2 0 0 1-2-2 2 2 0 0 1 2-2h5z" fill="#36C5F0"/>
+              <path d="M18 9a2 2 0 0 1 2-2 2 2 0 0 1 2 2 2 2 0 0 1-2 2h-2V9zm-1 0a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2 2 2 0 0 1 2 2v5z" fill="#2EB67D"/>
+              <path d="M15 18a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2h2zm0-1a2 2 0 0 1-2-2 2 2 0 0 1 2-2h5a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-5z" fill="#ECB22E"/>
+            </svg>
+            Add to Slack
+          </button>
+          <button class="btn-whatsapp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path fill="#fff" d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.22-3.48-8.52z"/>
+              <path fill="#25D366" d="M17.47 14.93c-.28-.14-1.64-.81-1.89-.9-.26-.1-.44-.14-.63.14-.19.28-.72.9-.88 1.08-.16.19-.33.21-.61.07-.28-.14-1.18-.44-2.25-1.39-.83-.74-1.39-1.66-1.55-1.94-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.63-1.52-.86-2.08-.23-.55-.46-.47-.63-.48H8.3c-.17 0-.45.06-.69.33-.23.26-.89.87-.89 2.12s.91 2.46 1.04 2.63c.13.17 1.8 2.74 4.36 3.85.61.26 1.08.42 1.45.54.61.19 1.17.16 1.6.1.49-.07 1.64-.67 1.87-1.32.23-.65.23-1.21.16-1.32-.07-.11-.26-.17-.54-.31z"/>
+            </svg>
+            Add to WhatsApp
+          </button>
+        </div>
       </div>
 
       <div class="coworkers-grid reveal">
