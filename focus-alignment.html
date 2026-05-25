@@ -82,7 +82,7 @@
     }
 
     /* ===== HERO ===== */
-    .hero { padding: clamp(130px, 16vw, 160px) 0 clamp(80px, 10vw, 120px); background: #f8f9ff; position: relative; overflow: hidden; }
+    .hero { padding: clamp(130px, 16vw, 160px) 0 clamp(80px, 10vw, 120px); background: #eef0fb; position: relative; overflow: hidden; }
     .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 80% 20%, rgba(79,70,229,.08), transparent 60%), radial-gradient(ellipse 50% 50% at 10% 80%, rgba(0,31,92,.05), transparent 60%); pointer-events: none; }
     .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; position: relative; z-index: 1; }
     @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 48px; } }
@@ -100,42 +100,42 @@
 
     /* Hero visual */
     .hero-visual { position: relative; opacity: 0; animation: fade-up .8s ease-out .4s forwards; }
-    .hero-panels { display: flex; gap: 16px; align-items: flex-start; }
-    .hero-panel { background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,.1); overflow: hidden; flex: 1; }
-    .hero-panel-header { padding: 14px 16px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; justify-content: space-between; }
+    .hero-panels { display: flex; gap: 16px; align-items: stretch; height: 480px; }
+    .hero-panel { background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,.1); overflow: hidden; flex: 1.2; display: flex; flex-direction: column; }
+    .hero-panel-header { padding: 14px 16px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
     .hero-panel-title { font-size: 13px; font-weight: 700; color: var(--fg); display: flex; align-items: center; gap: 8px; }
-    .hero-panel-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
-    .hero-panel-status { font-size: 11px; color: var(--muted); }
-    .hero-panel-body { padding: 16px; }
-    .hero-chat-bubble { background: var(--blue); color: #fff; padding: 10px 16px; border-radius: 20px 20px 4px 20px; font-size: 13px; font-weight: 500; margin-bottom: 16px; display: inline-block; }
-    .hero-ai-reply { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; font-size: 13px; line-height: 1.55; }
-    .hero-ai-reply-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-weight: 700; font-size: 13px; }
-    .hero-ai-icon { width: 24px; height: 24px; border-radius: 6px; background: var(--blue); display: flex; align-items: center; justify-content: center; }
-    .hero-task-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 6px; font-size: 12px; }
-    .hero-task-row:last-child { margin-bottom: 0; }
-    .hero-task-id { font-size: 11px; font-weight: 700; color: var(--blue); margin-right: 8px; }
+    .hero-panel-body { padding: 16px; flex: 1; overflow: hidden; }
+    .hero-chat-bubble { background: var(--blue); color: #fff; padding: 10px 16px; border-radius: 20px 20px 4px 20px; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: inline-block; }
+    .hero-task-card { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin: 12px 0; font-size: 12px; }
+    .hero-task-card-id { font-size: 11px; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
+    .hero-task-card-name { font-size: 13px; font-weight: 600; color: var(--fg); margin-bottom: 8px; }
+    .hero-task-card-footer { display: flex; align-items: center; justify-content: space-between; }
     .hero-tag { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; }
-    .hero-tag-focus { background: rgba(79,70,229,.1); color: var(--blue); }
     .hero-tag-queue { background: rgba(245,158,11,.12); color: #b45309; }
     .hero-tag-review { background: rgba(239,68,68,.1); color: #dc2626; }
+    .hero-input-bar { padding: 12px 14px; border-top: 1px solid var(--border-light); display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-shrink: 0; }
+    .hero-input-placeholder { font-size: 13px; color: #b0b8c8; }
+    .hero-send-btn { width: 32px; height: 32px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
     /* Priorities panel */
-    .prio-panel { background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,.1); overflow: hidden; min-width: 200px; }
-    .prio-panel-header { padding: 14px 16px; border-bottom: 1px solid var(--border-light); }
+    .prio-panel { background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,.1); overflow: hidden; flex: 1; display: flex; flex-direction: column; }
+    .prio-panel-header { padding: 14px 16px; border-bottom: 1px solid var(--border-light); flex-shrink: 0; }
     .prio-panel-title { font-size: 13px; font-weight: 700; color: var(--fg); display: flex; align-items: center; gap: 8px; }
-    .prio-section-label { font-size: 10px; font-weight: 700; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; padding: 10px 16px 4px; }
+    .prio-panel-body { padding: 12px; flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 4px; }
+    .prio-section-label { font-size: 10px; font-weight: 700; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; padding: 4px 4px 6px; display: flex; align-items: center; }
     .prio-count { font-size: 10px; font-weight: 700; color: var(--muted); margin-left: auto; }
-    .prio-item { padding: 10px 16px; border-bottom: 1px solid var(--border-light); }
-    .prio-item:last-child { border-bottom: none; }
-    .prio-item-id { font-size: 10px; font-weight: 700; color: var(--blue); margin-bottom: 2px; }
+    .prio-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; }
+    .prio-item-id { font-size: 11px; font-weight: 700; color: var(--blue); margin-bottom: 2px; }
     .prio-item-name { font-size: 12px; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
     .prio-bar { height: 3px; border-radius: 2px; }
     .prio-bar-blue { background: var(--blue); width: 70%; }
     .prio-bar-purple { background: #7C3AED; width: 40%; }
-    .hero-teammates { display: flex; align-items: center; gap: 8px; padding: 10px 16px; }
+    .prio-queue-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; }
+    .hero-teammates { display: flex; align-items: center; gap: 6px; padding: 8px 4px 4px; margin-top: auto; }
     .teammate-avatars { display: flex; }
-    .teammate-avatar { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #fff; margin-right: -6px; font-size: 8px; font-weight: 700; color: #fff; display: flex; align-items: center; justify-content: center; }
-    .teammate-text { font-size: 11px; color: var(--muted); margin-left: 10px; font-weight: 500; }
+    .teammate-avatar { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #fff; margin-right: -7px; font-size: 8px; font-weight: 700; color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .teammate-overflow { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #fff; margin-right: -7px; font-size: 8px; font-weight: 700; color: var(--muted); background: var(--surface); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .teammate-text { font-size: 11px; color: var(--muted); margin-left: 14px; font-weight: 500; line-height: 1.4; }
 
     /* ===== SECTIONS ===== */
     .section { padding: var(--section-gap) 0; }
@@ -310,11 +310,12 @@
         <div class="hero-visual">
           <div class="hero-panels">
             <!-- AI Chat panel -->
-            <div class="hero-panel" style="flex:1.2">
+            <div class="hero-panel">
               <div class="hero-panel-header">
                 <div class="hero-panel-title">
-                  <div style="width:20px;height:20px;border-radius:6px;background:var(--blue);display:flex;align-items:center;justify-content:center;">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+                  <div style="width:22px;height:22px;border-radius:6px;background:var(--blue);display:flex;align-items:center;justify-content:center;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><circle cx="12" cy="12" r="10" stroke="white" stroke-width="0" fill="none"/></svg>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="white" style="position:absolute;"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
                   </div>
                   AI Chat
                 </div>
@@ -326,15 +327,23 @@
                 <div style="display:flex;justify-content:flex-end;margin-bottom:14px;">
                   <div class="hero-chat-bubble">Any blockers on KR-355?</div>
                 </div>
-                <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:12px;">
+                <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:4px;">
                   <strong style="color:var(--fg);">KR-355</strong> is in Queue. Last update: 1st draft sent to James. Noah is working with James on revisions.
                 </div>
-                <div class="hero-task-row">
-                  <span class="hero-task-id">KR-355</span>
-                  <span style="font-size:12px;flex:1;">Infina AI logo redesign</span>
-                  <span class="hero-tag hero-tag-queue">Queue</span>
+                <div class="hero-task-card">
+                  <div class="hero-task-card-id">KR-355</div>
+                  <div class="hero-task-card-name">Infina AI logo redesign</div>
+                  <div class="hero-task-card-footer">
+                    <span class="hero-tag hero-tag-queue">Queue</span>
+                  </div>
                 </div>
-                <div style="font-size:13px;color:var(--muted);margin-top:12px;line-height:1.55;">No blocker logged — want me to ask Nathan for a status check?</div>
+                <div style="font-size:13px;color:var(--muted);line-height:1.55;">No blocker logged — want me to ask Nathan for a status check?</div>
+              </div>
+              <div class="hero-input-bar">
+                <span class="hero-input-placeholder">Ask anything about your team's work...</span>
+                <div class="hero-send-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </div>
               </div>
             </div>
 
@@ -346,36 +355,39 @@
                   Priorities · Q2
                 </div>
               </div>
-              <div class="prio-section-label" style="display:flex;align-items:center;">FOCUS <span class="prio-count">2</span></div>
-              <div class="prio-item">
-                <div class="prio-item-id">KR-358</div>
-                <div class="prio-item-name">Infina AI Landing Page</div>
-                <div class="prio-bar prio-bar-blue"></div>
-              </div>
-              <div class="prio-item">
-                <div class="prio-item-id" style="color:#7C3AED;">SHP-568</div>
-                <div class="prio-item-name">Website merge — MKT & Product</div>
-                <div class="prio-bar prio-bar-purple"></div>
-              </div>
-              <div class="prio-section-label" style="display:flex;align-items:center;">QUEUE <span class="prio-count">1</span></div>
-              <div class="prio-item">
-                <div class="prio-item-id">KR-355</div>
-                <div class="prio-item-name" style="margin-bottom:6px;">Infina AI logo redesign</div>
-                <div style="display:flex;align-items:center;justify-content:space-between;">
-                  <span class="hero-tag hero-tag-review" style="font-size:10px;padding:3px 8px;border-radius:4px;">In review</span>
-                  <span style="font-size:11px;color:var(--muted);">James</span>
+              <div class="prio-panel-body">
+                <div class="prio-section-label">FOCUS <span class="prio-count">2</span></div>
+                <div class="prio-card">
+                  <div class="prio-item-id">KR-358</div>
+                  <div class="prio-item-name">Infina AI Landing Page</div>
+                  <div class="prio-bar prio-bar-blue"></div>
                 </div>
-              </div>
-              <div class="prio-section-label" style="display:flex;align-items:center;">DONE <span class="prio-count">8</span></div>
-              <div class="hero-teammates">
-                <div class="teammate-avatars">
-                  <div class="teammate-avatar" style="background:#4F46E5;">NQ</div>
-                  <div class="teammate-avatar" style="background:#7C3AED;">GA</div>
-                  <div class="teammate-avatar" style="background:#06b6d4;">TN</div>
-                  <div class="teammate-avatar" style="background:#f59e0b;">JM</div>
-                  <div class="teammate-avatar" style="background:#ef4444;">EK</div>
+                <div class="prio-card">
+                  <div class="prio-item-id" style="color:#7C3AED;">SHP-568</div>
+                  <div class="prio-item-name">Website merge — MKT & Product</div>
+                  <div class="prio-bar prio-bar-purple"></div>
                 </div>
-                <span class="teammate-text">17 teammates<br>aligned today</span>
+                <div class="prio-section-label">QUEUE <span class="prio-count">1</span></div>
+                <div class="prio-queue-card">
+                  <div class="prio-item-id">KR-355</div>
+                  <div class="prio-item-name" style="margin-bottom:8px;">Infina AI logo redesign</div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <span class="hero-tag hero-tag-review">In review</span>
+                    <span style="font-size:11px;color:var(--muted);">James</span>
+                  </div>
+                </div>
+                <div class="prio-section-label">DONE <span class="prio-count">8</span></div>
+                <div class="hero-teammates">
+                  <div class="teammate-avatars">
+                    <div class="teammate-avatar" style="background:#4F46E5;">NQ</div>
+                    <div class="teammate-avatar" style="background:#7C3AED;">GA</div>
+                    <div class="teammate-avatar" style="background:#06b6d4;">TN</div>
+                    <div class="teammate-avatar" style="background:#f59e0b;">JM</div>
+                    <div class="teammate-avatar" style="background:#ef4444;">EK</div>
+                    <div class="teammate-overflow">+12</div>
+                  </div>
+                  <span class="teammate-text">17 teammates<br>aligned today</span>
+                </div>
               </div>
             </div>
           </div>
