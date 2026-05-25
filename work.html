@@ -17,9 +17,9 @@
       --muted: #64748b;
       --border: #e5e7eb;
       --border-light: #f2f2f2;
-      --accent: #001F5C;
-      --accent-dark: #001340;
-      --accent-light: rgba(0, 31, 92, 0.08);
+      --accent: #149a6e;
+      --accent-dark: #0d7a58;
+      --accent-light: rgba(20, 154, 110, 0.08);
       --font-display: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
       --font-body: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
       --section-gap: 120px;
@@ -53,29 +53,29 @@
     .nav-center a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width .3s; }
     .nav-center a.active::after, .nav-center a:hover::after { width: 100%; }
     .nav-cta { background: var(--accent); color: #fff; padding: 11px 22px; border-radius: 9999px; font-size: 14px; font-weight: 500; transition: all .3s; }
-    .nav-cta:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(24,99,220,.25); }
+    .nav-cta:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20,154,110,.25); }
     @media (max-width: 768px) { .nav-center { display: none; } }
 
     /* Hero */
     .hero { position: relative; padding: clamp(140px, 18vw, 180px) 0 clamp(64px, 8vw, 96px); overflow: hidden; background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%); }
-    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 70% 30%, rgba(24,99,220,.14), transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(126,87,194,.08), transparent 60%); z-index: -2; pointer-events: none; }
-    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(24,99,220,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(24,99,220,.06) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); z-index: -2; pointer-events: none; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 70% 30%, rgba(20,154,110,.14), transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(126,87,194,.08), transparent 60%); z-index: -2; pointer-events: none; }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(20,154,110,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(20,154,110,.06) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); z-index: -2; pointer-events: none; }
     .shape { position: absolute; border-radius: 50%; z-index: -1; pointer-events: none; }
-    .shape-1 { width: 400px; height: 400px; background: linear-gradient(135deg, rgba(24,99,220,.08), transparent); top: 10%; right: -10%; animation: float 8s ease-in-out infinite; }
-    .shape-2 { width: 300px; height: 300px; background: linear-gradient(135deg, rgba(24,99,220,.05), transparent); bottom: 20%; left: -5%; animation: float-reverse 10s ease-in-out infinite; }
+    .shape-1 { width: 400px; height: 400px; background: linear-gradient(135deg, rgba(20,154,110,.08), transparent); top: 10%; right: -10%; animation: float 8s ease-in-out infinite; }
+    .shape-2 { width: 300px; height: 300px; background: linear-gradient(135deg, rgba(20,154,110,.05), transparent); bottom: 20%; left: -5%; animation: float-reverse 10s ease-in-out infinite; }
     .shape-3 { width: 200px; height: 200px; border: 1px solid var(--border-light); top: 30%; left: 10%; animation: pulse 6s ease-in-out infinite; }
     .shape-4 { width: 150px; height: 150px; border: 1px solid var(--border-light); bottom: 30%; right: 15%; animation: pulse 8s ease-in-out infinite; animation-delay: 2s; }
     .hero .container { position: relative; z-index: 1; text-align: center; }
     .hero-grid { display: block; text-align: center; }
     .hero-grid .hero-text { max-width: 900px; margin: 0 auto; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; padding: 8px 16px; border: 1px solid rgba(24,99,220,.2); border-radius: 999px; background: var(--accent-light); margin-bottom: 28px; opacity: 0; animation: fade-up .6s ease-out .2s forwards; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; padding: 8px 16px; border: 1px solid rgba(20,154,110,.2); border-radius: 999px; background: var(--accent-light); margin-bottom: 28px; opacity: 0; animation: fade-up .6s ease-out .2s forwards; }
     .hero h1 { font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 72px); font-weight: 700; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 28px; opacity: 0; animation: fade-up .8s ease-out .3s forwards; }
     .hero h1 .line { white-space: normal; display: inline-block; padding: .12em 0 .05em; line-height: 1.15; max-width: 100%; }
-    .hero h1 .line-accent { background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 50%, var(--accent) 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 4s ease infinite; }
+    .hero h1 .line-accent { background: linear-gradient(135deg, var(--accent) 0%, #34d399 50%, var(--accent) 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 4s ease infinite; }
     .hero-sub { font-size: 20px; color: #64748b; line-height: 1.65; margin: 0 auto 44px; opacity: 0; animation: fade-up .8s ease-out .4s forwards; max-width: 580px; font-weight: 400; }
     .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fade-up .8s ease-out .5s forwards; }
     .btn-primary { background: var(--accent); color: #fff; padding: 16px 32px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s; display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer; }
-    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(24,99,220,.3); }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(20,154,110,.3); }
     .btn-ghost { background: transparent; color: var(--fg); padding: 15px 32px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s; border: 1.5px solid var(--border); }
     .btn-ghost:hover { border-color: var(--fg); background: var(--surface); }
 
@@ -92,15 +92,15 @@
     @media (max-width: 600px) { .agents-grid { grid-template-columns: 1fr; } }
     .agent-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0; overflow: hidden; transition: all .4s cubic-bezier(.16,1,.3,1); position: relative; }
     .agent-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.16,1,.3,1); }
-    .agent-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -16px rgba(24,99,220,.18); border-color: rgba(24,99,220,.3); }
+    .agent-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -16px rgba(20,154,110,.18); border-color: rgba(20,154,110,.3); }
     .agent-card:hover::before { transform: scaleX(1); }
     .agent-icon-wrap { padding: 36px 28px 24px; background: linear-gradient(160deg, var(--accent-light) 0%, transparent 80%); border-bottom: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; min-height: 140px; position: relative; overflow: hidden; }
     .agent-icon-wrap::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, var(--accent-light), transparent 70%); opacity: 0; transition: opacity .5s; }
     .agent-card:hover .agent-icon-wrap::before { opacity: 1; }
-    .agent-icon { width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, var(--accent) 0%, #0e4eb8 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(24,99,220,.2); position: relative; transition: all .4s cubic-bezier(.16,1,.3,1); overflow: hidden; }
+    .agent-icon { width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, var(--accent) 0%, #0a7a56 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(20,154,110,.2); position: relative; transition: all .4s cubic-bezier(.16,1,.3,1); overflow: hidden; }
     .agent-icon::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent); transform: translateX(-100%); }
     .agent-card:hover .agent-icon::after { animation: shimmer 1.5s ease-in-out; }
-    .agent-card:hover .agent-icon { transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 32px rgba(24,99,220,.35); animation: icon-pulse 2s ease-in-out infinite; }
+    .agent-card:hover .agent-icon { transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 32px rgba(20,154,110,.35); animation: icon-pulse 2s ease-in-out infinite; }
     .agent-icon svg { width: 24px; height: 24px; stroke-width: 2.5; transition: transform .4s cubic-bezier(.16,1,.3,1); }
     .agent-card:hover .agent-icon svg { transform: scale(1.1); }
     .agent-icon::before { content: ''; position: absolute; inset: -2px; border-radius: 16px; background: linear-gradient(135deg, rgba(255,255,255,.3), transparent); opacity: 0; transition: opacity .4s; }
@@ -332,7 +332,7 @@
       color: var(--fg);
     }
     .context-highlight {
-      background: linear-gradient(135deg, var(--accent) 0%, #1863dc 50%, var(--accent) 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, #149a6e 50%, var(--accent) 100%);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -347,7 +347,7 @@
     
     /* Gradient text animation utility */
     .gradient-text {
-      background: linear-gradient(135deg, var(--accent) 0%, #1863dc 50%, var(--accent) 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, #149a6e 50%, var(--accent) 100%);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -433,8 +433,8 @@
       margin-bottom: 24px;
       padding: 6px 14px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), #2278f6);
-      box-shadow: 0 6px 16px -8px rgba(24,99,220,0.55);
+      background: linear-gradient(135deg, var(--accent), #1aab7a);
+      box-shadow: 0 6px 16px -8px rgba(20,154,110,0.55);
     }
     .lead-eyebrow::before {
       content: ''; width: 6px; height: 6px; border-radius: 50%;
@@ -451,7 +451,7 @@
       color: var(--fg);
     }
     .lead-copy h2 .accent {
-      background: linear-gradient(135deg, var(--accent) 0%, #1863dc 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, #149a6e 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -754,14 +754,14 @@
     
     .coworkers-features { display: flex; flex-direction: column; gap: 16px; }
     .feature-item { background: #fff; border: 2px solid var(--border-light); border-radius: 16px; padding: 24px; transition: all .3s; cursor: pointer; }
-    .feature-item:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(24,99,220,.1); }
-    .feature-item.feature-active { border-color: var(--accent); background: linear-gradient(135deg, rgba(24,99,220,.04) 0%, #fff 100%); box-shadow: 0 8px 24px rgba(24,99,220,.12); }
+    .feature-item:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(20,154,110,.1); }
+    .feature-item.feature-active { border-color: var(--accent); background: linear-gradient(135deg, rgba(20,154,110,.04) 0%, #fff 100%); box-shadow: 0 8px 24px rgba(20,154,110,.12); }
     .feature-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; position: relative; overflow: hidden; transition: all .4s cubic-bezier(.16,1,.3,1); }
-    .feature-icon::before { content: ''; position: absolute; inset: -50%; background: radial-gradient(circle, rgba(24,99,220,.2), transparent 70%); transform: scale(0); transition: transform .5s cubic-bezier(.16,1,.3,1); }
+    .feature-icon::before { content: ''; position: absolute; inset: -50%; background: radial-gradient(circle, rgba(20,154,110,.2), transparent 70%); transform: scale(0); transition: transform .5s cubic-bezier(.16,1,.3,1); }
     .feature-item:hover .feature-icon::before { transform: scale(1); animation: pulse-ring 2s ease-in-out infinite; }
     .feature-icon svg { position: relative; z-index: 1; transition: transform .4s cubic-bezier(.16,1,.3,1); }
     .feature-item:hover .feature-icon svg { transform: scale(1.1) rotate(5deg); }
-    .feature-active .feature-icon { background: var(--accent); color: #fff; box-shadow: 0 8px 20px rgba(24,99,220,.3); }
+    .feature-active .feature-icon { background: var(--accent); color: #fff; box-shadow: 0 8px 20px rgba(20,154,110,.3); }
     .feature-active .feature-icon svg { animation: icon-pulse 2s ease-in-out infinite; }
     .feature-content h4 { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: -.015em; margin-bottom: 0; color: var(--fg); }
     .feature-content p { font-size: 14px; color: #64748b; line-height: 1.65; max-height: 0; overflow: hidden; opacity: 0; margin-top: 0; transition: max-height .35s ease, opacity .3s ease, margin-top .3s ease; }
@@ -1179,142 +1179,6 @@
     </div>
   </section>
 
-  <!-- Specialist Agents -->
-  <section class="section" id="agents">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-label">Specialist Agents</p>
-        <h2>AI Agents for <span class="gradient-text">Every Company Function</span></h2>
-        <p>Four specialist agents customized to your internal processes. Each agent integrates seamlessly with existing tools and workflows.</p>
-      </div>
-
-      <div class="agents-grid">
-        <!-- Agent 1 -->
-        <div class="agent-card reveal">
-          <div class="agent-icon-wrap">
-            <div class="agent-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-            </div>
-          </div>
-          <div class="agent-body">
-            <h3>Focus & Alignment Agent</h3>
-            <p>Agent helps employees <span class="text-highlight">focus weekly and align their priorities</span> with team, department, and company goals by understanding company OKRs and resolving conflicts.</p>
-          </div>
-        </div>
-
-        <!-- Agent 2 -->
-        <div class="agent-card reveal">
-          <div class="agent-icon-wrap">
-            <div class="agent-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-              </svg>
-            </div>
-          </div>
-          <div class="agent-body">
-            <h3>Expense Management Agent</h3>
-            <p>Analyze all <span class="text-highlight">spending data from all the SaaS, Cloud, credit card statements, bank statements</span>, etc… and suggest ways to cut costs.</p>
-          </div>
-        </div>
-
-        <!-- Agent 3 -->
-        <div class="agent-card reveal">
-          <div class="agent-icon-wrap">
-            <div class="agent-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-              </svg>
-            </div>
-          </div>
-          <div class="agent-body">
-            <h3>Knowledge Base & Expertise Agent</h3>
-            <p>A user can ask AI to <span class="text-highlight">explain a Slack thread or research related context</span> on the web or across company data sources.</p>
-          </div>
-        </div>
-
-        <!-- Agent 4 -->
-        <div class="agent-card reveal">
-          <div class="agent-icon-wrap">
-            <div class="agent-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
-                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                <path d="M9 12h6M9 16h6"/>
-              </svg>
-            </div>
-          </div>
-          <div class="agent-body">
-            <h3>Custom Workflow Agent</h3>
-            <p>Take a workflow that can be <span class="text-highlight">fully automated and done by an Agent</span>. This is customizable for applicable workflow requested by clients.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sales Team Section -->
-  <section class="section sales-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-label">Sales Solution</p>
-        <h2>Specialist Agent for <span class="gradient-text">CRM & Sales Pipeline Management</span></h2>
-        <p>Like Salesforce's AgentForce but more affordable and customizable</p>
-      </div>
-
-      <div class="sales-features-grid">
-        <div class="sales-feature-card reveal">
-          <div class="sales-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="7" height="7"/>
-              <rect x="14" y="3" width="7" height="7"/>
-              <rect x="14" y="14" width="7" height="7"/>
-              <rect x="3" y="14" width="7" height="7"/>
-            </svg>
-          </div>
-          <h3>Intelligent Integration Layer</h3>
-          <p>Works with existing CRM, ERP, etc… Seamlessly connects to your current systems without disruption.</p>
-        </div>
-
-        <div class="sales-feature-card reveal">
-          <div class="sales-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              <path d="M8 10h8M8 14h4"/>
-            </svg>
-          </div>
-          <h3>Multi-Channel Communication</h3>
-          <p>Chat via Slack, WhatsApp, Web, or app. Meet your sales team where they already work.</p>
-        </div>
-
-        <div class="sales-feature-card reveal">
-          <div class="sales-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-            </svg>
-          </div>
-          <h3>Automated Actions</h3>
-          <p>Agent take actions for sales person, including updating CRM, send email, etc… Reduce manual data entry.</p>
-        </div>
-
-        <div class="sales-feature-card reveal">
-          <div class="sales-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="12" y1="18" x2="12" y2="12"/>
-              <line x1="9" y1="15" x2="15" y2="15"/>
-            </svg>
-          </div>
-          <h3>Vertical Customization</h3>
-          <p>Customized for a certain vertical like real-estate, insurance, etc… Industry-specific workflows built-in.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- AI Coworkers Section -->
   <section class="section coworkers-section">
@@ -1394,7 +1258,7 @@
             </div>
             <div class="slack-messages">
               <div class="slack-message">
-                <div class="slack-avatar" style="background: #1863dc;">SL</div>
+                <div class="slack-avatar" style="background: #149a6e;">SL</div>
                 <div class="slack-msg-content">
                   <div class="slack-msg-header">
                     <span class="slack-username">Sarah L.</span>
@@ -1648,7 +1512,7 @@
           time: '10:22 AM',
           user: 'Sarah L.',
           userInitials: 'SL',
-          userColor: '#1863dc',
+          userColor: '#149a6e',
           userMessage: '<span class="slack-mention">@Infina AI</span> What\'s the tax impact if I sell my AAPL position today?',
           botResponse: 'Selling today realises a <span style="color: #22c55e; font-weight: 600;">long-term gain of $4,280</span>.',
           cardLabel: 'TAX SUMMARY',
