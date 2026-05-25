@@ -99,8 +99,9 @@
     .btn-ghost:hover { border-color: var(--fg); background: var(--surface); }
 
     /* Hero visual */
-    .hero-visual { position: relative; opacity: 0; animation: fade-up .8s ease-out .4s forwards; }
-    .hero-panels { display: flex; gap: 16px; align-items: stretch; height: 480px; }
+    .hero-visual { position: relative; opacity: 0; animation: fade-up .8s ease-out .4s forwards; padding-bottom: 64px; }
+    .hero-panels { display: flex; gap: 16px; align-items: stretch; }
+    .hero-floating-card { position: absolute; bottom: 0; left: 50%; transform: translateX(-20%); background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,.12); padding: 14px 18px; display: flex; align-items: center; gap: 12px; white-space: nowrap; }
     .hero-panel { background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,.1); overflow: hidden; flex: 1.2; display: flex; flex-direction: column; }
     .hero-panel-header { padding: 14px 16px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
     .hero-panel-title { font-size: 13px; font-weight: 700; color: var(--fg); display: flex; align-items: center; gap: 8px; }
@@ -313,9 +314,8 @@
             <div class="hero-panel">
               <div class="hero-panel-header">
                 <div class="hero-panel-title">
-                  <div style="width:22px;height:22px;border-radius:6px;background:var(--blue);display:flex;align-items:center;justify-content:center;">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><circle cx="12" cy="12" r="10" stroke="white" stroke-width="0" fill="none"/></svg>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="white" style="position:absolute;"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+                  <div style="width:28px;height:28px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 2l2.09 6.26L20 10l-5.91 1.74L12 18l-2.09-6.26L4 10l5.91-1.74z"/><path d="M19 14l.9 2.6 2.6.9-2.6.9L19 21l-.9-2.6-2.6-.9 2.6-.9z" opacity=".7"/></svg>
                   </div>
                   AI Chat
                 </div>
@@ -377,19 +377,21 @@
                   </div>
                 </div>
                 <div class="prio-section-label">DONE <span class="prio-count">8</span></div>
-                <div class="hero-teammates">
-                  <div class="teammate-avatars">
-                    <div class="teammate-avatar" style="background:#4F46E5;">NQ</div>
-                    <div class="teammate-avatar" style="background:#7C3AED;">GA</div>
-                    <div class="teammate-avatar" style="background:#06b6d4;">TN</div>
-                    <div class="teammate-avatar" style="background:#f59e0b;">JM</div>
-                    <div class="teammate-avatar" style="background:#ef4444;">EK</div>
-                    <div class="teammate-overflow">+12</div>
-                  </div>
-                  <span class="teammate-text">17 teammates<br>aligned today</span>
-                </div>
               </div>
             </div>
+          </div>
+
+          <!-- Floating teammates card -->
+          <div class="hero-floating-card">
+            <div class="teammate-avatars">
+              <div class="teammate-avatar" style="background:#4F46E5;">NQ</div>
+              <div class="teammate-avatar" style="background:#7C3AED;">GA</div>
+              <div class="teammate-avatar" style="background:#06b6d4;">TN</div>
+              <div class="teammate-avatar" style="background:#f59e0b;">JM</div>
+              <div class="teammate-avatar" style="background:#ef4444;">EK</div>
+              <div class="teammate-overflow">+12</div>
+            </div>
+            <span class="teammate-text">17 teammates<br>aligned today</span>
           </div>
         </div>
       </div>
