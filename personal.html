@@ -105,6 +105,30 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdro
 .jp-chip-soon{color:var(--muted)!important;background:var(--surface)!important;border-color:var(--border-light)!important;cursor:default!important;font-style:italic;font-size:13px;transform:none!important}
 @media(max-width:640px){.jp-chip{font-size:13px;padding:8px 14px}.jp-tab{padding:7px 18px;font-size:13px}}
 
+/* Mock Chat */
+.mock-chat{max-width:680px;margin:28px auto 0;opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;pointer-events:none}
+.mock-chat.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.mock-chat-inner{background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:24px;box-shadow:0 8px 32px rgba(15,23,42,.08)}
+.mc-user{display:flex;justify-content:flex-end;margin-bottom:18px}
+.mc-user-bubble{background:var(--accent);color:#fff;padding:11px 18px;border-radius:18px 18px 4px 18px;font-size:15px;font-weight:500;max-width:85%;line-height:1.45}
+.mc-agent{display:flex;gap:12px;align-items:flex-start}
+.mc-avatar{width:36px;height:36px;border-radius:50%;background:var(--accent-light);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.mc-body{flex:1;min-width:0}
+.mc-name{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;letter-spacing:.02em;text-transform:uppercase}
+.mc-bubble{background:var(--surface);border:1px solid var(--border);border-radius:4px 18px 18px 18px;padding:14px 18px;font-size:15px;color:var(--fg-secondary);line-height:1.6;min-height:48px}
+.mc-thinking{display:flex;gap:5px;align-items:center;padding:4px 0}
+.mc-dot{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:mc-bounce .9s ease-in-out infinite}
+.mc-dot:nth-child(2){animation-delay:.15s}
+.mc-dot:nth-child(3){animation-delay:.3s}
+@keyframes mc-bounce{0%,80%,100%{transform:translateY(0);opacity:.5}40%{transform:translateY(-6px);opacity:1}}
+.mc-followups{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.mc-followup{all:unset;cursor:pointer;padding:8px 16px;border-radius:9999px;font-size:13px;font-weight:500;border:1.5px solid var(--border);color:var(--fg-secondary);background:#fff;transition:all .2s;white-space:nowrap}
+.mc-followup:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-tint)}
+.mc-cta{margin-top:18px;padding-top:16px;border-top:1px solid var(--border-light);text-align:center}
+.mc-cta-btn{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#fff;padding:10px 22px;border-radius:9999px;font-size:14px;font-weight:500;cursor:pointer;border:none;transition:all .2s}
+.mc-cta-btn:hover{background:var(--accent-dark);transform:translateY(-1px)}
+@media(max-width:640px){.mock-chat-inner{padding:18px}.mc-bubble{font-size:14px}.mc-user-bubble{font-size:14px}}
+
 /* ===== Jobs Section (Job-to-be-done) ===== */
 .jobs{padding:80px 0 var(--section-gap);background:#fff}
 .jobs-head{text-align:center;max-width:720px;margin:0 auto 56px}
@@ -1241,6 +1265,27 @@ footer{background:#fff;padding:48px 0;border-top:1px solid var(--border-light)}
         <div class="jp-chips" id="jpChips"></div>
       </div>
 
+      <!-- Mock Chat -->
+      <div class="mock-chat" id="mockChat">
+        <div class="mock-chat-inner">
+          <div class="mc-user"><div class="mc-user-bubble" id="mcUserBubble"></div></div>
+          <div class="mc-agent">
+            <div class="mc-avatar" id="mcAvatar"></div>
+            <div class="mc-body">
+              <div class="mc-name" id="mcName"></div>
+              <div class="mc-bubble" id="mcBubble"></div>
+              <div class="mc-followups" id="mcFollowups"></div>
+              <div class="mc-cta" id="mcCta" style="display:none">
+                <button class="mc-cta-btn" onclick="window.open('https://infina.ai','_blank')">
+                  Chat with your Specialist
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       </div>
     </div>
   </div>
@@ -1891,6 +1936,124 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
   });
 })();
 
+// ========== Mock Chat ==========
+(function(){
+  const conversations = {
+    'Should I buy this stock?': {
+      specialist: 'Stock Analyst', avatar: '📈',
+      response: "ACB is showing solid fundamentals — P/E of 8.2x, below sector average. Volume has risen 3 sessions in a row. Short-term target: 26k. I'd suggest a partial entry now with a stop-loss at 21.5k to manage downside risk.",
+      followups: ['What's my risk level?', 'Show me similar stocks', 'Set a price alert']
+    },
+    'Where should I invest my money?': {
+      specialist: 'Investment Advisor', avatar: '💼',
+      response: "With a 2-year horizon I'd split it: 50% government bonds (6.2% yield, low risk), 30% blue-chip stocks (VCB, MBB), 20% short-term savings deposit. This balances capital protection with growth. Want me to model it for a specific amount?",
+      followups: ['Model for 100M VND', 'Higher risk option?', 'How do I start?']
+    },
+    'Am I spending too much this month?': {
+      specialist: 'Budget Planner', avatar: '📊',
+      response: "A healthy split on 20M/month: 50% needs (10M), 30% lifestyle (6M), 20% savings (4M). If rent + food + transport already exceeds 10M, your essentials are over budget. Share your top 3 expenses and I'll pinpoint where to cut.",
+      followups: ['Break down by category', 'How to cut food costs?', 'Build a monthly budget']
+    },
+    "What's moving the market today?": {
+      specialist: 'Market Analyst', avatar: '🏦',
+      response: "VN-Index is up 0.8% this morning, led by banking stocks — MBB +2.1%, VCB +1.3%. Watch out: US Fed minutes drop tonight, which may spark volatility. Foreign investors net-bought 45B VND in the morning session.",
+      followups: ['Which stocks to watch?', 'Real estate sector outlook?', 'Set a market alert']
+    },
+    'Which insurance plan fits me?': {
+      specialist: 'Insurance Advisor', avatar: '🛡️',
+      response: "For a working adult in their 30s: term life (500M coverage, ~2M/month) + health insurance with outpatient cover is the sweet spot. Avoid investment-linked insurance — keep investing and insurance separate for better returns on both.",
+      followups: ['Compare top plans', 'What does it cover?', 'Get a quote']
+    },
+    'How do I pay less tax?': {
+      specialist: 'Tax Advisor', avatar: '🧾',
+      response: "Three quick wins: (1) Claim all dependents — 4.4M deduction each. (2) Contribute to a voluntary pension fund — deductible up to 1M/month. (3) If freelancing, registering as a business cuts your rate from progressive (up to 35%) to a flat 7%.",
+      followups: ['Calculate my tax bill', 'Tell me about dependents', 'Freelancer tax guide']
+    },
+    'Can I afford this loan?': {
+      specialist: 'Loan Advisor', avatar: '🏠',
+      response: "Keep loan repayments under 30% of income. On 20M/month that's 6M max. A 500M loan at 9% over 10 years costs ~6.3M/month — slightly tight. Extending to 15 years drops it to ~5M/month, giving you more breathing room.",
+      followups: ['Simulate different terms', 'Compare lenders', 'What's my debt ratio?']
+    },
+    'How long to reach my savings goal?': {
+      specialist: 'Savings Planner', avatar: '🎯',
+      response: "Saving 4M/month at 6% annual return, you'll hit 100M in about 22 months. Bump it to 6M/month and you're there in 15. Got existing savings to factor in? I can recalculate with a starting balance.",
+      followups: ['Factor in existing savings', 'Show higher-yield options', 'Set a savings reminder']
+    },
+    'Plan my trip': {
+      specialist: 'Travel Planner', avatar: '✈️',
+      response: "Da Nang + Hoi An, 7 days on 10M: flights ~2.5M, stay ~3M, food ~2M, activities ~1.5M, local transport ~1M — 500K buffer remaining. Want me to lay out the day-by-day itinerary with specific recommendations?",
+      followups: ['Build day-by-day itinerary', 'Try Phu Quoc instead', 'Find cheaper flights']
+    },
+    'Plan my weekly meals': {
+      specialist: 'Nutrition Advisor', avatar: '🥗',
+      response: "For a working adult on 500K/week: Mon/Wed/Fri — grilled chicken + rice + stir-fry (~30K/meal). Tue/Thu — tofu + egg + soup (~20K/meal). Weekend is your flex day. Batch-cook on Sunday and you save 2 hours on weekday mornings.",
+      followups: ['Make it high-protein', 'I'm vegetarian', 'Generate a shopping list']
+    }
+  };
+
+  let typeTimer2 = null;
+
+  function typeResponse(text, el, onDone) {
+    el.textContent = '';
+    let i = 0;
+    function step() {
+      if (i < text.length) {
+        el.textContent += text[i++];
+        typeTimer2 = setTimeout(step, 18);
+      } else if (onDone) onDone();
+    }
+    step();
+  }
+
+  function showMockChat(question) {
+    clearTimeout(typeTimer2);
+    const conv = conversations[question];
+    if (!conv) return;
+
+    const chat = document.getElementById('mockChat');
+    const userBubble = document.getElementById('mcUserBubble');
+    const avatar = document.getElementById('mcAvatar');
+    const name = document.getElementById('mcName');
+    const bubble = document.getElementById('mcBubble');
+    const followups = document.getElementById('mcFollowups');
+    const cta = document.getElementById('mcCta');
+
+    // Reset
+    chat.classList.remove('visible');
+    followups.innerHTML = '';
+    cta.style.display = 'none';
+    bubble.innerHTML = '<div class="mc-thinking"><span class="mc-dot"></span><span class="mc-dot"></span><span class="mc-dot"></span></div>';
+
+    userBubble.textContent = question;
+    avatar.textContent = conv.avatar;
+    name.textContent = conv.specialist;
+
+    // Show chat
+    requestAnimationFrame(() => {
+      chat.classList.add('visible');
+      chat.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    // After thinking delay, type response
+    setTimeout(() => {
+      bubble.innerHTML = '';
+      typeResponse(conv.response, bubble, () => {
+        // Show follow-ups
+        conv.followups.forEach(fq => {
+          const btn = document.createElement('button');
+          btn.className = 'mc-followup';
+          btn.textContent = fq;
+          btn.addEventListener('click', () => showMockChat(fq in conversations ? fq : question));
+          followups.appendChild(btn);
+        });
+        cta.style.display = 'block';
+      });
+    }, 1000);
+  }
+
+  window.showMockChat = showMockChat;
+})();
+
 // ========== Job Picker ==========
 (function(){
   const jobData = {
@@ -1932,7 +2095,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
             ghost.classList.add('hidden');
             inp.style.height = 'auto';
             inp.style.height = Math.min(inp.scrollHeight, 120) + 'px';
-            inp.focus();
+            showMockChat(item.label);
           });
         }
         container.appendChild(chip);
@@ -1946,6 +2109,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
       document.querySelectorAll('.jp-tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       renderChips(tab.dataset.tab);
+      document.getElementById('mockChat').classList.remove('visible');
     });
   });
 
