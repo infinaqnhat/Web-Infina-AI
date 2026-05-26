@@ -764,6 +764,7 @@
     .coworkers-grid { display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: start; }
     .cw-panel { display: none; }
     .cw-panel.active { display: block; }
+    .cw-panels-wrap { position: sticky; top: 100px; }
     @media (max-width: 1000px) {
       .coworkers-grid { grid-template-columns: 1fr; gap: 32px; }
       .coworkers-features { flex-direction: row; flex-wrap: wrap; gap: 8px; }
@@ -771,6 +772,7 @@
       .feature-icon { width: 28px; height: 28px; border-radius: 8px; margin-bottom: 0; flex-shrink: 0; }
       .feature-content p { display: none !important; max-height: 0 !important; opacity: 0 !important; }
       .feature-content h4 { font-size: 14px; }
+      .cw-panels-wrap { position: static; }
     }
     
     .coworkers-features { display: flex; flex-direction: column; gap: 16px; }
@@ -1034,6 +1036,7 @@
           </div>
         </div>
 
+        <div class="cw-panels-wrap">
         <!-- Panel 0: Real-time Support -->
         <div class="cw-panel active" data-panel="0">
           <div class="slack-mockup">
@@ -1180,6 +1183,7 @@
             </div>
           </div>
         </div>
+        </div><!-- /cw-panels-wrap -->
 
       </div>
     </div>
