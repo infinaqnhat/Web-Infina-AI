@@ -108,13 +108,17 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdro
 .jp-tab{all:unset;cursor:pointer;padding:8px 24px;border-radius:9999px;font-size:14px;font-weight:500;color:var(--muted);transition:all .2s}
 .jp-tab.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(0,31,92,.25)}
 .jp-tab:not(.active):hover{color:var(--fg);background:rgba(0,0,0,.05)}
+.jp-chips-outer{position:relative;max-height:98px;overflow:hidden;transition:max-height .45s cubic-bezier(0.4,0,0.2,1)}
+.jp-chips-outer.expanded{max-height:500px}
+.jp-chips-outer.has-more:not(.expanded)::after{content:'';position:absolute;bottom:0;left:0;right:0;height:52px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.97));pointer-events:none;z-index:1}
 .jp-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;transition:opacity .15s}
 .jp-chip{all:unset;cursor:pointer;padding:9px 18px;border-radius:9999px;font-size:14px;font-weight:500;border:1.5px solid var(--border);color:var(--fg-secondary);background:#fff;transition:all .2s;white-space:nowrap}
 .jp-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-tint);transform:translateY(-1px)}
 .jp-chip-soon{color:var(--muted)!important;background:var(--surface)!important;border-color:var(--border-light)!important;cursor:default!important;font-style:italic;font-size:13px;transform:none!important}
-.jp-chip-hidden{display:none}
-.jp-load-more{all:unset;cursor:pointer;display:block;margin:14px auto 0;padding:8px 20px;border-radius:9999px;font-size:13px;font-weight:500;color:var(--accent);border:1.5px dashed var(--accent);background:transparent;transition:all .2s}
-.jp-load-more:hover{background:var(--accent-tint)}
+.jp-see-more{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;margin:12px auto 0;font-size:13px;font-weight:500;color:var(--muted);transition:color .2s}
+.jp-see-more:hover{color:var(--accent)}
+.jp-see-more svg{transition:transform .2s}
+.jp-see-more:hover svg{transform:translateY(2px)}
 @media(max-width:640px){.jp-chip{font-size:13px;padding:8px 14px}.jp-tab{padding:7px 18px;font-size:13px}}
 
 /* Chat expansion — messages panel inside cbar */
@@ -1306,7 +1310,9 @@ footer{background:#fff;padding:48px 0;border-top:1px solid var(--border-light)}
           <button class="jp-tab active" data-tab="finance">Finance</button>
           <button class="jp-tab" data-tab="lifestyle">Lifestyle</button>
         </div>
-        <div class="jp-chips" id="jpChips"></div>
+        <div class="jp-chips-outer" id="jpChipsOuter">
+          <div class="jp-chips" id="jpChips"></div>
+        </div>
       </div>
 
       </div>
@@ -2081,6 +2087,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 // ========== Job Picker ==========
 (function(){
   const VISIBLE_COUNT = 4;
+  const outer = document.getElementById('jpChipsOuter');
 
   const jobData = {
     finance: [
@@ -2104,21 +2111,20 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
   function renderChips(tab) {
     const container = document.getElementById('jpChips');
     container.style.opacity = '0';
+
+    // Reset outer state
+    outer.classList.remove('expanded', 'has-more');
+    const oldBtn = document.getElementById('jpSeeMore');
+    if (oldBtn) oldBtn.remove();
+
     setTimeout(() => {
       container.innerHTML = '';
-      // Remove any existing load more button
-      const old = document.getElementById('jpLoadMore');
-      if (old) old.remove();
-
       const items = jobData[tab];
-      const hiddenCount = Math.max(0, items.length - VISIBLE_COUNT);
+      const needsCurtain = items.length > VISIBLE_COUNT;
 
-      items.forEach((item, idx) => {
+      items.forEach(item => {
         const chip = document.createElement('button');
-        let cls = 'jp-chip';
-        if (!item.active) cls += ' jp-chip-soon';
-        if (idx >= VISIBLE_COUNT) cls += ' jp-chip-hidden';
-        chip.className = cls;
+        chip.className = 'jp-chip' + (item.active ? '' : ' jp-chip-soon');
         chip.textContent = item.label;
         chip.disabled = !item.active;
         if (item.active) {
@@ -2135,17 +2141,18 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
         container.appendChild(chip);
       });
 
-      // Add load more button if there are hidden chips
-      if (hiddenCount > 0) {
+      if (needsCurtain) {
+        outer.classList.add('has-more');
         const btn = document.createElement('button');
-        btn.id = 'jpLoadMore';
-        btn.className = 'jp-load-more';
-        btn.textContent = '+ ' + hiddenCount + ' more';
+        btn.id = 'jpSeeMore';
+        btn.className = 'jp-see-more';
+        btn.innerHTML = 'See more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
         btn.addEventListener('click', () => {
-          container.querySelectorAll('.jp-chip-hidden').forEach(c => c.classList.remove('jp-chip-hidden'));
+          outer.classList.add('expanded');
+          outer.classList.remove('has-more');
           btn.remove();
         });
-        container.after(btn);
+        outer.after(btn);
       }
 
       container.style.opacity = '1';
