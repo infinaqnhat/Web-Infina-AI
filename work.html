@@ -930,25 +930,7 @@
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-inner">
-      <a href="home.html" class="logo"><img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img"></a>
-      <div class="nav-center">
-        <a href="inside.html">AI Inside</a>
-        <div class="nav-dropdown">
-          <span class="nav-dropdown-toggle active">AI Work
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-          </span>
-          <div class="nav-dropdown-menu">
-            <a href="focus-alignment.html">Focus &amp; Alignment</a>
-          </div>
-        </div>
-        <a href="personal.html">AI Personal</a>
-        <a href="about.html">About Us</a>
-      </div>
-      <a href="#demo" class="nav-cta">Book a demo</a>
-    </div>
-  </nav>
+  <infina-nav active="work"></infina-nav>
 
   <!-- Hero -->
   <section class="hero">
@@ -2201,70 +2183,6 @@
     })();
   </script>
 
-  <script>
-    /* ===== Mobile nav toggle ===== */
-    (function () {
-      const nav = document.querySelector('nav');
-      if (!nav) return;
-      const navInner = nav.querySelector('.nav-inner');
-      if (!navInner) return;
-
-      let toggle = navInner.querySelector('.nav-toggle');
-      if (!toggle) {
-        toggle = document.createElement('button');
-        toggle.className = 'nav-toggle';
-        toggle.setAttribute('aria-label', 'Menu');
-        toggle.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
-        navInner.appendChild(toggle);
-      }
-      toggle.setAttribute('aria-expanded', 'false');
-
-      const panel = document.createElement('div');
-      panel.className = 'nav-mobile-panel';
-      panel.setAttribute('aria-hidden', 'true');
-      const center = navInner.querySelector('.nav-center');
-      const cta = navInner.querySelector('.nav-cta');
-      if (center) {
-        center.querySelectorAll('a').forEach(a => panel.appendChild(a.cloneNode(true)));
-      }
-      if (cta) {
-        const ctaClone = cta.cloneNode(true);
-        ctaClone.classList.add('nav-mobile-cta');
-        panel.appendChild(ctaClone);
-      }
-      nav.appendChild(panel);
-
-      const setOpen = (open) => {
-        document.body.classList.toggle('nav-open', open);
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        panel.setAttribute('aria-hidden', open ? 'false' : 'true');
-      };
-
-      toggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        setOpen(!document.body.classList.contains('nav-open'));
-      });
-
-      panel.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => setOpen(false));
-      });
-
-      document.addEventListener('click', (e) => {
-        if (!document.body.classList.contains('nav-open')) return;
-        if (panel.contains(e.target) || toggle.contains(e.target)) return;
-        setOpen(false);
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.body.classList.contains('nav-open')) setOpen(false);
-      });
-
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 768 && document.body.classList.contains('nav-open')) {
-          setOpen(false);
-        }
-      });
-    })();
-  </script>
+  <script src="nav.js"></script>
 </body>
 </html>

@@ -266,36 +266,7 @@
 </head>
 <body>
 
-  <nav>
-    <div class="nav-inner">
-      <a href="home.html" class="logo"><img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img"></a>
-      <div class="nav-center">
-        <a href="inside.html">AI Inside</a>
-        <div class="nav-dropdown">
-          <span class="nav-dropdown-toggle active" style="cursor:pointer;" onclick="location.href='work.html'">AI Work
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-          </span>
-          <div class="nav-dropdown-menu">
-            <a href="focus-alignment.html" class="active">Focus &amp; Alignment</a>
-          </div>
-        </div>
-        <a href="personal.html">AI Personal</a>
-        <a href="about.html">About Us</a>
-      </div>
-      <a href="#demo" class="nav-cta">Book a demo</a>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="nav-mobile-panel" id="nav-mobile-panel">
-      <a href="inside.html">AI Inside</a>
-      <a href="work.html">AI Work</a>
-      <a href="focus-alignment.html" class="active">Focus &amp; Alignment</a>
-      <a href="personal.html">AI Personal</a>
-      <a href="about.html">About Us</a>
-      <a href="#demo" class="nav-mobile-cta">Book a demo</a>
-    </div>
-  </nav>
+  <infina-nav active="focus-alignment"></infina-nav>
 
   <!-- ===== HERO ===== -->
   <section class="hero">
@@ -687,11 +658,6 @@
       }, { threshold: 0.1 }).observe(el);
     });
 
-    // Mobile nav
-    document.getElementById('nav-toggle').addEventListener('click', () => {
-      document.body.classList.toggle('nav-open');
-    });
-
     // Chat scenarios
     const scenarios = {
       priorities: {
@@ -749,5 +715,6 @@
     // Initial render
     renderChat('priorities');
   </script>
+  <script src="nav.js"></script>
 </body>
 </html>
