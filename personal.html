@@ -119,7 +119,7 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdro
 .mc-avatar{width:34px;height:34px;border-radius:50%;background:var(--accent-light);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
 .mc-body{flex:1;min-width:0}
 .mc-name{font-size:11px;font-weight:600;color:var(--muted);margin-bottom:6px;letter-spacing:.06em;text-transform:uppercase}
-.mc-bubble{background:var(--surface);border:1px solid var(--border);border-radius:4px 16px 16px 16px;padding:12px 16px;font-size:14px;color:var(--fg-secondary);line-height:1.65}
+.mc-bubble{background:var(--surface);border:1px solid var(--border);border-radius:4px 16px 16px 16px;padding:12px 16px;font-size:14px;color:var(--fg-secondary);line-height:1.65;text-align:left;white-space:pre-line}
 .mc-thinking{display:flex;gap:5px;align-items:center;padding:4px 0}
 .mc-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:mc-bounce .9s ease-in-out infinite}
 .mc-dot:nth-child(2){animation-delay:.15s}
@@ -1949,52 +1949,52 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
   const conversations = {
     'Should I buy this stock?': {
       specialist: 'Stock Analyst', avatar: '📈',
-      response: "ACB is showing solid fundamentals — P/E of 8.2x, below sector average. Volume has risen 3 sessions in a row. Short-term target: 26k. I'd suggest a partial entry now with a stop-loss at 21.5k to manage downside risk.",
+      response: "ACB looks interesting at current levels. Here's my read:\n\n• P/E of 8.2x — below the banking sector average\n• Volume rising for 3 consecutive sessions (bullish signal)\n• Short-term target: 26,000 VND\n\nI'd suggest a partial entry now with a stop-loss at 21,500 VND to protect your downside.",
       followups: ["What's my risk level?", 'Show me similar stocks', 'Set a price alert']
     },
     'Where should I invest my money?': {
       specialist: 'Investment Advisor', avatar: '💼',
-      response: "With a 2-year horizon I'd split it: 50% government bonds (6.2% yield, low risk), 30% blue-chip stocks (VCB, MBB), 20% short-term savings deposit. This balances capital protection with growth. Want me to model it for a specific amount?",
+      response: "With a 2-year horizon, here's a balanced split I'd recommend:\n\n• 50% Government bonds — stable ~6.2% yield, low risk\n• 30% Blue-chip stocks — VCB, MBB for growth exposure\n• 20% Short-term savings deposit — liquid, capital protected\n\nWant me to model this for a specific amount?",
       followups: ['Model for 100M VND', 'Higher risk option?', 'How do I start?']
     },
     'Am I spending too much this month?': {
       specialist: 'Budget Planner', avatar: '📊',
-      response: "A healthy split on 20M/month: 50% needs (10M), 30% lifestyle (6M), 20% savings (4M). If rent + food + transport already exceeds 10M, your essentials are over budget. Share your top 3 expenses and I'll pinpoint where to cut.",
+      response: "On 20M/month, a healthy breakdown looks like:\n\n• Needs (rent, food, transport): max 10M — 50%\n• Lifestyle & wants: up to 6M — 30%\n• Savings: at least 4M — 20%\n\nIf your essentials already exceed 10M, you're over budget on the basics. Share your top 3 expenses and I'll pinpoint where to cut.",
       followups: ['Break down by category', 'How to cut food costs?', 'Build a monthly budget']
     },
     "What's moving the market today?": {
       specialist: 'Market Analyst', avatar: '🏦',
-      response: "VN-Index is up 0.8% this morning, led by banking stocks — MBB +2.1%, VCB +1.3%. Watch out: US Fed minutes drop tonight, which may spark volatility. Foreign investors net-bought 45B VND in the morning session.",
+      response: "VN-Index is up 0.8% this morning. Key movers:\n\n• Banking sector leading — MBB +2.1%, VCB +1.3%\n• Foreign investors net-bought 45B VND in the morning session\n\nWatch tonight: US Fed minutes release may spark short-term volatility.",
       followups: ['Which stocks to watch?', 'Real estate sector outlook?', 'Set a market alert']
     },
     'Which insurance plan fits me?': {
       specialist: 'Insurance Advisor', avatar: '🛡️',
-      response: "For a working adult in their 30s: term life (500M coverage, ~2M/month) + health insurance with outpatient cover is the sweet spot. Avoid investment-linked insurance — keep investing and insurance separate for better returns on both.",
+      response: "For a working adult in their 30s, I'd recommend two layers:\n\n• Term life insurance — 500M coverage at ~2M/month\n• Health insurance — with outpatient coverage included\n\nOne thing to avoid: investment-linked plans. Keep investing and insurance separate — better returns and better coverage.",
       followups: ['Compare top plans', 'What does it cover?', 'Get a quote']
     },
     'How do I pay less tax?': {
       specialist: 'Tax Advisor', avatar: '🧾',
-      response: "Three quick wins: (1) Claim all dependents — 4.4M deduction each. (2) Contribute to a voluntary pension fund — deductible up to 1M/month. (3) If freelancing, registering as a business cuts your rate from progressive (up to 35%) to a flat 7%.",
+      response: "Three legal ways to cut your tax bill:\n\n• Claim all dependents — 4.4M deduction per person/month\n• Voluntary pension fund — deductible up to 1M/month\n• If freelancing — register as a business for a flat 7% rate instead of progressive rates up to 35%\n\nWant me to calculate how much each saves you?",
       followups: ['Calculate my tax bill', 'Tell me about dependents', 'Freelancer tax guide']
     },
     'Can I afford this loan?': {
       specialist: 'Loan Advisor', avatar: '🏠',
-      response: "Keep loan repayments under 30% of income. On 20M/month that's 6M max. A 500M loan at 9% over 10 years costs ~6.3M/month — slightly tight. Extending to 15 years drops it to ~5M/month, giving you more breathing room.",
+      response: "Rule of thumb: keep repayments under 30% of monthly income.\n\nOn 20M/month your ceiling is 6M/month.\n\nFor a 500M loan at 9% interest:\n• 10-year term → ~6.3M/month (slightly over your limit)\n• 15-year term → ~5M/month (comfortable)\n\nI'd go with the 15-year term to give yourself breathing room.",
       followups: ['Simulate different terms', 'Compare lenders', "What's my debt ratio?"]
     },
     'How long to reach my savings goal?': {
       specialist: 'Savings Planner', avatar: '🎯',
-      response: "Saving 4M/month at 6% annual return, you'll hit 100M in about 22 months. Bump it to 6M/month and you're there in 15. Got existing savings to factor in? I can recalculate with a starting balance.",
+      response: "Here's how long it takes to reach 100M:\n\n• Saving 4M/month at 6% return → ~22 months\n• Saving 6M/month at 6% return → ~15 months\n\nThe 6% assumes government bonds — safe and accessible. Got existing savings? I can factor that in for a more accurate timeline.",
       followups: ['Factor in existing savings', 'Show higher-yield options', 'Set a savings reminder']
     },
     'Plan my trip': {
       specialist: 'Travel Planner', avatar: '✈️',
-      response: "Da Nang + Hoi An, 7 days on 10M: flights ~2.5M, stay ~3M, food ~2M, activities ~1.5M, local transport ~1M — 500K buffer remaining. Want me to lay out the day-by-day itinerary with specific recommendations?",
+      response: "Da Nang + Hoi An, 7 days — here's how 10M breaks down:\n\n• Flights (return): ~2.5M\n• Accommodation: ~3M (mid-range hotels)\n• Food & drinks: ~2M\n• Activities & entrance fees: ~1.5M\n• Local transport: ~1M\n\nTotal: ~10M with a small buffer. Want me to build the day-by-day itinerary?",
       followups: ['Build day-by-day itinerary', 'Try Phu Quoc instead', 'Find cheaper flights']
     },
     'Plan my weekly meals': {
       specialist: 'Nutrition Advisor', avatar: '🥗',
-      response: "For a working adult on 500K/week: Mon/Wed/Fri — grilled chicken + rice + stir-fry (~30K/meal). Tue/Thu — tofu + egg + soup (~20K/meal). Weekend is your flex day. Batch-cook on Sunday and you save 2 hours on weekday mornings.",
+      response: "Simple balanced plan on 500K/week:\n\n• Mon / Wed / Fri — Grilled chicken + rice + stir-fry (~30K/meal)\n• Tue / Thu — Tofu + egg + soup (~20K/meal)\n• Weekend — Flex meal or eat out\n\nTip: Batch-cook Sunday evening. Saves 2 hours on weekday mornings and cuts impulse food spending.",
       followups: ['Make it high-protein', "I'm vegetarian", 'Generate a shopping list']
     }
   };
@@ -2007,7 +2007,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
     function step() {
       if (i < text.length) {
         el.textContent += text[i++];
-        typeTimer2 = setTimeout(step, 18);
+        typeTimer2 = setTimeout(step, 12);
       } else if (onDone) onDone();
     }
     step();
