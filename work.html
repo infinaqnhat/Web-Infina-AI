@@ -84,7 +84,11 @@
     .hero h1 { font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 72px); font-weight: 700; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 28px; opacity: 0; animation: fade-up .8s ease-out .3s forwards; }
     .hero h1 .line { white-space: normal; display: inline-block; padding: .12em 0 .05em; line-height: 1.15; max-width: 100%; }
     .hero h1 .line-accent { background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 50%, var(--accent) 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 4s ease infinite; }
-    .hero-sub { font-size: 20px; color: #64748b; line-height: 1.65; margin: 0 auto 44px; opacity: 0; animation: fade-up .8s ease-out .4s forwards; max-width: 580px; font-weight: 400; }
+    .hero-sub { font-size: 20px; color: #64748b; line-height: 1.65; margin: 0 auto 32px; opacity: 0; animation: fade-up .8s ease-out .4s forwards; max-width: 580px; font-weight: 400; }
+    .hero-bullets { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 0; margin: 0 auto 36px; max-width: 680px; padding: 0; opacity: 0; animation: fade-up .8s ease-out .48s forwards; }
+    .hero-bullets li { display: flex; align-items: center; gap: 7px; font-size: 14px; color: var(--fg); font-weight: 500; padding: 6px 20px; border-right: 1.5px solid var(--border); line-height: 1.4; }
+    .hero-bullets li:last-child { border-right: none; }
+    .hero-bullets li::before { content: "•"; color: var(--accent); font-size: 16px; line-height: 1; }
     .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fade-up .8s ease-out .5s forwards; }
     .btn-primary { background: var(--accent); color: #fff; padding: 16px 32px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s; display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer; }
     .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(24,99,220,.3); }
@@ -953,6 +957,11 @@
         <div class="hero-text">
           <h1><span class="line">Your team, working at their best</span><br><span class="line line-accent">with AI handling the rest.</span></h1>
           <p class="hero-sub">Not workflow software. But <span style="font-weight: 700; color: var(--accent);">AI business specialists</span> that plug into your team, handle the operational load, and give your people time back for the work that actually moves the business.</p>
+          <ul class="hero-bullets">
+            <li>Integrate in Slack and WhatsApp</li>
+            <li>Automates updates, tracking, and routine workflows 24/7</li>
+            <li>Frees your team for decisions and the work that moves business forward</li>
+          </ul>
           <div class="hero-ctas">
             <a href="#demo" class="btn-primary">Book a demo →</a>
             <a href="#agents" class="btn-ghost">Explore agents</a>
