@@ -108,6 +108,8 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdro
 .jp-tab{all:unset;cursor:pointer;padding:8px 24px;border-radius:9999px;font-size:14px;font-weight:500;color:var(--muted);transition:all .2s}
 .jp-tab.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(0,31,92,.25)}
 .jp-tab:not(.active):hover{color:var(--fg);background:rgba(0,0,0,.05)}
+.jp-tab-soon{color:var(--muted)!important;cursor:default!important;font-style:italic;opacity:.7}
+.jp-tab-soon:hover{background:transparent!important;color:var(--muted)!important}
 .jp-chips-outer{position:relative;max-height:98px;overflow:hidden;transition:max-height .45s cubic-bezier(0.4,0,0.2,1)}
 .jp-chips-outer.expanded{max-height:500px}
 .jp-chips-outer.has-more:not(.expanded)::after{content:'';position:absolute;bottom:0;left:0;right:0;height:52px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.97));pointer-events:none;z-index:1}
@@ -1309,6 +1311,7 @@ footer{background:#fff;padding:48px 0;border-top:1px solid var(--border-light)}
         <div class="jp-tabs">
           <button class="jp-tab active" data-tab="finance">Finance</button>
           <button class="jp-tab" data-tab="lifestyle">Lifestyle</button>
+          <button class="jp-tab jp-tab-soon" disabled>More coming soon</button>
         </div>
         <div class="jp-chips-outer" id="jpChipsOuter">
           <div class="jp-chips" id="jpChips"></div>
@@ -2099,12 +2102,12 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
       { label: 'How do I pay less tax?', active: true },
       { label: 'Can I afford this loan?', active: true },
       { label: 'How long to reach my savings goal?', active: true },
-      { label: 'More coming soon...', active: false }
+      { label: 'Have something else on mind? Chat with me.', active: false, cta: true }
     ],
     lifestyle: [
       { label: 'Plan my trip', active: true },
       { label: 'Plan my weekly meals', active: true },
-      { label: 'More coming soon...', active: false }
+      { label: 'Have something else on mind? Chat with me.', active: false, cta: true }
     ]
   };
 
@@ -2126,7 +2129,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
         const chip = document.createElement('button');
         chip.className = 'jp-chip' + (item.active ? '' : ' jp-chip-soon');
         chip.textContent = item.label;
-        chip.disabled = !item.active;
+        chip.disabled = !item.active && !item.cta;
         if (item.active) {
           chip.addEventListener('click', () => {
             inp.value = item.label;
@@ -2137,6 +2140,10 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
             inp.style.height = Math.min(inp.scrollHeight, 120) + 'px';
             showMockChat(item.label);
           });
+        } else if (item.cta) {
+          chip.disabled = false;
+          chip.style.cursor = 'pointer';
+          chip.addEventListener('click', () => window.open('https://infina.ai', '_blank'));
         }
         container.appendChild(chip);
       });
