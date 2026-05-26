@@ -64,8 +64,16 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdro
 
 /* Hero */
 .hero{position:relative;padding:clamp(140px,18vw,180px) 0 clamp(40px,5vw,60px);text-align:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(24,99,220,.12),transparent 60%);z-index:-2}
-.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(to right,rgba(24,99,220,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(24,99,220,.05) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 20%,transparent 75%);z-index:-2;pointer-events:none}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 70% 30%,rgba(24,99,220,.14),transparent 60%),radial-gradient(ellipse 60% 50% at 20% 80%,rgba(126,87,194,.08),transparent 60%);z-index:-2}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(to right,rgba(24,99,220,.06) 1px,transparent 1px),linear-gradient(to bottom,rgba(24,99,220,.06) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 20%,transparent 75%);z-index:-2;pointer-events:none}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-20px) rotate(3deg)}}
+@keyframes float-reverse{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(20px) rotate(-3deg)}}
+.shape{position:absolute;border-radius:50%;z-index:-1;pointer-events:none}
+.shape-1{width:400px;height:400px;background:linear-gradient(135deg,rgba(24,99,220,.08),transparent);top:10%;right:-10%;animation:float 8s ease-in-out infinite}
+.shape-2{width:300px;height:300px;background:linear-gradient(135deg,rgba(24,99,220,.05),transparent);bottom:20%;left:-5%;animation:float-reverse 10s ease-in-out infinite}
+.shape-3{width:200px;height:200px;border:1px solid var(--border-light);top:30%;left:10%;animation:pulse 6s ease-in-out infinite}
+.shape-4{width:150px;height:150px;border:1px solid var(--border-light);bottom:30%;right:15%;animation:pulse 8s ease-in-out infinite;animation-delay:2s}
+@media(max-width:768px){.shape-1,.shape-2,.shape-3,.shape-4{display:none}}
 .hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.14em;margin-bottom:22px;opacity:0;animation:fade-up .6s ease-out .1s forwards}
 .hero-badge::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 10px var(--accent);animation:pulse-dot 2s ease-in-out infinite}
@@ -76,7 +84,8 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdro
 
 /* Chat bar — AI website style */
 .cbar-wrap{max-width:680px;margin:0 auto;opacity:0;animation:fade-up .7s ease-out .4s forwards}
-.cbar{background:#fff;border:1.5px solid var(--border);border-radius:28px;padding:14px 14px 14px 22px;box-shadow:0 20px 50px -16px rgba(15,23,42,.14),0 4px 12px rgba(15,23,42,.04);transition:all .25s;display:flex;align-items:flex-end;gap:10px;position:relative}
+.cbar{background:#fff;border:1.5px solid var(--border);border-radius:28px;box-shadow:0 20px 50px -16px rgba(15,23,42,.14),0 4px 12px rgba(15,23,42,.04);transition:border-color .25s,box-shadow .25s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.cbar-row{display:flex;align-items:flex-end;gap:10px;padding:14px 14px 14px 22px}
 .cbar:focus-within{border-color:var(--accent);box-shadow:0 20px 50px -8px rgba(24,99,220,.22),0 0 0 4px rgba(24,99,220,.1)}
 .cbar-input-wrap{flex:1;position:relative;min-height:32px;display:flex;align-items:center;padding:8px 0}
 .cbar-input{width:100%;border:none;outline:none;font-family:var(--font-body);font-size:16px;color:var(--fg);background:transparent;resize:none;line-height:1.5;min-height:24px;max-height:120px;position:relative;z-index:2;padding:0}
@@ -92,6 +101,55 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdro
 .cbar-send svg{width:18px;height:18px}
 .cbar-hint{font-size:11.5px;color:var(--muted);margin-top:14px;text-align:center;opacity:0;animation:fade-up .7s ease-out .5s forwards}
 .cbar-hint kbd{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-family:inherit;font-size:10.5px;color:var(--fg-secondary)}
+
+/* Job Picker */
+.job-picker{max-width:760px;margin:28px auto 0;opacity:0;animation:fade-up .7s ease-out .5s forwards;text-align:center}
+.jp-tabs{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:9999px;padding:5px;margin-bottom:18px}
+.jp-tab{all:unset;cursor:pointer;padding:8px 24px;border-radius:9999px;font-size:14px;font-weight:500;color:var(--muted);transition:all .2s}
+.jp-tab.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(0,31,92,.25)}
+.jp-tab:not(.active):hover{color:var(--fg);background:rgba(0,0,0,.05)}
+.jp-tab-soon{color:var(--muted)!important;cursor:default!important;font-style:italic;opacity:.7}
+.jp-tab-soon:hover{background:transparent!important;color:var(--muted)!important}
+.jp-chips-outer{position:relative;max-height:114px;overflow:hidden;padding-top:14px;transition:max-height .45s cubic-bezier(0.4,0,0.2,1)}
+.jp-chips-outer.expanded{max-height:500px}
+.jp-chips-outer.has-more:not(.expanded)::after{content:'';position:absolute;bottom:0;left:0;right:0;height:52px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.97));pointer-events:none;z-index:1}
+.jp-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;transition:opacity .15s}
+.jp-chip{all:unset;cursor:pointer;padding:9px 18px;border-radius:9999px;font-size:14px;font-weight:500;border:1.5px solid var(--border);color:var(--fg-secondary);background:#fff;transition:all .2s;white-space:nowrap}
+.jp-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-tint);transform:translateY(-1px)}
+.jp-chip-soon{color:var(--muted)!important;background:var(--surface)!important;border-color:var(--border-light)!important;cursor:default!important;font-style:italic;font-size:13px;transform:none!important}
+.jp-chip-wrap{position:relative;display:inline-block}
+.jp-chip-badge{position:absolute;top:-9px;right:-4px;background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:.04em;padding:2px 7px;border-radius:9999px;white-space:nowrap;pointer-events:none;text-transform:uppercase}
+.jp-see-more{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;margin:12px auto 0;font-size:13px;font-weight:500;color:var(--muted);transition:color .2s}
+.jp-see-more:hover{color:var(--accent)}
+.jp-see-more svg{transition:transform .2s}
+.jp-see-more:hover svg{transform:translateY(2px)}
+@media(max-width:640px){.jp-chip{font-size:13px;padding:8px 14px}.jp-tab{padding:7px 18px;font-size:13px}}
+
+/* Chat expansion — messages panel inside cbar */
+.cbar-messages{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(0.4,0,0.2,1)}
+.cbar.expanded .cbar-messages{max-height:460px}
+.cbar-messages-inner{padding:16px 22px 14px;border-bottom:1px solid var(--border-light);overflow-y:auto;max-height:460px}
+.mc-close-row{display:flex;justify-content:flex-end;margin-bottom:10px}
+.mc-close{all:unset;cursor:pointer;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:18px;line-height:1;transition:all .15s}
+.mc-close:hover{background:var(--surface);color:var(--fg)}
+.mc-user{display:flex;justify-content:flex-end;margin-bottom:16px}
+.mc-user-bubble{background:var(--accent);color:#fff;padding:10px 16px;border-radius:18px 18px 4px 18px;font-size:14px;font-weight:500;max-width:85%;line-height:1.45}
+.mc-agent{display:flex;gap:12px;align-items:flex-start}
+.mc-avatar{width:34px;height:34px;border-radius:50%;background:var(--accent-light);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
+.mc-body{flex:1;min-width:0}
+.mc-name{font-size:11px;font-weight:600;color:var(--muted);margin-bottom:6px;letter-spacing:.06em;text-transform:uppercase}
+.mc-bubble{background:var(--surface);border:1px solid var(--border);border-radius:4px 16px 16px 16px;padding:12px 16px;font-size:14px;color:var(--fg-secondary);line-height:1.65;text-align:left;white-space:pre-line}
+.mc-thinking{display:flex;gap:5px;align-items:center;padding:4px 0}
+.mc-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:mc-bounce .9s ease-in-out infinite}
+.mc-dot:nth-child(2){animation-delay:.15s}
+.mc-dot:nth-child(3){animation-delay:.3s}
+@keyframes mc-bounce{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-5px);opacity:1}}
+.mc-followups{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.mc-followup{all:unset;cursor:pointer;padding:7px 14px;border-radius:9999px;font-size:13px;font-weight:500;border:1.5px solid var(--border);color:var(--fg-secondary);background:#fff;transition:all .2s;white-space:nowrap}
+.mc-followup:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-tint)}
+.mc-cta{margin-top:16px;padding-top:14px;border-top:1px solid var(--border-light);text-align:center}
+.mc-cta-btn{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#fff;padding:9px 20px;border-radius:9999px;font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all .2s}
+.mc-cta-btn:hover{background:var(--accent-dark);transform:translateY(-1px)}
 
 /* ===== Jobs Section (Job-to-be-done) ===== */
 .jobs{padding:80px 0 var(--section-gap);background:#fff}
@@ -1180,52 +1238,84 @@ footer{background:#fff;padding:48px 0;border-top:1px solid var(--border-light)}
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a href="home.html" class="logo"><img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img"></a>
-    <div class="nav-center">
-      <a href="inside.html">AI Inside</a>
-      <a href="work.html">AI Work</a>
-      <a href="personal.html" class="active">AI Personal</a>
-      <a href="about.html">About Us</a>
-    </div>
-    <a href="https://infina.ai" target="_blank" class="nav-cta">Chat with AI</a>
-  </div>
-</nav>
+<infina-nav active="personal"></infina-nav>
 
 <!-- Hero -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid-bg"></div>
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  <div class="shape shape-4"></div>
   <div class="container">
     <div class="hero-inner">
       <h1>AI Specialist Agents<br>for <span class="accent">Personal</span></h1>
 
       <div class="cbar-wrap">
-        <div class="cbar">
-          <div class="cbar-input-wrap">
-            <div class="cbar-ghost" id="ghostText"></div>
-            <textarea class="cbar-input" id="heroInput" rows="1" aria-label="Ask specialist"></textarea>
+        <div class="cbar" id="cbar">
+          <!-- Conversation panel — expands above input on chip click -->
+          <div class="cbar-messages" id="cbarMessages">
+            <div class="cbar-messages-inner">
+              <div class="mc-close-row">
+                <button class="mc-close" id="mcClose" aria-label="Close">✕</button>
+              </div>
+              <div class="mc-user"><div class="mc-user-bubble" id="mcUserBubble"></div></div>
+              <div class="mc-agent">
+                <div class="mc-avatar" id="mcAvatar"></div>
+                <div class="mc-body">
+                  <div class="mc-name" id="mcName"></div>
+                  <div class="mc-bubble" id="mcBubble"></div>
+                  <div class="mc-followups" id="mcFollowups"></div>
+                  <div class="mc-cta" id="mcCta" style="display:none">
+                    <button class="mc-cta-btn" onclick="window.open('https://infina.ai','_blank')">
+                      Chat with your Specialist
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="cbar-icons">
-            <button type="button" class="cbar-icon-btn" aria-label="Attach">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
-            </button>
-            <button type="button" class="cbar-icon-btn" aria-label="Voice">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2"/><path d="M12 19v3"/></svg>
+          <!-- Input row -->
+          <div class="cbar-row">
+            <div class="cbar-input-wrap">
+              <div class="cbar-ghost" id="ghostText"></div>
+              <textarea class="cbar-input" id="heroInput" rows="1" aria-label="Ask specialist"></textarea>
+            </div>
+            <div class="cbar-icons">
+              <button type="button" class="cbar-icon-btn" aria-label="Attach">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+              </button>
+              <button type="button" class="cbar-icon-btn" aria-label="Voice">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2"/><path d="M12 19v3"/></svg>
+              </button>
+            </div>
+            <button class="cbar-send" onclick="handleSend()" aria-label="Send">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
             </button>
           </div>
-          <button class="cbar-send" onclick="handleSend()" aria-label="Send">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
-          </button>
         </div>
+
+      <!-- Job Picker -->
+      <div class="job-picker" id="jobPicker">
+        <div class="jp-tabs">
+          <button class="jp-tab active" data-tab="finance">Finance</button>
+          <button class="jp-tab" data-tab="lifestyle">Lifestyle</button>
+          <button class="jp-tab jp-tab-soon" disabled>More coming soon</button>
+        </div>
+        <div class="jp-chips-outer" id="jpChipsOuter">
+          <div class="jp-chips" id="jpChips"></div>
+        </div>
+      </div>
+
       </div>
     </div>
   </div>
 </section>
 
 <!-- Jobs Section -->
-<section class="jobs" id="jobs">
+<section class="jobs" id="jobs" style="display:none">
   <div class="container">
     <div class="jobs-head">
       <h2>Top AI Specialist Agents</h2>
@@ -1437,7 +1527,7 @@ footer{background:#fff;padding:48px 0;border-top:1px solid var(--border-light)}
 <!-- ============================================================ -->
   <!-- Deployments: Interactive Use Case Demos -->
   <!-- ============================================================ -->
-  <section class="usecases-modern">
+  <section class="usecases-modern" style="display:none">
     <div class="container">
       <h2 class="usecases-headline">Popular Use Cases</h2>
       
@@ -1569,7 +1659,7 @@ footer{background:#fff;padding:48px 0;border-top:1px solid var(--border-light)}
   </script>
 
 <!-- CTA -->
-<section class="cta">
+<section class="cta" style="display:none">
   <div class="container">
     <h2>Start a conversation<br>with your specialist</h2>
     <div class="cta-btns">
@@ -1578,18 +1668,7 @@ footer{background:#fff;padding:48px 0;border-top:1px solid var(--border-light)}
   </div>
 </section>
 
-<!-- Footer -->
-<footer>
-  <div class="container footer-inner">
-    <div class="footer-logo"><img src="uploads/image (109).png" alt="Infina AI"></div>
-    <div class="footer-links">
-      <a href="inside.html">AI Inside</a>
-      <a href="work.html">AI Work</a>
-      <a href="personal.html">AI Personal</a>
-    </div>
-    <p class="footer-copy">© 2026 Infina. All rights reserved.</p>
-  </div>
-</footer>
+<infina-footer></infina-footer>
 
 <!-- Waitlist modal -->
 <div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
@@ -1805,69 +1884,228 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 </script>
 
 <script>
-/* ===== Mobile nav toggle ===== */
-(function () {
-  const nav = document.querySelector('nav');
-  if (!nav) return;
-  const navInner = nav.querySelector('.nav-inner');
-  if (!navInner) return;
-
-  let toggle = navInner.querySelector('.nav-toggle');
-  if (!toggle) {
-    toggle = document.createElement('button');
-    toggle.className = 'nav-toggle';
-    toggle.setAttribute('aria-label', 'Menu');
-    toggle.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
-    navInner.appendChild(toggle);
-  }
-  toggle.setAttribute('aria-expanded', 'false');
-
-  const panel = document.createElement('div');
-  panel.className = 'nav-mobile-panel';
-  panel.setAttribute('aria-hidden', 'true');
-  const center = navInner.querySelector('.nav-center');
-  const cta = navInner.querySelector('.nav-cta');
-  if (center) {
-    center.querySelectorAll('a').forEach(a => panel.appendChild(a.cloneNode(true)));
-  }
-  if (cta) {
-    const ctaClone = cta.cloneNode(true);
-    ctaClone.classList.add('nav-mobile-cta');
-    panel.appendChild(ctaClone);
-  }
-  nav.appendChild(panel);
-
-  const setOpen = (open) => {
-    document.body.classList.toggle('nav-open', open);
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+// ========== Mock Chat ==========
+(function(){
+  const conversations = {
+    'Should I buy this stock?': {
+      specialist: 'Stock Analyst', avatar: '📈',
+      response: "ACB looks interesting at current levels. Here's my read:\n\n• P/E of 8.2x — below the banking sector average\n• Volume rising for 3 consecutive sessions (bullish signal)\n• Short-term target: 26,000 VND\n\nI'd suggest a partial entry now with a stop-loss at 21,500 VND to protect your downside.",
+      followups: ["What's my risk level?", 'Show me similar stocks', 'Set a price alert']
+    },
+    'Where should I invest my money?': {
+      specialist: 'Investment Advisor', avatar: '💼',
+      response: "With a 2-year horizon, here's a balanced split I'd recommend:\n\n• 50% Government bonds — stable ~6.2% yield, low risk\n• 30% Blue-chip stocks — VCB, MBB for growth exposure\n• 20% Short-term savings deposit — liquid, capital protected\n\nWant me to model this for a specific amount?",
+      followups: ['Model for 100M VND', 'Higher risk option?', 'How do I start?']
+    },
+    'Am I spending too much this month?': {
+      specialist: 'Budget Planner', avatar: '📊',
+      response: "On 20M/month, a healthy breakdown looks like:\n\n• Needs (rent, food, transport): max 10M — 50%\n• Lifestyle & wants: up to 6M — 30%\n• Savings: at least 4M — 20%\n\nIf your essentials already exceed 10M, you're over budget on the basics. Share your top 3 expenses and I'll pinpoint where to cut.",
+      followups: ['Break down by category', 'How to cut food costs?', 'Build a monthly budget']
+    },
+    "What's moving the market today?": {
+      specialist: 'Market Analyst', avatar: '🏦',
+      response: "VN-Index is up 0.8% this morning. Key movers:\n\n• Banking sector leading — MBB +2.1%, VCB +1.3%\n• Foreign investors net-bought 45B VND in the morning session\n\nWatch tonight: US Fed minutes release may spark short-term volatility.",
+      followups: ['Which stocks to watch?', 'Real estate sector outlook?', 'Set a market alert']
+    },
+    'Which insurance plan fits me?': {
+      specialist: 'Insurance Advisor', avatar: '🛡️',
+      response: "For a working adult in their 30s, I'd recommend two layers:\n\n• Term life insurance — 500M coverage at ~2M/month\n• Health insurance — with outpatient coverage included\n\nOne thing to avoid: investment-linked plans. Keep investing and insurance separate — better returns and better coverage.",
+      followups: ['Compare top plans', 'What does it cover?', 'Get a quote']
+    },
+    'How do I pay less tax?': {
+      specialist: 'Tax Advisor', avatar: '🧾',
+      response: "Three legal ways to cut your tax bill:\n\n• Claim all dependents — 4.4M deduction per person/month\n• Voluntary pension fund — deductible up to 1M/month\n• If freelancing — register as a business for a flat 7% rate instead of progressive rates up to 35%\n\nWant me to calculate how much each saves you?",
+      followups: ['Calculate my tax bill', 'Tell me about dependents', 'Freelancer tax guide']
+    },
+    'Can I afford this loan?': {
+      specialist: 'Loan Advisor', avatar: '🏠',
+      response: "Rule of thumb: keep repayments under 30% of monthly income.\n\nOn 20M/month your ceiling is 6M/month.\n\nFor a 500M loan at 9% interest:\n• 10-year term → ~6.3M/month (slightly over your limit)\n• 15-year term → ~5M/month (comfortable)\n\nI'd go with the 15-year term to give yourself breathing room.",
+      followups: ['Simulate different terms', 'Compare lenders', "What's my debt ratio?"]
+    },
+    'How long to reach my savings goal?': {
+      specialist: 'Savings Planner', avatar: '🎯',
+      response: "Here's how long it takes to reach 100M:\n\n• Saving 4M/month at 6% return → ~22 months\n• Saving 6M/month at 6% return → ~15 months\n\nThe 6% assumes government bonds — safe and accessible. Got existing savings? I can factor that in for a more accurate timeline.",
+      followups: ['Factor in existing savings', 'Show higher-yield options', 'Set a savings reminder']
+    },
+    'Plan my trip': {
+      specialist: 'Travel Planner', avatar: '✈️',
+      response: "Da Nang + Hoi An, 7 days — here's how 10M breaks down:\n\n• Flights (return): ~2.5M\n• Accommodation: ~3M (mid-range hotels)\n• Food & drinks: ~2M\n• Activities & entrance fees: ~1.5M\n• Local transport: ~1M\n\nTotal: ~10M with a small buffer. Want me to build the day-by-day itinerary?",
+      followups: ['Build day-by-day itinerary', 'Try Phu Quoc instead', 'Find cheaper flights']
+    },
+    'Plan my weekly meals': {
+      specialist: 'Nutrition Advisor', avatar: '🥗',
+      response: "Simple balanced plan on 500K/week:\n\n• Mon / Wed / Fri — Grilled chicken + rice + stir-fry (~30K/meal)\n• Tue / Thu — Tofu + egg + soup (~20K/meal)\n• Weekend — Flex meal or eat out\n\nTip: Batch-cook Sunday evening. Saves 2 hours on weekday mornings and cuts impulse food spending.",
+      followups: ['Make it high-protein', "I'm vegetarian", 'Generate a shopping list']
+    }
   };
 
-  toggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    setOpen(!document.body.classList.contains('nav-open'));
-  });
+  let typeTimer2 = null;
 
-  panel.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => setOpen(false));
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!document.body.classList.contains('nav-open')) return;
-    if (panel.contains(e.target) || toggle.contains(e.target)) return;
-    setOpen(false);
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && document.body.classList.contains('nav-open')) setOpen(false);
-  });
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768 && document.body.classList.contains('nav-open')) {
-      setOpen(false);
+  function typeResponse(text, el, onDone) {
+    el.textContent = '';
+    let i = 0;
+    function step() {
+      if (i < text.length) {
+        el.textContent += text[i++];
+        typeTimer2 = setTimeout(step, 12);
+      } else if (onDone) onDone();
     }
+    step();
+  }
+
+  const cbar = document.getElementById('cbar');
+
+  function collapseCbar() {
+    cbar.classList.remove('expanded');
+  }
+
+  document.getElementById('mcClose').addEventListener('click', collapseCbar);
+
+  function showMockChat(question) {
+    clearTimeout(typeTimer2);
+    const conv = conversations[question];
+    if (!conv) return;
+
+    const userBubble = document.getElementById('mcUserBubble');
+    const avatar = document.getElementById('mcAvatar');
+    const name = document.getElementById('mcName');
+    const bubble = document.getElementById('mcBubble');
+    const followups = document.getElementById('mcFollowups');
+    const cta = document.getElementById('mcCta');
+
+    // Reset content
+    followups.innerHTML = '';
+    cta.style.display = 'none';
+    bubble.innerHTML = '<div class="mc-thinking"><span class="mc-dot"></span><span class="mc-dot"></span><span class="mc-dot"></span></div>';
+    userBubble.textContent = question;
+    avatar.textContent = conv.avatar;
+    name.textContent = conv.specialist;
+
+    // Expand cbar
+    cbar.classList.add('expanded');
+
+    // After thinking delay, type response
+    setTimeout(() => {
+      bubble.innerHTML = '';
+      typeResponse(conv.response, bubble, () => {
+        conv.followups.forEach(fq => {
+          const btn = document.createElement('button');
+          btn.className = 'mc-followup';
+          btn.textContent = fq;
+          btn.addEventListener('click', () => showMockChat(fq in conversations ? fq : question));
+          followups.appendChild(btn);
+        });
+        cta.style.display = 'block';
+      });
+    }, 1000);
+  }
+
+  window.showMockChat = showMockChat;
+})();
+
+// ========== Job Picker ==========
+(function(){
+  const VISIBLE_COUNT = 4;
+  const outer = document.getElementById('jpChipsOuter');
+
+  const jobData = {
+    finance: [
+      { label: 'Should I buy this stock?', active: true, badge: 'Brokers only' },
+      { label: 'Where should I invest my money?', active: true },
+      { label: 'Am I spending too much this month?', active: true },
+      { label: "What's moving the market today?", active: true },
+      { label: 'Which insurance plan fits me?', active: true },
+      { label: 'How do I pay less tax?', active: true },
+      { label: 'Can I afford this loan?', active: true },
+      { label: 'How long to reach my savings goal?', active: true },
+      { label: 'Have something else on mind? Chat with me.', active: false, cta: true }
+    ],
+    lifestyle: [
+      { label: 'Plan my trip', active: true },
+      { label: 'Plan my weekly meals', active: true },
+      { label: 'Have something else on mind? Chat with me.', active: false, cta: true }
+    ]
+  };
+
+  function renderChips(tab) {
+    const container = document.getElementById('jpChips');
+    container.style.opacity = '0';
+
+    // Reset outer state
+    outer.classList.remove('expanded', 'has-more');
+    const oldBtn = document.getElementById('jpSeeMore');
+    if (oldBtn) oldBtn.remove();
+
+    setTimeout(() => {
+      container.innerHTML = '';
+      const items = jobData[tab];
+      const needsCurtain = items.length > VISIBLE_COUNT;
+
+      items.forEach(item => {
+        const chip = document.createElement('button');
+        chip.className = 'jp-chip' + (item.active ? '' : ' jp-chip-soon');
+        chip.textContent = item.label;
+        chip.disabled = !item.active && !item.cta;
+        if (item.active) {
+          chip.addEventListener('click', () => {
+            inp.value = item.label;
+            userTyped = true;
+            clearTimeout(typeTimer);
+            ghost.classList.add('hidden');
+            inp.style.height = 'auto';
+            inp.style.height = Math.min(inp.scrollHeight, 120) + 'px';
+            showMockChat(item.label);
+          });
+        } else if (item.cta) {
+          chip.disabled = false;
+          chip.style.cursor = 'pointer';
+          chip.addEventListener('click', () => window.open('https://infina.ai', '_blank'));
+        }
+
+        if (item.badge) {
+          const wrap = document.createElement('div');
+          wrap.className = 'jp-chip-wrap';
+          wrap.appendChild(chip);
+          const badge = document.createElement('span');
+          badge.className = 'jp-chip-badge';
+          badge.textContent = item.badge;
+          wrap.appendChild(badge);
+          container.appendChild(wrap);
+        } else {
+          container.appendChild(chip);
+        }
+      });
+
+      if (needsCurtain) {
+        outer.classList.add('has-more');
+        const btn = document.createElement('button');
+        btn.id = 'jpSeeMore';
+        btn.className = 'jp-see-more';
+        btn.innerHTML = 'See more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+        btn.addEventListener('click', () => {
+          outer.classList.add('expanded');
+          outer.classList.remove('has-more');
+          btn.remove();
+        });
+        outer.after(btn);
+      }
+
+      container.style.opacity = '1';
+    }, 150);
+  }
+
+  document.querySelectorAll('.jp-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.jp-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      renderChips(tab.dataset.tab);
+    });
   });
+
+  renderChips('finance');
 })();
 </script>
+<script src="nav.js"></script>
+<script src="footer.js"></script>
 </body>
 </html>
