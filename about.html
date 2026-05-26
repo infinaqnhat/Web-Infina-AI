@@ -1274,17 +1274,11 @@ footer {
 <section class="lead-section" id="lead-form">
   <div class="container lead-grid">
     <div class="lead-copy">
-      <span class="lead-eyebrow">BOOK A DEMO</span>
-      <h2>Accelerate AI Deployment with <span class="accent">Infina AI</span></h2>
-      <p class="lead-sub">Connect with Infina AI team to optimize your product effectiveness and business results.</p>
-      <ul class="lead-bullets">
-        <li><span class="lead-check">✓</span>AI solution consultation aligned with business goals</li>
-        <li><span class="lead-check">✓</span>Flexible deployment model options</li>
-        <li><span class="lead-check">✓</span>Go from pilot to production in 2–3 weeks, secure and compliant</li>
-      </ul>
+      <h2><span style="background: #FFE066; padding: 2px 6px; border-radius: 4px;">Book a demo</span> and watch your job get done by <span class="accent">Infina AI</span></h2>
+      <p class="lead-sub">30 minutes. We'll show you exactly how Infina AI works and map out what a live deployment looks like for your specific situation.</p>
     </div>
 
-    <form class="lead-form" id="lead-form" novalidate="">
+    <form class="lead-form" id="lead-form-el" novalidate="">
       <div class="lead-form-header">
         <h3 class="lead-form-title">Contact us</h3>
         <p class="lead-form-sub">Infina AI team will respond within 24 hours.</p>
@@ -1292,7 +1286,7 @@ footer {
 
       <div class="lead-field">
         <input type="text" id="lf-name" name="fullName" required="" autocomplete="name" placeholder=" ">
-        <label for="lf-name">Full name</label>
+        <label for="lf-name">Name</label>
       </div>
 
       <div class="lead-field">
@@ -1300,77 +1294,20 @@ footer {
         <label for="lf-email">Work email</label>
       </div>
 
-      <div class="lead-row lead-row-2">
-        <div class="lead-field">
-          <input type="text" id="lf-company" name="company" required="" autocomplete="organization" placeholder=" ">
-          <label for="lf-company">Company name</label>
-        </div>
-        <div class="lead-field">
-          <input type="text" id="lf-title" name="jobTitle" autocomplete="organization-title" placeholder=" ">
-          <label for="lf-title">Job title</label>
-        </div>
+      <div class="lead-field">
+        <input type="text" id="lf-company" name="company" autocomplete="organization" placeholder=" ">
+        <label for="lf-company">Company (optional)</label>
       </div>
 
-      <div class="lead-row lead-row-2">
-        <div class="lead-field lead-combo" data-combo="companySize" data-required="true">
-          <button type="button" class="lead-combo-trigger placeholder">Select to continue...</button>
-          <label>Company size</label>
-          <span class="lead-caret">▾</span>
-          <input type="hidden" name="companySize" required="">
-          <div class="lead-combo-menu" role="listbox">
-            <div class="lead-combo-option" data-value="1-10">1–10 employees</div>
-            <div class="lead-combo-option" data-value="11-50">11–50 employees</div>
-            <div class="lead-combo-option" data-value="51-200">51–200 employees</div>
-            <div class="lead-combo-option" data-value="201-1000">201–1.000 employees</div>
-            <div class="lead-combo-option" data-value="1000+">Over 1,000 employees</div>
-          </div>
-        </div>
-        <div class="lead-field">
-          <input type="tel" id="lf-phone" name="phone" autocomplete="tel" placeholder=" ">
-          <label for="lf-phone">Phone number</label>
-        </div>
-      </div>
-
-      <div class="lead-row lead-row-2">
-        <div class="lead-field lead-combo" data-combo="product" data-required="true">
-          <button type="button" class="lead-combo-trigger placeholder">Select to continue...</button>
-          <label>Product of interest</label>
-          <span class="lead-caret">▾</span>
-          <input type="hidden" name="product" required="">
-          <div class="lead-combo-menu" role="listbox">
-            <div class="lead-combo-option" data-value="Inside">Infina AI — Inside</div>
-            <div class="lead-combo-option" data-value="Work">Infina AI — Work</div>
-            <div class="lead-combo-option" data-value="Personal">Infina AI — Personal</div>
-            <div class="lead-combo-option" data-value="Not sure">Not sure — need consultation</div>
-          </div>
-        </div>
-        <div class="lead-field lead-combo" data-combo="industry">
-          <button type="button" class="lead-combo-trigger placeholder">Select...</button>
-          <label>Industry (optional)</label>
-          <span class="lead-caret">▾</span>
-          <input type="hidden" name="industry">
-          <div class="lead-combo-menu" role="listbox">
-            <div class="lead-combo-option" data-value="Finance / Securities">Finance / Securities</div>
-            <div class="lead-combo-option" data-value="Banking">Banking</div>
-            <div class="lead-combo-option" data-value="Insurance">Insurance</div>
-            <div class="lead-combo-option" data-value="Fintech / E-wallet">Fintech / E-wallet</div>
-            <div class="lead-combo-option" data-value="Real Estate">Real Estate</div>
-            <div class="lead-combo-option" data-value="Retail / E-commerce">Retail / E-commerce</div>
-            <div class="lead-combo-option" data-value="Education">Education</div>
-            <div class="lead-combo-option" data-value="Other">Other</div>
-          </div>
-        </div>
+      <div class="lead-field">
+        <input type="tel" id="lf-phone" name="phone" autocomplete="tel" placeholder=" ">
+        <label for="lf-phone">Phone</label>
       </div>
 
       <div class="lead-field lead-textarea">
         <textarea id="lf-usecase" name="useCase" rows="2" placeholder=" "></textarea>
-        <label for="lf-usecase">How do you plan to use AI? (optional)</label>
+        <label for="lf-usecase">Message (optional)</label>
       </div>
-
-      <label class="lead-consent">
-        <input type="checkbox" id="lf-consent" name="consent">
-        <span>I agree to receive product information and updates from Infina AI.</span>
-      </label>
 
       <button type="submit" class="lead-submit" id="lf-submit">
         <span class="lead-submit-label">Book a demo</span>
@@ -1386,7 +1323,7 @@ footer {
 (function() {
   const SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyO618yfsKfO4nHni2qBe62GWp9fM0vEb0h-Gccw-1wV-w5wJpN3Zayhai1OFxPl98x/exec';
 
-  const form = document.getElementById('lead-form');
+  const form = document.getElementById('lead-form-el');
   const submitBtn = document.getElementById('lf-submit');
   const status = document.getElementById('lf-status');
   if (!form) return;
@@ -1396,7 +1333,6 @@ footer {
     status.className = 'lead-status';
     status.textContent = '';
 
-    // Validate
     const required = form.querySelectorAll('[required]');
     let firstInvalid = null;
     required.forEach(el => {
@@ -1412,17 +1348,12 @@ footer {
     }
 
     const data = {
-      fullName:    form.fullName.value.trim(),
-      email:       form.email.value.trim(),
-      company:     form.company.value.trim(),
-      jobTitle:    form.jobTitle.value.trim(),
-      companySize: form.companySize.value,
-      phone:       form.phone.value.trim(),
-      product:     form.product.value,
-      industry:    form.industry.value,
-      useCase:     form.useCase.value.trim(),
-      consent:     form.consent.checked,
-      source:      'infina-ai-about-us',
+      fullName: form.fullName.value.trim(),
+      email:    form.email.value.trim(),
+      company:  form.company.value.trim(),
+      phone:    form.phone.value.trim(),
+      useCase:  form.useCase.value.trim(),
+      source:   'infina-ai-about-us',
     };
 
     submitBtn.disabled = true;
@@ -1432,26 +1363,19 @@ footer {
     try {
       if (!SHEETS_ENDPOINT) {
         await new Promise(r => setTimeout(r, 600));
-        console.log('[Lead form] SHEETS_ENDPOINT not configured. Data:', data);
       } else {
-        console.log('[Lead form] Sending to:', SHEETS_ENDPOINT);
-        console.log('[Lead form] Payload:', data);
         const fd = new FormData();
-        Object.keys(data).forEach(k => fd.append(k, typeof data[k] === 'boolean' ? (data[k] ? 'true' : 'false') : data[k]));
+        Object.keys(data).forEach(k => fd.append(k, data[k]));
         const res = await fetch(SHEETS_ENDPOINT, { method: 'POST', body: fd });
         const txt = await res.text();
-        console.log('[Lead form] Response:', res.status, txt);
         if (!res.ok) throw new Error('HTTP ' + res.status);
         try {
           const json = JSON.parse(txt);
           if (json && json.ok === false) throw new Error(json.error || 'Sheet error');
         } catch (parseErr) {
-          if (txt.indexOf('<!DOCTYPE') === 0 || txt.indexOf('<html') >= 0) {
-            throw new Error('Endpoint not public — go to Apps Script → Deploy → Manage deployments → change "Who has access" to "Anyone".');
-          }
+          if (txt.indexOf('<!DOCTYPE') === 0 || txt.indexOf('<html') >= 0) throw new Error('Endpoint not public');
         }
       }
-
       status.className = 'lead-status success';
       status.textContent = '✓ Thank you! Infina AI team will contact you within 24 hours.';
       form.reset();
@@ -1465,57 +1389,8 @@ footer {
     }
   });
 
-  // Clear invalid state on input
-  form.querySelectorAll('input, select, textarea').forEach(el => {
+  form.querySelectorAll('input, textarea').forEach(el => {
     el.addEventListener('input', () => el.classList.remove('invalid'));
-    el.addEventListener('change', () => el.classList.remove('invalid'));
-  });
-
-  // ===== Custom combo (replaces native <select>) =====
-  const combos = form.querySelectorAll('.lead-combo');
-  combos.forEach(combo => {
-    const trigger = combo.querySelector('.lead-combo-trigger');
-    const menu = combo.querySelector('.lead-combo-menu');
-    const hidden = combo.querySelector('input[type="hidden"]');
-    const options = combo.querySelectorAll('.lead-combo-option');
-
-    const close = () => combo.classList.remove('open');
-    const open = () => {
-      combos.forEach(c => { if (c !== combo) c.classList.remove('open'); });
-      combo.classList.add('open');
-    };
-
-    trigger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      combo.classList.contains('open') ? close() : open();
-    });
-
-    options.forEach(opt => {
-      opt.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const val = opt.dataset.value;
-        const label = opt.textContent;
-        hidden.value = val;
-        trigger.textContent = label;
-        trigger.classList.remove('placeholder');
-        combo.classList.add('has-value');
-        combo.classList.remove('invalid');
-        hidden.classList.remove('invalid');
-        options.forEach(o => o.classList.toggle('selected', o === opt));
-        close();
-      });
-    });
-
-    form.addEventListener('reset', () => {
-      hidden.value = '';
-      trigger.textContent = 'Select...';
-      trigger.classList.add('placeholder');
-      combo.classList.remove('has-value');
-      options.forEach(o => o.classList.remove('selected'));
-    });
-  });
-  document.addEventListener('click', () => {
-    combos.forEach(c => c.classList.remove('open'));
   });
 })();
 </script>
