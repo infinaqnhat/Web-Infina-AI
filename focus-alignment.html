@@ -81,9 +81,19 @@
       body.nav-open { overflow: hidden; }
     }
 
+    @keyframes float { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-20px) rotate(3deg)} }
+    @keyframes float-reverse { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(20px) rotate(-3deg)} }
+    @keyframes pulse { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:.8;transform:scale(1.05)} }
+
     /* ===== HERO ===== */
-    .hero { padding: clamp(130px, 16vw, 160px) 0 clamp(80px, 10vw, 120px); background: #f4f7ff; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 80% 20%, rgba(24,99,220,.08), transparent 60%), radial-gradient(ellipse 50% 50% at 10% 80%, rgba(0,31,92,.05), transparent 60%); pointer-events: none; }
+    .hero { padding: clamp(130px, 16vw, 160px) 0 clamp(80px, 10vw, 120px); background: #fff; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 70% 30%, rgba(24,99,220,.14), transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(126,87,194,.08), transparent 60%); z-index: 0; pointer-events: none; }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(24,99,220,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(24,99,220,.06) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); z-index: 0; pointer-events: none; }
+    .fa-shape { position: absolute; border-radius: 50%; z-index: 0; pointer-events: none; }
+    .fa-shape-1 { width:400px;height:400px;background:linear-gradient(135deg,rgba(24,99,220,.08),transparent);top:10%;right:-10%;animation:float 8s ease-in-out infinite; }
+    .fa-shape-2 { width:300px;height:300px;background:linear-gradient(135deg,rgba(24,99,220,.05),transparent);bottom:20%;left:-5%;animation:float-reverse 10s ease-in-out infinite; }
+    .fa-shape-3 { width:200px;height:200px;border:1px solid var(--border-light);top:30%;left:10%;animation:pulse 6s ease-in-out infinite; }
+    .fa-shape-4 { width:150px;height:150px;border:1px solid var(--border-light);bottom:30%;right:15%;animation:pulse 8s ease-in-out infinite;animation-delay:2s; }
     .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; position: relative; z-index: 1; }
     @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 48px; } }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .15em; padding: 0; border: none; border-radius: 0; background: none; margin-bottom: 24px; opacity: 0; animation: fade-up .6s ease-out .1s forwards; }
@@ -289,6 +299,12 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-bg"></div>
+    <div class="fa-shape fa-shape-1"></div>
+    <div class="fa-shape fa-shape-2"></div>
+    <div class="fa-shape fa-shape-3"></div>
+    <div class="fa-shape fa-shape-4"></div>
     <div class="container">
       <div class="hero-grid">
         <div class="hero-text">
