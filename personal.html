@@ -112,6 +112,9 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdro
 .jp-chip{all:unset;cursor:pointer;padding:9px 18px;border-radius:9999px;font-size:14px;font-weight:500;border:1.5px solid var(--border);color:var(--fg-secondary);background:#fff;transition:all .2s;white-space:nowrap}
 .jp-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-tint);transform:translateY(-1px)}
 .jp-chip-soon{color:var(--muted)!important;background:var(--surface)!important;border-color:var(--border-light)!important;cursor:default!important;font-style:italic;font-size:13px;transform:none!important}
+.jp-chip-hidden{display:none}
+.jp-load-more{all:unset;cursor:pointer;display:block;margin:14px auto 0;padding:8px 20px;border-radius:9999px;font-size:13px;font-weight:500;color:var(--accent);border:1.5px dashed var(--accent);background:transparent;transition:all .2s}
+.jp-load-more:hover{background:var(--accent-tint)}
 @media(max-width:640px){.jp-chip{font-size:13px;padding:8px 14px}.jp-tab{padding:7px 18px;font-size:13px}}
 
 /* Chat expansion — messages panel inside cbar */
@@ -2077,16 +2080,19 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 
 // ========== Job Picker ==========
 (function(){
+  const VISIBLE_COUNT = 4;
+
   const jobData = {
     finance: [
-      'Should I buy this stock?',
-      'Where should I invest my money?',
-      'Am I spending too much this month?',
-      "What's moving the market today?",
-      'Which insurance plan fits me?',
-      'How do I pay less tax?',
-      'Can I afford this loan?',
-      'How long to reach my savings goal?'
+      { label: 'Should I buy this stock?', active: true },
+      { label: 'Where should I invest my money?', active: true },
+      { label: 'Am I spending too much this month?', active: true },
+      { label: "What's moving the market today?", active: true },
+      { label: 'Which insurance plan fits me?', active: true },
+      { label: 'How do I pay less tax?', active: true },
+      { label: 'Can I afford this loan?', active: true },
+      { label: 'How long to reach my savings goal?', active: true },
+      { label: 'More coming soon...', active: false }
     ],
     lifestyle: [
       { label: 'Plan my trip', active: true },
@@ -2100,12 +2106,19 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
     container.style.opacity = '0';
     setTimeout(() => {
       container.innerHTML = '';
-      const items = tab === 'finance'
-        ? jobData.finance.map(j => ({ label: j, active: true }))
-        : jobData.lifestyle;
-      items.forEach(item => {
+      // Remove any existing load more button
+      const old = document.getElementById('jpLoadMore');
+      if (old) old.remove();
+
+      const items = jobData[tab];
+      const hiddenCount = Math.max(0, items.length - VISIBLE_COUNT);
+
+      items.forEach((item, idx) => {
         const chip = document.createElement('button');
-        chip.className = 'jp-chip' + (item.active ? '' : ' jp-chip-soon');
+        let cls = 'jp-chip';
+        if (!item.active) cls += ' jp-chip-soon';
+        if (idx >= VISIBLE_COUNT) cls += ' jp-chip-hidden';
+        chip.className = cls;
         chip.textContent = item.label;
         chip.disabled = !item.active;
         if (item.active) {
@@ -2121,6 +2134,20 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
         }
         container.appendChild(chip);
       });
+
+      // Add load more button if there are hidden chips
+      if (hiddenCount > 0) {
+        const btn = document.createElement('button');
+        btn.id = 'jpLoadMore';
+        btn.className = 'jp-load-more';
+        btn.textContent = '+ ' + hiddenCount + ' more';
+        btn.addEventListener('click', () => {
+          container.querySelectorAll('.jp-chip-hidden').forEach(c => c.classList.remove('jp-chip-hidden'));
+          btn.remove();
+        });
+        container.after(btn);
+      }
+
       container.style.opacity = '1';
     }, 150);
   }
