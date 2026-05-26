@@ -117,6 +117,8 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdro
 .jp-chip{all:unset;cursor:pointer;padding:9px 18px;border-radius:9999px;font-size:14px;font-weight:500;border:1.5px solid var(--border);color:var(--fg-secondary);background:#fff;transition:all .2s;white-space:nowrap}
 .jp-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-tint);transform:translateY(-1px)}
 .jp-chip-soon{color:var(--muted)!important;background:var(--surface)!important;border-color:var(--border-light)!important;cursor:default!important;font-style:italic;font-size:13px;transform:none!important}
+.jp-chip-wrap{position:relative;display:inline-block}
+.jp-chip-badge{position:absolute;top:-9px;right:-4px;background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:.04em;padding:2px 7px;border-radius:9999px;white-space:nowrap;pointer-events:none;text-transform:uppercase}
 .jp-see-more{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;margin:12px auto 0;font-size:13px;font-weight:500;color:var(--muted);transition:color .2s}
 .jp-see-more:hover{color:var(--accent)}
 .jp-see-more svg{transition:transform .2s}
@@ -2094,7 +2096,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 
   const jobData = {
     finance: [
-      { label: 'Should I buy this stock?', active: true },
+      { label: 'Should I buy this stock?', active: true, badge: 'Brokers only' },
       { label: 'Where should I invest my money?', active: true },
       { label: 'Am I spending too much this month?', active: true },
       { label: "What's moving the market today?", active: true },
@@ -2145,7 +2147,19 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
           chip.style.cursor = 'pointer';
           chip.addEventListener('click', () => window.open('https://infina.ai', '_blank'));
         }
-        container.appendChild(chip);
+
+        if (item.badge) {
+          const wrap = document.createElement('div');
+          wrap.className = 'jp-chip-wrap';
+          wrap.appendChild(chip);
+          const badge = document.createElement('span');
+          badge.className = 'jp-chip-badge';
+          badge.textContent = item.badge;
+          wrap.appendChild(badge);
+          container.appendChild(wrap);
+        } else {
+          container.appendChild(chip);
+        }
       });
 
       if (needsCurtain) {
