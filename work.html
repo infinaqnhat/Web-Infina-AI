@@ -1447,6 +1447,49 @@
       transition: opacity 0.2s;
     }
     .agents-explore-link:hover { opacity: 0.65; }
+
+    .crm-video-wrap { margin-top: 16px; }
+
+    .crm-video-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent, #001F5C);
+      padding: 0;
+      transition: opacity 0.2s;
+    }
+    .crm-video-toggle:hover { opacity: 0.65; }
+    .crm-video-toggle svg { flex-shrink: 0; transition: transform 0.2s; }
+    .crm-video-toggle[aria-expanded="true"] svg { transform: rotate(90deg); }
+
+    .crm-video-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .crm-video-panel.open { max-height: 600px; }
+
+    .crm-video-ratio {
+      position: relative;
+      padding-top: 56.25%;
+      margin-top: 16px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+    }
+    .crm-video-ratio iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
     @media (max-width: 768px) {
       .specialists-grid { grid-template-columns: 1fr; gap: 32px; }
       .specialists-left { position: static; }
@@ -1483,6 +1526,17 @@
                   <li>Works inside your existing CRM. No migration, no disruption.</li>
                   <li>Pre-configured for real estate, insurance, finance, and more.</li>
                 </ul>
+              </div>
+            </div>
+            <div class="crm-video-wrap">
+              <button class="crm-video-toggle" id="crm-video-toggle" aria-expanded="false">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+                <span class="crm-video-toggle-text">See how it works</span>
+              </button>
+              <div class="crm-video-panel" id="crm-video-panel">
+                <div class="crm-video-ratio">
+                  <iframe id="crm-video-iframe" src="" title="See how it works" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
               </div>
             </div>
           </div>
@@ -2171,5 +2225,28 @@
 
   <script src="nav.js"></script>
   <script src="footer.js"></script>
+  <script>
+    (function () {
+      var toggle = document.getElementById('crm-video-toggle');
+      var panel = document.getElementById('crm-video-panel');
+      var iframe = document.getElementById('crm-video-iframe');
+      var label = toggle.querySelector('.crm-video-toggle-text');
+      var VIDEO_SRC = 'https://www.youtube-nocookie.com/embed/z3EU2NE_gEU?rel=0';
+      var open = false;
+
+      toggle.addEventListener('click', function () {
+        open = !open;
+        panel.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) {
+          iframe.src = VIDEO_SRC;
+          label.textContent = 'Hide video';
+        } else {
+          iframe.src = '';
+          label.textContent = 'See how it works';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
