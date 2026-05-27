@@ -20,8 +20,8 @@
       --accent: #001F5C;
       --accent-dark: #001340;
       --accent-light: rgba(0, 31, 92, 0.08);
-      --blue: #4F46E5;
-      --blue-light: rgba(79, 70, 229, 0.1);
+      --blue: #1863dc;
+      --blue-light: rgba(24, 99, 220, 0.08);
       --font-display: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
       --font-body: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
       --section-gap: 120px;
@@ -81,20 +81,30 @@
       body.nav-open { overflow: hidden; }
     }
 
+    @keyframes float { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-20px) rotate(3deg)} }
+    @keyframes float-reverse { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(20px) rotate(-3deg)} }
+    @keyframes pulse { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:.8;transform:scale(1.05)} }
+
     /* ===== HERO ===== */
-    .hero { padding: clamp(130px, 16vw, 160px) 0 clamp(80px, 10vw, 120px); background: #eef0fb; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 80% 20%, rgba(79,70,229,.08), transparent 60%), radial-gradient(ellipse 50% 50% at 10% 80%, rgba(0,31,92,.05), transparent 60%); pointer-events: none; }
+    .hero { padding: clamp(130px, 16vw, 160px) 0 clamp(80px, 10vw, 120px); background: #fff; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 70% 30%, rgba(24,99,220,.14), transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(126,87,194,.08), transparent 60%); z-index: 0; pointer-events: none; }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(24,99,220,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(24,99,220,.06) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); z-index: 0; pointer-events: none; }
+    .fa-shape { position: absolute; border-radius: 50%; z-index: 0; pointer-events: none; }
+    .fa-shape-1 { width:400px;height:400px;background:linear-gradient(135deg,rgba(24,99,220,.08),transparent);top:10%;right:-10%;animation:float 8s ease-in-out infinite; }
+    .fa-shape-2 { width:300px;height:300px;background:linear-gradient(135deg,rgba(24,99,220,.05),transparent);bottom:20%;left:-5%;animation:float-reverse 10s ease-in-out infinite; }
+    .fa-shape-3 { width:200px;height:200px;border:1px solid var(--border-light);top:30%;left:10%;animation:pulse 6s ease-in-out infinite; }
+    .fa-shape-4 { width:150px;height:150px;border:1px solid var(--border-light);bottom:30%;right:15%;animation:pulse 8s ease-in-out infinite;animation-delay:2s; }
     .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; position: relative; z-index: 1; }
     @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 48px; } }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--blue); text-transform: uppercase; letter-spacing: .1em; padding: 8px 16px; border: 1px solid rgba(79,70,229,.25); border-radius: 999px; background: var(--blue-light); margin-bottom: 28px; opacity: 0; animation: fade-up .6s ease-out .1s forwards; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .15em; padding: 0; border: none; border-radius: 0; background: none; margin-bottom: 24px; opacity: 0; animation: fade-up .6s ease-out .1s forwards; }
     .hero h1 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); font-weight: 700; letter-spacing: -.04em; line-height: 1.08; margin-bottom: 24px; opacity: 0; animation: fade-up .8s ease-out .2s forwards; }
-    .hero h1 .accent-blue { background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero h1 .accent-blue { background: linear-gradient(135deg, var(--accent, #001F5C) 0%, #1863dc 50%, #6fa8ff 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 4s ease infinite; }
     .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; opacity: 0; animation: fade-up .8s ease-out .3s forwards; max-width: 480px; }
     .hero-callout { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 36px; opacity: 0; animation: fade-up .8s ease-out .35s forwards; }
     .hero-callout strong { color: var(--fg); }
-    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; animation: fade-up .8s ease-out .4s forwards; }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; opacity: 0; animation: fade-up .8s ease-out .4s forwards; }
     .btn-primary-blue { background: var(--blue); color: #fff; padding: 15px 30px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s; display: inline-flex; align-items: center; gap: 8px; border: 0; cursor: pointer; }
-    .btn-primary-blue:hover { background: #4338CA; transform: translateY(-2px); box-shadow: 0 16px 32px rgba(79,70,229,.3); }
+    .btn-primary-blue:hover { background: #4338CA; transform: translateY(-2px); box-shadow: 0 16px 32px rgba(24,99,220,.3); }
     .btn-ghost { background: transparent; color: var(--fg); padding: 14px 30px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s; border: 1.5px solid var(--border); display: inline-flex; align-items: center; gap: 8px; }
     .btn-ghost:hover { border-color: var(--fg); background: var(--surface); }
 
@@ -130,7 +140,7 @@
     .prio-item-name { font-size: 12px; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
     .prio-bar { height: 3px; border-radius: 2px; }
     .prio-bar-blue { background: var(--blue); width: 70%; }
-    .prio-bar-purple { background: #7C3AED; width: 40%; }
+    .prio-bar-purple { background: #1863dc; width: 40%; }
     .prio-queue-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; }
     .hero-teammates { display: flex; align-items: center; gap: 6px; padding: 8px 4px 4px; margin-top: auto; }
     .teammate-avatars { display: flex; }
@@ -140,11 +150,11 @@
 
     /* ===== SECTIONS ===== */
     .section { padding: var(--section-gap) 0; }
-    .section-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--blue); margin-bottom: 16px; text-align: center; }
+    .section-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); margin-bottom: 16px; text-align: center; }
     .section-header { text-align: center; margin-bottom: 64px; }
     .section-header h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 46px); font-weight: 700; letter-spacing: -.03em; line-height: 1.2; margin-bottom: 20px; }
     .section-header p { font-size: 17px; color: var(--muted); max-width: 600px; line-height: 1.7; margin: 0 auto; }
-    .accent-blue-text { background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .accent-blue-text { background: linear-gradient(135deg, var(--accent, #001F5C) 0%, #6fa8ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
     /* Reveal */
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease-out, transform .6s ease-out; }
@@ -187,8 +197,8 @@
     .context-check-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
     .context-check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--fg); }
     .check-icon { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--blue); color: var(--blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-    .pro-tip-box { background: #f8f9ff; border: 1px solid rgba(79,70,229,.15); border-radius: 12px; padding: 18px 20px; }
-    .pro-tip-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .pro-tip-box { background: var(--accent-light); border: 1px solid rgba(0,31,92,.1); border-radius: 12px; padding: 18px 20px; }
+    .pro-tip-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
     .pro-tip-box p { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
     /* ===== TEAM SECTION ===== */
@@ -219,7 +229,7 @@
     .team-task-id { font-weight: 700; color: var(--blue); font-size: 11px; min-width: 48px; }
     .team-task-name { color: var(--fg); flex: 1; padding: 0 8px; }
     .status-tag { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; }
-    .status-focus { background: rgba(79,70,229,.1); color: #4F46E5; }
+    .status-focus { background: rgba(0,31,92,.08); color: var(--accent); }
     .status-queue { background: rgba(245,158,11,.12); color: #b45309; }
     .status-blocked { background: rgba(239,68,68,.1); color: #dc2626; }
     .status-done { background: rgba(34,197,94,.1); color: #15803d; }
@@ -230,7 +240,7 @@
     @media (max-width: 900px) { .integrations-grid { grid-template-columns: repeat(4, 1fr); } }
     @media (max-width: 480px) { .integrations-grid { grid-template-columns: repeat(3, 1fr); } }
     .integration-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: all .25s; cursor: default; }
-    .integration-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.08); transform: translateY(-3px); border-color: rgba(79,70,229,.2); }
+    .integration-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.08); transform: translateY(-3px); border-color: rgba(0,31,92,.2); }
     .integration-card span { font-size: 12px; font-weight: 600; color: var(--fg-secondary); text-align: center; }
     .integration-note { text-align: center; font-size: 14px; color: var(--muted); }
     .integration-note strong { color: var(--fg); }
@@ -256,55 +266,23 @@
 </head>
 <body>
 
-  <nav>
-    <div class="nav-inner">
-      <a href="home.html" class="logo"><img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img"></a>
-      <div class="nav-center">
-        <a href="inside.html">AI Inside</a>
-        <div class="nav-dropdown">
-          <span class="nav-dropdown-toggle active">AI Work
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-          </span>
-          <div class="nav-dropdown-menu">
-            <a href="work.html">Overview</a>
-            <a href="focus-alignment.html" class="active">Focus &amp; Alignment</a>
-          </div>
-        </div>
-        <a href="personal.html">AI Personal</a>
-        <a href="about.html">About Us</a>
-      </div>
-      <a href="#demo" class="nav-cta">Book a demo</a>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="nav-mobile-panel" id="nav-mobile-panel">
-      <a href="inside.html">AI Inside</a>
-      <a href="work.html">AI Work</a>
-      <a href="focus-alignment.html" class="active">Focus &amp; Alignment</a>
-      <a href="personal.html">AI Personal</a>
-      <a href="about.html">About Us</a>
-      <a href="#demo" class="nav-mobile-cta">Book a demo</a>
-    </div>
-  </nav>
+  <infina-nav active="focus-alignment"></infina-nav>
 
   <!-- ===== HERO ===== -->
   <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-bg"></div>
+    <div class="fa-shape fa-shape-1"></div>
+    <div class="fa-shape fa-shape-2"></div>
+    <div class="fa-shape fa-shape-3"></div>
+    <div class="fa-shape fa-shape-4"></div>
     <div class="container">
       <div class="hero-grid">
         <div class="hero-text">
-          <div class="hero-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
-            The future of work management
-          </div>
           <h1>The <span class="accent-blue">AI chief<br>of staff</span> for<br>teams under 50.</h1>
           <p class="hero-sub">Stop retyping the same status update across Slack, Asana, and your OKR spreadsheet. Infina 1Thing connects your priorities, key results, and daily reports — in one AI chat. So your team does the right work, every single day.</p>
-          <div class="hero-callout">
-            <strong>Just moved off Asana's free plan?</strong> You're in good company. Thousands of small teams are switching to something built for how they actually work.
-          </div>
           <div class="hero-ctas">
             <a href="#demo" class="btn-primary-blue">Start chatting →</a>
-            <a href="#demo" class="btn-ghost">Sign in to dashboard</a>
           </div>
         </div>
 
@@ -363,7 +341,7 @@
                   <div class="prio-bar prio-bar-blue"></div>
                 </div>
                 <div class="prio-card">
-                  <div class="prio-item-id" style="color:#7C3AED;">SHP-568</div>
+                  <div class="prio-item-id" style="color:#1863dc;">SHP-568</div>
                   <div class="prio-item-name">Website merge — MKT & Product</div>
                   <div class="prio-bar prio-bar-purple"></div>
                 </div>
@@ -384,8 +362,8 @@
           <!-- Floating teammates card -->
           <div class="hero-floating-card">
             <div class="teammate-avatars">
-              <div class="teammate-avatar" style="background:#4F46E5;">NQ</div>
-              <div class="teammate-avatar" style="background:#7C3AED;">GA</div>
+              <div class="teammate-avatar" style="background:#1863dc;">NQ</div>
+              <div class="teammate-avatar" style="background:#1863dc;">GA</div>
               <div class="teammate-avatar" style="background:#06b6d4;">TN</div>
               <div class="teammate-avatar" style="background:#f59e0b;">JM</div>
               <div class="teammate-avatar" style="background:#ef4444;">EK</div>
@@ -475,7 +453,7 @@
       <div class="team-grid reveal">
         <div class="team-content">
           <p class="team-eyebrow">Team &amp; Org</p>
-          <h2>Built for the whole team — <span class="accent-blue-text">not just the manager.</span></h2>
+          <h2>Built for the whole team <span class="accent-blue-text">not just the manager.</span></h2>
           <p>See every direct report's active priorities in one view. Spot bottlenecks before they become blockers. Keep the org chart accurate so everyone knows who owns what.</p>
           <div class="team-features">
             <div class="team-feature">
@@ -520,7 +498,7 @@
           </div>
           <div class="team-member-row">
             <div>
-              <div class="team-avatar" style="background:#4F46E5;">NA</div>
+              <div class="team-avatar" style="background:#1863dc;">NA</div>
             </div>
             <div>
               <div class="team-member-name">Nathan</div>
@@ -548,7 +526,7 @@
               <div class="team-member-role" style="margin-bottom:10px;">Senior Designer</div>
               <div class="team-tasks">
                 <div class="team-task-row">
-                  <span class="team-task-id" style="color:#7C3AED;">SHP-568</span>
+                  <span class="team-task-id" style="color:#1863dc;">SHP-568</span>
                   <span class="team-task-name">Website merge</span>
                   <span class="status-tag status-focus">Focus</span>
                 </div>
@@ -638,31 +616,19 @@
   </section>
 
   <!-- ===== BOOK A DEMO ===== -->
-  <section style="padding: var(--section-gap) 0; background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);" id="demo">
+  <section style="padding: var(--section-gap) 0; background: linear-gradient(135deg, #001F5C 0%, #1863dc 100%);" id="demo">
     <div class="container" style="text-align:center;">
       <h2 style="font-family:var(--font-display);font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.03em;color:#fff;margin-bottom:16px;">Ready to get your team aligned?</h2>
       <p style="font-size:17px;color:rgba(255,255,255,.75);margin-bottom:36px;">Start in minutes. No setup fees. No seat minimums.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a href="work.html#demo" style="background:#fff;color:#4F46E5;padding:15px 32px;border-radius:999px;font-size:15px;font-weight:700;transition:all .25s;display:inline-flex;align-items:center;gap:8px;">Start for free →</a>
-        <a href="work.html#demo" style="background:rgba(255,255,255,.15);color:#fff;padding:15px 32px;border-radius:999px;font-size:15px;font-weight:600;border:1.5px solid rgba(255,255,255,.3);transition:all .25s;display:inline-flex;align-items:center;gap:8px;">Talk to sales</a>
+        <a href="work.html#demo" style="background:#fff;color:#001F5C;padding:15px 32px;border-radius:999px;font-size:15px;font-weight:700;transition:all .25s;display:inline-flex;align-items:center;gap:8px;">Start for free →</a>
+        <a href="work.html#demo" style="background:rgba(255,255,255,.15);color:#fff;padding:15px 32px;border-radius:999px;font-size:15px;font-weight:600;border:1.5px solid rgba(255,255,255,.3);transition:all .25s;display:inline-flex;align-items:center;gap:8px;">Sign in to dashboard</a>
       </div>
     </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
-  <footer>
-    <div class="container footer-inner">
-      <div class="logo">
-        <img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img">
-      </div>
-      <div class="footer-links">
-        <a href="inside.html">AI Inside</a>
-        <a href="work.html">AI Work</a>
-        <a href="personal.html">AI Personal</a>
-      </div>
-      <p class="footer-copy">© 2026 Infina. All rights reserved.</p>
-    </div>
-  </footer>
+  <infina-footer></infina-footer>
 
   <script>
     // Reveal on scroll
@@ -672,20 +638,15 @@
       }, { threshold: 0.1 }).observe(el);
     });
 
-    // Mobile nav
-    document.getElementById('nav-toggle').addEventListener('click', () => {
-      document.body.classList.toggle('nav-open');
-    });
-
     // Chat scenarios
     const scenarios = {
       priorities: {
         userMsg: 'What are my top priorities for this week?',
         aiIntro: 'Here are your top 3 Strategic High Priorities — all currently in Queue:',
         tasks: [
-          { id: 'KR-358', name: 'Infina AI Landing Page', tag: 'Focus', tagClass: 'status-focus', idColor: '#4F46E5' },
-          { id: 'KR-355', name: 'Infina AI logo redesign', tag: 'Queue', tagClass: 'status-queue', idColor: '#4F46E5' },
-          { id: 'SHP-568', name: 'Website — MKT × Product merge', tag: 'Queue', tagClass: 'status-queue', idColor: '#7C3AED' },
+          { id: 'KR-358', name: 'Infina AI Landing Page', tag: 'Focus', tagClass: 'status-focus', idColor: '#1863dc' },
+          { id: 'KR-355', name: 'Infina AI logo redesign', tag: 'Queue', tagClass: 'status-queue', idColor: '#1863dc' },
+          { id: 'SHP-568', name: 'Website — MKT × Product merge', tag: 'Queue', tagClass: 'status-queue', idColor: '#1863dc' },
         ]
       },
       blockers: {
@@ -716,7 +677,7 @@
           </div>`).join('');
         html += `<div class="chat-msg-ai"><div class="chat-ai-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg></div><div class="chat-bubble-ai"><div style="font-weight:700;margin-bottom:10px;font-size:13px;">Infina AI</div><div style="font-size:13px;color:var(--muted);margin-bottom:12px;">${s.aiIntro}</div>${tasksHTML}</div></div>`;
       } else if (s.note) {
-        html += `<div class="chat-msg-ai"><div class="chat-ai-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg></div><div class="chat-bubble-ai"><div style="font-weight:700;margin-bottom:8px;font-size:13px;">Infina AI</div><div style="font-size:13px;color:var(--muted);margin-bottom:12px;">${s.aiIntro}</div><div style="background:#f8f9ff;border:1px solid rgba(79,70,229,.15);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--fg);margin-bottom:10px;">${s.note}</div><div style="font-size:13px;color:var(--blue);font-weight:600;">${s.followup}</div></div></div>`;
+        html += `<div class="chat-msg-ai"><div class="chat-ai-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg></div><div class="chat-bubble-ai"><div style="font-weight:700;margin-bottom:8px;font-size:13px;">Infina AI</div><div style="font-size:13px;color:var(--muted);margin-bottom:12px;">${s.aiIntro}</div><div style="background:#f8f9ff;border:1px solid rgba(24,99,220,.15);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--fg);margin-bottom:10px;">${s.note}</div><div style="font-size:13px;color:var(--blue);font-weight:600;">${s.followup}</div></div></div>`;
       }
 
       body.innerHTML = html;
@@ -734,5 +695,7 @@
     // Initial render
     renderChat('priorities');
   </script>
+  <script src="nav.js"></script>
+  <script src="footer.js"></script>
 </body>
 </html>
