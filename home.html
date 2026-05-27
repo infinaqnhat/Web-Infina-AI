@@ -4414,6 +4414,7 @@
               <span>Tax planning</span>
               <span>Savings goals</span>
             </div>
+            <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
           </div>
 
           <div class="agents-personal-row">
@@ -4425,6 +4426,7 @@
               <span>Trip planning</span>
               <span>Meal planning</span>
             </div>
+            <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
           </div>
 
           <div class="agents-personal-row agents-personal-row--muted">
@@ -4882,6 +4884,25 @@
       border: 1px solid var(--border-light);
       border-radius: 999px;
       padding: 5px 14px;
+    }
+
+    .agents-personal-cta {
+      display: block;
+      text-align: right;
+      margin-top: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--card-color, #7e57c2);
+      text-decoration: none;
+    }
+
+    .agents-personal-cta-arrow {
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    .agents-personal-cta:hover .agents-personal-cta-arrow {
+      transform: translateX(4px);
     }
 
     /* Work tab — audience sections */
