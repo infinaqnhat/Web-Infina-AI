@@ -4397,35 +4397,47 @@
 
       <!-- ── TAB: AI Personal ── -->
       <div class="agents-panel" id="tab-personal">
-        <p class="agents-panel-tagline">A specialist for every financial decision you face.</p>
-        <div class="agents-personal-grid">
+        <p class="agents-panel-tagline">A specialist for every life decision you face.</p>
+        <div class="agents-personal-rows">
 
-          <div class="agents-personal-live">
-            <span class="agents-live-badge">
-              <span class="agents-live-dot"></span>Available now
-            </span>
-            <h3>Personal Finance Specialist Agent</h3>
-            <p>Your AI advisor for budgeting, loans, credit scores, and everyday financial guidance.</p>
-          </div>
-
-          <div class="agents-personal-cards">
-            <div class="agents-coming-card">
-              <div class="agents-coming-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-              </div>
-              <div>
-                <strong>Coming Soon</strong>
-                <p>Stock, Wealth, Personal Finance, and Insurance specialist agents will all be available for personal use soon.</p>
+          <div class="agents-personal-row">
+            <div class="agents-personal-row-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            </div>
+            <div class="agents-personal-row-body">
+              <span class="agents-personal-category">Finance</span>
+              <div class="agents-personal-tags">
+                <span>Stock analysis</span>
+                <span>Market signals</span>
+                <span>Budgeting</span>
+                <span>Loans &amp; credit</span>
+                <span>Insurance</span>
+                <span>Tax planning</span>
+                <span>Savings goals</span>
               </div>
             </div>
-            <div class="agents-coming-card">
-              <div class="agents-coming-icon agents-coming-icon--green">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+
+          <div class="agents-personal-row">
+            <div class="agents-personal-row-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            </div>
+            <div class="agents-personal-row-body">
+              <span class="agents-personal-category">Lifestyle</span>
+              <div class="agents-personal-tags">
+                <span>Trip planning</span>
+                <span>Meal planning</span>
               </div>
-              <div>
-                <strong>Available via WhatsApp</strong>
-                <p>All specialist agents accessible directly through WhatsApp.</p>
-              </div>
+            </div>
+          </div>
+
+          <div class="agents-personal-row agents-personal-row--muted">
+            <div class="agents-personal-row-icon agents-personal-row-icon--muted">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+            </div>
+            <div class="agents-personal-row-body">
+              <span class="agents-personal-category agents-personal-category--muted">More coming soon</span>
+              <p class="agents-personal-sub">New specialists and verticals on the way.</p>
             </div>
           </div>
 
@@ -4824,131 +4836,91 @@
     }
 
     /* Personal tab */
-    .agents-personal-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 32px;
-      max-width: 1000px;
+    .agents-personal-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 860px;
       margin: 0 auto;
-      align-items: start;
     }
 
-    @media (max-width: 768px) {
-      .agents-personal-grid { grid-template-columns: 1fr; }
-    }
-
-    .agents-personal-live {
-      background: linear-gradient(135deg, #5e35b1 0%, #9575cd 100%);
-      border: none;
-      border-radius: 18px;
-      padding: 26px 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      color: #fff;
-    }
-
-    .agents-personal-live h3 {
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1.3;
-      color: #fff;
-      letter-spacing: -0.02em;
-    }
-
-    .agents-personal-live p {
-      font-size: 14px;
-      line-height: 1.65;
-      color: rgba(255,255,255,0.85);
-    }
-
-    .agents-personal-live a {
-      color: #fff;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .agents-live-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 999px;
-      padding: 5px 14px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #fff;
-      width: fit-content;
-    }
-
-    .agents-live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #4cd584;
-      box-shadow: 0 0 8px rgba(76,213,132,0.8);
-      animation: speed-dot 1.6s ease-in-out infinite;
-    }
-
-    .agents-personal-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .agents-coming-card {
+    .agents-personal-row {
       display: flex;
       align-items: flex-start;
       gap: 16px;
       background: #fff;
       border: 1.5px solid var(--border-light);
-      border-top: 4px solid #7e57c2;
-      border-radius: 18px;
-      padding: 22px 20px;
-      transition: all 0.3s;
+      border-radius: 16px;
+      padding: 20px 22px;
+      transition: box-shadow 0.2s;
     }
 
-    .agents-coming-card:hover {
-      border-color: color-mix(in oklab, #7e57c2 25%, transparent);
-      border-top-color: #7e57c2;
-      box-shadow: 0 8px 24px -8px rgba(126,87,194,0.15);
+    .agents-personal-row:hover {
+      box-shadow: 0 4px 16px rgba(0,31,92,.07);
     }
 
-    .agents-coming-card strong {
-      display: block;
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--fg);
-      margin-bottom: 6px;
+    .agents-personal-row--muted {
+      background: var(--surface, #fafafa);
     }
 
-    .agents-coming-card p {
-      font-size: 13.5px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .agents-coming-icon {
+    .agents-personal-row-icon {
       width: 40px;
       height: 40px;
       border-radius: 12px;
-      background: rgba(126,87,194,0.08);
-      color: #7e57c2;
+      background: var(--accent-light);
+      color: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
     }
 
-    .agents-coming-icon svg { width: 20px; height: 20px; }
+    .agents-personal-row-icon svg { width: 20px; height: 20px; }
 
-    .agents-coming-icon--green {
-      background: rgba(126,87,194,0.08);
-      color: #7e57c2;
+    .agents-personal-row-icon--muted {
+      background: var(--border-light);
+      color: var(--muted);
+    }
+
+    .agents-personal-row-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 2px;
+    }
+
+    .agents-personal-category {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+    }
+
+    .agents-personal-category--muted {
+      color: var(--fg);
+    }
+
+    .agents-personal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .agents-personal-tags span {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--fg-secondary);
+      background: var(--surface, #fafafa);
+      border: 1px solid var(--border-light);
+      border-radius: 999px;
+      padding: 5px 14px;
+    }
+
+    .agents-personal-sub {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
     }
 
     /* Work tab — audience sections */
