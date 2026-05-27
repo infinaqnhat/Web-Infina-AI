@@ -4401,44 +4401,39 @@
         <div class="agents-personal-rows">
 
           <div class="agents-personal-row">
-            <div class="agents-personal-row-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            <h3 class="agents-card-title">
+              <span class="agents-title-main">Finance</span>
+              <span class="agents-title-sub">Personal Specialist</span>
+            </h3>
+            <div class="agents-personal-tags">
+              <span>Stock analysis</span>
+              <span>Market signals</span>
+              <span>Budgeting</span>
+              <span>Loans &amp; credit</span>
+              <span>Insurance</span>
+              <span>Tax planning</span>
+              <span>Savings goals</span>
             </div>
-            <div class="agents-personal-row-body">
-              <span class="agents-personal-category">Finance</span>
-              <div class="agents-personal-tags">
-                <span>Stock analysis</span>
-                <span>Market signals</span>
-                <span>Budgeting</span>
-                <span>Loans &amp; credit</span>
-                <span>Insurance</span>
-                <span>Tax planning</span>
-                <span>Savings goals</span>
-              </div>
-            </div>
+            <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
           </div>
 
           <div class="agents-personal-row">
-            <div class="agents-personal-row-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <h3 class="agents-card-title">
+              <span class="agents-title-main">Lifestyle</span>
+              <span class="agents-title-sub">Personal Specialist</span>
+            </h3>
+            <div class="agents-personal-tags">
+              <span>Trip planning</span>
+              <span>Meal planning</span>
             </div>
-            <div class="agents-personal-row-body">
-              <span class="agents-personal-category">Lifestyle</span>
-              <div class="agents-personal-tags">
-                <span>Trip planning</span>
-                <span>Meal planning</span>
-              </div>
-            </div>
+            <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
           </div>
 
           <div class="agents-personal-row agents-personal-row--muted">
-            <div class="agents-personal-row-icon agents-personal-row-icon--muted">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-            </div>
-            <div class="agents-personal-row-body">
-              <span class="agents-personal-category agents-personal-category--muted">More coming soon</span>
-              <p class="agents-personal-sub">New specialists and verticals on the way.</p>
-            </div>
+            <h3 class="agents-card-title">
+              <span class="agents-title-main" style="color: var(--muted);">More coming soon</span>
+              <span class="agents-title-sub">New specialists and verticals on the way.</span>
+            </h3>
           </div>
 
         </div>
@@ -4690,6 +4685,7 @@
     #tab-inside  .agents-card { --card-color: #1863dc; }
     #tab-work    .agents-card { --card-color: #149a6e; }
     #tab-personal .agents-card { --card-color: #7e57c2; }
+    #tab-personal .agents-personal-row { --card-color: #7e57c2; }
 
     /* ── Option A: coloured top border + matching title ── */
     .agents-card {
@@ -4846,58 +4842,32 @@
 
     .agents-personal-row {
       display: flex;
-      align-items: flex-start;
-      gap: 16px;
+      flex-direction: column;
+      gap: 14px;
       background: #fff;
       border: 1.5px solid var(--border-light);
-      border-radius: 16px;
-      padding: 20px 22px;
-      transition: box-shadow 0.2s;
+      border-top: 4px solid var(--card-color, #7e57c2);
+      border-radius: 18px;
+      padding: 26px 22px;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
     }
 
     .agents-personal-row:hover {
-      box-shadow: 0 4px 16px rgba(0,31,92,.07);
+      transform: translateY(-5px);
+      border-color: color-mix(in oklab, var(--card-color, #7e57c2) 35%, transparent);
+      border-top-color: var(--card-color, #7e57c2);
+      box-shadow: 0 20px 48px -16px color-mix(in oklab, var(--card-color, #7e57c2) 25%, transparent);
     }
 
     .agents-personal-row--muted {
       background: var(--surface, #fafafa);
+      border-top-color: var(--border-light);
     }
 
-    .agents-personal-row-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: var(--accent-light);
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .agents-personal-row-icon svg { width: 20px; height: 20px; }
-
-    .agents-personal-row-icon--muted {
-      background: var(--border-light);
-      color: var(--muted);
-    }
-
-    .agents-personal-row-body {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding-top: 2px;
-    }
-
-    .agents-personal-category {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.01em;
-    }
-
-    .agents-personal-category--muted {
-      color: var(--fg);
+    .agents-personal-row--muted:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: var(--border-light);
     }
 
     .agents-personal-tags {
@@ -4916,11 +4886,23 @@
       padding: 5px 14px;
     }
 
-    .agents-personal-sub {
-      font-size: 13.5px;
-      color: var(--muted);
-      line-height: 1.5;
-      margin: 0;
+    .agents-personal-cta {
+      display: block;
+      text-align: right;
+      margin-top: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--card-color, #7e57c2);
+      text-decoration: none;
+    }
+
+    .agents-personal-cta-arrow {
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    .agents-personal-cta:hover .agents-personal-cta-arrow {
+      transform: translateX(4px);
     }
 
     /* Work tab — audience sections */
