@@ -705,6 +705,8 @@
       document.querySelectorAll('.chat-prompt-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderChat(btn.dataset.scenario);
+      const bar = document.getElementById('chat-prompts');
+      bar.scrollTo({ left: btn.offsetLeft - (bar.offsetWidth / 2) + (btn.offsetWidth / 2), behavior: 'smooth' });
     });
 
     // Initial render
