@@ -76,6 +76,8 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+
     /* Navigation */
     nav {
       position: fixed;
@@ -274,6 +276,16 @@
       margin-bottom: 24px;
       opacity: 0;
       animation: fade-up 0.6s ease-out 0.2s forwards;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent);
+      animation: pulse-dot 2s ease-in-out infinite;
+      flex-shrink: 0;
     }
 
     .hero h1 {
@@ -5481,7 +5493,7 @@
     <div class="container">
       <div class="hero-grid">
         <div class="hero-text">
-          <span class="hero-eyebrow">For Platforms</span>
+          <div class="hero-badge">For Platforms</div>
           <h1><span class="line">Your AI Specialist, built in.</span><br><span class="line line-accent">More engaged customers.</span><br><span class="line line-accent">More revenue. Zero build time.</span></h1>
           <ul class="hero-value-list">
             <li>
