@@ -2991,25 +2991,20 @@
     .core {
       position: relative;
       padding: 100px 0;
-      background: #0d1b3e;
+      background: var(--surface);
       overflow: hidden;
     }
 
-    .core-left .section-eyebrow-plain { color: rgba(255,255,255,0.45); }
-    .core-left h2 { color: #fff; }
-    .core-left .accent-text {
-      background: linear-gradient(135deg, #4c8ef0 0%, #7aadff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .core-left-desc { color: rgba(255,255,255,0.5); }
+    .core-left .section-eyebrow-plain { color: var(--muted); }
+    .core-left h2 { color: var(--fg); }
+    .core-left-desc { color: var(--muted); }
 
     .step-journey-panel {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #fff;
+      border: 1px solid var(--border);
       border-radius: 20px;
       padding: 32px 24px 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
     }
 
     .core-layout {
@@ -3179,24 +3174,23 @@
     .step-icon svg {
       width: 28px;
       height: 28px;
-      stroke: rgba(255,255,255,0.5);
     }
 
     .step-item:last-child .step-icon svg {
-      stroke: #5de8b0;
+      stroke: #149a6e;
     }
 
     .step-title {
       font-size: 15px;
       font-weight: 700;
-      color: rgba(255,255,255,0.95);
+      color: var(--fg);
       margin: 0 0 6px;
       letter-spacing: -0.01em;
     }
 
     .step-sub {
       font-size: 14px;
-      color: rgba(255,255,255,0.45);
+      color: var(--muted);
       line-height: 1.55;
       padding: 0 4px;
     }
