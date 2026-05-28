@@ -69,7 +69,7 @@
     .nav-dropdown-menu a:hover, .nav-dropdown-menu a.active { background: var(--accent-light); color: var(--accent); }
 
     /* Hero */
-    .hero { position: relative; padding: clamp(140px, 18vw, 180px) 0 clamp(64px, 8vw, 96px); overflow: hidden; background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%); }
+    .hero { position: relative; padding: clamp(140px, 18vw, 180px) 0 clamp(64px, 8vw, 96px); overflow: hidden; background: transparent; }
     .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 70% 30%, rgba(24,99,220,.14), transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(126,87,194,.08), transparent 60%); z-index: -2; pointer-events: none; }
     .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(24,99,220,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(24,99,220,.06) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); z-index: -2; pointer-events: none; }
     .shape { position: absolute; border-radius: 50%; z-index: -1; pointer-events: none; }
@@ -943,6 +943,7 @@
     <div class="container">
       <div class="hero-grid">
         <div class="hero-text">
+          <div class="hero-badge">For Business</div>
           <h1><span class="line">Your team, working at their best</span><br><span class="line line-accent">with AI handling the rest.</span></h1>
           <ul class="hero-bullets">
             <li>Integrate in Slack and WhatsApp</li>
