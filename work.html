@@ -87,10 +87,12 @@
     .hero h1 .line { white-space: normal; display: inline-block; padding: .12em 0 .05em; line-height: 1.15; max-width: 100%; }
     .hero h1 .line-accent { background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 50%, var(--accent) 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 4s ease infinite; }
     .hero-sub { font-size: 20px; color: #64748b; line-height: 1.65; margin: 0 auto 32px; opacity: 0; animation: fade-up .8s ease-out .4s forwards; max-width: 580px; font-weight: 400; }
-    .hero-bullets { list-style: none; display: flex; flex-wrap: nowrap; justify-content: center; align-items: center; gap: 0; margin: 0 auto 36px; padding: 0; opacity: 0; animation: fade-up .8s ease-out .48s forwards; }
-    .hero-bullets li { display: flex; align-items: center; gap: 7px; font-size: 14px; color: var(--fg); font-weight: 500; padding: 6px 20px; border-right: 1.5px solid var(--border); line-height: 1.4; white-space: nowrap; }
-    .hero-bullets li:last-child { border-right: none; }
-    .hero-bullets li::before { content: "•"; color: var(--accent); font-size: 16px; line-height: 1; }
+    .hero-value-list { list-style: none; display: flex; flex-direction: row; justify-content: center; gap: 0; margin: 28px auto 0; padding: 0; text-align: left; max-width: 860px; opacity: 0; animation: fade-up .8s ease-out .48s forwards; }
+    .hero-value-list li { font-size: 15px; color: var(--fg-secondary); padding: 16px 24px; line-height: 1.5; flex: 1; border-left: 1.5px solid var(--border-light); display: flex; align-items: center; gap: 10px; }
+    .hero-value-list li:first-child { border-left: none; }
+    .hero-value-icon { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px; background: rgba(24,99,220,.08); color: #1863dc; }
+    .hero-value-icon svg { width: 16px; height: 16px; }
+    @media (max-width: 640px) { .hero-value-list { flex-direction: column; } .hero-value-list li { border-left: none; border-top: 1.5px solid var(--border-light); padding: 12px 0; } .hero-value-list li:first-child { border-top: none; } }
     .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fade-up .8s ease-out .5s forwards; }
     .btn-primary { background: var(--accent); color: #fff; padding: 16px 32px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s; display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer; }
     .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(24,99,220,.3); }
@@ -947,10 +949,25 @@
         <div class="hero-text">
           <div class="hero-badge">For Business</div>
           <h1><span class="line">Your team, working at their best</span><br><span class="line line-accent">with AI handling the rest.</span></h1>
-          <ul class="hero-bullets">
-            <li>Integrate in Slack and WhatsApp</li>
-            <li>Automates updates, tracking, and routine workflows 24/7</li>
-            <li>Frees your team for decisions and the work that moves business forward</li>
+          <ul class="hero-value-list">
+            <li>
+              <span class="hero-value-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </span>
+              Integrate in Slack and WhatsApp
+            </li>
+            <li>
+              <span class="hero-value-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+              </span>
+              Automates updates, tracking, and routine workflows 24/7
+            </li>
+            <li>
+              <span class="hero-value-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </span>
+              Frees your team for decisions and the work that moves business forward
+            </li>
           </ul>
           <div class="hero-ctas">
             <a href="#demo" class="btn-primary">Book a demo →</a>
