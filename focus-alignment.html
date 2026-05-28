@@ -162,7 +162,7 @@
 
     /* ===== CONTEXT AI SECTION ===== */
     .context-section { background: #fff; }
-    .context-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .context-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
     @media (max-width: 960px) { .context-grid { grid-template-columns: 1fr; gap: 48px; } }
 
     /* Chat window */
@@ -173,7 +173,7 @@
     .chat-title-text { font-size: 13px; font-weight: 600; color: var(--fg); position: absolute; left: 50%; transform: translateX(-50%); }
     .chat-online { font-size: 12px; color: #22c55e; font-weight: 600; display: flex; align-items: center; gap: 5px; }
     .chat-online::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #22c55e; display: inline-block; }
-    .chat-body { padding: 20px; min-height: 300px; display: flex; flex-direction: column; gap: 16px; position: relative; }
+    .chat-body { padding: 20px; height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; position: relative; }
     .chat-msg-user { display: flex; justify-content: flex-end; }
     .chat-bubble-user { background: var(--blue); color: #fff; padding: 11px 18px; border-radius: 20px 20px 4px 20px; font-size: 14px; font-weight: 500; max-width: 80%; }
     .chat-msg-ai { display: flex; gap: 10px; align-items: flex-start; }
