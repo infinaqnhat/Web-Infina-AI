@@ -767,10 +767,12 @@
     .btn-whatsapp { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #fff; padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; border: 1px solid #25D366; cursor: pointer; transition: all .2s; }
     .btn-whatsapp:hover { background: #1ebe5d; border-color: #1ebe5d; box-shadow: 0 4px 12px rgba(37,211,102,.3); transform: translateY(-1px); }
     .coworkers-ctas { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-    .coworkers-grid { display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: start; }
+    .coworkers-grid { display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: stretch; }
     .cw-panel { display: none; }
     .cw-panel.active { display: block; }
-    .cw-panels-wrap { position: sticky; top: 100px; }
+    .cw-panels-wrap { position: sticky; top: 100px; height: 100%; }
+    .cw-panel { height: 100%; }
+    .slack-mockup { height: 100%; }
     @media (max-width: 1000px) {
       .coworkers-grid { grid-template-columns: 1fr; gap: 32px; }
       .coworkers-features { flex-direction: row; flex-wrap: wrap; gap: 8px; }
