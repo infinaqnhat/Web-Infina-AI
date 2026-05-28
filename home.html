@@ -4398,42 +4398,38 @@
       <!-- ── TAB: AI Personal ── -->
       <div class="agents-panel" id="tab-personal">
         <p class="agents-panel-tagline">Better your everyday decisions with AI specialists.</p>
-        <div class="agents-personal-rows">
+        <div class="agents-grid agents-personal-grid">
 
           <div class="agents-personal-row">
             <h3 class="agents-card-title">
               <span class="agents-title-main">Finance</span>
-              <span class="agents-title-sub">Personal Specialist</span>
             </h3>
-            <div class="agents-personal-tags">
-              <span>Stock analysis</span>
-              <span>Market signals</span>
-              <span>Budgeting</span>
-              <span>Loans &amp; credit</span>
-              <span>Insurance</span>
-              <span>Tax planning</span>
-              <span>Savings goals</span>
-            </div>
+            <ul class="agents-list">
+              <li>Answers questions about your money in plain language</li>
+              <li>Tracks your budget and flags where to cut back</li>
+              <li>Guides you on loans, insurance, tax planning, and more</li>
+            </ul>
+            <p class="agents-personal-more">More features coming.</p>
             <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
           </div>
 
           <div class="agents-personal-row">
             <h3 class="agents-card-title">
               <span class="agents-title-main">Lifestyle</span>
-              <span class="agents-title-sub">Personal Specialist</span>
             </h3>
-            <div class="agents-personal-tags">
-              <span>Trip planning</span>
-              <span>Meal planning</span>
-            </div>
+            <ul class="agents-list">
+              <li>Plans trips around your preferences and budget</li>
+              <li>Builds weekly meal plans with recipes and shopping lists</li>
+            </ul>
+            <p class="agents-personal-more">More features coming.</p>
             <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
           </div>
 
           <div class="agents-personal-row agents-personal-row--muted">
             <h3 class="agents-card-title">
               <span class="agents-title-main" style="color: var(--muted);">More coming soon</span>
-              <span class="agents-title-sub">New specialists and verticals on the way.</span>
             </h3>
+            <p class="agents-personal-sub">New specialists and verticals on the way.</p>
           </div>
 
         </div>
@@ -4832,12 +4828,16 @@
     }
 
     /* Personal tab */
-    .agents-personal-rows {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-width: 860px;
-      margin: 0 auto;
+    .agents-personal-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 900px) {
+      .agents-personal-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 520px) {
+      .agents-personal-grid { grid-template-columns: 1fr; }
     }
 
     .agents-personal-row {
@@ -4870,26 +4870,25 @@
       border-color: var(--border-light);
     }
 
-    .agents-personal-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    .agents-personal-more {
+      font-size: 12.5px;
+      font-style: italic;
+      color: var(--muted);
+      margin: 0;
     }
 
-    .agents-personal-tags span {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--fg-secondary);
-      background: var(--surface, #fafafa);
-      border: 1px solid var(--border-light);
-      border-radius: 999px;
-      padding: 5px 14px;
+    .agents-personal-sub {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
     }
 
     .agents-personal-cta {
       display: block;
       text-align: right;
-      margin-top: 4px;
+      margin-top: auto;
+      padding-top: 8px;
       font-size: 13px;
       font-weight: 500;
       color: var(--card-color, #7e57c2);
