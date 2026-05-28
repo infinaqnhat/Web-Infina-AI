@@ -192,6 +192,9 @@
     .chat-prompt-btn { flex-shrink: 0; padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; border: 1.5px solid var(--border); background: #fff; color: var(--fg-secondary); cursor: pointer; transition: all .2s; white-space: nowrap; }
     .chat-prompt-btn:hover { border-color: var(--blue); color: var(--blue); }
     .chat-prompt-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .chat-action-row { display: flex; gap: 8px; }
+    .chat-action-btn { padding: 8px 16px; border-radius: 999px; font-size: 12px; font-weight: 600; border: 1.5px solid var(--border); background: #fff; color: var(--fg-secondary); cursor: default; white-space: nowrap; }
+    .chat-action-btn.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
 
     /* Context content */
     .context-check-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
@@ -651,7 +654,10 @@
       },
       blockers: {
         userMsg: 'Any blockers on KR-355?',
-        typing: true
+        aiIntro: '<strong>KR-355</strong> is in Queue. Last update: 1st draft sent to James. Noah is working with James on revisions.',
+        task: { id: 'KR-355', name: 'Infina AI logo redesign', tag: 'Queue' },
+        followup: 'No blocker logged — want me to ask Nathan for a status check?',
+        actions: ['Yes, ping Nathan', 'No, skip']
       },
       report: {
         userMsg: 'Submit my daily report',
@@ -666,8 +672,17 @@
       const s = scenarios[key];
       let html = `<div class="chat-msg-user"><div class="chat-bubble-user">${s.userMsg}</div></div>`;
 
-      if (s.typing) {
-        html += `<div class="chat-msg-ai"><div class="chat-ai-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg></div><div class="chat-typing"><span></span><span></span><span></span></div></div>`;
+      if (s.actions) {
+        const taskCard = `<div class="chat-task-card" style="margin-top:10px;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:8px;flex:1;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span class="chat-task-card-id">${s.task.id}</span>
+            <span style="font-size:12px;font-weight:600;color:var(--fg);">${s.task.name}</span>
+          </div>
+          <span class="chat-task-card-tag hero-tag-queue">${s.task.tag}</span>
+        </div>`;
+        const actionBtns = s.actions.map((a, i) => `<button class="chat-action-btn${i === 0 ? ' primary' : ''}">${a}</button>`).join('');
+        html += `<div class="chat-msg-ai"><div class="chat-ai-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg></div><div class="chat-bubble-ai"><div style="font-size:13px;color:var(--fg);margin-bottom:4px;">${s.aiIntro}</div>${taskCard}<div style="font-size:13px;color:var(--muted);margin-bottom:12px;">${s.followup}</div><div class="chat-action-row">${actionBtns}</div></div></div>`;
       } else if (s.tasks) {
         let tasksHTML = s.tasks.map(t => `
           <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:8px;border:1px solid var(--border);margin-bottom:6px;font-size:12px;">
