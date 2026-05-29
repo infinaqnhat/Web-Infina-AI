@@ -1,0 +1,325 @@
+/*
+ * landing.css
+ * Scoped design tokens and base resets for the landing pages.
+ *
+ * SCOPE: All rules use the .landing-root ancestor selector to prevent
+ * leaking into the main app. Scoping is required because the following
+ * CSS custom property names collide with app theme tokens in src/index.css:
+ *   --muted, --border, --accent, --radius
+ *
+ * SOURCE: Union of :root blocks across 5 HTML files in public/landing-html/.
+ * Conflict resolution: home.html values preferred where values differ.
+ *
+ * CONFLICTS (noted for record):
+ *   --fg:           home=#000000  work=#1a1f2e           → using home value
+ *   --fg-secondary: home=#212121  work=#334155           → using home value
+ *   --muted:        home=#6b6b76  work=#64748b           → using home value
+ *   --section-gap:  home=clamp(72px,9vw,112px)  work/personal=120px  inside=140px → using home value
+ *   --radius:       home=22px     work=20px               → using home value
+ *
+ * DO NOT import this file outside of LandingLayout — Phase 2 wires it.
+ */
+
+/* ============================================================
+   LANDING DESIGN TOKENS
+   Scoped under .landing-root to avoid collision with app theme.
+   ============================================================ */
+.landing-root {
+  /* Backgrounds */
+  --bg: #ffffff;
+  --surface: #fafafa;
+
+  /* Foreground / text */
+  --fg: #000000;               /* home value; work uses #1a1f2e */
+  --fg-secondary: #212121;     /* home value; work uses #334155 */
+  --muted: #6b6b76;            /* home value; work uses #64748b */
+
+  /* Borders */
+  --border: #e5e7eb;
+  --border-light: #f2f2f2;
+
+  /* Brand accent */
+  --accent: #001F5C;
+  --accent-dark: #001340;      /* not in home; present in work/personal/about */
+  --accent-light: rgba(0, 31, 92, 0.08);
+  --accent-tint: rgba(0, 31, 92, 0.04); /* personal only */
+
+  /* Typography */
+  --font-display: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
+  --font-body: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
+
+  /* Layout */
+  --section-gap: clamp(72px, 9vw, 112px); /* home value; work/personal=120px, inside=140px */
+  --radius: 22px;              /* home value; work uses 20px */
+}
+
+/* ============================================================
+   BASE RESETS (from home.html — applied inside .landing-root scope)
+   ============================================================ */
+/*
+ * `:where(.landing-root)` carries ZERO specificity, so this reset matches the
+ * source HTML's bare `* { margin:0; padding:0 }` (0,0,0) rather than (0,1,0).
+ * A (0,1,0) reset silently outranks every bare type selector in the page CSS
+ * (e.g. `footer`, `nav`), wiping their padding. Keeping the reset at the lowest
+ * specificity lets those element rules win — as they do in the original HTML —
+ * while still scoping the reset to the landing subtree (no leak into a host app).
+ */
+:where(.landing-root) *,
+:where(.landing-root) *::before,
+:where(.landing-root) *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.landing-root {
+  scroll-behavior: smooth;
+}
+
+.landing-root {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/*
+ * :where() neutralizes the `a` specificity so this reset doesn't outrank
+ * unscoped link styles in landing-home.css (e.g. .btn-primary). Other
+ * landing pages scope their rules under .{page}-page which already wins.
+ */
+.landing-root :where(a) {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Shared container — used across all 5 landing pages */
+.landing-root .container {
+  max-width: 1140px;  /* home.html value; work/personal use 1200px — home preferred */
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/*
+ * Canonical landing nav layout — single source of truth for header geometry.
+ * Selector `.landing-root nav .nav-inner` (specificity 0,2,1) intentionally
+ * outranks any per-page `.X-page .container` rule (0,2,0), so the nav width
+ * stays identical across /, /work, /personal, /inside, /about. Without this
+ * the nav inherits each page's `.container` (1140px home/about vs 1200px
+ * work/personal/inside) and jumps horizontally on route change.
+ */
+.landing-root nav .nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 480px) {
+  .landing-root nav .nav-inner { padding: 0 16px; }
+}
+
+/*
+ * Equal-width nav CTA — "Book a demo" (home/work/inside/about) and
+ * "Chat with AI" (personal) are content-sized by default, so the button
+ * width changes on route swap. min-width floor + inline-flex centering
+ * pins both labels to the same pill size. Specificity 0,2,1 beats any
+ * per-page `.X-page .nav-cta` rule (0,2,0).
+ *
+ * 140px chosen as the smallest value comfortably fitting "Chat with AI"
+ * at 14px / weight 500 (Be Vietnam Pro) with 22px horizontal padding.
+ */
+.landing-root nav .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/*
+ * Mobile nav CTA placement — on ≤768px the desktop CTA is hidden and the
+ * CTA lives inside .nav-mobile-panel (the dropdown menu) instead.
+ *
+ * Child selector `.nav-inner > .nav-cta` (0,3,1) targets ONLY the desktop
+ * button, not the panel link (which shares the .nav-cta class). The
+ * paired `.nav-mobile-panel .nav-mobile-cta` rule (0,3,0) restores display
+ * — earlier per-page `.X-page .nav-cta { display: none }` rules (0,2,0)
+ * accidentally hid the panel CTA too. Both selectors outrank per-page
+ * overrides, so this stays consistent across all 5 routes.
+ */
+@media (max-width: 768px) {
+  .landing-root nav .nav-inner > .nav-cta { display: none; }
+  .landing-root .nav-mobile-panel .nav-mobile-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Don't stretch full-width inside the flex-column panel — sit left, sized to content */
+    align-self: flex-start;
+  }
+
+  /*
+   * Mobile "AI Work" collapsible group — the work row carries a chevron
+   * button that toggles the nested "Focus & Alignment" child link without
+   * navigating or closing the panel.
+   *
+   * Selectors are qualified with `.nav-mobile-panel` (specificity 0,3,1) so
+   * the group-row + indented child-link styling beats the per-page base
+   * `.{page}-page .nav-mobile-panel a` rule (0,2,1) — that base rule lives in
+   * each page stylesheet which loads AFTER landing.css, so an equal-specificity
+   * override would lose the source-order tie and the sub-links would render
+   * as full-size panel rows instead of indented children.
+   */
+  .landing-root .nav-mobile-panel .nav-mobile-group {
+    border-bottom: 1px solid var(--border-light, rgba(0, 0, 0, 0.08));
+  }
+  .landing-root .nav-mobile-panel .nav-mobile-group-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .landing-root .nav-mobile-panel .nav-mobile-group-row a {
+    border-bottom: none;
+    flex: 1;
+  }
+  .landing-root .nav-mobile-panel .nav-mobile-chevron {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 14px 6px;
+    color: var(--fg-secondary, #6b7280);
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+  }
+  .landing-root .nav-mobile-panel .nav-mobile-chevron svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.25s;
+  }
+  .landing-root .nav-mobile-panel .nav-mobile-chevron.open svg {
+    transform: rotate(180deg);
+  }
+  .landing-root .nav-mobile-panel .nav-mobile-children {
+    display: none;
+    background: var(--surface, #f9fafb);
+    border-top: 1px solid var(--border-light, rgba(0, 0, 0, 0.08));
+  }
+  .landing-root .nav-mobile-panel .nav-mobile-children.open {
+    display: block;
+  }
+  .landing-root .nav-mobile-panel .nav-mobile-children a {
+    padding: 11px 6px 11px 28px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--muted, #9ca3af);
+    border-bottom: 1px solid var(--border-light, rgba(0, 0, 0, 0.08));
+  }
+  .landing-root .nav-mobile-panel .nav-mobile-children a:last-child {
+    border-bottom: none;
+  }
+  .landing-root .nav-mobile-panel .nav-mobile-children a.active {
+    color: var(--accent, #001f5c);
+    font-weight: 500;
+  }
+}
+
+/* ============================================================
+   NAV "AI WORK" DROPDOWN
+   Shared across all pages (rendered inside .landing-root nav).
+   Visibility driven by React `.open` state (hover + focus); CSS
+   handles the visual reveal so behavior matches the static source.
+   ============================================================ */
+.landing-root nav .nav-dropdown {
+  position: relative;
+}
+.landing-root nav .nav-dropdown-toggle {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--fg-secondary, #6b7280);
+  transition: color 0.2s;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+  text-decoration: none;
+}
+.landing-root nav .nav-dropdown-toggle.active {
+  color: var(--fg, #111827);
+}
+.landing-root nav .nav-dropdown-toggle::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent, #001f5c);
+  transition: width 0.3s;
+}
+.landing-root nav .nav-dropdown.open .nav-dropdown-toggle::after,
+.landing-root nav .nav-dropdown-toggle.active::after {
+  width: calc(100% - 16px);
+}
+.landing-root nav .nav-dropdown-toggle svg {
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.landing-root nav .nav-dropdown.open .nav-dropdown-toggle svg {
+  transform: rotate(180deg);
+}
+.landing-root nav .nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: #fff;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.1));
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  padding: 6px;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+  z-index: 1001;
+}
+.landing-root nav .nav-dropdown.open .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.landing-root nav .nav-dropdown-menu a {
+  display: block;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg-secondary, #6b7280);
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.landing-root nav .nav-dropdown-menu a::after {
+  display: none !important;
+}
+.landing-root nav .nav-dropdown-menu a:hover,
+.landing-root nav .nav-dropdown-menu a.active {
+  background: var(--accent-light, rgba(24, 99, 220, 0.08));
+  color: var(--accent, #001f5c);
+}
+
+@media (max-width: 768px) {
+  /* Mobile uses the flat panel list; hide the desktop dropdown entirely */
+  .landing-root nav .nav-dropdown {
+    display: none;
+  }
+}
