@@ -39,8 +39,17 @@
     '  body.nav-open .nav-mobile-panel { transform: translateY(0); opacity: 1; visibility: visible; }',
     '  .nav-mobile-panel a { padding: 14px 6px; font-size: 16px; font-weight: 500; color: var(--fg-secondary, #6b7280); border-bottom: 1px solid var(--border-light, rgba(0,0,0,.08)); text-decoration: none; display: block; }',
     '  .nav-mobile-panel a:last-child { border-bottom: none; }',
-    '  .nav-mobile-panel a.nav-mobile-child { padding: 10px 6px 10px 28px; font-size: 14px; font-weight: 400; color: var(--muted, #9ca3af); }',
-    '  .nav-mobile-panel a.nav-mobile-child::before { content: "└ "; }',
+    '  .nav-mobile-group { border-bottom: 1px solid var(--border-light, rgba(0,0,0,.08)); }',
+    '  .nav-mobile-group-row { display: flex; align-items: center; justify-content: space-between; }',
+    '  .nav-mobile-group-row a { border-bottom: none; flex: 1; }',
+    '  .nav-mobile-chevron { background: none; border: none; cursor: pointer; padding: 14px 6px; color: var(--fg-secondary, #6b7280); display: flex; align-items: center; transition: color .2s; }',
+    '  .nav-mobile-chevron svg { width: 16px; height: 16px; transition: transform .25s; }',
+    '  .nav-mobile-chevron.open svg { transform: rotate(180deg); }',
+    '  .nav-mobile-children { display: none; background: var(--surface, #f9fafb); border-top: 1px solid var(--border-light, rgba(0,0,0,.08)); }',
+    '  .nav-mobile-children.open { display: block; }',
+    '  .nav-mobile-children a { padding: 11px 6px 11px 28px; font-size: 14px; font-weight: 400; color: var(--muted, #9ca3af); border-bottom: 1px solid var(--border-light, rgba(0,0,0,.08)); }',
+    '  .nav-mobile-children a:last-child { border-bottom: none; }',
+    '  .nav-mobile-children a.active { color: var(--accent, #001F5C); font-weight: 500; }',
     '  .nav-mobile-panel a.nav-mobile-cta { margin-top: 14px; text-align: center; background: var(--accent, #001F5C); color: #fff; padding: 14px 24px; border-radius: 9999px; border: none; font-weight: 600; }',
     '  body.nav-open { overflow: hidden; }',
     '  .nav-inner { padding: 0 16px; }',
@@ -105,23 +114,64 @@
     panel.className = 'nav-mobile-panel';
     panel.setAttribute('aria-hidden', 'true');
 
-    var mobileItems = [
-      { href: 'inside.html', label: 'AI Inside', isActive: isInside },
-      { href: 'work.html', label: 'AI Work', isActive: isWork },
-      { href: 'focus-alignment.html', label: 'Focus & Alignment', isActive: isFocus, child: true },
-      { href: 'personal.html', label: 'AI Personal', isActive: isPersonal },
-      { href: '#demo', label: 'Book a demo', cta: true }
-    ];
+    // AI Inside
+    var aInside = document.createElement('a');
+    aInside.href = 'inside.html';
+    aInside.textContent = 'AI Inside';
+    if (isInside) aInside.classList.add('active');
+    panel.appendChild(aInside);
 
-    mobileItems.forEach(function (item) {
-      var a = document.createElement('a');
-      a.href = item.href;
-      a.textContent = item.label;
-      if (item.isActive) a.classList.add('active');
-      if (item.child) a.classList.add('nav-mobile-child');
-      if (item.cta) a.classList.add('nav-mobile-cta');
-      panel.appendChild(a);
+    // AI Work group (collapsible)
+    var group = document.createElement('div');
+    group.className = 'nav-mobile-group';
+
+    var groupRow = document.createElement('div');
+    groupRow.className = 'nav-mobile-group-row';
+
+    var aWork = document.createElement('a');
+    aWork.href = 'work.html';
+    aWork.textContent = 'AI Work';
+    if (isWork) aWork.classList.add('active');
+
+    var chevron = document.createElement('button');
+    chevron.className = 'nav-mobile-chevron' + (isWorkGroup ? ' open' : '');
+    chevron.setAttribute('aria-label', 'Toggle AI Work sub-menu');
+    chevron.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>';
+
+    var children = document.createElement('div');
+    children.className = 'nav-mobile-children' + (isWorkGroup ? ' open' : '');
+
+    var aFocus = document.createElement('a');
+    aFocus.href = 'focus-alignment.html';
+    aFocus.textContent = 'Focus & Alignment';
+    if (isFocus) aFocus.classList.add('active');
+    children.appendChild(aFocus);
+
+    chevron.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = children.classList.toggle('open');
+      chevron.classList.toggle('open', open);
     });
+
+    groupRow.appendChild(aWork);
+    groupRow.appendChild(chevron);
+    group.appendChild(groupRow);
+    group.appendChild(children);
+    panel.appendChild(group);
+
+    // AI Personal
+    var aPersonal = document.createElement('a');
+    aPersonal.href = 'personal.html';
+    aPersonal.textContent = 'AI Personal';
+    if (isPersonal) aPersonal.classList.add('active');
+    panel.appendChild(aPersonal);
+
+    // Book a demo CTA
+    var aCta = document.createElement('a');
+    aCta.href = '#demo';
+    aCta.textContent = 'Book a demo';
+    aCta.className = 'nav-mobile-cta';
+    panel.appendChild(aCta);
 
     nav.appendChild(panel);
 
@@ -136,9 +186,10 @@
       setOpen(!document.body.classList.contains('nav-open'));
     });
 
-    panel.querySelectorAll('a').forEach(function (a) {
+    panel.querySelectorAll('a:not(.nav-mobile-group-row a)').forEach(function (a) {
       a.addEventListener('click', function () { setOpen(false); });
     });
+    aWork.addEventListener('click', function () { setOpen(false); });
 
     document.addEventListener('click', function (e) {
       if (!document.body.classList.contains('nav-open')) return;
