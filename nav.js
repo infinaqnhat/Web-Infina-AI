@@ -84,7 +84,6 @@
             '</div>' +
           '</div>' +
           '<a href="personal.html"' + (isPersonal ? ' class="active"' : '') + '>AI Personal</a>' +
-          '<a href="about.html"' + (isAbout ? ' class="active"' : '') + '>About Us</a>' +
         '</div>' +
         '<a href="#demo" class="nav-cta">Book a demo</a>' +
       '</div>';
@@ -108,7 +107,6 @@
       { href: 'inside.html', label: 'AI Inside', isActive: isInside },
       { href: 'work.html', label: 'AI Work', isActive: isWork },
       { href: 'personal.html', label: 'AI Personal', isActive: isPersonal },
-      { href: 'about.html', label: 'About Us', isActive: isAbout },
       { href: '#demo', label: 'Book a demo', cta: true }
     ];
 
