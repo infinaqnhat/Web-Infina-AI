@@ -3312,8 +3312,8 @@
     }
 
     .partners {
-      padding: 48px 0;
-      background: linear-gradient(180deg, #f8f9fc 0%, #ffffff 100%);
+      padding: 64px 0;
+      background: #001F5C;
       position: relative;
       overflow: hidden;
       text-align: center;
@@ -3322,35 +3322,96 @@
     .partners::before {
       content: '';
       position: absolute;
-      top: -100px;
+      top: -80px;
       left: 50%;
       transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(0, 31, 92, 0.06), transparent 70%);
-      filter: blur(60px);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(24,99,220,0.35), transparent 70%);
+      filter: blur(80px);
       pointer-events: none;
     }
 
-    .partners-label {
-      text-align: center;
-      font-size: 13px;
+    .partners-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
       font-weight: 700;
-      text-transform: uppercase;
       letter-spacing: 0.15em;
-      color: var(--accent);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin: 0 auto 14px;
+      position: relative;
+      z-index: 1;
+      width: fit-content;
+    }
+
+    .partners-headline {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 700;
+      letter-spacing: -.03em;
+      color: #fff;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .partners-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
       margin-bottom: 48px;
       position: relative;
       z-index: 1;
     }
 
-    .partners-label::before {
-      content: '';
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
+    .industries-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .industry-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      min-width: 120px;
+      transition: all .25s;
+      cursor: default;
+    }
+
+    .industry-card:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.22);
+      transform: translateY(-3px);
+    }
+
+    .industry-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .industry-card span {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      white-space: nowrap;
+    }
       margin-right: 12px;
       box-shadow: 0 0 12px var(--accent);
       animation: pulse-dot 2s ease-in-out infinite;
@@ -3377,88 +3438,6 @@
       width: fit-content;
     }
 
-    .partners-eyebrow::before {
-      content: none;
-      width: auto;
-      height: auto;
-      border-radius: 50%;
-      background: #ffffff;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-    }
-
-    @keyframes pulse-dot {
-
-      0%,
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      50% {
-        opacity: 0.6;
-        transform: scale(1.2);
-      }
-    }
-
-    .partners-marquee-wrapper {
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    .partners-marquee-wrapper::before,
-    .partners-marquee-wrapper::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 120px;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .partners-marquee-wrapper::before {
-      left: 0;
-      background: linear-gradient(to right, #f8f9fc, transparent);
-    }
-
-    .partners-marquee-wrapper::after {
-      right: 0;
-      background: linear-gradient(to left, #ffffff, transparent);
-    }
-
-    .partners-logos {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      width: max-content;
-      animation: marquee-left 28s linear infinite;
-    }
-
-    .partners-logos:hover {
-      animation-play-state: paused;
-    }
-
-    @keyframes marquee-left {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .partner-logo {
-      font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--fg-secondary, #212121);
-      letter-spacing: 0;
-      cursor: default;
-      padding: 8px 20px;
-      border-radius: 999px;
-      border: 1px solid var(--border, #e5e7eb);
-      background: var(--border-light, #f2f2f2);
-      box-shadow: none;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
 
     .cta-section {
       padding: var(--section-gap) 0;
@@ -4239,24 +4218,59 @@
   <section class="partners">
     <div class="container">
       <p class="partners-eyebrow">Industries We Serve</p>
-      <div class="partners-marquee-wrapper">
-        <div class="partners-logos">
-          <span class="partner-logo">Securities Company</span>
-          <span class="partner-logo">Insurance Company</span>
-          <span class="partner-logo">Fintech Company</span>
-          <span class="partner-logo">Fund Management Company</span>
-          <span class="partner-logo">Bank</span>
-          <span class="partner-logo">e-Wallet</span>
-          <span class="partner-logo">Travel Company</span>
-          <!-- Duplicate set for seamless loop -->
-          <span class="partner-logo">Securities Company</span>
-          <span class="partner-logo">Insurance Company</span>
-          <span class="partner-logo">Fintech Company</span>
-          <span class="partner-logo">Fund Management Company</span>
-          <span class="partner-logo">Bank</span>
-          <span class="partner-logo">e-Wallet</span>
-          <span class="partner-logo">Travel Company</span>
+      <h2 class="partners-headline">Built for regulated industries.</h2>
+      <p class="partners-sub">Trusted by financial services teams across Southeast Asia.</p>
+      <div class="industries-grid">
+
+        <div class="industry-card">
+          <div class="industry-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <span>Securities</span>
         </div>
+
+        <div class="industry-card">
+          <div class="industry-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <span>Insurance</span>
+        </div>
+
+        <div class="industry-card">
+          <div class="industry-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <span>Fintech</span>
+        </div>
+
+        <div class="industry-card">
+          <div class="industry-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <span>Fund Management</span>
+        </div>
+
+        <div class="industry-card">
+          <div class="industry-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><rect x="6" y="2" width="12" height="20" rx="1"/><path d="M9 7h1m5 0h-1M9 12h1m5 0h-1M9 17h1m5 0h-1"/></svg>
+          </div>
+          <span>Bank</span>
+        </div>
+
+        <div class="industry-card">
+          <div class="industry-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <span>e-Wallet</span>
+        </div>
+
+        <div class="industry-card">
+          <div class="industry-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <span>Travel</span>
+        </div>
+
       </div>
     </div>
   </section>
