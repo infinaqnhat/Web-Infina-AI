@@ -39,6 +39,8 @@
     '  body.nav-open .nav-mobile-panel { transform: translateY(0); opacity: 1; visibility: visible; }',
     '  .nav-mobile-panel a { padding: 14px 6px; font-size: 16px; font-weight: 500; color: var(--fg-secondary, #6b7280); border-bottom: 1px solid var(--border-light, rgba(0,0,0,.08)); text-decoration: none; display: block; }',
     '  .nav-mobile-panel a:last-child { border-bottom: none; }',
+    '  .nav-mobile-panel a.nav-mobile-child { padding: 10px 6px 10px 28px; font-size: 14px; font-weight: 400; color: var(--muted, #9ca3af); }',
+    '  .nav-mobile-panel a.nav-mobile-child::before { content: "└ "; }',
     '  .nav-mobile-panel a.nav-mobile-cta { margin-top: 14px; text-align: center; background: var(--accent, #001F5C); color: #fff; padding: 14px 24px; border-radius: 9999px; border: none; font-weight: 600; }',
     '  body.nav-open { overflow: hidden; }',
     '  .nav-inner { padding: 0 16px; }',
@@ -106,19 +108,17 @@
     var mobileItems = [
       { href: 'inside.html', label: 'AI Inside', isActive: isInside },
       { href: 'work.html', label: 'AI Work', isActive: isWork },
+      { href: 'focus-alignment.html', label: 'Focus & Alignment', isActive: isFocus, child: true },
       { href: 'personal.html', label: 'AI Personal', isActive: isPersonal },
       { href: '#demo', label: 'Book a demo', cta: true }
     ];
-
-    if (isFocus) {
-      mobileItems.splice(2, 0, { href: 'focus-alignment.html', label: 'Focus & Alignment', isActive: true });
-    }
 
     mobileItems.forEach(function (item) {
       var a = document.createElement('a');
       a.href = item.href;
       a.textContent = item.label;
       if (item.isActive) a.classList.add('active');
+      if (item.child) a.classList.add('nav-mobile-child');
       if (item.cta) a.classList.add('nav-mobile-cta');
       panel.appendChild(a);
     });
