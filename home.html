@@ -2617,10 +2617,34 @@
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .product-card:hover {
+    .product-card:hover, .product-card.active {
       transform: translateY(-6px);
       border-color: transparent;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 31, 92, 0.3);
+    }
+
+    .product-card[data-product="inside"].active  { box-shadow: 0 24px 60px rgba(24,99,220,0.15),  0 0 0 2px #1863dc; }
+    .product-card[data-product="work"].active    { box-shadow: 0 24px 60px rgba(20,154,110,0.15), 0 0 0 2px #149a6e; }
+    .product-card[data-product="personal"].active{ box-shadow: 0 24px 60px rgba(126,87,194,0.15), 0 0 0 2px #7e57c2; }
+
+    /* Connector caret */
+    .product-connector {
+      position: relative;
+      height: 40px;
+      margin: 0;
+      overflow: visible;
+    }
+
+    .product-caret {
+      position: absolute;
+      top: 8px;
+      width: 0;
+      height: 0;
+      border-left: 11px solid transparent;
+      border-right: 11px solid transparent;
+      border-top: 11px solid #1863dc;
+      transform: translateX(-50%);
+      transition: left .35s cubic-bezier(.4,0,.2,1), border-top-color .35s;
     }
 
     .product-card:hover::before {
@@ -4279,7 +4303,7 @@
       </div>
 
       <div class="products-grid" id="products-grid">
-        <div class="product-card" data-product="inside">
+        <div class="product-card active" data-product="inside">
           <span class="product-audience-label">For Platforms</span>
           <span class="product-tag">Infina AI Inside</span>
           <h3>More engaged customer. Higher revenue. Zero build time.</h3>
@@ -4306,30 +4330,16 @@
     </div>
   </section>
 
-  <!-- WHAT OUR AGENTS GET DONE - TABBED SECTION -->
+  <!-- Connector caret -->
+  <div class="product-connector" id="product-connector">
+    <div class="product-caret" id="product-caret"></div>
+  </div>
+
+  <!-- SPECIALISTS SECTION -->
   <section class="agents-section">
     <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">Meet the Specialists</span>
-        <h2>The right specialist, <span class="accent">exactly where you need them</span></h2>
-      </div>
-
-      <!-- Tab buttons -->
-      <div class="agents-tabs" role="tablist">
-        <button class="agents-tab active" data-tab="inside" role="tab" aria-selected="true">
-          Infina AI Inside
-        </button>
-        <button class="agents-tab" data-tab="work" role="tab" aria-selected="false">
-          Infina AI Work
-        </button>
-        <button class="agents-tab" data-tab="personal" role="tab" aria-selected="false">
-          Infina AI Personal
-        </button>
-      </div>
-
       <!-- ── TAB: AI Inside ── -->
       <div class="agents-panel active" id="tab-inside">
-        <p class="agents-panel-tagline">Live inside your platforms. Get the experts 24/7.</p>
         <div class="agents-grid agents-grid-4" id="inside-grid">
 
           <div class="agents-card" data-agent="stock">
@@ -4395,7 +4405,6 @@
 
       <!-- ── TAB: AI Personal ── -->
       <div class="agents-panel" id="tab-personal">
-        <p class="agents-panel-tagline">Better your everyday decisions with AI specialists.</p>
         <div class="agents-grid agents-personal-grid">
 
           <div class="agents-personal-row">
@@ -4435,7 +4444,6 @@
 
       <!-- ── TAB: AI Work ── -->
       <div class="agents-panel" id="tab-work">
-        <p class="agents-panel-tagline">Less chasing tasks. More closing them.</p>
 
         <!-- Audience 1: Sales Teams -->
         <div class="agents-work-audience">
@@ -4539,7 +4547,7 @@
   <style>
     /* ===== What Our Agents Get Done ===== */
     .agents-section {
-      padding: var(--section-gap) 0;
+      padding: 0 0 var(--section-gap);
       background: var(--surface);
     }
 
@@ -5051,20 +5059,37 @@
 
   <script>
     // Tab switching for agents section
-    document.querySelectorAll('.agents-tab').forEach(function(tab) {
-      tab.addEventListener('click', function() {
-        document.querySelectorAll('.agents-tab').forEach(function(t) {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        document.querySelectorAll('.agents-panel').forEach(function(p) {
-          p.classList.remove('active');
-        });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-        var panelId = 'tab-' + tab.getAttribute('data-tab');
-        document.getElementById(panelId).classList.add('active');
-      });
+    var caretColors = { inside: '#1863dc', work: '#149a6e', personal: '#7e57c2' };
+
+    function activateProduct(card) {
+      document.querySelectorAll('.product-card').forEach(function(c) { c.classList.remove('active'); });
+      document.querySelectorAll('.agents-panel').forEach(function(p) { p.classList.remove('active'); });
+      card.classList.add('active');
+      var product = card.getAttribute('data-product');
+      var panel = document.getElementById('tab-' + product);
+      if (panel) panel.classList.add('active');
+      positionCaret(card, product);
+    }
+
+    function positionCaret(card, product) {
+      var caret = document.getElementById('product-caret');
+      var connector = document.getElementById('product-connector');
+      if (!caret || !connector) return;
+      var cardRect = card.getBoundingClientRect();
+      var connRect = connector.getBoundingClientRect();
+      caret.style.left = (cardRect.left + cardRect.width / 2 - connRect.left) + 'px';
+      caret.style.borderTopColor = caretColors[product] || '#1863dc';
+    }
+
+    document.querySelectorAll('.product-card').forEach(function(card) {
+      card.addEventListener('mouseenter', function() { activateProduct(card); });
+      card.addEventListener('click', function() { activateProduct(card); });
+    });
+
+    // Init caret on load
+    window.addEventListener('load', function() {
+      var activeCard = document.querySelector('.product-card.active');
+      if (activeCard) positionCaret(activeCard, activeCard.getAttribute('data-product'));
     });
   </script>
 
