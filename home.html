@@ -2434,98 +2434,71 @@
       margin-top: 8px;
     }
 
-    .products-agents-wrapper {
-      background: rgba(24,99,220,0.06);
-      transition: background 0.35s;
+    .products-narrative {
       padding: var(--section-gap) 0;
+      background: var(--bg, #fff);
     }
 
-    .products-agents-header {
+    .products-narrative-header {
       text-align: center;
       max-width: 760px;
-      margin: 0 auto 48px;
+      margin: 0 auto 64px;
     }
 
-    .product-tabs-card {
-      background: #fff;
+    .product-block {
       border-radius: 20px;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.07);
-      overflow: hidden;
+      padding: 48px;
+      margin-bottom: 32px;
+      border-left: 4px solid var(--block-accent, #1863dc);
+      background: var(--block-tint, rgba(24,99,220,0.04));
     }
+    .product-block:last-child { margin-bottom: 0; }
 
-    .product-tabs-row {
+    .product-block[data-product="inside"] { --block-accent: #1863dc; --block-tint: rgba(24,99,220,0.04); }
+    .product-block[data-product="work"]   { --block-accent: #149a6e; --block-tint: rgba(20,154,110,0.04); }
+    .product-block[data-product="personal"] { --block-accent: #7e57c2; --block-tint: rgba(126,87,194,0.04); }
+
+    .product-block[data-product="inside"] .product-tag { --tag-color: #1863dc; }
+    .product-block[data-product="work"] .product-tag   { --tag-color: #149a6e; }
+    .product-block[data-product="personal"] .product-tag { --tag-color: #7e57c2; }
+
+    .product-block-top { margin-bottom: 36px; }
+
+    .product-block-meta {
       display: flex;
-      border-bottom: 1px solid var(--border-light, rgba(0,0,0,0.08));
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
     }
+    .product-block-meta .product-audience-label { padding-left: 0; margin-bottom: 0; }
+    .product-block-meta .product-tag { margin-bottom: 0; }
 
-    .product-tab {
-      flex: 1;
-      padding: 28px 32px;
-      cursor: pointer;
-      position: relative;
-      border-right: 1px solid var(--border-light, rgba(0,0,0,0.08));
-      transition: background 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .product-tab:last-child { border-right: none; }
-
-    .product-tab:hover { background: rgba(0,0,0,0.02); }
-
-    .product-tab.active::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 0; right: 0;
-      height: 3px;
-      background: var(--tab-accent, #1863dc);
-      z-index: 1;
-    }
-
-    .product-tab[data-product="inside"].active { --tab-accent: #1863dc; background: rgba(24,99,220,0.04); }
-    .product-tab[data-product="work"].active   { --tab-accent: #149a6e; background: rgba(20,154,110,0.04); }
-    .product-tab[data-product="personal"].active { --tab-accent: #7e57c2; background: rgba(126,87,194,0.04); }
-
-    .product-tab[data-product="inside"] .product-tag { --tag-color: #1863dc; }
-    .product-tab[data-product="work"] .product-tag   { --tag-color: #149a6e; }
-    .product-tab[data-product="personal"] .product-tag { --tag-color: #7e57c2; }
-
-    .product-tab .product-audience-label { padding-left: 0; margin-bottom: 10px; }
-    .product-tab .product-tag { margin-bottom: 0; }
-
-    .product-tab-link {
-      display: block;
-      margin-top: 14px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--muted, #9ca3af);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .product-tab-link:hover { color: var(--accent, #001F5C); }
-
-    .product-content-panels { padding: 40px; }
-
-    .product-panel { display: none; }
-    .product-panel.active { display: block; }
-
-    .panel-headline { margin-bottom: 32px; }
-    .panel-headline h3 {
-      font-size: clamp(20px, 2.2vw, 26px);
+    .product-block-headline {
+      font-size: clamp(22px, 2.5vw, 30px);
       font-weight: 700;
       letter-spacing: -0.02em;
       line-height: 1.3;
       color: var(--fg, #111827);
+      margin: 0;
     }
+
+    .product-block-cta {
+      display: inline-block;
+      margin-top: 32px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--block-accent, #1863dc);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .product-block-cta:hover { opacity: 0.75; }
 
     .agents-grid-2 { grid-template-columns: repeat(2, 1fr); }
 
+    .products-narrative .agents-grid { max-width: none; }
+
     @media (max-width: 768px) {
-      .product-tabs-row { flex-direction: column; }
-      .product-tab { border-right: none; border-bottom: 1px solid var(--border-light, rgba(0,0,0,0.08)); }
-      .product-tab:last-child { border-bottom: none; }
-      .product-content-panels { padding: 24px 20px; }
+      .product-block { padding: 28px 20px; }
       .agents-grid-2 { grid-template-columns: 1fr; }
     }
 
@@ -4349,258 +4322,221 @@
     </div>
   </section>
 
-  <div class="products-agents-wrapper" id="products-agents-wrapper">
+  <section class="products-narrative" id="products">
   <div class="container">
-    <div class="section-header products-agents-header">
+    <div class="section-header products-narrative-header">
       <span class="section-eyebrow">Jobs We Get Done</span>
       <h2>The work you're struggling with? <span class="accent">AI handles it.</span></h2>
     </div>
 
-    <div class="product-tabs-card">
-
-      <!-- Tab row: 3 equal tabs -->
-      <div class="product-tabs-row">
-        <div class="product-tab active" data-product="inside">
+    <!-- Block 1: AI Inside -->
+    <div class="product-block" data-product="inside">
+      <div class="product-block-top">
+        <div class="product-block-meta">
           <span class="product-audience-label">For Platforms</span>
           <span class="product-tag">Infina AI Inside</span>
-          <a href="inside.html" class="product-tab-link">Explore AI Inside →</a>
         </div>
-        <div class="product-tab" data-product="work">
+        <h3 class="product-block-headline">More engaged customer. Higher revenue. Zero build time.</h3>
+      </div>
+      <div class="agents-grid agents-grid-2" id="inside-grid">
+
+        <div class="agents-card" data-agent="stock">
+          <div class="agents-card-left">
+            <h3 class="agents-card-title"><span class="agents-title-main">Stock</span><span class="agents-title-sub">Specialist Agent</span></h3>
+            <div class="agents-context-badge">Inside stock trading apps</div>
+          </div>
+          <div class="agents-card-right">
+            <ul class="agents-list">
+              <li>Market insights tailored to each user's holdings</li>
+              <li>Surfaces risks and opportunities in their portfolio</li>
+              <li>Alerts on moves that matter, nothing else</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="agents-card" data-agent="wealth">
+          <div class="agents-card-left">
+            <h3 class="agents-card-title"><span class="agents-title-main">Wealth Management</span><span class="agents-title-sub">Specialist Agent</span></h3>
+            <div class="agents-context-badge">Inside fund management apps/web</div>
+          </div>
+          <div class="agents-card-right">
+            <ul class="agents-list">
+              <li>Fund questions answered instantly</li>
+              <li>Investing plans built around real goals</li>
+              <li>Asset mix matched to risk profile and timeline</li>
+              <li>Flags when to rebalance, and why</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="agents-card" data-agent="personal-finance">
+          <div class="agents-card-left">
+            <h3 class="agents-card-title"><span class="agents-title-main">Personal Finance</span><span class="agents-title-sub">Specialist Agent</span></h3>
+            <div class="agents-context-badge">Inside banking/e-wallet apps</div>
+          </div>
+          <div class="agents-card-right">
+            <ul class="agents-list">
+              <li>Matches users to products that fit their situation</li>
+              <li>Shows where money goes and where to improve</li>
+              <li>Clarifies loan options and credit improvement steps</li>
+              <li>Builds financial confidence in plain language</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="agents-card" data-agent="insurance">
+          <div class="agents-card-left">
+            <h3 class="agents-card-title"><span class="agents-title-main">Insurance</span><span class="agents-title-sub">Specialist Agent</span></h3>
+            <div class="agents-context-badge">Inside insurance apps/web</div>
+          </div>
+          <div class="agents-card-right">
+            <ul class="agents-list">
+              <li>Finds coverage that fits, not just what's available</li>
+              <li>Answers policy questions any time, in plain language</li>
+              <li>Guides users through claims to get what they're entitled to</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      <a href="inside.html" class="product-block-cta">Explore AI Inside →</a>
+    </div>
+
+    <!-- Block 2: AI Work -->
+    <div class="product-block" data-product="work">
+      <div class="product-block-top">
+        <div class="product-block-meta">
           <span class="product-audience-label">For Business</span>
           <span class="product-tag">Infina AI Work</span>
-          <a href="work.html" class="product-tab-link">Explore AI Work →</a>
         </div>
-        <div class="product-tab" data-product="personal">
+        <h3 class="product-block-headline">Your team, working at their best with AI handling the rest.</h3>
+      </div>
+
+      <div class="agents-work-audience">
+        <span class="agents-audience-label">For Sales Teams</span>
+        <div class="agents-grid">
+          <div class="agents-card agents-card-row">
+            <div class="agents-card-row-meta">
+              <h3 class="agents-card-title"><span class="agents-title-main">CRM & Sales Pipeline</span></h3>
+              <div class="agents-context-badge">Inside your CRM</div>
+            </div>
+            <ul class="agents-list agents-list-row">
+              <li>Works alongside your existing CRM and tools. No migration required.</li>
+              <li>Handles CRM updates, follow-up emails, and task logging automatically</li>
+              <li>Pre-configured for your industry: real estate, insurance, finance, and more</li>
+              <li>Accessible via Slack, WhatsApp, web, or your own app</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="agents-work-audience">
+        <span class="agents-audience-label">For Operations &amp; Company</span>
+        <div class="agents-grid agents-grid-2" id="work-grid">
+
+          <div class="agents-card">
+            <div class="agents-card-left">
+              <h3 class="agents-card-title"><span class="agents-title-main">Focus & Alignment</span></h3>
+              <div class="agents-context-badge">Across your org</div>
+            </div>
+            <div class="agents-card-right">
+              <ul class="agents-list">
+                <li>Aligns weekly priorities across team, department, and company goals</li>
+                <li>Resolves conflicts by understanding where OKRs overlap or clash</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="agents-card">
+            <div class="agents-card-left">
+              <h3 class="agents-card-title"><span class="agents-title-main">Expense Management</span></h3>
+              <div class="agents-context-badge">Across your tools and accounts</div>
+            </div>
+            <div class="agents-card-right">
+              <ul class="agents-list">
+                <li>Analyzes all spending across SaaS, cloud, credit card, and bank statements</li>
+                <li>Surfaces ways to cut costs across your accounts</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="agents-card">
+            <div class="agents-card-left">
+              <h3 class="agents-card-title"><span class="agents-title-main">Expertise</span></h3>
+              <div class="agents-context-badge">Across your data sources</div>
+            </div>
+            <div class="agents-card-right">
+              <ul class="agents-list">
+                <li>Slack threads explained, company context surfaced. Answers ready instantly.</li>
+                <li>Research pulled from internal data sources and the web in one place</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="agents-card">
+            <div class="agents-card-left">
+              <h3 class="agents-card-title"><span class="agents-title-main">Workflow</span></h3>
+              <div class="agents-context-badge">Any repeatable process</div>
+            </div>
+            <div class="agents-card-right">
+              <ul class="agents-list">
+                <li>Any repeatable workflow gets fully automated with a dedicated agent</li>
+                <li>Built and customized to fit exactly what your team needs</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <a href="work.html" class="product-block-cta">Explore AI Work →</a>
+    </div>
+
+    <!-- Block 3: AI Personal -->
+    <div class="product-block" data-product="personal">
+      <div class="product-block-top">
+        <div class="product-block-meta">
           <span class="product-audience-label">For Individuals</span>
           <span class="product-tag">Infina AI Personal</span>
-          <a href="personal.html" class="product-tab-link">Explore AI Personal →</a>
         </div>
+        <h3 class="product-block-headline">Grow more. Stress less. Achieve your goal.</h3>
       </div>
+      <div class="agents-grid agents-personal-grid">
 
-      <!-- Content panels -->
-      <div class="product-content-panels">
-
-        <!-- Panel: AI Inside -->
-        <div class="product-panel active" id="tab-inside">
-          <div class="panel-headline">
-            <h3>More engaged customer. Higher revenue. Zero build time.</h3>
-          </div>
-          <div class="agents-grid agents-grid-2" id="inside-grid">
-
-          <div class="agents-card" data-agent="stock">
-            <div class="agents-card-left">
-              <h3 class="agents-card-title"><span class="agents-title-main">Stock</span><span class="agents-title-sub">Specialist Agent</span></h3>
-              <div class="agents-context-badge">Inside stock trading apps</div>
-            </div>
-            <div class="agents-card-right">
-              <ul class="agents-list">
-                <li>Market insights tailored to each user's holdings</li>
-                <li>Surfaces risks and opportunities in their portfolio</li>
-                <li>Alerts on moves that matter, nothing else</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="agents-card" data-agent="wealth">
-            <div class="agents-card-left">
-              <h3 class="agents-card-title"><span class="agents-title-main">Wealth Management</span><span class="agents-title-sub">Specialist Agent</span></h3>
-              <div class="agents-context-badge">Inside fund management apps/web</div>
-            </div>
-            <div class="agents-card-right">
-              <ul class="agents-list">
-                <li>Fund questions answered instantly</li>
-                <li>Investing plans built around real goals</li>
-                <li>Asset mix matched to risk profile and timeline</li>
-                <li>Flags when to rebalance, and why</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="agents-card" data-agent="personal">
-            <div class="agents-card-left">
-              <h3 class="agents-card-title"><span class="agents-title-main">Personal Finance</span><span class="agents-title-sub">Specialist Agent</span></h3>
-              <div class="agents-context-badge">Inside banking/e-wallet apps</div>
-            </div>
-            <div class="agents-card-right">
-              <ul class="agents-list">
-                <li>Matches users to products that fit their situation</li>
-                <li>Shows where money goes and where to improve</li>
-                <li>Clarifies loan options and credit improvement steps</li>
-                <li>Builds financial confidence in plain language</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="agents-card" data-agent="insurance">
-            <div class="agents-card-left">
-              <h3 class="agents-card-title"><span class="agents-title-main">Insurance</span><span class="agents-title-sub">Specialist Agent</span></h3>
-              <div class="agents-context-badge">Inside insurance apps/web</div>
-            </div>
-            <div class="agents-card-right">
-              <ul class="agents-list">
-                <li>Finds coverage that fits, not just what's available</li>
-                <li>Answers policy questions any time, in plain language</li>
-                <li>Guides users through claims to get what they're entitled to</li>
-              </ul>
-            </div>
-          </div>
-
+        <div class="agents-personal-row">
+          <h3 class="agents-card-title"><span class="agents-title-main">Finance</span></h3>
+          <ul class="agents-list">
+            <li>Answers questions about your money in plain language</li>
+            <li>Tracks your budget and flags where to cut back</li>
+            <li>Guides you on loans, insurance, tax planning, and more</li>
+          </ul>
+          <p class="agents-personal-more">More features coming.</p>
+          <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
         </div>
+
+        <div class="agents-personal-row">
+          <h3 class="agents-card-title"><span class="agents-title-main">Lifestyle</span></h3>
+          <ul class="agents-list">
+            <li>Plans trips around your preferences and budget</li>
+            <li>Builds weekly meal plans with recipes and shopping lists</li>
+          </ul>
+          <p class="agents-personal-more">More features coming.</p>
+          <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
+        </div>
+
+        <div class="agents-personal-row agents-personal-row--muted">
+          <h3 class="agents-card-title"><span class="agents-title-main" style="color: var(--muted);">More coming soon</span></h3>
+          <p class="agents-personal-sub">New specialists and verticals on the way.</p>
+        </div>
+
       </div>
+      <a href="personal.html" class="product-block-cta">Explore AI Personal →</a>
+    </div>
 
-        </div><!-- end panel-inside -->
-
-        <!-- Panel: AI Personal -->
-        <div class="product-panel" id="tab-personal">
-          <div class="panel-headline">
-            <h3>Grow more. Stress less. Achieve your goal.</h3>
-          </div>
-        <div class="agents-grid agents-personal-grid">
-
-          <div class="agents-personal-row">
-            <h3 class="agents-card-title">
-              <span class="agents-title-main">Finance</span>
-            </h3>
-            <ul class="agents-list">
-              <li>Answers questions about your money in plain language</li>
-              <li>Tracks your budget and flags where to cut back</li>
-              <li>Guides you on loans, insurance, tax planning, and more</li>
-            </ul>
-            <p class="agents-personal-more">More features coming.</p>
-            <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
-          </div>
-
-          <div class="agents-personal-row">
-            <h3 class="agents-card-title">
-              <span class="agents-title-main">Lifestyle</span>
-            </h3>
-            <ul class="agents-list">
-              <li>Plans trips around your preferences and budget</li>
-              <li>Builds weekly meal plans with recipes and shopping lists</li>
-            </ul>
-            <p class="agents-personal-more">More features coming.</p>
-            <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
-          </div>
-
-          <div class="agents-personal-row agents-personal-row--muted">
-            <h3 class="agents-card-title">
-              <span class="agents-title-main" style="color: var(--muted);">More coming soon</span>
-            </h3>
-            <p class="agents-personal-sub">New specialists and verticals on the way.</p>
-          </div>
-
-        </div>
-      </div>
-
-        </div><!-- end panel-personal -->
-
-        <!-- Panel: AI Work -->
-        <div class="product-panel" id="tab-work">
-          <div class="panel-headline">
-            <h3>Your team, working at their best with AI handling the rest.</h3>
-          </div>
-
-        <!-- Audience 1: Sales Teams -->
-        <div class="agents-work-audience">
-          <span class="agents-audience-label">For Sales Teams</span>
-          <div class="agents-grid">
-            <div class="agents-card agents-card-row">
-              <div class="agents-card-row-meta">
-                <h3 class="agents-card-title">
-                  <span class="agents-title-main">CRM & Sales Pipeline</span>
-                                  </h3>
-                <div class="agents-context-badge">Inside your CRM</div>
-              </div>
-              <ul class="agents-list agents-list-row">
-                <li>Works alongside your existing CRM and tools. No migration required.</li>
-                <li>Handles CRM updates, follow-up emails, and task logging automatically</li>
-                <li>Pre-configured for your industry: real estate, insurance, finance, and more</li>
-                <li>Accessible via Slack, WhatsApp, web, or your own app</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Audience 2: Operations & Company -->
-        <div class="agents-work-audience">
-          <span class="agents-audience-label">For Operations &amp; Company</span>
-          <div class="agents-grid agents-grid-4" id="work-grid">
-
-            <div class="agents-card">
-              <div class="agents-card-left">
-                <h3 class="agents-card-title">
-                  <span class="agents-title-main">Focus & Alignment</span>
-                                  </h3>
-                <div class="agents-context-badge">Across your org</div>
-              </div>
-              <div class="agents-card-right">
-                <ul class="agents-list">
-                  <li>Aligns weekly priorities across team, department, and company goals</li>
-                  <li>Resolves conflicts by understanding where OKRs overlap or clash</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="agents-card">
-              <div class="agents-card-left">
-                <h3 class="agents-card-title">
-                  <span class="agents-title-main">Expense Management</span>
-                                  </h3>
-                <div class="agents-context-badge">Across your tools and accounts</div>
-              </div>
-              <div class="agents-card-right">
-                <ul class="agents-list">
-                  <li>Analyzes all spending across SaaS, cloud, credit card, and bank statements</li>
-                  <li>Surfaces ways to cut costs across your accounts</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="agents-card">
-              <div class="agents-card-left">
-                <h3 class="agents-card-title">
-                  <span class="agents-title-main">Expertise</span>
-                                  </h3>
-                <div class="agents-context-badge">Across your data sources</div>
-              </div>
-              <div class="agents-card-right">
-                <ul class="agents-list">
-                  <li>Slack threads explained, company context surfaced. Answers ready instantly.</li>
-                  <li>Research pulled from internal data sources and the web in one place</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="agents-card">
-              <div class="agents-card-left">
-                <h3 class="agents-card-title">
-                  <span class="agents-title-main">Workflow</span>
-                                  </h3>
-                <div class="agents-context-badge">Any repeatable process</div>
-              </div>
-              <div class="agents-card-right">
-                <ul class="agents-list">
-                  <li>Any repeatable workflow gets fully automated with a dedicated agent</li>
-                  <li>Built and customized to fit exactly what your team needs</li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        </div><!-- end panel-work -->
-
-      </div><!-- end product-content-panels -->
-    </div><!-- end product-tabs-card -->
-  </div><!-- end container -->
-  </div><!-- end products-agents-wrapper -->
+  </div>
+  </section>
 
   <style>
     /* ===== What Our Agents Get Done ===== */
-    .product-content-panels .agents-grid {
-      max-width: none;
-    }
 
     /* Match header styling to products section */
     .agents-section .section-header {
@@ -4734,11 +4670,11 @@
       .agents-grid-4 { grid-template-columns: 1fr; }
     }
 
-    /* ── One colour per tab ── */
-    #tab-inside  .agents-card { --card-color: #1863dc; }
-    #tab-work    .agents-card { --card-color: #149a6e; }
-    #tab-personal .agents-card { --card-color: #7e57c2; }
-    #tab-personal .agents-personal-row { --card-color: #7e57c2; }
+    /* ── One colour per block ── */
+    .product-block[data-product="inside"]  .agents-card { --card-color: #1863dc; }
+    .product-block[data-product="work"]    .agents-card { --card-color: #149a6e; }
+    .product-block[data-product="personal"] .agents-card { --card-color: #7e57c2; }
+    .product-block[data-product="personal"] .agents-personal-row { --card-color: #7e57c2; }
 
     /* ── Option A: coloured top border + matching title ── */
     .agents-card {
@@ -5103,30 +5039,6 @@
     }
   </style>
 
-  <script>
-    var tintColors = { inside: 'rgba(24,99,220,0.06)', work: 'rgba(20,154,110,0.06)', personal: 'rgba(126,87,194,0.06)' };
-
-    function activateProduct(tab) {
-      document.querySelectorAll('.product-tab').forEach(function(t) { t.classList.remove('active'); });
-      document.querySelectorAll('.product-panel').forEach(function(p) { p.classList.remove('active'); });
-      tab.classList.add('active');
-      var product = tab.getAttribute('data-product');
-      var wrapper = document.getElementById('products-agents-wrapper');
-      if (wrapper) wrapper.style.background = tintColors[product] || tintColors.inside;
-      var panel = document.getElementById('tab-' + product);
-      if (panel) panel.classList.add('active');
-    }
-
-    document.querySelectorAll('.product-tab').forEach(function(tab) {
-      tab.addEventListener('click', function(e) {
-        if (e.target.tagName === 'A') return;
-        activateProduct(tab);
-      });
-    });
-
-    var activeTab = document.querySelector('.product-tab.active');
-    if (activeTab) activateProduct(activeTab);
-  </script>
 
   <!-- SPEED BANNER SECTION - hidden, preserved for reuse
   <section class="speed-banner">
