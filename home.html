@@ -2434,23 +2434,16 @@
       margin-top: 8px;
     }
 
-    .products {
-      padding: var(--section-gap) 0 0;
-      background: linear-gradient(180deg, #fafafa 0%, var(--bg) 100%);
-      position: relative;
-      overflow: hidden;
+    .products-agents-wrapper {
+      background: rgba(24,99,220,0.06);
+      transition: background 0.35s;
     }
 
-    .products::before {
-      content: '';
-      position: absolute;
-      top: -200px;
-      right: -200px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
-      opacity: 0.5;
-      pointer-events: none;
+    .products {
+      padding: var(--section-gap) 0 0;
+      background: transparent;
+      position: relative;
+      overflow: hidden;
     }
 
     .products .container {
@@ -4280,6 +4273,7 @@
     </div>
   </section>
 
+  <div class="products-agents-wrapper" id="products-agents-wrapper">
   <section class="products" id="products">
     <div class="container">
       <div class="section-header">
@@ -4515,13 +4509,13 @@
 
     </div>
   </section>
+  </div><!-- end products-agents-wrapper -->
 
   <style>
     /* ===== What Our Agents Get Done ===== */
     .agents-section {
       padding: 48px 0 var(--section-gap);
-      background: var(--surface);
-      transition: background 0.35s;
+      background: transparent;
     }
 
     /* Match header styling to products section */
@@ -5030,17 +5024,12 @@
     var tintColors = { inside: 'rgba(24,99,220,0.06)', work: 'rgba(20,154,110,0.06)', personal: 'rgba(126,87,194,0.06)' };
 
     function activateProduct(card) {
-      document.querySelectorAll('.product-card').forEach(function(c) {
-        c.classList.remove('active');
-        c.style.background = '';
-      });
+      document.querySelectorAll('.product-card').forEach(function(c) { c.classList.remove('active'); });
       document.querySelectorAll('.agents-panel').forEach(function(p) { p.classList.remove('active'); });
       card.classList.add('active');
       var product = card.getAttribute('data-product');
-      var tint = tintColors[product] || tintColors.inside;
-      card.style.background = tint;
-      var agentsSection = document.querySelector('.agents-section');
-      if (agentsSection) agentsSection.style.background = tint;
+      var wrapper = document.getElementById('products-agents-wrapper');
+      if (wrapper) wrapper.style.background = tintColors[product] || tintColors.inside;
       var panel = document.getElementById('tab-' + product);
       if (panel) panel.classList.add('active');
     }
