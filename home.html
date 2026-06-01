@@ -2627,7 +2627,7 @@
     .product-card[data-product="work"].active    { box-shadow: 0 24px 60px rgba(20,154,110,0.15), 0 0 0 2px #149a6e; }
     .product-card[data-product="personal"].active{ box-shadow: 0 24px 60px rgba(126,87,194,0.15), 0 0 0 2px #7e57c2; }
 
-    /* Connector caret */
+    /* Connector pipe */
     .product-connector {
       position: relative;
       height: 40px;
@@ -2635,16 +2635,15 @@
       overflow: visible;
     }
 
-    .product-caret {
+    .product-pipe {
       position: absolute;
-      top: 8px;
-      width: 0;
-      height: 0;
-      border-left: 11px solid transparent;
-      border-right: 11px solid transparent;
-      border-top: 11px solid #1863dc;
+      top: 4px;
+      width: 2px;
+      height: 32px;
+      background: #1863dc;
+      border-radius: 1px;
       transform: translateX(-50%);
-      transition: left .35s cubic-bezier(.4,0,.2,1), border-top-color .35s;
+      transition: left .35s cubic-bezier(.4,0,.2,1), background .35s;
     }
 
     .product-card:hover::before {
@@ -4330,9 +4329,9 @@
     </div>
   </section>
 
-  <!-- Connector caret -->
+  <!-- Connector pipe -->
   <div class="product-connector" id="product-connector">
-    <div class="product-caret" id="product-caret"></div>
+    <div class="product-pipe" id="product-pipe"></div>
   </div>
 
   <!-- SPECIALISTS SECTION -->
@@ -5062,13 +5061,13 @@
     }
 
     function positionCaret(card, product) {
-      var caret = document.getElementById('product-caret');
+      var pipe = document.getElementById('product-pipe');
       var connector = document.getElementById('product-connector');
-      if (!caret || !connector) return;
+      if (!pipe || !connector) return;
       var cardRect = card.getBoundingClientRect();
       var connRect = connector.getBoundingClientRect();
-      caret.style.left = (cardRect.left + cardRect.width / 2 - connRect.left) + 'px';
-      caret.style.borderTopColor = caretColors[product] || '#1863dc';
+      pipe.style.left = (cardRect.left + cardRect.width / 2 - connRect.left) + 'px';
+      pipe.style.background = caretColors[product] || '#1863dc';
     }
 
     document.querySelectorAll('.product-card').forEach(function(card) {
