@@ -4336,6 +4336,7 @@
             <span class="product-see-more"><span class="see-more-default">Meet the specialist</span><span class="see-more-active">Hide</span></span>
           </div>
           <div class="product-panel" id="tab-inside">
+            <div class="product-tree-connector"></div>
             <div class="product-panel-inner">
               <div class="agents-grid agents-grid-4" id="inside-grid">
 
@@ -4411,6 +4412,7 @@
             <span class="product-see-more"><span class="see-more-default">Meet the specialist</span><span class="see-more-active">Hide</span></span>
           </div>
           <div class="product-panel" id="tab-work">
+            <div class="product-tree-connector"></div>
             <div class="product-panel-inner">
 
               <!-- Audience 1: Sales Teams -->
@@ -4515,6 +4517,7 @@
             <span class="product-see-more"><span class="see-more-default">Meet the specialist</span><span class="see-more-active">Hide</span></span>
           </div>
           <div class="product-panel" id="tab-personal">
+            <div class="product-tree-connector"></div>
             <div class="product-panel-inner">
               <div class="agents-grid agents-personal-grid">
 
@@ -4575,7 +4578,6 @@
     /* Desktop: group dissolves into grid so card+panel are direct grid children */
     @media (min-width: 1001px) {
       .product-group { display: contents; }
-      .product-panel { padding-top: 16px; }
       .product-card  { grid-row: 1; }
       .product-panel { grid-row: 2; grid-column: 1 / -1; }
     }
@@ -4584,6 +4586,7 @@
     @media (max-width: 1000px) {
       .products-grid { display: flex; flex-direction: column; gap: 16px; }
       .product-group { display: flex; flex-direction: column; }
+      .product-tree-connector { display: none; }
       .product-panel {
         display: block;
         overflow: hidden;
@@ -4595,31 +4598,67 @@
       .product-panel.active { max-height: 3000px; opacity: 1; }
     }
 
-    /* Panel inner — desktop: top strip + triangle caret */
+    /* Panel inner — desktop: tree connector replaces top border */
     @media (min-width: 1001px) {
       .product-panel-inner {
         background: var(--surface);
-        padding: 40px 0;
-        border-top: 3px solid var(--panel-color, var(--accent));
+        padding: 0 0 40px;
+        border-top: none;
         border-radius: 0;
-        position: relative;
       }
-      /* Triangle caret pointing up from panel to active card */
-      .product-panel-inner::before {
+
+      /* Tree connector: vertical stem + horizontal bar */
+      .product-tree-connector {
+        position: relative;
+        height: 40px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      /* Vertical stem down from active card center */
+      .product-tree-connector::before {
         content: '';
         position: absolute;
-        top: -12px;
-        width: 0;
-        height: 0;
-        border-left: 11px solid transparent;
-        border-right: 11px solid transparent;
-        border-bottom: 12px solid var(--panel-color, var(--accent));
+        top: 0;
+        width: 2px;
+        height: 24px;
+        background: var(--panel-color, var(--accent));
         transform: translateX(-50%);
       }
-      /* Position caret under the correct column */
-      #tab-inside   .product-panel-inner::before { left: calc(100% / 6); }
-      #tab-work     .product-panel-inner::before { left: 50%; }
-      #tab-personal .product-panel-inner::before { left: calc(100% * 5 / 6); }
+      /* Horizontal bar connecting to specialist cards */
+      .product-tree-connector::after {
+        content: '';
+        position: absolute;
+        top: 24px;
+        height: 2px;
+        background: var(--panel-color, var(--accent));
+      }
+      /* Stem X — one per panel (column center) */
+      #tab-inside   .product-tree-connector::before { left: calc(100% / 6); }
+      #tab-work     .product-tree-connector::before { left: 50%; }
+      #tab-personal .product-tree-connector::before { left: calc(100% * 5 / 6); }
+      /* Horizontal bar span — matches specialist grid card positions */
+      #tab-inside   .product-tree-connector::after,
+      #tab-work     .product-tree-connector::after  { left: 11%; right: 11%; }
+      #tab-personal .product-tree-connector::after  { left: 16%; right: 16%; }
+
+      /* Drop lines from bar down to each specialist card */
+      .product-panel-inner .agents-card:not(.agents-card-row),
+      .product-panel-inner .agents-personal-row { position: relative; }
+
+      .product-panel-inner .agents-card:not(.agents-card-row)::before,
+      .product-panel-inner .agents-personal-row::before {
+        content: '';
+        position: absolute;
+        top: -16px;
+        left: 50%;
+        width: 2px;
+        height: 16px;
+        background: var(--card-color, var(--panel-color, var(--accent)));
+        transform: translateX(-50%);
+      }
+      /* Space above grids to accommodate the drop lines */
+      .product-panel-inner .agents-grid,
+      .product-panel-inner .agents-personal-grid { margin-top: 16px; }
     }
 
     /* Panel inner — mobile: continue card border as merged unit */
