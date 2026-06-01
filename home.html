@@ -4598,7 +4598,7 @@
       .product-panel.active { max-height: 3000px; opacity: 1; }
     }
 
-    /* Panel inner — desktop: tree connector replaces top border */
+    /* Panel inner — desktop: tree connector */
     @media (min-width: 1001px) {
       .product-panel-inner {
         background: var(--surface);
@@ -4607,14 +4607,22 @@
         border-radius: 0;
       }
 
-      /* Tree connector: vertical stem + horizontal bar */
+      /* ── Tree connector geometry ──
+         stem: 0 → 24px (full connector height)
+         bar:  at 24px (bottom edge of connector)
+         gap:  12px padding-top on grid
+         drop: -12px to -5px from card top (7px line)
+         head: -5px to 0px from card top (5px triangle tip)
+         Total: continuous, no breaks
+      ── */
       .product-tree-connector {
         position: relative;
-        height: 40px;
+        height: 24px;
         max-width: 1100px;
         margin: 0 auto;
+        overflow: visible;
       }
-      /* Vertical stem down from active card center */
+      /* Stem: runs full connector height, starts at card bottom */
       .product-tree-connector::before {
         content: '';
         position: absolute;
@@ -4624,24 +4632,28 @@
         background: var(--panel-color, var(--accent));
         transform: translateX(-50%);
       }
-      /* Horizontal bar connecting to specialist cards */
+      /* Bar: at bottom of connector, flush where drops begin */
       .product-tree-connector::after {
         content: '';
         position: absolute;
-        top: 24px;
+        bottom: 0;
         height: 2px;
         background: var(--panel-color, var(--accent));
       }
-      /* Stem X — one per panel (column center) */
+      /* Stem X — center of each product column */
       #tab-inside   .product-tree-connector::before { left: calc(100% / 6); }
       #tab-work     .product-tree-connector::before { left: 50%; }
       #tab-personal .product-tree-connector::before { left: calc(100% * 5 / 6); }
-      /* Horizontal bar span — matches specialist grid card positions */
+      /* Bar spans from first to last specialist card center */
       #tab-inside   .product-tree-connector::after,
-      #tab-work     .product-tree-connector::after  { left: 11%; right: 11%; }
+      #tab-work     .product-tree-connector::after  { left: 12%; right: 12%; }
       #tab-personal .product-tree-connector::after  { left: 16%; right: 16%; }
 
-      /* Drop lines from bar down to each specialist card */
+      /* Grid padding gives room for drops + arrowheads */
+      .product-panel-inner .agents-grid,
+      .product-panel-inner .agents-personal-grid { padding-top: 12px; margin-top: 0; }
+
+      /* Drop lines: connect from bar (12px above card) down to arrowhead */
       .product-panel-inner .agents-card:not(.agents-card-row),
       .product-panel-inner .agents-personal-row { position: relative; }
 
@@ -4649,16 +4661,27 @@
       .product-panel-inner .agents-personal-row::before {
         content: '';
         position: absolute;
-        top: -16px;
+        top: -12px;
         left: 50%;
         width: 2px;
-        height: 16px;
+        height: 7px;
         background: var(--card-color, var(--panel-color, var(--accent)));
         transform: translateX(-50%);
       }
-      /* Space above grids to accommodate the drop lines */
-      .product-panel-inner .agents-grid,
-      .product-panel-inner .agents-personal-grid { margin-top: 16px; }
+      /* Arrowhead: downward triangle, tip touches card top edge */
+      .product-panel-inner .agents-card:not(.agents-card-row)::after,
+      .product-panel-inner .agents-personal-row::after {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid var(--card-color, var(--panel-color, var(--accent)));
+      }
     }
 
     /* Panel inner — mobile: continue card border as merged unit */
