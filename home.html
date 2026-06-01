@@ -2926,16 +2926,30 @@
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 7px;
       user-select: none;
       transition: color 0.2s;
     }
-    .product-see-more::after {
-      content: "⌄";
+    /* CSS filled triangle — points right by default */
+    .product-see-more::before {
+      content: '';
       display: inline-block;
-      font-size: 17px;
-      line-height: 1;
+      flex-shrink: 0;
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 8px solid currentColor;
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    /* Text label swap */
+    .see-more-default { display: inline; }
+    .see-more-active  { display: none; }
+    .product-card.active .see-more-default { display: none; }
+    .product-card.active .see-more-active  { display: inline; }
+    /* Rotate triangle down when active */
+    .product-card.active .product-see-more::before {
+      transform: rotate(90deg);
     }
     .product-card:hover .product-see-more {
       color: var(--accent, #001F5C);
@@ -2943,9 +2957,6 @@
     .product-card[data-product="inside"].active .product-see-more  { color: #1863dc; }
     .product-card[data-product="work"].active .product-see-more    { color: #149a6e; }
     .product-card[data-product="personal"].active .product-see-more{ color: #7e57c2; }
-    .product-card.active .product-see-more::after {
-      transform: rotate(180deg);
-    }
 
     .product-link:hover {
       color: var(--card-accent, var(--accent));
@@ -4322,7 +4333,7 @@
             <span class="product-tag">Infina AI Inside</span>
             <h3>More engaged customer. Higher revenue. Zero build time.</h3>
             <p class="product-desc">Confused customers don't convert. AI Inside puts a specialist right inside your app so every user gets the right guidance, at the right moment, and moves forward.</p>
-            <span class="product-see-more">Meet the specialist</span>
+            <span class="product-see-more"><span class="see-more-default">Meet the specialist</span><span class="see-more-active">Hide</span></span>
           </div>
           <div class="product-panel" id="tab-inside">
             <div class="product-panel-inner">
@@ -4397,7 +4408,7 @@
             <span class="product-tag">Infina AI Work</span>
             <h3>Your team, working at their best with AI handling the rest.</h3>
             <p class="product-desc">Your top talent shouldn't be buried in updates and follow-ups. AI Work handles the operational load so your team stays focused on the work that drives results.</p>
-            <span class="product-see-more">Meet the specialist</span>
+            <span class="product-see-more"><span class="see-more-default">Meet the specialist</span><span class="see-more-active">Hide</span></span>
           </div>
           <div class="product-panel" id="tab-work">
             <div class="product-panel-inner">
@@ -4501,7 +4512,7 @@
             <span class="product-tag">Infina AI Personal</span>
             <h3>Grow more. Stress less. Achieve your goal.</h3>
             <p class="product-desc">Whether you should invest or pay off debt, whether an insurance plan is worth it, or where to travel on your budget, stop guessing and get a clear answer.</p>
-            <span class="product-see-more">Meet the specialist</span>
+            <span class="product-see-more"><span class="see-more-default">Meet the specialist</span><span class="see-more-active">Hide</span></span>
           </div>
           <div class="product-panel" id="tab-personal">
             <div class="product-panel-inner">
