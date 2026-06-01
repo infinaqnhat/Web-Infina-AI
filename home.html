@@ -5468,6 +5468,495 @@
     </div>
   </section>
 
+  <!-- ====== CORE V2 REBUILD (for comparison) ====== -->
+  <style>
+    .core-v2-section {
+      padding: var(--section-gap) 0;
+      background: #fff;
+      border-top: 3px dashed #e2e8f0;
+    }
+
+    /* Header */
+    .core-v2-eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .core-v2-headline {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      color: var(--fg);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      text-align: center;
+      margin: 0 auto 56px;
+      max-width: 700px;
+    }
+    .core-v2-headline .core-v2-accent { color: var(--accent); }
+    .core-v2-header { text-align: center; margin-bottom: 0; }
+
+    /* Column labels */
+    .core-v2-col-labels {
+      display: grid;
+      grid-template-columns: 1fr 200px 1fr;
+      margin-bottom: 16px;
+    }
+    .core-v2-label-blue {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1863dc;
+      text-align: center;
+    }
+    .core-v2-label-green {
+      font-size: 15px;
+      font-weight: 700;
+      color: #149a6e;
+      text-align: center;
+    }
+
+    /* Rows */
+    .core-v2-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      padding-right: 28px;
+    }
+    .core-v2-row {
+      display: grid;
+      grid-template-columns: 1fr 200px 1fr;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* Bracket on right side of rows */
+    .core-v2-rows::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 20px;
+      border-top: 2px solid #149a6e;
+      border-right: 2px solid #149a6e;
+      border-bottom: 2px solid #149a6e;
+      border-radius: 0 10px 10px 0;
+      pointer-events: none;
+    }
+
+    /* Cards */
+    .core-v2-lcard,
+    .core-v2-rcard {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: #fff;
+      border: 1.5px solid var(--border-light);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .core-v2-lcard { border-left: 3px solid #1863dc; }
+    .core-v2-rcard { border-left: 3px solid #149a6e; background: #f6fdf9; }
+
+    .core-v2-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .core-v2-icon--blue { background: #eff4ff; }
+    .core-v2-icon--blue svg { stroke: #1863dc; }
+    .core-v2-icon--green { background: #edfaf4; }
+    .core-v2-icon--green svg { stroke: #149a6e; }
+    .core-v2-icon svg { width: 22px; height: 22px; }
+
+    .core-v2-card-text h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--fg);
+      margin: 0 0 4px;
+      line-height: 1.3;
+    }
+    .core-v2-lcard .core-v2-card-text h3 { color: #1863dc; }
+    .core-v2-rcard .core-v2-card-text h3 { color: #149a6e; }
+    .core-v2-card-text p {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Connector */
+    .core-v2-conn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 0 12px;
+      position: relative;
+    }
+    .core-v2-conn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1.5px;
+      background: linear-gradient(90deg, #1863dc 0%, #149a6e 100%);
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+    .core-v2-conn-arrow {
+      font-size: 18px;
+      color: #149a6e;
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      padding: 0 4px;
+      line-height: 1;
+    }
+    .core-v2-conn-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      padding: 0 6px;
+      line-height: 1.4;
+    }
+
+    /* Converge arrow */
+    .core-v2-converge {
+      display: flex;
+      justify-content: center;
+      padding: 8px 0;
+    }
+    .core-v2-converge-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .core-v2-converge-arrow::before {
+      content: '';
+      width: 2px;
+      height: 24px;
+      background: linear-gradient(180deg, transparent, #1863dc);
+      border-left: 2px dashed #1863dc;
+    }
+    .core-v2-converge-arrow::after {
+      content: '▼';
+      font-size: 12px;
+      color: #1863dc;
+      margin-top: -4px;
+    }
+
+    /* Output card */
+    .core-v2-output-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .core-v2-output {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: #fff;
+      border: 2px solid #1863dc;
+      border-radius: 16px;
+      padding: 24px 32px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 4px 24px -4px rgba(24, 99, 220, 0.15);
+    }
+    .core-v2-output-icon {
+      width: 56px;
+      height: 56px;
+      background: #1a237e;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .core-v2-output-icon svg { width: 28px; height: 28px; stroke: #fff; fill: none; }
+    .core-v2-output-text h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1863dc;
+      margin: 0 0 6px;
+    }
+    .core-v2-output-text p {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Chips */
+    .core-v2-chips-wrap {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+    .core-v2-chips-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      border-top: 2px dashed #cbd5e1;
+    }
+    .core-v2-chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      padding-top: 28px;
+    }
+    .core-v2-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1.5px solid var(--border-light);
+      border-radius: 40px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--fg);
+    }
+    .core-v2-chip svg { width: 18px; height: 18px; }
+    .core-v2-chip--blue { color: #1863dc; border-color: #c7d9f8; }
+    .core-v2-chip--blue svg { stroke: #1863dc; }
+    .core-v2-chip--green { color: #149a6e; border-color: #b6e8d4; }
+    .core-v2-chip--green svg { stroke: #149a6e; }
+    .core-v2-chip--purple { color: #7e57c2; border-color: #d4c9f0; }
+    .core-v2-chip--purple svg { stroke: #7e57c2; }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .core-v2-col-labels { display: none; }
+      .core-v2-rows { padding-right: 0; gap: 24px; }
+      .core-v2-rows::after { display: none; }
+      .core-v2-row {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .core-v2-conn {
+        flex-direction: row;
+        justify-content: center;
+        padding: 10px 0;
+        width: 100%;
+      }
+      .core-v2-conn::before { display: none; }
+      .core-v2-conn-arrow { font-size: 22px; }
+      .core-v2-conn-label { font-size: 13px; }
+      .core-v2-lcard, .core-v2-rcard { width: 100%; box-sizing: border-box; }
+    }
+  </style>
+
+  <section class="core-v2-section" id="core-v2">
+    <div class="container">
+      <div class="core-v2-header">
+        <span class="core-v2-eyebrow">INFINA AI CORE</span>
+        <h2 class="core-v2-headline">One core, <span class="core-v2-accent">customized for every client.</span></h2>
+      </div>
+
+      <div class="core-v2-col-labels">
+        <span class="core-v2-label-blue">Infina AI Core</span>
+        <span></span>
+        <span class="core-v2-label-green">Client Context</span>
+      </div>
+
+      <div class="core-v2-rows">
+
+        <!-- Row 1 -->
+        <div class="core-v2-row">
+          <div class="core-v2-lcard">
+            <div class="core-v2-icon core-v2-icon--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="2" width="6" height="4" rx="1"/><rect x="2" y="18" width="6" height="4" rx="1"/><rect x="16" y="18" width="6" height="4" rx="1"/>
+                <line x1="12" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="5" y2="18"/><line x1="12" y1="12" x2="19" y2="18"/>
+              </svg>
+            </div>
+            <div class="core-v2-card-text">
+              <h3>Agent Orchestration</h3>
+              <p>Coordinates AI agents and workflows</p>
+            </div>
+          </div>
+          <div class="core-v2-conn">
+            <div class="core-v2-conn-arrow">→</div>
+            <span class="core-v2-conn-label">Defines how work gets done</span>
+          </div>
+          <div class="core-v2-rcard">
+            <div class="core-v2-icon core-v2-icon--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="2" width="6" height="4" rx="1"/><rect x="2" y="18" width="6" height="4" rx="1"/><rect x="16" y="18" width="6" height="4" rx="1"/>
+                <line x1="12" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="5" y2="18"/><line x1="12" y1="12" x2="19" y2="18"/>
+              </svg>
+            </div>
+            <div class="core-v2-card-text">
+              <h3>Business Workflow</h3>
+              <p>The process and steps to automate</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="core-v2-row">
+          <div class="core-v2-lcard">
+            <div class="core-v2-icon core-v2-icon--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.5 12H19m-7-7V3m0 18v-2M5 12H3.5M7.05 7.05 5.99 6M18.01 6l-1.06 1.05M7.05 16.95l-1.06 1.06M18.01 18l-1.06-1.05"/>
+                <circle cx="12" cy="12" r="4"/><path d="M15 9h2a2 2 0 0 1 0 4h-1"/>
+              </svg>
+            </div>
+            <div class="core-v2-card-text">
+              <h3>Tools & Connectors</h3>
+              <p>Connects to apps, systems, and APIs</p>
+            </div>
+          </div>
+          <div class="core-v2-conn">
+            <div class="core-v2-conn-arrow">→</div>
+            <span class="core-v2-conn-label">Defines where action happens</span>
+          </div>
+          <div class="core-v2-rcard">
+            <div class="core-v2-icon core-v2-icon--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+              </svg>
+            </div>
+            <div class="core-v2-card-text">
+              <h3>Internal Systems</h3>
+              <p>The software stack the specialist works with</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="core-v2-row">
+          <div class="core-v2-lcard">
+            <div class="core-v2-icon core-v2-icon--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+              </svg>
+            </div>
+            <div class="core-v2-card-text">
+              <h3>Knowledge & Data</h3>
+              <p>Grounds the specialist in trusted knowledge</p>
+            </div>
+          </div>
+          <div class="core-v2-conn">
+            <div class="core-v2-conn-arrow">→</div>
+            <span class="core-v2-conn-label">Defines what the specialist knows</span>
+          </div>
+          <div class="core-v2-rcard">
+            <div class="core-v2-icon core-v2-icon--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                <rect x="9" y="13" width="3" height="4" rx="1"/><path d="M9 13v-1a2 2 0 0 1 4 0v1"/>
+              </svg>
+            </div>
+            <div class="core-v2-card-text">
+              <h3>Private Data</h3>
+              <p>Company documents, records, and knowledge</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="core-v2-row">
+          <div class="core-v2-lcard">
+            <div class="core-v2-icon core-v2-icon--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+              </svg>
+            </div>
+            <div class="core-v2-card-text">
+              <h3>Evaluation & Safety</h3>
+              <p>Applies guardrails, evals, and monitoring</p>
+            </div>
+          </div>
+          <div class="core-v2-conn">
+            <div class="core-v2-conn-arrow">→</div>
+            <span class="core-v2-conn-label">Defines how quality and safety are enforced</span>
+          </div>
+          <div class="core-v2-rcard">
+            <div class="core-v2-icon core-v2-icon--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+              </svg>
+            </div>
+            <div class="core-v2-card-text">
+              <h3>Business Rules & Compliance</h3>
+              <p>Policies, approvals, and constraints</p>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /core-v2-rows -->
+
+      <!-- Converging arrow -->
+      <div class="core-v2-converge">
+        <div class="core-v2-converge-arrow"></div>
+      </div>
+
+      <!-- Output card -->
+      <div class="core-v2-output-wrap">
+        <div class="core-v2-output">
+          <div class="core-v2-output-icon">
+            <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+            </svg>
+          </div>
+          <div class="core-v2-output-text">
+            <h3>Custom AI Specialist</h3>
+            <p>Built around the client's workflow, systems, data, and operating rules.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Use-case chips -->
+      <div class="core-v2-chips-wrap">
+        <div class="core-v2-chips">
+          <div class="core-v2-chip core-v2-chip--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+            Customer Support
+          </div>
+          <div class="core-v2-chip core-v2-chip--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Sales
+          </div>
+          <div class="core-v2-chip core-v2-chip--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+            Operations
+          </div>
+          <div class="core-v2-chip core-v2-chip--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/><path d="M9 9h.01M15 9h.01"/><path d="M8 13s1 2 4 2 4-2 4-2"/></svg>
+            Finance
+          </div>
+          <div class="core-v2-chip core-v2-chip--purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            Compliance
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- ====== END CORE V2 ====== -->
+
   <!-- WHY INFINA AI SECTION - hidden, preserved for reuse
   <section class="why-infina" id="why-infina">
     <div class="container">
