@@ -2443,40 +2443,90 @@
     .products-agents-header {
       text-align: center;
       max-width: 760px;
-      margin: 0 auto 56px;
+      margin: 0 auto 48px;
     }
 
-    .products-agents-layout {
+    .product-tabs-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.07);
+      overflow: hidden;
+    }
+
+    .product-tabs-row {
       display: flex;
-      gap: 40px;
+      border-bottom: 1px solid var(--border-light, rgba(0,0,0,0.08));
+    }
+
+    .product-tab {
+      flex: 1;
+      padding: 28px 32px;
+      cursor: pointer;
+      position: relative;
+      border-right: 1px solid var(--border-light, rgba(0,0,0,0.08));
+      transition: background 0.2s;
+      display: flex;
+      flex-direction: column;
       align-items: flex-start;
     }
 
-    .products-selector {
-      flex: 0 0 300px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+    .product-tab:last-child { border-right: none; }
+
+    .product-tab:hover { background: rgba(0,0,0,0.02); }
+
+    .product-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 3px;
+      background: var(--tab-accent, #1863dc);
+      z-index: 1;
     }
 
-    .specialists-panel {
-      flex: 1;
-      min-width: 0;
+    .product-tab[data-product="inside"].active { --tab-accent: #1863dc; background: rgba(24,99,220,0.04); }
+    .product-tab[data-product="work"].active   { --tab-accent: #149a6e; background: rgba(20,154,110,0.04); }
+    .product-tab[data-product="personal"].active { --tab-accent: #7e57c2; background: rgba(126,87,194,0.04); }
+
+    .product-tab[data-product="inside"] .product-tag { --tag-color: #1863dc; }
+    .product-tab[data-product="work"] .product-tag   { --tag-color: #149a6e; }
+    .product-tab[data-product="personal"] .product-tag { --tag-color: #7e57c2; }
+
+    .product-tab .product-audience-label { padding-left: 0; margin-bottom: 10px; }
+    .product-tab .product-tag { margin-bottom: 0; }
+
+    .product-tab-link {
+      display: block;
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted, #9ca3af);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .product-tab-link:hover { color: var(--accent, #001F5C); }
+
+    .product-content-panels { padding: 40px; }
+
+    .product-panel { display: none; }
+    .product-panel.active { display: block; }
+
+    .panel-headline { margin-bottom: 32px; }
+    .panel-headline h3 {
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      color: var(--fg, #111827);
     }
 
-    @media (max-width: 960px) {
-      .products-agents-layout {
-        flex-direction: column;
-      }
-      .products-selector {
-        flex: none;
-        width: 100%;
-        flex-direction: row;
-        overflow-x: auto;
-      }
-      .products-selector .product-card {
-        flex: 0 0 260px;
-      }
+    .agents-grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+    @media (max-width: 768px) {
+      .product-tabs-row { flex-direction: column; }
+      .product-tab { border-right: none; border-bottom: 1px solid var(--border-light, rgba(0,0,0,0.08)); }
+      .product-tab:last-child { border-bottom: none; }
+      .product-content-panels { padding: 24px 20px; }
+      .agents-grid-2 { grid-template-columns: 1fr; }
     }
 
     .products .container {
@@ -4305,37 +4355,37 @@
       <span class="section-eyebrow">Jobs We Get Done</span>
       <h2>The work you're struggling with? <span class="accent">AI handles it.</span></h2>
     </div>
-    <div class="products-agents-layout">
 
-      <!-- Left: product selector -->
-      <div class="products-selector" id="products-grid">
-        <div class="product-card active" data-product="inside">
+    <div class="product-tabs-card">
+
+      <!-- Tab row: 3 equal tabs -->
+      <div class="product-tabs-row">
+        <div class="product-tab active" data-product="inside">
           <span class="product-audience-label">For Platforms</span>
           <span class="product-tag">Infina AI Inside</span>
-          <h3>More engaged customer. Higher revenue. Zero build time.</h3>
-          <a href="inside.html" class="product-link">Explore AI Inside</a>
+          <a href="inside.html" class="product-tab-link">Explore AI Inside →</a>
         </div>
-
-        <div class="product-card" data-product="work">
+        <div class="product-tab" data-product="work">
           <span class="product-audience-label">For Business</span>
           <span class="product-tag">Infina AI Work</span>
-          <h3>Your team, working at their best with AI handling the rest.</h3>
-          <a href="work.html" class="product-link">Explore AI Work</a>
+          <a href="work.html" class="product-tab-link">Explore AI Work →</a>
         </div>
-
-        <div class="product-card" data-product="personal">
+        <div class="product-tab" data-product="personal">
           <span class="product-audience-label">For Individuals</span>
           <span class="product-tag">Infina AI Personal</span>
-          <h3>Grow more. Stress less. Achieve your goal.</h3>
-          <a href="personal.html" class="product-link">Explore AI Personal</a>
+          <a href="personal.html" class="product-tab-link">Explore AI Personal →</a>
         </div>
       </div>
 
-      <!-- Right: specialist panels -->
-      <div class="specialists-panel">
-      <!-- ── TAB: AI Inside ── -->
-      <div class="agents-panel active" id="tab-inside">
-        <div class="agents-grid agents-grid-4" id="inside-grid">
+      <!-- Content panels -->
+      <div class="product-content-panels">
+
+        <!-- Panel: AI Inside -->
+        <div class="product-panel active" id="tab-inside">
+          <div class="panel-headline">
+            <h3>More engaged customer. Higher revenue. Zero build time.</h3>
+          </div>
+          <div class="agents-grid agents-grid-2" id="inside-grid">
 
           <div class="agents-card" data-agent="stock">
             <div class="agents-card-left">
@@ -4398,8 +4448,13 @@
         </div>
       </div>
 
-      <!-- ── TAB: AI Personal ── -->
-      <div class="agents-panel" id="tab-personal">
+        </div><!-- end panel-inside -->
+
+        <!-- Panel: AI Personal -->
+        <div class="product-panel" id="tab-personal">
+          <div class="panel-headline">
+            <h3>Grow more. Stress less. Achieve your goal.</h3>
+          </div>
         <div class="agents-grid agents-personal-grid">
 
           <div class="agents-personal-row">
@@ -4437,8 +4492,13 @@
         </div>
       </div>
 
-      <!-- ── TAB: AI Work ── -->
-      <div class="agents-panel" id="tab-work">
+        </div><!-- end panel-personal -->
+
+        <!-- Panel: AI Work -->
+        <div class="product-panel" id="tab-work">
+          <div class="panel-headline">
+            <h3>Your team, working at their best with AI handling the rest.</h3>
+          </div>
 
         <!-- Audience 1: Sales Teams -->
         <div class="agents-work-audience">
@@ -4529,17 +4589,17 @@
           </div>
         </div>
 
-      </div><!-- end tab-work -->
+        </div><!-- end panel-work -->
 
-      </div><!-- end specialists-panel -->
-    </div><!-- end products-agents-layout -->
+      </div><!-- end product-content-panels -->
+    </div><!-- end product-tabs-card -->
   </div><!-- end container -->
   </div><!-- end products-agents-wrapper -->
 
   <style>
     /* ===== What Our Agents Get Done ===== */
-    .specialists-panel .agents-panel {
-      /* no extra padding needed — wrapper handles spacing */
+    .product-content-panels .agents-grid {
+      max-width: none;
     }
 
     /* Match header styling to products section */
@@ -5044,27 +5104,28 @@
   </style>
 
   <script>
-    // Tab switching for agents section
     var tintColors = { inside: 'rgba(24,99,220,0.06)', work: 'rgba(20,154,110,0.06)', personal: 'rgba(126,87,194,0.06)' };
 
-    function activateProduct(card) {
-      document.querySelectorAll('.product-card').forEach(function(c) { c.classList.remove('active'); });
-      document.querySelectorAll('.agents-panel').forEach(function(p) { p.classList.remove('active'); });
-      card.classList.add('active');
-      var product = card.getAttribute('data-product');
+    function activateProduct(tab) {
+      document.querySelectorAll('.product-tab').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('.product-panel').forEach(function(p) { p.classList.remove('active'); });
+      tab.classList.add('active');
+      var product = tab.getAttribute('data-product');
       var wrapper = document.getElementById('products-agents-wrapper');
       if (wrapper) wrapper.style.background = tintColors[product] || tintColors.inside;
       var panel = document.getElementById('tab-' + product);
       if (panel) panel.classList.add('active');
     }
 
-    document.querySelectorAll('.product-card').forEach(function(card) {
-      card.addEventListener('click', function() { activateProduct(card); });
+    document.querySelectorAll('.product-tab').forEach(function(tab) {
+      tab.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') return;
+        activateProduct(tab);
+      });
     });
 
-    // Init tints on load
-    var activeCard = document.querySelector('.product-card.active');
-    if (activeCard) activateProduct(activeCard);
+    var activeTab = document.querySelector('.product-tab.active');
+    if (activeTab) activateProduct(activeTab);
   </script>
 
   <!-- SPEED BANNER SECTION - hidden, preserved for reuse
