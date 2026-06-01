@@ -2533,7 +2533,8 @@
     .products-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      column-gap: 24px;
+      row-gap: 0;
     }
 
 
@@ -2600,15 +2601,22 @@
     }
 
 
-    .product-card:hover, .product-card.active {
+    .product-card:hover {
       transform: translateY(-6px);
       border-color: transparent;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 31, 92, 0.3);
     }
 
-    .product-card[data-product="inside"].active  { box-shadow: 0 24px 60px rgba(24,99,220,0.15),  0 0 0 2px #1863dc; }
-    .product-card[data-product="work"].active    { box-shadow: 0 24px 60px rgba(20,154,110,0.15), 0 0 0 2px #149a6e; }
-    .product-card[data-product="personal"].active{ box-shadow: 0 24px 60px rgba(126,87,194,0.15), 0 0 0 2px #7e57c2; }
+    /* Active: flatten bottom, merge into panel below */
+    .product-card.active {
+      transform: translateY(0);
+      border-radius: 20px 20px 0 0;
+      border-bottom: none;
+      box-shadow: none;
+    }
+    .product-card[data-product="inside"].active  { border-color: #1863dc; border-width: 2px; }
+    .product-card[data-product="work"].active    { border-color: #149a6e; border-width: 2px; }
+    .product-card[data-product="personal"].active{ border-color: #7e57c2; border-width: 2px; }
 
 
     .product-card:hover::before {
@@ -4547,13 +4555,14 @@
     .product-panel-inner {
       background: var(--surface);
       padding: 40px 0;
-      border-top: 3px solid var(--panel-color, var(--accent));
+      border: 2px solid var(--panel-color, var(--accent));
+      border-top: none;
+      border-radius: 0 0 20px 20px;
     }
 
     @media (max-width: 1000px) {
       .product-panel-inner {
         padding: 24px 16px;
-        border-radius: 0 0 16px 16px;
       }
     }
 
