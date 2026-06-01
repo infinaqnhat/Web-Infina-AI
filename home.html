@@ -2437,13 +2437,46 @@
     .products-agents-wrapper {
       background: rgba(24,99,220,0.06);
       transition: background 0.35s;
+      padding: var(--section-gap) 0;
     }
 
-    .products {
-      padding: var(--section-gap) 0 0;
-      background: transparent;
-      position: relative;
-      overflow: hidden;
+    .products-agents-header {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 56px;
+    }
+
+    .products-agents-layout {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .products-selector {
+      flex: 0 0 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .specialists-panel {
+      flex: 1;
+      min-width: 0;
+    }
+
+    @media (max-width: 960px) {
+      .products-agents-layout {
+        flex-direction: column;
+      }
+      .products-selector {
+        flex: none;
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+      }
+      .products-selector .product-card {
+        flex: 0 0 260px;
+      }
     }
 
     .products .container {
@@ -2524,28 +2557,21 @@
     }
 
     .products-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    @media (max-width: 1000px) {
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
+      /* layout now handled by .products-selector flex column */
     }
 
     .product-card {
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 44px 32px 32px;
+      padding: 28px 24px 24px;
       position: relative;
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s, border-color 0.3s;
       display: flex;
       flex-direction: column;
       overflow: hidden;
       isolation: isolate;
+      cursor: pointer;
     }
 
     .product-card::before {
@@ -4274,14 +4300,15 @@
   </section>
 
   <div class="products-agents-wrapper" id="products-agents-wrapper">
-  <section class="products" id="products">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">Jobs We Get Done</span>
-        <h2>The work you're struggling with? <span class="accent">AI handles it.</span></h2>
-      </div>
+  <div class="container">
+    <div class="section-header products-agents-header">
+      <span class="section-eyebrow">Jobs We Get Done</span>
+      <h2>The work you're struggling with? <span class="accent">AI handles it.</span></h2>
+    </div>
+    <div class="products-agents-layout">
 
-      <div class="products-grid" id="products-grid">
+      <!-- Left: product selector -->
+      <div class="products-selector" id="products-grid">
         <div class="product-card active" data-product="inside">
           <span class="product-audience-label">For Platforms</span>
           <span class="product-tag">Infina AI Inside</span>
@@ -4303,12 +4330,9 @@
           <a href="personal.html" class="product-link">Explore AI Personal</a>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- SPECIALISTS SECTION -->
-  <section class="agents-section">
-    <div class="container">
+      <!-- Right: specialist panels -->
+      <div class="specialists-panel">
       <!-- ── TAB: AI Inside ── -->
       <div class="agents-panel active" id="tab-inside">
         <div class="agents-grid agents-grid-4" id="inside-grid">
@@ -4507,15 +4531,15 @@
 
       </div><!-- end tab-work -->
 
-    </div>
-  </section>
+      </div><!-- end specialists-panel -->
+    </div><!-- end products-agents-layout -->
+  </div><!-- end container -->
   </div><!-- end products-agents-wrapper -->
 
   <style>
     /* ===== What Our Agents Get Done ===== */
-    .agents-section {
-      padding: 48px 0 var(--section-gap);
-      background: transparent;
+    .specialists-panel .agents-panel {
+      /* no extra padding needed — wrapper handles spacing */
     }
 
     /* Match header styling to products section */
