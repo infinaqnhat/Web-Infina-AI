@@ -2923,11 +2923,28 @@
       font-weight: 600;
       color: var(--muted, #9ca3af);
       margin-top: auto;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      user-select: none;
       transition: color 0.2s;
     }
-    .product-card.active .product-see-more,
+    .product-see-more::after {
+      content: "⌄";
+      display: inline-block;
+      font-size: 17px;
+      line-height: 1;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
     .product-card:hover .product-see-more {
       color: var(--accent, #001F5C);
+    }
+    .product-card[data-product="inside"].active .product-see-more  { color: #1863dc; }
+    .product-card[data-product="work"].active .product-see-more    { color: #149a6e; }
+    .product-card[data-product="personal"].active .product-see-more{ color: #7e57c2; }
+    .product-card.active .product-see-more::after {
+      transform: rotate(180deg);
     }
 
     .product-link:hover {
@@ -4305,7 +4322,7 @@
             <span class="product-tag">Infina AI Inside</span>
             <h3>More engaged customer. Higher revenue. Zero build time.</h3>
             <p class="product-desc">Confused customers don't convert. AI Inside puts a specialist right inside your app so every user gets the right guidance, at the right moment, and moves forward.</p>
-            <span class="product-see-more">Meet our specialists</span>
+            <span class="product-see-more">Meet the specialist</span>
           </div>
           <div class="product-panel" id="tab-inside">
             <div class="product-panel-inner">
@@ -4380,7 +4397,7 @@
             <span class="product-tag">Infina AI Work</span>
             <h3>Your team, working at their best with AI handling the rest.</h3>
             <p class="product-desc">Your top talent shouldn't be buried in updates and follow-ups. AI Work handles the operational load so your team stays focused on the work that drives results.</p>
-            <span class="product-see-more">Meet our specialists</span>
+            <span class="product-see-more">Meet the specialist</span>
           </div>
           <div class="product-panel" id="tab-work">
             <div class="product-panel-inner">
@@ -4484,7 +4501,7 @@
             <span class="product-tag">Infina AI Personal</span>
             <h3>Grow more. Stress less. Achieve your goal.</h3>
             <p class="product-desc">Whether you should invest or pay off debt, whether an insurance plan is worth it, or where to travel on your budget, stop guessing and get a clear answer.</p>
-            <span class="product-see-more">Meet our specialists</span>
+            <span class="product-see-more">Meet the specialist</span>
           </div>
           <div class="product-panel" id="tab-personal">
             <div class="product-panel-inner">
@@ -5114,8 +5131,10 @@
   </style>
 
   <script>
-    document.querySelectorAll('.product-card').forEach(function(card) {
-      card.addEventListener('click', function() {
+    document.querySelectorAll('.product-see-more').forEach(function(trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var card = trigger.closest('.product-card');
         var isActive = card.classList.contains('active');
         var product = card.getAttribute('data-product');
 
