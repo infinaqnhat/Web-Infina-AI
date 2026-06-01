@@ -4598,6 +4598,12 @@
       .product-panel.active { max-height: 3000px; opacity: 1; }
     }
 
+    /* Ensure agents-grid fills the outlined box exactly, ignoring its standalone max-width */
+    .product-panel-inner .agents-grid {
+      max-width: none;
+      margin: 0;
+    }
+
     /* Panel inner — desktop: outlined box + single connecting line */
     @media (min-width: 1001px) {
       .product-tree-connector {
