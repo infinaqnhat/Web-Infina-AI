@@ -4749,24 +4749,24 @@
     #tab-personal .agents-card { --card-color: #7e57c2; }
     #tab-personal .agents-personal-row { --card-color: #7e57c2; }
 
-    /* ── Option A: coloured top border + matching title ── */
     .agents-card {
       background: #fff;
       border: 1.5px solid var(--border-light);
-      border-top: 4px solid var(--card-color, var(--accent));
       border-radius: 18px;
       padding: 26px 22px;
       display: flex;
       flex-direction: column;
       gap: 14px;
+      box-shadow: 0 0 0 1px color-mix(in oklab, var(--card-color, var(--accent)) 18%, transparent),
+                  0 4px 16px -4px color-mix(in oklab, var(--card-color, var(--accent)) 12%, transparent);
       transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
     }
 
     .agents-card:hover {
       transform: translateY(-5px);
-      border-color: color-mix(in oklab, var(--card-color, var(--accent)) 35%, transparent);
-      border-top-color: var(--card-color, var(--accent));
-      box-shadow: 0 20px 48px -16px color-mix(in oklab, var(--card-color, var(--accent)) 25%, transparent);
+      border-color: color-mix(in oklab, var(--card-color, var(--accent)) 25%, transparent);
+      box-shadow: 0 0 0 1.5px color-mix(in oklab, var(--card-color, var(--accent)) 40%, transparent),
+                  0 20px 48px -16px color-mix(in oklab, var(--card-color, var(--accent)) 25%, transparent);
     }
 
     .agents-card-title {
@@ -4907,17 +4907,18 @@
       gap: 14px;
       background: #fff;
       border: 1.5px solid var(--border-light);
-      border-top: 4px solid var(--card-color, #7e57c2);
       border-radius: 18px;
       padding: 26px 22px;
+      box-shadow: 0 0 0 1px color-mix(in oklab, var(--card-color, #7e57c2) 18%, transparent),
+                  0 4px 16px -4px color-mix(in oklab, var(--card-color, #7e57c2) 12%, transparent);
       transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
     }
 
     .agents-personal-row:hover {
       transform: translateY(-5px);
-      border-color: color-mix(in oklab, var(--card-color, #7e57c2) 35%, transparent);
-      border-top-color: var(--card-color, #7e57c2);
-      box-shadow: 0 20px 48px -16px color-mix(in oklab, var(--card-color, #7e57c2) 25%, transparent);
+      border-color: color-mix(in oklab, var(--card-color, #7e57c2) 25%, transparent);
+      box-shadow: 0 0 0 1.5px color-mix(in oklab, var(--card-color, #7e57c2) 40%, transparent),
+                  0 20px 48px -16px color-mix(in oklab, var(--card-color, #7e57c2) 25%, transparent);
     }
 
     .agents-personal-row--muted {
