@@ -5946,7 +5946,28 @@
       }
       .core-v2-chip:last-child { grid-column: 1 / -1; }
     }
-  </style>
+
+    /* Phone: stack the pair vertically so each card gets full width */
+    @media (max-width: 600px) {
+      .core-v2-row {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "lcard"
+          "plus"
+          "rcard"
+          "result";
+        gap: 8px;
+      }
+      .core-v2-conn-line {
+        grid-area: plus;
+        justify-self: center;
+        padding: 2px 0;
+      }
+      .core-v2-conn-label {
+        text-align: center;
+        padding-top: 6px;
+      }
+    }
 
   <section class="core-v2-section" id="core-v2">
     <div class="container">
