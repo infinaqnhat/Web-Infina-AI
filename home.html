@@ -5611,40 +5611,10 @@
       text-align: center;
     }
 
-    /* Rows wrapper — holds both brackets + rows */
+    /* Rows wrapper */
     .core-v2-rows-wrap {
       position: relative;
       padding: 0 12px;
-    }
-
-    /* Left green bracket (Client Context) */
-    .core-v2-rows-wrap::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 20px;
-      bottom: 20px;
-      width: 16px;
-      border-top: 2px solid #149a6e;
-      border-left: 2px solid #149a6e;
-      border-bottom: 2px solid #149a6e;
-      border-radius: 10px 0 0 10px;
-      pointer-events: none;
-    }
-
-    /* Right blue bracket (Infina AI Core) */
-    .core-v2-rows-wrap::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 20px;
-      bottom: 20px;
-      width: 16px;
-      border-top: 2px solid #1863dc;
-      border-right: 2px solid #1863dc;
-      border-bottom: 2px solid #1863dc;
-      border-radius: 0 10px 10px 0;
-      pointer-events: none;
     }
 
     /* Rows */
@@ -5741,33 +5711,9 @@
 
     /* Converge — simple dashed line from center down to output card */
     .core-v2-converge {
-      display: flex;
-      justify-content: center;
-      padding: 0;
-      position: relative;
-      height: 40px;
-    }
-    .core-v2-converge::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 2px;
-      height: 30px;
-      border-left: 2px dashed #1863dc;
-      transform: translateX(-50%);
-    }
-    .core-v2-converge::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 8px solid #1863dc;
+      width: 100%;
+      display: block;
+      overflow: visible;
     }
 
     /* Output card */
@@ -5859,8 +5805,7 @@
     @media (max-width: 900px) {
       .core-v2-col-labels { display: none; }
       .core-v2-rows-wrap { padding: 0; }
-      .core-v2-rows-wrap::before,
-      .core-v2-rows-wrap::after { display: none; }
+      .core-v2-converge { display: none; }
       .core-v2-rows { gap: 20px; }
 
       /* Each row = a card box: side-by-side pair + "=" result below */
@@ -6113,7 +6058,14 @@
       </div><!-- /core-v2-rows-wrap -->
 
       <!-- Converge dashed arrow -->
-      <div class="core-v2-converge"></div>
+      <svg class="core-v2-converge" viewBox="0 0 800 60" preserveAspectRatio="none" height="60" xmlns="http://www.w3.org/2000/svg">
+        <!-- Left curve: from center of left column (~25%) to center (50%) -->
+        <path d="M 200,0 C 200,40 400,40 400,56" fill="none" stroke="#1863dc" stroke-width="2" stroke-linecap="round"/>
+        <!-- Right curve: from center of right column (~75%) to center (50%) -->
+        <path d="M 600,0 C 600,40 400,40 400,56" fill="none" stroke="#1863dc" stroke-width="2" stroke-linecap="round"/>
+        <!-- Arrow at center bottom -->
+        <polygon points="394,54 406,54 400,62" fill="#1863dc"/>
+      </svg>
 
       <!-- Output card -->
       <div class="core-v2-output-wrap">
