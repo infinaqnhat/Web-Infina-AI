@@ -6135,9 +6135,32 @@
       <!-- Converge arrow: mobile = dashed line (CSS ::before/::after); desktop = 2-color branch SVG -->
       <div class="core-v2-converge">
         <svg class="core-v2-converge-svg" height="48" viewBox="0 0 1000 48" preserveAspectRatio="none" fill="none" aria-hidden="true">
-          <path d="M218 0 V16 Q218 30 232 30 H486 Q500 30 500 40 V42" stroke="#149a6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke"/>
-          <path d="M782 0 V16 Q782 30 768 30 H514 Q500 30 500 40 V42" stroke="#1863dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke"/>
+          <defs>
+            <filter id="cv-glow-g" x="-150%" y="-150%" width="400%" height="400%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="cv-glow-b" x="-150%" y="-150%" width="400%" height="400%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- Static paths -->
+          <path id="cv-path-green" d="M218 0 V16 Q218 30 232 30 H486 Q500 30 500 40 V42" stroke="#149a6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke" stroke-dasharray="6 5">
+            <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="0.65s" repeatCount="indefinite"/>
+          </path>
+          <path id="cv-path-blue" d="M782 0 V16 Q782 30 768 30 H514 Q500 30 500 40 V42" stroke="#1863dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke" stroke-dasharray="6 5">
+            <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="0.65s" repeatCount="indefinite"/>
+          </path>
           <path d="M492 40 L500 47 L508 40" stroke="#1863dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke"/>
+          <!-- Traveling dots — green path (3 staggered) -->
+          
+          
+          
+          <!-- Traveling dots — blue path (3 staggered) -->
+          
+          
+          
         </svg>
       </div>
 
@@ -6166,21 +6189,64 @@
       <!-- Fan SVG + chips -->
       <div class="core-v2-chips-section">
         <svg class="core-v2-fan-svg" height="40" viewBox="0 0 1000 40" preserveAspectRatio="none">
-          <!-- Center vertical stem (top down to horizontal bar + drop to dot) -->
-          <line x1="500" y1="0" x2="500" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
-          <!-- Horizontal bus bar -->
-          <line x1="100" y1="16" x2="900" y2="16" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
-          <!-- 4 outer vertical drops -->
-          <line x1="100" y1="16" x2="100" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
-          <line x1="300" y1="16" x2="300" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
-          <line x1="700" y1="16" x2="700" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
-          <line x1="900" y1="16" x2="900" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
-          <!-- Dots at each chip -->
+          <defs>
+            <filter id="fan-glow" x="-150%" y="-150%" width="400%" height="400%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <!-- Hidden full-journey paths for each chip — dots travel these -->
+            <path id="fan-p1" d="M500 0 V16 H100 V38"/>
+            <path id="fan-p2" d="M500 0 V16 H300 V38"/>
+            <path id="fan-p3" d="M500 0 V38"/>
+            <path id="fan-p4" d="M500 0 V16 H700 V38"/>
+            <path id="fan-p5" d="M500 0 V16 H900 V38"/>
+          </defs>
+          <!-- Center vertical stem — dashes flow downward -->
+          <line x1="500" y1="0" x2="500" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <!-- Horizontal bus bar — dashes flow outward from center (left half) -->
+          <line x1="500" y1="16" x2="100" y2="16" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <!-- Horizontal bus bar — dashes flow outward from center (right half) -->
+          <line x1="500" y1="16" x2="900" y2="16" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <!-- 4 outer vertical drops — dashes flow downward -->
+          <line x1="100" y1="16" x2="100" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <line x1="300" y1="16" x2="300" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <line x1="700" y1="16" x2="700" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <line x1="900" y1="16" x2="900" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <!-- Dots at each chip (static anchors) -->
           <circle cx="100" cy="38" r="3" fill="#1863dc"/>
           <circle cx="300" cy="38" r="3" fill="#1863dc"/>
           <circle cx="500" cy="38" r="3" fill="#1863dc"/>
           <circle cx="700" cy="38" r="3" fill="#1863dc"/>
           <circle cx="900" cy="38" r="3" fill="#1863dc"/>
+          <!-- Traveling dots — chip@500 (shortest path, fastest) -->
+          
+          
+          <!-- Traveling dots — chip@300 -->
+          
+          
+          <!-- Traveling dots — chip@700 -->
+          
+          
+          <!-- Traveling dots — chip@100 (longest path) -->
+          
+          
+          <!-- Traveling dots — chip@900 (longest path) -->
+          
+          
         </svg>
         <div class="core-v2-chips">
           <div class="core-v2-chip core-v2-chip--blue">
