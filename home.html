@@ -5768,46 +5768,90 @@
       .core-v2-rows-wrap { padding: 0; }
       .core-v2-rows-wrap::before,
       .core-v2-rows-wrap::after { display: none; }
+      .core-v2-rows { gap: 20px; }
+
+      /* Each row = a card box: side-by-side pair + "=" result below */
       .core-v2-row {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-areas:
+          "lcard plus rcard"
+          "result result result";
+        align-items: stretch;
+        gap: 10px;
         background: #f8fafc;
         border: 1.5px solid #e2e8f0;
         border-radius: 16px;
-        padding: 16px;
+        padding: 12px;
       }
-      .core-v2-lcard, .core-v2-rcard {
-        border: none;
-        border-radius: 0;
-        padding: 12px 0;
-        background: transparent;
-      }
-      .core-v2-conn {
+      .core-v2-lcard {
+        grid-area: lcard;
         flex-direction: row;
-        justify-content: center;
-        padding: 4px 0;
-        gap: 8px;
-        border-top: 1px dashed #e2e8f0;
-        border-bottom: 1px dashed #e2e8f0;
-        margin: 4px 0;
+        border: 1.5px solid #c8edd9;
+        background: #f6fdf9;
+        border-radius: 12px;
+        padding: 14px;
+        gap: 12px;
       }
-      .core-v2-conn-line { display: none; }
+      .core-v2-rcard {
+        grid-area: rcard;
+        flex-direction: row;
+        border: 1.5px solid #e2e8f0;
+        background: #fff;
+        border-radius: 12px;
+        padding: 14px;
+        gap: 12px;
+      }
+
+      /* Connector becomes transparent; children re-placed into grid */
+      .core-v2-conn { display: contents; }
+
+      /* "+" symbol between the two cards */
+      .core-v2-conn-line {
+        grid-area: plus;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+      }
+      .core-v2-conn-line::before {
+        content: '+';
+        flex: none;
+        width: auto;
+        height: auto;
+        background: none;
+        font-size: 20px;
+        font-weight: 400;
+        color: #94a3b8;
+      }
+      .core-v2-conn-line::after { display: none; }
+
+      /* "=" result label spanning full width below the pair */
       .core-v2-conn-label {
-        font-size: 12px;
-        color: var(--muted);
+        grid-area: result;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--fg);
+        text-align: center;
+        padding-top: 2px;
       }
       .core-v2-conn-label::before { content: '= '; font-weight: 700; color: #1863dc; }
+
       .core-v2-fan-svg { display: none; }
-      .core-v2-converge { display: none; }
-      .core-v2-output-wrap { margin-top: 24px; }
+      .core-v2-output-wrap { margin-top: 0; }
+
+      /* Chips in a 2-column grid, last one centered full-width */
       .core-v2-chips {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
-        margin-top: 24px;
+        margin-top: 8px;
       }
+      .core-v2-chip {
+        justify-content: center;
+        width: 100%;
+      }
+      .core-v2-chip:last-child { grid-column: 1 / -1; }
     }
   </style>
 
