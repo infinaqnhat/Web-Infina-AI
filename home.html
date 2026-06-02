@@ -5617,34 +5617,15 @@
       padding: 0 12px;
     }
 
-    /* Left green bracket (Client Context) */
-    .core-v2-rows-wrap::before {
-      content: '';
+    /* SVG bracket overlay */
+    .core-v2-bracket-svg {
       position: absolute;
+      top: 0;
       left: 0;
-      top: 20px;
-      bottom: 20px;
-      width: 16px;
-      border-top: 2px solid #149a6e;
-      border-left: 2px solid #149a6e;
-      border-bottom: 2px solid #149a6e;
-      border-radius: 10px 0 0 10px;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
-    }
-
-    /* Right blue bracket (Infina AI Core) */
-    .core-v2-rows-wrap::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 20px;
-      bottom: 20px;
-      width: 16px;
-      border-top: 2px solid #1863dc;
-      border-right: 2px solid #1863dc;
-      border-bottom: 2px solid #1863dc;
-      border-radius: 0 10px 10px 0;
-      pointer-events: none;
+      overflow: visible;
     }
 
     /* Rows */
@@ -5859,8 +5840,7 @@
     @media (max-width: 900px) {
       .core-v2-col-labels { display: none; }
       .core-v2-rows-wrap { padding: 0; }
-      .core-v2-rows-wrap::before,
-      .core-v2-rows-wrap::after { display: none; }
+      .core-v2-bracket-svg { display: none; }
       .core-v2-rows { gap: 20px; }
 
       /* Each row = a card box: side-by-side pair + "=" result below */
@@ -5984,6 +5964,13 @@
       </div>
 
       <div class="core-v2-rows-wrap">
+        <!-- Curved bracket SVG overlay -->
+        <svg class="core-v2-bracket-svg" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Left green curve: top-left corner → down → curves right to center-bottom -->
+          <path d="M 4,2 Q 0,2 0,6 L 0,94 Q 0,98 4,98 Q 50,98 50,100" fill="none" stroke="#149a6e" stroke-width="0.5" vector-effect="non-scaling-stroke" style="stroke-width:2px"/>
+          <!-- Right blue curve: top-right corner → down → curves left to center-bottom -->
+          <path d="M 96,2 Q 100,2 100,6 L 100,94 Q 100,98 96,98 Q 50,98 50,100" fill="none" stroke="#1863dc" stroke-width="0.5" vector-effect="non-scaling-stroke" style="stroke-width:2px"/>
+        </svg>
         <div class="core-v2-rows">
 
           <!-- Row 1 -->
