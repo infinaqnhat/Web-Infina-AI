@@ -5955,25 +5955,37 @@
       .core-v2-chip:last-child { grid-column: 1 / -1; }
     }
 
-    /* Phone: stack the pair vertically so each card gets full width */
+    /* Phone ≤600px: keep side-by-side 2-column layout, tighten for narrow viewports */
     @media (max-width: 600px) {
       .core-v2-row {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          "lcard"
-          "plus"
-          "rcard"
-          "result";
+        gap: 6px;
+        padding: 10px 8px;
+      }
+      .core-v2-lcard,
+      .core-v2-rcard {
+        padding: 10px 8px;
         gap: 8px;
       }
-      .core-v2-conn-line {
-        grid-area: plus;
-        justify-self: center;
-        padding: 2px 0;
+      .core-v2-icon {
+        width: 40px;
+        height: 40px;
+      }
+      .core-v2-icon svg {
+        width: 19px;
+        height: 19px;
+      }
+      .core-v2-card-text h3 {
+        font-size: 13px;
+      }
+      .core-v2-card-text p {
+        font-size: 11.5px;
+        line-height: 1.45;
+      }
+      .core-v2-conn-line::before {
+        font-size: 16px;
       }
       .core-v2-conn-label {
-        text-align: center;
-        padding-top: 6px;
+        font-size: 12px;
       }
     }
   </style>
