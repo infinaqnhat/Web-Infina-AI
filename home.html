@@ -5769,6 +5769,14 @@
       border-right: 6px solid transparent;
       border-top: 8px solid #1863dc;
     }
+    /* New 2-color branch SVG — desktop only (hidden on mobile, dashed line stays) */
+    .core-v2-converge-svg { display: none; }
+    @media (min-width: 901px) {
+      .core-v2-converge { height: 48px; align-items: flex-start; }
+      .core-v2-converge::before,
+      .core-v2-converge::after { display: none; }
+      .core-v2-converge-svg { display: block; width: 100%; height: 48px; }
+    }
 
     /* Output card */
     .core-v2-output-wrap {
@@ -6112,8 +6120,14 @@
         </div><!-- /core-v2-rows -->
       </div><!-- /core-v2-rows-wrap -->
 
-      <!-- Converge dashed arrow -->
-      <div class="core-v2-converge"></div>
+      <!-- Converge arrow: mobile = dashed line (CSS ::before/::after); desktop = 2-color branch SVG -->
+      <div class="core-v2-converge">
+        <svg class="core-v2-converge-svg" height="48" viewBox="0 0 1000 48" preserveAspectRatio="none" fill="none" aria-hidden="true">
+          <path d="M218 0 V16 Q218 30 232 30 H486 Q500 30 500 40 V42" stroke="#149a6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke"/>
+          <path d="M782 0 V16 Q782 30 768 30 H514 Q500 30 500 40 V42" stroke="#1863dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke"/>
+          <path d="M492 40 L500 47 L508 40" stroke="#1863dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke"/>
+        </svg>
+      </div>
 
       <!-- Output card -->
       <div class="core-v2-output-wrap">
@@ -6140,16 +6154,21 @@
       <!-- Fan SVG + chips -->
       <div class="core-v2-chips-section">
         <svg class="core-v2-fan-svg" height="40" viewBox="0 0 1000 40" preserveAspectRatio="none">
-          <line x1="500" y1="0" x2="100" y2="36" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
-          <line x1="500" y1="0" x2="300" y2="36" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
-          <line x1="500" y1="0" x2="500" y2="36" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
-          <line x1="500" y1="0" x2="700" y2="36" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
-          <line x1="500" y1="0" x2="900" y2="36" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
-          <circle cx="100" cy="38" r="3" fill="#94a3b8"/>
-          <circle cx="300" cy="38" r="3" fill="#94a3b8"/>
-          <circle cx="500" cy="38" r="3" fill="#94a3b8"/>
-          <circle cx="700" cy="38" r="3" fill="#94a3b8"/>
-          <circle cx="900" cy="38" r="3" fill="#94a3b8"/>
+          <!-- Center vertical stem (top down to horizontal bar + drop to dot) -->
+          <line x1="500" y1="0" x2="500" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+          <!-- Horizontal bus bar -->
+          <line x1="100" y1="16" x2="900" y2="16" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+          <!-- 4 outer vertical drops -->
+          <line x1="100" y1="16" x2="100" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+          <line x1="300" y1="16" x2="300" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+          <line x1="700" y1="16" x2="700" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+          <line x1="900" y1="16" x2="900" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+          <!-- Dots at each chip -->
+          <circle cx="100" cy="38" r="3" fill="#1863dc"/>
+          <circle cx="300" cy="38" r="3" fill="#1863dc"/>
+          <circle cx="500" cy="38" r="3" fill="#1863dc"/>
+          <circle cx="700" cy="38" r="3" fill="#1863dc"/>
+          <circle cx="900" cy="38" r="3" fill="#1863dc"/>
         </svg>
         <div class="core-v2-chips">
           <div class="core-v2-chip core-v2-chip--blue">
