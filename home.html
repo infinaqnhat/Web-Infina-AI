@@ -5522,36 +5522,34 @@
     /* Rows wrapper — holds both brackets + rows */
     .core-v2-rows-wrap {
       position: relative;
-      padding: 0 24px;
+      padding: 0 12px;
     }
 
-    /* Left blue bracket */
+    /* Left blue bracket — top + side only; bottom routed by converge SVG */
     .core-v2-rows-wrap::before {
       content: '';
       position: absolute;
       left: 0;
       top: 20px;
-      bottom: 20px;
-      width: 20px;
+      bottom: 0;
+      width: 16px;
       border-top: 2px solid #1863dc;
       border-left: 2px solid #1863dc;
-      border-bottom: 2px solid #1863dc;
-      border-radius: 10px 0 0 10px;
+      border-radius: 10px 0 0 0;
       pointer-events: none;
     }
 
-    /* Right green bracket */
+    /* Right green bracket — top + side only; bottom routed by converge SVG */
     .core-v2-rows-wrap::after {
       content: '';
       position: absolute;
       right: 0;
       top: 20px;
-      bottom: 20px;
-      width: 20px;
+      bottom: 0;
+      width: 16px;
       border-top: 2px solid #149a6e;
       border-right: 2px solid #149a6e;
-      border-bottom: 2px solid #149a6e;
-      border-radius: 0 10px 10px 0;
+      border-radius: 0 10px 0 0;
       pointer-events: none;
     }
 
@@ -5647,35 +5645,29 @@
       line-height: 1.4;
     }
 
-    /* Converge — line from right bracket midpoint down to output card */
+    /* Converge — SVG routes both bracket bottoms inward to center + arrow */
     .core-v2-converge {
-      display: flex;
-      justify-content: center;
-      padding: 0;
       position: relative;
-      height: 40px;
+      height: 48px;
+      margin-top: -20px;
+      pointer-events: none;
     }
-    .core-v2-converge::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 2px;
-      height: 30px;
-      border-left: 2px dashed #1863dc;
-      transform: translateX(-50%);
+    .core-v2-converge svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
     }
-    .core-v2-converge::after {
-      content: '';
+    .core-v2-converge-arrow {
       position: absolute;
-      bottom: 0;
+      bottom: -3px;
       left: 50%;
       transform: translateX(-50%);
       width: 0;
       height: 0;
       border-left: 6px solid transparent;
       border-right: 6px solid transparent;
-      border-top: 8px solid #1863dc;
+      border-top: 9px solid #1863dc;
     }
 
     /* Output card */
@@ -5692,7 +5684,7 @@
       border: 2px solid #1863dc;
       border-radius: 16px;
       padding: 22px 28px;
-      max-width: 500px;
+      max-width: 680px;
       width: 100%;
       box-shadow: 0 4px 24px -4px rgba(24, 99, 220, 0.15);
     }
@@ -5731,15 +5723,17 @@
     .core-v2-fan-svg {
       display: block;
       width: 100%;
+      margin-top: -2px;
       overflow: visible;
     }
 
     .core-v2-chips {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      padding-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: center;
+      justify-items: center;
+      gap: 8px;
+      padding-top: 4px;
     }
     .core-v2-chip {
       display: flex;
@@ -5797,6 +5791,15 @@
       }
       .core-v2-conn-label::before { content: '= '; font-weight: 700; color: #1863dc; }
       .core-v2-fan-svg { display: none; }
+      .core-v2-converge { display: none; }
+      .core-v2-output-wrap { margin-top: 24px; }
+      .core-v2-chips {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 24px;
+      }
     }
   </style>
 
@@ -5943,8 +5946,15 @@
         </div><!-- /core-v2-rows -->
       </div><!-- /core-v2-rows-wrap -->
 
-      <!-- Converge dashed arrow -->
-      <div class="core-v2-converge"></div>
+      <!-- Converge: both bracket bottoms route inward to center arrow -->
+      <div class="core-v2-converge">
+        <svg viewBox="0 0 1000 48" preserveAspectRatio="none">
+          <path d="M1 0 L1 24 L500 24" fill="none" stroke="#1863dc" stroke-width="2" vector-effect="non-scaling-stroke"/>
+          <path d="M999 0 L999 24 L500 24" fill="none" stroke="#149a6e" stroke-width="2" vector-effect="non-scaling-stroke"/>
+          <path d="M500 24 L500 48" fill="none" stroke="#1863dc" stroke-width="2" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <span class="core-v2-converge-arrow"></span>
+      </div>
 
       <!-- Output card -->
       <div class="core-v2-output-wrap">
@@ -5965,16 +5975,16 @@
       <!-- Fan SVG + chips -->
       <div class="core-v2-chips-section">
         <svg class="core-v2-fan-svg" height="40" viewBox="0 0 1000 40" preserveAspectRatio="none">
-          <line x1="500" y1="0" x2="100" y2="40" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
-          <line x1="500" y1="0" x2="260" y2="40" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
-          <line x1="500" y1="0" x2="500" y2="40" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
-          <line x1="500" y1="0" x2="740" y2="40" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
-          <line x1="500" y1="0" x2="900" y2="40" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
-          <circle cx="100" cy="40" r="3" fill="#94a3b8"/>
-          <circle cx="260" cy="40" r="3" fill="#94a3b8"/>
-          <circle cx="500" cy="40" r="3" fill="#94a3b8"/>
-          <circle cx="740" cy="40" r="3" fill="#94a3b8"/>
-          <circle cx="900" cy="40" r="3" fill="#94a3b8"/>
+          <line x1="500" y1="0" x2="100" y2="36" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+          <line x1="500" y1="0" x2="300" y2="36" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+          <line x1="500" y1="0" x2="500" y2="36" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+          <line x1="500" y1="0" x2="700" y2="36" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+          <line x1="500" y1="0" x2="900" y2="36" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+          <circle cx="100" cy="38" r="3" fill="#94a3b8"/>
+          <circle cx="300" cy="38" r="3" fill="#94a3b8"/>
+          <circle cx="500" cy="38" r="3" fill="#94a3b8"/>
+          <circle cx="700" cy="38" r="3" fill="#94a3b8"/>
+          <circle cx="900" cy="38" r="3" fill="#94a3b8"/>
         </svg>
         <div class="core-v2-chips">
           <div class="core-v2-chip core-v2-chip--blue">
