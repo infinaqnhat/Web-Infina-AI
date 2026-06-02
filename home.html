@@ -5525,7 +5525,7 @@
       padding: 0 12px;
     }
 
-    /* Left blue bracket */
+    /* Left green bracket (Client Context) */
     .core-v2-rows-wrap::before {
       content: '';
       position: absolute;
@@ -5533,14 +5533,14 @@
       top: 20px;
       bottom: 20px;
       width: 16px;
-      border-top: 2px solid #1863dc;
-      border-left: 2px solid #1863dc;
-      border-bottom: 2px solid #1863dc;
+      border-top: 2px solid #149a6e;
+      border-left: 2px solid #149a6e;
+      border-bottom: 2px solid #149a6e;
       border-radius: 10px 0 0 10px;
       pointer-events: none;
     }
 
-    /* Right green bracket */
+    /* Right blue bracket (Infina AI Core) */
     .core-v2-rows-wrap::after {
       content: '';
       position: absolute;
@@ -5548,9 +5548,9 @@
       top: 20px;
       bottom: 20px;
       width: 16px;
-      border-top: 2px solid #149a6e;
-      border-right: 2px solid #149a6e;
-      border-bottom: 2px solid #149a6e;
+      border-top: 2px solid #1863dc;
+      border-right: 2px solid #1863dc;
+      border-bottom: 2px solid #1863dc;
       border-radius: 0 10px 10px 0;
       pointer-events: none;
     }
@@ -5579,7 +5579,7 @@
       border-radius: 12px;
       padding: 18px;
     }
-    .core-v2-rcard { background: #f6fdf9; border-color: #c8edd9; }
+    .core-v2-lcard { background: #f6fdf9; border-color: #c8edd9; }
 
     .core-v2-icon {
       width: 44px;
@@ -5602,8 +5602,8 @@
       margin: 0 0 4px;
       line-height: 1.3;
     }
-    .core-v2-lcard .core-v2-card-text h3 { color: var(--fg); }
-    .core-v2-rcard .core-v2-card-text h3 { color: #149a6e; }
+    .core-v2-lcard .core-v2-card-text h3 { color: #149a6e; }
+    .core-v2-rcard .core-v2-card-text h3 { color: var(--fg); }
     .core-v2-card-text p {
       font-size: 13px;
       color: var(--muted);
@@ -5819,9 +5819,9 @@
       </div>
 
       <div class="core-v2-col-labels">
-        <span class="core-v2-label-blue">Infina AI Core</span>
-        <span></span>
         <span class="core-v2-label-green">Client Context</span>
+        <span></span>
+        <span class="core-v2-label-blue">Infina AI Core</span>
       </div>
 
       <div class="core-v2-rows-wrap">
@@ -5830,22 +5830,6 @@
           <!-- Row 1 -->
           <div class="core-v2-row">
             <div class="core-v2-lcard">
-              <div class="core-v2-icon core-v2-icon--blue">
-                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="9" y="2" width="6" height="4" rx="1"/><rect x="2" y="18" width="6" height="4" rx="1"/><rect x="16" y="18" width="6" height="4" rx="1"/>
-                  <line x1="12" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="5" y2="18"/><line x1="12" y1="12" x2="19" y2="18"/>
-                </svg>
-              </div>
-              <div class="core-v2-card-text">
-                <h3>Agent Orchestration</h3>
-                <p>Coordinates AI agents and workflows</p>
-              </div>
-            </div>
-            <div class="core-v2-conn">
-              <div class="core-v2-conn-line"></div>
-              <span class="core-v2-conn-label">Defines how work gets done</span>
-            </div>
-            <div class="core-v2-rcard">
               <div class="core-v2-icon core-v2-icon--green">
                 <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="9" y="2" width="6" height="4" rx="1"/><rect x="2" y="18" width="6" height="4" rx="1"/><rect x="16" y="18" width="6" height="4" rx="1"/>
@@ -5857,11 +5841,42 @@
                 <p>The process and steps to automate</p>
               </div>
             </div>
+            <div class="core-v2-conn">
+              <div class="core-v2-conn-line"></div>
+              <span class="core-v2-conn-label">Defines how work gets done</span>
+            </div>
+            <div class="core-v2-rcard">
+              <div class="core-v2-icon core-v2-icon--blue">
+                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="2" width="6" height="4" rx="1"/><rect x="2" y="18" width="6" height="4" rx="1"/><rect x="16" y="18" width="6" height="4" rx="1"/>
+                  <line x1="12" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="5" y2="18"/><line x1="12" y1="12" x2="19" y2="18"/>
+                </svg>
+              </div>
+              <div class="core-v2-card-text">
+                <h3>Agent Orchestration</h3>
+                <p>Coordinates AI agents and workflows</p>
+              </div>
+            </div>
           </div>
 
           <!-- Row 2 -->
           <div class="core-v2-row">
             <div class="core-v2-lcard">
+              <div class="core-v2-icon core-v2-icon--green">
+                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+                </svg>
+              </div>
+              <div class="core-v2-card-text">
+                <h3>Internal Systems</h3>
+                <p>The software stack the specialist works with</p>
+              </div>
+            </div>
+            <div class="core-v2-conn">
+              <div class="core-v2-conn-line"></div>
+              <span class="core-v2-conn-label">Defines where action happens</span>
+            </div>
+            <div class="core-v2-rcard">
               <div class="core-v2-icon core-v2-icon--blue">
                 <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10"/><path d="M13 2.05A10 10 0 0 1 22 12"/><path d="M15.5 9.5 12 13l-2-2"/>
@@ -5873,41 +5888,11 @@
                 <p>Connects to apps, systems, and APIs</p>
               </div>
             </div>
-            <div class="core-v2-conn">
-              <div class="core-v2-conn-line"></div>
-              <span class="core-v2-conn-label">Defines where action happens</span>
-            </div>
-            <div class="core-v2-rcard">
-              <div class="core-v2-icon core-v2-icon--green">
-                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
-                </svg>
-              </div>
-              <div class="core-v2-card-text">
-                <h3>Internal Systems</h3>
-                <p>The software stack the specialist works with</p>
-              </div>
-            </div>
           </div>
 
           <!-- Row 3 -->
           <div class="core-v2-row">
             <div class="core-v2-lcard">
-              <div class="core-v2-icon core-v2-icon--blue">
-                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
-                </svg>
-              </div>
-              <div class="core-v2-card-text">
-                <h3>Knowledge & Data</h3>
-                <p>Grounds the specialist in trusted knowledge</p>
-              </div>
-            </div>
-            <div class="core-v2-conn">
-              <div class="core-v2-conn-line"></div>
-              <span class="core-v2-conn-label">Defines what the specialist knows</span>
-            </div>
-            <div class="core-v2-rcard">
               <div class="core-v2-icon core-v2-icon--green">
                 <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
@@ -5919,26 +5904,26 @@
                 <p>Company documents, records, and knowledge</p>
               </div>
             </div>
+            <div class="core-v2-conn">
+              <div class="core-v2-conn-line"></div>
+              <span class="core-v2-conn-label">Defines what the specialist knows</span>
+            </div>
+            <div class="core-v2-rcard">
+              <div class="core-v2-icon core-v2-icon--blue">
+                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+                </svg>
+              </div>
+              <div class="core-v2-card-text">
+                <h3>Knowledge & Data</h3>
+                <p>Grounds the specialist in trusted knowledge</p>
+              </div>
+            </div>
           </div>
 
           <!-- Row 4 -->
           <div class="core-v2-row">
             <div class="core-v2-lcard">
-              <div class="core-v2-icon core-v2-icon--blue">
-                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
-                </svg>
-              </div>
-              <div class="core-v2-card-text">
-                <h3>Evaluation & Safety</h3>
-                <p>Applies guardrails, evals, and monitoring</p>
-              </div>
-            </div>
-            <div class="core-v2-conn">
-              <div class="core-v2-conn-line"></div>
-              <span class="core-v2-conn-label">Defines how quality and safety are enforced</span>
-            </div>
-            <div class="core-v2-rcard">
               <div class="core-v2-icon core-v2-icon--green">
                 <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
@@ -5947,6 +5932,21 @@
               <div class="core-v2-card-text">
                 <h3>Business Rules & Compliance</h3>
                 <p>Policies, approvals, and constraints</p>
+              </div>
+            </div>
+            <div class="core-v2-conn">
+              <div class="core-v2-conn-line"></div>
+              <span class="core-v2-conn-label">Defines how quality and safety are enforced</span>
+            </div>
+            <div class="core-v2-rcard">
+              <div class="core-v2-icon core-v2-icon--blue">
+                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+                </svg>
+              </div>
+              <div class="core-v2-card-text">
+                <h3>Evaluation & Safety</h3>
+                <p>Applies guardrails, evals, and monitoring</p>
               </div>
             </div>
           </div>
