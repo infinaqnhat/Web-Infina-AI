@@ -5778,77 +5778,6 @@
       .core-v2-converge-svg { display: block; width: 100%; height: 48px; }
     }
 
-    /* ── Data-flow pulse animation ── */
-    @keyframes pulse-flow {
-      0%   { stroke-dashoffset: 1; opacity: 1; }
-      80%  { stroke-dashoffset: -200; opacity: 0.2; }
-      100% { stroke-dashoffset: -200; opacity: 0; }
-    }
-    @keyframes pulse-flow-h {
-      0%   { stroke-dashoffset: 200; opacity: 1; }
-      80%  { stroke-dashoffset: -200; opacity: 0.2; }
-      100% { stroke-dashoffset: -200; opacity: 0; }
-    }
-
-    /* Horizontal connector pulse overlay */
-    .core-v2-conn-line .pulse-line {
-      position: absolute;
-      left: 0; top: 50%;
-      width: 100%; height: 2px;
-      transform: translateY(-50%);
-      background: none;
-      overflow: visible;
-      pointer-events: none;
-    }
-    .core-v2-conn-line .pulse-line::after {
-      content: '';
-      position: absolute;
-      left: 0; top: 0;
-      width: 100%; height: 2px;
-      background: linear-gradient(90deg, transparent, #1863dc 50%, transparent);
-      background-size: 60px 100%;
-      background-repeat: no-repeat;
-      animation: slide-pulse 3s ease-in-out infinite;
-    }
-    @keyframes slide-pulse {
-      0%   { background-position: -60px 0; opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 1; }
-      100% { background-position: calc(100% + 60px) 0; opacity: 0; }
-    }
-    .core-v2-row:nth-child(1) .pulse-line::after { animation-delay: 0s; }
-    .core-v2-row:nth-child(2) .pulse-line::after { animation-delay: 0.4s; }
-    .core-v2-row:nth-child(3) .pulse-line::after { animation-delay: 0.8s; }
-    .core-v2-row:nth-child(4) .pulse-line::after { animation-delay: 1.2s; }
-
-    /* SVG pulse paths */
-    .core-v2-pulse { pointer-events: none; }
-    .core-v2-converge-svg .pulse-left {
-      stroke-dasharray: 40 400;
-      stroke-dashoffset: 1;
-      animation: pulse-flow 3s ease-in-out 1.8s infinite;
-    }
-    .core-v2-converge-svg .pulse-right {
-      stroke-dasharray: 40 400;
-      stroke-dashoffset: 1;
-      animation: pulse-flow 3s ease-in-out 1.8s infinite;
-    }
-    .core-v2-fan-svg .pulse-stem {
-      stroke-dasharray: 30 200;
-      stroke-dashoffset: 1;
-      animation: pulse-flow 3s ease-in-out 2.4s infinite;
-    }
-    .core-v2-fan-svg .pulse-hbar {
-      stroke-dasharray: 60 2000;
-      stroke-dashoffset: 200;
-      animation: pulse-flow-h 3s ease-in-out 2.7s infinite;
-    }
-    .core-v2-fan-svg .pulse-drop-1 { stroke-dasharray: 20 100; stroke-dashoffset: 1; animation: pulse-flow 3s ease-in-out 3.0s infinite; }
-    .core-v2-fan-svg .pulse-drop-2 { stroke-dasharray: 20 100; stroke-dashoffset: 1; animation: pulse-flow 3s ease-in-out 3.1s infinite; }
-    .core-v2-fan-svg .pulse-drop-3 { stroke-dasharray: 20 100; stroke-dashoffset: 1; animation: pulse-flow 3s ease-in-out 3.2s infinite; }
-    .core-v2-fan-svg .pulse-drop-4 { stroke-dasharray: 20 100; stroke-dashoffset: 1; animation: pulse-flow 3s ease-in-out 3.3s infinite; }
-    .core-v2-fan-svg .pulse-drop-5 { stroke-dasharray: 20 100; stroke-dashoffset: 1; animation: pulse-flow 3s ease-in-out 3.4s infinite; }
-
     /* Output card */
     .core-v2-output-wrap {
       display: flex;
@@ -6092,7 +6021,7 @@
               </div>
             </div>
             <div class="core-v2-conn">
-              <div class="core-v2-conn-line"><span class="pulse-line"></span></div>
+              <div class="core-v2-conn-line"></div>
               <span class="core-v2-conn-label">Defines how work gets done</span>
             </div>
             <div class="core-v2-rcard">
@@ -6123,7 +6052,7 @@
               </div>
             </div>
             <div class="core-v2-conn">
-              <div class="core-v2-conn-line"><span class="pulse-line"></span></div>
+              <div class="core-v2-conn-line"></div>
               <span class="core-v2-conn-label">Defines where action happens</span>
             </div>
             <div class="core-v2-rcard">
@@ -6154,7 +6083,7 @@
               </div>
             </div>
             <div class="core-v2-conn">
-              <div class="core-v2-conn-line"><span class="pulse-line"></span></div>
+              <div class="core-v2-conn-line"></div>
               <span class="core-v2-conn-label">Defines what the specialist knows</span>
             </div>
             <div class="core-v2-rcard">
@@ -6184,7 +6113,7 @@
               </div>
             </div>
             <div class="core-v2-conn">
-              <div class="core-v2-conn-line"><span class="pulse-line"></span></div>
+              <div class="core-v2-conn-line"></div>
               <span class="core-v2-conn-label">Defines how quality and safety are enforced</span>
             </div>
             <div class="core-v2-rcard">
@@ -6209,9 +6138,6 @@
           <path d="M218 0 V16 Q218 30 232 30 H486 Q500 30 500 40 V42" stroke="#149a6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke"/>
           <path d="M782 0 V16 Q782 30 768 30 H514 Q500 30 500 40 V42" stroke="#1863dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke"/>
           <path d="M492 40 L500 47 L508 40" stroke="#1863dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke"/>
-          <!-- Pulse overlays -->
-          <path class="core-v2-pulse pulse-left" d="M218 0 V16 Q218 30 232 30 H486 Q500 30 500 40 V42" stroke="#149a6e" stroke-width="3" stroke-linecap="round" fill="none" vector-effect="non-scaling-stroke"/>
-          <path class="core-v2-pulse pulse-right" d="M782 0 V16 Q782 30 768 30 H514 Q500 30 500 40 V42" stroke="#1863dc" stroke-width="3" stroke-linecap="round" fill="none" vector-effect="non-scaling-stroke"/>
         </svg>
       </div>
 
@@ -6240,7 +6166,7 @@
       <!-- Fan SVG + chips -->
       <div class="core-v2-chips-section">
         <svg class="core-v2-fan-svg" height="40" viewBox="0 0 1000 40" preserveAspectRatio="none">
-          <!-- Center vertical stem -->
+          <!-- Center vertical stem (top down to horizontal bar + drop to dot) -->
           <line x1="500" y1="0" x2="500" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
           <!-- Horizontal bus bar -->
           <line x1="100" y1="16" x2="900" y2="16" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
@@ -6255,14 +6181,6 @@
           <circle cx="500" cy="38" r="3" fill="#1863dc"/>
           <circle cx="700" cy="38" r="3" fill="#1863dc"/>
           <circle cx="900" cy="38" r="3" fill="#1863dc"/>
-          <!-- Pulse overlays -->
-          <line class="core-v2-pulse pulse-stem" x1="500" y1="0" x2="500" y2="16" stroke="#1863dc" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
-          <line class="core-v2-pulse pulse-hbar" x1="100" y1="16" x2="900" y2="16" stroke="#1863dc" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
-          <line class="core-v2-pulse pulse-drop-1" x1="100" y1="16" x2="100" y2="36" stroke="#1863dc" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
-          <line class="core-v2-pulse pulse-drop-2" x1="300" y1="16" x2="300" y2="36" stroke="#1863dc" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
-          <line class="core-v2-pulse pulse-drop-3" x1="500" y1="16" x2="500" y2="36" stroke="#1863dc" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
-          <line class="core-v2-pulse pulse-drop-4" x1="700" y1="16" x2="700" y2="36" stroke="#1863dc" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
-          <line class="core-v2-pulse pulse-drop-5" x1="900" y1="16" x2="900" y2="36" stroke="#1863dc" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
         </svg>
         <div class="core-v2-chips">
           <div class="core-v2-chip core-v2-chip--blue">
