@@ -5562,27 +5562,34 @@
       border-top: 3px dashed #e2e8f0;
     }
 
-    /* Header */
+    /* Header — matched to "Jobs We Get Done" styling */
     .core-v2-eyebrow {
       display: inline-block;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
+      color: var(--muted);
+      margin-bottom: 20px;
     }
     .core-v2-headline {
-      font-size: clamp(32px, 4vw, 52px);
-      font-weight: 800;
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.6vw, 56px);
+      font-weight: 700;
       color: var(--fg);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
       text-align: center;
       margin: 0 auto 56px;
       max-width: 760px;
     }
-    .core-v2-headline .core-v2-accent { color: var(--accent); }
+    .core-v2-headline .core-v2-accent {
+      background: linear-gradient(135deg, var(--accent) 0%, #6fa8ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
     .core-v2-header { text-align: center; margin-bottom: 0; }
 
     /* Column labels */
