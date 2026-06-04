@@ -2535,11 +2535,13 @@
     }
 
     .products .section-header h2 .accent {
-      background: linear-gradient(135deg, var(--accent) 0%, #6fa8ff 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, #6fa8ff 50%, var(--accent) 100%);
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       color: transparent;
+      animation: gradient-shift 4s ease infinite;
     }
 
     .products .section-eyebrow {
@@ -5564,11 +5566,13 @@
       max-width: 760px;
     }
     .core-v2-headline .core-v2-accent {
-      background: linear-gradient(135deg, var(--accent) 0%, #6fa8ff 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, #6fa8ff 50%, var(--accent) 100%);
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       color: transparent;
+      animation: gradient-shift 4s ease infinite;
     }
     .core-v2-header { text-align: center; margin-bottom: 0; }
 
