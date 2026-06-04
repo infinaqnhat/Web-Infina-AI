@@ -321,6 +321,68 @@
       justify-content: center;
     }
 
+    /* ===== Hero feature trio ===== */
+    .hero-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 920px;
+      margin: 8px auto 0;
+    }
+    .hero-feature {
+      padding: 0 28px;
+      text-align: center;
+      border-left: 1px solid var(--border);
+    }
+    .hero-feature:first-child { border-left: none; }
+    .hero-feature-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: #1a237e;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .hero-feature-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .hero-feature h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--fg);
+      margin: 0 0 8px;
+      letter-spacing: -0.01em;
+    }
+    .hero-feature p {
+      font-size: 14.5px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+    .hero-feature a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 760px) {
+      .hero-features {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .hero-feature {
+        border-left: none;
+        padding: 0;
+      }
+    }
+
     @media (max-width: 960px) {
       .hero-visual {
         max-width: 480px;
@@ -821,6 +883,7 @@
       font-weight: 700;
       letter-spacing: -0.04em;
       line-height: 1.05;
+      color: #001964;
       margin-bottom: 28px;
       opacity: 0;
       animation: fade-up 0.8s ease-out 0.3s forwards;
@@ -2470,14 +2533,17 @@
       font-size: clamp(36px, 4.6vw, 56px);
       line-height: 1.08;
       letter-spacing: -0.025em;
+      color: #001964;
     }
 
     .products .section-header h2 .accent {
-      background: linear-gradient(135deg, var(--accent) 0%, #6fa8ff 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, #6fa8ff 50%, var(--accent) 100%);
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       color: transparent;
+      animation: gradient-shift 4s ease infinite;
     }
 
     .products .section-eyebrow {
@@ -2533,14 +2599,10 @@
     .products-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      column-gap: 24px;
+      row-gap: 0;
     }
 
-    @media (max-width: 1000px) {
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
-    }
 
     .product-card {
       background: var(--bg);
@@ -2604,18 +2666,6 @@
       transition: transform 0.4s;
     }
 
-    .product-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: #001F5C;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
 
     .product-card:hover {
       transform: translateY(-6px);
@@ -2623,13 +2673,36 @@
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 31, 92, 0.3);
     }
 
+    /* Active card — desktop: lift + colored ring (old style) */
+    @media (min-width: 1001px) {
+      .product-card.active {
+        transform: translateY(-6px);
+        border-color: transparent;
+        box-shadow: none;
+      }
+      .product-card[data-product="inside"].active  { box-shadow: 0 24px 60px rgba(24,99,220,0.15),  0 0 0 2px #1863dc; }
+      .product-card[data-product="work"].active    { box-shadow: 0 24px 60px rgba(20,154,110,0.15), 0 0 0 2px #149a6e; }
+      .product-card[data-product="personal"].active{ box-shadow: 0 24px 60px rgba(126,87,194,0.15), 0 0 0 2px #7e57c2; }
+    }
+
+    /* Active card — mobile: flatten bottom, merge into accordion panel */
+    @media (max-width: 1000px) {
+      .product-card.active {
+        transform: translateY(0);
+        border-radius: 20px 20px 0 0;
+        border-bottom: none;
+        box-shadow: none;
+      }
+      .product-card[data-product="inside"].active  { border-color: #1863dc; border-width: 2px; }
+      .product-card[data-product="work"].active    { border-color: #149a6e; border-width: 2px; }
+      .product-card[data-product="personal"].active{ border-color: #7e57c2; border-width: 2px; }
+    }
+
+
     .product-card:hover::before {
       opacity: 1;
     }
 
-    .product-card:hover::after {
-      transform: scaleX(1);
-    }
 
     .product-icon {
       width: 56px;
@@ -2910,6 +2983,46 @@
       transition: all 0.3s;
       margin-top: auto;
     }
+
+    .product-see-more {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted, #9ca3af);
+      margin-top: auto;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    /* CSS filled triangle — points right by default */
+    .product-see-more::before {
+      content: '';
+      display: inline-block;
+      flex-shrink: 0;
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 8px solid currentColor;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    /* Text label swap */
+    .see-more-default { display: inline; }
+    .see-more-active  { display: none; }
+    .product-card.active .see-more-default { display: none; }
+    .product-card.active .see-more-active  { display: inline; }
+    /* Rotate triangle down when active */
+    .product-card.active .product-see-more::before {
+      transform: rotate(90deg);
+    }
+    .product-card:hover .product-see-more {
+      color: var(--accent, #001F5C);
+    }
+    .product-card[data-product="inside"].active .product-see-more  { color: #1863dc; }
+    .product-card[data-product="work"].active .product-see-more    { color: #149a6e; }
+    .product-card[data-product="personal"].active .product-see-more{ color: #7e57c2; }
 
     .product-link:hover {
       color: var(--card-accent, var(--accent));
@@ -3319,7 +3432,7 @@
     }
 
     .partners {
-      padding: 64px 0;
+      padding: 40px 0;
       background: linear-gradient(135deg, #f0f4ff 0%, #e8eef9 100%);
       position: relative;
       overflow: hidden;
@@ -3375,17 +3488,15 @@
 
     .industry-marquee {
       overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent 10%, #000 30%, #000 70%, transparent 90%);
-      mask-image: linear-gradient(to right, transparent 10%, #000 30%, #000 70%, transparent 90%);
       position: relative;
       z-index: 1;
-      margin-top: 40px;
-      padding-bottom: 8px;
+      margin-top: 20px;
+      padding-bottom: 0;
     }
 
     .industry-track {
       display: flex;
-      gap: 12px;
+      gap: 56px;
       width: max-content;
       animation: marquee-slide 30s linear infinite;
     }
@@ -3400,36 +3511,25 @@
     }
 
     .industry-card {
-      background: #fff;
-      border: 1px solid rgba(24,99,220,0.12);
-      border-radius: 16px;
-      padding: 20px 22px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      min-width: 130px;
-      flex-shrink: 0;
-      cursor: default;
-      box-shadow: 0 2px 8px rgba(24,99,220,0.06);
-    }
-
-    .industry-card-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: rgba(24,99,220,0.08);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #1863dc;
+      padding: 8px 12px;
+      flex-shrink: 0;
+      cursor: default;
     }
 
     .industry-card span {
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 26px;
+      font-weight: 700;
       color: var(--fg);
       white-space: nowrap;
+    }
+
+    .industry-card img {
+      height: 44px;
+      width: auto;
+      display: block;
     }
       margin-right: 12px;
       box-shadow: 0 0 12px var(--accent);
@@ -4228,6 +4328,30 @@
         <div class="hero-text">
           <h1><span class="line">AI Specialists for</span><br><span class="line line-accent">Every Job</span></h1>
           <p class="hero-sub">Specialist AI agents with domain expertise that perform deep analysis, execute complex tasks, and automate workflows.</p>
+
+          <div class="hero-features">
+            <div class="hero-feature">
+              <div class="hero-feature-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
+              </div>
+              <h3>Domain-trained specialists</h3>
+              <p>Trained on your industry's rules, products, and workflows.</p>
+            </div>
+            <div class="hero-feature">
+              <div class="hero-feature-icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+              </div>
+              <h3>Built for any industry</h3>
+              <p>Any vertical, any product, powered by <a href="#core-v2">Infina AI Core</a>.</p>
+            </div>
+            <div class="hero-feature">
+              <div class="hero-feature-icon">
+                <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <h3>Go live in days</h3>
+              <p>Pre-built agents, connectors, and compliance. Zero build time.</p>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -4236,36 +4360,28 @@
 
   <section class="partners">
     <div class="container">
-      <p class="partners-eyebrow">Industries We Serve</p>
-      <h2 class="partners-headline">Built for regulated industries.</h2>
-      <p class="partners-sub">Trusted by financial services teams across Southeast Asia.</p>
+      <p class="partners-eyebrow">Proud to work with</p>
     </div>
     <div class="industry-marquee">
       <div class="industry-track">
 
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><span>Securities</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span>Insurance</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><span>Fintech</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.5 3h5a1.5 1.5 0 0 1 1.5 1.5a3.5 3.5 0 0 1 -3.5 3.5h-1a3.5 3.5 0 0 1 -3.5 -3.5a1.5 1.5 0 0 1 1.5 -1.5"/><path d="M4 17v-1a8 8 0 1 1 16 0v1a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4"/></svg></div><span>Fund Management</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><rect x="6" y="2" width="12" height="20" rx="1"/><path d="M9 7h1m5 0h-1M9 12h1m5 0h-1M9 17h1m5 0h-1"/></svg></div><span>Bank</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><span>e-Wallet</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><span>Travel</span></div>
+        <div class="industry-card"><img src="uploads/Infina-logo.png" alt="Infina"></div>
+                <div class="industry-card"><img src="uploads/Kafi-logo.svg" alt="Kafi"></div>
+        <div class="industry-card"><img src="uploads/aaa-insurance.png" alt="AAA Insurance Corporation"></div>
+        <div class="industry-card"><img src="uploads/sovico-group.png" alt="Sovico Group"></div>
+        <div class="industry-card"><img src="uploads/savills-logo.svg" alt="Savills"></div>
 
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><span>Securities</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span>Insurance</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><span>Fintech</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.5 3h5a1.5 1.5 0 0 1 1.5 1.5a3.5 3.5 0 0 1 -3.5 3.5h-1a3.5 3.5 0 0 1 -3.5 -3.5a1.5 1.5 0 0 1 1.5 -1.5"/><path d="M4 17v-1a8 8 0 1 1 16 0v1a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4"/></svg></div><span>Fund Management</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><rect x="6" y="2" width="12" height="20" rx="1"/><path d="M9 7h1m5 0h-1M9 12h1m5 0h-1M9 17h1m5 0h-1"/></svg></div><span>Bank</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><span>e-Wallet</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><span>Travel</span></div>
+        <div class="industry-card"><img src="uploads/Infina-logo.png" alt="Infina"></div>
+                <div class="industry-card"><img src="uploads/Kafi-logo.svg" alt="Kafi"></div>
+        <div class="industry-card"><img src="uploads/aaa-insurance.png" alt="AAA Insurance Corporation"></div>
+        <div class="industry-card"><img src="uploads/sovico-group.png" alt="Sovico Group"></div>
+        <div class="industry-card"><img src="uploads/savills-logo.svg" alt="Savills"></div>
 
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><span>Securities</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span>Insurance</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><span>Fintech</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.5 3h5a1.5 1.5 0 0 1 1.5 1.5a3.5 3.5 0 0 1 -3.5 3.5h-1a3.5 3.5 0 0 1 -3.5 -3.5a1.5 1.5 0 0 1 1.5 -1.5"/><path d="M4 17v-1a8 8 0 1 1 16 0v1a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4"/></svg></div><span>Fund Management</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><rect x="6" y="2" width="12" height="20" rx="1"/><path d="M9 7h1m5 0h-1M9 12h1m5 0h-1M9 17h1m5 0h-1"/></svg></div><span>Bank</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><span>e-Wallet</span></div>
-        <div class="industry-card"><div class="industry-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><span>Travel</span></div>
+        <div class="industry-card"><img src="uploads/Infina-logo.png" alt="Infina"></div>
+                <div class="industry-card"><img src="uploads/Kafi-logo.svg" alt="Kafi"></div>
+        <div class="industry-card"><img src="uploads/aaa-insurance.png" alt="AAA Insurance Corporation"></div>
+        <div class="industry-card"><img src="uploads/sovico-group.png" alt="Sovico Group"></div>
+        <div class="industry-card"><img src="uploads/savills-logo.svg" alt="Savills"></div>
 
       </div>
     </div>
@@ -4279,267 +4395,329 @@
       </div>
 
       <div class="products-grid" id="products-grid">
-        <div class="product-card" data-product="inside">
-          <span class="product-audience-label">For Platforms</span>
-          <span class="product-tag">Infina AI Inside</span>
-          <h3>More engaged customer. Higher revenue. Zero build time.</h3>
-          <p class="product-desc">Confused customers don't convert. AI Inside puts a specialist right inside your app so every user gets the right guidance, at the right moment, and moves forward.</p>
-          <a href="inside.html" class="product-link">Explore AI Inside</a>
+
+        <div class="product-group" data-product="inside">
+          <div class="product-card" data-product="inside">
+            <span class="product-audience-label">For Products</span>
+            <span class="product-tag">Infina AI Inside</span>
+            <h3>More engaged customer. Higher revenue. Zero build time.</h3>
+            <p class="product-desc">Confused customers don't convert. AI Inside puts a specialist right inside your app so every user gets the right guidance, at the right moment, and moves forward.</p>
+            <span class="product-see-more"><span class="see-more-default">Meet the specialist</span><span class="see-more-active">Hide</span></span>
+          </div>
+          <div class="product-panel" id="tab-inside">
+            <div class="product-tree-connector"></div>
+            <div class="product-panel-inner">
+              <div class="agents-grid agents-grid-4" id="inside-grid">
+
+                <div class="agents-card" data-agent="stock">
+                  <div class="agents-card-left">
+                    <h3 class="agents-card-title"><span class="agents-title-main">Stock</span><span class="agents-title-sub">Specialist Agent</span></h3>
+                    <div class="agents-context-badge">Inside stock trading apps</div>
+                  </div>
+                  <div class="agents-card-right">
+                    <ul class="agents-list">
+                      <li>Market insights tailored to each user's holdings</li>
+                      <li>Surfaces risks and opportunities in their portfolio</li>
+                      <li>Alerts on moves that matter, nothing else</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="agents-card" data-agent="wealth">
+                  <div class="agents-card-left">
+                    <h3 class="agents-card-title"><span class="agents-title-main">Wealth Management</span><span class="agents-title-sub">Specialist Agent</span></h3>
+                    <div class="agents-context-badge">Inside fund management apps/web</div>
+                  </div>
+                  <div class="agents-card-right">
+                    <ul class="agents-list">
+                      <li>Fund questions answered instantly</li>
+                      <li>Investing plans built around real goals</li>
+                      <li>Asset mix matched to risk profile and timeline</li>
+                      <li>Flags when to rebalance, and why</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="agents-card" data-agent="personal">
+                  <div class="agents-card-left">
+                    <h3 class="agents-card-title"><span class="agents-title-main">Personal Finance</span><span class="agents-title-sub">Specialist Agent</span></h3>
+                    <div class="agents-context-badge">Inside banking/e-wallet apps</div>
+                  </div>
+                  <div class="agents-card-right">
+                    <ul class="agents-list">
+                      <li>Matches users to products that fit their situation</li>
+                      <li>Shows where money goes and where to improve</li>
+                      <li>Clarifies loan options and credit improvement steps</li>
+                      <li>Builds financial confidence in plain language</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="agents-card" data-agent="insurance">
+                  <div class="agents-card-left">
+                    <h3 class="agents-card-title"><span class="agents-title-main">Insurance</span><span class="agents-title-sub">Specialist Agent</span></h3>
+                    <div class="agents-context-badge">Inside insurance apps/web</div>
+                  </div>
+                  <div class="agents-card-right">
+                    <ul class="agents-list">
+                      <li>Finds coverage that fits, not just what's available</li>
+                      <li>Answers policy questions any time, in plain language</li>
+                      <li>Guides users through claims to get what they're entitled to</li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="product-card" data-product="work">
-          <span class="product-audience-label">For Business</span>
-          <span class="product-tag">Infina AI Work</span>
-          <h3>Your team, working at their best with AI handling the rest.</h3>
-          <p class="product-desc">Your top talent shouldn't be buried in updates and follow-ups. AI Work handles the operational load so your team stays focused on the work that drives results.</p>
-          <a href="work.html" class="product-link">Explore AI Work</a>
+        <div class="product-group" data-product="work">
+          <div class="product-card" data-product="work">
+            <span class="product-audience-label">For Business</span>
+            <span class="product-tag">Infina AI Work</span>
+            <h3>Your team, working at their best with AI handling the rest.</h3>
+            <p class="product-desc">Your top talent shouldn't be buried in updates and follow-ups. AI Work handles the operational load so your team stays focused on the work that drives results.</p>
+            <span class="product-see-more"><span class="see-more-default">Meet the specialist</span><span class="see-more-active">Hide</span></span>
+          </div>
+          <div class="product-panel" id="tab-work">
+            <div class="product-tree-connector"></div>
+            <div class="product-panel-inner">
+
+              <!-- Audience 1: Sales Teams -->
+              <div class="agents-work-audience">
+                <span class="agents-audience-label">For Sales Teams</span>
+                <div class="agents-grid">
+                  <div class="agents-card agents-card-row">
+                    <div class="agents-card-row-meta">
+                      <h3 class="agents-card-title">
+                        <span class="agents-title-main">CRM & Sales Pipeline</span>
+                                        </h3>
+                      <div class="agents-context-badge">Inside your CRM</div>
+                    </div>
+                    <ul class="agents-list agents-list-row">
+                      <li>Works alongside your existing CRM and tools. No migration required.</li>
+                      <li>Handles CRM updates, follow-up emails, and task logging automatically</li>
+                      <li>Pre-configured for your industry: real estate, insurance, finance, and more</li>
+                      <li>Accessible via Slack, WhatsApp, web, or your own app</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Audience 2: Operations & Company -->
+              <div class="agents-work-audience">
+                <span class="agents-audience-label">For Operations &amp; Company</span>
+                <div class="agents-grid agents-grid-4" id="work-grid">
+
+                  <div class="agents-card">
+                    <div class="agents-card-left">
+                      <h3 class="agents-card-title">
+                        <span class="agents-title-main">Focus & Alignment</span>
+                                        </h3>
+                      <div class="agents-context-badge">Across your organization</div>
+                    </div>
+                    <div class="agents-card-right">
+                      <ul class="agents-list">
+                        <li>Aligns weekly priorities across team, department, and company goals</li>
+                        <li>Resolves conflicts by understanding where OKRs overlap or clash</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="agents-card">
+                    <div class="agents-card-left">
+                      <h3 class="agents-card-title">
+                        <span class="agents-title-main">Expense Management</span>
+                                        </h3>
+                      <div class="agents-context-badge">Across your tools and accounts</div>
+                    </div>
+                    <div class="agents-card-right">
+                      <ul class="agents-list">
+                        <li>Analyzes all spending across SaaS, cloud, credit card, and bank statements</li>
+                        <li>Surfaces ways to cut costs across your accounts</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="agents-card">
+                    <div class="agents-card-left">
+                      <h3 class="agents-card-title">
+                        <span class="agents-title-main">Expertise</span>
+                                        </h3>
+                      <div class="agents-context-badge">Across your data sources</div>
+                    </div>
+                    <div class="agents-card-right">
+                      <ul class="agents-list">
+                        <li>Slack threads explained, company context surfaced. Answers ready instantly.</li>
+                        <li>Research pulled from internal data sources and the web in one place</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="agents-card">
+                    <div class="agents-card-left">
+                      <h3 class="agents-card-title">
+                        <span class="agents-title-main">Workflow</span>
+                                        </h3>
+                      <div class="agents-context-badge">Any repeatable process</div>
+                    </div>
+                    <div class="agents-card-right">
+                      <ul class="agents-list">
+                        <li>Any repeatable workflow gets fully automated with a dedicated agent</li>
+                        <li>Built and customized to fit exactly what your team needs</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
 
-        <div class="product-card" data-product="personal">
-          <span class="product-audience-label">For Individuals</span>
-          <span class="product-tag">Infina AI Personal</span>
-          <h3>Grow more. Stress less. Achieve your goal.</h3>
-          <p class="product-desc">Whether you should invest or pay off debt, whether an insurance plan is worth it, or where to travel on your budget, stop guessing and get a clear answer.</p>
-          <a href="personal.html" class="product-link">Explore AI Personal</a>
+        <div class="product-group" data-product="personal">
+          <div class="product-card" data-product="personal">
+            <span class="product-audience-label">For Individuals</span>
+            <span class="product-tag">Infina AI Personal</span>
+            <h3>Grow more. Stress less. Achieve your goal.</h3>
+            <p class="product-desc">Whether you should invest or pay off debt, whether an insurance plan is worth it, or where to travel on your budget, stop guessing and get a clear answer.</p>
+            <span class="product-see-more"><span class="see-more-default">Meet the specialist</span><span class="see-more-active">Hide</span></span>
+          </div>
+          <div class="product-panel" id="tab-personal">
+            <div class="product-tree-connector"></div>
+            <div class="product-panel-inner">
+              <div class="agents-grid agents-personal-grid">
+
+                <div class="agents-personal-row">
+                  <h3 class="agents-card-title">
+                    <span class="agents-title-main">Finance</span>
+                  </h3>
+                  <ul class="agents-list">
+                    <li>Answers questions about your money in plain language</li>
+                    <li>Tracks your budget and flags where to cut back</li>
+                    <li>Guides you on loans, insurance, tax planning, and more</li>
+                  </ul>
+                  <p class="agents-personal-more">More features coming.</p>
+                  <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
+                </div>
+
+                <div class="agents-personal-row">
+                  <h3 class="agents-card-title">
+                    <span class="agents-title-main">Lifestyle</span>
+                  </h3>
+                  <ul class="agents-list">
+                    <li>Plans trips around your preferences and budget</li>
+                    <li>Builds weekly meal plans with recipes and shopping lists</li>
+                  </ul>
+                  <p class="agents-personal-more">More features coming.</p>
+                  <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
+                </div>
+
+                <div class="agents-personal-row agents-personal-row--muted">
+                  <h3 class="agents-card-title">
+                    <span class="agents-title-main" style="color: var(--muted);">More coming soon</span>
+                  </h3>
+                  <p class="agents-personal-sub">New specialists and verticals on the way.</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
-    </div>
-  </section>
-
-  <!-- WHAT OUR AGENTS GET DONE - TABBED SECTION -->
-  <section class="agents-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">Meet the Specialists</span>
-        <h2>The right specialist, <span class="accent">exactly where you need them</span></h2>
-      </div>
-
-      <!-- Tab buttons -->
-      <div class="agents-tabs" role="tablist">
-        <button class="agents-tab active" data-tab="inside" role="tab" aria-selected="true">
-          Infina AI Inside
-        </button>
-        <button class="agents-tab" data-tab="work" role="tab" aria-selected="false">
-          Infina AI Work
-        </button>
-        <button class="agents-tab" data-tab="personal" role="tab" aria-selected="false">
-          Infina AI Personal
-        </button>
-      </div>
-
-      <!-- ── TAB: AI Inside ── -->
-      <div class="agents-panel active" id="tab-inside">
-        <p class="agents-panel-tagline">Live inside your platforms. Get the experts 24/7.</p>
-        <div class="agents-grid agents-grid-4" id="inside-grid">
-
-          <div class="agents-card" data-agent="stock">
-            <div class="agents-card-left">
-              <h3 class="agents-card-title"><span class="agents-title-main">Stock</span><span class="agents-title-sub">Specialist Agent</span></h3>
-              <div class="agents-context-badge">Inside stock trading apps</div>
-            </div>
-            <div class="agents-card-right">
-              <ul class="agents-list">
-                <li>Market insights tailored to each user's holdings</li>
-                <li>Surfaces risks and opportunities in their portfolio</li>
-                <li>Alerts on moves that matter, nothing else</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="agents-card" data-agent="wealth">
-            <div class="agents-card-left">
-              <h3 class="agents-card-title"><span class="agents-title-main">Wealth Management</span><span class="agents-title-sub">Specialist Agent</span></h3>
-              <div class="agents-context-badge">Inside fund management apps/web</div>
-            </div>
-            <div class="agents-card-right">
-              <ul class="agents-list">
-                <li>Fund questions answered instantly</li>
-                <li>Investing plans built around real goals</li>
-                <li>Asset mix matched to risk profile and timeline</li>
-                <li>Flags when to rebalance, and why</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="agents-card" data-agent="personal">
-            <div class="agents-card-left">
-              <h3 class="agents-card-title"><span class="agents-title-main">Personal Finance</span><span class="agents-title-sub">Specialist Agent</span></h3>
-              <div class="agents-context-badge">Inside banking/e-wallet apps</div>
-            </div>
-            <div class="agents-card-right">
-              <ul class="agents-list">
-                <li>Matches users to products that fit their situation</li>
-                <li>Shows where money goes and where to improve</li>
-                <li>Clarifies loan options and credit improvement steps</li>
-                <li>Builds financial confidence in plain language</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="agents-card" data-agent="insurance">
-            <div class="agents-card-left">
-              <h3 class="agents-card-title"><span class="agents-title-main">Insurance</span><span class="agents-title-sub">Specialist Agent</span></h3>
-              <div class="agents-context-badge">Inside insurance apps/web</div>
-            </div>
-            <div class="agents-card-right">
-              <ul class="agents-list">
-                <li>Finds coverage that fits, not just what's available</li>
-                <li>Answers policy questions any time, in plain language</li>
-                <li>Guides users through claims to get what they're entitled to</li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- ── TAB: AI Personal ── -->
-      <div class="agents-panel" id="tab-personal">
-        <p class="agents-panel-tagline">Better your everyday decisions with AI specialists.</p>
-        <div class="agents-grid agents-personal-grid">
-
-          <div class="agents-personal-row">
-            <h3 class="agents-card-title">
-              <span class="agents-title-main">Finance</span>
-            </h3>
-            <ul class="agents-list">
-              <li>Answers questions about your money in plain language</li>
-              <li>Tracks your budget and flags where to cut back</li>
-              <li>Guides you on loans, insurance, tax planning, and more</li>
-            </ul>
-            <p class="agents-personal-more">More features coming.</p>
-            <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
-          </div>
-
-          <div class="agents-personal-row">
-            <h3 class="agents-card-title">
-              <span class="agents-title-main">Lifestyle</span>
-            </h3>
-            <ul class="agents-list">
-              <li>Plans trips around your preferences and budget</li>
-              <li>Builds weekly meal plans with recipes and shopping lists</li>
-            </ul>
-            <p class="agents-personal-more">More features coming.</p>
-            <a href="personal.html" class="agents-personal-cta">See it in action <span class="agents-personal-cta-arrow">→</span></a>
-          </div>
-
-          <div class="agents-personal-row agents-personal-row--muted">
-            <h3 class="agents-card-title">
-              <span class="agents-title-main" style="color: var(--muted);">More coming soon</span>
-            </h3>
-            <p class="agents-personal-sub">New specialists and verticals on the way.</p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- ── TAB: AI Work ── -->
-      <div class="agents-panel" id="tab-work">
-        <p class="agents-panel-tagline">Less chasing tasks. More closing them.</p>
-
-        <!-- Audience 1: Sales Teams -->
-        <div class="agents-work-audience">
-          <span class="agents-audience-label">For Sales Teams</span>
-          <div class="agents-grid">
-            <div class="agents-card agents-card-row">
-              <div class="agents-card-row-meta">
-                <h3 class="agents-card-title">
-                  <span class="agents-title-main">CRM & Sales Pipeline</span>
-                  <span class="agents-title-sub">Specialist Agent</span>
-                </h3>
-                <div class="agents-context-badge">Inside your CRM</div>
-              </div>
-              <ul class="agents-list agents-list-row">
-                <li>Works alongside your existing CRM and tools. No migration required.</li>
-                <li>Handles CRM updates, follow-up emails, and task logging automatically</li>
-                <li>Pre-configured for your industry: real estate, insurance, finance, and more</li>
-                <li>Accessible via Slack, WhatsApp, web, or your own app</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Audience 2: Operations & Company -->
-        <div class="agents-work-audience">
-          <span class="agents-audience-label">For Operations &amp; Company</span>
-          <div class="agents-grid agents-grid-4" id="work-grid">
-
-            <div class="agents-card">
-              <div class="agents-card-left">
-                <h3 class="agents-card-title">
-                  <span class="agents-title-main">Focus & Alignment</span>
-                  <span class="agents-title-sub">Specialist Agent</span>
-                </h3>
-                <div class="agents-context-badge">Across your org</div>
-              </div>
-              <div class="agents-card-right">
-                <ul class="agents-list">
-                  <li>Aligns weekly priorities across team, department, and company goals</li>
-                  <li>Resolves conflicts by understanding where OKRs overlap or clash</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="agents-card">
-              <div class="agents-card-left">
-                <h3 class="agents-card-title">
-                  <span class="agents-title-main">Expense Management</span>
-                  <span class="agents-title-sub">Specialist Agent</span>
-                </h3>
-                <div class="agents-context-badge">Across your tools and accounts</div>
-              </div>
-              <div class="agents-card-right">
-                <ul class="agents-list">
-                  <li>Analyzes all spending across SaaS, cloud, credit card, and bank statements</li>
-                  <li>Surfaces ways to cut costs across your accounts</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="agents-card">
-              <div class="agents-card-left">
-                <h3 class="agents-card-title">
-                  <span class="agents-title-main">Expertise</span>
-                  <span class="agents-title-sub">Specialist Agent</span>
-                </h3>
-                <div class="agents-context-badge">Across your data sources</div>
-              </div>
-              <div class="agents-card-right">
-                <ul class="agents-list">
-                  <li>Slack threads explained, company context surfaced. Answers ready instantly.</li>
-                  <li>Research pulled from internal data sources and the web in one place</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="agents-card">
-              <div class="agents-card-left">
-                <h3 class="agents-card-title">
-                  <span class="agents-title-main">Workflow</span>
-                  <span class="agents-title-sub">Specialist Agent</span>
-                </h3>
-                <div class="agents-context-badge">Any repeatable process</div>
-              </div>
-              <div class="agents-card-right">
-                <ul class="agents-list">
-                  <li>Any repeatable workflow gets fully automated with a dedicated agent</li>
-                  <li>Built and customized to fit exactly what your team needs</li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div><!-- end tab-work -->
-
     </div>
   </section>
 
   <style>
+    /* ===== Product panel (accordion on mobile, full-width reveal on desktop) ===== */
+    #tab-inside   { --panel-color: #1863dc; }
+    #tab-work     { --panel-color: #149a6e; }
+    #tab-personal { --panel-color: #7e57c2; }
+
+    /* Desktop default: hide/show with display + fade-up */
+    .product-panel { display: none; }
+    .product-panel.active {
+      display: block;
+      animation: fade-up 0.4s ease-out both;
+    }
+
+    /* Desktop: group dissolves into grid so card+panel are direct grid children */
+    @media (min-width: 1001px) {
+      .product-group { display: contents; }
+      .product-card  { grid-row: 1; }
+      .product-panel { grid-row: 2; grid-column: 1 / -1; }
+    }
+
+    /* Mobile: stack card + panel, accordion expand */
+    @media (max-width: 1000px) {
+      .products-grid { display: flex; flex-direction: column; gap: 16px; }
+      .product-group { display: flex; flex-direction: column; }
+      .product-tree-connector { display: none; }
+      .product-panel {
+        display: block;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        animation: none;
+        transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease;
+      }
+      .product-panel.active { max-height: 3000px; opacity: 1; }
+    }
+
+    /* Ensure agents-grid fills the outlined box exactly, ignoring its standalone max-width */
+    .product-panel-inner .agents-grid {
+      max-width: none;
+      margin: 0;
+    }
+
+    /* Panel inner — desktop: outlined box + caret pointer */
+    @media (min-width: 1001px) {
+      .product-tree-connector {
+        height: 12px;
+      }
+
+      .product-panel-inner {
+        position: relative;
+        background: var(--surface);
+        padding: 32px;
+        border: 2px solid var(--panel-color, var(--accent));
+        border-radius: 20px;
+      }
+
+      /* Caret pointer on top border of panel */
+      .product-panel-inner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 18px;
+        height: 18px;
+        background: var(--surface);
+        border-top: 2px solid var(--panel-color, var(--accent));
+        border-left: 2px solid var(--panel-color, var(--accent));
+        transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      }
+      #tab-inside   .product-panel-inner::before { left: calc(100% / 6); }
+      #tab-work     .product-panel-inner::before { left: 50%; }
+      #tab-personal .product-panel-inner::before { left: calc(100% * 5 / 6); }
+    }
+
+    /* Panel inner — mobile: continue card border as merged unit */
+    @media (max-width: 1000px) {
+      .product-panel-inner {
+        background: var(--surface);
+        padding: 24px 16px;
+        border: 2px solid var(--panel-color, var(--accent));
+        border-top: none;
+        border-radius: 0 0 20px 20px;
+      }
+    }
+
     /* ===== What Our Agents Get Done ===== */
     .agents-section {
-      padding: var(--section-gap) 0;
+      padding: 0 0 var(--section-gap);
       background: var(--surface);
     }
 
@@ -4681,24 +4859,25 @@
     #tab-personal .agents-card { --card-color: #7e57c2; }
     #tab-personal .agents-personal-row { --card-color: #7e57c2; }
 
-    /* ── Option A: coloured top border + matching title ── */
     .agents-card {
       background: #fff;
       border: 1.5px solid var(--border-light);
-      border-top: 4px solid var(--card-color, var(--accent));
       border-radius: 18px;
       padding: 26px 22px;
       display: flex;
       flex-direction: column;
       gap: 14px;
+      min-width: 0;
+      box-shadow: 0 0 0 1px color-mix(in oklab, var(--card-color, var(--accent)) 18%, transparent),
+                  0 4px 16px -4px color-mix(in oklab, var(--card-color, var(--accent)) 12%, transparent);
       transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
     }
 
     .agents-card:hover {
       transform: translateY(-5px);
-      border-color: color-mix(in oklab, var(--card-color, var(--accent)) 35%, transparent);
-      border-top-color: var(--card-color, var(--accent));
-      box-shadow: 0 20px 48px -16px color-mix(in oklab, var(--card-color, var(--accent)) 25%, transparent);
+      border-color: color-mix(in oklab, var(--card-color, var(--accent)) 25%, transparent);
+      box-shadow: 0 0 0 1.5px color-mix(in oklab, var(--card-color, var(--accent)) 40%, transparent),
+                  0 20px 48px -16px color-mix(in oklab, var(--card-color, var(--accent)) 25%, transparent);
     }
 
     .agents-card-title {
@@ -4713,15 +4892,11 @@
       color: var(--card-color, var(--accent));
       line-height: 1.2;
       letter-spacing: -0.02em;
+      min-height: calc(1.2em * 2);
     }
 
     .agents-title-sub {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      line-height: 1.3;
+      display: none;
     }
 
     /* ── Option C: horizontal rows (preserved) ── */
@@ -4789,9 +4964,7 @@
       border-radius: 0;
       line-height: 1.4;
       margin-bottom: 2px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      min-height: calc(1.4em * 2);
     }
 
     .agents-list {
@@ -4844,17 +5017,18 @@
       gap: 14px;
       background: #fff;
       border: 1.5px solid var(--border-light);
-      border-top: 4px solid var(--card-color, #7e57c2);
       border-radius: 18px;
       padding: 26px 22px;
+      box-shadow: 0 0 0 1px color-mix(in oklab, var(--card-color, #7e57c2) 18%, transparent),
+                  0 4px 16px -4px color-mix(in oklab, var(--card-color, #7e57c2) 12%, transparent);
       transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
     }
 
     .agents-personal-row:hover {
       transform: translateY(-5px);
-      border-color: color-mix(in oklab, var(--card-color, #7e57c2) 35%, transparent);
-      border-top-color: var(--card-color, #7e57c2);
-      box-shadow: 0 20px 48px -16px color-mix(in oklab, var(--card-color, #7e57c2) 25%, transparent);
+      border-color: color-mix(in oklab, var(--card-color, #7e57c2) 25%, transparent);
+      box-shadow: 0 0 0 1.5px color-mix(in oklab, var(--card-color, #7e57c2) 40%, transparent),
+                  0 20px 48px -16px color-mix(in oklab, var(--card-color, #7e57c2) 25%, transparent);
     }
 
     .agents-personal-row--muted {
@@ -5050,20 +5224,21 @@
   </style>
 
   <script>
-    // Tab switching for agents section
-    document.querySelectorAll('.agents-tab').forEach(function(tab) {
-      tab.addEventListener('click', function() {
-        document.querySelectorAll('.agents-tab').forEach(function(t) {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        document.querySelectorAll('.agents-panel').forEach(function(p) {
-          p.classList.remove('active');
-        });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-        var panelId = 'tab-' + tab.getAttribute('data-tab');
-        document.getElementById(panelId).classList.add('active');
+    document.querySelectorAll('.product-see-more').forEach(function(trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var card = trigger.closest('.product-card');
+        var isActive = card.classList.contains('active');
+        var product = card.getAttribute('data-product');
+
+        document.querySelectorAll('.product-card').forEach(function(c) { c.classList.remove('active'); });
+        document.querySelectorAll('.product-panel').forEach(function(p) { p.classList.remove('active'); });
+
+        if (!isActive) {
+          card.classList.add('active');
+          var panel = document.getElementById('tab-' + product);
+          if (panel) panel.classList.add('active');
+        }
       });
     });
   </script>
@@ -5284,7 +5459,7 @@
   </section>
   -->
 
-  <section class="core-section" id="core">
+  <section class="core-section" id="core" style="display:none">
     <div class="container">
       <div class="core-header">
         <div class="core-platform-header" style="margin-bottom: 24px;">
@@ -5362,6 +5537,717 @@
 
     </div>
   </section>
+
+  <!-- ====== CORE V2 REBUILD (for comparison) ====== -->
+  <style>
+    .core-v2-section {
+      padding: var(--section-gap) 0;
+      padding-top: calc(var(--section-gap) + 24px);
+      background: #fafafa;
+    }
+
+    /* Header — matched to "Jobs We Get Done" styling */
+    .core-v2-eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .core-v2-headline {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.6vw, 56px);
+      font-weight: 700;
+      color: #001964;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      text-align: center;
+      margin: 0 auto 56px;
+      max-width: 760px;
+    }
+    .core-v2-headline .core-v2-accent {
+      background: linear-gradient(135deg, var(--accent) 0%, #6fa8ff 50%, var(--accent) 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      animation: gradient-shift 4s ease infinite;
+    }
+    .core-v2-header { text-align: center; margin-bottom: 0; }
+
+    /* Column labels */
+    .core-v2-col-labels {
+      display: grid;
+      grid-template-columns: 1fr 160px 1fr;
+      margin-bottom: 12px;
+      padding: 0 24px;
+    }
+    .core-v2-label-blue {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1863dc;
+      text-align: center;
+    }
+    .core-v2-label-green {
+      font-size: 15px;
+      font-weight: 700;
+      color: #149a6e;
+      text-align: center;
+    }
+
+    /* Rows wrapper — holds both brackets + rows */
+    .core-v2-rows-wrap {
+      position: relative;
+      padding: 0 12px;
+    }
+
+    /* Left green bracket (Client Context) */
+    .core-v2-rows-wrap::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20px;
+      bottom: 20px;
+      width: 16px;
+      border-top: 2px solid #149a6e;
+      border-left: 2px solid #149a6e;
+      border-bottom: 2px solid #149a6e;
+      border-radius: 10px 0 0 10px;
+      pointer-events: none;
+    }
+
+    /* Right blue bracket (Infina AI Core) */
+    .core-v2-rows-wrap::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20px;
+      bottom: 20px;
+      width: 16px;
+      border-top: 2px solid #1863dc;
+      border-right: 2px solid #1863dc;
+      border-bottom: 2px solid #1863dc;
+      border-radius: 0 10px 10px 0;
+      pointer-events: none;
+    }
+
+    /* Rows */
+    .core-v2-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .core-v2-row {
+      display: grid;
+      grid-template-columns: 1fr 160px 1fr;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* Cards */
+    .core-v2-lcard,
+    .core-v2-rcard {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: #f5f8ff;
+      border: 1.5px solid #dae4fb;
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .core-v2-lcard { background: #f6fdf9; border-color: #c8edd9; }
+
+    .core-v2-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .core-v2-icon--blue { background: #eff4ff; }
+    .core-v2-icon--blue svg { stroke: #1863dc; }
+    .core-v2-icon--green { background: #edfaf4; }
+    .core-v2-icon--green svg { stroke: #149a6e; }
+    .core-v2-icon svg { width: 22px; height: 22px; fill: none; }
+
+    .core-v2-card-text h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      line-height: 1.3;
+    }
+    .core-v2-lcard .core-v2-card-text h3 { color: #149a6e; }
+    .core-v2-rcard .core-v2-card-text h3 { color: var(--fg); }
+    .core-v2-card-text p {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Connector — single arrow line with label below */
+    .core-v2-conn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 0 8px;
+    }
+    .core-v2-conn-line {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      position: relative;
+    }
+    .core-v2-conn-line::before {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: #94a3b8;
+    }
+    .core-v2-conn-line::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 8px solid #94a3b8;
+      flex-shrink: 0;
+    }
+    .core-v2-conn-label {
+      font-size: 11.5px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* Converge — simple dashed line from center down to output card */
+    .core-v2-converge {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      position: relative;
+      height: 40px;
+    }
+    .core-v2-converge::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      height: 30px;
+      border-left: 2px dashed #1863dc;
+      transform: translateX(-50%);
+    }
+    .core-v2-converge::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 8px solid #1863dc;
+    }
+    /* New 2-color branch SVG — desktop only (hidden on mobile, dashed line stays) */
+    .core-v2-converge-svg { display: none; }
+    @media (min-width: 901px) {
+      .core-v2-converge { height: 48px; align-items: flex-start; }
+      .core-v2-converge::before,
+      .core-v2-converge::after { display: none; }
+      .core-v2-converge-svg { display: block; width: 100%; height: 48px; }
+    }
+
+    /* Output card */
+    .core-v2-output-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+    .core-v2-output {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: #fff;
+      border: 2px solid #1863dc;
+      border-radius: 16px;
+      padding: 22px 28px;
+      max-width: 680px;
+      width: 100%;
+      box-shadow: 0 4px 24px -4px rgba(24, 99, 220, 0.15);
+    }
+    .core-v2-output-icon {
+      width: 56px;
+      height: 56px;
+      background: #fff;
+      border: 2px solid #1863dc;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .core-v2-output-icon svg { width: 32px; height: 18px; }
+    .core-v2-output-text h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1863dc;
+      margin: 0 0 6px;
+    }
+    .core-v2-output-text p {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Chips with dotted fan line */
+    .core-v2-chips-section {
+      position: relative;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    /* SVG fan lines drawn inline */
+    .core-v2-fan-svg {
+      display: block;
+      width: 100%;
+      margin-top: -2px;
+      overflow: visible;
+    }
+
+    .core-v2-chips {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: center;
+      justify-items: center;
+      gap: 8px;
+      padding-top: 4px;
+    }
+    .core-v2-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 40px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .core-v2-chip svg { width: 18px; height: 18px; fill: none; }
+    .core-v2-chip--blue { color: #1863dc; border-color: #c7d9f8; }
+    .core-v2-chip--blue svg { stroke: #1863dc; }
+    .core-v2-chip--green { color: #149a6e; border-color: #b6e8d4; }
+    .core-v2-chip--green svg { stroke: #149a6e; }
+    .core-v2-chip--purple { color: #7e57c2; border-color: #d4c9f0; }
+    .core-v2-chip--purple svg { stroke: #7e57c2; }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .core-v2-col-labels { display: none; }
+      .core-v2-rows-wrap { padding: 0; }
+      .core-v2-rows-wrap::before,
+      .core-v2-rows-wrap::after { display: none; }
+      .core-v2-rows { gap: 20px; }
+
+      /* Each row = a card box: side-by-side pair + "=" result below */
+      .core-v2-row {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-areas:
+          "lcard plus rcard"
+          "result result result";
+        align-items: stretch;
+        gap: 10px;
+        background: #f8fafc;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 12px;
+      }
+      .core-v2-lcard {
+        grid-area: lcard;
+        flex-direction: row;
+        border: 1.5px solid #c8edd9;
+        background: #f6fdf9;
+        border-radius: 12px;
+        padding: 14px;
+        gap: 12px;
+      }
+      .core-v2-rcard {
+        grid-area: rcard;
+        flex-direction: row;
+        border: 1.5px solid #dae4fb;
+        background: #f5f8ff;
+        border-radius: 12px;
+        padding: 14px;
+        gap: 12px;
+      }
+
+      /* Connector becomes transparent; children re-placed into grid */
+      .core-v2-conn { display: contents; }
+
+      /* "+" symbol between the two cards */
+      .core-v2-conn-line {
+        grid-area: plus;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+      }
+      .core-v2-conn-line::before {
+        content: '+';
+        flex: none;
+        width: auto;
+        height: auto;
+        background: none;
+        font-size: 20px;
+        font-weight: 400;
+        color: #94a3b8;
+      }
+      .core-v2-conn-line::after { display: none; }
+
+      /* "=" result label spanning full width below the pair */
+      .core-v2-conn-label {
+        grid-area: result;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--fg);
+        text-align: center;
+        padding-top: 2px;
+      }
+      .core-v2-conn-label::before { content: '= '; font-weight: 700; color: #1863dc; }
+
+      .core-v2-fan-svg { display: none; }
+      .core-v2-output-wrap { margin-top: 16px; }
+
+      /* Chips in a 2-column grid, last one centered full-width */
+      .core-v2-chips {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: 8px;
+        margin-bottom: 20px;
+      }
+      .core-v2-chip {
+        justify-content: center;
+        width: 100%;
+      }
+      .core-v2-chip:last-child { grid-column: 1 / -1; }
+    }
+
+    /* Phone ≤600px: keep side-by-side 2-column layout, tighten for narrow viewports */
+    @media (max-width: 600px) {
+      .core-v2-row {
+        gap: 6px;
+        padding: 10px 8px;
+      }
+      .core-v2-lcard,
+      .core-v2-rcard {
+        padding: 10px 8px;
+        gap: 8px;
+      }
+      .core-v2-icon {
+        width: 40px;
+        height: 40px;
+      }
+      .core-v2-icon svg {
+        width: 19px;
+        height: 19px;
+      }
+      .core-v2-card-text h3 {
+        font-size: 13px;
+      }
+      .core-v2-card-text p {
+        font-size: 11.5px;
+        line-height: 1.45;
+      }
+      .core-v2-conn-line::before {
+        font-size: 16px;
+      }
+      .core-v2-conn-label {
+        font-size: 12px;
+      }
+    }
+  </style>
+
+  <section class="core-v2-section" id="core-v2">
+    <div class="container">
+      <div class="core-v2-header">
+        <span class="core-v2-eyebrow">INFINA AI CORE</span>
+        <h2 class="core-v2-headline">One platform, <span class="core-v2-accent">customizable for every job.</span></h2>
+      </div>
+
+      <!-- Fan SVG + chips (now on top, flowing upward) -->
+      <div class="core-v2-chips-section">
+        <div class="core-v2-chips">
+          <div class="core-v2-chip core-v2-chip--blue">
+            <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+            Customer Support
+          </div>
+          <div class="core-v2-chip core-v2-chip--green">
+            <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="14"/><line x1="6" y1="20" x2="6" y2="16"/><polyline points="3 7 8 12 13 8 21 4"/><polyline points="17 4 21 4 21 8"/></svg>
+            Sales
+          </div>
+          <div class="core-v2-chip core-v2-chip--blue">
+            <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            Operations
+          </div>
+          <div class="core-v2-chip core-v2-chip--green">
+            <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="6" x2="12" y2="18"/><path d="M15 9.5a3 3 0 0 0-6 0c0 1.5 1.5 2 3 2.5s3 1 3 2.5a3 3 0 0 1-6 0"/></svg>
+            Finance
+          </div>
+          <div class="core-v2-chip core-v2-chip--purple">
+            <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            Compliance
+          </div>
+        </div>
+        <svg class="core-v2-fan-svg" height="40" viewBox="0 0 1000 40" preserveAspectRatio="none" style="transform: scaleY(-1);">
+          <defs>
+            <filter id="fan-glow" x="-150%" y="-150%" width="400%" height="400%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <!-- Hidden full-journey paths for each chip — dots travel these -->
+            <path id="fan-p1" d="M500 0 V16 H100 V38"/>
+            <path id="fan-p2" d="M500 0 V16 H300 V38"/>
+            <path id="fan-p3" d="M500 0 V38"/>
+            <path id="fan-p4" d="M500 0 V16 H700 V38"/>
+            <path id="fan-p5" d="M500 0 V16 H900 V38"/>
+          </defs>
+          <!-- Center vertical stem — dashes flow upward -->
+          <line x1="500" y1="0" x2="500" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <!-- Horizontal bus bar — dashes flow outward from center (left half) -->
+          <line x1="500" y1="16" x2="100" y2="16" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <!-- Horizontal bus bar — dashes flow outward from center (right half) -->
+          <line x1="500" y1="16" x2="900" y2="16" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <!-- 4 outer vertical drops — dashes flow upward -->
+          <line x1="100" y1="16" x2="100" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <line x1="300" y1="16" x2="300" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <line x1="700" y1="16" x2="700" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <line x1="900" y1="16" x2="900" y2="36" stroke="#1863dc" stroke-width="1.5" stroke-dasharray="4 3" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dashoffset" from="0" to="-7" dur="0.45s" repeatCount="indefinite"/>
+          </line>
+          <!-- Dots at each chip (static anchors) -->
+          <circle cx="100" cy="38" r="3" fill="#1863dc"/>
+          <circle cx="300" cy="38" r="3" fill="#1863dc"/>
+          <circle cx="500" cy="38" r="3" fill="#1863dc"/>
+          <circle cx="700" cy="38" r="3" fill="#1863dc"/>
+          <circle cx="900" cy="38" r="3" fill="#1863dc"/>
+        </svg>
+      </div>
+
+      <!-- Output card -->
+      <div class="core-v2-output-wrap">
+        <div class="core-v2-output">
+          <div class="core-v2-output-icon">
+            <svg viewBox="0 0 621 358" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M456.379 6.26318L458.036 9.96826L606.674 342.21L610.62 351.032H545.004L543.363 347.277L398.108 15.0347L394.273 6.26318H456.379Z" stroke="#001A68" stroke-width="12.5261"/>
+              <path d="M222.803 7.82861L219.877 14.4292L71.2744 349.645L70.0361 352.439H7.25391L10.2217 345.82L160.527 10.604L161.771 7.82861H222.803Z" fill="#001A68" stroke="#001A68" stroke-width="9.39458"/>
+              <mask id="output-logo-mask" maskUnits="userSpaceOnUse" x="120.065" y="4.53027" width="379" height="352" fill="black">
+                <rect fill="white" x="120.065" y="4.53027" width="379" height="352"/>
+                <path d="M484.101 346.996H432.54L382.135 231.286H236.396L186.627 346.996H135.065L284.458 14.5303H334.708L484.101 346.996ZM261.631 172.616H356.102L319.769 91.1279H296.681L261.631 172.616Z"/>
+              </mask>
+              <path d="M484.101 346.996V356.391H498.622L492.67 343.146L484.101 346.996ZM432.54 346.996L423.927 350.748L426.385 356.391H432.54V346.996ZM382.135 231.286L390.748 227.534L388.29 221.892H382.135V231.286ZM236.396 231.286V221.892H230.21L227.766 227.574L236.396 231.286ZM186.627 346.996V356.391H192.813L195.258 350.708L186.627 346.996ZM135.065 346.996L126.496 343.146L120.544 356.391H135.065V346.996ZM284.458 14.5303V5.1357H278.38L275.889 10.6797L284.458 14.5303ZM334.708 14.5303L343.278 10.6797L340.787 5.1357H334.708V14.5303ZM261.631 172.616L253.001 168.904L247.364 182.011H261.631V172.616ZM356.102 172.616V182.011H370.577L364.682 168.791L356.102 172.616ZM319.769 91.1279L328.349 87.3022L325.866 81.7334H319.769V91.1279ZM296.681 91.1279V81.7334H290.495L288.051 87.4159L296.681 91.1279ZM484.101 337.602H432.54V356.391H484.101V337.602ZM432.54 346.996L441.152 343.244L390.748 227.534L373.522 235.038L423.927 350.748L432.54 346.996ZM382.135 221.892H236.396V240.681H382.135V221.892ZM236.396 231.286L227.766 227.574L177.997 343.284L195.258 350.708L245.026 234.998L236.396 231.286ZM186.627 337.602H135.065V356.391H186.627V337.602ZM135.065 346.996L143.634 350.847L293.028 18.3808L275.889 10.6797L126.496 343.146L135.065 346.996ZM284.458 23.9249H334.708V5.1357H284.458V23.9249ZM334.708 14.5303L326.139 18.3808L475.532 350.847L492.67 343.146L343.278 10.6797L334.708 14.5303ZM261.631 182.011H356.102V163.222H261.631V182.011ZM356.102 172.616L364.682 168.791L328.349 87.3022L311.189 94.9536L347.522 176.442L356.102 172.616ZM319.769 81.7334H296.681V100.523H319.769V81.7334ZM296.681 91.1279L288.051 87.4159L253.001 168.904L270.261 176.328L305.311 94.8399L296.681 91.1279Z" fill="#001A68" mask="url(#output-logo-mask)"/>
+              <path d="M334.729 14.0435L334.921 14.4526L377.517 105.132L377.994 106.146H291.532L262.516 173.104H355.73L355.917 173.528L381.228 230.759L381.669 231.759H236.877L188.627 346.531L188.441 346.973L187.96 346.966L136.722 346.223L135.641 346.208L136.083 345.22L284.242 14.4644L284.43 14.0435H334.729Z" fill="#001A68" stroke="#001A68" stroke-width="1.42342"/>
+            </svg>
+          </div>
+          <div class="core-v2-output-text">
+            <h3>Custom Infina AI Specialist</h3>
+            <p>Built around the client's workflow, systems, data, and operating rules.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Converge arrow (flipped to flow upward into the specialist) -->
+      <div class="core-v2-converge">
+        <svg class="core-v2-converge-svg" height="48" viewBox="0 0 1000 48" preserveAspectRatio="none" fill="none" aria-hidden="true" style="transform: scaleY(-1);">
+          <defs>
+            <filter id="cv-glow-g" x="-150%" y="-150%" width="400%" height="400%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="cv-glow-b" x="-150%" y="-150%" width="400%" height="400%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- Static paths -->
+          <path id="cv-path-green" d="M218 0 V16 Q218 30 232 30 H486 Q500 30 500 40 V42" stroke="#149a6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke" stroke-dasharray="6 5">
+            <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="0.65s" repeatCount="indefinite"/>
+          </path>
+          <path id="cv-path-blue" d="M782 0 V16 Q782 30 768 30 H514 Q500 30 500 40 V42" stroke="#1863dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke" stroke-dasharray="6 5">
+            <animate attributeName="stroke-dashoffset" from="0" to="-22" dur="0.65s" repeatCount="indefinite"/>
+          </path>
+          <path d="M492 40 L500 47 L508 40" stroke="#1863dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" vector-effect="non-scaling-stroke"/>
+          <!-- Traveling dots — green path (3 staggered) -->
+
+
+
+          <!-- Traveling dots — blue path (3 staggered) -->
+
+
+
+        </svg>
+      </div>
+
+      <div class="core-v2-col-labels">
+        <span class="core-v2-label-green">Client Context</span>
+        <span></span>
+        <span class="core-v2-label-blue">Infina AI Core</span>
+      </div>
+
+      <div class="core-v2-rows-wrap">
+        <div class="core-v2-rows">
+
+          <!-- Row 1 -->
+          <div class="core-v2-row">
+            <div class="core-v2-lcard">
+              <div class="core-v2-icon core-v2-icon--green">
+                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="2" width="6" height="4" rx="1"/><rect x="2" y="18" width="6" height="4" rx="1"/><rect x="16" y="18" width="6" height="4" rx="1"/>
+                  <line x1="12" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="5" y2="18"/><line x1="12" y1="12" x2="19" y2="18"/>
+                </svg>
+              </div>
+              <div class="core-v2-card-text">
+                <h3>Business Workflow</h3>
+                <p>The process and steps to automate</p>
+              </div>
+            </div>
+            <div class="core-v2-conn">
+              <div class="core-v2-conn-line"></div>
+              <span class="core-v2-conn-label">Defines how work gets done</span>
+            </div>
+            <div class="core-v2-rcard">
+              <div class="core-v2-icon core-v2-icon--blue">
+                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="2" width="6" height="4" rx="1"/><rect x="2" y="18" width="6" height="4" rx="1"/><rect x="16" y="18" width="6" height="4" rx="1"/>
+                  <line x1="12" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="5" y2="18"/><line x1="12" y1="12" x2="19" y2="18"/>
+                </svg>
+              </div>
+              <div class="core-v2-card-text">
+                <h3>Agent Orchestration</h3>
+                <p>Coordinates AI agents and workflows</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="core-v2-row">
+            <div class="core-v2-lcard">
+              <div class="core-v2-icon core-v2-icon--green">
+                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+                </svg>
+              </div>
+              <div class="core-v2-card-text">
+                <h3>Internal Systems</h3>
+                <p>The software stack the specialist works with</p>
+              </div>
+            </div>
+            <div class="core-v2-conn">
+              <div class="core-v2-conn-line"></div>
+              <span class="core-v2-conn-label">Defines where action happens</span>
+            </div>
+            <div class="core-v2-rcard">
+              <div class="core-v2-icon core-v2-icon--blue">
+                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 7h3a2 2 0 0 0 2-2a2.4 2.4 0 0 1 4 0a2 2 0 0 0 2 2h3a1 1 0 0 1 1 1v3a2 2 0 0 0 2 2a2.4 2.4 0 0 1 0 4a2 2 0 0 0-2 2v3a1 1 0 0 1-1 1h-3a2 2 0 0 1-2-2a2.4 2.4 0 0 0-4 0a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3a2 2 0 0 1 2-2a2.4 2.4 0 0 0 0-4a2 2 0 0 1-2-2v-3a1 1 0 0 1 1-1z"/>
+                </svg>
+              </div>
+              <div class="core-v2-card-text">
+                <h3>Tools & Connectors</h3>
+                <p>Connects to apps, systems, and APIs</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="core-v2-row">
+            <div class="core-v2-lcard">
+              <div class="core-v2-icon core-v2-icon--green">
+                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                  <rect x="9" y="13" width="3" height="4" rx="1"/><path d="M9 13v-1a2 2 0 0 1 4 0v1"/>
+                </svg>
+              </div>
+              <div class="core-v2-card-text">
+                <h3>Private Data</h3>
+                <p>Company documents, records, and knowledge</p>
+              </div>
+            </div>
+            <div class="core-v2-conn">
+              <div class="core-v2-conn-line"></div>
+              <span class="core-v2-conn-label">Defines what the specialist knows</span>
+            </div>
+            <div class="core-v2-rcard">
+              <div class="core-v2-icon core-v2-icon--blue">
+                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+                </svg>
+              </div>
+              <div class="core-v2-card-text">
+                <h3>Knowledge & Data</h3>
+                <p>Grounds the specialist in trusted knowledge</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 4 -->
+          <div class="core-v2-row">
+            <div class="core-v2-lcard">
+              <div class="core-v2-icon core-v2-icon--green">
+                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+                </svg>
+              </div>
+              <div class="core-v2-card-text">
+                <h3>Business Rules & Compliance</h3>
+                <p>Policies, approvals, and constraints</p>
+              </div>
+            </div>
+            <div class="core-v2-conn">
+              <div class="core-v2-conn-line"></div>
+              <span class="core-v2-conn-label">Defines how quality and safety are enforced</span>
+            </div>
+            <div class="core-v2-rcard">
+              <div class="core-v2-icon core-v2-icon--blue">
+                <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+                </svg>
+              </div>
+              <div class="core-v2-card-text">
+                <h3>Evaluation & Safety</h3>
+                <p>Applies guardrails, evals, and monitoring</p>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /core-v2-rows -->
+      </div><!-- /core-v2-rows-wrap -->
+
+    </div>
+  </section>
+  <!-- ====== END CORE V2 ====== -->
 
   <!-- WHY INFINA AI SECTION - hidden, preserved for reuse
   <section class="why-infina" id="why-infina">
@@ -5843,12 +6729,12 @@
       const closeBtn = document.getElementById('tweaks-close');
 
       function applyOrder() {
-        const cards = {};
-        grid.querySelectorAll('.product-card').forEach(c => {
-          cards[c.dataset.product] = c;
+        const groups = {};
+        grid.querySelectorAll('.product-group').forEach(g => {
+          groups[g.dataset.product] = g;
         });
         state.productOrder.forEach(key => {
-          if (cards[key]) grid.appendChild(cards[key]);
+          if (groups[key]) grid.appendChild(groups[key]);
         });
       }
 
