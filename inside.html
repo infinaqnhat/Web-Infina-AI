@@ -189,7 +189,7 @@
     /* Hero */
     .hero {
       position: relative;
-      padding: clamp(140px, 18vw, 180px) 0 clamp(64px, 8vw, 96px);
+      padding: clamp(140px, 18vw, 180px) 0 clamp(48px, 6vw, 72px);
       text-align: center;
       overflow: hidden;
     }
@@ -3645,6 +3645,12 @@
       color: #001964;
       line-height: 1.15;
       margin-bottom: 20px;
+    }
+    .ai-quality-header .accent-text {
+      background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       color: var(--fg);
     }
     .ai-quality-header p {
@@ -5516,9 +5522,11 @@
               Help customers make better financial decisions
             </li>
           </ul>
+          <!-- HERO CTA — hidden
           <div class="hero-cta-row">
             <a href="#demo" class="btn-primary">Book a demo →</a>
           </div>
+          END HERO CTA -->
 
         </div>
 
@@ -5546,7 +5554,6 @@
             <div class="why-stat">24/7</div>
             <h3>AI in every screen</h3>
             <p>Your customers get access to a financial AI specialist without leaving your app. No switching, no friction, no drop-off.</p>
-            <span class="card-expand-hint">Learn more <span class="hint-arrow">↓</span></span>
           </div>
           <div class="why-inside-card">
             <div class="why-stat">In-context</div>
@@ -5572,19 +5579,16 @@
             <div class="why-stat">100% yours</div>
             <h3>Fully white-labeled</h3>
             <p>Looks and feels like your product. Your brand, your design system, your user experience. Infina AI runs invisibly underneath.</p>
-            <span class="card-expand-hint">Learn more <span class="hint-arrow">↓</span></span>
           </div>
           <div class="why-inside-card" data-card="c5">
             <div class="why-stat">Zero PII</div>
             <h3>Regulation-compliant by design</h3>
             <p>All user data is fully de-identified before reaching the AI. Built to meet financial regulations out of the box.</p>
-            <span class="card-expand-hint">Learn more <span class="hint-arrow">↓</span></span>
           </div>
           <div class="why-inside-card" data-card="c6">
             <div class="why-stat">No code</div>
             <h3>Full control, zero engineering</h3>
             <p>Manage your AI's knowledge base, monitor response quality, and track usage from a partner dashboard. No tickets, no deployments.</p>
-            <span class="card-expand-hint">Learn more <span class="hint-arrow">↓</span></span>
           </div>
 
           <!-- Row 2 detail panel -->
@@ -5621,7 +5625,7 @@
 
         <div class="core-left">
           <span class="section-eyebrow-plain">How it Works</span>
-          <h2>One integration.<br><span class="accent-text">Infinite reach.</span></h2>
+          <h2>One<br><span class="accent-text">integration.</span></h2>
           <p class="core-left-desc">Your customers get access to an AI Specialist Agent, fully embedded within your application. No switching, no extra apps, no friction.</p>
         </div>
 
@@ -5632,24 +5636,6 @@
             <div class="step-item">
               <div class="step-num-row">
                 <div class="step-num">1</div>
-                <div class="step-connector" aria-hidden="true">
-                  <div class="step-connector-track"></div>
-                  <div class="step-connector-stream"></div>
-                  <div class="step-connector-dot"></div>
-                  <div class="step-connector-dot"></div>
-                  <div class="step-connector-dot"></div>
-                </div>
-              </div>
-              <div class="step-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#1863dc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
-              </div>
-              <div class="step-title">Your Platform</div>
-              <div class="step-sub">Your existing app or web product</div>
-            </div>
-
-            <div class="step-item">
-              <div class="step-num-row">
-                <div class="step-num">2</div>
                 <div class="step-connector" aria-hidden="true">
                   <div class="step-connector-track"></div>
                   <div class="step-connector-stream" style="animation-delay: 0.3s;"></div>
@@ -5667,7 +5653,7 @@
 
             <div class="step-item">
               <div class="step-num-row">
-                <div class="step-num">3</div>
+                <div class="step-num">2</div>
                 <div class="step-connector" aria-hidden="true">
                   <div class="step-connector-track"></div>
                   <div class="step-connector-stream" style="animation-delay: 0.6s;"></div>
@@ -5685,7 +5671,7 @@
 
             <div class="step-item">
               <div class="step-num-row">
-                <div class="step-num">4</div>
+                <div class="step-num">3</div>
               </div>
               <div class="step-icon" style="border-color: rgba(20,154,110,0.2);">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#149a6e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="3.5"/><path d="M5 20c1-3.5 4-5.5 7-5.5s6 2 7 5.5"/></svg>
@@ -5710,7 +5696,7 @@
     <div class="container">
       <div class="ai-quality-header">
         <span class="section-eyebrow-plain">AI Quality</span>
-        <h2>Every Response. Tested. Monitored. Improved.</h2>
+        <h2>Every Response. Tested. Monitored.<br><span class="accent-text">Improved.</span></h2>
         <p>Uncontrolled AI in financial services is a liability. Every AI Specialist Agent must pass a rigorous quality bar before it reaches your customers, and is scored continuously once it does.</p>
       </div>
 

@@ -3496,7 +3496,7 @@
 
     .industry-track {
       display: flex;
-      gap: 56px;
+      gap: 24px;
       width: max-content;
       animation: marquee-slide 30s linear infinite;
     }
@@ -3512,25 +3512,31 @@
 
     .industry-card {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 8px 12px;
+      gap: 12px;
+      padding: 12px;
       flex-shrink: 0;
       cursor: default;
-    }
-
-    .industry-card span {
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--fg);
-      white-space: nowrap;
+      background: transparent;
+      border-radius: 24px;
     }
 
     .industry-card img {
-      height: 44px;
-      width: auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 16px;
+      object-fit: cover;
       display: block;
     }
+
+    .industry-card span {
+      font-size: 14px;
+      font-weight: 600;
+      color: #001964;
+      white-space: nowrap;
+    }
+
       margin-right: 12px;
       box-shadow: 0 0 12px var(--accent);
       animation: pulse-dot 2s ease-in-out infinite;
@@ -4358,6 +4364,7 @@
     </div>
   </section>
 
+  <!-- PARTNERS SECTION — hidden until contracts signed
   <section class="partners">
     <div class="container">
       <p class="partners-eyebrow">Proud to work with</p>
@@ -4382,6 +4389,42 @@
         <div class="industry-card"><img src="uploads/aaa-insurance.png" alt="AAA Insurance Corporation"></div>
         <div class="industry-card"><img src="uploads/sovico-group.png" alt="Sovico Group"></div>
         <div class="industry-card"><img src="uploads/savills-logo.svg" alt="Savills"></div>
+
+      </div>
+    </div>
+  </section>
+  END PARTNERS SECTION -->
+
+  <section class="partners">
+    <div class="container">
+      <p class="partners-eyebrow">Industries We Serve</p>
+    </div>
+    <div class="industry-marquee">
+      <div class="industry-track">
+
+        <div class="industry-card"><img src="uploads/Securities Icon.png" alt="Securities"><span>Securities</span></div>
+        <div class="industry-card"><img src="uploads/Insurance Icon.png" alt="Insurance"><span>Insurance</span></div>
+        <div class="industry-card"><img src="uploads/Fintech Icon.jpg" alt="Fintech"><span>Fintech</span></div>
+        <div class="industry-card"><img src="uploads/Fund Management Icon.png" alt="Fund Management"><span>Fund Management</span></div>
+        <div class="industry-card"><img src="uploads/Bank Icon.jpg" alt="Bank"><span>Bank</span></div>
+        <div class="industry-card"><img src="uploads/e-Wallet Icon.jpg" alt="e-Wallet"><span>e-Wallet</span></div>
+        <div class="industry-card"><img src="uploads/Travel Icon.jpg" alt="Travel"><span>Travel</span></div>
+
+        <div class="industry-card"><img src="uploads/Securities Icon.png" alt="Securities"><span>Securities</span></div>
+        <div class="industry-card"><img src="uploads/Insurance Icon.png" alt="Insurance"><span>Insurance</span></div>
+        <div class="industry-card"><img src="uploads/Fintech Icon.jpg" alt="Fintech"><span>Fintech</span></div>
+        <div class="industry-card"><img src="uploads/Fund Management Icon.png" alt="Fund Management"><span>Fund Management</span></div>
+        <div class="industry-card"><img src="uploads/Bank Icon.jpg" alt="Bank"><span>Bank</span></div>
+        <div class="industry-card"><img src="uploads/e-Wallet Icon.jpg" alt="e-Wallet"><span>e-Wallet</span></div>
+        <div class="industry-card"><img src="uploads/Travel Icon.jpg" alt="Travel"><span>Travel</span></div>
+
+        <div class="industry-card"><img src="uploads/Securities Icon.png" alt="Securities"><span>Securities</span></div>
+        <div class="industry-card"><img src="uploads/Insurance Icon.png" alt="Insurance"><span>Insurance</span></div>
+        <div class="industry-card"><img src="uploads/Fintech Icon.jpg" alt="Fintech"><span>Fintech</span></div>
+        <div class="industry-card"><img src="uploads/Fund Management Icon.png" alt="Fund Management"><span>Fund Management</span></div>
+        <div class="industry-card"><img src="uploads/Bank Icon.jpg" alt="Bank"><span>Bank</span></div>
+        <div class="industry-card"><img src="uploads/e-Wallet Icon.jpg" alt="e-Wallet"><span>e-Wallet</span></div>
+        <div class="industry-card"><img src="uploads/Travel Icon.jpg" alt="Travel"><span>Travel</span></div>
 
       </div>
     </div>
