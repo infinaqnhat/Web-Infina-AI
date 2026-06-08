@@ -91,7 +91,7 @@
               'AI Work ' + CHEVRON +
             '</span>' +
             '<div class="nav-dropdown-menu">' +
-              '<a href="focus-alignment.html"' + (isFocus ? ' class="active"' : '') + '>Focus &amp; Alignment</a>' +
+              /* Focus & Alignment hidden from nav */ +
             '</div>' +
           '</div>' +
           '<a href="personal.html"' + (isPersonal ? ' class="active"' : '') + '>AI Personal</a>' +
@@ -141,11 +141,7 @@
     var children = document.createElement('div');
     children.className = 'nav-mobile-children' + (isWorkGroup ? ' open' : '');
 
-    var aFocus = document.createElement('a');
-    aFocus.href = 'focus-alignment.html';
-    aFocus.textContent = 'Focus & Alignment';
-    if (isFocus) aFocus.classList.add('active');
-    children.appendChild(aFocus);
+    // Focus & Alignment hidden from nav
 
     chevron.addEventListener('click', function (e) {
       e.stopPropagation();
