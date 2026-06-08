@@ -3,12 +3,6 @@
  * Mirrors inside.html L5488-5528 <section class="hero" id="hero">
  */
 const InsideHero = () => {
-  const handleDemo = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const el = document.getElementById("demo");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section className="hero" id="hero">
       <div className="hero-bg" />
@@ -57,11 +51,6 @@ const InsideHero = () => {
                 Help customers make better financial decisions
               </li>
             </ul>
-            <div className="hero-cta-row">
-              <a href="#demo" className="btn-primary" onClick={handleDemo}>
-                Book a demo →
-              </a>
-            </div>
           </div>
         </div>
       </div>

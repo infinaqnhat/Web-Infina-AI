@@ -1,40 +1,44 @@
 /**
- * Partners section — mirrors home.html `.partners` (eyebrow "Proud to work with"
- * then a full-width logo-image marquee).
+ * Industries We Serve section — mirrors home.html `.partners` (eyebrow "Industries We Serve"
+ * then a full-width industry image-card marquee).
  *
- * The track renders the logo set 3× so the `marquee-slide` keyframe loops
+ * The track renders the industry set 3× so the `marquee-slide` keyframe loops
  * seamlessly at translateX(-33.333%) (one full set advanced per cycle).
- * Logos are mirrored to /landing-html/uploads/ by scripts/setup-harness-assets.mjs.
+ * Images are mirrored to /landing-html/uploads/ by scripts/setup-harness-assets.mjs.
  */
 
-interface PartnerLogo {
+interface Industry {
   src: string;
   alt: string;
+  label: string;
 }
 
-const LOGOS: PartnerLogo[] = [
-  { src: "/landing-html/uploads/Infina-logo.png", alt: "Infina" },
-  { src: "/landing-html/uploads/Kafi-logo.svg", alt: "Kafi" },
-  { src: "/landing-html/uploads/aaa-insurance.png", alt: "AAA Insurance Corporation" },
-  { src: "/landing-html/uploads/sovico-group.png", alt: "Sovico Group" },
-  { src: "/landing-html/uploads/savills-logo.svg", alt: "Savills" },
+const INDUSTRIES: Industry[] = [
+  { src: "/landing-html/uploads/Securities Icon.png", alt: "Securities", label: "Securities" },
+  { src: "/landing-html/uploads/Insurance Icon.png", alt: "Insurance", label: "Insurance" },
+  { src: "/landing-html/uploads/Fintech Icon.jpg", alt: "Fintech", label: "Fintech" },
+  { src: "/landing-html/uploads/Fund Management Icon.png", alt: "Fund Management", label: "Fund Management" },
+  { src: "/landing-html/uploads/Bank Icon.jpg", alt: "Bank", label: "Bank" },
+  { src: "/landing-html/uploads/e-Wallet Icon.jpg", alt: "e-Wallet", label: "e-Wallet" },
+  { src: "/landing-html/uploads/Travel Icon.jpg", alt: "Travel", label: "Travel" },
 ];
 
 const HomePartners = () => (
   <section className="partners">
     <div className="container">
-      <p className="partners-eyebrow">Proud to work with</p>
+      <p className="partners-eyebrow">Industries We Serve</p>
     </div>
     <div className="industry-marquee">
       <div className="industry-track">
         {[0, 1, 2].flatMap((pass) =>
-          LOGOS.map((logo) => (
+          INDUSTRIES.map((industry) => (
             <div
               className="industry-card"
-              key={`${pass}-${logo.alt}`}
+              key={`${pass}-${industry.alt}`}
               aria-hidden={pass > 0 || undefined}
             >
-              <img src={logo.src} alt={logo.alt} />
+              <img src={industry.src} alt={industry.alt} />
+              <span>{industry.label}</span>
             </div>
           ))
         )}

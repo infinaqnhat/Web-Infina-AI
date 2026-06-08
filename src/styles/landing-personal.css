@@ -200,30 +200,29 @@
 
 /* ── Job Picker ──────────────────────────────────────────────────── */
 .personal-page .job-picker { max-width: 760px; margin: 28px auto 0; opacity: 0; animation: personal-fade-up .7s ease-out .5s forwards; text-align: center; }
-.personal-page .jp-tabs { display: inline-flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 9999px; padding: 5px; margin-bottom: 18px; }
-.personal-page .jp-tab { all: unset; cursor: pointer; padding: 8px 24px; border-radius: 9999px; font-size: 14px; font-weight: 500; color: var(--muted); transition: all .2s; }
-.personal-page .jp-tab.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(0,31,92,.25); }
-.personal-page .jp-tab:not(.active):hover { color: var(--fg); background: rgba(0,0,0,.05); }
-.personal-page .jp-tab-soon { color: var(--muted) !important; cursor: default !important; font-style: italic; opacity: .7; }
-.personal-page .jp-tab-soon:hover { background: transparent !important; color: var(--muted) !important; }
+/* Tinted category sections (Finance / Lifestyle), stacked — no tabs */
+.personal-page .jp-category-section { border-radius: 20px; padding: 20px; margin-bottom: 16px; }
+.personal-page .jp-finance { background: rgba(16,185,129,.06); }
+.personal-page .jp-lifestyle { background: rgba(236,72,153,.06); }
+.personal-page .jp-category-divider { display: flex; align-items: center; gap: 14px; font-size: 13px; font-weight: 600; margin-bottom: 16px; }
+.personal-page .jp-finance .jp-category-divider { color: rgba(5,150,105,.8); }
+.personal-page .jp-finance .jp-category-divider::before, .personal-page .jp-finance .jp-category-divider::after { content: ''; flex: 1; height: 1px; background: rgba(16,185,129,.25); }
+.personal-page .jp-lifestyle .jp-category-divider { color: rgba(219,39,119,.8); }
+.personal-page .jp-lifestyle .jp-category-divider::before, .personal-page .jp-lifestyle .jp-category-divider::after { content: ''; flex: 1; height: 1px; background: rgba(236,72,153,.25); }
 
-/* Chips outer + fade curtain */
-.personal-page .jp-chips-outer { position: relative; max-height: 114px; overflow: hidden; padding-top: 14px; transition: max-height .45s cubic-bezier(0.4,0,0.2,1); }
-.personal-page .jp-chips-outer.expanded { max-height: 500px; }
-.personal-page .jp-chips-outer.has-more:not(.expanded)::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 52px; background: linear-gradient(to bottom,transparent,rgba(255,255,255,.97)); pointer-events: none; z-index: 1; }
-.personal-page .jp-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; transition: opacity .15s; }
-
-/* Chip buttons */
-.personal-page .jp-chip { all: unset; cursor: pointer; padding: 9px 18px; border-radius: 9999px; font-size: 14px; font-weight: 500; border: 1.5px solid var(--border); color: var(--fg-secondary); background: #fff; transition: all .2s; white-space: nowrap; }
-.personal-page .jp-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-tint); transform: translateY(-1px); }
-.personal-page .jp-chip-soon { color: var(--muted) !important; background: var(--surface) !important; border-color: var(--border-light) !important; cursor: default !important; font-style: italic; font-size: 13px; transform: none !important; }
-.personal-page .jp-chip-wrap { position: relative; display: inline-block; }
-.personal-page .jp-chip-badge { position: absolute; top: -9px; right: -4px; background: var(--accent); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .04em; padding: 2px 7px; border-radius: 9999px; white-space: nowrap; pointer-events: none; text-transform: uppercase; }
-.personal-page .jp-see-more { all: unset; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; margin: 12px auto 0; font-size: 13px; font-weight: 500; color: var(--muted); transition: color .2s; }
-.personal-page .jp-see-more:hover { color: var(--accent); }
-.personal-page .jp-see-more svg { transition: transform .2s; }
-.personal-page .jp-see-more:hover svg { transform: translateY(2px); }
-@media (max-width: 640px) { .personal-page .jp-chip { font-size: 13px; padding: 8px 14px; } .personal-page .jp-tab { padding: 7px 18px; font-size: 13px; } }
+/* Card grid */
+.personal-page .jp-chips { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.personal-page .jp-card { position: relative; background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 20px; cursor: pointer; transition: all .2s; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; text-align: left; }
+.personal-page .jp-card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(0,31,92,.1); transform: translateY(-2px); }
+.personal-page .jp-card-title { font-size: 15px; font-weight: 600; color: var(--fg); line-height: 1.4; }
+.personal-page .jp-card-count { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+.personal-page .jp-card-count svg { flex-shrink: 0; opacity: .6; }
+.personal-page .jp-card-count strong { color: var(--fg-secondary); font-weight: 600; }
+.personal-page .jp-card-badge { position: absolute; top: -10px; right: 12px; background: var(--accent); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .06em; padding: 3px 9px; border-radius: 9999px; white-space: nowrap; text-transform: uppercase; }
+.personal-page .jp-card-cta { background: transparent; border: 1.5px dashed var(--border); cursor: pointer; display: flex; align-items: center; justify-content: center; text-align: center; min-height: 90px; }
+.personal-page .jp-card-cta:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: none; }
+.personal-page .jp-card-cta-text { font-size: 15px; font-weight: 600; color: var(--accent); line-height: 1.45; }
+@media (max-width: 640px) { .personal-page .jp-chips { grid-template-columns: 1fr; } }
 
 /* ── Jobs Section ────────────────────────────────────────────────── */
 .personal-page .jobs { padding: 80px 0 var(--section-gap); background: #fff; }

@@ -16,28 +16,30 @@ export interface JobChip {
   label: string;
   /** true = real conversation chip, false = soon/cta chip */
   active: boolean;
-  /** if true, clicking opens /advisor instead of mock-chat */
+  /** if true, the card opens infina.ai instead of the mock-chat */
   cta?: boolean;
-  /** badge text shown above chip */
+  /** badge text shown on the card */
   badge?: string;
+  /** question count display string, e.g. "2.4M" */
+  count?: string;
 }
 
 /** Hardcoded chip lists per tab, verbatim from jobData in personal.html */
 export const JOB_DATA: Record<string, JobChip[]> = {
   finance: [
-    { label: 'Should I buy this stock?', active: true, badge: 'Brokers only' },
-    { label: 'Where should I invest my money?', active: true },
-    { label: 'Am I spending too much this month?', active: true },
-    { label: "What's moving the market today?", active: true },
-    { label: 'Which insurance plan fits me?', active: true },
-    { label: 'How do I pay less tax?', active: true },
-    { label: 'Can I afford this loan?', active: true },
-    { label: 'How long to reach my savings goal?', active: true },
+    { label: 'Should I buy this stock?', active: true, badge: 'Brokers only', count: '2.4M' },
+    { label: 'Where should I invest my money?', active: true, count: '1.8M' },
+    { label: 'Am I spending too much this month?', active: true, count: '940K' },
+    { label: "What's moving the market today?", active: true, count: '1.2M' },
+    { label: 'Which insurance plan fits me?', active: true, count: '670K' },
+    { label: 'How do I pay less tax?', active: true, count: '1.1M' },
+    { label: 'Can I afford this loan?', active: true, count: '580K' },
+    { label: 'How long to reach my savings goal?', active: true, count: '430K' },
     { label: 'Have something else on mind? Chat with me.', active: false, cta: true },
   ],
   lifestyle: [
-    { label: 'Plan my trip', active: true },
-    { label: 'Plan my weekly meals', active: true },
+    { label: 'Plan my trip', active: true, count: '320K' },
+    { label: 'Plan my weekly meals', active: true, count: '210K' },
     { label: 'Have something else on mind? Chat with me.', active: false, cta: true },
   ],
 };

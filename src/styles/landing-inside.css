@@ -273,7 +273,7 @@
 /* ── Hero ── */
 .inside-page .hero {
   position: relative;
-  padding: clamp(140px, 18vw, 180px) 0 clamp(64px, 8vw, 96px);
+  padding: clamp(140px, 18vw, 180px) 0 clamp(48px, 6vw, 72px);
   text-align: center;
   overflow: hidden;
 }
@@ -1510,6 +1510,12 @@
   font-family: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
   font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -0.03em;
   line-height: 1.15; margin-bottom: 20px; color: #000;
+}
+.inside-page .ai-quality-header .accent-text {
+  background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .inside-page .ai-quality-header p { font-size: 17px; color: #6b6b76; line-height: 1.7; max-width: 720px; margin: 0 auto; }
 .inside-page .ai-quality-process { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }

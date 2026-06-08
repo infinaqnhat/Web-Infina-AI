@@ -15,7 +15,6 @@ import HomeHero from "@/components/landing-v2/pages/home/HomeHero";
 import HomePartners from "@/components/landing-v2/pages/home/HomePartners";
 import HomeProducts from "@/components/landing-v2/pages/home/HomeProducts";
 import HomeCoreSection from "@/components/landing-v2/pages/home/HomeCoreSection";
-import HomeWhyInfina from "@/components/landing-v2/pages/home/HomeWhyInfina";
 
 /**
  * LandingHome — native React port of home.html.
@@ -35,11 +34,11 @@ import HomeWhyInfina from "@/components/landing-v2/pages/home/HomeWhyInfina";
  *
  * Render order mirrors home.html section order:
  *  LandingNav → HomeHero → HomePartners → HomeProducts (with specialist panels)
- *  → HomeCoreSection → HomeWhyInfina → LeadSection → LandingFooter
+ *  → HomeCoreSection → LeadSection → LandingFooter
  *
  * Note: the speed banner is omitted (it is commented-out/hidden in home.html).
- * HomeWhyInfina is also inside HTML comments in home.html (hidden, preserved
- * for reuse) but is rendered here per spec.
+ * HomeWhyInfina ("faster path to AI that works") is likewise hidden on the live
+ * marketing site, so it is not rendered here; the component is kept for reuse.
  */
 const LandingHome = () => {
   const { hash } = useLocation();
@@ -80,7 +79,6 @@ const LandingHome = () => {
       <HomePartners />
       <HomeProducts />
       <HomeCoreSection />
-      <HomeWhyInfina />
       <LeadSection source="infina-ai-main-v1" sectionId="demo" />
       <LandingFooter />
     </>

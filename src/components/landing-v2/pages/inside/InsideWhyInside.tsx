@@ -4,8 +4,8 @@ import { useState, useRef } from "react";
  * Why Infina AI Inside section.
  * Mirrors inside.html L5533-5618 <section class="why-inside"> only.
  * 6 cards in 2 rows; expandable cards (c1, c4) toggle detail panels.
- * c5 and c6 cards render with expand-hint but their detail content lives in
- * the standalone InsideDataProtection / InsideAdminPortal components.
+ * c5 and c6 detail content lives in the standalone
+ * InsideDataProtection / InsideAdminPortal components.
  * Row 1 panel: c1 (Mobile SDK). Row 2 panel: c4 (Web Embed).
  * The c5/c6 detail panels shown here mirror the HTML detail-c5/detail-c6
  * sub-panels inside panel-row2 exactly as they appear in the source HTML.
@@ -82,7 +82,6 @@ const InsideWhyInside = () => {
               <div className="why-stat">24/7</div>
               <h3>AI in every screen</h3>
               <p>Your customers get access to a financial AI specialist without leaving your app. No switching, no friction, no drop-off.</p>
-              <span className="card-expand-hint">Learn more <span className="hint-arrow">↓</span></span>
             </div>
 
             <div className="why-inside-card">
@@ -136,7 +135,6 @@ const InsideWhyInside = () => {
               <div className="why-stat">100% yours</div>
               <h3>Fully white-labeled</h3>
               <p>Looks and feels like your product. Your brand, your design system, your user experience. Infina AI runs invisibly underneath.</p>
-              <span className="card-expand-hint">Learn more <span className="hint-arrow">↓</span></span>
             </div>
 
             <div
@@ -152,7 +150,6 @@ const InsideWhyInside = () => {
               <div className="why-stat">Zero PII</div>
               <h3>Regulation-compliant by design</h3>
               <p>All user data is fully de-identified before reaching the AI. Built to meet financial regulations out of the box.</p>
-              <span className="card-expand-hint">Learn more <span className="hint-arrow">↓</span></span>
             </div>
 
             <div
@@ -168,7 +165,6 @@ const InsideWhyInside = () => {
               <div className="why-stat">No code</div>
               <h3>Full control, zero engineering</h3>
               <p>Manage your AI's knowledge base, monitor response quality, and track usage from a partner dashboard. No tickets, no deployments.</p>
-              <span className="card-expand-hint">Learn more <span className="hint-arrow">↓</span></span>
             </div>
 
             {/* Row 2 detail panel */}

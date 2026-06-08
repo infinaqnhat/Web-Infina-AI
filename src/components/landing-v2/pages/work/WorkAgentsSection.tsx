@@ -14,6 +14,10 @@ import { AGENT_GROUPS } from "./work-agents-data";
  * NOTE: This is the VISIBLE agents section (class="agents-section", no display:none).
  * The hidden agents section (id="agents", display:none) is WorkAgentsHidden.
  */
+// YouTube embed loaded lazily — src is only set once the panel opens so the
+// iframe doesn't fetch the video on initial page load.
+const CRM_VIDEO_SRC = "https://www.youtube-nocookie.com/embed/z3EU2NE_gEU?rel=0";
+
 const WorkAgentsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   // crm video toggle state: tracks open/closed for the collapsible panel
@@ -151,7 +155,9 @@ const WorkAgentsSection = () => {
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
                         <polygon points="5,3 19,12 5,21" />
                       </svg>
-                      <span className="crm-video-toggle-text">See how it works</span>
+                      <span className="crm-video-toggle-text">
+                        {crmVideoOpen ? "Hide video" : "See how it works"}
+                      </span>
                     </button>
                     <div
                       className={`crm-video-panel${crmVideoOpen ? " open" : ""}`}
@@ -160,7 +166,7 @@ const WorkAgentsSection = () => {
                       <div className="crm-video-ratio">
                         <iframe
                           id="crm-video-iframe"
-                          src={crmVideoOpen ? "" : undefined}
+                          src={crmVideoOpen ? CRM_VIDEO_SRC : ""}
                           title="See how it works"
                           style={{ border: "none" }}
                           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -11,12 +11,8 @@ export type ActivePage = "home" | "work" | "personal" | "about" | "inside" | "fo
  * ctaHref     — CTA href (hash for scroll or /path for route)
  * ctaExternal — if true, renders an <a target="_blank"> instead of hash scroll
  *
- * The "AI Work" entry is a dropdown group: its toggle navigates to /work and is
- * active for both the work and focus-alignment pages; the menu links to
- * /focus-alignment. Menu opens on hover and on keyboard focus, closes on Esc.
- *
- * Source-of-truth: Web-Infina-AI/nav.js. Link set, labels, CTA text, and
- * dropdown structure match the vanilla custom-element implementation 1:1.
+ * "AI Work" is a plain link to /work. The /focus-alignment route is still
+ * reachable by direct URL but is not surfaced in the nav menu.
  */
 interface LandingNavProps {
   activePage: ActivePage;
@@ -26,12 +22,9 @@ interface LandingNavProps {
 }
 
 const LandingNav = ({ activePage, ctaLabel, ctaHref, ctaExternal = false }: LandingNavProps) => {
-  const isWorkGroup = activePage === "work" || activePage === "focus-alignment";
-  const isFocus = activePage === "focus-alignment";
+  const isWork = activePage === "work";
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [workOpen, setWorkOpen] = useState(isWorkGroup);
   const navigate = useNavigate();
 
   const closeMenu = () => setMenuOpen(false);
@@ -51,10 +44,6 @@ const LandingNav = ({ activePage, ctaLabel, ctaHref, ctaExternal = false }: Land
     }
   };
 
-  const handleDropdownBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-    if (!e.currentTarget.contains(e.relatedTarget as Node)) setDropdownOpen(false);
-  };
-
   return (
     <nav>
       <div className="container nav-inner">
@@ -71,44 +60,9 @@ const LandingNav = ({ activePage, ctaLabel, ctaHref, ctaExternal = false }: Land
             AI Inside
           </Link>
 
-          <div
-            className={`nav-dropdown${dropdownOpen ? " open" : ""}`}
-            onMouseEnter={() => setDropdownOpen(true)}
-            onMouseLeave={() => setDropdownOpen(false)}
-            onFocus={() => setDropdownOpen(true)}
-            onBlur={handleDropdownBlur}
-            onKeyDown={(e) => {
-              if (e.key === "Escape") setDropdownOpen(false);
-            }}
-          >
-            <Link
-              to="/work"
-              className={`nav-dropdown-toggle${isWorkGroup ? " active" : ""}`}
-              aria-haspopup="true"
-              aria-expanded={dropdownOpen}
-            >
-              AI Work
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </Link>
-            <div className="nav-dropdown-menu" role="menu">
-              <Link
-                to="/focus-alignment"
-                role="menuitem"
-                className={isFocus ? "active" : undefined}
-              >
-                Focus &amp; Alignment
-              </Link>
-            </div>
-          </div>
+          <Link to="/work" className={isWork ? "active" : undefined}>
+            AI Work
+          </Link>
 
           <Link to="/personal" className={activePage === "personal" ? "active" : undefined}>
             AI Personal
@@ -162,43 +116,14 @@ const LandingNav = ({ activePage, ctaLabel, ctaHref, ctaExternal = false }: Land
           AI Inside
         </Link>
 
-        <div className="nav-mobile-group">
-          <div className="nav-mobile-group-row">
-            <Link
-              to="/work"
-              className={activePage === "work" ? "active" : undefined}
-              onClick={closeMenu}
-            >
-              AI Work
-            </Link>
-            <button
-              className={`nav-mobile-chevron${workOpen ? " open" : ""}`}
-              aria-label="Toggle AI Work sub-menu"
-              aria-expanded={workOpen}
-              onClick={(e) => {
-                e.stopPropagation();
-                setWorkOpen((v) => !v);
-              }}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </button>
-          </div>
-          <div className={`nav-mobile-children${workOpen ? " open" : ""}`}>
-            <Link
-              to="/focus-alignment"
-              className={isFocus ? "active" : undefined}
-              onClick={closeMenu}
-            >
-              Focus &amp; Alignment
-            </Link>
-          </div>
-        </div>
+        <Link to="/work" className={isWork ? "active" : undefined} onClick={closeMenu}>
+          AI Work
+        </Link>
 
         <Link to="/personal" className={activePage === "personal" ? "active" : undefined} onClick={closeMenu}>
           AI Personal
         </Link>
+
         {ctaExternal ? (
           <a
             href={ctaHref}

@@ -5,15 +5,8 @@
  * Divergences from infina-pfa-80389 reference:
  *  - hero-badge text: "For Business" (was "B2B · For Enterprise")
  *  - bullet list: class="hero-value-list" with hero-value-icon SVGs (was "hero-bullets" plain li)
- *  - CTAs: single "Book a demo →" only (was two buttons incl. "Explore agents")
  */
 const WorkHero = () => {
-  const scrollToAnchor = (targetId: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const el = document.getElementById(targetId);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section className="hero">
       <div className="hero-bg" />
@@ -62,11 +55,6 @@ const WorkHero = () => {
                 Frees your team for decisions and the work that moves business forward
               </li>
             </ul>
-            <div className="hero-ctas">
-              <a href="#demo" className="btn-primary" onClick={scrollToAnchor("demo")}>
-                Book a demo →
-              </a>
-            </div>
           </div>
         </div>
       </div>

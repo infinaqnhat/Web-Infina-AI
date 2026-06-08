@@ -7,7 +7,7 @@ import PersonalMockChat from "./PersonalMockChat";
  * Hero section for /personal — mirrors personal.html L1244–1316.
  * - Purple dual-radial background + hero-grid-bg + 4 floating .shape divs
  * - hero-badge "For Individual" (verbatim from HTML L1253)
- * - h1: "Better your everyday decisions / with AI specialists" (verbatim from HTML L1254)
+ * - h1: "Do more, better / with AI specialists"
  * - Chat bar: flex-column — .cbar-messages panel above, .cbar-row input row below
  * - Hosts PersonalJobPicker and PersonalMockChat; wires chip selection → mock-chat
  * - Typewriter cycling ghost text (4 prompts from HTML L1697–1702)
@@ -151,9 +151,9 @@ const PersonalHero = () => {
           {/* Badge — verbatim from HTML L1253 */}
           <div className="hero-badge">For Individual</div>
 
-          {/* h1 — verbatim from HTML L1254 */}
+          {/* h1 — mirrors the live marketing site personal hero heading */}
           <h1>
-            Better your everyday decisions
+            Do more, better
             <br />
             with <span className="accent">AI specialists</span>
           </h1>

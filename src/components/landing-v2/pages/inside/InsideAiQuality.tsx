@@ -1,6 +1,6 @@
 /**
  * Inside page AI quality section.
- * Mirrors inside.html L5710-5774 <section class="ai-quality">
+ * Mirrors the <section class="ai-quality"> in inside.html.
  * 3 process cards (pre-deployment x2, live daily x1) + 2 quality tool cards.
  */
 const InsideAiQuality = () => (
@@ -8,7 +8,7 @@ const InsideAiQuality = () => (
     <div className="container">
       <div className="ai-quality-header">
         <span className="section-eyebrow-plain">AI Quality</span>
-        <h2>Every Response. Tested. Monitored. Improved.</h2>
+        <h2>Every Response. Tested. Monitored.<br /><span className="accent-text">Improved.</span></h2>
         <p>
           Uncontrolled AI in financial services is a liability. Every AI Specialist Agent must
           pass a rigorous quality bar before it reaches your customers, and is scored

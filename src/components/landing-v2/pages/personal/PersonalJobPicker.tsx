@@ -1,180 +1,104 @@
-import { useEffect, useState } from "react";
-import { JOB_DATA } from "./personal-mock-chat-data";
-
-const VISIBLE_COUNT = 4;
+import { JOB_DATA, type JobChip } from "./personal-mock-chat-data";
 
 interface Props {
-  /** Called when an active (non-CTA) chip is clicked */
+  /** Called when an active (non-CTA) card is clicked */
   onChipSelect: (label: string) => void;
 }
 
-/**
- * PersonalJobPicker
- * Finance / Lifestyle tab pills → chip buttons.
- * Finance has 9 chips → fade-curtain + "See more".
- * Lifestyle has 3 chips → no curtain.
- * CTA chip ("Have something else on mind? Chat with me.") → opens infina.ai.
- */
-const PersonalJobPicker = ({ onChipSelect }: Props) => {
-  const [activeTab, setActiveTab] = useState<"finance" | "lifestyle">("finance");
-  const [expanded, setExpanded] = useState(false);
-  const [visible, setVisible] = useState(true);
+const INFINA_URL = "https://infina.ai";
+const openInfina = () => window.open(INFINA_URL, "_blank", "noopener,noreferrer");
 
-  // Reset expanded when tab changes
-  useEffect(() => {
-    setVisible(false);
-    const t = setTimeout(() => {
-      setExpanded(false);
-      setVisible(true);
-    }, 150);
-    return () => clearTimeout(t);
-  }, [activeTab]);
+/** Speech-bubble icon, 14×14, matches the marketing-site CHAT_ICON path */
+const ChatIcon = () => (
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+  </svg>
+);
 
-  const items = JOB_DATA[activeTab];
-  const needsCurtain = items.length > VISIBLE_COUNT && !expanded;
-
-  const handleTabClick = (tab: "finance" | "lifestyle") => {
-    if (tab === activeTab) return;
-    setActiveTab(tab);
-  };
-
-  const handleChipClick = (label: string) => {
-    onChipSelect(label);
-  };
-
-  const handleSeeMore = () => {
-    setExpanded(true);
-  };
+/** One question/CTA card inside a category grid. */
+const JobCard = ({
+  item,
+  onChipSelect,
+}: {
+  item: JobChip;
+  onChipSelect: (label: string) => void;
+}) => {
+  if (item.cta) {
+    return (
+      <div
+        className="jp-card jp-card-cta"
+        onClick={openInfina}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") openInfina();
+        }}
+      >
+        <span className="jp-card-cta-text">
+          Have something else on mind?
+          <br />
+          Chat with me.
+        </span>
+      </div>
+    );
+  }
 
   return (
-    <div className="job-picker" id="jobPicker">
-      {/* Tab pills */}
-      <div className="jp-tabs">
-        <button
-          className={`jp-tab${activeTab === "finance" ? " active" : ""}`}
-          onClick={() => handleTabClick("finance")}
-          type="button"
-        >
-          Finance
-        </button>
-        <button
-          className={`jp-tab${activeTab === "lifestyle" ? " active" : ""}`}
-          onClick={() => handleTabClick("lifestyle")}
-          type="button"
-        >
-          Lifestyle
-        </button>
-        <button
-          className="jp-tab jp-tab-soon"
-          disabled
-          type="button"
-          aria-disabled="true"
-        >
-          More coming soon
-        </button>
+    <div
+      className="jp-card"
+      onClick={() => onChipSelect(item.label)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") onChipSelect(item.label);
+      }}
+    >
+      <div className="jp-card-title">{item.label}</div>
+      <div className="jp-card-count">
+        <ChatIcon />
+        <strong>{item.count}</strong> asked
       </div>
-
-      {/* Chips outer — fade-curtain via .has-more class */}
-      <div
-        className={[
-          "jp-chips-outer",
-          expanded ? "expanded" : "",
-          needsCurtain ? "has-more" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-      >
-        <div
-          className="jp-chips"
-          style={{ opacity: visible ? 1 : 0, transition: "opacity .15s" }}
-        >
-          {visible &&
-            items.map((item) => {
-              if (item.badge) {
-                /* Chip with badge wrapper */
-                return (
-                  <div key={item.label} className="jp-chip-wrap">
-                    <button
-                      type="button"
-                      className="jp-chip"
-                      onClick={() => handleChipClick(item.label)}
-                    >
-                      {item.label}
-                    </button>
-                    <span className="jp-chip-badge">{item.badge}</span>
-                  </div>
-                );
-              }
-
-              if (item.cta) {
-                /* CTA chip → navigate to infina.ai */
-                return (
-                  <button
-                    key={item.label}
-                    type="button"
-                    className="jp-chip jp-chip-soon"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => window.open("https://infina.ai", "_blank", "noopener,noreferrer")}
-                  >
-                    {item.label}
-                  </button>
-                );
-              }
-
-              if (!item.active) {
-                /* Disabled / coming-soon chip */
-                return (
-                  <button
-                    key={item.label}
-                    type="button"
-                    className="jp-chip jp-chip-soon"
-                    disabled
-                    aria-disabled="true"
-                  >
-                    {item.label}
-                  </button>
-                );
-              }
-
-              /* Normal active chip */
-              return (
-                <button
-                  key={item.label}
-                  type="button"
-                  className="jp-chip"
-                  onClick={() => handleChipClick(item.label)}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-        </div>
-      </div>
-
-      {/* See more button — rendered outside chips-outer, shown only when curtained */}
-      {needsCurtain && visible && (
-        <button
-          type="button"
-          className="jp-see-more"
-          onClick={handleSeeMore}
-        >
-          See more{" "}
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M6 9l6 6 6-6" />
-          </svg>
-        </button>
-      )}
+      {item.badge && <span className="jp-card-badge">{item.badge}</span>}
     </div>
   );
 };
+
+/**
+ * PersonalJobPicker
+ * Two stacked tinted category sections (Finance, Lifestyle), each a 3-column
+ * card grid — mirrors the live marketing site (no tab toggle). Each card shows
+ * the question title + question count with a chat icon; the CTA card
+ * ("Have something else on mind?") opens infina.ai.
+ */
+const PersonalJobPicker = ({ onChipSelect }: Props) => (
+  <div className="job-picker" id="jobPicker">
+    <div className="jp-category-section jp-finance">
+      <div className="jp-category-divider">Finance</div>
+      <div className="jp-chips">
+        {JOB_DATA.finance.map((item) => (
+          <JobCard key={item.label} item={item} onChipSelect={onChipSelect} />
+        ))}
+      </div>
+    </div>
+
+    <div className="jp-category-section jp-lifestyle">
+      <div className="jp-category-divider">Lifestyle</div>
+      <div className="jp-chips">
+        {JOB_DATA.lifestyle.map((item) => (
+          <JobCard key={item.label} item={item} onChipSelect={onChipSelect} />
+        ))}
+      </div>
+    </div>
+  </div>
+);
 
 export default PersonalJobPicker;

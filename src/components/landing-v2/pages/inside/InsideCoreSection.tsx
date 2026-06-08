@@ -1,7 +1,7 @@
 /**
  * Inside page "How it Works" section.
- * Mirrors inside.html L5619-5709 <section class="core" id="how-it-works">
- * 4-step journey panel with animated connectors.
+ * Mirrors the <section class="core" id="how-it-works"> in inside.html.
+ * 3-step journey panel with animated connectors.
  */
 const InsideCoreSection = () => (
   <section className="core" id="how-it-works">
@@ -11,9 +11,9 @@ const InsideCoreSection = () => (
         <div className="core-left">
           <span className="section-eyebrow-plain">How it Works</span>
           <h2>
-            One integration.
+            One
             <br />
-            <span className="accent-text">Infinite reach.</span>
+            <span className="accent-text">integration.</span>
           </h2>
           <p className="core-left-desc">
             Your customers get access to an AI Specialist Agent, fully embedded within your
@@ -28,27 +28,6 @@ const InsideCoreSection = () => (
               <div className="step-item">
                 <div className="step-num-row">
                   <div className="step-num">1</div>
-                  <div className="step-connector" aria-hidden="true">
-                    <div className="step-connector-track" />
-                    <div className="step-connector-stream" />
-                    <div className="step-connector-dot" />
-                    <div className="step-connector-dot" />
-                    <div className="step-connector-dot" />
-                  </div>
-                </div>
-                <div className="step-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#1863dc" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="6" y="2" width="12" height="20" rx="2.5" />
-                    <path d="M11 18h2" />
-                  </svg>
-                </div>
-                <div className="step-title">Your Platform</div>
-                <div className="step-sub">Your existing app or web product</div>
-              </div>
-
-              <div className="step-item">
-                <div className="step-num-row">
-                  <div className="step-num">2</div>
                   <div className="step-connector" aria-hidden="true">
                     <div className="step-connector-track" />
                     <div className="step-connector-stream" style={{ animationDelay: "0.3s" }} />
@@ -69,7 +48,7 @@ const InsideCoreSection = () => (
 
               <div className="step-item">
                 <div className="step-num-row">
-                  <div className="step-num">3</div>
+                  <div className="step-num">2</div>
                   <div className="step-connector" aria-hidden="true">
                     <div className="step-connector-track" />
                     <div className="step-connector-stream" style={{ animationDelay: "0.6s" }} />
@@ -90,7 +69,7 @@ const InsideCoreSection = () => (
 
               <div className="step-item">
                 <div className="step-num-row">
-                  <div className="step-num">4</div>
+                  <div className="step-num">3</div>
                 </div>
                 <div className="step-icon" style={{ borderColor: "rgba(20,154,110,0.2)" }}>
                   <svg viewBox="0 0 24 24" fill="none" stroke="#149a6e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
