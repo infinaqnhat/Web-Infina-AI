@@ -20,7 +20,7 @@ const InsideHero = () => {
       <div className="container">
         <div className="hero-grid">
           <div className="hero-text">
-            <div className="hero-badge">For Platforms</div>
+            <div className="hero-badge">For Products</div>
             <h1>
               <span className="line">Your AI Specialist, built in.</span>
               <br />

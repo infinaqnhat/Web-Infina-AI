@@ -59,7 +59,7 @@
 .focus-alignment-page .fa-shape-4 { width:150px;height:150px;border:1px solid var(--border-light);bottom:30%;right:15%;animation:fa-pulse 8s ease-in-out infinite;animation-delay:2s; }
 .focus-alignment-page .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; position: relative; z-index: 1; }
 @media (max-width: 960px) { .focus-alignment-page .hero-grid { grid-template-columns: 1fr; gap: 48px; } }
-.focus-alignment-page .hero h1 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); font-weight: 700; letter-spacing: -.04em; line-height: 1.08; margin-bottom: 24px; opacity: 0; animation: fa-fade-up .8s ease-out .2s forwards; }
+.focus-alignment-page .hero h1 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); font-weight: 700; letter-spacing: -.04em; line-height: 1.08; margin-bottom: 24px; opacity: 0; animation: fa-fade-up .8s ease-out .2s forwards; color: #001964; }
 .focus-alignment-page .hero h1 .accent-blue { background: linear-gradient(135deg, var(--accent, #001F5C) 0%, #1863dc 50%, #6fa8ff 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: fa-gradient-shift 4s ease infinite; }
 .focus-alignment-page .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; opacity: 0; animation: fa-fade-up .8s ease-out .3s forwards; max-width: 480px; }
 .focus-alignment-page .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; opacity: 0; animation: fa-fade-up .8s ease-out .4s forwards; }
@@ -111,7 +111,7 @@
 .focus-alignment-page .section { padding: var(--section-gap) 0; }
 .focus-alignment-page .section-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); margin-bottom: 16px; text-align: center; }
 .focus-alignment-page .section-header { text-align: center; margin-bottom: 64px; }
-.focus-alignment-page .section-header h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 46px); font-weight: 700; letter-spacing: -.03em; line-height: 1.2; margin-bottom: 20px; }
+.focus-alignment-page .section-header h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 46px); font-weight: 700; letter-spacing: -.03em; line-height: 1.2; margin-bottom: 20px; color: #001964; }
 .focus-alignment-page .section-header p { font-size: 17px; color: var(--muted); max-width: 600px; line-height: 1.7; margin: 0 auto; }
 .focus-alignment-page .accent-blue-text { background: linear-gradient(135deg, var(--accent, #001F5C) 0%, #6fa8ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
@@ -154,7 +154,7 @@
 .focus-alignment-page .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 @media (max-width: 960px) { .focus-alignment-page .team-grid { grid-template-columns: 1fr; gap: 48px; } }
 .focus-alignment-page .team-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 20px; }
-.focus-alignment-page .team-content h2 { font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; letter-spacing: -.03em; line-height: 1.15; margin-bottom: 20px; }
+.focus-alignment-page .team-content h2 { font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; letter-spacing: -.03em; line-height: 1.15; margin-bottom: 20px; color: #001964; }
 .focus-alignment-page .team-content p { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 36px; }
 .focus-alignment-page .team-features { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
 @media (max-width: 480px) { .focus-alignment-page .team-features { grid-template-columns: 1fr; } }

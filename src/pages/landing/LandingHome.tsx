@@ -14,8 +14,6 @@ import LeadSection from "@/components/landing-v2/sections/LeadSection";
 import HomeHero from "@/components/landing-v2/pages/home/HomeHero";
 import HomePartners from "@/components/landing-v2/pages/home/HomePartners";
 import HomeProducts from "@/components/landing-v2/pages/home/HomeProducts";
-import HomeAgents from "@/components/landing-v2/pages/home/HomeAgents";
-import HomeSpeedBanner from "@/components/landing-v2/pages/home/HomeSpeedBanner";
 import HomeCoreSection from "@/components/landing-v2/pages/home/HomeCoreSection";
 import HomeWhyInfina from "@/components/landing-v2/pages/home/HomeWhyInfina";
 
@@ -28,17 +26,20 @@ import HomeWhyInfina from "@/components/landing-v2/pages/home/HomeWhyInfina";
  *  Script 1 (L4770) — lead form submit + custom combos → LeadSection (controlled state + fetch)
  *  Script 2 (L5039) — Rubik cube builder for #hv-cube — element absent from body HTML; omitted (no-op)
  *  Script 3 (L5066) — product-order tweaks panel (editor tool) — intentionally omitted (internal tool only)
- *  Script 4 (L5214) — mobile nav toggle → LandingNav (useState open/close)
+ *  Script 4 — mobile nav toggle → LandingNav (useState open/close)
+ *  Products accordion ("Meet the specialist" toggle) → HomeProducts (useState
+ *  single-open). The former tabbed agents section is folded into the product panels.
  *
  * Hash anchor support: on location.hash change, smoothly scroll to the
- * matching element (handles #products, #core, #demo, #why-infina links).
+ * matching element (handles #products, #core-v2, #demo, #why-infina links).
  *
  * Render order mirrors home.html section order:
- *  LandingNav → HomeHero → HomePartners → HomeProducts → HomeAgents
- *  → HomeSpeedBanner → HomeCoreSection → HomeWhyInfina → LeadSection → LandingFooter
+ *  LandingNav → HomeHero → HomePartners → HomeProducts (with specialist panels)
+ *  → HomeCoreSection → HomeWhyInfina → LeadSection → LandingFooter
  *
- * Note: HomeSpeedBanner and HomeWhyInfina are inside HTML comments in home.html
- * (hidden, preserved for reuse). They are rendered here per spec.
+ * Note: the speed banner is omitted (it is commented-out/hidden in home.html).
+ * HomeWhyInfina is also inside HTML comments in home.html (hidden, preserved
+ * for reuse) but is rendered here per spec.
  */
 const LandingHome = () => {
   const { hash } = useLocation();
@@ -78,8 +79,6 @@ const LandingHome = () => {
       <HomeHero />
       <HomePartners />
       <HomeProducts />
-      <HomeAgents />
-      <HomeSpeedBanner />
       <HomeCoreSection />
       <HomeWhyInfina />
       <LeadSection source="infina-ai-main-v1" sectionId="demo" />

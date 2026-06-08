@@ -10,7 +10,7 @@ import { SCENARIOS, FEATURE_TABS } from "./work-coworkers-data";
  *  - .coworkers-ctas: btn-slack + btn-whatsapp
  *  - coworkers-grid: 280px/1fr
  *  - .cw-panels-wrap: position:sticky top:100px (via CSS)
- *  - feature-content p: collapse-on-inactive via CSS (max-height transition)
+ *  - left column: .feature-pills (selector buttons) + .feature-display (active feature card)
  *
  * React state model: activeIdx drives which panel/tab is active.
  * IntersectionObserver adds "visible" class to .reveal elements on scroll.
@@ -111,30 +111,28 @@ const WorkCoworkersSection = () => {
 
         {/* 2-col grid: tabs left, sticky mockup right */}
         <div className="coworkers-grid reveal">
-          {/* Feature tabs (left column) */}
+          {/* Feature selector pills + display card (left column) */}
           <div className="coworkers-features">
-            {FEATURE_TABS.map((feat, i) => (
-              <div
-                key={feat.title}
-                className={`feature-item${activeIdx === i ? " feature-active" : ""}`}
-                onClick={() => setActiveIdx(i)}
-                role="button"
-                tabIndex={0}
-                aria-pressed={activeIdx === i}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    setActiveIdx(i);
-                  }
-                }}
-              >
-                <div className="feature-icon">{feat.icon}</div>
-                <div className="feature-content">
-                  <h4>{feat.title}</h4>
-                  <p>{feat.desc}</p>
-                </div>
+            <div className="feature-pills">
+              {FEATURE_TABS.map((feat, i) => (
+                <button
+                  key={feat.title}
+                  type="button"
+                  className={`feature-pill${activeIdx === i ? " feature-pill-active" : ""}`}
+                  data-tab={i}
+                  onClick={() => setActiveIdx(i)}
+                >
+                  {feat.title}
+                </button>
+              ))}
+            </div>
+            <div className="feature-display">
+              <div className="feature-display-icon">
+                {FEATURE_TABS[activeIdx].icon}
               </div>
-            ))}
+              <h4>{FEATURE_TABS[activeIdx].title}</h4>
+              <p>{FEATURE_TABS[activeIdx].desc}</p>
+            </div>
           </div>
 
           {/* Sticky mockup wrap (right column) — driven by activeIdx state */}

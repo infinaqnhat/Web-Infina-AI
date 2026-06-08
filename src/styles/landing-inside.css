@@ -349,6 +349,7 @@
   line-height: 1.05;
   margin-bottom: 28px;
   opacity: 0;
+  color: #001964;
   animation: inside-fade-up 0.8s ease-out 0.3s forwards;
 }
 .inside-page .hero h1 .line { white-space: normal; display: inline-block; padding: 0.12em 0 0.05em; line-height: 1.15; max-width: 100%; }
@@ -448,6 +449,7 @@
   letter-spacing: -0.03em;
   line-height: 1.1;
   margin-bottom: 20px;
+  color: #001964;
 }
 .inside-page .section-header p { font-size: 18px; color: #6b6b76; max-width: 520px; line-height: 1.6; }
 .inside-page .accent { color: #001F5C; }
@@ -2022,8 +2024,8 @@
 /* ── Core section — new dark layout ── */
 .inside-page .core {
   position: relative;
-  padding: 100px 0;
-  background: #0d1b3e;
+  padding: 80px 0;
+  background: var(--surface);
   overflow: hidden;
 }
 .inside-page .core-layout {
@@ -2036,7 +2038,7 @@
   position: sticky;
   top: 100px;
 }
-.inside-page .core-left .section-eyebrow-plain { color: rgba(255,255,255,0.45); }
+.inside-page .core-left .section-eyebrow-plain { color: var(--muted); }
 .inside-page .core-left h2 {
   font-family: 'Be Vietnam Pro', -apple-system, system-ui, sans-serif;
   font-size: clamp(28px, 3vw, 40px);
@@ -2044,25 +2046,26 @@
   letter-spacing: -0.03em;
   line-height: 1.15;
   margin-bottom: 16px;
-  color: #fff;
+  color: #001964;
 }
 .inside-page .core-left .accent-text {
-  background: linear-gradient(135deg, #4c8ef0 0%, #7aadff 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .inside-page .core-left-desc {
   font-size: 15px;
-  color: rgba(255,255,255,0.5);
+  color: var(--muted);
   line-height: 1.65;
   margin-top: 12px;
 }
 .inside-page .step-journey-panel {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: #fff;
+  border: 1px solid var(--border);
   border-radius: 20px;
   padding: 32px 24px 28px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
 }
 .inside-page .step-journey {
   display: flex;
@@ -2151,12 +2154,12 @@
 .inside-page .step-icon svg { width: 28px; height: 28px; }
 .inside-page .step-title {
   font-size: 15px; font-weight: 700;
-  color: rgba(255,255,255,0.95);
+  color: var(--fg);
   margin: 0 0 6px; letter-spacing: -0.01em;
 }
 .inside-page .step-sub {
   font-size: 14px;
-  color: rgba(255,255,255,0.45);
+  color: var(--muted);
   line-height: 1.55; padding: 0 4px;
 }
 @media (max-width: 1024px) {
@@ -2229,6 +2232,7 @@
   letter-spacing: -0.03em;
   line-height: 1.15;
   margin-bottom: 16px;
+  color: #001964;
 }
 .inside-page .meet-specialists-desc {
   font-size: 15px;

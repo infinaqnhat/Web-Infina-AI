@@ -1,6 +1,6 @@
 /**
- * Static panel data for the HomeAgents tabbed section.
- * Sourced verbatim from home.html agents-section (lines 4312–4543).
+ * Static panel data for the product-accordion specialist grids.
+ * Sourced verbatim from home.html product panels (#tab-inside / #tab-work / #tab-personal).
  */
 
 export type TabKey = "inside" | "work" | "personal";
@@ -8,17 +8,21 @@ export type TabKey = "inside" | "work" | "personal";
 export interface AgentsCard {
   agent?: string;
   titleMain: string;
-  titleSub: string;
+  /** Hidden via CSS (.agents-title-sub{display:none}); kept only where the HTML markup has it. */
+  titleSub?: string;
   contextBadge: string;
   bullets: string[];
 }
 
 export interface PersonalRow {
   titleMain: string;
-  titleSub: string;
-  tags?: string[];
+  bullets?: string[];
+  /** "More features coming." line under the bullets. */
+  moreText?: string;
   ctaHref?: string;
   muted?: boolean;
+  /** Sub text for the muted "More coming soon" row. */
+  subText?: string;
 }
 
 export interface WorkAudience {
@@ -26,7 +30,7 @@ export interface WorkAudience {
   cards: (AgentsCard & { wide?: boolean })[];
 }
 
-// ── Inside tab ──────────────────────────────────────────────────────────────
+// ── Inside panel ──────────────────────────────────────────────────────────────
 
 export const insideCards: AgentsCard[] = [
   {
@@ -77,37 +81,36 @@ export const insideCards: AgentsCard[] = [
   },
 ];
 
-// ── Personal tab ─────────────────────────────────────────────────────────────
+// ── Personal panel ───────────────────────────────────────────────────────────
 
 export const personalRows: PersonalRow[] = [
   {
     titleMain: "Finance",
-    titleSub: "Personal Specialist",
-    tags: [
-      "Stock analysis",
-      "Market signals",
-      "Budgeting",
-      "Loans & credit",
-      "Insurance",
-      "Tax planning",
-      "Savings goals",
+    bullets: [
+      "Answers questions about your money in plain language",
+      "Tracks your budget and flags where to cut back",
+      "Guides you on loans, insurance, tax planning, and more",
     ],
+    moreText: "More features coming.",
     ctaHref: "/personal",
   },
   {
     titleMain: "Lifestyle",
-    titleSub: "Personal Specialist",
-    tags: ["Trip planning", "Meal planning"],
+    bullets: [
+      "Plans trips around your preferences and budget",
+      "Builds weekly meal plans with recipes and shopping lists",
+    ],
+    moreText: "More features coming.",
     ctaHref: "/personal",
   },
   {
     titleMain: "More coming soon",
-    titleSub: "New specialists and verticals on the way.",
     muted: true,
+    subText: "New specialists and verticals on the way.",
   },
 ];
 
-// ── Work tab ─────────────────────────────────────────────────────────────────
+// ── Work panel ─────────────────────────────────────────────────────────────────
 
 export const workAudiences: WorkAudience[] = [
   {
@@ -116,7 +119,6 @@ export const workAudiences: WorkAudience[] = [
       {
         wide: true,
         titleMain: "CRM & Sales Pipeline",
-        titleSub: "Specialist Agent",
         contextBadge: "Inside your CRM",
         bullets: [
           "Works alongside your existing CRM and tools. No migration required.",
@@ -132,8 +134,7 @@ export const workAudiences: WorkAudience[] = [
     cards: [
       {
         titleMain: "Focus & Alignment",
-        titleSub: "Specialist Agent",
-        contextBadge: "Across your org",
+        contextBadge: "Across your organization",
         bullets: [
           "Aligns weekly priorities across team, department, and company goals",
           "Resolves conflicts by understanding where OKRs overlap or clash",
@@ -141,7 +142,6 @@ export const workAudiences: WorkAudience[] = [
       },
       {
         titleMain: "Expense Management",
-        titleSub: "Specialist Agent",
         contextBadge: "Across your tools and accounts",
         bullets: [
           "Analyzes all spending across SaaS, cloud, credit card, and bank statements",
@@ -150,7 +150,6 @@ export const workAudiences: WorkAudience[] = [
       },
       {
         titleMain: "Expertise",
-        titleSub: "Specialist Agent",
         contextBadge: "Across your data sources",
         bullets: [
           "Slack threads explained, company context surfaced. Answers ready instantly.",
@@ -159,7 +158,6 @@ export const workAudiences: WorkAudience[] = [
       },
       {
         titleMain: "Workflow",
-        titleSub: "Specialist Agent",
         contextBadge: "Any repeatable process",
         bullets: [
           "Any repeatable workflow gets fully automated with a dedicated agent",
