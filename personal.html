@@ -110,20 +110,19 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdro
 .jp-tab:not(.active):hover{color:var(--fg);background:rgba(0,0,0,.05)}
 .jp-tab-soon{color:var(--muted)!important;cursor:default!important;font-style:italic;opacity:.7}
 .jp-tab-soon:hover{background:transparent!important;color:var(--muted)!important}
-.jp-chips-outer{position:relative;max-height:114px;overflow:hidden;padding-top:14px;transition:max-height .45s cubic-bezier(0.4,0,0.2,1)}
-.jp-chips-outer.expanded{max-height:500px}
-.jp-chips-outer.has-more:not(.expanded)::after{content:'';position:absolute;bottom:0;left:0;right:0;height:52px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.97));pointer-events:none;z-index:1}
-.jp-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;transition:opacity .15s}
-.jp-chip{all:unset;cursor:pointer;padding:9px 18px;border-radius:9999px;font-size:14px;font-weight:500;border:1.5px solid var(--border);color:var(--fg-secondary);background:#fff;transition:all .2s;white-space:nowrap}
-.jp-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-tint);transform:translateY(-1px)}
-.jp-chip-soon{color:var(--muted)!important;background:var(--surface)!important;border-color:var(--border-light)!important;cursor:default!important;font-style:italic;font-size:13px;transform:none!important}
-.jp-chip-wrap{position:relative;display:inline-block}
-.jp-chip-badge{position:absolute;top:-9px;right:-4px;background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:.04em;padding:2px 7px;border-radius:9999px;white-space:nowrap;pointer-events:none;text-transform:uppercase}
-.jp-see-more{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;margin:12px auto 0;font-size:13px;font-weight:500;color:var(--muted);transition:color .2s}
-.jp-see-more:hover{color:var(--accent)}
-.jp-see-more svg{transition:transform .2s}
-.jp-see-more:hover svg{transform:translateY(2px)}
-@media(max-width:640px){.jp-chip{font-size:13px;padding:8px 14px}.jp-tab{padding:7px 18px;font-size:13px}}
+.jp-chips-outer{position:relative;padding-top:20px}
+.jp-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;transition:opacity .15s}
+.jp-card{position:relative;background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;gap:12px}
+.jp-card:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(0,31,92,.1);transform:translateY(-2px)}
+.jp-card-title{font-size:15px;font-weight:600;color:var(--fg);line-height:1.4}
+.jp-card-count{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.jp-card-count svg{flex-shrink:0;opacity:.6}
+.jp-card-count strong{color:var(--fg-secondary);font-weight:600}
+.jp-card-badge{position:absolute;top:-10px;right:12px;background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:9999px;white-space:nowrap;text-transform:uppercase}
+.jp-card-cta{background:transparent;border:1.5px dashed var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;text-align:center;min-height:90px}
+.jp-card-cta:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:none}
+.jp-card-cta-text{font-size:15px;font-weight:600;color:var(--accent);line-height:1.45}
+@media(max-width:640px){.jp-chips{grid-template-columns:1fr}.jp-tab{padding:7px 18px;font-size:13px}}
 
 /* Chat expansion — messages panel inside cbar */
 .cbar-messages{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(0.4,0,0.2,1)}
@@ -2011,19 +2010,19 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 
   const jobData = {
     finance: [
-      { label: 'Should I buy this stock?', active: true, badge: 'Brokers only' },
-      { label: 'Where should I invest my money?', active: true },
-      { label: 'Am I spending too much this month?', active: true },
-      { label: "What's moving the market today?", active: true },
+      { label: 'Should I buy this stock?', active: true, badge: 'Brokers only', count: '2.4M' },
+      { label: 'Where should I invest my money?', active: true, count: '1.8M' },
+      { label: 'Am I spending too much this month?', active: true, count: '940K' },
+      { label: "What's moving the market today?", active: true, count: '1.2M' },
       { label: 'Which insurance plan fits me?', active: true },
-      { label: 'How do I pay less tax?', active: true },
-      { label: 'Can I afford this loan?', active: true },
-      { label: 'How long to reach my savings goal?', active: true },
+      { label: 'How do I pay less tax?', active: true, count: '1.1M' },
+      { label: 'Can I afford this loan?', active: true, count: '580K' },
+      { label: 'How long to reach my savings goal?', active: true, count: '430K' },
       { label: 'Have something else on mind? Chat with me.', active: false, cta: true }
     ],
     lifestyle: [
-      { label: 'Plan my trip', active: true },
-      { label: 'Plan my weekly meals', active: true },
+      { label: 'Plan my trip', active: true, count: '320K' },
+      { label: 'Plan my weekly meals', active: true, count: '210K' },
       { label: 'Have something else on mind? Chat with me.', active: false, cta: true }
     ]
   };
@@ -2032,64 +2031,46 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
     const container = document.getElementById('jpChips');
     container.style.opacity = '0';
 
-    // Reset outer state
-    outer.classList.remove('expanded', 'has-more');
-    const oldBtn = document.getElementById('jpSeeMore');
-    if (oldBtn) oldBtn.remove();
-
     setTimeout(() => {
       container.innerHTML = '';
       const items = jobData[tab];
-      const needsCurtain = items.length > VISIBLE_COUNT;
+      const CHAT_ICON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
 
       items.forEach(item => {
-        const chip = document.createElement('button');
-        chip.className = 'jp-chip' + (item.active ? '' : ' jp-chip-soon');
-        chip.textContent = item.label;
-        chip.disabled = !item.active && !item.cta;
-        if (item.active) {
-          chip.addEventListener('click', () => {
-            inp.value = item.label;
-            userTyped = true;
-            clearTimeout(typeTimer);
-            ghost.classList.add('hidden');
-            inp.style.height = 'auto';
-            inp.style.height = Math.min(inp.scrollHeight, 120) + 'px';
-            showMockChat(item.label);
-          });
-        } else if (item.cta) {
-          chip.disabled = false;
-          chip.style.cursor = 'pointer';
-          chip.addEventListener('click', () => window.open('https://infina.ai', '_blank'));
+        if (item.cta) {
+          const card = document.createElement('div');
+          card.className = 'jp-card jp-card-cta';
+          card.innerHTML = '<span class="jp-card-cta-text">Have something else on mind?<br>Chat with me.</span>';
+          card.addEventListener('click', () => window.open('https://infina.ai', '_blank'));
+          container.appendChild(card);
+          return;
         }
+
+        const card = document.createElement('div');
+        card.className = 'jp-card';
+        card.innerHTML =
+          '<div class="jp-card-title">' + item.label + '</div>' +
+          '<div class="jp-card-count">' + CHAT_ICON + '<strong>' + item.count + '</strong> asked</div>';
 
         if (item.badge) {
-          const wrap = document.createElement('div');
-          wrap.className = 'jp-chip-wrap';
-          wrap.appendChild(chip);
           const badge = document.createElement('span');
-          badge.className = 'jp-chip-badge';
+          badge.className = 'jp-card-badge';
           badge.textContent = item.badge;
-          wrap.appendChild(badge);
-          container.appendChild(wrap);
-        } else {
-          container.appendChild(chip);
+          card.appendChild(badge);
         }
-      });
 
-      if (needsCurtain) {
-        outer.classList.add('has-more');
-        const btn = document.createElement('button');
-        btn.id = 'jpSeeMore';
-        btn.className = 'jp-see-more';
-        btn.innerHTML = 'See more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
-        btn.addEventListener('click', () => {
-          outer.classList.add('expanded');
-          outer.classList.remove('has-more');
-          btn.remove();
+        card.addEventListener('click', () => {
+          inp.value = item.label;
+          userTyped = true;
+          clearTimeout(typeTimer);
+          ghost.classList.add('hidden');
+          inp.style.height = 'auto';
+          inp.style.height = Math.min(inp.scrollHeight, 120) + 'px';
+          showMockChat(item.label);
         });
-        outer.after(btn);
-      }
+
+        container.appendChild(card);
+      });
 
       container.style.opacity = '1';
     }, 150);
