@@ -105,8 +105,14 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdro
 /* Job Picker */
 .job-picker{max-width:760px;margin:28px auto 0;opacity:0;animation:fade-up .7s ease-out .5s forwards;text-align:center}
 .jp-tabs{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:9999px;padding:5px;margin-bottom:18px}
-.jp-category-divider{display:flex;align-items:center;gap:14px;font-size:13px;font-weight:500;color:var(--muted);margin-bottom:16px}
-.jp-category-divider::before,.jp-category-divider::after{content:'';flex:1;height:1px;background:var(--border-light)}
+.jp-category-section{border-radius:20px;padding:20px;margin-bottom:16px}
+.jp-finance{background:rgba(16,185,129,.06)}
+.jp-lifestyle{background:rgba(236,72,153,.06)}
+.jp-category-divider{display:flex;align-items:center;gap:14px;font-size:13px;font-weight:600;margin-bottom:16px}
+.jp-finance .jp-category-divider{color:rgba(5,150,105,.8)}
+.jp-finance .jp-category-divider::before,.jp-finance .jp-category-divider::after{content:'';flex:1;height:1px;background:rgba(16,185,129,.25)}
+.jp-lifestyle .jp-category-divider{color:rgba(219,39,119,.8)}
+.jp-lifestyle .jp-category-divider::before,.jp-lifestyle .jp-category-divider::after{content:'';flex:1;height:1px;background:rgba(236,72,153,.25)}
 .jp-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;transition:opacity .15s}
 .jp-card{position:relative;background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;justify-content:space-between;gap:12px;text-align:left}
 .jp-card:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(0,31,92,.1);transform:translateY(-2px)}
@@ -1295,10 +1301,14 @@ footer{background:#fff;padding:48px 0;border-top:1px solid var(--border-light)}
 
       <!-- Job Picker -->
       <div class="job-picker" id="jobPicker">
-        <div class="jp-category-divider">Finance</div>
-        <div class="jp-chips" id="jpChipsFinance"></div>
-        <div class="jp-category-divider" style="margin-top:32px">Lifestyle</div>
-        <div class="jp-chips" id="jpChipsLifestyle"></div>
+        <div class="jp-category-section jp-finance">
+          <div class="jp-category-divider">Finance</div>
+          <div class="jp-chips" id="jpChipsFinance"></div>
+        </div>
+        <div class="jp-category-section jp-lifestyle">
+          <div class="jp-category-divider">Lifestyle</div>
+          <div class="jp-chips" id="jpChipsLifestyle"></div>
+        </div>
       </div>
 
       </div>
