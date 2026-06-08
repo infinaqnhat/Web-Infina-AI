@@ -112,7 +112,7 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdro
 .jp-tab-soon:hover{background:transparent!important;color:var(--muted)!important}
 .jp-chips-outer{position:relative;padding-top:20px}
 .jp-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;transition:opacity .15s}
-.jp-card{position:relative;background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;gap:12px}
+.jp-card{position:relative;background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;justify-content:space-between;gap:12px;text-align:left}
 .jp-card:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(0,31,92,.1);transform:translateY(-2px)}
 .jp-card-title{font-size:15px;font-weight:600;color:var(--fg);line-height:1.4}
 .jp-card-count{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
@@ -2014,7 +2014,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
       { label: 'Where should I invest my money?', active: true, count: '1.8M' },
       { label: 'Am I spending too much this month?', active: true, count: '940K' },
       { label: "What's moving the market today?", active: true, count: '1.2M' },
-      { label: 'Which insurance plan fits me?', active: true },
+      { label: 'Which insurance plan fits me?', active: true, count: '670K' },
       { label: 'How do I pay less tax?', active: true, count: '1.1M' },
       { label: 'Can I afford this loan?', active: true, count: '580K' },
       { label: 'How long to reach my savings goal?', active: true, count: '430K' },
