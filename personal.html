@@ -105,12 +105,8 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.85);backdro
 /* Job Picker */
 .job-picker{max-width:760px;margin:28px auto 0;opacity:0;animation:fade-up .7s ease-out .5s forwards;text-align:center}
 .jp-tabs{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:9999px;padding:5px;margin-bottom:18px}
-.jp-tab{all:unset;cursor:pointer;padding:8px 24px;border-radius:9999px;font-size:14px;font-weight:500;color:var(--muted);transition:all .2s}
-.jp-tab.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(0,31,92,.25)}
-.jp-tab:not(.active):hover{color:var(--fg);background:rgba(0,0,0,.05)}
-.jp-tab-soon{color:var(--muted)!important;cursor:default!important;font-style:italic;opacity:.7}
-.jp-tab-soon:hover{background:transparent!important;color:var(--muted)!important}
-.jp-chips-outer{position:relative;padding-top:20px}
+.jp-category-divider{display:flex;align-items:center;gap:14px;font-size:13px;font-weight:500;color:var(--muted);margin-bottom:16px}
+.jp-category-divider::before,.jp-category-divider::after{content:'';flex:1;height:1px;background:var(--border-light)}
 .jp-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;transition:opacity .15s}
 .jp-card{position:relative;background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;justify-content:space-between;gap:12px;text-align:left}
 .jp-card:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(0,31,92,.1);transform:translateY(-2px)}
@@ -1299,14 +1295,10 @@ footer{background:#fff;padding:48px 0;border-top:1px solid var(--border-light)}
 
       <!-- Job Picker -->
       <div class="job-picker" id="jobPicker">
-        <div class="jp-tabs">
-          <button class="jp-tab active" data-tab="finance">Finance</button>
-          <button class="jp-tab" data-tab="lifestyle">Lifestyle</button>
-          <button class="jp-tab jp-tab-soon" disabled>More coming soon</button>
-        </div>
-        <div class="jp-chips-outer" id="jpChipsOuter">
-          <div class="jp-chips" id="jpChips"></div>
-        </div>
+        <div class="jp-category-divider">Finance</div>
+        <div class="jp-chips" id="jpChipsFinance"></div>
+        <div class="jp-category-divider" style="margin-top:32px">Lifestyle</div>
+        <div class="jp-chips" id="jpChipsLifestyle"></div>
       </div>
 
       </div>
@@ -2005,86 +1997,68 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 
 // ========== Job Picker ==========
 (function(){
-  const VISIBLE_COUNT = 4;
-  const outer = document.getElementById('jpChipsOuter');
-
   const jobData = {
     finance: [
-      { label: 'Should I buy this stock?', active: true, badge: 'Brokers only', count: '2.4M' },
-      { label: 'Where should I invest my money?', active: true, count: '1.8M' },
-      { label: 'Am I spending too much this month?', active: true, count: '940K' },
-      { label: "What's moving the market today?", active: true, count: '1.2M' },
-      { label: 'Which insurance plan fits me?', active: true, count: '670K' },
-      { label: 'How do I pay less tax?', active: true, count: '1.1M' },
-      { label: 'Can I afford this loan?', active: true, count: '580K' },
-      { label: 'How long to reach my savings goal?', active: true, count: '430K' },
-      { label: 'Have something else on mind? Chat with me.', active: false, cta: true }
+      { label: 'Should I buy this stock?', badge: 'Brokers only', count: '2.4M' },
+      { label: 'Where should I invest my money?', count: '1.8M' },
+      { label: 'Am I spending too much this month?', count: '940K' },
+      { label: "What's moving the market today?", count: '1.2M' },
+      { label: 'Which insurance plan fits me?', count: '670K' },
+      { label: 'How do I pay less tax?', count: '1.1M' },
+      { label: 'Can I afford this loan?', count: '580K' },
+      { label: 'How long to reach my savings goal?', count: '430K' },
+      { label: 'Have something else on mind? Chat with me.', cta: true }
     ],
     lifestyle: [
-      { label: 'Plan my trip', active: true, count: '320K' },
-      { label: 'Plan my weekly meals', active: true, count: '210K' },
-      { label: 'Have something else on mind? Chat with me.', active: false, cta: true }
+      { label: 'Plan my trip', count: '320K' },
+      { label: 'Plan my weekly meals', count: '210K' },
+      { label: 'Have something else on mind? Chat with me.', cta: true }
     ]
   };
 
-  function renderChips(tab) {
-    const container = document.getElementById('jpChips');
-    container.style.opacity = '0';
+  const CHAT_ICON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
 
-    setTimeout(() => {
-      container.innerHTML = '';
-      const items = jobData[tab];
-      const CHAT_ICON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
-
-      items.forEach(item => {
-        if (item.cta) {
-          const card = document.createElement('div');
-          card.className = 'jp-card jp-card-cta';
-          card.innerHTML = '<span class="jp-card-cta-text">Have something else on mind?<br>Chat with me.</span>';
-          card.addEventListener('click', () => window.open('https://infina.ai', '_blank'));
-          container.appendChild(card);
-          return;
-        }
-
+  function renderCategory(containerId, items) {
+    const container = document.getElementById(containerId);
+    items.forEach(item => {
+      if (item.cta) {
         const card = document.createElement('div');
-        card.className = 'jp-card';
-        card.innerHTML =
-          '<div class="jp-card-title">' + item.label + '</div>' +
-          '<div class="jp-card-count">' + CHAT_ICON + '<strong>' + item.count + '</strong> asked</div>';
-
-        if (item.badge) {
-          const badge = document.createElement('span');
-          badge.className = 'jp-card-badge';
-          badge.textContent = item.badge;
-          card.appendChild(badge);
-        }
-
-        card.addEventListener('click', () => {
-          inp.value = item.label;
-          userTyped = true;
-          clearTimeout(typeTimer);
-          ghost.classList.add('hidden');
-          inp.style.height = 'auto';
-          inp.style.height = Math.min(inp.scrollHeight, 120) + 'px';
-          showMockChat(item.label);
-        });
-
+        card.className = 'jp-card jp-card-cta';
+        card.innerHTML = '<span class="jp-card-cta-text">Have something else on mind?<br>Chat with me.</span>';
+        card.addEventListener('click', () => window.open('https://infina.ai', '_blank'));
         container.appendChild(card);
+        return;
+      }
+
+      const card = document.createElement('div');
+      card.className = 'jp-card';
+      card.innerHTML =
+        '<div class="jp-card-title">' + item.label + '</div>' +
+        '<div class="jp-card-count">' + CHAT_ICON + '<strong>' + item.count + '</strong> asked</div>';
+
+      if (item.badge) {
+        const badge = document.createElement('span');
+        badge.className = 'jp-card-badge';
+        badge.textContent = item.badge;
+        card.appendChild(badge);
+      }
+
+      card.addEventListener('click', () => {
+        inp.value = item.label;
+        userTyped = true;
+        clearTimeout(typeTimer);
+        ghost.classList.add('hidden');
+        inp.style.height = 'auto';
+        inp.style.height = Math.min(inp.scrollHeight, 120) + 'px';
+        showMockChat(item.label);
       });
 
-      container.style.opacity = '1';
-    }, 150);
+      container.appendChild(card);
+    });
   }
 
-  document.querySelectorAll('.jp-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.jp-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      renderChips(tab.dataset.tab);
-    });
-  });
-
-  renderChips('finance');
+  renderCategory('jpChipsFinance', jobData.finance);
+  renderCategory('jpChipsLifestyle', jobData.lifestyle);
 })();
 </script>
 <script src="nav.js"></script>
