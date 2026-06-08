@@ -86,14 +86,7 @@
         '<a href="home.html" class="logo">' + LOGO_SVG + '</a>' +
         '<div class="nav-center">' +
           '<a href="inside.html"' + (isInside ? ' class="active"' : '') + '>AI Inside</a>' +
-          '<div class="nav-dropdown">' +
-            '<span class="' + toggleClass + '" onclick="location.href=\'work.html\'">' +
-              'AI Work ' + CHEVRON +
-            '</span>' +
-            '<div class="nav-dropdown-menu">' +
-              /* Focus & Alignment hidden from nav */ +
-            '</div>' +
-          '</div>' +
+          '<a href="work.html"' + (isWork ? ' class="active"' : '') + '>AI Work</a>' +
           '<a href="personal.html"' + (isPersonal ? ' class="active"' : '') + '>AI Personal</a>' +
         '</div>' +
         '<a href="#demo" class="nav-cta">Book a demo</a>' +
@@ -125,34 +118,12 @@
     var group = document.createElement('div');
     group.className = 'nav-mobile-group';
 
-    var groupRow = document.createElement('div');
-    groupRow.className = 'nav-mobile-group-row';
-
     var aWork = document.createElement('a');
     aWork.href = 'work.html';
     aWork.textContent = 'AI Work';
     if (isWork) aWork.classList.add('active');
 
-    var chevron = document.createElement('button');
-    chevron.className = 'nav-mobile-chevron' + (isWorkGroup ? ' open' : '');
-    chevron.setAttribute('aria-label', 'Toggle AI Work sub-menu');
-    chevron.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>';
-
-    var children = document.createElement('div');
-    children.className = 'nav-mobile-children' + (isWorkGroup ? ' open' : '');
-
-    // Focus & Alignment hidden from nav
-
-    chevron.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var open = children.classList.toggle('open');
-      chevron.classList.toggle('open', open);
-    });
-
-    groupRow.appendChild(aWork);
-    groupRow.appendChild(chevron);
-    group.appendChild(groupRow);
-    group.appendChild(children);
+    group.appendChild(aWork);
     panel.appendChild(group);
 
     // AI Personal
