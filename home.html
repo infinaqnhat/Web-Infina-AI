@@ -3487,30 +3487,27 @@
     }
 
     .industry-marquee {
-      overflow-x: auto;
-      overflow-y: hidden;
+      overflow: hidden;
       position: relative;
       z-index: 1;
       margin-top: 20px;
-      padding-bottom: 16px;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      cursor: grab;
+      padding-bottom: 0;
     }
-
-    .industry-marquee::-webkit-scrollbar { display: none; }
-    .industry-marquee.is-dragging { cursor: grabbing; user-select: none; }
 
     .industry-track {
       display: flex;
       gap: 24px;
       width: max-content;
-      padding: 0 32px;
+      animation: marquee-slide 30s linear infinite;
     }
 
-    .industry-card {
-      scroll-snap-align: center;
+    .industry-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee-slide {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-33.333%); }
     }
 
     .industry-card {
@@ -4404,6 +4401,22 @@
     </div>
     <div class="industry-marquee">
       <div class="industry-track">
+
+        <div class="industry-card"><img src="uploads/Securities Icon.png" alt="Securities"><span>Securities</span></div>
+        <div class="industry-card"><img src="uploads/Insurance Icon.png" alt="Insurance"><span>Insurance</span></div>
+        <div class="industry-card"><img src="uploads/Fintech Icon.jpg" alt="Fintech"><span>Fintech</span></div>
+        <div class="industry-card"><img src="uploads/Fund Management Icon.png" alt="Fund Management"><span>Fund Management</span></div>
+        <div class="industry-card"><img src="uploads/Bank Icon.jpg" alt="Bank"><span>Bank</span></div>
+        <div class="industry-card"><img src="uploads/e-Wallet Icon.jpg" alt="e-Wallet"><span>e-Wallet</span></div>
+        <div class="industry-card"><img src="uploads/Travel Icon.jpg" alt="Travel"><span>Travel</span></div>
+
+        <div class="industry-card"><img src="uploads/Securities Icon.png" alt="Securities"><span>Securities</span></div>
+        <div class="industry-card"><img src="uploads/Insurance Icon.png" alt="Insurance"><span>Insurance</span></div>
+        <div class="industry-card"><img src="uploads/Fintech Icon.jpg" alt="Fintech"><span>Fintech</span></div>
+        <div class="industry-card"><img src="uploads/Fund Management Icon.png" alt="Fund Management"><span>Fund Management</span></div>
+        <div class="industry-card"><img src="uploads/Bank Icon.jpg" alt="Bank"><span>Bank</span></div>
+        <div class="industry-card"><img src="uploads/e-Wallet Icon.jpg" alt="e-Wallet"><span>e-Wallet</span></div>
+        <div class="industry-card"><img src="uploads/Travel Icon.jpg" alt="Travel"><span>Travel</span></div>
 
         <div class="industry-card"><img src="uploads/Securities Icon.png" alt="Securities"><span>Securities</span></div>
         <div class="industry-card"><img src="uploads/Insurance Icon.png" alt="Insurance"><span>Insurance</span></div>
@@ -6889,28 +6902,6 @@
 
   <script src="nav.js"></script>
   <script src="footer.js"></script>
-
-  <script>
-    // Drag-to-scroll for industry marquee
-    const marquee = document.querySelector('.industry-marquee');
-    if (marquee) {
-      let isDown = false, startX, scrollLeft;
-      marquee.addEventListener('mousedown', e => {
-        isDown = true;
-        marquee.classList.add('is-dragging');
-        startX = e.pageX - marquee.offsetLeft;
-        scrollLeft = marquee.scrollLeft;
-      });
-      marquee.addEventListener('mouseleave', () => { isDown = false; marquee.classList.remove('is-dragging'); });
-      marquee.addEventListener('mouseup', () => { isDown = false; marquee.classList.remove('is-dragging'); });
-      marquee.addEventListener('mousemove', e => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - marquee.offsetLeft;
-        marquee.scrollLeft = scrollLeft - (x - startX) * 1.5;
-      });
-    }
-  </script>
 
 </body>
 
