@@ -89,7 +89,7 @@
     .hero h1 .line { white-space: normal; display: inline-block; padding: .12em 0 .05em; line-height: 1.15; max-width: 100%; }
     .hero h1 .line-accent { background: linear-gradient(135deg, var(--accent) 0%, #4c6ee6 50%, var(--accent) 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradient-shift 4s ease infinite; }
     .hero-sub { font-size: 20px; color: #64748b; line-height: 1.65; margin: 0 auto 32px; opacity: 0; animation: fade-up .8s ease-out .4s forwards; max-width: 580px; font-weight: 400; }
-    .hero-value-list { list-style: none; display: flex; flex-direction: row; justify-content: center; gap: 0; margin: 28px auto 0; padding: 0; text-align: left; max-width: 1200px; padding: 0 32px; opacity: 0; animation: fade-up .8s ease-out .48s forwards; }
+    .hero-value-list { list-style: none; display: flex; flex-direction: row; justify-content: center; gap: 0; margin: 28px auto 0; padding: 0; text-align: left; max-width: none; opacity: 0; animation: fade-up .8s ease-out .48s forwards; }
     .hero-value-list li { font-size: 15px; color: var(--fg-secondary); padding: 16px 24px; line-height: 1.5; flex: 1; border-left: 1.5px solid var(--border-light); display: flex; align-items: center; gap: 10px; white-space: normal; }
     .hero-value-list li:first-child { border-left: none; }
     .hero-value-icon { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px; background: rgba(24,99,220,.08); color: #1863dc; }
@@ -948,7 +948,13 @@
         <div class="hero-text">
           <div class="hero-badge">For Business</div>
           <h1><span class="line">Your team, working at their best</span><br><span class="line line-accent">with AI handling the rest.</span></h1>
-          <ul class="hero-value-list">
+          <!-- HERO CTA — hidden
+          <div class="hero-ctas">
+            <a href="#demo" class="btn-primary">Book a demo →</a>
+          </div>
+          END HERO CTA -->
+        </div>
+        <ul class="hero-value-list">
             <li>
               <span class="hero-value-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -968,12 +974,6 @@
               Frees your team for decisions and the work that moves business forward
             </li>
           </ul>
-          <!-- HERO CTA — hidden
-          <div class="hero-ctas">
-            <a href="#demo" class="btn-primary">Book a demo →</a>
-          </div>
-          END HERO CTA -->
-        </div>
       </div>
     </div>
   </section>
