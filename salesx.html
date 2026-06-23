@@ -4,25 +4,35 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light only">
-<title>AI Work SalesX: AI Sales Agent for Real Estate</title>
+<title>SalesX · AI Sales Agent for Real Estate · Infina AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#0F1B5C;
-    --navy-2:#0A1245;
-    --navy-3:#060C2E;
-    --blue:#2B5CE6;
-    --blue-soft:#EEF2FF;
+    --navy:#001F5C;
+    --navy-2:#001340;
+    --navy-3:#000d2e;
+    --blue:#1863DC;
+    --blue-soft:#EEF3FF;
     --blue-mid:#C7D4FA;
-    --amber:#2B5CE6;
+    --amber:#1863DC;
     --paper:#FFFFFF;
-    --bg:#F0F3FF;
-    --ink:#0F1B5C;
-    --muted:#4A5580;
-    --line:#DDE3F5;
+    --bg:#f9fafb;
+    --ink:#1a1f2e;
+    --muted:#64748b;
+    --line:#e5e7eb;
     --line-dk:rgba(255,255,255,.12);
+    --accent:#001F5C;
+    --accent-light:rgba(0,31,92,.07);
+    --fg:#1a1f2e;
+    --fg-secondary:#334155;
+    --border:#e5e7eb;
+    --border-light:#f2f2f2;
+    --surface:#fafafa;
+    --font-display:"Be Vietnam Pro",system-ui,sans-serif;
+    --font-body:"Be Vietnam Pro",system-ui,sans-serif;
+    --section-gap:96px;
   }
   *,*::before,*::after{box-sizing:border-box;}
   html{scroll-behavior:smooth;color-scheme:light;}
@@ -30,7 +40,7 @@
     margin:0;
     background:#F8FAFF !important;
     color:#0F172A !important;
-    font-family:"Inter",system-ui,sans-serif;
+    font-family:"Be Vietnam Pro",system-ui,sans-serif;
     font-size:17px;line-height:1.65;
     -webkit-font-smoothing:antialiased;
     forced-color-adjust:none;
@@ -49,7 +59,7 @@
   /* HERO */
   .hero{
     background:#0a1020 !important;
-    padding:84px 0 92px;position:relative;overflow:hidden;border-bottom:none;
+    padding:156px 0 92px;position:relative;overflow:hidden;border-bottom:none;
   }
   .hero::before{
     content:"";position:absolute;inset:0;
@@ -332,9 +342,46 @@
   .brok-list li{font-size:14px;color:var(--muted);padding-left:16px;position:relative;line-height:1.4;}
   .brok-list li::before{content:"→";position:absolute;left:0;color:var(--blue);font-weight:700;}
 
+  /* INFINA LEAD FORM */
+  .lead-section{padding:var(--section-gap) 0;background:linear-gradient(180deg,#f0f3f9 0%,#e8edf7 100%);color:var(--fg);position:relative;overflow:hidden;}
+  .lead-section::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(0,31,92,0.08),transparent 65%);filter:blur(40px);pointer-events:none;}
+  .lead-section::after{content:'';position:absolute;bottom:-300px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,31,92,0.05),transparent 65%);filter:blur(60px);pointer-events:none;}
+  .lead-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:start;position:relative;z-index:1;}
+  @media(max-width:900px){.lead-grid{grid-template-columns:1fr;gap:48px;}}
+  .lead-copy h2{font-family:var(--font-display);font-size:clamp(36px,4.5vw,56px);font-weight:700;line-height:1.05;letter-spacing:-0.025em;margin-bottom:20px;color:var(--fg);}
+  .lead-copy h2 .accent{background:linear-gradient(135deg,var(--accent) 0%,#1863dc 100%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .lead-sub{font-size:17px;color:var(--fg-secondary);margin-bottom:36px;max-width:460px;line-height:1.55;}
+  .lead-form{background:#fff;color:var(--fg);border-radius:20px;padding:32px;box-shadow:0 30px 80px rgba(0,0,0,0.15),0 0 0 1px rgba(255,255,255,0.05);display:flex;flex-direction:column;gap:12px;position:relative;}
+  .lead-form-header{margin-bottom:4px;}
+  .lead-form-title{font-family:var(--font-display);font-size:18px;font-weight:700;letter-spacing:-0.015em;margin-bottom:2px;}
+  .lead-form-sub{font-size:12px;color:var(--muted);}
+  @media(max-width:600px){.lead-form{padding:24px 20px;}}
+  .lead-field{position:relative;}
+  .lead-field input,.lead-field textarea{width:100%;font-family:var(--font-body);font-size:14px;color:var(--fg);background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px 14px 6px;outline:none;transition:border-color 0.15s,box-shadow 0.15s;appearance:none;-webkit-appearance:none;min-height:50px;}
+  .lead-field textarea{resize:none;min-height:70px;line-height:1.5;padding-top:22px;cursor:text;}
+  .lead-field input:focus,.lead-field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light);}
+  .lead-field input.invalid,.lead-field textarea.invalid{border-color:#dc2626;}
+  .lead-field label{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--muted);pointer-events:none;transition:all 0.15s ease;background:transparent;}
+  .lead-field.lead-textarea label{top:18px;transform:none;}
+  .lead-field input:focus+label,.lead-field input:not(:placeholder-shown)+label,.lead-field textarea:focus+label,.lead-field textarea:not(:placeholder-shown)+label{top:8px;transform:none;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;}
+  .lead-submit{align-self:stretch;justify-content:center;background:var(--accent);color:#fff;border:0;border-radius:12px;padding:14px 28px;font-family:var(--font-body);font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform 0.15s,opacity 0.15s,background 0.15s,box-shadow 0.2s;margin-top:4px;position:relative;overflow:hidden;}
+  .lead-submit:hover{background:#001340;transform:translateY(-1px);box-shadow:0 12px 30px rgba(0,31,92,0.35);}
+  .lead-submit::after{content:'→';font-size:18px;transition:transform 0.2s;}
+  .lead-submit:hover::after{transform:translateX(4px);}
+  .lead-submit:disabled{opacity:0.6;cursor:not-allowed;}
+  .lead-submit-spinner{display:none;width:14px;height:14px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:lead-spin 0.7s linear infinite;}
+  .lead-submit.loading .lead-submit-spinner{display:inline-block;}
+  @keyframes lead-spin{to{transform:rotate(360deg);}}
+  .lead-status{font-size:14px;min-height:20px;}
+  .lead-status.success{color:#059669;}
+  .lead-status.error{color:#dc2626;}
+  .container{max-width:1200px;margin:0 auto;padding:0 32px;}
+
 </style>
 </head>
 <body>
+
+<infina-nav active="work"></infina-nav>
 
 <!-- HERO -->
 <header class="hero">
@@ -792,37 +839,99 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta" style="padding-top:64px;padding-bottom:60px;">
-  <div class="wrap rv">
-    <span class="eyebrow" style="color:rgba(255,255,255,.45);display:block;margin-bottom:16px;">Your edge, starting now</span>
-    <h2>Win more deals. <span class="brand">Work fewer hours.</span></h2>
-    <p style="font-size:16px;color:rgba(255,255,255,.55);max-width:44ch;margin:10px auto 0;line-height:1.6;">Agents using <span style="color:var(--blue);font-weight:inherit;">AI Work SalesX</span> respond faster, follow up smarter, and close more. The pipeline does not stop when you do.</p>
-
-    <div style="display:flex;gap:16px;margin:32px auto;max-width:900px;flex-wrap:wrap;">
-      <div style="flex:1;min-width:160px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px 20px;text-align:left;">
-        <div style="font-size:32px;font-weight:800;color:var(--blue);letter-spacing:-.03em;line-height:1;">under 10s</div>
-        <div style="font-size:13px;color:rgba(232,239,254,.7);line-height:1.5;margin-top:7px;">Average <span style="color:var(--blue);font-weight:inherit;">AI Work SalesX</span> response time. Industry average is over 3 hours.</div>
-      </div>
-      <div style="flex:1;min-width:160px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px 20px;text-align:left;">
-        <div style="font-size:32px;font-weight:800;color:var(--blue);letter-spacing:-.03em;line-height:1;">40%</div>
-        <div style="font-size:13px;color:rgba(232,239,254,.7);line-height:1.5;margin-top:7px;">of inquiries arrive outside business hours. Every one is now an opportunity you can capture.</div>
-      </div>
-      <div style="flex:1;min-width:160px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px 20px;text-align:left;">
-        <div style="font-size:32px;font-weight:800;color:var(--blue);letter-spacing:-.03em;line-height:1;">$0</div>
-        <div style="font-size:13px;color:rgba(232,239,254,.7);line-height:1.5;margin-top:7px;">to get started. No setup fee, no commitment. Live in under an hour.</div>
-      </div>
+<!-- DEMO FORM -->
+<section class="lead-section" id="demo">
+  <div class="container lead-grid">
+    <div class="lead-copy">
+      <h2><span style="background:#FFE066;padding:2px 6px;border-radius:4px;">Book a demo</span> and watch your job get done by <span class="accent">SalesX</span></h2>
+      <p class="lead-sub">30 minutes. We'll show you exactly how SalesX works and map out what a live deployment looks like for your specific situation.</p>
     </div>
-
-    <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.8);max-width:48ch;margin:0 auto 28px;line-height:1.55;">The agents winning today are not better at selling.<br>They just never miss a conversation.</p>
-
-    <a class="btn" href="#">Book a 15-minute demo</a>
-    <p class="note">No setup fee · No commitment · Live in under an hour</p>
+    <form class="lead-form" id="lead-form" novalidate>
+      <div class="lead-form-header">
+        <h3 class="lead-form-title">Contact us</h3>
+        <p class="lead-form-sub">Infina AI team will respond within 24 hours.</p>
+      </div>
+      <div class="lead-field">
+        <input type="text" id="lf-name" name="fullName" required autocomplete="name" placeholder=" ">
+        <label for="lf-name">Name</label>
+      </div>
+      <div class="lead-field">
+        <input type="email" id="lf-email" name="email" required autocomplete="email" placeholder=" ">
+        <label for="lf-email">Work email</label>
+      </div>
+      <div class="lead-field">
+        <input type="text" id="lf-company" name="company" autocomplete="organization" placeholder=" ">
+        <label for="lf-company">Company (optional)</label>
+      </div>
+      <div class="lead-field">
+        <input type="tel" id="lf-phone" name="phone" autocomplete="tel" placeholder=" ">
+        <label for="lf-phone">Phone</label>
+      </div>
+      <div class="lead-field lead-textarea">
+        <textarea id="lf-usecase" name="useCase" rows="2" placeholder=" "></textarea>
+        <label for="lf-usecase">Message (optional)</label>
+      </div>
+      <button type="submit" class="lead-submit" id="lf-submit">
+        <span class="lead-submit-label">Book a demo</span>
+        <span class="lead-submit-spinner" aria-hidden="true"></span>
+      </button>
+      <div class="lead-status" id="lf-status" role="status" aria-live="polite"></div>
+    </form>
   </div>
 </section>
 
-<footer><span style="color:var(--blue);font-weight:inherit;">AI Work SalesX</span> · Product One-Pager · 2026</footer>
+<infina-footer></infina-footer>
 
+<script src="nav.js"></script>
+<script src="footer.js"></script>
+<script>
+  // Lead form submission
+  (function(){
+    const SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyO618yfsKfO4nHni2qBe62GWp9fM0vEb0h-Gccw-1wV-w5wJpN3Zayhai1OFxPl98x/exec';
+    const form = document.getElementById('lead-form');
+    const submitBtn = document.getElementById('lf-submit');
+    const status = document.getElementById('lf-status');
+    if (!form) return;
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      status.className = 'lead-status';
+      status.textContent = '';
+      const required = form.querySelectorAll('[required]');
+      let isValid = true;
+      required.forEach(function(el){ if (!el.value.trim()) isValid = false; });
+      if (!isValid) {
+        status.className = 'lead-status error';
+        status.textContent = 'Please fill in all required fields.';
+        return;
+      }
+      const data = {
+        fullName: form.fullName.value.trim(),
+        email: form.email.value.trim(),
+        company: form.company.value.trim(),
+        phone: form.phone.value.trim(),
+        useCase: form.useCase.value.trim(),
+        source: 'salesx',
+      };
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.lead-submit-label').textContent = 'Submitting...';
+      try {
+        const fd = new FormData();
+        Object.keys(data).forEach(function(k){ fd.append(k, data[k]); });
+        const res = await fetch(SHEETS_ENDPOINT, { method: 'POST', body: fd });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        status.className = 'lead-status success';
+        status.textContent = "Thank you! We'll be in touch soon.";
+        form.reset();
+      } catch(err) {
+        status.className = 'lead-status error';
+        status.textContent = 'Something went wrong. Please try again or email us directly.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.querySelector('.lead-submit-label').textContent = 'Book a demo';
+      }
+    });
+  })();
+</script>
 <script>
   var sxCur=0;
   var sxSlides=[];
