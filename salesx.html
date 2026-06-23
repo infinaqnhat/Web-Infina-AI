@@ -377,6 +377,24 @@
   .lead-status.error{color:#dc2626;}
   .container{max-width:1200px;margin:0 auto;padding:0 32px;}
 
+  /* MOBILE FIXES */
+  .hero-inner-grid{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:center;margin-top:36px;}
+  @media(max-width:768px){
+    .hero-inner-grid{grid-template-columns:1fr;gap:24px;}
+    .hero-pain{order:2;opacity:.75;}
+    .hero-solution{order:1;}
+    .feat-grid-4{grid-template-columns:1fr 1fr !important;gap:8px !important;}
+    .without-flow{flex-direction:column !important;align-items:stretch !important;}
+    .without-flow > div{align-items:flex-start !important;}
+    .without-flow .flow-connector{display:none !important;}
+    .chat-bubble{max-width:90% !important;}
+    .chat-avatar{width:24px !important;height:24px !important;}
+    .wrap{padding:0 16px;}
+    section{padding:48px 0;}
+    .lead-grid{grid-template-columns:1fr !important;gap:32px !important;}
+    .lead-form{padding:24px 16px !important;}
+  }
+
 </style>
 </head>
 <body>
@@ -386,10 +404,10 @@
 <!-- HERO -->
 <header class="hero">
   <div class="wrap">
-    <div style="display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:center;margin-top:36px;">
+    <div class="hero-inner-grid">
 
       <!-- LEFT: painpoint — subtle, secondary -->
-      <div style="display:flex;flex-direction:column;gap:14px;opacity:.75;">
+      <div class="hero-pain" style="display:flex;flex-direction:column;gap:14px;">
         <div style="border-left:2px solid rgba(255,255,255,.3);padding-left:16px;font-size:14px;color:rgba(255,255,255,.7);font-style:italic;line-height:1.72;">
           It is 11pm. A buyer messages about a listing she has been watching for months. You are asleep. By 9am, she has already booked a viewing <b style="color:rgba(255,255,255,.9);font-style:normal;font-weight:600;">with the agent who answered at 11:05.</b>
         </div>
@@ -397,7 +415,7 @@
       </div>
 
       <!-- RIGHT: solution — prominent -->
-      <div style="text-shadow:0 1px 12px rgba(0,0,0,.8),0 2px 24px rgba(0,0,0,.6);">
+      <div class="hero-solution" style="text-shadow:0 1px 12px rgba(0,0,0,.8),0 2px 24px rgba(0,0,0,.6);">
         <span class="eyebrow"><span style="color:var(--blue);font-weight:inherit;">AI Work SalesX</span> · AI Sales Agent for Real Estate</span>
         <h1 style="margin:16px 0 0;">More leads captured.<br><span class="turn">More deals closed.</span></h1>
         <p class="sub" style="margin-top:20px;">Not a chatbot. <span style="color:#7BB3FF;font-weight:700;">AI Work SalesX</span> acts. It qualifies buyers, sends personalized brochures mid-conversation, books callbacks, and keeps every lead warm. You only show up to close.</p>
@@ -542,7 +560,7 @@
     <!-- ② FEATURE SLIDER -->
     <div style="margin-top:20px;">
       <span style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:16px;">Built to do the work</span>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+      <div class="feat-grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
 
         <div style="background:#fff;border:0.5px solid var(--blue-mid);border-left:3px solid var(--blue);border-radius:0 12px 12px 0;padding:18px;">
           <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
@@ -671,7 +689,7 @@
     <!-- Without <span style="color:var(--blue);font-weight:inherit;">AI Work SalesX</span> journey -->
     <div style="margin-bottom:56px;text-align:center;">
       <p style="font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#CC3333;margin-bottom:20px;">Without <span style="color:var(--blue);font-weight:inherit;">AI Work SalesX</span></p>
-      <div style="display:flex;align-items:flex-start;gap:0;position:relative;">
+      <div class="without-flow" style="display:flex;align-items:flex-start;gap:0;position:relative;">
         <div style="position:absolute;top:18px;left:18px;right:18px;height:1.5px;background:repeating-linear-gradient(90deg,#FFAAAA 0 6px,transparent 6px 12px);z-index:0;"></div>
         <!-- Contact -->
         <div style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;">
@@ -726,7 +744,7 @@
           <div style="width:30px;height:30px;border-radius:50%;background:var(--blue-soft);border:2px solid var(--blue-mid);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
-          <div style="background:#fff;border:1.5px solid #D1D9F0;border-radius:2px 18px 18px 18px;padding:12px 16px;max-width:85%;box-shadow:0 1px 4px rgba(0,0,0,.07);">
+          <div class="chat-bubble" style="background:#fff;border:1.5px solid #D1D9F0;border-radius:2px 18px 18px 18px;padding:12px 16px;max-width:85%;box-shadow:0 1px 4px rgba(0,0,0,.07);">
             <div style="font-size:10px;font-weight:700;color:var(--blue);margin-bottom:5px;letter-spacing:.08em;text-transform:uppercase;">Buyer</div>
             <div style="font-size:14px;font-weight:600;color:var(--navy);line-height:1.5;">Full listing details, photos, and pricing. Right there. No form. No waiting. Can ask anything and get an answer immediately.</div>
           </div>
@@ -753,7 +771,7 @@
           <div style="width:30px;height:30px;border-radius:50%;background:var(--blue-soft);border:2px solid var(--blue-mid);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
-          <div style="background:#fff;border:1.5px solid #D1D9F0;border-radius:2px 18px 18px 18px;padding:12px 16px;max-width:85%;box-shadow:0 1px 4px rgba(0,0,0,.07);">
+          <div class="chat-bubble" style="background:#fff;border:1.5px solid #D1D9F0;border-radius:2px 18px 18px 18px;padding:12px 16px;max-width:85%;box-shadow:0 1px 4px rgba(0,0,0,.07);">
             <div style="font-size:10px;font-weight:700;color:var(--blue);margin-bottom:5px;letter-spacing:.08em;text-transform:uppercase;">Buyer</div>
             <div style="font-size:14px;font-weight:600;color:var(--navy);line-height:1.5;">Asks about the neighborhood, the floor plan, what is included in the price. Gets a specific answer in the same minute. Not the next business day.</div>
           </div>
@@ -779,7 +797,7 @@
           <div style="width:30px;height:30px;border-radius:50%;background:var(--blue-soft);border:2px solid var(--blue-mid);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
-          <div style="background:#fff;border:1.5px solid #D1D9F0;border-radius:2px 18px 18px 18px;padding:12px 16px;max-width:85%;box-shadow:0 1px 4px rgba(0,0,0,.07);">
+          <div class="chat-bubble" style="background:#fff;border:1.5px solid #D1D9F0;border-radius:2px 18px 18px 18px;padding:12px 16px;max-width:85%;box-shadow:0 1px 4px rgba(0,0,0,.07);">
             <div style="font-size:10px;font-weight:700;color:var(--blue);margin-bottom:5px;letter-spacing:.08em;text-transform:uppercase;">Buyer</div>
             <div style="font-size:14px;font-weight:600;color:var(--navy);line-height:1.5;">Leaves the conversation with a brochure, a shortlist, and a reason to book a viewing. The decision is already forming before they even meet you.</div>
           </div>
@@ -805,7 +823,7 @@
           <div style="width:30px;height:30px;border-radius:50%;background:var(--blue-soft);border:2px solid var(--blue-mid);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
-          <div style="background:#fff;border:1.5px solid #D1D9F0;border-radius:2px 18px 18px 18px;padding:12px 16px;max-width:85%;box-shadow:0 1px 4px rgba(0,0,0,.07);">
+          <div class="chat-bubble" style="background:#fff;border:1.5px solid #D1D9F0;border-radius:2px 18px 18px 18px;padding:12px 16px;max-width:85%;box-shadow:0 1px 4px rgba(0,0,0,.07);">
             <div style="font-size:10px;font-weight:700;color:var(--blue);margin-bottom:5px;letter-spacing:.08em;text-transform:uppercase;">Buyer</div>
             <div style="font-size:14px;font-weight:600;color:var(--navy);line-height:1.5;">Arrives informed. No surprises. Ready to say yes.</div>
           </div>
