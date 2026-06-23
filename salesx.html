@@ -390,8 +390,6 @@
     .without-flow{flex-direction:column !important;align-items:stretch !important;}
     .without-flow > div{align-items:flex-start !important;}
     .without-flow .flow-connector{display:none !important;}
-    .wf-line-1,.wf-line-2{display:none !important;}
-    .wf-deal-node{opacity:1 !important;animation:none !important;}
     .chat-bubble{max-width:90% !important;}
     .chat-avatar{width:24px !important;height:24px !important;}
     .wrap{padding:0 16px;}
@@ -400,23 +398,6 @@
     .lead-form{padding:24px 16px !important;}
   }
 
-  /* Without-flow animated line */
-  @keyframes wf-march{to{background-position:100% 0;}}
-  @keyframes wf-grow-1{from{width:0}to{width:calc(75% - 18px);}}
-  @keyframes wf-grow-2{from{width:0;opacity:1;}to{width:calc(17% - 9px);opacity:1;}}
-  @keyframes wf-deal-in{from{opacity:0;transform:scale(.7);}to{opacity:1;transform:scale(1);}}
-
-  .wf-line-1.wf-play{
-    animation:
-      wf-grow-1 1.4s cubic-bezier(.4,0,.2,1) forwards,
-      wf-march 1s linear infinite;
-  }
-  .wf-line-2.wf-play{
-    animation:
-      wf-grow-2 0.9s cubic-bezier(.4,0,.6,1) 2s forwards;
-  }
-  .wf-deal-node{opacity:0;}
-  .wf-deal-node.wf-play{animation:wf-deal-in .4s ease 3.1s forwards;}
 </style>
 </head>
 <body>
@@ -711,11 +692,8 @@
     <!-- Without <span style="color:var(--blue);font-weight:inherit;">AI Work SalesX</span> journey -->
     <div style="margin-bottom:56px;text-align:center;">
       <p style="font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#CC3333;margin-bottom:20px;">Without <span style="color:var(--blue);font-weight:inherit;">AI Work SalesX</span></p>
-      <div class="without-flow" id="without-flow" style="display:flex;align-items:flex-start;gap:0;position:relative;">
-        <!-- Segment 1: Contact → Viewing (marching dashes, 3 quarters of the line) -->
-        <div class="wf-line-1" style="position:absolute;top:18px;left:18px;width:0;height:1.5px;background:repeating-linear-gradient(90deg,#FFAAAA 0 6px,transparent 6px 12px);background-size:12px 100%;z-index:0;"></div>
-        <!-- Segment 2: Viewing → Deal (grows to ~55% then stops) -->
-        <div class="wf-line-2" style="position:absolute;top:18px;left:calc(18px + 75% - 9px);width:0;height:1.5px;background:repeating-linear-gradient(90deg,#FFAAAA 0 6px,transparent 6px 12px);background-size:12px 100%;z-index:0;opacity:0;"></div>
+      <div class="without-flow" style="display:flex;align-items:flex-start;gap:0;position:relative;">
+        <div style="position:absolute;top:18px;left:18px;right:18px;height:1.5px;background:repeating-linear-gradient(90deg,#FFAAAA 0 6px,transparent 6px 12px);z-index:0;"></div>
         <!-- Contact -->
         <div style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;">
           <div style="width:36px;height:36px;border-radius:50%;background:#FFF5F5;border:2px solid #FFAAAA;display:flex;align-items:center;justify-content:center;margin-bottom:10px;">
@@ -741,7 +719,7 @@
           <p style="font-size:13px;color:#AA4444;line-height:1.45;">Goes to whoever replied fastest. Not you.</p>
         </div>
         <!-- Deal -->
-        <div class="wf-deal-node" style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;">
           <div style="width:36px;height:36px;border-radius:50%;background:#CC3333;border:2px solid #CC3333;display:flex;align-items:center;justify-content:center;margin-bottom:10px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </div>
@@ -1006,26 +984,6 @@
     es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
   },{threshold:.08});
   document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
-
-  // Without-flow animated line
-  (function(){
-    var flow = document.getElementById('without-flow');
-    if(!flow) return;
-    var line1 = flow.querySelector('.wf-line-1');
-    var line2 = flow.querySelector('.wf-line-2');
-    var deal  = flow.querySelector('.wf-deal-node');
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){
-          line1.classList.add('wf-play');
-          line2.classList.add('wf-play');
-          if(deal) deal.classList.add('wf-play');
-          io.unobserve(e.target);
-        }
-      });
-    },{threshold:0.4});
-    io.observe(flow);
-  })();
 </script>
 </body>
 </html>
