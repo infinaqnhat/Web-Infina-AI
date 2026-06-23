@@ -434,17 +434,17 @@
     <p class="section-headline">The agents winning today are not better at selling.<br><em>They are better at responding.</em></p>
     <div class="stat-row">
       <div class="stat-block">
-        <div class="num" data-count="78" data-suffix="%">78%</div>
+        <div class="num">78%</div>
         <div class="label">of buyers work with the first agent who responds. Not the most experienced. The fastest.</div>
         <div class="src">NAR Home Buyers and Sellers Generational Trends Report, 2025</div>
       </div>
       <div class="stat-block">
-        <div class="num" data-count="21" data-suffix="x">21x</div>
+        <div class="num">21x</div>
         <div class="label">more likely to qualify a lead when contacted within 5 minutes versus 30 minutes.</div>
         <div class="src">Real Trends / InsideSales.com Lead Response Study, 2025</div>
       </div>
       <div class="stat-block">
-        <div class="num" data-count="62" data-suffix="%">62%</div>
+        <div class="num">62%</div>
         <div class="label">of real estate inquiries come in after business hours. Peak times are evenings and weekends, when most agents are offline.</div>
         <div class="src">NAR / Zillow Group Consumer Research, 2025</div>
       </div>
@@ -982,32 +982,6 @@
     es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
   },{threshold:.08});
   document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
-</script>
-<script>
-(function(){
-  function animateCount(el){
-    const target=parseInt(el.dataset.count,10);
-    const suffix=el.dataset.suffix||'';
-    const duration=1400;
-    const start=performance.now();
-    function step(now){
-      const p=Math.min((now-start)/duration,1);
-      const ease=1-Math.pow(1-p,3);
-      el.textContent=Math.round(ease*target)+suffix;
-      if(p<1)requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  const io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        e.target.querySelectorAll('.num[data-count]').forEach(animateCount);
-        io.unobserve(e.target);
-      }
-    });
-  },{threshold:0.3});
-  document.querySelectorAll('.stat-row').forEach(function(el){io.observe(el);});
-})();
 </script>
 </body>
 </html>
