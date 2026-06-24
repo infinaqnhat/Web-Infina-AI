@@ -83,12 +83,19 @@
   .hero h1{color:#fff !important;max-width:18ch;line-height:1.1;}
   .hero h1 .turn{color:#7B9EF5;}
   .hero .sub{
-    font-size:clamp(16px,1.75vw,19px);
-    color:rgba(255,255,255,.92) !important;
-    margin-top:24px;max-width:46ch;line-height:1.62;
-    font-style:normal;font-weight:600;
+    font-size:clamp(15px,1.6vw,17px);
+    color:rgba(255,255,255,.82) !important;
+    margin-top:20px;max-width:48ch;line-height:1.65;
+    font-style:normal;font-weight:400;
   }
   .hero .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.35);margin-top:40px;}
+  .hero-mini-stats{display:flex;gap:20px;margin-top:24px;flex-wrap:wrap;}
+  .hero-mini-stat{display:flex;flex-direction:column;gap:2px;}
+  .hero-mini-stat .msv{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;}
+  .hero-mini-stat .msl{font-size:11px;color:rgba(255,255,255,.5);line-height:1.4;max-width:10ch;}
+  .hero-mini-stat .msv.blue{color:#7BB3FF;}
+  .hero-pills{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap;}
+  .hero-pill{font-size:12px;font-weight:500;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.2);border-radius:9999px;padding:6px 14px;background:rgba(255,255,255,.06);white-space:nowrap;}
   .blob{display:none;}
 
   /* THE DRIFT */
@@ -419,9 +426,21 @@
 
       <!-- RIGHT: solution — prominent -->
       <div class="hero-solution" style="text-shadow:0 1px 12px rgba(0,0,0,.8),0 2px 24px rgba(0,0,0,.6);">
-        <span class="eyebrow"><span style="color:var(--blue);font-weight:inherit;">AI Work SalesX</span> · AI Sales Agent for Real Estate</span>
-        <h1 style="margin:16px 0 0;">More leads captured.<br><span class="turn">More deals closed.</span></h1>
-        <p class="sub" style="margin-top:20px;">Not a chatbot. <span style="color:#7BB3FF;font-weight:700;">AI Work SalesX</span> acts. It qualifies buyers, sends personalized brochures mid-conversation, books callbacks, and keeps every lead warm. You only show up to close.</p>
+        <span class="eyebrow"><span style="color:var(--blue);font-weight:inherit;">AI SalesX</span> · AI Sales Agent for Real Estate</span>
+        <h1 style="margin:16px 0 0;">Convert <span class="turn">3x more<br>inquiries</span> into deals.<br>Zero extra work.</h1>
+        <p class="sub">78% of buyers go with the agent who responds first. <span style="color:#7BB3FF;font-weight:600;">AI SalesX</span> replies in under 10 seconds, 24/7: qualifies buyers, sends personalized brochures, books callbacks, and keeps every lead warm. You only show up to close.</p>
+        <div class="hero-mini-stats">
+          <div class="hero-mini-stat"><span class="msv">1–2</span><span class="msl">deals recovered per month avg.</span></div>
+          <div class="hero-mini-stat"><span class="msv blue">$15K</span><span class="msl">avg. commission per deal (US)</span></div>
+          <div class="hero-mini-stat"><span class="msv">&lt;$500</span><span class="msl">per month to run AI SalesX</span></div>
+          <div class="hero-mini-stat"><span class="msv blue">~30x</span><span class="msl">typical ROI in year one</span></div>
+        </div>
+        <div class="hero-pills">
+          <span class="hero-pill">Never miss a lead</span>
+          <span class="hero-pill">Know who to call first</span>
+          <span class="hero-pill">Win the listing first</span>
+          <span class="hero-pill">Follows up automatically</span>
+        </div>
       </div>
 
     </div>
