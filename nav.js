@@ -76,6 +76,7 @@
     var isWorkGroup = isWork || isFocus;
     var isPersonal = active === 'personal';
     var isAbout = active === 'about';
+    var isSalesX = active === 'salesx';
 
     var nav = document.createElement('nav');
     nav.className = 'infina-nav';
@@ -88,6 +89,7 @@
           '<a href="inside.html"' + (isInside ? ' class="active"' : '') + '>AI Inside</a>' +
           '<a href="work.html"' + (isWork ? ' class="active"' : '') + '>AI Work</a>' +
           '<a href="personal.html"' + (isPersonal ? ' class="active"' : '') + '>AI Personal</a>' +
+          '<a href="salesx.html"' + (isSalesX ? ' class="active"' : '') + '>AI SalesX</a>' +
         '</div>' +
         '<a href="#demo" class="nav-cta">Book a demo</a>' +
       '</div>';
@@ -132,6 +134,13 @@
     aPersonal.textContent = 'AI Personal';
     if (isPersonal) aPersonal.classList.add('active');
     panel.appendChild(aPersonal);
+
+    // AI SalesX
+    var aSalesX = document.createElement('a');
+    aSalesX.href = 'salesx.html';
+    aSalesX.textContent = 'AI SalesX';
+    if (isSalesX) aSalesX.classList.add('active');
+    panel.appendChild(aSalesX);
 
     // Book a demo CTA
     var aCta = document.createElement('a');
