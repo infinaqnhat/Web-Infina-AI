@@ -697,72 +697,74 @@
           </div>
         </div>
 
-        <!-- Time grid body -->
+        <!-- Time grid body — row-pair structure so labels always align with events -->
         <div style="display:grid;grid-template-columns:56px 1fr;">
-          <div style="border-right:1px solid var(--line);">
-            <div style="height:48px;padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-bottom:1px solid var(--line);">7 am</div>
-            <div style="height:48px;padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-bottom:1px solid var(--line);">8 am</div>
-            <div style="height:48px;padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-bottom:1px solid var(--line);">9 am</div>
-            <div style="height:48px;padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-bottom:1px solid var(--line);">10 am</div>
-            <div style="height:48px;padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-bottom:1px solid var(--line);">11 am</div>
-            <div style="height:48px;padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-bottom:1px solid var(--line);">12 pm</div>
-            <div style="height:48px;padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-bottom:1px solid var(--line);">1 pm</div>
-            <div style="height:48px;padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-bottom:1px solid var(--line);">2 pm</div>
-            <div style="height:48px;padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-bottom:1px solid var(--line);">3 pm</div>
-            <div style="height:48px;padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-bottom:1px solid var(--line);">4 pm</div>
-            <div style="height:80px;padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-bottom:1px solid var(--line);">5 pm</div>
-            <div style="height:48px;padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;">11 pm</div>
-          </div>
-          <div style="position:relative;">
-            <!-- Grid lines -->
-            <div style="height:48px;border-bottom:1px solid var(--line);"></div>
-            <!-- 8am YOU event -->
-            <div style="border-bottom:1px solid var(--line);background:#FFF8E8;padding:10px 14px;min-height:96px;">
-              <div style="font-size:10px;font-weight:700;color:#B8860B;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">8:00 AM · YOU · ATTRACT <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#E8A020;margin-left:4px;vertical-align:middle;"></span></div>
-              <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">Coffee. No inbox panic. <span style="font-weight:400;color:var(--muted);">Clear list of warm leads with context. No chasing, <span style="color:#B8860B;">no guessing.</span></span></div>
-              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
-                <span style="font-size:11px;background:#FFF0C8;color:#A07010;border:1px solid #F0D080;border-radius:6px;padding:2px 9px;">Lead scoring</span>
-                <span style="font-size:11px;background:#FFF0C8;color:#A07010;border:1px solid #F0D080;border-radius:6px;padding:2px 9px;">Visitor analytics</span>
-              </div>
-            </div>
-            <div style="height:48px;border-bottom:1px solid var(--line);"></div>
-            <!-- 11am AI SalesX event -->
-            <div style="border-bottom:1px solid var(--line);background:#EEF3FF;padding:10px 14px;min-height:144px;">
-              <div style="font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">11:00 AM · AI SALESX · ENGAGE</div>
-              <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">A buyer asks. AI SalesX handles it.</div>
-              <div style="font-size:13px;color:var(--muted);line-height:1.5;">Someone messages while <span style="color:var(--ink);font-weight:500;">you</span> are at a viewing. <span style="color:var(--blue);font-weight:500;">AI SalesX</span> replies instantly, sends photos and a branded brochure. The conversation moves forward <span style="color:var(--ink);font-weight:500;">without you.</span></div>
-              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
-                <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">AI agent</span>
-                <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">Brochure</span>
-                <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">Multilingual</span>
-              </div>
-            </div>
-            <div style="height:48px;border-bottom:1px solid var(--line);"></div>
-            <!-- 2:30pm YOU event -->
-            <div style="border-bottom:1px solid var(--line);background:#FFF8E8;padding:10px 14px;min-height:96px;">
-              <div style="font-size:10px;font-weight:700;color:#B8860B;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">2:30 PM · YOU · SIGN <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#E8A020;margin-left:4px;vertical-align:middle;"></span></div>
-              <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">One ping. One warm lead. <span style="font-weight:400;color:var(--muted);"><span style="color:var(--blue);">AI SalesX</span> flags the buyer as ready, sends <span style="color:var(--ink);font-weight:500;">you</span> the full summary. <span style="color:var(--blue);">You show up.</span> They sign.</span></div>
-              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
-                <span style="font-size:11px;background:#FFF0C8;color:#A07010;border:1px solid #F0D080;border-radius:6px;padding:2px 9px;">Smart alert</span>
-                <span style="font-size:11px;background:#FFF0C8;color:#A07010;border:1px solid #F0D080;border-radius:6px;padding:2px 9px;">Intent summary</span>
-              </div>
-            </div>
-            <div style="height:48px;border-bottom:1px solid var(--line);"></div>
-            <!-- 5pm–10pm grey filler -->
-            <div style="height:80px;border-bottom:1px solid var(--line);background:repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(0,0,0,.018) 6px,rgba(0,0,0,.018) 12px);display:flex;align-items:center;justify-content:center;">
-              <span style="font-size:12px;font-weight:600;color:var(--muted);background:#fff;padding:4px 14px;border-radius:9999px;border:1px solid var(--line);">5 PM – 10 PM</span>
-            </div>
-            <!-- 11pm AI SalesX event -->
-            <div style="background:#EEF3FF;padding:10px 14px;min-height:48px;">
-              <div style="font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">11:00 PM · AI SALESX · SERVE MORE</div>
-              <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">You wrap up early.</div>
-              <div style="font-size:13px;color:var(--muted);line-height:1.5;">Follow-ups sent. New inquiries answered. <span style="color:var(--blue);">Callbacks booked for tomorrow.</span></div>
-              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
-                <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">Always on</span>
-                <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">Marketing email</span>
-              </div>
+
+          <!-- 7am empty -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);height:48px;">7 am</div>
+          <div style="height:48px;border-bottom:1px solid var(--line);"></div>
+
+          <!-- 8am YOU event -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);">8 am</div>
+          <div style="border-bottom:1px solid var(--line);background:#FFF8E8;padding:10px 14px;">
+            <div style="font-size:10px;font-weight:700;color:#B8860B;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">8:00 AM · YOU · ATTRACT <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#E8A020;margin-left:4px;vertical-align:middle;"></span></div>
+            <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">Coffee. No inbox panic. <span style="font-weight:400;color:var(--muted);">Clear list of warm leads with context. No chasing, <span style="color:#B8860B;">no guessing.</span></span></div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
+              <span style="font-size:11px;background:#FFF0C8;color:#A07010;border:1px solid #F0D080;border-radius:6px;padding:2px 9px;">Lead scoring</span>
+              <span style="font-size:11px;background:#FFF0C8;color:#A07010;border:1px solid #F0D080;border-radius:6px;padding:2px 9px;">Visitor analytics</span>
             </div>
           </div>
+
+          <!-- 10am empty -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);height:48px;">10 am</div>
+          <div style="height:48px;border-bottom:1px solid var(--line);"></div>
+
+          <!-- 11am AI SalesX event -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);">11 am</div>
+          <div style="border-bottom:1px solid var(--line);background:#EEF3FF;padding:10px 14px;">
+            <div style="font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">11:00 AM · AI SALESX · ENGAGE</div>
+            <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">A buyer asks. AI SalesX handles it.</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.5;">Someone messages while <span style="color:var(--ink);font-weight:500;">you</span> are at a viewing. <span style="color:var(--blue);font-weight:500;">AI SalesX</span> replies instantly, sends photos and a branded brochure. The conversation moves forward <span style="color:var(--ink);font-weight:500;">without you.</span></div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+              <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">AI agent</span>
+              <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">Brochure</span>
+              <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">Multilingual</span>
+            </div>
+          </div>
+
+          <!-- 2pm empty -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);height:48px;">2 pm</div>
+          <div style="height:48px;border-bottom:1px solid var(--line);"></div>
+
+          <!-- 2:30pm YOU event -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);">2:30 pm</div>
+          <div style="border-bottom:1px solid var(--line);background:#FFF8E8;padding:10px 14px;">
+            <div style="font-size:10px;font-weight:700;color:#B8860B;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">2:30 PM · YOU · SIGN <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#E8A020;margin-left:4px;vertical-align:middle;"></span></div>
+            <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">One ping. One warm lead. <span style="font-weight:400;color:var(--muted);"><span style="color:var(--blue);">AI SalesX</span> flags the buyer as ready, sends <span style="color:var(--ink);font-weight:500;">you</span> the full summary. <span style="color:var(--blue);">You show up.</span> They sign.</span></div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
+              <span style="font-size:11px;background:#FFF0C8;color:#A07010;border:1px solid #F0D080;border-radius:6px;padding:2px 9px;">Smart alert</span>
+              <span style="font-size:11px;background:#FFF0C8;color:#A07010;border:1px solid #F0D080;border-radius:6px;padding:2px 9px;">Intent summary</span>
+            </div>
+          </div>
+
+          <!-- 5pm–10pm filler -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);height:80px;">5 pm</div>
+          <div style="height:80px;border-bottom:1px solid var(--line);background:repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(0,0,0,.018) 6px,rgba(0,0,0,.018) 12px);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:12px;font-weight:600;color:var(--muted);background:#fff;padding:4px 14px;border-radius:9999px;border:1px solid var(--line);">5 PM – 10 PM</span>
+          </div>
+
+          <!-- 11pm AI SalesX event -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);">11 pm</div>
+          <div style="background:#EEF3FF;padding:10px 14px;">
+            <div style="font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">11:00 PM · AI SALESX · SERVE MORE</div>
+            <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">You wrap up early.</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.5;">Follow-ups sent. New inquiries answered. <span style="color:var(--blue);">Callbacks booked for tomorrow.</span></div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+              <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">Always on</span>
+              <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">Marketing email</span>
+            </div>
+          </div>
+
         </div>
 
       </div>
