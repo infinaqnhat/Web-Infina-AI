@@ -1,0 +1,15 @@
+{
+  "name": "web-infina-ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Source-of-truth marketing UI (static HTML) for Infina AI. See docs/ui-spec/ for the living UI contract synced to apps/infina-ai.",
+  "scripts": {
+    "spec": "node scripts/extract-ui-spec.mjs",
+    "spec:scaffold": "node scripts/extract-ui-spec.mjs --scaffold",
+    "spec:check": "node scripts/extract-ui-spec.mjs --check"
+  },
+  "devDependencies": {
+    "node-html-parser": "^7.0.1"
+  }
+}
