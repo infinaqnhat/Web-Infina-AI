@@ -36,7 +36,6 @@
             '<a href="inside.html">Inside</a>' +
             '<a href="work.html">Work</a>' +
             '<a href="personal.html">Personal</a>' +
-            '<a href="salesx.html">SalesX</a>' +
           '</div>' +
           '<p class="footer-copy">© 2026 Infina. All rights reserved.</p>' +
         '</div>';
