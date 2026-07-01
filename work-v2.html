@@ -1411,15 +1411,7 @@
     /* Strike-through line */
     .diff-col-old { position: relative; }
     .diff-old-text { position: relative; display: inline; }
-    .diff-strike {
-      position: absolute; left: 0; right: 0;
-      top: 50%; height: 2px;
-      background: #ef4444;
-      transform-origin: left;
-      transform: scaleX(0);
-      border-radius: 2px;
-      pointer-events: none;
-    }
+    .diff-strike { display: none; }
     /* Step 2: strike draws */
     .diff-row.anim-strike .diff-strike { animation: strikeGrow .3s cubic-bezier(.4,0,.2,1) both; }
     /* Step 2: old text dims */
@@ -1442,7 +1434,8 @@
     .diff-cell { padding: 18px 22px; font-size: 14px; }
     .diff-cell-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; color: #94a3b8; padding: 18px 18px; }
     .diff-col-old { background: #fafbfd; color: var(--muted); font-weight: 400; border-left: 1px solid #eef1f8; }
-    .diff-col-new { background: rgba(0,31,92,.025); color: var(--accent); font-weight: 600; border-left: 1px solid #e4e9f2; }
+    .diff-col-old .diff-old-text::before { content: "\00d7"; color: #b4bed0; font-weight: 700; margin-right: 9px; }
+    .diff-col-new { background: rgba(0,31,92,.05); color: var(--accent); font-weight: 600; border-left: 2px solid rgba(0,31,92,.18); }
     .diff-col-new svg { color: #16a34a; }
 
     /* ── Proof / Metrics ───────────────────────────────────── */
