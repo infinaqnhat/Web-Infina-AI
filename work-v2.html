@@ -1380,6 +1380,34 @@
     .spec-cta-btn-2 { background: #eef2ff; color: #6366f1; }
     .spec-cta-btn-3 { background: #f5f3ff; color: #7c3aed; }
 
+    /* ── Cách 1: accordion rows (comparison test) ───────── */
+    .ac-compare-label { text-align: center; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 64px 0 24px; }
+    .ac-wrap { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+    .ac-row { --c: var(--accent); --c-tint: var(--accent-light); background: #fff; border: 1px solid #e4e9f2; border-left: 3px solid var(--c); border-radius: 14px; overflow: hidden; transition: box-shadow .25s; }
+    .ac-row[open] { box-shadow: 0 10px 30px -12px rgba(0,31,92,.18); }
+    .ac-row-1 { --c: #3b6be6; --c-tint: #eff6ff; }
+    .ac-row-2 { --c: #6366f1; --c-tint: #eef2ff; }
+    .ac-row-3 { --c: #7c3aed; --c-tint: #f5f3ff; }
+    .ac-head { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 16px; padding: 18px 22px; user-select: none; }
+    .ac-head::-webkit-details-marker { display: none; }
+    .ac-icon { width: 44px; height: 44px; border-radius: 11px; background: var(--c); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ac-icon svg { width: 22px; height: 22px; }
+    .ac-head-main { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .ac-cat { font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--c); }
+    .ac-cat span { color: #94a3b8; font-weight: 600; }
+    .ac-name { font-size: 18px; font-weight: 800; color: #0f172a; letter-spacing: -.02em; }
+    .ac-name .ac-role { font-size: 12px; font-weight: 600; color: var(--c); margin-left: 8px; letter-spacing: 0; }
+    .ac-chevron { width: 28px; height: 28px; border-radius: 50%; background: var(--c-tint); color: var(--c); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform .25s; }
+    .ac-chevron svg { width: 15px; height: 15px; }
+    .ac-row[open] .ac-chevron { transform: rotate(180deg); }
+    .ac-body { padding: 0 22px 20px 22px; }
+    .ac-context { font-size: 15px; color: var(--fg); font-weight: 600; margin: 0 0 14px; }
+    .ac-list { list-style: none; padding: 14px 0 0; margin: 0; border-top: 1px solid #f0f3fb; display: flex; flex-direction: column; gap: 10px; }
+    .ac-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--fg-secondary); line-height: 1.5; }
+    .ac-list li::before { content: "✓"; color: #16a34a; font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+    .ac-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 14px; font-weight: 700; text-decoration: none; color: var(--c); }
+    .ac-cta svg { width: 16px; height: 16px; }
+
     /* Checklist circle style */
     .spec-card .spec-checklist li::before { content: ""; width: 15px; height: 15px; border-radius: 50%; border: 1.5px solid currentColor; display: flex; align-items: center; justify-content: center; background: url("data:image/svg+xml,%3Csvg width='9' height='7' viewBox='0 0 9 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3.5L3.5 6L8 1' stroke='%2316a34a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/9px no-repeat; border-color: #bbf7d0; flex-shrink: 0; margin-top: 2px; }
 
@@ -1987,6 +2015,71 @@
           </span>
         </div>
       </div>
+
+      <!-- ===== CÁCH 1 (comparison test): accordion rows ===== -->
+      <div class="ac-compare-label reveal">↓ Cách 1 — Accordion rows (for comparison)</div>
+      <div class="ac-wrap reveal">
+        <details class="ac-row ac-row-1" open>
+          <summary class="ac-head">
+            <span class="ac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M4 14a2 2 0 0 1 2-2h1v6H6a2 2 0 0 1-2-2v-2z"/><path d="M20 14a2 2 0 0 0-2-2h-1v6h1a2 2 0 0 0 2-2v-2z"/><path d="M18 18v1a3 3 0 0 1-3 3h-3"/></svg></span>
+            <span class="ac-head-main">
+              <span class="ac-cat">Front Office <span>· Customer-facing growth</span></span>
+              <span class="ac-name">AI SalesX <span class="ac-role">For sales teams</span></span>
+            </span>
+            <span class="ac-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </summary>
+          <div class="ac-body">
+            <p class="ac-context">AI sells. You show up to close.</p>
+            <ul class="ac-list">
+              <li>Live AI brochure built per prospect, mid-conversation</li>
+              <li>WhatsApp agent qualifies leads and books meetings 24/7</li>
+              <li>Briefs you before you step in, leads arrive warm</li>
+            </ul>
+            <a href="#demo" class="ac-cta">Explore AI SalesX <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </details>
+
+        <details class="ac-row ac-row-2">
+          <summary class="ac-head">
+            <span class="ac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v4"/><path d="M5 17v-2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2"/></svg></span>
+            <span class="ac-head-main">
+              <span class="ac-cat">Leadership <span>· Decisions &amp; intelligence</span></span>
+              <span class="ac-name">AI ManageX <span class="ac-role">For managers &amp; leaders</span></span>
+            </span>
+            <span class="ac-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </summary>
+          <div class="ac-body">
+            <p class="ac-context">Decide faster.</p>
+            <ul class="ac-list">
+              <li>OKRs aligned, conflicts flagged early</li>
+              <li>Ask any question, get an instant answer</li>
+              <li>Reports and emails drafted on command</li>
+            </ul>
+            <a href="#demo" class="ac-cta">Explore AI ManageX <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </details>
+
+        <details class="ac-row ac-row-3">
+          <summary class="ac-head">
+            <span class="ac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5"/><path d="M13 3v5h5"/><path d="M8 11h4"/><path d="M8 15h3"/><path d="M18.6 13.4a1.5 1.5 0 0 1 2.1 2.1l-4.7 4.7-2.8.7.7-2.8z"/><path d="M17.2 14.8l2.1 2.1"/></svg></span>
+            <span class="ac-head-main">
+              <span class="ac-cat">Back Office <span>· Operations &amp; efficiency</span></span>
+              <span class="ac-name">AI OperateX <span class="ac-role">For ops &amp; finance teams</span></span>
+            </span>
+            <span class="ac-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </summary>
+          <div class="ac-body">
+            <p class="ac-context">Run leaner.</p>
+            <ul class="ac-list">
+              <li>Repeatable workflows fully automated</li>
+              <li>Procurement and approvals handled end-to-end</li>
+              <li>Full spend visibility across every account</li>
+            </ul>
+            <a href="#demo" class="ac-cta">Explore AI OperateX <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </details>
+      </div>
+      <!-- ===== END CÁCH 1 ===== -->
 
     </div>
   </section>
