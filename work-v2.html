@@ -49,14 +49,14 @@
     .logo:hover .logo-img { height: 23px; width: auto; display: block; }
 
     /* Hero */
-    .hero { position: relative; padding: clamp(140px, 18vw, 180px) 0 clamp(64px, 8vw, 96px); overflow: hidden; background: linear-gradient(160deg, #eef1f8 0%, #f5f7fc 30%, #ffffff 70%); }
-    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 55% at 50% 30%, rgba(0,31,92,.10), transparent 65%), radial-gradient(ellipse 50% 40% at 85% 70%, rgba(0,31,92,.06), transparent 60%), radial-gradient(ellipse 40% 35% at 10% 60%, rgba(76,110,230,.06), transparent 60%); z-index: -2; pointer-events: none; }
-    .hero-grid-bg { display: none; }
+    .hero { position: relative; padding: clamp(140px, 18vw, 180px) 0 clamp(48px, 6vw, 72px); overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 70% 30%, rgba(24, 99, 220, 0.14), transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(126, 87, 194, 0.08), transparent 60%); z-index: -2; }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(24, 99, 220, 0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(24, 99, 220, 0.06) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); z-index: -2; pointer-events: none; }
     .shape { position: absolute; border-radius: 50%; z-index: -1; pointer-events: none; }
-    .shape-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,31,92,.10) 0%, transparent 70%); top: -5%; right: -8%; animation: float 10s ease-in-out infinite; }
-    .shape-2 { width: 360px; height: 360px; background: radial-gradient(circle, rgba(0,31,92,.07) 0%, transparent 70%); bottom: 10%; left: -8%; animation: float-reverse 12s ease-in-out infinite; }
-    .shape-3 { width: 220px; height: 220px; border: 1px solid rgba(0,31,92,.18); top: 28%; left: 8%; animation: pulse 7s ease-in-out infinite; }
-    .shape-4 { width: 140px; height: 140px; border: 1px solid rgba(0,31,92,.14); bottom: 25%; right: 12%; animation: pulse 9s ease-in-out infinite; animation-delay: 2s; }
+    .shape-1 { width: 400px; height: 400px; background: linear-gradient(135deg, rgba(24,99,220,.08), transparent); top: 10%; right: -10%; animation: float 8s ease-in-out infinite; }
+    .shape-2 { width: 300px; height: 300px; background: linear-gradient(135deg, rgba(24,99,220,.05), transparent); bottom: 20%; left: -5%; animation: float-reverse 10s ease-in-out infinite; }
+    .shape-3 { width: 200px; height: 200px; border: 1px solid var(--border-light); top: 30%; left: 10%; animation: pulse 6s ease-in-out infinite; }
+    .shape-4 { width: 150px; height: 150px; border: 1px solid var(--border-light); bottom: 30%; right: 15%; animation: pulse 8s ease-in-out infinite; animation-delay: 2s; }
     .hero .container { position: relative; z-index: 1; text-align: center; }
     .hero-grid { display: block; text-align: center; }
     .hero-grid .hero-text { max-width: 900px; margin: 0 auto; }
@@ -1186,58 +1186,17 @@
        REDESIGN, PREMIUM DARK HERO + REFINED BODY
        ═══════════════════════════════════════════════════════ */
 
-    /* ── Dark Hero ─────────────────────────────────────────── */
-    .hero {
-      background: #000e2d;
-      padding: clamp(160px,20vw,200px) 0 clamp(96px,12vw,140px);
-    }
-    .hero-bg {
-      background:
-        radial-gradient(ellipse 80% 70% at 20% 30%, rgba(76,110,230,.22) 0%, transparent 65%),
-        radial-gradient(ellipse 60% 55% at 85% 65%, rgba(0,31,92,.55) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 45% at 55% 90%, rgba(76,110,230,.12) 0%, transparent 60%);
-    }
-    .shape-1 { background: radial-gradient(circle, rgba(76,110,230,.22) 0%, transparent 70%); opacity: .8; }
-    .shape-2 { background: radial-gradient(circle, rgba(76,110,230,.14) 0%, transparent 70%); }
-    .shape-3 { border-color: rgba(255,255,255,.09); }
-    .shape-4 { border-color: rgba(255,255,255,.07); }
-
-    /* Hero text on dark bg */
-    .hero h1 .line        { color: #ffffff; }
-    .hero-sub             { color: rgba(255,255,255,.68); font-size: 18px; }
-    .hero-badge           { color: rgba(255,255,255,.8); border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.08); backdrop-filter: blur(8px); }
-
-    /* Hero CTAs on dark bg */
-    .hero .btn-primary    { background: #fff; color: var(--accent); font-weight: 700; box-shadow: 0 8px 28px rgba(0,0,0,.25); }
-    .hero .btn-primary:hover { background: #eef2ff; transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,.35); }
-    .hero .btn-ghost      { border-color: rgba(255,255,255,.28); color: rgba(255,255,255,.85); background: rgba(255,255,255,.06); backdrop-filter: blur(8px); }
-    .hero .btn-ghost:hover { border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.12); color: #fff; }
-
-    /* Hero badge pill (new element) */
-    .hero-pill {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
-      color: rgba(255,255,255,.75);
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.07);
-      backdrop-filter: blur(8px);
-      border-radius: 999px; padding: 8px 18px;
-      margin-bottom: 32px;
-      opacity: 0; animation: fade-up .6s ease-out .15s forwards;
-    }
-    .hero-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: #4c6ee6; box-shadow: 0 0 8px #4c6ee6; flex-shrink: 0; }
-
-    /* Hero trust strip */
+    /* ── Hero trust strip (light) ─────────────────────────── */
     .hero-trust {
       display: flex; align-items: center; gap: 28px; flex-wrap: wrap; justify-content: center;
       margin-top: 52px;
       opacity: 0; animation: fade-up .8s ease-out .65s forwards;
     }
-    .hero-trust-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,.4); }
-    .hero-trust-divider { width: 1px; height: 16px; background: rgba(255,255,255,.15); }
+    .hero-trust-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+    .hero-trust-divider { width: 1px; height: 16px; background: var(--border); }
     .hero-trust-item {
       display: flex; align-items: center; gap: 8px;
-      font-size: 13px; font-weight: 500; color: rgba(255,255,255,.6);
+      font-size: 13px; font-weight: 500; color: var(--fg-secondary);
     }
     .hero-trust-item svg { opacity: .6; }
 
@@ -1562,7 +1521,7 @@
     <div class="container">
       <div class="hero-grid">
         <div class="hero-text">
-          <div class="hero-pill"><span class="hero-pill-dot"></span>Infina AI Work</div>
+          <div class="hero-badge">Infina AI Work</div>
           <h1><span class="line">Your company's</span><br><span class="line line-accent">AI workforce.</span></h1>
           <p class="hero-sub">AI Specialists that execute sales, operations, and management work, so your team focuses on decisions, not tasks.</p>
           <div class="hero-ctas">
