@@ -1380,42 +1380,6 @@
     .spec-cta-btn-2 { background: #eef2ff; color: #6366f1; }
     .spec-cta-btn-3 { background: #f5f3ff; color: #7c3aed; }
 
-    /* ── Option D: anchor chip-bar nav + cards (comparison test) ─── */
-    .dd-compare-label { text-align: center; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 64px 0 24px; }
-    .dd-nav { display: flex; gap: 12px; max-width: 1100px; margin: 0 auto 28px; overflow-x: auto; padding-bottom: 4px; }
-    .dd-chip { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 210px; background: #fff; border: 1px solid #e4e9f2; border-radius: 12px; padding: 12px 16px; text-decoration: none; transition: border-color .2s, box-shadow .2s, transform .2s; }
-    .dd-chip:hover { border-color: var(--c); box-shadow: 0 6px 18px rgba(0,31,92,.08); transform: translateY(-2px); }
-    .dd-chip-1 { --c: #3b6be6; --c-tint: #eff6ff; }
-    .dd-chip-2 { --c: #6366f1; --c-tint: #eef2ff; }
-    .dd-chip-3 { --c: #7c3aed; --c-tint: #f5f3ff; }
-    .dd-chip-icon { width: 34px; height: 34px; border-radius: 9px; background: var(--c-tint); color: var(--c); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .dd-chip-icon svg { width: 18px; height: 18px; }
-    .dd-chip-text { display: flex; flex-direction: column; }
-    .dd-chip-label { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--c); }
-    .dd-chip-sub { font-size: 11px; color: #94a3b8; margin-top: 1px; white-space: nowrap; }
-    .dd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
-    @media (max-width: 900px) { .dd-grid { grid-template-columns: 1fr; } }
-    .dd-card { --c: var(--accent); --c-tint: var(--accent-light); background: #fff; border: 1px solid #e4e9f2; border-top: 3px solid var(--c); border-radius: 18px; padding: 26px 26px 22px; box-shadow: 0 4px 20px rgba(0,31,92,.07); display: flex; flex-direction: column; scroll-margin-top: 90px; transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s; }
-    .dd-card:hover { transform: translateY(-6px); box-shadow: 0 20px 44px -12px rgba(0,31,92,.2); }
-    .dd-card-1 { --c: #3b6be6; --c-tint: #eff6ff; }
-    .dd-card-2 { --c: #6366f1; --c-tint: #eef2ff; }
-    .dd-card-3 { --c: #7c3aed; --c-tint: #f5f3ff; }
-    .dd-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-    .dd-icon { width: 48px; height: 48px; border-radius: 13px; background: var(--c); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .dd-icon svg { width: 24px; height: 24px; }
-    .dd-name { font-size: 20px; font-weight: 800; color: #0f172a; letter-spacing: -.03em; }
-    .dd-role { font-size: 12px; font-weight: 600; color: var(--c); margin-top: 2px; }
-    .dd-context { font-size: 14px; color: var(--fg-secondary); font-weight: 500; line-height: 1.5; margin: 0; }
-    .dd-list { list-style: none; padding: 16px 0 0; margin: 16px 0 0; border-top: 1px solid #f0f3fb; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-    .dd-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--fg-secondary); line-height: 1.5; }
-    .dd-list li::before { content: "✓"; color: #16a34a; font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 1px; }
-    .dd-cta { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 700; text-decoration: none; margin-top: auto; padding-top: 16px; border-top: 1px solid #f0f3fb; color: var(--c); }
-    .dd-cta-btn { width: 30px; height: 30px; border-radius: 50%; background: var(--c-tint); color: var(--c); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    @media (max-width: 760px) {
-      .dd-chip { flex: 0 0 auto; min-width: auto; }
-      .dd-chip-sub { display: none; }
-    }
-
     /* Checklist circle style */
     .spec-card .spec-checklist li::before { content: ""; width: 15px; height: 15px; border-radius: 50%; border: 1.5px solid currentColor; display: flex; align-items: center; justify-content: center; background: url("data:image/svg+xml,%3Csvg width='9' height='7' viewBox='0 0 9 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3.5L3.5 6L8 1' stroke='%2316a34a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/9px no-repeat; border-color: #bbf7d0; flex-shrink: 0; margin-top: 2px; }
 
@@ -2023,76 +1987,6 @@
           </span>
         </div>
       </div>
-
-      <!-- ===== OPTION D (comparison test): anchor chip-bar nav + cards ===== -->
-      <div class="dd-compare-label reveal">↓ Option D — Anchor chip-bar nav + cards (for comparison)</div>
-      <nav class="dd-nav reveal">
-        <a href="#dd-salesx" class="dd-chip dd-chip-1">
-          <span class="dd-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M4 14a2 2 0 0 1 2-2h1v6H6a2 2 0 0 1-2-2v-2z"/><path d="M20 14a2 2 0 0 0-2-2h-1v6h1a2 2 0 0 0 2-2v-2z"/><path d="M18 18v1a3 3 0 0 1-3 3h-3"/></svg></span>
-          <span class="dd-chip-text"><span class="dd-chip-label">Front Office</span><span class="dd-chip-sub">Customer-facing growth</span></span>
-        </a>
-        <a href="#dd-managex" class="dd-chip dd-chip-2">
-          <span class="dd-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v4"/><path d="M5 17v-2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2"/></svg></span>
-          <span class="dd-chip-text"><span class="dd-chip-label">Leadership</span><span class="dd-chip-sub">Decisions &amp; intelligence</span></span>
-        </a>
-        <a href="#dd-operatex" class="dd-chip dd-chip-3">
-          <span class="dd-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5"/><path d="M13 3v5h5"/><path d="M8 11h4"/><path d="M8 15h3"/><path d="M18.6 13.4a1.5 1.5 0 0 1 2.1 2.1l-4.7 4.7-2.8.7.7-2.8z"/><path d="M17.2 14.8l2.1 2.1"/></svg></span>
-          <span class="dd-chip-text"><span class="dd-chip-label">Back Office</span><span class="dd-chip-sub">Operations &amp; efficiency</span></span>
-        </a>
-      </nav>
-      <div class="dd-grid">
-        <div class="dd-card dd-card-1 reveal" id="dd-salesx">
-          <div class="dd-header">
-            <div class="dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M4 14a2 2 0 0 1 2-2h1v6H6a2 2 0 0 1-2-2v-2z"/><path d="M20 14a2 2 0 0 0-2-2h-1v6h1a2 2 0 0 0 2-2v-2z"/><path d="M18 18v1a3 3 0 0 1-3 3h-3"/></svg></div>
-            <div>
-              <div class="dd-name">AI SalesX</div>
-              <div class="dd-role">For sales teams</div>
-            </div>
-          </div>
-          <p class="dd-context">AI sells. You show up to close.</p>
-          <ul class="dd-list">
-            <li>Live AI brochure built per prospect, mid-conversation</li>
-            <li>WhatsApp agent qualifies leads and books meetings 24/7</li>
-            <li>Briefs you before you step in, leads arrive warm</li>
-          </ul>
-          <a href="#demo" class="dd-cta">Explore AI SalesX <span class="dd-cta-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-        </div>
-
-        <div class="dd-card dd-card-2 reveal" id="dd-managex">
-          <div class="dd-header">
-            <div class="dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v4"/><path d="M5 17v-2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2"/></svg></div>
-            <div>
-              <div class="dd-name">AI ManageX</div>
-              <div class="dd-role">For managers &amp; leaders</div>
-            </div>
-          </div>
-          <p class="dd-context">Decide faster.</p>
-          <ul class="dd-list">
-            <li>OKRs aligned, conflicts flagged early</li>
-            <li>Ask any question, get an instant answer</li>
-            <li>Reports and emails drafted on command</li>
-          </ul>
-          <a href="#demo" class="dd-cta">Explore AI ManageX <span class="dd-cta-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-        </div>
-
-        <div class="dd-card dd-card-3 reveal" id="dd-operatex">
-          <div class="dd-header">
-            <div class="dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5"/><path d="M13 3v5h5"/><path d="M8 11h4"/><path d="M8 15h3"/><path d="M18.6 13.4a1.5 1.5 0 0 1 2.1 2.1l-4.7 4.7-2.8.7.7-2.8z"/><path d="M17.2 14.8l2.1 2.1"/></svg></div>
-            <div>
-              <div class="dd-name">AI OperateX</div>
-              <div class="dd-role">For ops &amp; finance teams</div>
-            </div>
-          </div>
-          <p class="dd-context">Run leaner.</p>
-          <ul class="dd-list">
-            <li>Repeatable workflows fully automated</li>
-            <li>Procurement and approvals handled end-to-end</li>
-            <li>Full spend visibility across every account</li>
-          </ul>
-          <a href="#demo" class="dd-cta">Explore AI OperateX <span class="dd-cta-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-        </div>
-      </div>
-      <!-- ===== END OPTION D ===== -->
 
     </div>
   </section>
