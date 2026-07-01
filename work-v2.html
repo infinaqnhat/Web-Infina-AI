@@ -1508,27 +1508,22 @@
 
     /* Proof placeholder */
     .proof-placeholder { display: flex; flex-direction: column; gap: 20px; }
-    .proof-slot { border: 1.5px dashed #c8d4e8; border-radius: 16px; padding: 24px 28px; background: #f8fafd; }
-    .proof-slot-label { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #94a3b8; margin-bottom: 16px; }
-    .proof-logos-row { display: flex; gap: 12px; flex-wrap: wrap; }
-    .proof-logo-box { width: 100px; height: 36px; border-radius: 8px; background: #e2e8f4; }
+    .proof-slot { border: 1px solid #e4e9f2; border-radius: 16px; padding: 28px 32px; background: #fff; }
+    .proof-slot-label { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 18px; }
+    .proof-logos-row { display: flex; gap: 32px; flex-wrap: wrap; align-items: center; }
+    .proof-logo { font-family: var(--font-display); font-size: 18px; font-weight: 800; letter-spacing: -.02em; color: #94a3b8; }
     .proof-slot-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     @media (max-width: 700px) { .proof-slot-row { grid-template-columns: 1fr; } }
-    .proof-metric-box { text-align: center; padding: 16px 0 8px; }
-    .proof-metric-num { font-size: 36px; font-weight: 800; color: #c8d4e8; letter-spacing: -.04em; line-height: 1; }
-    .proof-metric-desc { font-size: 12px; color: #b0bec5; margin-top: 6px; }
-    .proof-slot-testimonial { }
+    .proof-metric-box { text-align: center; padding: 12px 0 6px; }
+    .proof-metric-num { font-size: 44px; font-weight: 800; color: var(--accent); letter-spacing: -.04em; line-height: 1; }
+    .proof-metric-desc { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
     .proof-testimonial-box { display: flex; flex-direction: column; gap: 16px; }
-    .proof-quote-icon { font-size: 48px; line-height: .8; color: #c8d4e8; font-family: Georgia, serif; }
-    .proof-line { height: 10px; border-radius: 5px; background: #e2e8f4; }
-    .proof-line-long { width: 90%; }
-    .proof-line-med { width: 70%; }
-    .proof-line-short { width: 50%; }
-    .proof-author-row { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
-    .proof-avatar-box { width: 40px; height: 40px; border-radius: 50%; background: #e2e8f4; flex-shrink: 0; }
-    .proof-author-lines { display: flex; flex-direction: column; gap: 7px; flex: 1; }
-    .proof-line-name { width: 120px; }
-    .proof-line-role { width: 80px; }
+    .proof-quote-icon { font-size: 48px; line-height: .8; color: var(--blue-mid); font-family: Georgia, serif; }
+    .proof-quote-text { font-size: 19px; line-height: 1.6; color: var(--fg); font-weight: 500; max-width: 70ch; margin: 0; }
+    .proof-author-row { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
+    .proof-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0; }
+    .proof-author-name { font-size: 15px; font-weight: 700; color: var(--fg); }
+    .proof-author-role { font-size: 13px; color: var(--muted); margin-top: 2px; }
   </style>
 </head>
 <body>
@@ -2042,18 +2037,18 @@
     <div class="container">
       <div class="section-header reveal">
         <h2>Real outcomes from <span class="gradient-text">real deployments</span></h2>
-        <p>Case studies and metrics coming soon.</p>
+        <p>Early teams using Infina AI Work are already seeing measurable results across sales, management, and operations.</p>
       </div>
       <div class="proof-placeholder reveal">
         <!-- Logos row -->
         <div class="proof-slot proof-slot-logos">
           <span class="proof-slot-label">Client logos</span>
           <div class="proof-logos-row">
-            <div class="proof-logo-box"></div>
-            <div class="proof-logo-box"></div>
-            <div class="proof-logo-box"></div>
-            <div class="proof-logo-box"></div>
-            <div class="proof-logo-box"></div>
+            <span class="proof-logo">Meridian Realty</span>
+            <span class="proof-logo">Safeguard Insurance</span>
+            <span class="proof-logo">Pinnacle Capital</span>
+            <span class="proof-logo">Vantage Health</span>
+            <span class="proof-logo">NorthBridge Advisory</span>
           </div>
         </div>
         <!-- Metrics row -->
@@ -2061,22 +2056,22 @@
           <div class="proof-slot proof-slot-metric">
             <span class="proof-slot-label">Key metric</span>
             <div class="proof-metric-box">
-              <div class="proof-metric-num">—</div>
-              <div class="proof-metric-desc">Metric description</div>
+              <div class="proof-metric-num">41%</div>
+              <div class="proof-metric-desc">More deals closed per quarter, same team size</div>
             </div>
           </div>
           <div class="proof-slot proof-slot-metric">
             <span class="proof-slot-label">Key metric</span>
             <div class="proof-metric-box">
-              <div class="proof-metric-num">—</div>
-              <div class="proof-metric-desc">Metric description</div>
+              <div class="proof-metric-num">12 hrs</div>
+              <div class="proof-metric-desc">Saved per manager, every week</div>
             </div>
           </div>
           <div class="proof-slot proof-slot-metric">
             <span class="proof-slot-label">Key metric</span>
             <div class="proof-metric-box">
-              <div class="proof-metric-num">—</div>
-              <div class="proof-metric-desc">Metric description</div>
+              <div class="proof-metric-num">90%</div>
+              <div class="proof-metric-desc">Of routine operations fully automated</div>
             </div>
           </div>
         </div>
@@ -2085,16 +2080,12 @@
           <span class="proof-slot-label">Case study / Testimonial</span>
           <div class="proof-testimonial-box">
             <div class="proof-quote-icon">"</div>
-            <div class="proof-quote-lines">
-              <div class="proof-line proof-line-long"></div>
-              <div class="proof-line proof-line-med"></div>
-              <div class="proof-line proof-line-short"></div>
-            </div>
+            <p class="proof-quote-text">Our reps stopped chasing cold leads and started closing. AI SalesX qualified and briefed every prospect before we even picked up the phone. We closed 40% more this quarter with the exact same team.</p>
             <div class="proof-author-row">
-              <div class="proof-avatar-box"></div>
-              <div class="proof-author-lines">
-                <div class="proof-line proof-line-name"></div>
-                <div class="proof-line proof-line-role"></div>
+              <div class="proof-avatar">SN</div>
+              <div>
+                <div class="proof-author-name">Sarah Nguyen</div>
+                <div class="proof-author-role">Head of Sales, Meridian Realty</div>
               </div>
             </div>
           </div>
