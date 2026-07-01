@@ -1274,28 +1274,35 @@
 
     /* ── Impact Cards ─────────────────────────────────────── */
     .impact-card {
+      --c: var(--accent);
+      --c-tint: var(--accent-light);
       background: #fff;
       border: 1px solid #e4e9f2;
-      border-top: none;
-      border-radius: 24px;
-      overflow: hidden;
+      border-top: 3px solid var(--c);
+      border-radius: 20px;
+      padding: 30px 28px 26px;
       box-shadow: 0 4px 20px rgba(0,31,92,.07);
       transition: all .35s cubic-bezier(.16,1,.3,1);
       display: flex; flex-direction: column;
     }
     .impact-card:hover { transform: translateY(-7px); box-shadow: 0 24px 52px -12px rgba(0,31,92,.2); }
-    .impact-card .wf-header h3 { font-size: 18px; line-height: 1.3; }
-    .impact-body { flex: 1; padding: 24px 28px 28px; display: flex; flex-direction: column; }
+    .impact-card-1 { --c: #3b6be6; --c-tint: rgba(59,107,230,.10); }
+    .impact-card-2 { --c: #6366f1; --c-tint: rgba(99,102,241,.10); }
+    .impact-card-3 { --c: #7c3aed; --c-tint: rgba(124,58,237,.10); }
+    .impact-top { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .impact-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--c-tint); color: var(--c); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .impact-icon svg { width: 22px; height: 22px; }
+    .impact-eyebrow { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; color: var(--c); }
+    .impact-card h3 { font-size: 19px; font-weight: 700; color: var(--fg); letter-spacing: -.02em; line-height: 1.3; margin: 0 0 18px; }
     .impact-list { list-style: none; padding: 0; margin: 0 0 auto; display: flex; flex-direction: column; gap: 12px; }
     .impact-list li { font-size: 14px; color: var(--fg-secondary); line-height: 1.6; display: flex; align-items: flex-start; gap: 10px; }
-    .impact-list li::before { content: ""; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 8px; }
+    .impact-list li::before { content: "✓"; display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; background: var(--c-tint); color: var(--c); font-size: 11px; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
     .impact-outcome {
-      margin-top: 24px;
-      background: #f0fdf4;
-      border: 1px solid #86efac;
-      border-radius: 12px;
-      padding: 13px 18px;
-      font-size: 14px; font-weight: 700; color: #15803d;
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid #eef1f6;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700; color: #15803d;
     }
 
     /* ── AI Specialists Section ────────────────────────────── */
@@ -1562,51 +1569,48 @@
       <div class="workflows-grid reveal" style="align-items:stretch">
 
         <!-- SalesX Impact -->
-        <div class="impact-card">
-          <div class="wf-header">
-            <span class="wf-tag">AI SalesX</span>
-            <h3>More deals closed. Zero pipeline admin.</h3>
+        <div class="impact-card impact-card-1">
+          <div class="impact-top">
+            <span class="impact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M4 14a2 2 0 0 1 2-2h1v6H6a2 2 0 0 1-2-2v-2z"/><path d="M20 14a2 2 0 0 0-2-2h-1v6h1a2 2 0 0 0 2-2v-2z"/><path d="M18 18v1a3 3 0 0 1-3 3h-3"/></svg></span>
+            <span class="impact-eyebrow">AI SalesX</span>
           </div>
-          <div class="impact-body">
-            <ul class="impact-list">
-              <li>Leads acquired, nurtured, and followed up, without your team lifting a finger.</li>
-              <li>CRM always current. No manual logging, no missed follow-ups.</li>
-              <li>Your team shows up to close. The specialist handles everything before that.</li>
-            </ul>
-            <div class="impact-outcome">✓ Deal closed</div>
-          </div>
+          <h3>More deals closed. Zero pipeline admin.</h3>
+          <ul class="impact-list">
+            <li>Leads acquired, nurtured, and followed up, without your team lifting a finger.</li>
+            <li>CRM always current. No manual logging, no missed follow-ups.</li>
+            <li>Your team shows up to close. The specialist handles everything before that.</li>
+          </ul>
+          <div class="impact-outcome">✓ Deal closed</div>
         </div>
 
         <!-- ManageX Impact -->
-        <div class="impact-card">
-          <div class="wf-header">
-            <span class="wf-tag">AI ManageX</span>
-            <h3>Faster decisions. No more digging.</h3>
+        <div class="impact-card impact-card-2">
+          <div class="impact-top">
+            <span class="impact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v4"/><path d="M5 17v-2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2"/></svg></span>
+            <span class="impact-eyebrow">AI ManageX</span>
           </div>
-          <div class="impact-body">
-            <ul class="impact-list">
-              <li>OKRs aligned, conflicts surfaced before they cost you time or money.</li>
-              <li>Ask any business question, get an instant answer, not a dashboard link.</li>
-              <li>Reports drafted, emails sent, tasks executed on command.</li>
-            </ul>
-            <div class="impact-outcome">✓ Decisions made, work done</div>
-          </div>
+          <h3>Faster decisions. No more digging.</h3>
+          <ul class="impact-list">
+            <li>OKRs aligned, conflicts surfaced before they cost you time or money.</li>
+            <li>Ask any business question, get an instant answer, not a dashboard link.</li>
+            <li>Reports drafted, emails sent, tasks executed on command.</li>
+          </ul>
+          <div class="impact-outcome">✓ Decisions made, work done</div>
         </div>
 
         <!-- OperateX Impact -->
-        <div class="impact-card">
-          <div class="wf-header">
-            <span class="wf-tag">AI OperateX</span>
-            <h3>Operations run themselves. Costs under control.</h3>
+        <div class="impact-card impact-card-3">
+          <div class="impact-top">
+            <span class="impact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5"/><path d="M13 3v5h5"/><path d="M8 11h4"/><path d="M8 15h3"/><path d="M18.6 13.4a1.5 1.5 0 0 1 2.1 2.1l-4.7 4.7-2.8.7.7-2.8z"/><path d="M17.2 14.8l2.1 2.1"/></svg></span>
+            <span class="impact-eyebrow">AI OperateX</span>
           </div>
-          <div class="impact-body">
-            <ul class="impact-list">
-              <li>Every repeatable process, procurement, approvals, fulfilment, fully automated.</li>
-              <li>Full spend visibility across SaaS, cloud, cards, and bank. Know exactly where to cut.</li>
-              <li>Built to your exact workflow. Not a generic template.</li>
-            </ul>
-            <div class="impact-outcome">✓ Operation complete, costs visible</div>
-          </div>
+          <h3>Operations run themselves. Costs under control.</h3>
+          <ul class="impact-list">
+            <li>Every repeatable process, procurement, approvals, fulfilment, fully automated.</li>
+            <li>Full spend visibility across SaaS, cloud, cards, and bank. Know exactly where to cut.</li>
+            <li>Built to your exact workflow. Not a generic template.</li>
+          </ul>
+          <div class="impact-outcome">✓ Operation complete, costs visible</div>
         </div>
 
       </div>
