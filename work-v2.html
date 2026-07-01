@@ -1385,7 +1385,7 @@
     .spec-card .spec-checklist li::before { content: ""; width: 15px; height: 15px; border-radius: 50%; border: 1.5px solid currentColor; display: flex; align-items: center; justify-content: center; background: url("data:image/svg+xml,%3Csvg width='9' height='7' viewBox='0 0 9 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3.5L3.5 6L8 1' stroke='%2316a34a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/9px no-repeat; border-color: #bbf7d0; flex-shrink: 0; margin-top: 2px; }
 
     /* Integration strip */
-    .integrations-strip { display: flex; align-items: center; gap: 20px; background: #fff; border: 1px solid #e4e9f2; border-radius: 14px; padding: 16px 28px; margin-top: 16px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+    .integrations-strip { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 20px; background: #fff; border: 1px solid #e4e9f2; border-radius: 14px; padding: 16px 28px; margin-top: 16px; max-width: 1100px; margin-left: auto; margin-right: auto; }
     .integrations-label { font-size: 13px; font-weight: 700; color: #0f172a; white-space: nowrap; flex-shrink: 0; }
     .integrations-logos { display: flex; align-items: center; gap: 20px; padding-left: 20px; border-left: 1px solid #e4e9f2; }
     .integ-logo { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: #475569; }
@@ -1492,9 +1492,18 @@
     .lead-copy h2 { letter-spacing: -.025em; }
 
     @media (max-width: 640px) {
-      .hero-trust { display: none; }
+      .hero-trust { flex-direction: column; gap: 14px; margin-top: 24px; }
       .testimonial-block { padding: 28px 24px; }
       .testimonial-block::before { font-size: 56px; top: 14px; left: 24px; }
+    }
+
+    /* Responsive: stack spec coverage nav + wrap integration strip */
+    @media (max-width: 760px) {
+      .spec-nav { flex-direction: column; gap: 10px; padding: 16px; }
+      .spec-nav-item { flex: none; width: 100%; justify-content: flex-start; }
+      .spec-nav-arrow { transform: rotate(90deg); padding: 2px 0; }
+      .spec-connector { display: none; }
+      .integrations-logos { padding-left: 0; border-left: none; }
     }
 
     /* Proof placeholder */
