@@ -58,5 +58,6 @@ Add its basename to the `PAGES` array in `scripts/extract-ui-spec.mjs`, then run
 
 ---
 
-**Last synced to nx:** `048a5c7` — initial baseline. All 7 pages were ported to `apps/infina-ai`
-per the completed migration, so Nx ≈ HTML at this commit. Bump this sha after each future sync.
+**Last synced to nx:** `9493c0d` — initial baseline (commit that introduced this spec). All 7
+pages were already ported to `apps/infina-ai` per the completed migration, so Nx ≈ HTML here.
+Future syncs diff `git diff 9493c0d..HEAD -- docs/ui-spec/`. Bump this sha after each sync.
