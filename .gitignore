@@ -1,0 +1,9 @@
+.claude
+dist
+node_modules
+package-lock.json
+repomix-output.xml
+tsconfig.app.tsbuildinfo
+tsconfig.node.tsbuildinfo
+
+plans
