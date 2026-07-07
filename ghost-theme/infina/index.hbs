@@ -13,6 +13,7 @@
                 <div class="nr-lead-body">
                     <div class="nr-meta">
                         {{#primary_tag}}<span class="nr-cat">{{name}}</span>{{/primary_tag}}
+                        {{#primary_author}}<span class="nr-author">{{name}}</span>{{/primary_author}}
                         <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
                     </div>
                     <h2 class="nr-lead-title">{{title}}</h2>
@@ -26,6 +27,7 @@
                 <a class="nr-side-item" href="{{url}}">
                     <div class="nr-meta">
                         {{#primary_tag}}<span class="nr-cat">{{name}}</span>{{/primary_tag}}
+                        {{#primary_author}}<span class="nr-author">{{name}}</span>{{/primary_author}}
                         <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
                     </div>
                     <h3 class="nr-side-title">{{title}}</h3>

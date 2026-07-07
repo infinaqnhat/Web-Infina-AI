@@ -147,6 +147,8 @@ h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.025em; line-hei
 
 .nr-meta { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--muted); }
 .nr-cat { font-weight: 700; color: var(--fg-secondary); }
+.nr-author { font-weight: 600; color: var(--fg-secondary); }
+.nr-meta > * + *::before { content: "·"; margin-right: 12px; color: var(--border); }
 .nr-excerpt { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 0; }
 
 /* News section: table (left) + aside (right) */
