@@ -1,35 +1,75 @@
 {{!< default}}
 
-<div class="container blog-home">
+<div class="container newsroom">
 
-    {{#foreach posts limit="1"}}
-        <a class="featured-post" href="{{url}}">
-            {{#if feature_image}}
-                <div class="featured-image">
-                    <img src="{{img_url feature_image size="l"}}" alt="{{title}}">
+    {{^is "paged"}}
+    <!-- ===== Featured block ===== -->
+    <section class="nr-featured">
+        {{#foreach posts limit="1"}}
+            <a class="nr-lead" href="{{url}}">
+                {{#if feature_image}}
+                    <div class="nr-lead-image"><img src="{{img_url feature_image size="l"}}" alt="{{title}}"></div>
+                {{/if}}
+                <div class="nr-lead-body">
+                    <div class="nr-meta">
+                        {{#primary_tag}}<span class="nr-cat">{{name}}</span>{{/primary_tag}}
+                        <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
+                    </div>
+                    <h2 class="nr-lead-title">{{title}}</h2>
+                    <p class="nr-excerpt">{{excerpt words="30"}}</p>
                 </div>
-            {{/if}}
-            <div class="featured-body">
-                {{#primary_tag}}<span class="post-tag">{{name}}</span>{{/primary_tag}}
-                <h2>{{title}}</h2>
-                <p class="excerpt">{{excerpt words="34"}}</p>
-                <div class="post-meta">
-                    {{#primary_author}}<span class="post-author-name">{{name}}</span>{{/primary_author}}
-                    <span class="dot">&middot;</span>
-                    <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
-                    <span class="dot">&middot;</span>
-                    {{reading_time}}
-                </div>
-            </div>
-        </a>
-    {{/foreach}}
-
-    <div class="post-grid">
-        {{#foreach posts from="2"}}
-            {{> "post-card"}}
+            </a>
         {{/foreach}}
-    </div>
 
-    {{pagination}}
+        <div class="nr-side">
+            {{#foreach posts from="2" limit="4"}}
+                <a class="nr-side-item" href="{{url}}">
+                    <div class="nr-meta">
+                        {{#primary_tag}}<span class="nr-cat">{{name}}</span>{{/primary_tag}}
+                        <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
+                    </div>
+                    <h3 class="nr-side-title">{{title}}</h3>
+                    <p class="nr-excerpt">{{excerpt words="18"}}</p>
+                </a>
+            {{/foreach}}
+        </div>
+    </section>
+    {{/is}}
+
+    <!-- ===== News section ===== -->
+    <section class="nr-news">
+        <div class="nr-news-main">
+            <h2 class="nr-news-heading">News</h2>
+            <div class="nr-table">
+                <div class="nr-row nr-row-head">
+                    <span class="nr-c-date">Date</span>
+                    <span class="nr-c-cat">Category</span>
+                    <span class="nr-c-title">Title</span>
+                </div>
+                {{#is "paged"}}
+                    {{#foreach posts}}{{> "news-row"}}{{/foreach}}
+                {{else}}
+                    {{#foreach posts from="6"}}{{> "news-row"}}{{/foreach}}
+                {{/is}}
+            </div>
+
+            {{#if pagination.next}}
+                <a class="nr-more" href="{{page_url pagination.next}}">See more &darr;</a>
+            {{/if}}
+        </div>
+
+        <aside class="nr-aside">
+            <button class="nr-search" data-ghost-search aria-label="Search">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span>Search</span>
+            </button>
+
+            <a class="nr-promo" href="https://infina.ai/">
+                <span class="nr-promo-eyebrow">Infina AI</span>
+                <span class="nr-promo-title">Put AI Specialists to work for your business.</span>
+                <span class="nr-promo-cta">Explore products &rarr;</span>
+            </a>
+        </aside>
+    </section>
 
 </div>
