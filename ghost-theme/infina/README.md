@@ -23,27 +23,27 @@ A minimal Ghost theme for the Infina AI blog, matching the marketing site's bran
 Menu is managed in **Ghost Admin → Settings → Navigation**. Add the marketing-site
 links there (e.g. `AI Inside` → `https://infina.ai/inside.html`, `AI Work` →
 `https://infina.ai/work.html`, `AI Personal` → `https://infina.ai/personal.html`,
-`Blog` → `https://infina.ai/blog/`). The logo and footer links point to the main site.
+`News` → `https://infina.ai/news/`). The logo and footer links point to the main site.
 
-## Running the blog under `infina.ai/blog` (subdirectory — SEO on main domain)
+## Running the blog under `infina.ai/news` (subdirectory — SEO on main domain)
 This is **server config, not theme code**:
 
 1. In Ghost's `config.production.json`, set:
    ```json
-   { "url": "https://infina.ai/blog" }
+   { "url": "https://infina.ai/news" }
    ```
-2. Reverse-proxy (nginx example): route `/blog` to the Ghost instance while the rest
+2. Reverse-proxy (nginx example): route `/news` to the Ghost instance while the rest
    of `infina.ai` continues serving the static marketing site.
    ```nginx
-   location /blog/ {
+   location /news/ {
        proxy_pass http://127.0.0.1:2368;
        proxy_set_header Host $host;
        proxy_set_header X-Forwarded-Proto $scheme;
    }
    ```
 All internal links use Ghost helpers (`{{url}}`, `{{asset}}`, `{{@site.url}}`), so they
-are automatically prefixed with `/blog`. `{{ghost_head}}` emits canonical/OG/JSON-LD
-under `infina.ai/blog/...` for SEO.
+are automatically prefixed with `/news`. `{{ghost_head}}` emits canonical/OG/JSON-LD
+under `infina.ai/news/...` for SEO.
 
 ## Install
 1. Zip the `infina/` folder → `infina.zip`.
