@@ -1,0 +1,43 @@
+{{!< default}}
+
+<section class="blog-hero">
+    <div class="container">
+        <span class="eyebrow">Blog</span>
+        <h1>{{#if @site.title}}{{@site.title}}{{else}}Infina AI{{/if}} <span class="accent">Blog</span></h1>
+        {{#if @site.description}}<p class="blog-hero-sub">{{@site.description}}</p>{{/if}}
+    </div>
+</section>
+
+<div class="container">
+
+    {{#foreach posts limit="1"}}
+        <a class="featured-post" href="{{url}}">
+            {{#if feature_image}}
+                <div class="featured-image">
+                    <img src="{{img_url feature_image size="l"}}" alt="{{title}}">
+                </div>
+            {{/if}}
+            <div class="featured-body">
+                {{#primary_tag}}<span class="post-tag">{{name}}</span>{{/primary_tag}}
+                <h2>{{title}}</h2>
+                <p class="excerpt">{{excerpt words="34"}}</p>
+                <div class="post-meta">
+                    {{#primary_author}}<span class="post-author-name">{{name}}</span>{{/primary_author}}
+                    <span class="dot">&middot;</span>
+                    <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
+                    <span class="dot">&middot;</span>
+                    {{reading_time}}
+                </div>
+            </div>
+        </a>
+    {{/foreach}}
+
+    <div class="post-grid">
+        {{#foreach posts from="2"}}
+            {{> "post-card"}}
+        {{/foreach}}
+    </div>
+
+    {{pagination}}
+
+</div>
