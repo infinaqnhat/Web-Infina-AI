@@ -1,14 +1,6 @@
 {{!< default}}
 
-<section class="blog-hero">
-    <div class="container">
-        <span class="eyebrow">Blog</span>
-        <h1>{{#if @site.title}}{{@site.title}}{{else}}Infina AI{{/if}} <span class="accent">Blog</span></h1>
-        {{#if @site.description}}<p class="blog-hero-sub">{{@site.description}}</p>{{/if}}
-    </div>
-</section>
-
-<div class="container">
+<div class="container blog-home">
 
     {{#foreach posts limit="1"}}
         <a class="featured-post" href="{{url}}">
