@@ -1,0 +1,114 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-nav"} /-->
+
+<!-- wp:group {"tagName":"main","className":"newsroom","layout":{"type":"constrained","contentSize":"1100px"}} -->
+<main class="wp-block-group newsroom">
+
+    <!-- wp:columns {"className":"nr-featured","verticalAlignment":"top"} -->
+    <div class="wp-block-columns nr-featured are-vertically-aligned-top">
+
+        <!-- wp:column {"width":"55%"} -->
+        <div class="wp-block-column" style="flex-basis:55%">
+            <!-- wp:query {"queryId":10,"query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"className":"nr-lead-q"} -->
+            <div class="wp-block-query nr-lead-q">
+                <!-- wp:post-template -->
+                    <!-- wp:post-featured-image {"isLink":true,"className":"nr-lead-image"} /-->
+                    <!-- wp:group {"className":"nr-meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
+                    <div class="wp-block-group nr-meta">
+                        <!-- wp:post-terms {"term":"category","className":"nr-cat"} /-->
+                        <!-- wp:post-author-name {"className":"nr-author","isLink":false} /-->
+                        <!-- wp:post-date {"format":"M j, Y"} /-->
+                    </div>
+                    <!-- /wp:group -->
+                    <!-- wp:post-title {"level":2,"isLink":true,"className":"nr-lead-title"} /-->
+                    <!-- wp:post-excerpt {"excerptLength":30,"className":"nr-excerpt"} /-->
+                <!-- /wp:post-template -->
+            </div>
+            <!-- /wp:query -->
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column {"width":"45%"} -->
+        <div class="wp-block-column" style="flex-basis:45%">
+            <!-- wp:query {"queryId":11,"query":{"perPage":4,"pages":0,"offset":1,"postType":"post","order":"desc","orderBy":"date","inherit":false},"className":"nr-side"} -->
+            <div class="wp-block-query nr-side">
+                <!-- wp:post-template {"className":"nr-side-list"} -->
+                    <!-- wp:group {"className":"nr-side-item","layout":{"type":"constrained"}} -->
+                    <div class="wp-block-group nr-side-item">
+                        <!-- wp:group {"className":"nr-meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
+                        <div class="wp-block-group nr-meta">
+                            <!-- wp:post-terms {"term":"category","className":"nr-cat"} /-->
+                            <!-- wp:post-author-name {"className":"nr-author","isLink":false} /-->
+                            <!-- wp:post-date {"format":"M j, Y"} /-->
+                        </div>
+                        <!-- /wp:group -->
+                        <!-- wp:post-title {"level":3,"isLink":true,"className":"nr-side-title"} /-->
+                        <!-- wp:post-excerpt {"excerptLength":18,"className":"nr-excerpt"} /-->
+                    </div>
+                    <!-- /wp:group -->
+                <!-- /wp:post-template -->
+            </div>
+            <!-- /wp:query -->
+        </div>
+        <!-- /wp:column -->
+
+    </div>
+    <!-- /wp:columns -->
+
+    <!-- wp:columns {"className":"nr-news","verticalAlignment":"top"} -->
+    <div class="wp-block-columns nr-news are-vertically-aligned-top">
+
+        <!-- wp:column {"width":"66%"} -->
+        <div class="wp-block-column" style="flex-basis:66%">
+            <!-- wp:heading {"level":2,"className":"nr-news-heading"} -->
+            <h2 class="wp-block-heading nr-news-heading">News</h2>
+            <!-- /wp:heading -->
+
+            <!-- wp:query {"queryId":12,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"className":"nr-table"} -->
+            <div class="wp-block-query nr-table">
+                <!-- wp:group {"className":"nr-row nr-row-head","layout":{"type":"flex","flexWrap":"nowrap"}} -->
+                <div class="wp-block-group nr-row nr-row-head">
+                    <span class="nr-c-date">Date</span>
+                    <span class="nr-c-cat">Category</span>
+                    <span class="nr-c-title">Title</span>
+                </div>
+                <!-- /wp:group -->
+                <!-- wp:post-template -->
+                    <!-- wp:group {"className":"nr-row","layout":{"type":"flex","flexWrap":"nowrap"}} -->
+                    <div class="wp-block-group nr-row">
+                        <!-- wp:post-date {"format":"M j, Y","className":"nr-c-date"} /-->
+                        <!-- wp:post-terms {"term":"category","className":"nr-c-cat"} /-->
+                        <!-- wp:post-title {"level":3,"isLink":true,"className":"nr-c-title"} /-->
+                    </div>
+                    <!-- /wp:group -->
+                <!-- /wp:post-template -->
+                <!-- wp:query-pagination {"className":"nr-pagination","layout":{"type":"flex","justifyContent":"space-between"}} -->
+                    <!-- wp:query-pagination-previous /-->
+                    <!-- wp:query-pagination-numbers /-->
+                    <!-- wp:query-pagination-next /-->
+                <!-- /wp:query-pagination -->
+            </div>
+            <!-- /wp:query -->
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column {"width":"34%"} -->
+        <div class="wp-block-column" style="flex-basis:34%">
+            <!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Search","buttonText":"Search","buttonPosition":"button-inside","buttonUseIcon":true,"className":"nr-search"} /-->
+
+            <!-- wp:html -->
+            <a class="nr-promo" href="https://infina.ai/">
+                <span class="nr-promo-eyebrow">Infina AI</span>
+                <span class="nr-promo-title">Put AI Specialists to work for your business.</span>
+                <span class="nr-promo-cta">Explore products &rarr;</span>
+            </a>
+            <!-- /wp:html -->
+        </div>
+        <!-- /wp:column -->
+
+    </div>
+    <!-- /wp:columns -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer","className":"site-footer"} /-->
