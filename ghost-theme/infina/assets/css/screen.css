@@ -154,6 +154,8 @@ h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.025em; line-hei
 /* News section: table (left) + aside (right) */
 .nr-news { display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: start; margin-top: clamp(40px, 5vw, 64px); }
 .nr-news-heading { font-size: clamp(22px, 2.4vw, 30px); margin-bottom: 20px; }
+.nr-news-main { transition: opacity 0.2s ease; }
+.nr-news-main.is-loading { opacity: 0.45; pointer-events: none; }
 
 .nr-table { display: flex; flex-direction: column; }
 .nr-row {
