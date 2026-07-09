@@ -2,10 +2,10 @@
 
 <div class="container newsroom">
 
-    {{^is "paged"}}
-    <!-- ===== Featured block ===== -->
+    <!-- ===== Featured block (latest 5, same on every page) ===== -->
+    {{#get "posts" limit="5" order="published_at desc" include="authors,tags" as |latest|}}
     <section class="nr-featured">
-        {{#foreach posts limit="1"}}
+        {{#foreach latest limit="1"}}
             <a class="nr-lead" href="{{url}}">
                 {{#if feature_image}}
                     <div class="nr-lead-image"><img src="{{img_url feature_image size="l"}}" alt="{{title}}"></div>
@@ -23,7 +23,7 @@
         {{/foreach}}
 
         <div class="nr-side">
-            {{#foreach posts from="2" limit="4"}}
+            {{#foreach latest from="2"}}
                 <a class="nr-side-item" href="{{url}}">
                     <div class="nr-meta">
                         {{#primary_tag}}<span class="nr-cat">{{name}}</span>{{/primary_tag}}
@@ -36,7 +36,7 @@
             {{/foreach}}
         </div>
     </section>
-    {{/is}}
+    {{/get}}
 
     <!-- ===== News section ===== -->
     <section class="nr-news">
@@ -48,16 +48,10 @@
                     <span class="nr-c-cat">Category</span>
                     <span class="nr-c-title">Title</span>
                 </div>
-                {{#is "paged"}}
-                    {{#foreach posts}}{{> "news-row"}}{{/foreach}}
-                {{else}}
-                    {{#foreach posts from="6"}}{{> "news-row"}}{{/foreach}}
-                {{/is}}
+                {{#foreach posts}}{{> "news-row"}}{{/foreach}}
             </div>
 
-            {{#if pagination.next}}
-                <a class="nr-more" href="{{page_url pagination.next}}">See more &darr;</a>
-            {{/if}}
+            {{pagination}}
         </div>
 
         <aside class="nr-aside">
