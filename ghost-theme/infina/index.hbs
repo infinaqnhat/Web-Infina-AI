@@ -3,7 +3,7 @@
 <div class="container newsroom">
 
     <!-- ===== Featured block (latest 5, same on every page) ===== -->
-    {{#get "posts" limit="4" order="published_at desc" include="authors,tags" as |latest|}}
+    {{#get "posts" limit="4" order="featured desc, published_at desc" include="authors,tags" as |latest|}}
     <section class="nr-featured">
         {{#foreach latest limit="1"}}
             <a class="nr-lead" href="{{url}}">
