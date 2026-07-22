@@ -50,7 +50,14 @@ This is **WordPress + server config, not theme code**:
 4. Optional: add a `screenshot.png` (1200×900) in the theme root for the theme card.
 
 ## Notes
-- Featured + side list always show the latest 5 posts (highlights); the News table
-  below paginates through all posts.
+- Featured + side list always show the latest **4** posts (highlights), on every page;
+  the News table below paginates through all posts.
+- **AJAX pagination**: clicking the News table's Previous/Next fetches the target page
+  and swaps only the table in place, keeping the viewport (falls back to normal
+  navigation if JS is off). See `assets/js/main.js`.
+- WordPress analog of Ghost's "Feature this post" is a **sticky post** ("Stick to the
+  top of the blog" in the post's visibility settings). The featured queries currently
+  show the latest posts by date; to prioritise sticky/featured posts, a custom query
+  via `functions.php` can be added.
 - Search uses the core Search block. The promo card is a static Custom-HTML block —
   edit its text/link in `templates/home.html`.
