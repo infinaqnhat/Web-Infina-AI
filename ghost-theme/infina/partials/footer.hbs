@@ -1,0 +1,18 @@
+<footer class="site-footer">
+    <div class="footer-inner">
+        <a class="footer-logo" href="https://infina.ai/">
+            {{#if @site.logo}}
+                <img src="{{@site.logo}}" alt="{{@site.title}}">
+            {{else}}
+                <img src="{{asset "images/infina-logo.png"}}" alt="Infina AI">
+            {{/if}}
+        </a>
+        <div class="footer-links">
+            <a href="https://infina.ai/inside.html">Inside</a>
+            <a href="https://infina.ai/work.html">Work</a>
+            <a href="https://infina.ai/personal.html">Personal</a>
+            <a href="{{@site.url}}">News</a>
+        </div>
+        <p class="footer-copy">&copy; {{date format="YYYY"}} Infina. All rights reserved.</p>
+    </div>
+</footer>

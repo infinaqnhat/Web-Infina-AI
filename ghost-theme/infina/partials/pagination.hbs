@@ -1,0 +1,15 @@
+<nav class="pagination" role="navigation">
+    {{#if pagination.prev}}
+        <a class="pagination-link newer" href="{{page_url pagination.prev}}">&larr; Previous</a>
+    {{else}}
+        <span class="pagination-link is-disabled">&larr; Previous</span>
+    {{/if}}
+
+    <span class="pagination-meta">Page {{pagination.page}} of {{pagination.pages}}</span>
+
+    {{#if pagination.next}}
+        <a class="pagination-link older" href="{{page_url pagination.next}}">Next &rarr;</a>
+    {{else}}
+        <span class="pagination-link is-disabled">Next &rarr;</span>
+    {{/if}}
+</nav>
