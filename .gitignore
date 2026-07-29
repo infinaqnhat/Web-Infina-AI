@@ -12,3 +12,4 @@ plans
 ghost-theme/*.zip
 wordpress-theme/*.zip
 static-news/*.zip
+/static-news.zip
