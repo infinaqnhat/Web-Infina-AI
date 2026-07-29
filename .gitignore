@@ -11,3 +11,4 @@ plans
 # Build artifacts
 ghost-theme/*.zip
 wordpress-theme/*.zip
+static-news/*.zip
