@@ -7,7 +7,7 @@ Description: Newsroom-style block theme for the Infina AI blog. Matches the Infi
 Requires at least: 6.4
 Tested up to: 6.6
 Requires PHP: 7.4
-Version: 1.0.4
+Version: 1.0.5
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: infina-ai-news
@@ -144,7 +144,10 @@ img { max-width: 100%; height: auto; }
 .nr-promo-cta { margin-top: auto; font-size: 14px; font-weight: 700; color: #fff; }
 
 /* ===== Single post ======================================================== */
-.single-post { padding-top: clamp(32px, 5vw, 56px) !important; padding-bottom: clamp(32px, 4vw, 48px) !important; }
+/* Scoped to the <main> element: WordPress also puts a `single-post` class on
+   <body> for single posts, so a bare .single-post rule would pad the body and
+   create white gaps above the header / below the footer. */
+main.single-post { padding-top: clamp(32px, 5vw, 56px) !important; padding-bottom: clamp(32px, 4vw, 48px) !important; }
 .post-header { text-align: center; margin-bottom: 28px !important; }
 .post-tag { justify-content: center; margin-bottom: 18px !important; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .post-tag a { color: var(--blue); }
