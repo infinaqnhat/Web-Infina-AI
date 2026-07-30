@@ -7,7 +7,7 @@ Description: Newsroom-style block theme for the Infina AI blog. Matches the Infi
 Requires at least: 6.4
 Tested up to: 6.6
 Requires PHP: 7.4
-Version: 1.0.1
+Version: 1.0.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: infina-ai-news
@@ -192,8 +192,11 @@ img { max-width: 100%; height: auto; }
 
 /* ===== Responsive ========================================================= */
 @media (max-width: 900px) {
-  .nr-featured, .nr-news { flex-direction: column !important; }
-  .nr-featured .wp-block-column, .nr-news .wp-block-column { flex-basis: 100% !important; }
+  /* Stack columns by wrapping (keep flex-direction:row). Forcing column-direction
+     makes flex-basis:100% resolve as HEIGHT, which balloons a column into a giant
+     empty block on mobile. */
+  .nr-featured, .nr-news { flex-wrap: wrap !important; }
+  .nr-featured .wp-block-column, .nr-news .wp-block-column { flex-basis: 100% !important; max-width: 100% !important; }
 }
 @media (max-width: 600px) {
   .nr-row { flex-wrap: wrap; gap: 4px 12px !important; padding: 16px 0 !important; }
