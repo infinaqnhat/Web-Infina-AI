@@ -50,6 +50,14 @@
   },
   "styles": {
     "color": { "background": "#ffffff", "text": "#1a1f2e" },
+    "spacing": {
+      "padding": {
+        "top": "0px",
+        "bottom": "0px",
+        "left": "clamp(16px, 5vw, 24px)",
+        "right": "clamp(16px, 5vw, 24px)"
+      }
+    },
     "typography": {
       "fontFamily": "var(--wp--preset--font-family--body)",
       "fontSize": "17px",
