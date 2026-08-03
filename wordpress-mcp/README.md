@@ -43,19 +43,24 @@ của URL connector; route kiểm tra bằng `hash_equals()`. Không mạnh bằ
 
 ---
 
-## 2. Các tool được cung cấp
+## 2. Các tool được cung cấp (5 tool)
 
 | Tool | Chức năng |
 |---|---|
-| `create_draft_post` | Tạo bài **draft** mới: `title`, `content` (HTML), `excerpt`, `slug`, `categories[]`, `tags[]`, SEO Rank Math (`seo_title`/`seo_description`/`seo_focus_keyword`), ảnh đại diện (`image_url` + `image_alt`) |
-| `list_draft_posts` | Liệt kê các bài đang ở trạng thái draft (`number`, mặc định 5) |
-| `update_draft_post` | Sửa 1 bài **draft** (`post_id` bắt buộc). **Từ chối nếu bài đã publish** để tránh sửa nhầm bài live |
+| `list_posts` | Liệt kê bài theo **trạng thái** (`draft`, `publish`, `future`/scheduled, `pending`, `private`). Args: `status[]` (để trống = tất cả), `number` (mặc định 20), `search` |
+| `create_post` | Tạo bài với `status` = **`draft` \| `publish` \| `future` \| `pending` \| `private`**. Nếu `future` thì kèm `date`. Có `title`, `content` (HTML), `excerpt`, `slug`, `categories[]`, `tags[]`, SEO Rank Math (`seo_title`/`seo_description`/`seo_focus_keyword`), ảnh đại diện (`image_url` + `image_alt`) |
+| `update_post` | Sửa bài **bất kỳ** (`post_id` bắt buộc) — nội dung, danh mục, tag, SEO, ảnh đại diện, và **đổi trạng thái** (draft/publish/future) |
+| `upload_media` | Tải **ảnh** từ URL `https` về Media Library. Args: `image_url`, `alt`, `title`. Trả về `media_id` + `source_url` |
+| `delete_media` | **Xóa hẳn** 1 media (bỏ qua Trash, xóa cả file gốc + resize). Args: `media_id`. Chỉ xóa `attachment`, **không** xóa post |
+
+**Lên lịch (`future`):** truyền `date` theo **giờ địa phương của site** (Settings → General), định dạng `YYYY-MM-DD HH:MM:SS`. Server tự tính `post_date_gmt` và từ chối nếu `date` ở quá khứ. WordPress tự publish khi tới giờ (qua wp-cron).
 
 **An toàn theo thiết kế:**
-- Bài luôn tạo ở trạng thái **`draft`** — Claude không tự publish; con người review rồi mới đăng.
-- `update_draft_post` chặn thao tác lên bài đã publish.
-- Sideload ảnh có chống **SSRF**: chỉ nhận URL `https`, chặn `localhost`/IP nội bộ/private,
-  kiểm tra `content-type: image/*` trước khi tải.
+- **Không có tool xóa post** — chỉ `delete_media` (media dễ tạo lại; post thì tránh xóa nhầm).
+- `delete_media` kiểm tra ID đúng là `attachment` trước khi xóa; xóa vĩnh viễn, **không undo được**.
+- Upload/sideload ảnh chống **SSRF**: chỉ nhận URL `https`, chặn `localhost`/IP nội bộ/private,
+  kiểm tra `content-type: image/*` trước khi tải. **Chỉ nhận ảnh** (không upload file khác).
+- SEO dùng **Rank Math** (`rank_math_*` meta keys).
 
 ---
 

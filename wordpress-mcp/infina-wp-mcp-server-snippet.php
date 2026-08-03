@@ -1,7 +1,6 @@
 <?php
 // Infina AI - WordPress MCP server snippet (JSON-RPC 2.0, khong dung SSE)
 // Dan doan nay vao WPCode -> PHP Snippet, Insert Method: Auto Insert, Location: Run Everywhere.
-// (Neu truoc do co dan snippet cua plugin "MCP Adapter" thi xoa/di tat, khong can dung nua.)
 //
 // KHONG dan secret that vao file nay, file nay nam trong git repo nen ai doc duoc
 // repo se doc duoc secret. Set secret that bang 1 trong 2 cach sau (chon 1):
@@ -10,15 +9,19 @@
 // them dong duoi day o phia TREN dong "/* That's all, stop editing! */":
 //   define( 'INFINA_MCP_SECRET', 'dan-secret-that-vao-day' );
 //
-// Cach 2 (khong dong wp-config.php, dung khi khong co FTP): chay 1 lan qua WP-CLI
-// neu host ho tro:
-//   wp option update infina_mcp_secret "dan-secret-that-vao-day"
-// hoac tao 1 snippet PHP KHAC trong WPCode, che do "Run Once", noi dung:
+// Cach 2 (khong dong wp-config.php): chay 1 lan qua WP-CLI hoac 1 snippet "Run Once":
 //   update_option( 'infina_mcp_secret', 'dan-secret-that-vao-day', false );
-// roi xoa snippet "Run Once" do ngay sau khi da luu xong, khong de lai.
 //
-// Sinh secret ngau nhien an toan (chay tren may ca nhan, khong chay tren o web):
-//   php -r "echo bin2hex(random_bytes(24));"
+// Sinh secret: php -r "echo bin2hex(random_bytes(24));"
+//
+// ============================ CAC TOOL ============================
+//   list_posts     - liet ke bai theo trang thai (draft/publish/future/pending/private)
+//   create_post    - tao bai: status = draft | publish | future (scheduled, kem 'date')
+//   update_post    - sua bai bat ky + doi trang thai (draft/publish/future)
+//   upload_media   - tai ANH tu URL https ve Media Library (chong SSRF)
+//   delete_media   - xoa han 1 media (bo qua thung rac, xoa ca file goc)
+// SEO: Rank Math. Media: chi anh. Khong ho tro xoa post (chi xoa media).
+// =================================================================
 
 function infina_mcp_get_secret() {
     if ( defined( 'INFINA_MCP_SECRET' ) && INFINA_MCP_SECRET !== '' ) {
@@ -38,13 +41,14 @@ add_action( 'rest_api_init', function () {
 
 function infina_mcp_check_permission( WP_REST_Request $request ) {
     $configured_secret = infina_mcp_get_secret();
-    // Chua cau hinh secret that thi tu choi tat ca, khong bao gio cho qua khi rong
     if ( $configured_secret === '' ) {
-        return false;
+        return false; // chua cau hinh secret -> tu choi het
     }
     $key = (string) $request->get_param( 'key' );
     return hash_equals( $configured_secret, $key );
 }
+
+// ------------------------- Helpers -------------------------
 
 function infina_mcp_url_is_safe_for_sideload( $url ) {
     $parsed = wp_parse_url( $url );
@@ -52,7 +56,6 @@ function infina_mcp_url_is_safe_for_sideload( $url ) {
         return false;
     }
     $host = $parsed['host'];
-    // Chan thang cac dia chi IP hoac hostname noi bo pho bien, khong can resolve DNS
     if ( in_array( strtolower( $host ), [ 'localhost' ], true ) ) {
         return false;
     }
@@ -60,13 +63,13 @@ function infina_mcp_url_is_safe_for_sideload( $url ) {
     if ( $ip === $host && ! filter_var( $host, FILTER_VALIDATE_IP ) ) {
         return false; // khong resolve duoc hostname
     }
-    // Chan IP noi bo/private/reserved de tranh SSRF vao mang noi bo cua host
     if ( ! filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
-        return false;
+        return false; // chan IP noi bo/private/reserved (SSRF)
     }
     return true;
 }
 
+// Tai 1 ANH tu URL ve Media Library, tra ve attachment_id (hoac WP_Error).
 function infina_mcp_sideload_image( $url, $alt_text = '', $post_id = 0 ) {
     if ( ! infina_mcp_url_is_safe_for_sideload( $url ) ) {
         return new WP_Error( 'unsafe_url', 'URL anh khong hop le (phai la https) hoac tro toi dia chi noi bo, tu choi tai ve.' );
@@ -89,134 +92,225 @@ function infina_mcp_sideload_image( $url, $alt_text = '', $post_id = 0 ) {
     if ( is_wp_error( $attachment_id ) ) {
         return $attachment_id;
     }
-
     if ( ! empty( $alt_text ) ) {
         update_post_meta( $attachment_id, '_wp_attachment_image_alt', $alt_text );
     }
-
     return $attachment_id;
+}
+
+function infina_mcp_text_result( $text, $is_error = false ) {
+    return [ 'isError' => (bool) $is_error, 'content' => [ [ 'type' => 'text', 'text' => $text ] ] ];
+}
+
+// Ap dung danh muc/tag/SEO/anh dai dien cho 1 post. Tra ve ghi chu ve anh (string).
+function infina_mcp_apply_post_meta( $post_id, $args, $on_create = true ) {
+    $isset = function ( $k ) use ( $args, $on_create ) {
+        return $on_create ? ! empty( $args[ $k ] ) : array_key_exists( $k, $args );
+    };
+
+    if ( $isset( 'categories' ) ) {
+        wp_set_post_terms( $post_id, $args['categories'], 'category' );
+    }
+    if ( $isset( 'tags' ) ) {
+        wp_set_post_terms( $post_id, $args['tags'], 'post_tag' );
+    }
+    if ( $isset( 'seo_title' ) ) {
+        update_post_meta( $post_id, 'rank_math_title', $args['seo_title'] );
+    }
+    if ( $isset( 'seo_description' ) ) {
+        update_post_meta( $post_id, 'rank_math_description', $args['seo_description'] );
+    }
+    if ( $isset( 'seo_focus_keyword' ) ) {
+        update_post_meta( $post_id, 'rank_math_focus_keyword', $args['seo_focus_keyword'] );
+    }
+
+    $image_note = '';
+    if ( ! empty( $args['image_url'] ) ) {
+        $attachment_id = infina_mcp_sideload_image( $args['image_url'], $args['image_alt'] ?? '', $post_id );
+        if ( is_wp_error( $attachment_id ) ) {
+            $image_note = ' Luu y: tai anh dai dien that bai (' . $attachment_id->get_error_message() . ').';
+        } else {
+            set_post_thumbnail( $post_id, $attachment_id );
+            $image_note = ' Da gan anh dai dien.';
+        }
+    }
+    return $image_note;
+}
+
+// Chuan hoa & xac thuc status + date (cho create/update). Tra ve mang [status, extra] hoac WP_Error.
+function infina_mcp_resolve_status( $status, $date ) {
+    $allowed = [ 'draft', 'publish', 'future', 'pending', 'private' ];
+    $status  = strtolower( (string) $status );
+    if ( ! in_array( $status, $allowed, true ) ) {
+        return new WP_Error( 'bad_status', "status khong hop le. Cho phep: " . implode( ', ', $allowed ) );
+    }
+    $extra = [ 'post_status' => $status ];
+    if ( $status === 'future' ) {
+        $date = trim( (string) $date );
+        if ( $date === '' ) {
+            return new WP_Error( 'need_date', "status 'future' can 'date' (gio dia phuong site, dinh dang 'YYYY-MM-DD HH:MM:SS')." );
+        }
+        $ts = strtotime( $date );
+        if ( ! $ts ) {
+            return new WP_Error( 'bad_date', "khong doc duoc 'date'. Dung 'YYYY-MM-DD HH:MM:SS'." );
+        }
+        if ( $ts <= strtotime( current_time( 'mysql' ) ) ) {
+            return new WP_Error( 'past_date', "'date' phai o tuong lai de len lich." );
+        }
+        $extra['post_date']     = date( 'Y-m-d H:i:s', $ts );
+        $extra['post_date_gmt'] = get_gmt_from_date( $extra['post_date'] );
+    }
+    return $extra;
+}
+
+// ------------------------- Tool schema -------------------------
+
+function infina_mcp_post_props( $for_update ) {
+    $props = [
+        'title'             => [ 'type' => 'string', 'description' => 'Tieu de bai viet' ],
+        'content'           => [ 'type' => 'string', 'description' => 'Noi dung day du dang HTML' ],
+        'status'            => [ 'type' => 'string', 'enum' => [ 'draft', 'publish', 'future', 'pending', 'private' ], 'description' => "Trang thai. 'future' = len lich (kem 'date')." ],
+        'date'              => [ 'type' => 'string', 'description' => "Chi dung khi status='future'. Gio dia phuong site, dinh dang 'YYYY-MM-DD HH:MM:SS'." ],
+        'excerpt'           => [ 'type' => 'string', 'description' => 'Tom tat, tuy chon' ],
+        'slug'              => [ 'type' => 'string', 'description' => 'Duong dan URL, de trong se tu tao' ],
+        'categories'        => [ 'type' => 'array', 'items' => [ 'type' => 'string' ], 'description' => 'Ten danh muc' ],
+        'tags'              => [ 'type' => 'array', 'items' => [ 'type' => 'string' ], 'description' => 'Ten tag' ],
+        'seo_title'         => [ 'type' => 'string', 'description' => 'Rank Math meta title' ],
+        'seo_description'   => [ 'type' => 'string', 'description' => 'Rank Math meta description' ],
+        'seo_focus_keyword' => [ 'type' => 'string', 'description' => 'Rank Math focus keyword' ],
+        'image_url'         => [ 'type' => 'string', 'description' => 'URL anh https lam anh dai dien (featured image), tuy chon' ],
+        'image_alt'         => [ 'type' => 'string', 'description' => 'Alt text cho anh dai dien, tuy chon' ],
+    ];
+    if ( $for_update ) {
+        $props = [ 'post_id' => [ 'type' => 'integer', 'description' => 'ID bai can sua' ] ] + $props;
+    }
+    return $props;
 }
 
 function infina_mcp_tools_schema() {
     return [
         [
-            'name'        => 'create_draft_post',
-            'description' => 'Tao bai viet moi o trang thai draft cho blog Infina AI (infina.ai/news), kem danh muc, tag va SEO Rank Math tuy chon.',
+            'name'        => 'list_posts',
+            'description' => 'Liet ke bai viet theo trang thai (draft, publish, future/scheduled, pending, private).',
+            'inputSchema' => [
+                'type'       => 'object',
+                'properties' => [
+                    'status' => [ 'type' => 'array', 'items' => [ 'type' => 'string', 'enum' => [ 'draft', 'publish', 'future', 'pending', 'private' ] ], 'description' => "Loc theo trang thai. De trong = tat ca cac trang thai tren." ],
+                    'number' => [ 'type' => 'integer', 'description' => 'So bai can lay, mac dinh 20' ],
+                    'search' => [ 'type' => 'string', 'description' => 'Tu khoa tim trong tieu de/noi dung, tuy chon' ],
+                ],
+            ],
+        ],
+        [
+            'name'        => 'create_post',
+            'description' => 'Tao bai viet moi. status = draft | publish | future (len lich, kem date) | pending | private. Kem danh muc, tag, SEO Rank Math, anh dai dien tuy chon.',
             'inputSchema' => [
                 'type'       => 'object',
                 'required'   => [ 'title', 'content' ],
-                'properties' => [
-                    'title'             => [ 'type' => 'string', 'description' => 'Tieu de bai viet' ],
-                    'content'           => [ 'type' => 'string', 'description' => 'Noi dung day du dang HTML' ],
-                    'excerpt'           => [ 'type' => 'string', 'description' => 'Tom tat, tuy chon' ],
-                    'slug'              => [ 'type' => 'string', 'description' => 'Duong dan URL, de trong se tu tao' ],
-                    'categories'        => [ 'type' => 'array', 'items' => [ 'type' => 'string' ], 'description' => 'Ten danh muc' ],
-                    'tags'              => [ 'type' => 'array', 'items' => [ 'type' => 'string' ], 'description' => 'Ten tag' ],
-                    'seo_title'         => [ 'type' => 'string', 'description' => 'Rank Math meta title' ],
-                    'seo_description'   => [ 'type' => 'string', 'description' => 'Rank Math meta description' ],
-                    'seo_focus_keyword' => [ 'type' => 'string', 'description' => 'Rank Math focus keyword' ],
-                    'image_url'         => [ 'type' => 'string', 'description' => 'URL anh https de tai ve va gan lam anh dai dien (featured image), tuy chon' ],
-                    'image_alt'         => [ 'type' => 'string', 'description' => 'Alt text cho anh dai dien, nen chua tu khoa chinh, tuy chon' ],
-                ],
+                'properties' => infina_mcp_post_props( false ),
             ],
         ],
         [
-            'name'        => 'list_draft_posts',
-            'description' => 'Liet ke cac bai viet dang o trang thai draft tren blog Infina AI.',
-            'inputSchema' => [
-                'type'       => 'object',
-                'properties' => [
-                    'number' => [ 'type' => 'integer', 'description' => 'So luong bai can lay, mac dinh 5' ],
-                ],
-            ],
-        ],
-        [
-            'name'        => 'update_draft_post',
-            'description' => 'Sua mot bai dang o trang thai draft: noi dung, danh muc, tag, SEO Rank Math, hoac gan/doi anh dai dien. Tu choi neu bai khong con la draft (da publish) de tranh chinh nham bai da len live.',
+            'name'        => 'update_post',
+            'description' => 'Cap nhat 1 bai viet bat ky (draft/publish/scheduled): noi dung, danh muc, tag, SEO, anh dai dien, va co the DOI trang thai (draft/publish/future).',
             'inputSchema' => [
                 'type'       => 'object',
                 'required'   => [ 'post_id' ],
+                'properties' => infina_mcp_post_props( true ),
+            ],
+        ],
+        [
+            'name'        => 'upload_media',
+            'description' => 'Tai mot ANH tu URL https ve Media Library (chong SSRF, chi nhan content-type image/*). Tra ve media_id va source_url.',
+            'inputSchema' => [
+                'type'       => 'object',
+                'required'   => [ 'image_url' ],
                 'properties' => [
-                    'post_id'           => [ 'type' => 'integer', 'description' => 'ID bai draft can sua' ],
-                    'title'             => [ 'type' => 'string', 'description' => 'Tieu de moi, tuy chon' ],
-                    'content'           => [ 'type' => 'string', 'description' => 'Noi dung HTML moi, tuy chon' ],
-                    'excerpt'           => [ 'type' => 'string', 'description' => 'Tom tat moi, tuy chon' ],
-                    'slug'              => [ 'type' => 'string', 'description' => 'Slug moi, tuy chon' ],
-                    'categories'        => [ 'type' => 'array', 'items' => [ 'type' => 'string' ], 'description' => 'Danh muc moi, tuy chon' ],
-                    'tags'              => [ 'type' => 'array', 'items' => [ 'type' => 'string' ], 'description' => 'Tag moi, tuy chon' ],
-                    'seo_title'         => [ 'type' => 'string', 'description' => 'Rank Math meta title moi, tuy chon' ],
-                    'seo_description'   => [ 'type' => 'string', 'description' => 'Rank Math meta description moi, tuy chon' ],
-                    'seo_focus_keyword' => [ 'type' => 'string', 'description' => 'Rank Math focus keyword moi, tuy chon' ],
-                    'image_url'         => [ 'type' => 'string', 'description' => 'URL anh https de tai ve va gan/doi lam anh dai dien, tuy chon' ],
-                    'image_alt'         => [ 'type' => 'string', 'description' => 'Alt text cho anh dai dien, tuy chon' ],
+                    'image_url' => [ 'type' => 'string', 'description' => 'URL anh https' ],
+                    'alt'       => [ 'type' => 'string', 'description' => 'Alt text, tuy chon' ],
+                    'title'     => [ 'type' => 'string', 'description' => 'Tieu de media, tuy chon' ],
+                ],
+            ],
+        ],
+        [
+            'name'        => 'delete_media',
+            'description' => 'Xoa HAN mot media (attachment): bo qua thung rac, xoa ca file goc + cac ban resize. Khong the hoan tac. Chi xoa attachment, khong xoa post.',
+            'inputSchema' => [
+                'type'       => 'object',
+                'required'   => [ 'media_id' ],
+                'properties' => [
+                    'media_id' => [ 'type' => 'integer', 'description' => 'ID cua media/attachment can xoa' ],
                 ],
             ],
         ],
     ];
 }
 
+// ------------------------- Tool dispatch -------------------------
+
 function infina_mcp_call_tool( $name, $args ) {
-    if ( $name === 'create_draft_post' ) {
-        $post_id = wp_insert_post( [
+
+    if ( $name === 'list_posts' ) {
+        $statuses = ! empty( $args['status'] ) && is_array( $args['status'] )
+            ? $args['status']
+            : [ 'draft', 'publish', 'future', 'pending', 'private' ];
+        $q = [
+            'post_type'   => 'post',
+            'post_status' => $statuses,
+            'numberposts' => isset( $args['number'] ) ? (int) $args['number'] : 20,
+            'orderby'     => 'date',
+            'order'       => 'DESC',
+        ];
+        if ( ! empty( $args['search'] ) ) {
+            $q['s'] = (string) $args['search'];
+        }
+        $posts = get_posts( $q );
+        if ( empty( $posts ) ) {
+            return infina_mcp_text_result( 'Khong co bai nao khop.' );
+        }
+        $lines = array_map( function ( $p ) {
+            $edit = admin_url( 'post.php?post=' . $p->ID . '&action=edit' );
+            $link = get_permalink( $p );
+            return "#{$p->ID} [{$p->post_status}] {$p->post_title} ({$p->post_date}) - {$edit}" . ( $link ? " | {$link}" : '' );
+        }, $posts );
+        return infina_mcp_text_result( implode( "\n", $lines ) );
+    }
+
+    if ( $name === 'create_post' ) {
+        $resolved = infina_mcp_resolve_status( $args['status'] ?? 'draft', $args['date'] ?? '' );
+        if ( is_wp_error( $resolved ) ) {
+            return infina_mcp_text_result( 'Loi: ' . $resolved->get_error_message(), true );
+        }
+
+        $postarr = array_merge( [
             'post_title'   => $args['title'] ?? '',
             'post_content' => $args['content'] ?? '',
             'post_excerpt' => $args['excerpt'] ?? '',
             'post_name'    => $args['slug'] ?? '',
-            'post_status'  => 'draft',
             'post_type'    => 'post',
             'post_author'  => 1,
-        ], true );
+        ], $resolved );
 
+        $post_id = wp_insert_post( $postarr, true );
         if ( is_wp_error( $post_id ) ) {
-            return [ 'isError' => true, 'content' => [ [ 'type' => 'text', 'text' => 'Loi: ' . $post_id->get_error_message() ] ] ];
+            return infina_mcp_text_result( 'Loi: ' . $post_id->get_error_message(), true );
         }
 
-        if ( ! empty( $args['categories'] ) ) {
-            wp_set_post_terms( $post_id, $args['categories'], 'category' );
-        }
-        if ( ! empty( $args['tags'] ) ) {
-            wp_set_post_terms( $post_id, $args['tags'], 'post_tag' );
-        }
-        if ( ! empty( $args['seo_title'] ) ) {
-            update_post_meta( $post_id, 'rank_math_title', $args['seo_title'] );
-        }
-        if ( ! empty( $args['seo_description'] ) ) {
-            update_post_meta( $post_id, 'rank_math_description', $args['seo_description'] );
-        }
-        if ( ! empty( $args['seo_focus_keyword'] ) ) {
-            update_post_meta( $post_id, 'rank_math_focus_keyword', $args['seo_focus_keyword'] );
-        }
-
-        $image_note = '';
-        if ( ! empty( $args['image_url'] ) ) {
-            $attachment_id = infina_mcp_sideload_image( $args['image_url'], $args['image_alt'] ?? '', $post_id );
-            if ( is_wp_error( $attachment_id ) ) {
-                $image_note = ' Luu y: tai anh dai dien that bai (' . $attachment_id->get_error_message() . '), can tu them anh thu cong.';
-            } else {
-                set_post_thumbnail( $post_id, $attachment_id );
-                $image_note = ' Da tai va gan anh dai dien tu image_url.';
-            }
-        }
-
-        $edit_url = admin_url( 'post.php?post=' . $post_id . '&action=edit' );
-        return [
-            'isError' => false,
-            'content' => [ [ 'type' => 'text', 'text' => "Da tao bai draft ID {$post_id}.{$image_note} Mo tai: {$edit_url}" ] ],
-        ];
+        $image_note = infina_mcp_apply_post_meta( $post_id, $args, true );
+        $edit_url   = admin_url( 'post.php?post=' . $post_id . '&action=edit' );
+        $status     = get_post_status( $post_id );
+        $link       = get_permalink( $post_id );
+        return infina_mcp_text_result( "Da tao bai ID {$post_id} [status: {$status}].{$image_note} Sua: {$edit_url}" . ( $link ? " | Xem: {$link}" : '' ) );
     }
 
-    if ( $name === 'update_draft_post' ) {
+    if ( $name === 'update_post' ) {
         $post_id = isset( $args['post_id'] ) ? (int) $args['post_id'] : 0;
         if ( ! $post_id ) {
-            return [ 'isError' => true, 'content' => [ [ 'type' => 'text', 'text' => 'Thieu post_id.' ] ] ];
+            return infina_mcp_text_result( 'Thieu post_id.', true );
         }
-
         $existing = get_post( $post_id );
-        if ( ! $existing ) {
-            return [ 'isError' => true, 'content' => [ [ 'type' => 'text', 'text' => "Khong tim thay bai ID {$post_id}." ] ] ];
-        }
-        if ( $existing->post_status !== 'draft' ) {
-            return [ 'isError' => true, 'content' => [ [ 'type' => 'text', 'text' => "Bai ID {$post_id} khong con o trang thai draft (dang la '{$existing->post_status}'), tu choi sua de tranh dung nham vao bai da publish." ] ] ];
+        if ( ! $existing || $existing->post_type !== 'post' ) {
+            return infina_mcp_text_result( "Khong tim thay bai post ID {$post_id}.", true );
         }
 
         $update = [ 'ID' => $post_id ];
@@ -225,77 +319,70 @@ function infina_mcp_call_tool( $name, $args ) {
         if ( isset( $args['excerpt'] ) ) $update['post_excerpt'] = $args['excerpt'];
         if ( isset( $args['slug'] ) )    $update['post_name']    = $args['slug'];
 
+        if ( isset( $args['status'] ) ) {
+            $resolved = infina_mcp_resolve_status( $args['status'], $args['date'] ?? '' );
+            if ( is_wp_error( $resolved ) ) {
+                return infina_mcp_text_result( 'Loi: ' . $resolved->get_error_message(), true );
+            }
+            $update = array_merge( $update, $resolved );
+        }
+
         if ( count( $update ) > 1 ) {
             $result = wp_update_post( $update, true );
             if ( is_wp_error( $result ) ) {
-                return [ 'isError' => true, 'content' => [ [ 'type' => 'text', 'text' => 'Loi: ' . $result->get_error_message() ] ] ];
+                return infina_mcp_text_result( 'Loi: ' . $result->get_error_message(), true );
             }
         }
 
-        if ( isset( $args['categories'] ) ) {
-            wp_set_post_terms( $post_id, $args['categories'], 'category' );
-        }
-        if ( isset( $args['tags'] ) ) {
-            wp_set_post_terms( $post_id, $args['tags'], 'post_tag' );
-        }
-        if ( isset( $args['seo_title'] ) ) {
-            update_post_meta( $post_id, 'rank_math_title', $args['seo_title'] );
-        }
-        if ( isset( $args['seo_description'] ) ) {
-            update_post_meta( $post_id, 'rank_math_description', $args['seo_description'] );
-        }
-        if ( isset( $args['seo_focus_keyword'] ) ) {
-            update_post_meta( $post_id, 'rank_math_focus_keyword', $args['seo_focus_keyword'] );
-        }
-
-        $image_note = '';
-        if ( ! empty( $args['image_url'] ) ) {
-            $attachment_id = infina_mcp_sideload_image( $args['image_url'], $args['image_alt'] ?? '', $post_id );
-            if ( is_wp_error( $attachment_id ) ) {
-                $image_note = ' Luu y: tai anh dai dien that bai (' . $attachment_id->get_error_message() . ').';
-            } else {
-                set_post_thumbnail( $post_id, $attachment_id );
-                $image_note = ' Da cap nhat anh dai dien.';
-            }
-        }
-
-        $edit_url = admin_url( 'post.php?post=' . $post_id . '&action=edit' );
-        return [
-            'isError' => false,
-            'content' => [ [ 'type' => 'text', 'text' => "Da cap nhat bai draft ID {$post_id}.{$image_note} Mo tai: {$edit_url}" ] ],
-        ];
+        $image_note = infina_mcp_apply_post_meta( $post_id, $args, false );
+        $edit_url   = admin_url( 'post.php?post=' . $post_id . '&action=edit' );
+        $status     = get_post_status( $post_id );
+        $link       = get_permalink( $post_id );
+        return infina_mcp_text_result( "Da cap nhat bai ID {$post_id} [status: {$status}].{$image_note} Sua: {$edit_url}" . ( $link ? " | Xem: {$link}" : '' ) );
     }
 
-    if ( $name === 'list_draft_posts' ) {
-        $posts = get_posts( [
-            'post_status' => 'draft',
-            'numberposts' => $args['number'] ?? 5,
-            'orderby'     => 'date',
-            'order'       => 'DESC',
-        ] );
-
-        if ( empty( $posts ) ) {
-            return [ 'isError' => false, 'content' => [ [ 'type' => 'text', 'text' => 'Chua co bai draft nao.' ] ] ];
+    if ( $name === 'upload_media' ) {
+        $url = (string) ( $args['image_url'] ?? '' );
+        if ( $url === '' ) {
+            return infina_mcp_text_result( 'Thieu image_url.', true );
         }
-
-        $lines = array_map( function ( $p ) {
-            $edit_url = admin_url( 'post.php?post=' . $p->ID . '&action=edit' );
-            return "#{$p->ID} - {$p->post_title} ({$p->post_date}) - {$edit_url}";
-        }, $posts );
-
-        return [ 'isError' => false, 'content' => [ [ 'type' => 'text', 'text' => implode( "\n", $lines ) ] ] ];
+        $attachment_id = infina_mcp_sideload_image( $url, $args['alt'] ?? '' );
+        if ( is_wp_error( $attachment_id ) ) {
+            return infina_mcp_text_result( 'Loi: ' . $attachment_id->get_error_message(), true );
+        }
+        if ( ! empty( $args['title'] ) ) {
+            wp_update_post( [ 'ID' => $attachment_id, 'post_title' => $args['title'] ] );
+        }
+        $src = wp_get_attachment_url( $attachment_id );
+        return infina_mcp_text_result( "Da tai anh. media_id: {$attachment_id} | source_url: {$src}" );
     }
 
-    return [ 'isError' => true, 'content' => [ [ 'type' => 'text', 'text' => "Khong biet tool: {$name}" ] ] ];
+    if ( $name === 'delete_media' ) {
+        $media_id = isset( $args['media_id'] ) ? (int) $args['media_id'] : 0;
+        if ( ! $media_id ) {
+            return infina_mcp_text_result( 'Thieu media_id.', true );
+        }
+        if ( get_post_type( $media_id ) !== 'attachment' ) {
+            return infina_mcp_text_result( "ID {$media_id} khong phai la media/attachment, tu choi xoa.", true );
+        }
+        $deleted = wp_delete_attachment( $media_id, true ); // true = xoa han, khong vao Trash
+        if ( ! $deleted ) {
+            return infina_mcp_text_result( "Xoa media ID {$media_id} that bai.", true );
+        }
+        return infina_mcp_text_result( "Da xoa han media ID {$media_id} (ca file goc + cac ban resize)." );
+    }
+
+    return infina_mcp_text_result( "Khong biet tool: {$name}", true );
 }
+
+// ------------------------- JSON-RPC handler -------------------------
 
 function infina_mcp_handle_request( WP_REST_Request $request ) {
     $body = json_decode( $request->get_body(), true );
 
     if ( ! is_array( $body ) ) {
         return new WP_REST_Response( [
-            'jsonrpc' => '2.0',
-            'id'      => null,
+            'jsonrpc' => '2.0', 'id' => null,
             'error'   => [ 'code' => -32700, 'message' => 'Parse error' ],
         ], 200 );
     }
@@ -310,12 +397,11 @@ function infina_mcp_handle_request( WP_REST_Request $request ) {
 
     if ( $method === 'initialize' ) {
         return new WP_REST_Response( [
-            'jsonrpc' => '2.0',
-            'id'      => $id,
+            'jsonrpc' => '2.0', 'id' => $id,
             'result'  => [
                 'protocolVersion' => '2025-06-18',
                 'capabilities'    => [ 'tools' => new stdClass() ],
-                'serverInfo'      => [ 'name' => 'infina-blog', 'version' => '1.0.0' ],
+                'serverInfo'      => [ 'name' => 'infina-blog', 'version' => '2.0.0' ],
             ],
         ], 200 );
     }
@@ -326,8 +412,7 @@ function infina_mcp_handle_request( WP_REST_Request $request ) {
 
     if ( $method === 'tools/list' ) {
         return new WP_REST_Response( [
-            'jsonrpc' => '2.0',
-            'id'      => $id,
+            'jsonrpc' => '2.0', 'id' => $id,
             'result'  => [ 'tools' => infina_mcp_tools_schema() ],
         ], 200 );
     }
@@ -336,16 +421,11 @@ function infina_mcp_handle_request( WP_REST_Request $request ) {
         $name   = $params['name'] ?? '';
         $args   = $params['arguments'] ?? [];
         $result = infina_mcp_call_tool( $name, $args );
-        return new WP_REST_Response( [
-            'jsonrpc' => '2.0',
-            'id'      => $id,
-            'result'  => $result,
-        ], 200 );
+        return new WP_REST_Response( [ 'jsonrpc' => '2.0', 'id' => $id, 'result' => $result ], 200 );
     }
 
     return new WP_REST_Response( [
-        'jsonrpc' => '2.0',
-        'id'      => $id,
+        'jsonrpc' => '2.0', 'id' => $id,
         'error'   => [ 'code' => -32601, 'message' => 'Method not found: ' . $method ],
     ], 200 );
 }
