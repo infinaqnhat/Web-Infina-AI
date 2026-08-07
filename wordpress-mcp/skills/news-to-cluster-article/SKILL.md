@@ -8,7 +8,7 @@ description: "Crawl tin tức mới theo 10 mảng, đối chiếu keyword trong
 ## Mô tả
 Crawl tin tức mới theo 10 mảng → kiểm tra bài đã có trên WordPress → đối chiếu keyword trong Excel → chọn tin phù hợp → viết và đăng cluster article lên WordPress đạt Rank Math ≥80/100. Toàn bộ chạy qua API, không cần browser.
 
-**Nguyên tắc cốt lõi:** bài viết từ tin tức (cluster/spoke) luôn target một keyword long-tail RIÊNG của nó (`FOCUS_KW`), khác với keyword của pillar page (`PILLAR_KW`) mà nó link về. Không bao giờ để 2 bài trong site cùng target 1 keyword — pillar page giữ vị trí rank cho keyword đầu (head term), cluster article chỉ mượn góc tin tức để nhắm long-tail và đẩy internal link/topical authority về pillar. Xem chi tiết ở Bước 4.
+**Nguyên tắc cốt lõi:** bài viết từ tin tức (cluster/spoke) luôn target một keyword long-tail RIÊNG của nó (`FOCUS_KW`), khác với keyword của pillar page (`PILLAR_KW`) mà nó link về. Không bao giờ để 2 bài trong site cùng target 1 keyword — pillar page giữ vị trí rank cho keyword đầu (head term), cluster article chỉ mượn góc tin tức để nhắm long-tail và đẩy internal link/topical authority về pillar. Nguồn xác định keyword nào đã "có chủ" (Plan = pillar, News = cluster đã viết) là Google Sheet tracker ở Bước 2b — đọc lại sheet này mỗi lần chạy, và append 1 dòng mới vào đó sau khi publish (Bước 7). Xem chi tiết ở Bước 4.
 
 ---
 
@@ -177,14 +177,46 @@ def is_duplicate(candidate_slug, candidate_title, existing_posts):
 
 ---
 
+## Bước 2b — Đọc Tracker Sheet (nguồn PILLAR_KW chính thức, ưu tiên hơn Excel)
+
+Google Sheet **"Infina News — Published Articles Tracker"** (`fileId: 1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs`) là **nguồn sự thật sống** (live source of truth) về việc keyword nào đã "có chủ" — ưu tiên hơn Excel `Content Pillars (AIDA)` vì Excel chỉ là kế hoạch tĩnh, còn sheet này phản ánh đúng những gì đã thực sự publish. Đọc bằng `mcp__Google_Drive__read_file_content` (fileId ở trên) trước mỗi lần chọn keyword mới.
+
+Cấu trúc cột: `#, Date, Title, URL, Focus Keyword, Type` — `Type` chỉ có 2 giá trị:
+
+- **`Plan`** = bài pillar/cornerstone (thường là dạng "Best X for Real Estate", "What Is X?"...). Focus Keyword của các bài này là **PILLAR_KW đã bị chiếm** — tuyệt đối không dùng lại làm FOCUS_KW cho bài mới, dù là bài từ tin tức hay bài khác.
+- **`News`** = bài cluster viết từ tin tức (chính là loại bài skill này tạo ra). Các bài News trước đó cũng đã dùng FOCUS_KW riêng của chúng rồi — cũng phải tránh trùng, y hệt như Plan.
+
+```python
+def get_tracker_rows():
+    text = read_file_content("1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs")  # mcp__Google_Drive__read_file_content
+    rows = []
+    for line in text.split("\n"):
+        cells = [c.strip() for c in line.strip("| \n").split("|")]
+        if len(cells) != 6 or not cells[0].isdigit():
+            continue  # bỏ header/separator markdown
+        rows.append({
+            "num": cells[0], "date": cells[1], "title": cells[2],
+            "url": cells[3], "focus_keyword": cells[4].lower(), "type": cells[5],
+        })
+    return rows
+
+tracker = get_tracker_rows()
+used_keywords = {r["focus_keyword"] for r in tracker}          # TOÀN BỘ keyword đã dùng (Plan + News) — FOCUS_KW mới không được trùng bất kỳ cái nào
+plan_rows = [r for r in tracker if r["type"].lower() == "plan"]  # nguồn PILLAR_KW + PILLAR_URL để link về
+```
+
+---
+
 ## Bước 3 — Đọc keyword groups từ Excel
 
-Đọc file `AI_SalesX_Customer_Segments_Content_Pillars - Copy.xlsx`, lấy 2 loại dữ liệu tách biệt:
+Đọc file `AI_SalesX_Customer_Segments_Content_Pillars - Copy.xlsx`, dùng làm **nguồn tham khảo ý tưởng/chiến lược pillar** (7 Content Pillar theo AIDA), KHÔNG còn là nguồn PILLAR_KW độc quyền — Bước 2b (tracker sheet) mới là nguồn quyết định pillar nào thực sự đã tồn tại + URL thật của nó. Excel hữu ích khi tin tức khớp với 1 pillar theo kế hoạch AIDA nhưng pillar đó **chưa có bài Plan nào trên tracker** — lúc đó coi target keyword trong Excel như một PILLAR_KW "dự kiến" (chưa có URL thật để link, cần ghi chú lại chờ viết pillar page sau, hoặc chọn pillar khác đã có bài Plan thật để link).
 
-1. **Pillar keyword** (sheet `Content Pillars (AIDA)`) — mỗi Content Pillar có 1 "Target keyword" gắn với 1 trang pillar (vd: pillar "TCPA & AI Compliance" → target keyword `conversational ai agent`). Đây là **link target**, KHÔNG phải keyword để cluster article nhắm tới.
-2. **Cluster keyword candidates** (sheet `✅ Customer Response AI Chatbot` và các sheet main keyword khác) — hàng trăm sub-keyword long-tail nằm dưới mỗi Main Keyword group. Đây mới là nguồn keyword thật sự để bài viết từ tin tức nhắm tới.
+Lấy 2 loại dữ liệu tách biệt từ Excel:
 
-**Chưa bị loại ở Bước 2** áp dụng cho cluster keyword candidates, không áp dụng cho pillar keyword (pillar keyword không bao giờ bị "dùng hết" vì nó không phải là thứ cluster article target).
+1. **Pillar keyword dự kiến** (sheet `Content Pillars (AIDA)`) — mỗi Content Pillar có 1 "Target keyword" gắn với 1 trang pillar tương lai (vd: pillar "TCPA & AI Compliance" → target keyword `conversational ai agent`). Đối chiếu với `plan_rows` ở Bước 2b: nếu đã có bài Plan dùng đúng keyword này → dùng URL bài đó làm PILLAR_URL; nếu chưa có → không có PILLAR_URL thật, cân nhắc chọn pillar khác.
+2. **Cluster keyword candidates** (sheet `✅ Customer Response AI Chatbot` và các sheet main keyword khác) — hàng trăm sub-keyword long-tail nằm dưới mỗi Main Keyword group. Đây là nguồn keyword thật sự để bài viết từ tin tức nhắm tới (FOCUS_KW).
+
+**Chưa bị loại ở Bước 2 (WordPress) và không nằm trong `used_keywords` ở Bước 2b (Tracker Sheet)** áp dụng cho cluster keyword candidates trước khi chọn làm FOCUS_KW.
 
 ---
 
@@ -199,11 +231,11 @@ def is_duplicate(candidate_slug, candidate_title, existing_posts):
 
 Với mỗi tin, đánh giá:
 
-1. **Pillar target:** Tin này liên quan đến Content Pillar nào (và pillar keyword/URL nào sẽ được link về)?
-2. **Cluster keyword:** Chọn 1 keyword long-tail khác pillar keyword (từ sub-keyword list, hoặc tự đặt bám sát hook tin tức) — check lại qua `is_duplicate()` ở Bước 2.
+1. **Pillar target:** Tin này liên quan đến pillar nào trong `plan_rows` (Bước 2b)? Ưu tiên chọn pillar đã có bài Plan **thật** trên tracker (có URL thật) hơn là pillar chỉ mới nằm trong kế hoạch Excel chưa được viết.
+2. **Cluster keyword:** Chọn 1 keyword long-tail — **không được trùng bất kỳ giá trị nào trong `used_keywords`** (Bước 2b, gồm cả Plan lẫn News) và pass `is_duplicate()` ở Bước 2 (WordPress). Lấy từ sub-keyword list trong Excel, hoặc tự đặt bám sát hook tin tức.
 3. **Angle:** Tin cung cấp dữ liệu/case study/xu hướng gì để làm hook cho đúng cluster keyword đó?
 
-Chọn **top 1 bộ ba** (tin + cluster keyword + pillar target) có relevance cao nhất và angle rõ ràng nhất để viết. Output rõ 2 giá trị riêng: `FOCUS_KW` (cluster keyword — bài này target) và `PILLAR_KW` / `PILLAR_URL` (để link về, không target).
+Chọn **top 1 bộ ba** (tin + cluster keyword + pillar target) có relevance cao nhất và angle rõ ràng nhất để viết. Output rõ các giá trị: `FOCUS_KW` (cluster keyword — bài này target, phải là keyword hoàn toàn mới) và `PILLAR_KW` / `PILLAR_URL` (lấy từ dòng `plan_rows` tương ứng — để link về, không target).
 
 ---
 
@@ -318,15 +350,21 @@ resp = call("update_post", {"post_id": 223, "date": "2026-08-10 12:00:00", "stat
 
 ---
 
-## Bước 7 — Log kết quả
+## Bước 7 — Log kết quả vào Tracker Sheet
 
-Append vào file `cluster_articles_log.md` sau mỗi lần chạy:
+Sau khi publish thành công, phải **append 1 dòng mới** vào chính Google Sheet tracker ở Bước 2b (`1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs`), format giống các dòng cũ:
 
-```markdown
-| Date run | News source | Focus keyword | Post ID | Slug | SEO check | Status |
-|----------|-------------|---------------|---------|------|-----------|--------|
-| 2026-08-07 | [Title](URL) | real estate agent crm | 223 | real-estate-agent-crm-speed-to-lead | ✅ passed | Published |
 ```
+| {số thứ tự tiếp theo} | {ngày publish, dd/mm/yyyy} | {TITLE} | {URL bài mới} | {FOCUS_KW} | News |
+```
+
+Ví dụ: `| 16 | 07/08/2026 | Compliance-First AI: What Every Brokerage Should Demand | https://infina.ai/news/compliance-first-ai-brokerage/ | tcpa compliance ai texting real estate | News |`
+
+**Giới hạn công cụ hiện tại — chưa tự động hoá được bước này:** các tool Google Drive hiện có (`create_file`, `read_file_content`, `download_file_content`, `search_files`, `copy_file`, `get_file_metadata`) **không có tool nào ghi/sửa nội dung 1 Google Sheet đã tồn tại** (không có Sheets API append/batchUpdate). `create_file` chỉ tạo file MỚI, không update file cũ. Vì vậy sau khi publish:
+
+1. In ra đúng dòng cần thêm (format ở trên) để dễ copy.
+2. Nói rõ với người dùng: "Đã publish xong, đây là dòng cần thêm vào tracker sheet — bạn paste dòng này vào cuối sheet giúp mình nhé" (kèm link sheet).
+3. Nếu về sau có kết nối Google Sheets API/connector hỗ trợ ghi (khác Google Drive connector hiện tại), dùng nó để tự append thay vì làm thủ công — kiểm tra qua `ListConnectors`/`SearchMcpRegistry` trước khi báo là "không làm được".
 
 ---
 
@@ -351,5 +389,6 @@ Mỗi lần chạy tạo file: `article_cluster{N}_{slug}.py` lưu vào cùng fo
 | Input | Bắt buộc | Ghi chú |
 |-------|----------|---------|
 | Excel keyword file | Có | Đường dẫn tuyệt đối đến file xlsx |
+| Tracker Sheet (Google Sheets) | Có | `fileId: 1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs` — cần quyền đọc qua Google Drive connector (`mcp__Google_Drive__read_file_content`). Đây là nguồn PILLAR_KW/dedup chính thức, đọc lại mỗi lần chạy vì nó thay đổi liên tục |
 | Publish date | Có | Theo schedule hiện tại |
 
