@@ -102,6 +102,36 @@ function infina_mcp_text_result( $text, $is_error = false ) {
     return [ 'isError' => (bool) $is_error, 'content' => [ [ 'type' => 'text', 'text' => $text ] ] ];
 }
 
+// category la taxonomy HIERARCHICAL -> wp_set_post_terms can TERM ID, khong nhan ten.
+// Ham nay doi ten (hoac ID) thanh term_id: tim theo name (case-insensitive), roi slug,
+// neu chua co thi tao moi. Tra ve mang term_id.
+function infina_mcp_resolve_category_ids( $names ) {
+    $ids = [];
+    foreach ( (array) $names as $name ) {
+        $name = trim( (string) $name );
+        if ( $name === '' ) {
+            continue;
+        }
+        if ( is_numeric( $name ) ) {
+            $ids[] = (int) $name;
+            continue;
+        }
+        $term = get_term_by( 'name', $name, 'category' );
+        if ( ! $term ) {
+            $term = get_term_by( 'slug', sanitize_title( $name ), 'category' );
+        }
+        if ( $term && ! is_wp_error( $term ) ) {
+            $ids[] = (int) $term->term_id;
+        } else {
+            $new = wp_insert_term( $name, 'category' );
+            if ( ! is_wp_error( $new ) && ! empty( $new['term_id'] ) ) {
+                $ids[] = (int) $new['term_id'];
+            }
+        }
+    }
+    return array_values( array_unique( array_filter( $ids ) ) );
+}
+
 // Ap dung danh muc/tag/SEO/anh dai dien cho 1 post. Tra ve ghi chu ve anh (string).
 function infina_mcp_apply_post_meta( $post_id, $args, $on_create = true ) {
     $isset = function ( $k ) use ( $args, $on_create ) {
@@ -109,10 +139,12 @@ function infina_mcp_apply_post_meta( $post_id, $args, $on_create = true ) {
     };
 
     if ( $isset( 'categories' ) ) {
-        wp_set_post_terms( $post_id, $args['categories'], 'category' );
+        $cat_ids = infina_mcp_resolve_category_ids( $args['categories'] ); // ten -> term_id (tao neu chua co)
+        wp_set_post_terms( $post_id, $cat_ids, 'category', false );
     }
     if ( $isset( 'tags' ) ) {
-        wp_set_post_terms( $post_id, $args['tags'], 'post_tag' );
+        // post_tag la non-hierarchical -> nhan ten truc tiep (tu tao neu chua co).
+        wp_set_post_terms( $post_id, $args['tags'], 'post_tag', false );
     }
     if ( $isset( 'seo_title' ) ) {
         update_post_meta( $post_id, 'rank_math_title', $args['seo_title'] );
@@ -415,7 +447,7 @@ function infina_mcp_handle_request( WP_REST_Request $request ) {
             'result'  => [
                 'protocolVersion' => '2025-06-18',
                 'capabilities'    => [ 'tools' => new stdClass() ],
-                'serverInfo'      => [ 'name' => 'infina-blog', 'version' => '2.1.0' ],
+                'serverInfo'      => [ 'name' => 'infina-blog', 'version' => '2.1.1' ],
             ],
         ], 200 );
     }
