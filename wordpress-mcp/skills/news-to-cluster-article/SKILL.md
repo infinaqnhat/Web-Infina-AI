@@ -352,19 +352,22 @@ resp = call("update_post", {"post_id": 223, "date": "2026-08-10 12:00:00", "stat
 
 ## Bước 7 — Log kết quả vào Tracker Sheet
 
-Sau khi publish thành công, phải **append 1 dòng mới** vào chính Google Sheet tracker ở Bước 2b (`1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs`), format giống các dòng cũ:
+Sau khi publish thành công, phải **append 1 dòng mới** vào chính Google Sheet tracker ở Bước 2b (`1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs`).
+
+**QUAN TRỌNG — đưa dòng dưới dạng tab-separated, KHÔNG dùng bảng markdown `| ... |`:** nếu đưa format `| 16 | 07/08/2026 | ... |` cho người dùng copy-paste, Google Sheets sẽ dán nguyên chuỗi đó vào 1 ô duy nhất thay vì tự tách cột (Sheets chỉ tự tách cột khi dán dữ liệu có ký tự **tab** giữa các trường, không nhận diện dấu `|`). Luôn in dòng cần thêm bằng tab thật giữa 6 trường, ví dụ (mỗi khoảng trắng dưới đây là 1 tab, không phải dấu `|`):
 
 ```
-| {số thứ tự tiếp theo} | {ngày publish, dd/mm/yyyy} | {TITLE} | {URL bài mới} | {FOCUS_KW} | News |
+16	07/08/2026	Compliance-First AI: What Every Brokerage Should Demand	https://infina.ai/news/compliance-first-ai-brokerage/	tcpa compliance ai texting real estate	News
 ```
 
-Ví dụ: `| 16 | 07/08/2026 | Compliance-First AI: What Every Brokerage Should Demand | https://infina.ai/news/compliance-first-ai-brokerage/ | tcpa compliance ai texting real estate | News |`
+Thứ tự cột đúng bằng thứ tự header hiện có: `#, Date, Title, URL, Focus Keyword, Type`.
 
 **Giới hạn công cụ hiện tại — chưa tự động hoá được bước này:** các tool Google Drive hiện có (`create_file`, `read_file_content`, `download_file_content`, `search_files`, `copy_file`, `get_file_metadata`) **không có tool nào ghi/sửa nội dung 1 Google Sheet đã tồn tại** (không có Sheets API append/batchUpdate). `create_file` chỉ tạo file MỚI, không update file cũ. Vì vậy sau khi publish:
 
-1. In ra đúng dòng cần thêm (format ở trên) để dễ copy.
-2. Nói rõ với người dùng: "Đã publish xong, đây là dòng cần thêm vào tracker sheet — bạn paste dòng này vào cuối sheet giúp mình nhé" (kèm link sheet).
-3. Nếu về sau có kết nối Google Sheets API/connector hỗ trợ ghi (khác Google Drive connector hiện tại), dùng nó để tự append thay vì làm thủ công — kiểm tra qua `ListConnectors`/`SearchMcpRegistry` trước khi báo là "không làm được".
+1. In ra đúng dòng cần thêm (dạng tab-separated ở trên) trong 1 code block để giữ nguyên ký tự tab khi người dùng copy.
+2. Nói rõ với người dùng: "Đã publish xong, đây là dòng cần thêm vào tracker sheet — copy nguyên khối code rồi paste vào ô đầu dòng trống cuối sheet giúp mình nhé" (kèm link sheet).
+3. Nếu người dùng lỡ paste sai (dính hết vào 1 ô) — hướng dẫn sửa nhanh bằng **Data → Split text to columns → Custom separator** (dùng đúng ký tự đã lỡ dán, ví dụ `|` nếu trước đó lỡ đưa dạng markdown) thay vì bắt họ xoá paste lại từ đầu.
+4. Nếu về sau có kết nối Google Sheets API/connector hỗ trợ ghi (khác Google Drive connector hiện tại), dùng nó để tự append thay vì làm thủ công — kiểm tra qua `ListConnectors`/`SearchMcpRegistry` trước khi báo là "không làm được".
 
 ---
 
