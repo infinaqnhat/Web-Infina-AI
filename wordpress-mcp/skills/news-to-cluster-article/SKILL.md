@@ -8,6 +8,8 @@ description: "Crawl tin tức mới theo 10 mảng, đối chiếu keyword trong
 ## Mô tả
 Crawl tin tức mới theo 10 mảng → kiểm tra bài đã có trên WordPress → đối chiếu keyword trong Excel → chọn tin phù hợp → viết và đăng cluster article lên WordPress đạt Rank Math ≥80/100. Toàn bộ chạy qua API, không cần browser.
 
+**Nguyên tắc cốt lõi:** bài viết từ tin tức (cluster/spoke) luôn target một keyword long-tail RIÊNG của nó (`FOCUS_KW`), khác với keyword của pillar page (`PILLAR_KW`) mà nó link về. Không bao giờ để 2 bài trong site cùng target 1 keyword — pillar page giữ vị trí rank cho keyword đầu (head term), cluster article chỉ mượn góc tin tức để nhắm long-tail và đẩy internal link/topical authority về pillar. Xem chi tiết ở Bước 4.
+
 ---
 
 ## WordPress Connection
@@ -177,25 +179,31 @@ def is_duplicate(candidate_slug, candidate_title, existing_posts):
 
 ## Bước 3 — Đọc keyword groups từ Excel
 
-Đọc file `AI_SalesX_Customer_Segments_Content_Pillars - Copy.xlsx`, lấy các focus keyword **chưa bị loại ở Bước 2**.
+Đọc file `AI_SalesX_Customer_Segments_Content_Pillars - Copy.xlsx`, lấy 2 loại dữ liệu tách biệt:
 
-Từ file Excel extract:
-- Focus keyword của từng bài chưa publish
-- Pillar page tương ứng (để xác định internal link target)
+1. **Pillar keyword** (sheet `Content Pillars (AIDA)`) — mỗi Content Pillar có 1 "Target keyword" gắn với 1 trang pillar (vd: pillar "TCPA & AI Compliance" → target keyword `conversational ai agent`). Đây là **link target**, KHÔNG phải keyword để cluster article nhắm tới.
+2. **Cluster keyword candidates** (sheet `✅ Customer Response AI Chatbot` và các sheet main keyword khác) — hàng trăm sub-keyword long-tail nằm dưới mỗi Main Keyword group. Đây mới là nguồn keyword thật sự để bài viết từ tin tức nhắm tới.
+
+**Chưa bị loại ở Bước 2** áp dụng cho cluster keyword candidates, không áp dụng cho pillar keyword (pillar keyword không bao giờ bị "dùng hết" vì nó không phải là thứ cluster article target).
 
 ---
 
-## Bước 4 — Map tin → keyword
+## Bước 4 — Map tin → pillar (để link) + chọn cluster keyword riêng (để viết)
 
-*(Chỉ xét keyword đã pass dedup check)*
+*(Chỉ xét cluster keyword đã pass dedup check ở Bước 2)*
+
+**Quy tắc quan trọng — tránh cannibalization:** Bài cluster viết từ tin tức **không được dùng chính keyword của pillar page làm focus keyword của nó**. Pillar page đã (hoặc sẽ) target keyword đó rồi — nếu cluster article cũng target y hệt, 2 bài cùng site sẽ cạnh tranh nhau trên cùng 1 từ khóa (Google thấy khó hiểu nên rank bài nào, kéo tụt cả hai). Thay vào đó:
+
+- Cluster article target một **long-tail keyword khác, hẹp hơn**, bám sát góc tin tức (vd: pillar keyword là `conversational ai agent`, nhưng bài viết từ tin FCC/TCPA có thể target `tcpa compliance ai texting real estate` hoặc một sub-keyword long-tail lấy từ sheet cluster keyword candidates).
+- Bài chỉ **dẫn link nội bộ (internal link) về pillar page**, dùng anchor text tự nhiên có chứa pillar keyword — đây là cách truyền topical authority cho pillar page mà không tranh giành ranking với nó.
 
 Với mỗi tin, đánh giá:
 
-1. **Relevance (1–5):** Tin liên quan đến focus keyword nào?
-2. **Angle:** Tin cung cấp dữ liệu/case study/xu hướng gì để làm hook?
-3. **Pillar target:** Bài cluster sẽ link về pillar page nào?
+1. **Pillar target:** Tin này liên quan đến Content Pillar nào (và pillar keyword/URL nào sẽ được link về)?
+2. **Cluster keyword:** Chọn 1 keyword long-tail khác pillar keyword (từ sub-keyword list, hoặc tự đặt bám sát hook tin tức) — check lại qua `is_duplicate()` ở Bước 2.
+3. **Angle:** Tin cung cấp dữ liệu/case study/xu hướng gì để làm hook cho đúng cluster keyword đó?
 
-Chọn **top 1 cặp** (tin + keyword) có relevance cao nhất và angle rõ ràng nhất để viết.
+Chọn **top 1 bộ ba** (tin + cluster keyword + pillar target) có relevance cao nhất và angle rõ ràng nhất để viết. Output rõ 2 giá trị riêng: `FOCUS_KW` (cluster keyword — bài này target) và `PILLAR_KW` / `PILLAR_URL` (để link về, không target).
 
 ---
 
@@ -204,23 +212,25 @@ Chọn **top 1 cặp** (tin + keyword) có relevance cao nhất và angle rõ r�
 **Cấu trúc HTML bài viết:**
 
 ```
-Intro paragraph — có focus keyword trong 100 từ đầu, context từ tin tức
+Intro paragraph — có FOCUS_KW (cluster keyword, KHÔNG phải pillar keyword) trong 100 từ đầu, context từ tin tức
 [HERO image]
 H2: Dữ liệu/tin tức mới — hook từ news, cite URL nguồn làm external link
 [STATS image]
 H2: Tại sao điều này quan trọng với real estate agents
-H2: Giải pháp — [focus keyword] trong thực tế
+H2: Giải pháp — [FOCUS_KW] trong thực tế
 [DEMO image]
 H2: Top platforms/tools — external dofollow links tới tool websites
 [COMPARISON image]
-H2: Related reading — internal links (pillar page + 1 bài liên quan)
+H2: Related reading — internal link về PILLAR_URL, anchor text tự nhiên chứa PILLAR_KW (không phải FOCUS_KW) + 1 bài liên quan khác
 H2: Final Thoughts
 ```
+
+**Lưu ý khi viết đoạn "Related reading":** anchor text trỏ về pillar page nên đọc tự nhiên và chứa PILLAR_KW (vd: pillar keyword `conversational ai agent` → anchor "conversational AI agent compliance guide"), vì đây chính là cách truyền tín hiệu từ khóa cho pillar page. Đừng nhầm lẫn — FOCUS_KW mới là keyword bài này cần rank, PILLAR_KW chỉ xuất hiện trong anchor text/link, không lặp lại trong H1/title/meta của bài.
 
 **Rank Math SEO checklist — tự verify trước khi publish:**
 
 ```python
-def check_seo(content, keyword):
+def check_seo(content, keyword, pillar_keyword=None, pillar_url=None):
     raw = re.sub(r'<[^>]+>', ' ', content)
     words = raw.split()
     kw_count = len(re.findall(re.escape(keyword), raw.lower()))
@@ -240,6 +250,14 @@ def check_seo(content, keyword):
         issues.append(f"Only {int_links} internal link(s) (need ≥2)")
     if img_alts_with_kw < 1:
         issues.append("No img alt contains focus keyword")
+
+    # Chống cannibalization: FOCUS_KW (cluster) không được trùng PILLAR_KW
+    if pillar_keyword and keyword.strip().lower() == pillar_keyword.strip().lower():
+        issues.append(f"FOCUS_KW trùng hệt PILLAR_KW ('{pillar_keyword}') — đổi sang long-tail keyword khác, pillar keyword chỉ dùng làm anchor text")
+    # Phải có ít nhất 1 link trỏ đúng về pillar_url (không chỉ link nội bộ chung chung)
+    if pillar_url and pillar_url not in content:
+        issues.append(f"Thiếu internal link trỏ về pillar page ({pillar_url}) trong đoạn Related reading")
+
     return {
         "words": len(words),
         "kw_count": kw_count,
@@ -252,15 +270,16 @@ def check_seo(content, keyword):
     }
 
 # Dùng trước khi publish:
-seo = check_seo(CONTENT, FOCUS_KW)
+seo = check_seo(CONTENT, FOCUS_KW, PILLAR_KW, PILLAR_URL)
 if not seo["ok"]:
     print("SEO issues:", seo["issues"])
     # Sửa CONTENT trước khi gọi create_post
 ```
 
-**Nếu density thấp:** thêm các đoạn tự nhiên sử dụng focus keyword vào body sections.
-**Nếu thiếu internal link:** thêm đoạn "Related reading" trước Final Thoughts với ≥2 link đến bài trong infina.ai/news.
+**Nếu density thấp:** thêm các đoạn tự nhiên sử dụng FOCUS_KW (cluster keyword) vào body sections — không dùng PILLAR_KW để bù density, vì đó là 2 keyword khác nhau.
+**Nếu thiếu internal link:** thêm đoạn "Related reading" trước Final Thoughts với ≥2 link đến bài trong infina.ai/news, trong đó có 1 link chính xác trỏ về `PILLAR_URL` với anchor text chứa `PILLAR_KW`.
 **Nếu thiếu external link:** đảm bảo link tới URL nguồn tin và website các tool đề cập trong bài không có `rel="nofollow"`.
+**Nếu FOCUS_KW trùng PILLAR_KW:** đây là lỗi cannibalization — quay lại Bước 4 chọn cluster keyword khác, không sửa bằng cách đổi PILLAR_KW.
 
 ---
 
@@ -313,7 +332,8 @@ Append vào file `cluster_articles_log.md` sau mỗi lần chạy:
 
 ## Slug rules (critical)
 
-- Mỗi từ trong focus keyword phải xuất hiện trong slug
+- Slug bám theo `FOCUS_KW` (cluster keyword của chính bài này), KHÔNG bám theo `PILLAR_KW`
+- Mỗi từ trong FOCUS_KW phải xuất hiện trong slug
 - Ví dụ: keyword `crm for real estate agents` → slug `crm-for-real-estate-agents` (phải có `for`)
 - Singular ≠ plural: `agent` ≠ `agents`
 - Tách keyword ra từng từ, check từng từ có trong slug không trước khi publish
