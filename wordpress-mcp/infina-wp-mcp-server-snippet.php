@@ -137,7 +137,10 @@ function infina_mcp_apply_post_meta( $post_id, $args, $on_create = true ) {
     return $image_note;
 }
 
-// Chuan hoa & xac thuc status + date (cho create/update). Tra ve mang [status, extra] hoac WP_Error.
+// Chuan hoa & xac thuc status + date (cho create/update). Tra ve mang postarr-extra hoac WP_Error.
+//   - status 'future'   : bat buoc 'date' o TUONG LAI  -> len lich (scheduled)
+//   - status khac + date: dat post_date theo 'date', cho phep QUA KHU -> backdate publish
+//   - khong co date      : de WP tu lay gio hien tai
 function infina_mcp_resolve_status( $status, $date ) {
     $allowed = [ 'draft', 'publish', 'future', 'pending', 'private' ];
     $status  = strtolower( (string) $status );
@@ -145,8 +148,9 @@ function infina_mcp_resolve_status( $status, $date ) {
         return new WP_Error( 'bad_status', "status khong hop le. Cho phep: " . implode( ', ', $allowed ) );
     }
     $extra = [ 'post_status' => $status ];
+    $date  = trim( (string) $date );
+
     if ( $status === 'future' ) {
-        $date = trim( (string) $date );
         if ( $date === '' ) {
             return new WP_Error( 'need_date', "status 'future' can 'date' (gio dia phuong site, dinh dang 'YYYY-MM-DD HH:MM:SS')." );
         }
@@ -155,10 +159,20 @@ function infina_mcp_resolve_status( $status, $date ) {
             return new WP_Error( 'bad_date', "khong doc duoc 'date'. Dung 'YYYY-MM-DD HH:MM:SS'." );
         }
         if ( $ts <= strtotime( current_time( 'mysql' ) ) ) {
-            return new WP_Error( 'past_date', "'date' phai o tuong lai de len lich." );
+            return new WP_Error( 'past_date', "'date' phai o tuong lai de len lich (future)." );
         }
         $extra['post_date']     = date( 'Y-m-d H:i:s', $ts );
         $extra['post_date_gmt'] = get_gmt_from_date( $extra['post_date'] );
+        $extra['edit_date']     = true;
+    } elseif ( $date !== '' ) {
+        // Backdate / dat ngay tuy y cho draft/publish/pending/private (cho phep qua khu).
+        $ts = strtotime( $date );
+        if ( ! $ts ) {
+            return new WP_Error( 'bad_date', "khong doc duoc 'date'. Dung 'YYYY-MM-DD HH:MM:SS'." );
+        }
+        $extra['post_date']     = date( 'Y-m-d H:i:s', $ts );
+        $extra['post_date_gmt'] = get_gmt_from_date( $extra['post_date'] );
+        $extra['edit_date']     = true; // bat buoc de wp_update_post thuc su doi ngay
     }
     return $extra;
 }
@@ -170,7 +184,7 @@ function infina_mcp_post_props( $for_update ) {
         'title'             => [ 'type' => 'string', 'description' => 'Tieu de bai viet' ],
         'content'           => [ 'type' => 'string', 'description' => 'Noi dung day du dang HTML' ],
         'status'            => [ 'type' => 'string', 'enum' => [ 'draft', 'publish', 'future', 'pending', 'private' ], 'description' => "Trang thai. 'future' = len lich (kem 'date')." ],
-        'date'              => [ 'type' => 'string', 'description' => "Chi dung khi status='future'. Gio dia phuong site, dinh dang 'YYYY-MM-DD HH:MM:SS'." ],
+        'date'              => [ 'type' => 'string', 'description' => "Ngay dang (gio dia phuong site, 'YYYY-MM-DD HH:MM:SS'). status='future' -> phai TUONG LAI (len lich). status khac (publish/draft...) -> ngay bat ky, ke ca QUA KHU (backdate)." ],
         'excerpt'           => [ 'type' => 'string', 'description' => 'Tom tat, tuy chon' ],
         'slug'              => [ 'type' => 'string', 'description' => 'Duong dan URL, de trong se tu tao' ],
         'categories'        => [ 'type' => 'array', 'items' => [ 'type' => 'string' ], 'description' => 'Ten danh muc' ],
@@ -401,7 +415,7 @@ function infina_mcp_handle_request( WP_REST_Request $request ) {
             'result'  => [
                 'protocolVersion' => '2025-06-18',
                 'capabilities'    => [ 'tools' => new stdClass() ],
-                'serverInfo'      => [ 'name' => 'infina-blog', 'version' => '2.0.0' ],
+                'serverInfo'      => [ 'name' => 'infina-blog', 'version' => '2.1.0' ],
             ],
         ], 200 );
     }
