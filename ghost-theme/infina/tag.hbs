@@ -1,0 +1,20 @@
+{{!< default}}
+
+{{#tag}}
+<section class="archive-header">
+    <div class="container">
+        <span class="eyebrow">Tag</span>
+        <h1>{{name}}</h1>
+        {{#if description}}<p class="blog-hero-sub">{{description}}</p>{{/if}}
+    </div>
+</section>
+{{/tag}}
+
+<div class="container">
+    <div class="post-grid">
+        {{#foreach posts}}
+            {{> "post-card"}}
+        {{/foreach}}
+    </div>
+    {{pagination}}
+</div>

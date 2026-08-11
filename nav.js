@@ -76,6 +76,7 @@
     var isWorkGroup = isWork || isFocus;
     var isPersonal = active === 'personal';
     var isAbout = active === 'about';
+    var isSalesX = active === 'salesx';
 
     var nav = document.createElement('nav');
     nav.className = 'infina-nav';

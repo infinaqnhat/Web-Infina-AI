@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme:light only;">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<title>SalesX · AI Sales Agent for Real Estate · Infina AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#001F5C;
+    --navy-2:#001340;
+    --navy-3:#000d2e;
+    --blue:#1863DC;
+    --blue-soft:#EEF3FF;
+    --blue-mid:#C7D4FA;
+    --amber:#1863DC;
+    --paper:#FFFFFF;
+    --bg:#f9fafb;
+    --ink:#1a1f2e;
+    --muted:#64748b;
+    --line:#e5e7eb;
+    --line-dk:rgba(255,255,255,.12);
+    --accent:#001F5C;
+    --accent-light:rgba(0,31,92,.07);
+    --fg:#1a1f2e;
+    --fg-secondary:#334155;
+    --border:#e5e7eb;
+    --border-light:#f2f2f2;
+    --surface:#fafafa;
+    --font-display:"Be Vietnam Pro",system-ui,sans-serif;
+    --font-body:"Be Vietnam Pro",system-ui,sans-serif;
+    --section-gap:clamp(48px,6vw,72px);
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;color-scheme:light;}
+  body{
+    margin:0;
+    background:#F8FAFF !important;
+    color:#0F172A !important;
+    font-family:"Be Vietnam Pro",system-ui,sans-serif;
+    font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    forced-color-adjust:none;
+  }
+  *{color-scheme:light;}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 28px;}
+  .eyebrow{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--blue);}
+  h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.025em;line-height:1.06;}
+  h1{font-size:clamp(36px,5.8vw,64px);}
+  h2{font-size:clamp(24px,3.5vw,40px);}
+  h3{font-size:19px;font-weight:700;}
+  p{margin:0;text-align:left;}
+  .brand{color:var(--amber);font-style:normal;}
+  section{padding:68px 0;background:#F8FAFF !important;}
+
+  /* HERO */
+  .hero{
+    background:#0a1020 !important;
+    padding:156px 0 92px;position:relative;overflow:hidden;border-bottom:none;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=85');
+    background-size:cover;background-position:center 40%;
+    opacity:1;pointer-events:none;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to right,rgba(10,16,32,.3) 30%,rgba(10,16,32,0) 100%);
+    pointer-events:none;
+  }
+  .hero .wrap{position:relative;z-index:1;}
+  .hero .eyebrow{color:rgba(255,255,255,.55);}
+  .hero .opening{
+    font-size:clamp(15px,1.6vw,18px);
+    color:rgba(255,255,255,.7) !important;
+    font-style:italic;font-weight:400;
+    margin:0 0 28px;max-width:50ch;line-height:1.72;
+  }
+  .hero h1{color:#fff !important;max-width:18ch;line-height:1.1;}
+  .hero h1 .turn{color:#7B9EF5;}
+  .hero .sub{
+    font-size:clamp(15px,1.6vw,17px);
+    color:rgba(255,255,255,.82) !important;
+    margin-top:20px;max-width:48ch;line-height:1.65;
+    font-style:normal;font-weight:400;
+  }
+  .hero .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.35);margin-top:40px;}
+  .hero-mini-stats{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;background:rgba(0,0,0,.32);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px 20px;}
+  .hero-mini-stat{display:flex;flex-direction:column;gap:4px;}
+  .hero-mini-stat .msv{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;}
+  .hero-mini-stat .msl{font-size:11px;color:rgba(255,255,255,.5);line-height:1.4;max-width:10ch;}
+  .hero-mini-stat .msv.blue{color:#7BB3FF;}
+  .hero-pills{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .hero-pill{font-size:12px;font-weight:500;color:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.18);border-radius:9999px;padding:6px 14px;background:rgba(0,0,0,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);white-space:nowrap;}
+  .blob{display:none;}
+
+  /* THE DRIFT */
+  .drift{background:#FFFFFF !important;}
+  .drift .pull-quote{
+    font-size:clamp(21px,2.8vw,32px);
+    font-weight:800;letter-spacing:-.02em;line-height:1.22;
+    max-width:22ch;color:var(--navy);
+    border-left:4px solid var(--amber);
+    padding-left:24px;margin-bottom:36px;
+  }
+  .drift .scene{
+    background:var(--bg);border-left:3px solid var(--blue-mid);
+    border-radius:0 12px 12px 0;
+    padding:22px 24px;margin-bottom:28px;
+    max-width:58ch;
+    font-size:16px;color:var(--muted);
+    font-style:italic;line-height:1.72;
+  }
+  .drift .scene b{color:var(--ink);font-style:normal;font-weight:700;}
+  .drift .body{max-width:60ch;color:var(--muted);font-size:16.5px;line-height:1.72;text-align:left;}
+  .drift .body p+p{margin-top:16px;}
+  .drift .body b{color:var(--ink);font-weight:700;}
+
+  /* NUMBERS */
+  .numbers{background:#f0f3ff !important;padding:var(--section-gap) 0;}
+  .numbers .eyebrow{color:var(--blue);display:block;text-align:center;}
+  .numbers .section-headline{
+    font-size:clamp(22px,3vw,34px);
+    font-weight:800;letter-spacing:-.02em;line-height:1.18;
+    color:var(--ink) !important;max-width:none;margin-top:12px;text-align:center;
+  }
+  .numbers .section-headline em{font-style:normal;background:linear-gradient(135deg,var(--accent) 0%,#6fa8ff 50%,var(--accent) 100%);background-size:200% 200%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:gradient-shift 4s ease infinite;}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;}
+  @media(max-width:720px){.stat-row{grid-template-columns:1fr;gap:14px;}}
+  .stat-block{padding:28px 24px;background:#fff;border:1px solid var(--line);border-radius:16px;transition:transform .22s ease,box-shadow .22s ease;cursor:default;}
+  .stat-block:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(24,99,220,.12);}
+  .stat-block .num{font-size:44px;font-weight:800;color:var(--blue);letter-spacing:-.03em;line-height:1;}
+  .stat-block .label{font-size:14.5px;color:var(--ink);line-height:1.5;margin-top:10px;}
+  .stat-block .src{font-size:10.5px;color:var(--muted);margin-top:8px;}
+
+  /* HOW */
+  .how{background:#F8FAFF !important;padding:var(--section-gap) 0;}
+  .how .eyebrow{color:var(--blue);display:block;text-align:center;}
+  .how h2{color:var(--ink);max-width:none;text-align:center;}
+  .surfaces{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;}
+  @media(max-width:700px){.surfaces{grid-template-columns:1fr;}}
+  @media(max-width:700px){.feat-grid{grid-template-columns:1fr !important;}}
+  .surface{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 26px;}
+  .surface .tag{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700;}
+  .surface .ic{width:36px;height:36px;color:var(--blue);margin-top:14px;}
+  .surface h3{margin:10px 0 8px;color:var(--ink);}
+  .surface p{color:var(--muted);font-size:15px;line-height:1.55;}
+
+  /* HANDOFF */
+  .handoff-section{background:#F8FAFF !important;padding:68px 0;}
+  .handoff{background:var(--blue-soft) !important;border:1px solid var(--blue-mid);border-radius:20px;padding:40px 36px;margin-top:28px;}
+  .handoff .hl{color:var(--blue);text-align:center;display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;}
+  .handoff h2{color:var(--navy) !important;text-align:center;margin-top:8px;max-width:none;}
+
+  .flow4{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:start;gap:8px;margin-top:28px;}
+  @media(max-width:680px){
+    .flow4{grid-template-columns:1fr;gap:0;}
+    .f4-arr{transform:rotate(90deg);text-align:center;font-size:18px;color:rgba(37,99,235,.5);padding:6px 0;}
+  }
+  .flow4-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 18px;text-align:center;}
+  .flow4-item.highlight{background:var(--blue-mid);border-color:var(--blue);}
+  .f4-num{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--blue);margin-bottom:6px;}
+  .f4-lab{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--blue);margin-bottom:10px;}
+  .f4-big{font-size:15px;color:var(--ink);line-height:1.45;font-weight:500;}
+  .flow4-item.highlight .f4-num{color:var(--blue);}
+  .flow4-item.highlight .f4-lab{color:var(--navy);}
+  .flow4-item.highlight .f4-big{color:var(--navy);font-weight:700;}
+  .f4-arr{color:var(--blue);font-size:20px;text-align:center;padding-top:32px;opacity:.5;}
+
+  .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:8px;margin-top:28px;}
+  .flow .node{text-align:center;padding:14px 10px;}
+  .flow .node .lab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(37,99,235,.9);margin-bottom:6px;font-weight:700;}
+  .flow .node .big{font-size:16px;color:#fff !important;line-height:1.24;font-weight:600;}
+  .flow .arr{color:rgba(37,99,235,.45);font-size:20px;text-align:center;}
+  @media(max-width:640px){.flow{grid-template-columns:1fr;}.flow .arr{transform:rotate(90deg);font-size:16px;}}
+
+
+  /* CYCLE EMBED */
+  .stage-grid-old{display:none;}
+
+  .cycle-label{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--blue);margin-bottom:28px;}
+  /* CYCLE - moved inline */
+  .track{display:flex;margin-top:40px;}
+  .stage{flex:1;display:flex;flex-direction:column;text-align:center;padding:0 10px;position:relative;}
+  .stage .dot{width:50px;height:50px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;background:var(--blue-soft);color:var(--blue);border:1.5px solid var(--blue-mid);position:relative;z-index:1;}
+  .stage.you .dot{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .stage .who{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:4px;font-weight:700;}
+  .stage.you .who{color:var(--navy);}
+  .stage .name{font-weight:800;font-size:16px;margin-bottom:5px;color:var(--ink);}
+  .stage .desc{font-size:13px;color:var(--muted);line-height:1.44;}
+  .stage .conn{position:absolute;top:25px;right:-1px;width:calc(100% - 50px);height:2px;
+    background:repeating-linear-gradient(90deg,var(--blue) 0 5px,transparent 5px 10px);transform:translateX(50%);z-index:0;}
+  .stage:last-child .conn{display:none;}
+  .loopback{margin-top:26px;display:flex;align-items:center;gap:10px;justify-content:center;color:var(--muted);font-size:14px;border-top:1px dashed var(--line);padding-top:20px;}
+  .loopback .lc{color:var(--blue);font-size:20px;font-weight:800;}
+  .loopback b{color:var(--ink);font-weight:700;}
+  .legend{display:flex;gap:20px;justify-content:center;margin-top:14px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;color:var(--muted);}
+  .legend i{width:10px;height:10px;border-radius:50%;}
+  .legend .c1{background:var(--blue);}
+  .legend .c2{background:var(--navy);}
+  @media(max-width:700px){
+    .track{flex-direction:column;gap:10px;}
+    .stage{flex-direction:row;text-align:left;align-items:flex-start;gap:14px;padding:0;}
+    .stage .dot{margin:0;flex:0 0 auto;}
+    .stage .conn{display:none;}
+    .stage .txt{flex:1;}
+  }
+
+
+  /* TIMELINE */
+  .features{background:#FFFFFF !important;}
+  .features .eyebrow{color:var(--blue);}
+
+
+  @media(max-width:640px){.timeline::before{left:70px;}}
+/* PRICING */
+  .pricing{background:#FFFFFF !important;}
+  .pricing .eyebrow{color:var(--blue);}
+  .pricing h2{color:var(--ink);}
+  .pricing .sub{color:var(--muted);font-size:16.5px;margin-top:12px;max-width:52ch;line-height:1.6;}
+  .price-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;}
+  @media(max-width:640px){.price-cards{grid-template-columns:1fr;}}
+  .price-card{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:30px 26px;}
+  .price-card.hl{background:#fff;border:2px solid var(--blue);box-shadow:0 0 0 4px rgba(37,99,235,.07);}
+  .price-tag{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;color:var(--blue);}
+  .price-big{font-size:50px;font-weight:800;color:var(--ink);letter-spacing:-.04em;line-height:1;margin-top:10px;}
+  .price-sub{font-size:13.5px;color:var(--muted);margin-top:4px;}
+  .price-list{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:9px;border-top:1px solid var(--line);padding-top:18px;}
+  .price-list li{font-size:14.5px;color:var(--ink);padding-left:18px;position:relative;line-height:1.4;}
+  .price-list li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:700;}
+  .price-note{margin-top:18px;font-size:13px;color:var(--muted);line-height:1.5;border-top:1px solid var(--line);padding-top:14px;}
+
+  /* AUDIENCE */
+  .audience{background:#F8FAFF !important;}
+  .audience .eyebrow{color:var(--blue);}
+  .aud{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px;}
+  @media(max-width:600px){.aud{grid-template-columns:1fr;}}
+  .aud .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;}
+  .aud .pill{display:inline-block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--navy);background:var(--blue-mid);border-radius:999px;padding:4px 11px;}
+  .aud h3{margin:12px 0 6px;color:var(--ink);}
+  .aud p{color:var(--muted);font-size:14.5px;}
+
+  /* CTA */
+  .cta{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%) !important;text-align:center;padding:88px 0;}
+  .cta p{text-align:center;}
+  .cta .closing-line{
+    font-size:clamp(17px,1.8vw,22px);
+    color:rgba(255,255,255,.55) !important;
+    font-style:italic;font-weight:400;
+    max-width:36ch;margin:0 auto 36px;line-height:1.65;
+  }
+  .cta h2{color:#fff !important;max-width:24ch;margin:0 auto;font-size:clamp(26px,3.5vw,40px);}
+  .cta h2 .brand{color:var(--amber);}
+  .cta .btn{display:inline-block;margin-top:30px;background:var(--blue);color:#fff !important;font-weight:700;font-size:16px;text-decoration:none;padding:15px 40px;border-radius:999px;transition:transform .18s,box-shadow .18s;}
+  .cta .btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.3);}
+  .cta .note{margin-top:14px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(37,99,235,.5);font-weight:600;}
+
+  /* footer rule removed — using infina-footer component */
+
+  .rv{opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .55s ease;}
+  .rv.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none;}}
+
+  /* MOCK TYPING ANIMATIONS */
+  @keyframes sx-typing-vis {
+    0%,38% { opacity:1; }
+    44%,100% { opacity:0; pointer-events:none; }
+  }
+  @keyframes sx-reply-vis {
+    0%,40% { opacity:0; transform:translateY(4px); }
+    48%,88% { opacity:1; transform:translateY(0); }
+    94%,100% { opacity:0; transform:translateY(0); }
+  }
+  @keyframes sx-dot {
+    0%,60%,100% { transform:translateY(0); opacity:.35; }
+    30% { transform:translateY(-3px); opacity:1; }
+  }
+  .sx-typing-wrap { animation: sx-typing-vis 5s ease infinite; }
+  .sx-reply-wrap  { animation: sx-reply-vis 5s ease infinite; position:absolute; left:0; right:0; top:0; }
+  .sx-dot { display:inline-block; width:5px; height:5px; border-radius:50%; background:var(--blue); animation:sx-dot .9s ease infinite; }
+  .sx-dot:nth-child(2){ animation-delay:.18s; }
+  .sx-dot:nth-child(3){ animation-delay:.36s; }
+  /* WhatsApp dots */
+  .sx-dot-wa { display:inline-block; width:5px; height:5px; border-radius:50%; background:#999; animation:sx-dot .9s ease infinite; }
+  .sx-dot-wa:nth-child(2){ animation-delay:.18s; }
+  .sx-dot-wa:nth-child(3){ animation-delay:.36s; }
+  @keyframes sx-wa-reply-vis {
+    0%,40% { opacity:0; transform:translateY(4px); }
+    48%,88% { opacity:1; transform:translateY(0); }
+    94%,100% { opacity:0; }
+  }
+  .sx-wa-typing { animation: sx-typing-vis 5s ease infinite; }
+  .sx-wa-reply  { animation: sx-wa-reply-vis 5s ease infinite; }
+
+  /* STAGE CARD GRID */
+  .stage-grid{margin-top:32px;}
+  .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;}
+  @media(max-width:640px){.sgrid{grid-template-columns:1fr;}}
+  .scard{border-radius:16px;padding:24px 22px;display:flex;flex-direction:column;gap:10px;}
+  .settlo-card{background:#fff;border:1px solid var(--line);}
+  .you-card{background:var(--navy);border:1px solid var(--navy);}
+  .wide-card{grid-column:1 / -1;}
+  @media(max-width:640px){.wide-card{grid-column:1;}}
+  .scard-top{display:flex;justify-content:space-between;align-items:center;}
+  .scard-num{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--blue);}
+  .you-card .scard-num{color:rgba(255,255,255,.5);}
+  .scard-who{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:var(--blue-soft);color:var(--blue);}
+  .scard-who.you-badge{background:rgba(255,255,255,.12);color:#fff;}
+  .scard-name{font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--navy);line-height:1;}
+  .you-card .scard-name{color:#fff;}
+  .scard-desc{font-size:14.5px;color:var(--muted);line-height:1.55;flex:1;}
+  .you-card .scard-desc{color:rgba(255,255,255,.75);}
+  .scard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .scard-tags span{font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-mid);}
+  .you-card .scard-tags span{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2);}
+
+  /* STAGE TIMELINE */
+  .stl{position:relative;display:flex;flex-direction:column;gap:0;}
+  .stl-item{display:grid;grid-template-columns:72px 28px 1fr;align-items:stretch;gap:0;}
+  .stl-left{text-align:right;padding:14px 0;padding-right:0;}
+  .stl-time{font-size:12px;font-weight:800;color:var(--navy);line-height:1.2;}
+  .stl-role{font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-top:4px;opacity:.7;}
+  .stl-time.you-num{color:var(--blue);}
+  .you-role{color:var(--navy);}
+  .stl-line{display:flex;flex-direction:column;align-items:center;gap:0;}
+  .stl-dot{width:12px;height:12px;border-radius:50%;background:var(--blue-soft);border:2px solid var(--blue);margin-top:15px;flex-shrink:0;position:relative;z-index:1;}
+  .you-dot{background:var(--navy);border-color:var(--navy);}
+  .stl-line::before{display:none;}
+  .stl-line::after{content:"";width:2px;background:var(--line);flex:1;}
+  .last-item .stl-line::after{display:none;}
+  .stl-card{padding:12px 0 28px 20px;}
+  .stl-stage{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:4px;}
+  .you-stage{color:var(--navy);}
+  .stl-name{font-size:19px;font-weight:800;letter-spacing:-.02em;color:var(--navy);margin-bottom:8px;}
+  .you-card-tl .stl-name{color:var(--navy);}
+  .stl-desc{font-size:14.5px;color:var(--muted);line-height:1.58;}
+  .stl-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+  .stl-tags span{font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-mid);}
+
+
+
+  .brok-card{border-color:var(--blue);box-shadow:0 0 0 3px rgba(43,92,230,.07);}
+  .brok-pill{background:var(--navy) !important;color:#fff !important;}
+  .brok-list{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line);padding-top:16px;}
+  .brok-list li{font-size:14px;color:var(--muted);padding-left:16px;position:relative;line-height:1.4;}
+  .brok-list li::before{content:"→";position:absolute;left:0;color:var(--blue);font-weight:700;}
+
+  /* INFINA LEAD FORM */
+  .lead-section{padding:var(--section-gap) 0;background:linear-gradient(180deg,#f0f3f9 0%,#e8edf7 100%);color:var(--fg);position:relative;overflow:hidden;}
+  .lead-section::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(0,31,92,0.08),transparent 65%);filter:blur(40px);pointer-events:none;}
+  .lead-section::after{content:'';position:absolute;bottom:-300px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,31,92,0.05),transparent 65%);filter:blur(60px);pointer-events:none;}
+  .lead-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:start;position:relative;z-index:1;}
+  @media(max-width:900px){.lead-grid{grid-template-columns:1fr;gap:48px;}}
+  .lead-copy h2{font-family:var(--font-display);font-size:clamp(36px,4.5vw,56px);font-weight:700;line-height:1.05;letter-spacing:-0.025em;margin-bottom:20px;color:var(--fg);}
+  .lead-copy h2 .accent{background:linear-gradient(135deg,var(--accent) 0%,#1863dc 100%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .lead-sub{font-size:17px;color:var(--fg-secondary);margin-bottom:36px;max-width:460px;line-height:1.55;}
+  .lead-form{background:#fff;color:var(--fg);border-radius:20px;padding:32px;box-shadow:0 30px 80px rgba(0,0,0,0.15),0 0 0 1px rgba(255,255,255,0.05);display:flex;flex-direction:column;gap:12px;position:relative;}
+  .lead-form-header{margin-bottom:4px;}
+  .lead-form-title{font-family:var(--font-display);font-size:18px;font-weight:700;letter-spacing:-0.015em;margin-bottom:2px;}
+  .lead-form-sub{font-size:12px;color:var(--muted);}
+  @media(max-width:600px){.lead-form{padding:24px 20px;}}
+  .lead-field{position:relative;}
+  .lead-field input,.lead-field textarea{width:100%;font-family:var(--font-body);font-size:14px;color:var(--fg);background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px 14px 6px;outline:none;transition:border-color 0.15s,box-shadow 0.15s;appearance:none;-webkit-appearance:none;min-height:50px;}
+  .lead-field textarea{resize:none;min-height:70px;line-height:1.5;padding-top:22px;cursor:text;}
+  .lead-field input:focus,.lead-field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light);}
+  .lead-field input.invalid,.lead-field textarea.invalid{border-color:#dc2626;}
+  .lead-field label{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--muted);pointer-events:none;transition:all 0.15s ease;background:transparent;}
+  .lead-field.lead-textarea label{top:18px;transform:none;}
+  .lead-field input:focus+label,.lead-field input:not(:placeholder-shown)+label,.lead-field textarea:focus+label,.lead-field textarea:not(:placeholder-shown)+label{top:8px;transform:none;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;}
+  .lead-submit{align-self:stretch;justify-content:center;background:var(--accent);color:#fff;border:0;border-radius:12px;padding:14px 28px;font-family:var(--font-body);font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform 0.15s,opacity 0.15s,background 0.15s,box-shadow 0.2s;margin-top:4px;position:relative;overflow:hidden;}
+  .lead-submit:hover{background:#001340;transform:translateY(-1px);box-shadow:0 12px 30px rgba(0,31,92,0.35);}
+  .lead-submit::after{content:'→';font-size:18px;transition:transform 0.2s;}
+  .lead-submit:hover::after{transform:translateX(4px);}
+  .lead-submit:disabled{opacity:0.6;cursor:not-allowed;}
+  .lead-submit-spinner{display:none;width:14px;height:14px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:lead-spin 0.7s linear infinite;}
+  .lead-submit.loading .lead-submit-spinner{display:inline-block;}
+  @keyframes lead-spin{to{transform:rotate(360deg);}}
+  @keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .gradient-text{background:linear-gradient(135deg,var(--accent) 0%,#6fa8ff 50%,var(--accent) 100%);background-size:200% 200%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:gradient-shift 4s ease infinite;}
+  .lead-status{font-size:14px;min-height:20px;}
+  .lead-status.success{color:#059669;}
+  .lead-status.error{color:#dc2626;}
+  .container{max-width:1200px;margin:0 auto;padding:0 32px;}
+
+  /* MOBILE FIXES */
+  .hero-inner-grid{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:center;margin-top:36px;}
+  @media(max-width:768px){
+    .hero-inner-grid{grid-template-columns:1fr;gap:24px;}
+    .hero-pain{order:2;opacity:.75;}
+    .hero-solution{order:1;}
+    .feat-grid-4{grid-template-columns:1fr 1fr !important;gap:8px !important;}
+    .without-flow{flex-direction:column !important;align-items:stretch !important;}
+    .without-flow > div{align-items:flex-start !important;}
+    .without-flow .flow-connector{display:none !important;}
+    .chat-bubble{max-width:90% !important;}
+    .chat-avatar{width:24px !important;height:24px !important;}
+    .wrap{padding:0 16px;}
+    section{padding:48px 0;}
+    .lead-grid{grid-template-columns:1fr !important;gap:32px !important;}
+    .lead-form{padding:24px 16px !important;}
+  }
+
+</style>
+</head>
+<body>
+
+<infina-nav active="salesx"></infina-nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-inner-grid">
+
+      <!-- LEFT: painpoint — subtle, secondary -->
+      <div class="hero-pain" style="display:flex;flex-direction:column;gap:14px;">
+        <div style="border-left:2px solid rgba(255,255,255,.3);padding-left:16px;font-size:14px;color:rgba(255,255,255,.7);font-style:italic;line-height:1.72;">
+          It is 11pm. A buyer messages about a listing she has been watching for months. You are asleep. By 9am, she has already booked a viewing <b style="color:rgba(255,255,255,.9);font-style:normal;font-weight:600;">with the agent who answered at 11:05.</b>
+        </div>
+        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;margin:0;">Most agents do not have a selling problem. They have a capacity problem.</p>
+      </div>
+
+      <!-- RIGHT: solution — prominent -->
+      <div class="hero-solution" style="text-shadow:0 1px 12px rgba(0,0,0,.8),0 2px 24px rgba(0,0,0,.6);">
+        <span class="eyebrow"><span style="color:var(--blue);font-weight:inherit;">AI SalesX</span> · AI Sales Agent for Real Estate</span>
+        <h1 style="margin:16px 0 0;">Convert <span class="turn">3x more<br>inquiries</span> into deals.<br>Zero extra work.</h1>
+        <p class="sub">78% of buyers go with the agent who responds first. <span style="color:#7BB3FF;font-weight:600;">AI SalesX</span> replies in under 10 seconds, 24/7: qualifies buyers, sends personalized brochures, books callbacks, and keeps every lead warm. You only show up to close.</p>
+        <div class="hero-mini-stats">
+          <div class="hero-mini-stat"><span class="msv">1–2</span><span class="msl">deals recovered per month avg.</span></div>
+          <div class="hero-mini-stat"><span class="msv blue">$15K</span><span class="msl">avg. commission per deal (US)</span></div>
+          <div class="hero-mini-stat"><span class="msv">&lt;$500</span><span class="msl">per month to run AI SalesX</span></div>
+          <div class="hero-mini-stat"><span class="msv blue">~30x</span><span class="msl">typical ROI in year one</span></div>
+        </div>
+        <div class="hero-pills">
+          <span class="hero-pill">Never miss a lead</span>
+          <span class="hero-pill">Know who to call first</span>
+          <span class="hero-pill">Win the listing first</span>
+          <span class="hero-pill">Follows up automatically</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="blob"></div>
+</header>
+
+<!-- NUMBERS -->
+<section class="numbers">
+  <div class="wrap rv">
+    <span class="eyebrow">The data</span>
+    <p class="section-headline">The agents winning today are not better at selling.<br><em>They are better at responding.</em></p>
+    <div class="stat-row">
+      <div class="stat-block">
+        <div class="num">78%</div>
+        <div class="label">of buyers work with the first agent who responds. Not the most experienced. The fastest.</div>
+        <div class="src">NAR Home Buyers and Sellers Generational Trends Report, 2025</div>
+      </div>
+      <div class="stat-block">
+        <div class="num">21x</div>
+        <div class="label">more likely to qualify a lead when contacted within 5 minutes versus 30 minutes.</div>
+        <div class="src">Real Trends / InsideSales.com Lead Response Study, 2025</div>
+      </div>
+      <div class="stat-block">
+        <div class="num">62%</div>
+        <div class="label">of real estate inquiries come in after business hours. Peak times are evenings and weekends, when most agents are offline.</div>
+        <div class="src">NAR / Zillow Group Consumer Research, 2025</div>
+      </div>
+    </div>
+    <p style="margin-top:32px;font-size:17px;color:var(--muted);font-style:italic;text-align:center;max-width:52ch;margin-left:auto;margin-right:auto;line-height:1.65;">The gap is not effort. It is availability. The deals are happening while you sleep. <span style="color:var(--blue);font-weight:600;">SalesX</span> is the agent that never clocks out.</p>  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="wrap rv">
+    <div class="sec-head"><span class="eyebrow">Meet <span style="color:var(--blue);font-weight:inherit;">AI SalesX</span></span></div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;margin-bottom:4px;">
+      <span style="font-size:11px;font-weight:600;color:var(--muted);">Built for</span>
+      <span style="font-size:11px;font-weight:700;color:var(--blue);background:var(--blue-soft);border:1.5px solid var(--blue-mid);border-radius:999px;padding:4px 12px;">Independent Agent</span>
+      <span style="font-size:11px;font-weight:700;color:var(--blue);background:var(--blue-soft);border:1.5px solid var(--blue-mid);border-radius:999px;padding:4px 12px;">Brokerages</span>
+    </div>
+    <h2>Recover <span class="gradient-text">20–30%</span> of lost leads. Handle <span class="gradient-text">10x</span> the inquiries. Without adding headcount.</h2>
+    <p style="max-width:60ch;color:#4A5580;font-size:16.5px;line-height:1.65;margin-top:14px;text-align:center;margin-left:auto;margin-right:auto;">One AI agent. Two surfaces. Turn every conversation into a qualified opportunity, with context, intent, and next steps built in.</p>
+
+    <!-- ① TWO SURFACES with mockups -->
+    <div class="surfaces" style="margin-top:36px;">
+
+      <div class="surface" style="padding:0;overflow:hidden;display:flex;flex-direction:column;">
+        <div style="padding:20px 22px 16px;flex:1;">
+          <span class="tag">Surface 01 · AI listing page</span>
+          <h3 style="margin-top:8px;">Your digital presence, always on.</h3>
+          <p style="margin-top:6px;">Tell the AI what you sell. It builds your listing page, keeps it updated, and answers every buyer question. Day or night. No developer. No code.</p>
+        </div>
+        <div style="background:var(--blue-soft);padding:14px 16px;border-top:1px solid var(--blue-mid);">
+          <!-- Landing page mockup with floating chat widget -->
+          <div style="background:#fff;border:1px solid var(--blue-mid);border-radius:8px;overflow:hidden;position:relative;">
+            <!-- Nav bar -->
+            <div style="background:#fff;padding:7px 12px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;">
+              <div style="width:28px;height:4px;background:var(--navy);border-radius:2px;"></div>
+              <div style="flex:1;height:4px;background:var(--line);border-radius:2px;"></div>
+              <div style="width:20px;height:6px;background:var(--blue);border-radius:3px;"></div>
+            </div>
+            <!-- Hero image -->
+            <div style="height:80px;position:relative;overflow:hidden;">
+              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80" style="width:100%;height:100%;object-fit:cover;display:block;" alt="Listing hero"/>
+              <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,27,92,.55) 0%,transparent 60%);"></div>
+              <div style="position:absolute;bottom:7px;left:10px;">
+                <div style="font-size:10px;font-weight:800;color:#fff;letter-spacing:.02em;">4BR Colonial · Austin, TX</div>
+                <div style="font-size:9px;color:rgba(255,255,255,.75);margin-top:1px;">4BR · 3BA · $649,000</div>
+              </div>
+            </div>
+            <!-- Thumbnail strip -->
+            <div style="display:flex;gap:4px;padding:6px 10px;border-bottom:1px solid var(--line);">
+              <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=120&q=70" style="width:32px;height:22px;object-fit:cover;border-radius:3px;" alt=""/>
+              <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=120&q=70" style="width:32px;height:22px;object-fit:cover;border-radius:3px;" alt=""/>
+              <img src="https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=120&q=70" style="width:32px;height:22px;object-fit:cover;border-radius:3px;" alt=""/>
+              <div style="width:32px;height:22px;background:var(--bg);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--muted);font-weight:700;">+8</div>
+            </div>
+            <!-- Page content -->
+            <div style="padding:8px 10px 32px;">
+              <div style="height:4px;width:70%;background:var(--ink);border-radius:2px;margin-bottom:5px;opacity:.6;"></div>
+              <div style="height:3px;background:var(--line);border-radius:2px;margin-bottom:3px;"></div>
+              <div style="height:3px;width:80%;background:var(--line);border-radius:2px;"></div>
+            </div>
+            <!-- Floating chat widget bottom-right -->
+            <div style="position:absolute;bottom:8px;right:8px;width:140px;">
+              <div style="background:#fff;border:1px solid var(--blue-mid);border-radius:8px;box-shadow:0 2px 8px rgba(43,92,230,.15);overflow:hidden;">
+                <div style="background:var(--navy);padding:5px 8px;display:flex;align-items:center;gap:5px;">
+                  <div style="width:12px;height:12px;border-radius:50%;background:var(--blue);"></div>
+                  <span style="font-size:9px;color:#fff;font-weight:700;">AI SalesX</span>
+                </div>
+                <div style="padding:6px 8px;background:var(--blue-soft);">
+                  <div style="font-size:9px;color:var(--muted);margin-bottom:4px;">How many bedrooms?</div>
+                  <div style="position:relative;min-height:28px;">
+                    <!-- Typing indicator -->
+                    <div class="sx-typing-wrap" style="background:#fff;border:1px solid var(--blue-mid);border-radius:2px 7px 7px 7px;padding:6px 8px;display:inline-flex;gap:3px;align-items:center;">
+                      <span class="sx-dot"></span><span class="sx-dot"></span><span class="sx-dot"></span>
+                    </div>
+                    <!-- Reply -->
+                    <div class="sx-reply-wrap" style="background:#fff;border:1px solid var(--blue-mid);border-radius:2px 7px 7px 7px;padding:5px 7px;">
+                      <div style="font-size:9px;font-weight:700;color:var(--blue);margin-bottom:2px;">AI</div>
+                      <div style="font-size:9px;color:var(--ink);line-height:1.4;">This home has 4BR, 3BA, and a large backyard.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="surface" style="padding:0;overflow:hidden;display:flex;flex-direction:column;">
+        <div style="padding:20px 22px 16px;flex:1;">
+          <span class="tag">Surface 02 · WhatsApp AI agent</span>
+          <h3 style="margin-top:8px;">One link. Instant conversation.</h3>
+          <p style="margin-top:6px;">Share a link. Buyer taps it, WhatsApp opens, AI is already there. Not a generic chatbot. It knows the listing, answers their specific questions, and sends a brochure built for them. No app. No form.</p>
+        </div>
+        <div style="background:#e9fde9;padding:14px 16px;border-top:1px solid #c3f0c3;">
+          <div style="background:#fff;border:1px solid #c3f0c3;border-radius:8px;overflow:hidden;">
+            <div style="background:#075E54;padding:8px 12px;display:flex;align-items:center;gap:8px;">
+              <div style="width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.25);"></div>
+              <span style="font-size:12px;color:#fff;font-weight:600;">AI SalesX</span>
+            </div>
+            <div style="padding:10px 12px;display:flex;flex-direction:column;gap:6px;background:#ECE5DD;">
+              <div style="font-size:11px;padding:6px 9px;background:#fff;border-radius:0 8px 8px 8px;align-self:flex-start;color:#111;max-width:80%;line-height:1.4;">How many bedrooms does 142 Maple Dr have?</div>
+              <!-- Typing indicator -->
+              <div class="sx-wa-typing" style="padding:7px 10px;background:#fff;border-radius:0 8px 8px 8px;align-self:flex-start;display:inline-flex;gap:4px;align-items:center;">
+                <span class="sx-dot-wa"></span><span class="sx-dot-wa"></span><span class="sx-dot-wa"></span>
+              </div>
+              <!-- Reply -->
+              <div class="sx-wa-reply" style="font-size:11px;padding:6px 9px;background:#DCF8C6;border-radius:8px 0 8px 8px;align-self:flex-end;color:#111;max-width:80%;line-height:1.4;">142 Maple has 4BR, 3BA, and a big backyard. Want the brochure? ✓✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ② FEATURE GRID -->
+    <div style="margin-top:48px;">
+      <span class="eyebrow" style="display:block;margin-bottom:14px;text-align:center;">Built to do the work</span>
+      <h2 style="font-size:clamp(26px,3.5vw,44px);font-weight:800;color:var(--ink);line-height:1.15;margin:0 0 12px;text-align:center;">Replace repetitive work. <span class="gradient-text">Not the agent.</span></h2>
+      <p style="font-size:15px;color:var(--muted);max-width:60ch;line-height:1.6;margin:0 auto 28px;text-align:center;">You handle relationships and negotiations. SalesX handles repetitive questions, qualification, brochures, scheduling, and follow-up.</p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+
+        <!-- Card 1: Qualify and brief you -->
+        <div style="background:#fff;border:0.5px solid var(--blue-mid);border-left:3px solid var(--blue);border-radius:0 12px 12px 0;padding:22px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:20px;height:20px;border-radius:50%;background:var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="font-size:15px;font-weight:700;color:var(--ink);">Qualify and brief you</div>
+          </div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 14px;">Scores each buyer by intent. You arrive knowing their budget, what they care about, and how serious they are. No cold calls.</p>
+          <div style="border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:6px;">
+            <div style="font-size:12px;color:var(--muted);line-height:1.5;">· Your data is not shared or used to train models.</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.5;">· You decide which questions it answers and which it escalates.</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.5;">· Every conversation is visible to you, any time.</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.5;">· Hands off to you whenever human judgment is needed.</div>
+          </div>
+        </div>
+
+        <!-- Card 2: Acts, not just answers -->
+        <div style="background:#fff;border:0.5px solid var(--blue-mid);border-left:3px solid var(--blue);border-radius:0 12px 12px 0;padding:22px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:20px;height:20px;border-radius:50%;background:var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="font-size:15px;font-weight:700;color:var(--ink);">Acts, not just answers</div>
+          </div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 14px;">Builds a personalized brochure and sends it mid-conversation. Books callbacks. Follows up automatically. No dropped leads.</p>
+          <div style="border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:6px;">
+            <div style="font-size:12px;color:var(--muted);line-height:1.5;">· Answers only from your approved listing information.</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.5;">· Set the tone and style — it sounds like you, not a bot.</div>
+          </div>
+        </div>
+
+        <!-- Card 3: Available 24/7 -->
+        <div style="background:#fff;border:0.5px solid var(--blue-mid);border-left:3px solid var(--blue);border-radius:0 12px 12px 0;padding:22px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:20px;height:20px;border-radius:50%;background:var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="font-size:15px;font-weight:700;color:var(--ink);">Available 24/7</div>
+          </div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0;">Responds at 11pm, on weekends, on holidays. Every inquiry gets an answer the moment it arrives.</p>
+        </div>
+
+        <!-- Card 4: Speaks their language -->
+        <div style="background:#fff;border:0.5px solid var(--blue-mid);border-left:3px solid var(--blue);border-radius:0 12px 12px 0;padding:22px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:20px;height:20px;border-radius:50%;background:var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="font-size:15px;font-weight:700;color:var(--ink);">Speaks their language</div>
+          </div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0;">Multilingual by default. Serve any buyer, in any language, without hiring a translator or losing the conversation.</p>
+        </div>
+
+        <!-- Card 5: Costs less — full width with comparison table -->
+        <div style="background:#fff;border:0.5px solid var(--blue-mid);border-left:3px solid var(--blue);border-radius:0 12px 12px 0;padding:22px;grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <div style="width:20px;height:20px;border-radius:50%;background:var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div style="font-size:15px;font-weight:700;color:var(--ink);">Costs less than hiring an assistant</div>
+            </div>
+            <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0;">The responsiveness of an inside sales assistant at a fraction of the cost. No hiring, training, shifts, or supervision. One recovered buyer can pay for SalesX for years.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#CC3333;margin-bottom:10px;">Human Assistant</div>
+              <div style="display:flex;flex-direction:column;gap:7px;">
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#AA4444;"><span style="color:#CC3333;font-weight:700;">·</span> Works 9–5 only</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#AA4444;"><span style="color:#CC3333;font-weight:700;">·</span> Hiring and training time</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#AA4444;"><span style="color:#CC3333;font-weight:700;">·</span> Sick days, turnover</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#AA4444;"><span style="color:#CC3333;font-weight:700;">·</span> One lead at a time</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#AA4444;"><span style="color:#CC3333;font-weight:700;">·</span> One language</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;">AI SalesX</div>
+              <div style="display:flex;flex-direction:column;gap:7px;">
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink);"><span style="color:var(--blue);font-weight:700;">·</span> Available 24/7</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink);"><span style="color:var(--blue);font-weight:700;">·</span> Live in under an hour</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink);"><span style="color:var(--blue);font-weight:700;">·</span> Knows every listing detail cold</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink);"><span style="color:var(--blue);font-weight:700;">·</span> Handles 100 leads at once</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink);"><span style="color:var(--blue);font-weight:700;">·</span> Any language</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ② CALENDAR -->
+    <div class="rv" style="margin-top:56px;">
+      <span class="eyebrow" style="display:block;text-align:center;margin-bottom:14px;">A Day With AI SalesX</span>
+      <h2 style="font-size:clamp(26px,3.5vw,44px);font-weight:800;color:var(--ink);line-height:1.15;margin:0 0 28px;text-align:center;">Your calendar, <span class="gradient-text">reimagined.</span></h2>
+
+      <!-- Calendar card -->
+      <div style="background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06);">
+
+        <!-- Calendar header -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);background:#fafbff;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span style="font-size:14px;font-weight:600;color:var(--ink);">Wednesday</span>
+            <span style="font-size:14px;color:var(--muted);">· A typical agent day</span>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-mid);border-radius:9999px;padding:4px 12px;">AI SalesX</span>
+            <span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#FFF8E8;color:#B8860B;border:1px solid #F0D080;border-radius:9999px;padding:4px 12px;">You</span>
+          </div>
+        </div>
+
+        <!-- All day row -->
+        <div style="display:grid;grid-template-columns:56px 1fr;border-bottom:1px solid var(--line);">
+          <div style="padding:10px 8px;font-size:10px;font-weight:600;color:var(--muted);text-align:right;border-right:1px solid var(--line);">ALL DAY</div>
+          <div style="padding:8px 12px;background:#1863DC;">
+            <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.08em;text-transform:uppercase;">AI SalesX · Presence &nbsp;·&nbsp; </span><span style="font-size:12px;font-weight:700;color:#fff;">Your page is already working</span><span style="font-size:12px;color:rgba(255,255,255,.8);"> · 3 buyers ranked overnight. Inbox ready by 7am.</span>
+          </div>
+        </div>
+
+        <!-- Time grid body — row-pair structure so labels always align with events -->
+        <div style="display:grid;grid-template-columns:56px 1fr;">
+
+          <!-- 7am empty -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);height:48px;">7 am</div>
+          <div style="height:48px;border-bottom:1px solid var(--line);"></div>
+
+          <!-- 8am YOU event -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);">8 am</div>
+          <div style="border-bottom:1px solid var(--line);background:#FFF8E8;padding:10px 14px;">
+            <div style="font-size:10px;font-weight:700;color:#B8860B;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">8:00 AM · YOU · ATTRACT <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#E8A020;margin-left:4px;vertical-align:middle;"></span></div>
+            <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">Coffee. No inbox panic. <span style="font-weight:400;color:var(--muted);">Clear list of warm leads with context. No chasing, <span style="color:#B8860B;">no guessing.</span></span></div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
+              <span style="font-size:11px;background:#FFF0C8;color:#A07010;border:1px solid #F0D080;border-radius:6px;padding:2px 9px;">Lead scoring</span>
+              <span style="font-size:11px;background:#FFF0C8;color:#A07010;border:1px solid #F0D080;border-radius:6px;padding:2px 9px;">Visitor analytics</span>
+            </div>
+          </div>
+
+          <!-- 10am empty -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);height:48px;">10 am</div>
+          <div style="height:48px;border-bottom:1px solid var(--line);"></div>
+
+          <!-- 11am AI SalesX event -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);">11 am</div>
+          <div style="border-bottom:1px solid var(--line);background:#EEF3FF;padding:10px 14px;">
+            <div style="font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">11:00 AM · AI SALESX · ENGAGE</div>
+            <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">A buyer asks. AI SalesX handles it.</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.5;">Someone messages while <span style="color:var(--ink);font-weight:500;">you</span> are at a viewing. <span style="color:var(--blue);font-weight:500;">AI SalesX</span> replies instantly, sends photos and a branded brochure. The conversation moves forward <span style="color:var(--ink);font-weight:500;">without you.</span></div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+              <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">AI agent</span>
+              <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">Brochure</span>
+              <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">Multilingual</span>
+            </div>
+          </div>
+
+          <!-- 2pm empty -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);height:48px;">2 pm</div>
+          <div style="height:48px;border-bottom:1px solid var(--line);"></div>
+
+          <!-- 2:30pm YOU event -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);">2:30 pm</div>
+          <div style="border-bottom:1px solid var(--line);background:#FFF8E8;padding:10px 14px;">
+            <div style="font-size:10px;font-weight:700;color:#B8860B;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">2:30 PM · YOU · SIGN <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#E8A020;margin-left:4px;vertical-align:middle;"></span></div>
+            <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">One ping. One warm lead. <span style="font-weight:400;color:var(--muted);"><span style="color:var(--blue);">AI SalesX</span> flags the buyer as ready, sends <span style="color:var(--ink);font-weight:500;">you</span> the full summary. <span style="color:var(--blue);">You show up.</span> They sign.</span></div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
+              <span style="font-size:11px;background:#FFF0C8;color:#A07010;border:1px solid #F0D080;border-radius:6px;padding:2px 9px;">Smart alert</span>
+              <span style="font-size:11px;background:#FFF0C8;color:#A07010;border:1px solid #F0D080;border-radius:6px;padding:2px 9px;">Intent summary</span>
+            </div>
+          </div>
+
+          <!-- 5pm–10pm filler -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);border-bottom:1px solid var(--line);height:80px;">5 pm</div>
+          <div style="height:80px;border-bottom:1px solid var(--line);background:repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(0,0,0,.018) 6px,rgba(0,0,0,.018) 12px);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:12px;font-weight:600;color:var(--muted);background:#fff;padding:4px 14px;border-radius:9999px;border:1px solid var(--line);">5 PM – 10 PM</span>
+          </div>
+
+          <!-- 11pm AI SalesX event -->
+          <div style="padding:6px 8px 0;font-size:11px;color:var(--muted);text-align:right;border-right:1px solid var(--line);">11 pm</div>
+          <div style="background:#EEF3FF;padding:10px 14px;">
+            <div style="font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">11:00 PM · AI SALESX · SERVE MORE</div>
+            <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;">You wrap up early.</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.5;">Follow-ups sent. New inquiries answered. <span style="color:var(--blue);">Callbacks booked for tomorrow.</span></div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+              <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">Always on</span>
+              <span style="font-size:11px;background:#E8EEFF;color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:2px 9px;">Marketing email</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+</section>
+
+<!-- THE DIFFERENCE -->
+<section style="background:var(--bg) !important;padding:var(--section-gap) 0;">
+  <div class="wrap rv">
+
+    <!-- Section header -->
+    <span class="eyebrow" style="display:block;text-align:center;margin-bottom:14px;">The Difference</span>
+    <h2 style="font-size:clamp(26px,3.5vw,44px);font-weight:800;color:var(--ink);line-height:1.15;margin:0 0 40px;text-align:center;">What happens when <span class="gradient-text">AI SalesX</span> is not there.</h2>
+
+    <!-- 2-col comparison card -->
+    <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:0;background:transparent;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06);">
+
+      <!-- LEFT: Without -->
+      <div style="padding:28px 28px 24px;background:#FFF5F5;">
+        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#CC3333;margin-bottom:20px;">Without AI SalesX</div>
+
+        <!-- Buyer 9:15am -->
+        <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;">
+          <div style="width:26px;height:26px;border-radius:50%;background:#FFF5F5;border:1.5px solid #FFAAAA;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#CC3333" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:9px;font-weight:700;color:#CC3333;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;">Buyer · 9:15 AM</div>
+            <div style="background:#fff;border:1px solid #FFCCCC;border-radius:2px 10px 10px 10px;padding:10px 12px;font-size:13px;color:var(--ink);line-height:1.5;">Hi, I found your listing online. Is the 2-bed still available? What's the HOA fee? Can I book a viewing this week?</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#CC3333;font-style:italic;margin:4px 0 12px 34px;">Delivered — no reply</div>
+
+        <!-- 5 hours later -->
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <div style="flex:1;height:1px;background:repeating-linear-gradient(90deg,#FFAAAA 0 4px,transparent 4px 8px);"></div>
+          <span style="font-size:9px;font-weight:700;color:#CC3333;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;">5 Hours Later</span>
+          <div style="flex:1;height:1px;background:repeating-linear-gradient(90deg,#FFAAAA 0 4px,transparent 4px 8px);"></div>
+        </div>
+
+        <!-- Buyer 2:40pm -->
+        <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;">
+          <div style="width:26px;height:26px;border-radius:50%;background:#FFF5F5;border:1.5px solid #FFAAAA;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#CC3333" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:9px;font-weight:700;color:#CC3333;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;">Buyer · 2:40 PM</div>
+            <div style="background:#fff;border:1px solid #FFCCCC;border-radius:2px 10px 10px 10px;padding:10px 12px;font-size:13px;color:var(--ink);line-height:1.5;">Still waiting to hear back. Just a quick question about the floor plan...</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#CC3333;font-style:italic;margin:4px 0 12px 34px;">Seen — no reply</div>
+
+        <!-- Next day -->
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <div style="flex:1;height:1px;background:repeating-linear-gradient(90deg,#FFAAAA 0 4px,transparent 4px 8px);"></div>
+          <span style="font-size:9px;font-weight:700;color:#CC3333;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;">Next Day</span>
+          <div style="flex:1;height:1px;background:repeating-linear-gradient(90deg,#FFAAAA 0 4px,transparent 4px 8px);"></div>
+        </div>
+
+        <!-- You 9:58am -->
+        <div style="display:flex;align-items:flex-start;gap:8px;justify-content:flex-end;margin-bottom:8px;">
+          <div style="flex:1;">
+            <div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;text-align:right;">You · 9:58 AM</div>
+            <div style="background:#CC3333;border-radius:10px 2px 10px 10px;padding:10px 12px;font-size:13px;color:#fff;line-height:1.5;text-align:right;">Hi sorry for the late reply — yes, the 2-bed is still available. Want to book a viewing?</div>
+          </div>
+          <div style="width:26px;height:26px;border-radius:50%;background:#CC3333;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          </div>
+        </div>
+
+        <!-- Buyer 10:02am -->
+        <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:16px;">
+          <div style="width:26px;height:26px;border-radius:50%;background:#FFF5F5;border:1.5px solid #FFAAAA;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#CC3333" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:9px;font-weight:700;color:#CC3333;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;">Buyer · 10:02 AM</div>
+            <div style="background:#fff;border:1px solid #FFCCCC;border-radius:2px 10px 10px 10px;padding:10px 12px;font-size:13px;color:var(--ink);line-height:1.5;">It's fine, I already booked a viewing with another agent. They replied in minutes.</div>
+          </div>
+        </div>
+
+        <!-- Deal lost -->
+        <div style="background:#FFF5F5;border:1.5px solid #FFAAAA;border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CC3333" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          <span style="font-size:14px;font-weight:700;color:#CC3333;">Deal lost.</span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div style="background:var(--line);"></div>
+
+      <!-- RIGHT: With AI SalesX -->
+      <div style="padding:28px 28px 24px;background:#EEF3FF;">
+        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:4px;">With AI SalesX</div>
+        <div style="font-size:18px;font-weight:800;color:var(--ink);margin-bottom:20px;line-height:1.2;"><span style="color:var(--blue);">AI SalesX</span> opens the door. <em>You walk them in.</em></div>
+
+        <!-- Opens the door -->
+        <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:10px;">Opens the door</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;">
+          <div style="width:26px;height:26px;border-radius:50%;background:var(--blue-soft);border:1.5px solid var(--blue-mid);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div style="flex:1;"><div style="font-size:9px;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;">Buyer</div><div style="background:#fff;border:1px solid var(--blue-mid);border-radius:2px 10px 10px 10px;padding:10px 12px;font-size:13px;color:var(--ink);line-height:1.5;">I found your listing page. Full details, photos, pricing right there. No form, no waiting. I asked a question and got a real answer in seconds.</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px;justify-content:flex-end;margin-bottom:16px;">
+          <div style="flex:1;"><div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;text-align:right;">You</div><div style="background:var(--navy);border-radius:10px 2px 10px 10px;padding:10px 12px;font-size:13px;color:#fff;line-height:1.5;text-align:right;">My branded page is live. It handles every question while I sleep. I wake up knowing exactly who is serious.</div></div>
+          <div style="width:26px;height:26px;border-radius:50%;background:var(--navy);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        </div>
+
+        <!-- The conversation starts -->
+        <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:10px;">The conversation starts</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;">
+          <div style="width:26px;height:26px;border-radius:50%;background:var(--blue-soft);border:1.5px solid var(--blue-mid);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div style="flex:1;"><div style="font-size:9px;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;">Buyer</div><div style="background:#fff;border:1px solid var(--blue-mid);border-radius:2px 10px 10px 10px;padding:10px 12px;font-size:13px;color:var(--ink);line-height:1.5;">I asked about the neighborhood, the floor plan, what's included. Got a real answer in the same minute. Not the next business day.</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px;justify-content:flex-end;margin-bottom:16px;">
+          <div style="flex:1;"><div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;text-align:right;">You</div><div style="background:var(--navy);border-radius:10px 2px 10px 10px;padding:10px 12px;font-size:13px;color:#fff;line-height:1.5;text-align:right;">Every message answered. No lead slips. I can see exactly what they asked, what matters to them.</div></div>
+          <div style="width:26px;height:26px;border-radius:50%;background:var(--navy);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        </div>
+
+        <!-- Interest becomes intent -->
+        <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:10px;">Interest becomes intent</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;justify-content:flex-end;margin-bottom:8px;">
+          <div style="flex:1;"><div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;text-align:right;">You</div><div style="background:var(--navy);border-radius:10px 2px 10px 10px;padding:10px 12px;font-size:13px;color:#fff;line-height:1.5;text-align:right;">I know who's serious before I even call. SalesX already sent them a brochure, a shortlist, and booked a viewing.</div></div>
+          <div style="width:26px;height:26px;border-radius:50%;background:var(--navy);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:16px;">
+          <div style="width:26px;height:26px;border-radius:50%;background:var(--blue-soft);border:1.5px solid var(--blue-mid);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div style="flex:1;"><div style="font-size:9px;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;">Buyer</div><div style="background:#fff;border:1px solid var(--blue-mid);border-radius:2px 10px 10px 10px;padding:10px 12px;font-size:13px;color:var(--ink);line-height:1.5;">I left that conversation with everything I needed. The decision was already forming before we even met.</div></div>
+        </div>
+
+        <!-- You walk them in -->
+        <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);text-align:center;margin-bottom:10px;">You walk them in</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;">
+          <div style="width:26px;height:26px;border-radius:50%;background:var(--blue-soft);border:1.5px solid var(--blue-mid);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div style="flex:1;"><div style="font-size:9px;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;">Buyer</div><div style="background:#fff;border:1px solid var(--blue-mid);border-radius:2px 10px 10px 10px;padding:10px 12px;font-size:13px;color:var(--ink);line-height:1.5;">I showed up informed. No surprises. Ready to say yes.</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px;justify-content:flex-end;">
+          <div style="flex:1;"><div style="font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;text-align:right;">You</div><div style="background:var(--navy);border-radius:10px 2px 10px 10px;padding:10px 12px;font-size:13px;font-weight:700;color:#fff;line-height:1.5;text-align:right;">I stepped in warm. One conversation. Deal signed.</div></div>
+          <div style="width:26px;height:26px;border-radius:50%;background:var(--navy);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7L9 18l-5-5"/></svg></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- WIN THE LISTING -->
+<section style="background:#fff;padding:var(--section-gap) 0;">
+  <div class="wrap rv">
+    <span class="eyebrow" style="display:block;text-align:center;margin-bottom:14px;">How Agents Earn Repeat Business</span>
+    <h2 style="font-size:clamp(26px,3.5vw,44px);font-weight:800;color:var(--ink);line-height:1.15;margin:0 0 20px;text-align:center;">Win the listing <span class="gradient-text">before you sell it.</span></h2>
+    <p style="font-size:18px;color:var(--muted);text-align:center;max-width:64ch;margin:0 auto;line-height:1.75;">When owners see every inquiry answered instantly and only serious buyers at the door, they notice. Fewer wasted viewings. Faster offers. That reputation does not just close the current deal, it earns the next listing before you even ask for it. Show owners that every inquiry will be answered immediately, every prospect followed up with, and every serious buyer surfaced.</p>
+  </div>
+</section>
+
+<!-- DEMO FORM -->
+<section class="lead-section" id="demo">
+  <div class="container lead-grid">
+    <div class="lead-copy">
+      <h2><span style="background:#FFE066;padding:2px 6px;border-radius:4px;">Book a demo</span> and watch your job get done by <span class="accent">SalesX</span></h2>
+      <p class="lead-sub">30 minutes. We'll show you exactly how SalesX works and map out what a live deployment looks like for your specific situation.</p>
+    </div>
+    <form class="lead-form" id="lead-form" novalidate>
+      <div class="lead-form-header">
+        <h3 class="lead-form-title">Contact us</h3>
+        <p class="lead-form-sub">Infina AI team will respond within 24 hours.</p>
+      </div>
+      <div class="lead-field">
+        <input type="text" id="lf-name" name="fullName" required autocomplete="name" placeholder=" ">
+        <label for="lf-name">Name</label>
+      </div>
+      <div class="lead-field">
+        <input type="email" id="lf-email" name="email" required autocomplete="email" placeholder=" ">
+        <label for="lf-email">Work email</label>
+      </div>
+      <div class="lead-field">
+        <input type="text" id="lf-company" name="company" autocomplete="organization" placeholder=" ">
+        <label for="lf-company">Company (optional)</label>
+      </div>
+      <div class="lead-field">
+        <input type="tel" id="lf-phone" name="phone" autocomplete="tel" placeholder=" ">
+        <label for="lf-phone">Phone</label>
+      </div>
+      <div class="lead-field lead-textarea">
+        <textarea id="lf-usecase" name="useCase" rows="2" placeholder=" "></textarea>
+        <label for="lf-usecase">Message (optional)</label>
+      </div>
+      <button type="submit" class="lead-submit" id="lf-submit">
+        <span class="lead-submit-label">Book a demo</span>
+        <span class="lead-submit-spinner" aria-hidden="true"></span>
+      </button>
+      <div class="lead-status" id="lf-status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<infina-footer></infina-footer>
+
+<script src="nav.js"></script>
+<script src="footer.js"></script>
+<script>
+  // Lead form submission
+  (function(){
+    const SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyO618yfsKfO4nHni2qBe62GWp9fM0vEb0h-Gccw-1wV-w5wJpN3Zayhai1OFxPl98x/exec';
+    const form = document.getElementById('lead-form');
+    const submitBtn = document.getElementById('lf-submit');
+    const status = document.getElementById('lf-status');
+    if (!form) return;
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      status.className = 'lead-status';
+      status.textContent = '';
+      const required = form.querySelectorAll('[required]');
+      let isValid = true;
+      required.forEach(function(el){ if (!el.value.trim()) isValid = false; });
+      if (!isValid) {
+        status.className = 'lead-status error';
+        status.textContent = 'Please fill in all required fields.';
+        return;
+      }
+      const data = {
+        fullName: form.fullName.value.trim(),
+        email: form.email.value.trim(),
+        company: form.company.value.trim(),
+        phone: form.phone.value.trim(),
+        useCase: form.useCase.value.trim(),
+        source: 'salesx',
+      };
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.lead-submit-label').textContent = 'Submitting...';
+      try {
+        const fd = new FormData();
+        Object.keys(data).forEach(function(k){ fd.append(k, data[k]); });
+        const res = await fetch(SHEETS_ENDPOINT, { method: 'POST', body: fd });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        status.className = 'lead-status success';
+        status.textContent = "Thank you! We'll be in touch soon.";
+        form.reset();
+      } catch(err) {
+        status.className = 'lead-status error';
+        status.textContent = 'Something went wrong. Please try again or email us directly.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.querySelector('.lead-submit-label').textContent = 'Book a demo';
+      }
+    });
+  })();
+</script>
+<script>
+  var sxCur=0;
+  var sxSlides=[];
+  var sxDots=[];
+  function sxInit(){
+    sxSlides=Array.from(document.querySelectorAll('.sx-slide'));
+    var dotsEl=document.getElementById('salesx-dots');
+    if(!dotsEl||!sxSlides.length) return;
+    sxSlides.forEach(function(_,i){
+      var d=document.createElement('div');
+      d.style.cssText='width:'+(i===0?'16px':'6px')+';height:6px;border-radius:'+(i===0?'3px':'50%')+';background:'+(i===0?'#2B5CE6':'#C7D4FA')+';transition:all .2s;cursor:pointer;';
+      d.onclick=function(){sxGo(i);};
+      dotsEl.appendChild(d);
+      sxDots.push(d);
+    });
+  }
+  function sxGo(n){
+    sxSlides[sxCur].style.display='none';
+    sxDots[sxCur].style.width='6px';sxDots[sxCur].style.borderRadius='50%';sxDots[sxCur].style.background='#C7D4FA';
+    sxCur=n;
+    sxSlides[sxCur].style.display='grid';
+    sxDots[sxCur].style.width='16px';sxDots[sxCur].style.borderRadius='3px';sxDots[sxCur].style.background='#2B5CE6';
+  }
+  function salesxNext(){sxGo((sxCur+1)%sxSlides.length);}
+  function salesxPrev(){sxGo((sxCur-1+sxSlides.length)%sxSlides.length);}
+  document.addEventListener('DOMContentLoaded',sxInit);
+
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+  },{threshold:.08});
+  document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

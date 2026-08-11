@@ -101,3 +101,18 @@ external/
 
 # Git worktrees (local development only)
 worktrees/
+.claude
+dist
+node_modules
+package-lock.json
+repomix-output.xml
+tsconfig.app.tsbuildinfo
+tsconfig.node.tsbuildinfo
+
+plans
+
+# Build artifacts
+ghost-theme/*.zip
+wordpress-theme/*.zip
+static-news/*.zip
+/static-news.zip

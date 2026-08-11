@@ -1,8 +1,9 @@
 {
-  "name": "web-infina-ai-landing",
+  "name": "web-infina-ai",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "description": "Source-of-truth marketing UI (static HTML) for Infina AI. See docs/ui-spec/ for the living UI contract synced to apps/infina-ai.",
   "scripts": {
     "setup:assets": "node scripts/setup-harness-assets.mjs",
     "predev": "node scripts/setup-harness-assets.mjs",
@@ -10,7 +11,10 @@
     "prebuild": "node scripts/setup-harness-assets.mjs",
     "build": "vite build",
     "typecheck": "tsc -b",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "spec": "node scripts/extract-ui-spec.mjs",
+    "spec:scaffold": "node scripts/extract-ui-spec.mjs --scaffold",
+    "spec:check": "node scripts/extract-ui-spec.mjs --check"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -23,6 +27,7 @@
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.3.4",
+    "node-html-parser": "^7.0.1",
     "typescript": "^5.8.3",
     "vite": "^5.4.19"
   }

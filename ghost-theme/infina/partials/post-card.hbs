@@ -1,0 +1,19 @@
+<a class="post-card" href="{{url}}">
+    {{#if feature_image}}
+        <div class="post-card-image">
+            <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
+        </div>
+    {{else}}
+        <div class="post-card-image post-card-image--placeholder"></div>
+    {{/if}}
+    <div class="post-card-body">
+        {{#primary_tag}}<span class="post-tag">{{name}}</span>{{/primary_tag}}
+        <h3>{{title}}</h3>
+        <p class="excerpt">{{excerpt words="20"}}</p>
+        <div class="post-meta">
+            {{#primary_author}}<span class="post-author-name">{{name}}</span>{{/primary_author}}
+            <span class="dot">&middot;</span>
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
+        </div>
+    </div>
+</a>

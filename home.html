@@ -4527,90 +4527,45 @@
             <div class="product-tree-connector"></div>
             <div class="product-panel-inner">
 
-              <!-- Audience 1: Sales Teams -->
+              <!-- Three AI Work specialists (synced with work.html) -->
               <div class="agents-work-audience">
-                <span class="agents-audience-label">For Sales Teams</span>
-                <div class="agents-grid">
-                  <div class="agents-card agents-card-row">
-                    <div class="agents-card-row-meta">
-                      <h3 class="agents-card-title">
-                        <span class="agents-title-main">CRM & Sales Pipeline</span>
-                                        </h3>
-                      <div class="agents-context-badge">Inside your CRM</div>
-                    </div>
-                    <ul class="agents-list agents-list-row">
-                      <li>Works alongside your existing CRM and tools. No migration required.</li>
-                      <li>Handles CRM updates, follow-up emails, and task logging automatically</li>
-                      <li>Pre-configured for your industry: real estate, insurance, finance, and more</li>
-                      <li>Accessible via Slack, WhatsApp, web, or your own app</li>
+                <span class="agents-audience-label">Your AI workforce</span>
+                <div class="agents-grid agents-grid-3 agents-grid-work" id="work-grid">
+
+                  <div class="agents-card">
+                    <span class="agents-group-label">Front Office · Customer-facing growth</span>
+                    <h3 class="agents-card-title"><span class="agents-title-main">AI SalesX</span></h3>
+                    <div class="agents-tagline">AI sells. You show up to close.</div>
+                    <ul class="agents-list">
+                      <li>Live AI brochure built per prospect, mid-conversation</li>
+                      <li>WhatsApp agent qualifies leads &amp; books meetings 24/7</li>
+                      <li>Briefs you before you step in — leads arrive warm</li>
                     </ul>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Audience 2: Operations & Company -->
-              <div class="agents-work-audience">
-                <span class="agents-audience-label">For Operations &amp; Company</span>
-                <div class="agents-grid agents-grid-4" id="work-grid">
-
-                  <div class="agents-card">
-                    <div class="agents-card-left">
-                      <h3 class="agents-card-title">
-                        <span class="agents-title-main">Focus & Alignment</span>
-                                        </h3>
-                      <div class="agents-context-badge">Across your organization</div>
-                    </div>
-                    <div class="agents-card-right">
-                      <ul class="agents-list">
-                        <li>Aligns weekly priorities across team, department, and company goals</li>
-                        <li>Resolves conflicts by understanding where OKRs overlap or clash</li>
-                      </ul>
-                    </div>
+                    <a class="agents-explore-cta" href="work.html">Explore AI SalesX →</a>
                   </div>
 
                   <div class="agents-card">
-                    <div class="agents-card-left">
-                      <h3 class="agents-card-title">
-                        <span class="agents-title-main">Expense Management</span>
-                                        </h3>
-                      <div class="agents-context-badge">Across your tools and accounts</div>
-                    </div>
-                    <div class="agents-card-right">
-                      <ul class="agents-list">
-                        <li>Analyzes all spending across SaaS, cloud, credit card, and bank statements</li>
-                        <li>Surfaces ways to cut costs across your accounts</li>
-                      </ul>
-                    </div>
+                    <span class="agents-group-label">Leadership · Decisions &amp; intelligence</span>
+                    <h3 class="agents-card-title"><span class="agents-title-main">AI ManageX</span></h3>
+                    <div class="agents-tagline">Decide faster.</div>
+                    <ul class="agents-list">
+                      <li>OKRs aligned, conflicts flagged early</li>
+                      <li>Ask any business question, get an instant answer</li>
+                      <li>Reports &amp; emails drafted on command</li>
+                    </ul>
+                    <a class="agents-explore-cta" href="work.html">Explore AI ManageX →</a>
                   </div>
 
                   <div class="agents-card">
-                    <div class="agents-card-left">
-                      <h3 class="agents-card-title">
-                        <span class="agents-title-main">Expertise</span>
-                                        </h3>
-                      <div class="agents-context-badge">Across your data sources</div>
-                    </div>
-                    <div class="agents-card-right">
-                      <ul class="agents-list">
-                        <li>Slack threads explained, company context surfaced. Answers ready instantly.</li>
-                        <li>Research pulled from internal data sources and the web in one place</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="agents-card">
-                    <div class="agents-card-left">
-                      <h3 class="agents-card-title">
-                        <span class="agents-title-main">Workflow</span>
-                                        </h3>
-                      <div class="agents-context-badge">Any repeatable process</div>
-                    </div>
-                    <div class="agents-card-right">
-                      <ul class="agents-list">
-                        <li>Any repeatable workflow gets fully automated with a dedicated agent</li>
-                        <li>Built and customized to fit exactly what your team needs</li>
-                      </ul>
-                    </div>
+                    <span class="agents-group-label">Back Office · Operations &amp; efficiency</span>
+                    <h3 class="agents-card-title"><span class="agents-title-main">AI OperateX</span></h3>
+                    <div class="agents-tagline">The work runs itself.</div>
+                    <ul class="agents-list">
+                      <li>Repeatable workflows fully automated</li>
+                      <li>Procurement &amp; approvals handled end-to-end</li>
+                      <li>Full spend visibility across every account</li>
+                    </ul>
+                    <a class="agents-explore-cta" href="work.html">Explore AI OperateX →</a>
                   </div>
 
                 </div>
@@ -4895,6 +4850,28 @@
     @media (max-width: 520px) {
       .agents-grid-4 { grid-template-columns: 1fr; }
     }
+
+    /* ── 3 AI Work specialists (synced with work.html) ── */
+    .agents-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 900px) { .agents-grid-3 { grid-template-columns: 1fr; max-width: 560px; } }
+    .agents-grid-work .agents-group-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted); line-height: 1.3;
+      border-left: 3px solid color-mix(in oklab, var(--card-color, var(--accent)) 45%, transparent);
+      padding-left: 10px;
+    }
+    .agents-grid-work .agents-title-main { min-height: 0; }
+    .agents-tagline {
+      font-size: 15.5px; font-weight: 700; color: var(--fg);
+      line-height: 1.35; letter-spacing: -0.01em; margin-top: -6px;
+    }
+    .agents-explore-cta {
+      display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 6px;
+      align-self: flex-start;
+      font-size: 13px; font-weight: 600; color: var(--card-color, var(--accent));
+      text-decoration: none; transition: gap .2s ease, opacity .2s ease;
+    }
+    .agents-explore-cta:hover { gap: 10px; opacity: .8; }
 
     /* ── One colour per tab ── */
     #tab-inside  .agents-card { --card-color: #1863dc; }

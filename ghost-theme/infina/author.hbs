@@ -1,0 +1,20 @@
+{{!< default}}
+
+{{#author}}
+<section class="archive-header">
+    <div class="container">
+        <span class="eyebrow">Author</span>
+        <h1>{{name}}</h1>
+        {{#if bio}}<p class="blog-hero-sub">{{bio}}</p>{{/if}}
+    </div>
+</section>
+{{/author}}
+
+<div class="container">
+    <div class="post-grid">
+        {{#foreach posts}}
+            {{> "post-card"}}
+        {{/foreach}}
+    </div>
+    {{pagination}}
+</div>
