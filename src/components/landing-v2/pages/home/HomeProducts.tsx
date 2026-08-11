@@ -4,7 +4,8 @@ import {
   type TabKey,
   insideCards,
   personalRows,
-  workAudiences,
+  workAudienceLabel,
+  workSpecialists,
 } from "./home-agents-data";
 
 /**
@@ -33,7 +34,7 @@ const PRODUCTS: ProductMeta[] = [
     key: "inside",
     audienceLabel: "For Products",
     tag: "Infina AI Inside",
-    title: "More engaged customer. Higher revenue. Zero build time.",
+    title: "Built-in AI Specialist. Engaged customer. More revenue",
     desc: "Confused customers don't convert. AI Inside puts a specialist right inside your app so every user gets the right guidance, at the right moment, and moves forward.",
   },
   {
@@ -47,7 +48,7 @@ const PRODUCTS: ProductMeta[] = [
     key: "personal",
     audienceLabel: "For Individuals",
     tag: "Infina AI Personal",
-    title: "Grow more. Stress less. Achieve your goal.",
+    title: "Do more, better with AI specialists",
     desc: "Whether you should invest or pay off debt, whether an insurance plan is worth it, or where to travel on your budget, stop guessing and get a clear answer.",
   },
 ];
@@ -78,59 +79,30 @@ const InsidePanelBody = () => (
   </div>
 );
 
-/** Work panel — sales wide row + operations 4-card grid. */
+/** Work panel — single "Your AI workforce" audience, 3 specialist cards. */
 const WorkPanelBody = () => (
-  <>
-    {workAudiences.map((audience) => (
-      <div key={audience.label} className="agents-work-audience">
-        <span className="agents-audience-label">{audience.label}</span>
-        <div
-          className={`agents-grid${audience.cards.length > 1 ? " agents-grid-4" : ""}`}
-          id={audience.label === "For Sales Teams" ? undefined : "work-grid"}
-        >
-          {audience.cards.map((card) =>
-            card.wide ? (
-              <div key={card.titleMain} className="agents-card agents-card-row">
-                <div className="agents-card-row-meta">
-                  <h3 className="agents-card-title">
-                    <span className="agents-title-main">{card.titleMain}</span>
-                    {card.titleSub && (
-                      <span className="agents-title-sub">{card.titleSub}</span>
-                    )}
-                  </h3>
-                  <div className="agents-context-badge">{card.contextBadge}</div>
-                </div>
-                <ul className="agents-list agents-list-row">
-                  {card.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-              </div>
-            ) : (
-              <div key={card.titleMain} className="agents-card">
-                <div className="agents-card-left">
-                  <h3 className="agents-card-title">
-                    <span className="agents-title-main">{card.titleMain}</span>
-                    {card.titleSub && (
-                      <span className="agents-title-sub">{card.titleSub}</span>
-                    )}
-                  </h3>
-                  <div className="agents-context-badge">{card.contextBadge}</div>
-                </div>
-                <div className="agents-card-right">
-                  <ul className="agents-list">
-                    {card.bullets.map((b) => (
-                      <li key={b}>{b}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            )
-          )}
+  <div className="agents-work-audience">
+    <span className="agents-audience-label">{workAudienceLabel}</span>
+    <div className="agents-grid agents-grid-3 agents-grid-work" id="work-grid">
+      {workSpecialists.map((s) => (
+        <div key={s.titleMain} className="agents-card">
+          <span className="agents-group-label">{s.groupLabel}</span>
+          <h3 className="agents-card-title">
+            <span className="agents-title-main">{s.titleMain}</span>
+          </h3>
+          <div className="agents-tagline">{s.tagline}</div>
+          <ul className="agents-list">
+            {s.bullets.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
+          </ul>
+          <Link className="agents-explore-cta" to="/work">
+            {s.exploreLabel}
+          </Link>
         </div>
-      </div>
-    ))}
-  </>
+      ))}
+    </div>
+  </div>
 );
 
 /** Personal panel — finance / lifestyle / more-coming rows. */

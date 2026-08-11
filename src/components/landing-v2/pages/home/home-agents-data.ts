@@ -25,9 +25,12 @@ export interface PersonalRow {
   subText?: string;
 }
 
-export interface WorkAudience {
-  label: string;
-  cards: (AgentsCard & { wide?: boolean })[];
+export interface WorkSpecialist {
+  groupLabel: string;
+  titleMain: string;
+  tagline: string;
+  bullets: string[];
+  exploreLabel: string;
 }
 
 // ── Inside panel ──────────────────────────────────────────────────────────────
@@ -112,58 +115,41 @@ export const personalRows: PersonalRow[] = [
 
 // ── Work panel ─────────────────────────────────────────────────────────────────
 
-export const workAudiences: WorkAudience[] = [
+/** Single "Your AI workforce" audience — 3 specialists, synced with work.html. */
+export const workAudienceLabel = "Your AI workforce";
+
+export const workSpecialists: WorkSpecialist[] = [
   {
-    label: "For Sales Teams",
-    cards: [
-      {
-        wide: true,
-        titleMain: "CRM & Sales Pipeline",
-        contextBadge: "Inside your CRM",
-        bullets: [
-          "Works alongside your existing CRM and tools. No migration required.",
-          "Handles CRM updates, follow-up emails, and task logging automatically",
-          "Pre-configured for your industry: real estate, insurance, finance, and more",
-          "Accessible via Slack, WhatsApp, web, or your own app",
-        ],
-      },
+    groupLabel: "Front Office · Customer-facing growth",
+    titleMain: "AI SalesX",
+    tagline: "AI sells. You show up to close.",
+    bullets: [
+      "Live AI brochure built per prospect, mid-conversation",
+      "WhatsApp agent qualifies leads & books meetings 24/7",
+      "Briefs you before you step in — leads arrive warm",
     ],
+    exploreLabel: "Explore AI SalesX →",
   },
   {
-    label: "For Operations & Company",
-    cards: [
-      {
-        titleMain: "Focus & Alignment",
-        contextBadge: "Across your organization",
-        bullets: [
-          "Aligns weekly priorities across team, department, and company goals",
-          "Resolves conflicts by understanding where OKRs overlap or clash",
-        ],
-      },
-      {
-        titleMain: "Expense Management",
-        contextBadge: "Across your tools and accounts",
-        bullets: [
-          "Analyzes all spending across SaaS, cloud, credit card, and bank statements",
-          "Surfaces ways to cut costs across your accounts",
-        ],
-      },
-      {
-        titleMain: "Expertise",
-        contextBadge: "Across your data sources",
-        bullets: [
-          "Slack threads explained, company context surfaced. Answers ready instantly.",
-          "Research pulled from internal data sources and the web in one place",
-        ],
-      },
-      {
-        titleMain: "Workflow",
-        contextBadge: "Any repeatable process",
-        bullets: [
-          "Any repeatable workflow gets fully automated with a dedicated agent",
-          "Built and customized to fit exactly what your team needs",
-        ],
-      },
+    groupLabel: "Leadership · Decisions & intelligence",
+    titleMain: "AI ManageX",
+    tagline: "Decide faster.",
+    bullets: [
+      "OKRs aligned, conflicts flagged early",
+      "Ask any business question, get an instant answer",
+      "Reports & emails drafted on command",
     ],
+    exploreLabel: "Explore AI ManageX →",
+  },
+  {
+    groupLabel: "Back Office · Operations & efficiency",
+    titleMain: "AI OperateX",
+    tagline: "The work runs itself.",
+    bullets: [
+      "Repeatable workflows fully automated",
+      "Procurement & approvals handled end-to-end",
+      "Full spend visibility across every account",
+    ],
+    exploreLabel: "Explore AI OperateX →",
   },
 ];
