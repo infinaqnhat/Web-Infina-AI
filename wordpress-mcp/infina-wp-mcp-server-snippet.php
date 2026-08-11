@@ -329,12 +329,14 @@ function infina_mcp_call_tool( $name, $args ) {
         }
 
         $postarr = array_merge( [
-            'post_title'   => $args['title'] ?? '',
-            'post_content' => $args['content'] ?? '',
-            'post_excerpt' => $args['excerpt'] ?? '',
-            'post_name'    => $args['slug'] ?? '',
-            'post_type'    => 'post',
-            'post_author'  => 1,
+            'post_title'     => $args['title'] ?? '',
+            'post_content'   => $args['content'] ?? '',
+            'post_excerpt'   => $args['excerpt'] ?? '',
+            'post_name'      => $args['slug'] ?? '',
+            'post_type'      => 'post',
+            'post_author'    => 1,
+            'comment_status' => 'open', // bai tao qua MCP tu mo comment
+            'ping_status'    => 'open',
         ], $resolved );
 
         $post_id = wp_insert_post( $postarr, true );
@@ -447,7 +449,7 @@ function infina_mcp_handle_request( WP_REST_Request $request ) {
             'result'  => [
                 'protocolVersion' => '2025-06-18',
                 'capabilities'    => [ 'tools' => new stdClass() ],
-                'serverInfo'      => [ 'name' => 'infina-blog', 'version' => '2.1.1' ],
+                'serverInfo'      => [ 'name' => 'infina-blog', 'version' => '2.1.2' ],
             ],
         ], 200 );
     }
