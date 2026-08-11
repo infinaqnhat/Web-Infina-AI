@@ -1,14 +1,55 @@
 ---
 name: "news-to-cluster-article"
-description: "Crawl tin tức mới theo 10 mảng, đối chiếu keyword trong Excel, check bài đã có trên WordPress (published/scheduled/draft), chọn tin phù hợp và viết cluster article đạt Rank Math ≥80/100. Dùng khi muốn viết bài cluster từ tin tức mới nhất."
+description: "Crawl tin tức mới theo 10 mảng, đối chiếu keyword trong Excel và Google Sheet tracker, check bài đã có trên WordPress (published/scheduled/draft), chọn tin phù hợp và viết cluster article đạt Rank Math ≥80/100. Dùng khi muốn viết bài cluster từ tin tức mới nhất."
 ---
 
 # SKILL: Daily News → Cluster Article (Rank Math SEO)
 
 ## Mô tả
-Crawl tin tức mới theo 10 mảng → kiểm tra bài đã có trên WordPress → đối chiếu keyword trong Excel → chọn tin phù hợp → viết và đăng cluster article lên WordPress đạt Rank Math ≥80/100. Toàn bộ chạy qua API, không cần browser.
+Crawl tin tức mới theo 10 mảng → đối chiếu Google Sheet tracker (nguồn pillar/dedup chính thức) + WordPress → đối chiếu keyword trong Excel → chọn tin phù hợp → viết và đăng cluster article lên WordPress đạt Rank Math ≥80/100. Toàn bộ chạy qua API, không cần browser.
 
-**Nguyên tắc cốt lõi:** bài viết từ tin tức (cluster/spoke) luôn target một keyword long-tail RIÊNG của nó (`FOCUS_KW`), khác với keyword của pillar page (`PILLAR_KW`) mà nó link về. Không bao giờ để 2 bài trong site cùng target 1 keyword — pillar page giữ vị trí rank cho keyword đầu (head term), cluster article chỉ mượn góc tin tức để nhắm long-tail và đẩy internal link/topical authority về pillar. Nguồn xác định keyword nào đã "có chủ" (Plan = pillar, News = cluster đã viết) là Google Sheet tracker ở Bước 2b — đọc lại sheet này mỗi lần chạy, và append 1 dòng mới vào đó sau khi publish (Bước 7). Xem chi tiết ở Bước 4.
+**Nguyên tắc cốt lõi:** bài viết từ tin tức (cluster/spoke) luôn target một keyword long-tail RIÊNG của nó (`FOCUS_KW`), khác với keyword của pillar page (`PILLAR_KW`) mà nó link về. Không bao giờ để 2 bài trong site cùng target 1 keyword — pillar page giữ vị trí rank cho keyword đầu (head term), cluster article chỉ mượn góc tin tức để nhắm long-tail và đẩy internal link/topical authority về pillar. Nguồn xác định keyword nào đã "có chủ" (Plan = pillar, News = cluster đã viết) là Google Sheet tracker ở Bước 2b — đọc lại sheet này mỗi lần chạy, và append 1 dòng mới vào đó sau khi publish (Bước 7).
+
+**Lịch sử:** skill này có 2 nhánh phát triển từng tồn tại song song trên account (một nhánh tập trung compliance/tracker/anti-cannibalization, một nhánh tập trung chất lượng ảnh/category/rate-limit) — bản này là merge của cả hai, giữ lại phần tốt của từng bên.
+
+---
+
+## Category IDs
+
+| ID | Tên | Dùng cho |
+|----|-----|---------|
+| 19 | AI Chatbot | Bài về chatbot, AI assistant, conversational AI, ISA |
+| 85 | CRM Software | Bài về CRM, sales automation, lead management |
+| 1  | News | Bài tin tức thời sự chung (không phải cluster real estate) |
+
+Truyền category **bằng tên** vào param `categories` (KHÔNG phải ID số — WP MCP tự resolve tên category thành term, tạo mới nếu tên chưa tồn tại):
+```python
+"categories": ["CRM Software"]
+"categories": ["AI Chatbot"]
+```
+Chọn category theo chủ đề bài: CRM/sales automation → "CRM Software", chatbot/AI assistant/ISA/compliance → "AI Chatbot".
+
+---
+
+## Publishing Rules (kiểm tra TRƯỚC KHI PUBLISH)
+
+### Rule 1 — Chỉ 1 bài mỗi lần chạy, tối đa 3 bài/ngày
+Skill này chỉ viết **đúng 1 bài** mỗi lần được gọi. Ngoài ra, trước khi publish, đếm số bài đã publish trong cùng ngày (giờ site) qua `list_posts` (JSON-RPC, KHÔNG dùng REST API `/wp-json/wp/v2/posts` không xác thực — REST API công khai không thấy được bài `draft`, dễ đếm thiếu):
+```python
+def count_posts_on_date(all_posts, target_date):
+    """target_date: 'YYYY-MM-DD'. all_posts: list từ get_all_posts() ở Bước 2."""
+    return sum(1 for p in all_posts if p["status"] == "publish" and p["date"].startswith(target_date))
+
+count = count_posts_on_date(posts, "2026-08-11")
+if count >= 3:
+    print("STOP: Ngày này đã đủ 3 bài, dừng lại không publish thêm.")
+```
+
+### Rule 2 — Không trùng focus keyword / slug / pillar keyword
+Xem Bước 2 (dedup WordPress) + Bước 2b (tracker sheet) + Bước 4 (pillar vs cluster).
+
+### Rule 3 — Slug phải chứa từng chữ của FOCUS_KW
+Xem Slug rules cuối file.
 
 ---
 
@@ -18,14 +59,15 @@ Crawl tin tức mới theo 10 mảng → kiểm tra bài đã có trên WordPres
 
 **Protocol:** JSON-RPC 2.0 qua HTTPS POST
 
-**Cần set trước khi chạy** (không hard-code key vào file này để tránh lộ secret khi commit): `WP_MCP_KEY`, `GROK_API_KEY`, `FREEIMAGE_API_KEY`. Bản skill cài trong account Claude (`~/.claude/skills/news-to-cluster-article/`) giữ giá trị thật.
+**Cần set trước khi chạy** (không hard-code key vào file này để tránh lộ secret khi commit): `WP_MCP_KEY`, `GROK_API_KEY`, `FREEIMAGE_API_KEY`, `GEMINI_API_KEY` (tuỳ chọn, xem Image Pipeline). Bản skill cài trong account Claude giữ giá trị thật.
 
 ```python
 import os, requests, base64, re, json
 
 WP_URL = f"https://infina.ai/news/wp-json/infina-mcp/v1/blog?key={os.environ['WP_MCP_KEY']}"
-GROK_KEY = os.environ["GROK_API_KEY"]
-FREEIMAGE_KEY = os.environ["FREEIMAGE_API_KEY"]
+GROK_KEY = os.environ.get("GROK_API_KEY")
+FREEIMAGE_KEY = os.environ.get("FREEIMAGE_API_KEY")
+GEMINI_KEY = os.environ.get("GEMINI_API_KEY")  # optional, xem Image Pipeline phương án B
 
 def call(method, params):
     r = requests.post(WP_URL, json={
@@ -42,14 +84,14 @@ def call(method, params):
     return text
 ```
 
-**Các method dùng được — đối chiếu trực tiếp với source code server tại `wordpress-mcp/infina-wp-mcp-server-snippet.php` trong repo `infinaqnhat/web-infina-ai` (ground truth, ưu tiên hơn cả test API vì đọc thẳng code PHP xử lý request):**
+**Các method dùng được — đối chiếu trực tiếp với source code server tại `wordpress-mcp/infina-wp-mcp-server-snippet.php` trong repo `infinaqnhat/web-infina-ai` (ground truth, ưu tiên hơn cả test API vì đọc thẳng code PHP xử lý request — các bảng tham số ở các bản skill cũ như `edit_date`, `filename`/`alt_text` là SAI, không tồn tại trên server thật):**
 
 | Method | Params chính | Ghi chú |
 |--------|-------------|---------|
-| `list_posts` | `status` (array, optional — bỏ trống = lấy tất cả 5 trạng thái draft/publish/future/pending/private), `number` (int, mặc định 20 — **không có pagination, truyền số lớn như 200 để lấy hết**), `search` (string, optional) | Liệt kê bài viết |
+| `list_posts` | `status` (array, optional — bỏ trống = lấy tất cả 5 trạng thái draft/publish/future/pending/private), `number` (int, mặc định 20 — **không có pagination, truyền số lớn như 500 để lấy hết**), `search` (string, optional) | Liệt kê bài viết. Đây là cách DUY NHẤT thấy được bài `draft` — REST API công khai không xác thực sẽ không thấy draft |
 | `create_post` | `title`*, `content`* (*bắt buộc), `status` (draft\|publish\|future\|pending\|private, mặc định draft), `date` (chỉ dùng khi status=future, format `"YYYY-MM-DD HH:MM:SS"` — **không phải ISO có chữ T**, và phải là thời điểm tương lai so với giờ server, nếu không server trả lỗi `past_date`), `excerpt`, `slug`, `categories` (array tên danh mục dạng string — WP tự tạo term mới nếu tên chưa tồn tại), `tags` (array string), `seo_title`, `seo_description`, `seo_focus_keyword`, `image_url`, `image_alt` | Tạo bài. **Không có tool xoá post** — cân nhắc kỹ trước khi tạo, kể cả status=draft |
-| `update_post` | `post_id`* (bắt buộc) + tất cả field như `create_post` (chỉ truyền field muốn đổi, field không truyền giữ nguyên) | Sửa bài đã tồn tại (kể cả đổi status/date/category) — dùng thay vì workaround REST API/Application Password |
-| `upload_media` | `image_url`* (bắt buộc, phải là https), `alt`, `title` | Tải ảnh về Media Library qua `media_sideload_image`, có chặn SSRF (server tự HEAD-check content-type phải là image/*, từ chối URL nội bộ) |
+| `update_post` | `post_id`* (bắt buộc) + tất cả field như `create_post` (chỉ truyền field muốn đổi, field không truyền giữ nguyên) | Sửa bài đã tồn tại (kể cả đổi status/date/category/content). **Không có param `edit_date`** — chỉ cần truyền `date` là đủ |
+| `upload_media` | `image_url`* (bắt buộc, phải là https), `alt`, `title` | Tải ảnh về Media Library qua `media_sideload_image`, có chặn SSRF (server tự HEAD-check content-type phải là image/*, từ chối URL nội bộ). **Không có param `filename`/`alt_text`** |
 | `delete_media` | `media_id`* (bắt buộc) | Xoá vĩnh viễn 1 media/attachment (bỏ qua Trash). Không xoá được post |
 
 **Response format chính xác của từng method** (lấy thẳng từ code PHP, dùng để viết regex parse post_id/media_id):
@@ -62,16 +104,15 @@ def call(method, params):
 | `upload_media` | `Da tai anh. media_id: {id} \| source_url: {url}` |
 | `delete_media` | `Da xoa han media ID {id} (ca file goc + cac ban resize).` |
 
-`{image_note}` (chỉ xuất hiện khi có truyền `image_url`): `" Da gan anh dai dien."` nếu thành công, hoặc `" Luu y: tai anh dai dien that bai (<lý do>)."` nếu lỗi — **luôn check chuỗi này trong response `create_post`/`update_post` vì lỗi ảnh không làm fail cả request**, dễ bị bỏ sót nếu chỉ regex lấy post_id rồi coi là xong.
+`{image_note}` (chỉ xuất hiện khi có truyền `image_url`): `" Da gan anh dai dien."` nếu thành công, hoặc `" Luu y: tai anh dai dien that bai (<lý do>)."` nếu lỗi — **luôn check chuỗi này trong response `create_post`/`update_post`** vì lỗi ảnh không làm fail cả request.
 
-Khi lỗi (status/date sai, thiếu field bắt buộc...), server trả `isError: true` kèm message tiếng Việt không dấu (vd: `"status 'future' can 'date'..."`, `"'date' phai o tuong lai de len lich."`) — hàm `call()` ở trên đã tự raise Exception khi gặp `isError`, không cần tự check lại.
+Khi lỗi (status/date sai, thiếu field bắt buộc...), server trả `isError: true` kèm message tiếng Việt không dấu — hàm `call()` ở trên đã tự raise Exception khi gặp `isError`.
 
 ---
 
 ## Image Pipeline
 
-**Grok API → freeimage.host → WP Media**
-
+**Phương án A (đã test, dùng mặc định) — Grok API → WP Media trực tiếp:**
 ```python
 def grok_image(prompt):
     r = requests.post(
@@ -80,20 +121,90 @@ def grok_image(prompt):
         json={"model": "grok-imagine-image", "prompt": prompt, "n": 1},
         timeout=90
     )
+    r.raise_for_status()
     return r.json()["data"][0]["url"]
 
-def upload_to_freeimage(url):
-    img_data = requests.get(url, timeout=30).content
-    b64 = base64.b64encode(img_data).decode()
-    r = requests.post("https://freeimage.host/api/1/upload",
-        data={"key": FREEIMAGE_KEY, "action": "upload", "source": b64, "format": "json"},
-        timeout=30)
-    return r.json()["image"]["url"]
+def upload_to_wp(img_url, alt, title):
+    resp = call("upload_media", {"image_url": img_url, "alt": alt, "title": title})
+    for part in resp.split("|"):
+        part = part.strip()
+        if part.startswith("source_url:"):
+            return part.replace("source_url:", "").strip()
+    raise Exception(f"Cannot parse upload_media response: {resp}")
+
+wp_url = upload_to_wp(grok_image(prompt), alt_text, title_text)
 ```
 
-Luồng: `grok_image(prompt)` → URL tạm → `upload_to_freeimage()` → public URL → `upload_to_wp()` → WP media URL.
+**Lưu ý freeimage.host:** pipeline ban đầu đi qua `freeimage.host` làm bước trung gian (`grok_image → upload_to_freeimage → upload_to_wp`) để có URL ổn định trước khi WP sideload. `freeimage.host` có lúc trả lỗi 400 "Internal upload error" (lỗi phía họ, đã gặp thực tế) — khi đó **bỏ qua bước freeimage.host, upload thẳng URL tạm của Grok vào `upload_media`**, WP tự sideload qua HEAD-check content-type, vẫn hoạt động tốt (đã verify). Không cần retry freeimage.host nhiều lần, chuyển sang direct-upload ngay khi gặp lỗi.
+
+**Phương án B (tham khảo, chưa test trong pipeline này) — Gemini `nano-banana` (`gemini-3.1-flash-lite-image`), $0.034/ảnh, native 1408×768, tự crop 16:9 bằng PIL:**
+```python
+import io
+from PIL import Image
+
+def nano_banana(prompt, model="gemini-3.1-flash-lite-image"):
+    r = requests.post(
+        f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_KEY}",
+        json={"contents": [{"parts": [{"text": prompt}]}],
+              "generationConfig": {"responseModalities": ["IMAGE"]}},
+        timeout=120,
+    )
+    parts = r.json()["candidates"][0]["content"]["parts"]
+    for p in parts:
+        if "inlineData" in p:
+            img = Image.open(io.BytesIO(base64.b64decode(p["inlineData"]["data"])))
+            w, h = img.size
+            target = 16 / 9
+            if w / h < target - 0.05:
+                new_h = int(w / target); top = (h - new_h) // 2
+                img = img.crop((0, top, w, top + new_h))
+            elif w / h > target + 0.05:
+                new_w = int(h * target); left = (w - new_w) // 2
+                img = img.crop((left, 0, left + new_w, h))
+            buf = io.BytesIO(); img.save(buf, format="JPEG", quality=92)
+            return buf.getvalue()
+    raise Exception(f"No image: {r.json()}")
+```
+Dùng phương án B nếu cần ảnh người thật chất lượng cao hơn (tay/ánh mắt/góc máy chuẩn) — xem "Image Prompt System" bên dưới để viết prompt đúng cách cho cả 2 phương án.
 
 Mỗi bài cần **4 ảnh**: HERO, STATS/DATA, DEMO, COMPARISON.
+
+---
+
+## Image Prompt System — viết prompt sao cho ảnh không bị lỗi
+
+Áp dụng cho cả phương án A và B — đây là kinh nghiệm thực tế để tránh lỗi tay thừa ngón, ánh mắt sai hướng, tỉ lệ khung sai, chữ bị vỡ trên màn hình trong ảnh AI-generated.
+
+**4 nguyên tắc khi mô tả người trong ảnh (HERO/DEMO):**
+1. **Camera angle trước tiên** — neo logic không gian trước khi mô tả chủ thể (vd: "over-the-shoulder shot, camera behind and slightly left of the subject")
+2. **Gaze rõ ràng theo cấu trúc "ai → nhìn vào đâu → vật gì"** — xác nhận màn hình/vật hướng về phía chủ thể (vd: "eyes directed at laptop screen which faces her")
+3. **Khoá vị trí tay cụ thể**, không mơ hồ (vd: "right hand resting on trackpad, left hand on keyboard home row" — không viết chung chung "using laptop")
+4. **Luôn thêm negative guard ở cuối prompt**: `"no extra fingers, no floating objects, no readable text on screen, no garbled letters, no mirrored text, no screen facing away from user"`
+
+**Lens cho ảnh 16:9:**
+- HERO: dùng lens góc rộng `35mm` hoặc `24mm` — tránh `85mm f/1.4` (lens chân dung dễ ra khung dọc dù có crop PIL)
+- Ảnh cận cảnh chi tiết (không phải HERO): `50mm`/`85mm` được
+
+**Nội dung trên màn hình trong ảnh — KHÔNG bao giờ yêu cầu chữ cụ thể** (AI generate chữ trên màn hình luôn bị vỡ/sai):
+```
+✅ "CRM dashboard with colored bar charts and contact card grid"
+✅ "warning UI with large yellow caution triangle icon"
+❌ "screen showing text: Speed-to-Lead Report 2026"
+```
+
+**Ảnh diagram/infographic (STATS, COMPARISON)** — style đơn giản hơn, không cần rule người:
+```
+"{chủ đề}, clean flat infographic style, blue and white color palette, professional design, clear labels, high contrast, no people, no photorealistic elements"
+```
+
+**Bảng chọn role → cách viết prompt:**
+
+| Role | Kiểu prompt | Lens (nếu có người) |
+|------|------------|------|
+| HERO | Có người + môi trường | 35mm wide, luôn dùng cho HERO |
+| DEMO | Có người hoặc diagram tuỳ ngữ cảnh | 24-50mm |
+| STATS | Diagram/infographic | — |
+| COMPARISON | Diagram/infographic | — |
 
 ---
 
@@ -114,17 +225,15 @@ Dùng `WebSearch` tool để tìm tin mới cho từng mảng. Thay `YYYY-MM-DD`
 | 9 | New construction & housing supply | `new home construction housing supply 2026 after:YYYY-MM-DD` |
 | 10 | Rental market | `rental market trends 2026 after:YYYY-MM-DD` |
 
-Top 3–5 tin mỗi mảng. **Output:** Bảng markdown — Mảng | Tiêu đề | URL | Ngày | Tóm tắt 1 câu.
+Top 3–5 tin mỗi mảng. Ưu tiên tin thực sự mới (trong tuần), có số liệu/dữ liệu cụ thể để làm hook, và **chưa trùng góc đã viết** (xem Bước 2/2b trước khi chốt). **Output:** Bảng markdown — Mảng | Tiêu đề | URL | Ngày | Tóm tắt 1 câu.
 
 ---
 
 ## Bước 2 — Kiểm tra bài đã tồn tại trên WordPress
 
-Pull toàn bộ bài đang có (published + scheduled/future + draft/...) trước khi chọn keyword, để tránh viết trùng. `list_posts` không phân trang — gọi 1 lần với `number` đủ lớn là lấy hết (tổng số bài hiện tại ~26, nhưng cứ để dư).
+Pull toàn bộ bài đang có (published + scheduled/future + draft/...) trước khi chọn keyword, để tránh viết trùng. `list_posts` không phân trang — gọi 1 lần với `number` đủ lớn là lấy hết.
 
 ```python
-import re
-
 def get_all_posts():
     resp = call("list_posts", {"number": 500})  # bỏ trống "status" = lấy tất cả trạng thái
     posts = []
@@ -148,7 +257,7 @@ def get_all_posts():
 posts = get_all_posts()
 ```
 
-**Dedup logic — skip keyword nếu:** (KHÔNG có field `focus_keyword` trong response của `list_posts`, nên chỉ dedup được theo title/slug — không dựa vào focus keyword của bài cũ)
+**Dedup logic — skip keyword nếu:** (KHÔNG có field `focus_keyword` trong response của `list_posts`, nên chỉ dedup được theo title/slug qua đây — kết hợp thêm Bước 2b để dedup theo focus keyword thật)
 
 ```python
 def is_duplicate(candidate_slug, candidate_title, existing_posts):
@@ -159,13 +268,11 @@ def is_duplicate(candidate_slug, candidate_title, existing_posts):
         existing_slug_words = set(p["slug"].replace("-", " ").split()) if p["slug"] else set()
         existing_title_words = set(p["title"].lower().split())
 
-        # Slug overlap >60%
         if existing_slug_words:
             overlap = len(candidate_words & existing_slug_words)
             if overlap / max(len(candidate_words), 1) > 0.6:
                 return True, f"Slug overlap với [{p['status']}] #{p['id']} {p['title']}"
 
-        # Title overlap cao (đề phòng bài future chưa có slug thật)
         title_overlap = len(candidate_title_words & existing_title_words)
         if title_overlap / max(len(candidate_title_words), 1) > 0.6:
             return True, f"Title overlap với [{p['status']}] #{p['id']} {p['title']}"
@@ -183,8 +290,10 @@ Google Sheet **"Infina News — Published Articles Tracker"** (`fileId: 1uVI1tPQ
 
 Cấu trúc cột: `#, Date, Title, URL, Focus Keyword, Type` — `Type` chỉ có 2 giá trị:
 
-- **`Plan`** = bài pillar/cornerstone (thường là dạng "Best X for Real Estate", "What Is X?"...). Focus Keyword của các bài này là **PILLAR_KW đã bị chiếm** — tuyệt đối không dùng lại làm FOCUS_KW cho bài mới, dù là bài từ tin tức hay bài khác.
+- **`Plan`** = bài pillar/cornerstone (thường là dạng "Best X for Real Estate", "What Is X?"...). Focus Keyword của các bài này là **PILLAR_KW đã bị chiếm** — tuyệt đối không dùng lại làm FOCUS_KW cho bài mới.
 - **`News`** = bài cluster viết từ tin tức (chính là loại bài skill này tạo ra). Các bài News trước đó cũng đã dùng FOCUS_KW riêng của chúng rồi — cũng phải tránh trùng, y hệt như Plan.
+
+**Lưu ý quan trọng:** tracker sheet có thể bị trễ so với thực tế trên WordPress nếu có automation khác cũng publish bài không log vào đây (đã từng xảy ra với các bài category "CRM Software" từ nhánh skill khác). Luôn coi Bước 2 (list_posts trực tiếp trên WP) là lớp dedup bắt buộc song song, KHÔNG chỉ dựa vào tracker sheet.
 
 ```python
 def get_tracker_rows():
@@ -209,33 +318,34 @@ plan_rows = [r for r in tracker if r["type"].lower() == "plan"]  # nguồn PILLA
 
 ## Bước 3 — Đọc keyword groups từ Excel
 
-Đọc file `AI_SalesX_Customer_Segments_Content_Pillars - Copy.xlsx`, dùng làm **nguồn tham khảo ý tưởng/chiến lược pillar** (7 Content Pillar theo AIDA), KHÔNG còn là nguồn PILLAR_KW độc quyền — Bước 2b (tracker sheet) mới là nguồn quyết định pillar nào thực sự đã tồn tại + URL thật của nó. Excel hữu ích khi tin tức khớp với 1 pillar theo kế hoạch AIDA nhưng pillar đó **chưa có bài Plan nào trên tracker** — lúc đó coi target keyword trong Excel như một PILLAR_KW "dự kiến" (chưa có URL thật để link, cần ghi chú lại chờ viết pillar page sau, hoặc chọn pillar khác đã có bài Plan thật để link).
+Đọc file `AI_SalesX_Customer_Segments_Content_Pillars - Copy.xlsx` (trong repo: `wordpress-mcp/skills/news-to-cluster-article/keywords/AI_SalesX_Customer_Segments_Content_Pillars.xlsx`), dùng làm **nguồn tham khảo ý tưởng/chiến lược pillar** (7 Content Pillar theo AIDA), KHÔNG còn là nguồn PILLAR_KW độc quyền — Bước 2b (tracker sheet) mới là nguồn quyết định pillar nào thực sự đã tồn tại + URL thật của nó. Excel hữu ích khi tin tức khớp với 1 pillar theo kế hoạch AIDA nhưng pillar đó **chưa có bài Plan nào trên tracker** — lúc đó coi target keyword trong Excel như một PILLAR_KW "dự kiến" (chưa có URL thật để link, cân nhắc chọn pillar khác đã có bài Plan thật để link thay vào).
 
 Lấy 2 loại dữ liệu tách biệt từ Excel:
 
-1. **Pillar keyword dự kiến** (sheet `Content Pillars (AIDA)`) — mỗi Content Pillar có 1 "Target keyword" gắn với 1 trang pillar tương lai (vd: pillar "TCPA & AI Compliance" → target keyword `conversational ai agent`). Đối chiếu với `plan_rows` ở Bước 2b: nếu đã có bài Plan dùng đúng keyword này → dùng URL bài đó làm PILLAR_URL; nếu chưa có → không có PILLAR_URL thật, cân nhắc chọn pillar khác.
+1. **Pillar keyword dự kiến** (sheet `Content Pillars (AIDA)`) — mỗi Content Pillar có 1 "Target keyword" gắn với 1 trang pillar tương lai. Đối chiếu với `plan_rows` ở Bước 2b: nếu đã có bài Plan dùng đúng keyword này → dùng URL bài đó làm PILLAR_URL; nếu chưa có → không có PILLAR_URL thật.
 2. **Cluster keyword candidates** (sheet `✅ Customer Response AI Chatbot` và các sheet main keyword khác) — hàng trăm sub-keyword long-tail nằm dưới mỗi Main Keyword group. Đây là nguồn keyword thật sự để bài viết từ tin tức nhắm tới (FOCUS_KW).
 
 **Chưa bị loại ở Bước 2 (WordPress) và không nằm trong `used_keywords` ở Bước 2b (Tracker Sheet)** áp dụng cho cluster keyword candidates trước khi chọn làm FOCUS_KW.
 
 ---
 
-## Bước 4 — Map tin → pillar (để link) + chọn cluster keyword riêng (để viết)
+## Bước 4 — Map tin → pillar (để link) + chọn cluster keyword riêng (để viết) + chọn category
 
-*(Chỉ xét cluster keyword đã pass dedup check ở Bước 2)*
+*(Chỉ xét cluster keyword đã pass dedup check ở Bước 2 và Bước 2b)*
 
-**Quy tắc quan trọng — tránh cannibalization:** Bài cluster viết từ tin tức **không được dùng chính keyword của pillar page làm focus keyword của nó**. Pillar page đã (hoặc sẽ) target keyword đó rồi — nếu cluster article cũng target y hệt, 2 bài cùng site sẽ cạnh tranh nhau trên cùng 1 từ khóa (Google thấy khó hiểu nên rank bài nào, kéo tụt cả hai). Thay vào đó:
+**Quy tắc quan trọng — tránh cannibalization:** Bài cluster viết từ tin tức **không được dùng chính keyword của pillar page làm focus keyword của nó**. Pillar page đã (hoặc sẽ) target keyword đó rồi — nếu cluster article cũng target y hệt, 2 bài cùng site sẽ cạnh tranh nhau trên cùng 1 từ khóa. Thay vào đó:
 
-- Cluster article target một **long-tail keyword khác, hẹp hơn**, bám sát góc tin tức (vd: pillar keyword là `conversational ai agent`, nhưng bài viết từ tin FCC/TCPA có thể target `tcpa compliance ai texting real estate` hoặc một sub-keyword long-tail lấy từ sheet cluster keyword candidates).
-- Bài chỉ **dẫn link nội bộ (internal link) về pillar page**, dùng anchor text tự nhiên có chứa pillar keyword — đây là cách truyền topical authority cho pillar page mà không tranh giành ranking với nó.
+- Cluster article target một **long-tail keyword khác, hẹp hơn**, bám sát góc tin tức.
+- Bài chỉ **dẫn link nội bộ (internal link) về pillar page**, dùng anchor text tự nhiên có chứa pillar keyword.
 
 Với mỗi tin, đánh giá:
 
-1. **Pillar target:** Tin này liên quan đến pillar nào trong `plan_rows` (Bước 2b)? Ưu tiên chọn pillar đã có bài Plan **thật** trên tracker (có URL thật) hơn là pillar chỉ mới nằm trong kế hoạch Excel chưa được viết.
-2. **Cluster keyword:** Chọn 1 keyword long-tail — **không được trùng bất kỳ giá trị nào trong `used_keywords`** (Bước 2b, gồm cả Plan lẫn News) và pass `is_duplicate()` ở Bước 2 (WordPress). Lấy từ sub-keyword list trong Excel, hoặc tự đặt bám sát hook tin tức.
-3. **Angle:** Tin cung cấp dữ liệu/case study/xu hướng gì để làm hook cho đúng cluster keyword đó?
+1. **Pillar target:** Tin này liên quan đến pillar nào trong `plan_rows` (Bước 2b)? Ưu tiên chọn pillar đã có bài Plan **thật** trên tracker (có URL thật). Để đa dạng internal-link equity, ưu tiên pillar **chưa được dùng làm PILLAR_URL** trong các bài News gần đây (xem tracker) trước khi tái sử dụng cùng 1 pillar liên tục.
+2. **Cluster keyword:** Chọn 1 keyword long-tail — **không được trùng bất kỳ giá trị nào trong `used_keywords`** (Bước 2b) và pass `is_duplicate()` ở Bước 2 (WordPress). Kiểm tra thêm slug-overlap thủ công (>0.6 là trùng) với các slug hiện có, kể cả slug của chính các bài News trước đó (không chỉ Plan) — dễ bị bỏ sót vì nhiều bài đều có đuôi `-real-estate-agents` khiến overlap dễ vượt ngưỡng.
+3. **Category:** CRM/sales automation topic → `"CRM Software"`, Chatbot/AI assistant/ISA/compliance topic → `"AI Chatbot"`.
+4. **Angle:** Tin cung cấp dữ liệu/case study/xu hướng gì để làm hook cho đúng cluster keyword đó?
 
-Chọn **top 1 bộ ba** (tin + cluster keyword + pillar target) có relevance cao nhất và angle rõ ràng nhất để viết. Output rõ các giá trị: `FOCUS_KW` (cluster keyword — bài này target, phải là keyword hoàn toàn mới) và `PILLAR_KW` / `PILLAR_URL` (lấy từ dòng `plan_rows` tương ứng — để link về, không target).
+Chọn **top 1 bộ** (tin + cluster keyword + pillar target + category) có relevance cao nhất và angle rõ ràng nhất để viết. Output rõ các giá trị: `FOCUS_KW`, `PILLAR_KW`/`PILLAR_URL`, `CATEGORY_NAME`.
 
 ---
 
@@ -249,7 +359,7 @@ Intro paragraph — có FOCUS_KW (cluster keyword, KHÔNG phải pillar keyword)
 H2: Dữ liệu/tin tức mới — hook từ news, cite URL nguồn làm external link
 [STATS image]
 H2: Tại sao điều này quan trọng với real estate agents
-H2: Giải pháp — [FOCUS_KW] trong thực tế
+H2: Giải pháp — [FOCUS_KW] trong thực tế  ← MỘT H2 PHẢI CHỨA FOCUS_KW NGUYÊN VĂN
 [DEMO image]
 H2: Top platforms/tools — external dofollow links tới tool websites
 [COMPARISON image]
@@ -257,12 +367,12 @@ H2: Related reading — internal link về PILLAR_URL, anchor text tự nhiên c
 H2: Final Thoughts
 ```
 
-**Lưu ý khi viết đoạn "Related reading":** anchor text trỏ về pillar page nên đọc tự nhiên và chứa PILLAR_KW (vd: pillar keyword `conversational ai agent` → anchor "conversational AI agent compliance guide"), vì đây chính là cách truyền tín hiệu từ khóa cho pillar page. Đừng nhầm lẫn — FOCUS_KW mới là keyword bài này cần rank, PILLAR_KW chỉ xuất hiện trong anchor text/link, không lặp lại trong H1/title/meta của bài.
+**Lưu ý khi viết đoạn "Related reading":** anchor text trỏ về pillar page nên đọc tự nhiên và chứa PILLAR_KW, vì đây chính là cách truyền tín hiệu từ khóa cho pillar page. FOCUS_KW mới là keyword bài này cần rank, PILLAR_KW chỉ xuất hiện trong anchor text/link.
 
-**Rank Math SEO checklist — tự verify trước khi publish:**
+**Rank Math SEO checklist — tự verify trước khi publish:** (đã sửa sau khi phát hiện thực tế Rank Math chấm 43/100 dù `check_seo()` cũ báo "ok" — hàm cũ THIẾU 2 check quan trọng: keyword trong SEO title, keyword trong subheading. Luôn dùng bản đầy đủ dưới đây, không dùng bản rút gọn của các skill cũ hơn):
 
 ```python
-def check_seo(content, keyword, pillar_keyword=None, pillar_url=None):
+def check_seo(content, keyword, seo_title=None, pillar_keyword=None, pillar_url=None):
     raw = re.sub(r'<[^>]+>', ' ', content)
     words = raw.split()
     kw_count = len(re.findall(re.escape(keyword), raw.lower()))
@@ -271,6 +381,9 @@ def check_seo(content, keyword, pillar_keyword=None, pillar_url=None):
     int_links = len(re.findall(r'href="https?://infina\.ai[^"]*"', content))
     img_alts_with_kw = len([m for m in re.findall(r'alt="[^"]*"', content.lower())
                              if keyword in m])
+    h2_texts = re.findall(r'<h2>(.*?)</h2>', content, re.IGNORECASE)
+    kw_in_h2 = any(keyword in h2.lower() for h2 in h2_texts)
+
     issues = []
     if density < 0.5:
         issues.append(f"Density too low: {density:.2f}% (need ≥0.5%)")
@@ -282,11 +395,14 @@ def check_seo(content, keyword, pillar_keyword=None, pillar_url=None):
         issues.append(f"Only {int_links} internal link(s) (need ≥2)")
     if img_alts_with_kw < 1:
         issues.append("No img alt contains focus keyword")
+    if not kw_in_h2:
+        issues.append("FOCUS_KW không xuất hiện nguyên văn trong bất kỳ H2 nào — Rank Math trừ điểm mục 'keyword in subheading'")
+    if seo_title is not None and keyword not in seo_title.lower():
+        issues.append("FOCUS_KW không xuất hiện nguyên văn trong SEO_TITLE — Rank Math báo lỗi 'Focus Keyword does not appear in the SEO title', kéo điểm xuống rất thấp (từng gặp 43/100 chỉ vì lỗi này)")
 
     # Chống cannibalization: FOCUS_KW (cluster) không được trùng PILLAR_KW
     if pillar_keyword and keyword.strip().lower() == pillar_keyword.strip().lower():
         issues.append(f"FOCUS_KW trùng hệt PILLAR_KW ('{pillar_keyword}') — đổi sang long-tail keyword khác, pillar keyword chỉ dùng làm anchor text")
-    # Phải có ít nhất 1 link trỏ đúng về pillar_url (không chỉ link nội bộ chung chung)
     if pillar_url and pillar_url not in content:
         issues.append(f"Thiếu internal link trỏ về pillar page ({pillar_url}) trong đoạn Related reading")
 
@@ -297,56 +413,65 @@ def check_seo(content, keyword, pillar_keyword=None, pillar_url=None):
         "ext_links": ext_links,
         "int_links": int_links,
         "img_alts_with_kw": img_alts_with_kw,
+        "kw_in_h2": kw_in_h2,
         "ok": len(issues) == 0,
         "issues": issues
     }
 
-# Dùng trước khi publish:
-seo = check_seo(CONTENT, FOCUS_KW, PILLAR_KW, PILLAR_URL)
+# Dùng trước khi publish — LUÔN truyền seo_title, không chỉ content:
+seo = check_seo(CONTENT, FOCUS_KW, SEO_TITLE, PILLAR_KW, PILLAR_URL)
 if not seo["ok"]:
     print("SEO issues:", seo["issues"])
-    # Sửa CONTENT trước khi gọi create_post
+    # Sửa CONTENT/SEO_TITLE trước khi gọi create_post — vd: thêm FOCUS_KW nguyên văn vào 1 H2 và vào SEO_TITLE
 ```
 
-**Nếu density thấp:** thêm các đoạn tự nhiên sử dụng FOCUS_KW (cluster keyword) vào body sections — không dùng PILLAR_KW để bù density, vì đó là 2 keyword khác nhau.
+**Cách viết SEO_TITLE và H2 chứa FOCUS_KW mà vẫn tự nhiên:** vì FOCUS_KW nhiều khi là cụm dài (vd `"tcpa compliance for real estate agents"`), khi diễn giải lại bằng từ đồng nghĩa hoặc chèn thêm từ ở giữa (vd viết thành `"tcpa compliance among real estate agents"`) sẽ làm mất match chính xác — Rank Math và hàm check ở trên đều tìm **substring y hệt**, không hiểu đồng nghĩa. Luôn giữ FOCUS_KW làm 1 cụm liền mạch trong ít nhất 1 câu của SEO_TITLE và 1 H2, phần diễn giải tự nhiên đặt trước/sau cụm đó chứ không chen vào giữa.
+
+**Nếu density thấp:** thêm các đoạn tự nhiên sử dụng FOCUS_KW (cụm liền mạch, không chèn từ ở giữa) vào body sections.
 **Nếu thiếu internal link:** thêm đoạn "Related reading" trước Final Thoughts với ≥2 link đến bài trong infina.ai/news, trong đó có 1 link chính xác trỏ về `PILLAR_URL` với anchor text chứa `PILLAR_KW`.
-**Nếu thiếu external link:** đảm bảo link tới URL nguồn tin và website các tool đề cập trong bài không có `rel="nofollow"`.
+**Nếu thiếu external link:** đảm bảo link tới URL nguồn tin và website các tool đề cập trong bài không có `rel="nofollow"` với nguồn tin (được phép nofollow với tool/vendor link).
 **Nếu FOCUS_KW trùng PILLAR_KW:** đây là lỗi cannibalization — quay lại Bước 4 chọn cluster keyword khác, không sửa bằng cách đổi PILLAR_KW.
 
 ---
 
-## Bước 6 — Publish lên WordPress
+## Bước 6 — Xác định thời điểm publish + Publish lên WordPress
+
+Lấy giờ bài `status=publish` gần nhất trên WordPress (từ `posts` ở Bước 2), tính `target = giờ_bài_gần_nhất + 1 tiếng`:
+- Nếu `target` đã ở quá khứ so với giờ hiện tại → `create_post` với `status: "publish"` (publish ngay).
+- Nếu `target` còn ở tương lai → `create_post` với `status: "future"` và `date = target` (format `"YYYY-MM-DD HH:MM:SS"`, KHÔNG phải ISO có chữ T) để lên lịch thay vì publish ngay.
 
 ```python
 resp = call("create_post", {
     "title": TITLE,
     "content": CONTENT,
-    "status": "publish",  # dùng "draft" trước nếu muốn người duyệt xem lại trước khi publish thật
+    "status": STATUS,  # "publish" hoặc "future" theo logic trên
+    # "date": TARGET_DATETIME_STR,  # chỉ set khi status="future"
     "slug": SLUG,
     "seo_title": SEO_TITLE,
     "seo_description": SEO_DESC,
     "seo_focus_keyword": FOCUS_KW,
-    "categories": ["AI Chatbot"],  # tên danh mục dạng string, KHÔNG phải ID số
+    "categories": [CATEGORY_NAME],  # "AI Chatbot" hoặc "CRM Software" — tên string, KHÔNG phải ID số
     "tags": TAGS,
     "image_url": IMG["HERO"],
-    "image_alt": f"{FOCUS_KW} 2026",
-    # "date": "2026-08-10 12:00:00",  # CHỈ set khi status="future". Format "YYYY-MM-DD HH:MM:SS", KHÔNG phải ISO có chữ T
+    "image_alt": f"{FOCUS_KW} hero illustration",
 })
 
 post_id_match = re.search(r'ID (\d+)', resp)  # khớp "Da tao bai ID {id} [status: ...]" từ source code server
 if post_id_match:
     post_id = post_id_match.group(1)
-    print(f"Published: Post ID {post_id}")
+    print(f"Post ID {post_id} — status {STATUS}")
     print(f"URL: https://infina.ai/news/{SLUG}/")
 if "that bai" in resp:  # image_note báo lỗi gắn ảnh đại diện dù post vẫn tạo thành công
     print("CANH BAO:", resp)
 ```
 
-**Sửa bài sau khi publish** (đổi date/category/status...) dùng `update_post` trực tiếp qua cùng endpoint JSON-RPC — không cần WP Application Password hay REST API riêng:
+**Sửa bài sau khi publish** (đổi date/category/status/content...) dùng `update_post` trực tiếp qua cùng endpoint JSON-RPC:
 
 ```python
-resp = call("update_post", {"post_id": 223, "date": "2026-08-10 12:00:00", "status": "future"})
+resp = call("update_post", {"post_id": post_id, "seo_title": NEW_SEO_TITLE})
 ```
+
+**Verify sau publish** (khuyến nghị, đặc biệt sau khi từng gặp Rank Math score thấp dù `check_seo()` báo pass): dùng `list_posts` với `search` param hoặc mở link edit để người dùng tự confirm điểm Rank Math thật, vì không có tool nào đọc trực tiếp điểm Rank Math qua API MCP hiện tại.
 
 ---
 
@@ -362,12 +487,12 @@ Sau khi publish thành công, phải **append 1 dòng mới** vào chính Google
 
 Thứ tự cột đúng bằng thứ tự header hiện có: `#, Date, Title, URL, Focus Keyword, Type`.
 
-**Giới hạn công cụ hiện tại — chưa tự động hoá được bước này:** các tool Google Drive hiện có (`create_file`, `read_file_content`, `download_file_content`, `search_files`, `copy_file`, `get_file_metadata`) **không có tool nào ghi/sửa nội dung 1 Google Sheet đã tồn tại** (không có Sheets API append/batchUpdate). `create_file` chỉ tạo file MỚI, không update file cũ. Vì vậy sau khi publish:
+**Giới hạn công cụ hiện tại — chưa tự động hoá được bước này:** các tool Google Drive hiện có (`create_file`, `read_file_content`, `download_file_content`, `search_files`, `copy_file`, `get_file_metadata`) **không có tool nào ghi/sửa nội dung 1 Google Sheet đã tồn tại**. Vì vậy sau khi publish:
 
 1. In ra đúng dòng cần thêm (dạng tab-separated ở trên) trong 1 code block để giữ nguyên ký tự tab khi người dùng copy.
 2. Nói rõ với người dùng: "Đã publish xong, đây là dòng cần thêm vào tracker sheet — copy nguyên khối code rồi paste vào ô đầu dòng trống cuối sheet giúp mình nhé" (kèm link sheet).
-3. Nếu người dùng lỡ paste sai (dính hết vào 1 ô) — hướng dẫn sửa nhanh bằng **Data → Split text to columns → Custom separator** (dùng đúng ký tự đã lỡ dán, ví dụ `|` nếu trước đó lỡ đưa dạng markdown) thay vì bắt họ xoá paste lại từ đầu.
-4. Nếu về sau có kết nối Google Sheets API/connector hỗ trợ ghi (khác Google Drive connector hiện tại), dùng nó để tự append thay vì làm thủ công — kiểm tra qua `ListConnectors`/`SearchMcpRegistry` trước khi báo là "không làm được".
+3. Nếu người dùng lỡ paste sai (dính hết vào 1 ô) — hướng dẫn sửa nhanh bằng **Data → Split text to columns → Custom separator** thay vì bắt họ xoá paste lại từ đầu.
+4. Nếu về sau có kết nối Google Sheets API/connector hỗ trợ ghi, dùng nó để tự append thay vì làm thủ công — kiểm tra qua `ListConnectors`/`SearchMcpRegistry` trước khi báo là "không làm được".
 
 ---
 
@@ -378,6 +503,7 @@ Thứ tự cột đúng bằng thứ tự header hiện có: `#, Date, Title, UR
 - Ví dụ: keyword `crm for real estate agents` → slug `crm-for-real-estate-agents` (phải có `for`)
 - Singular ≠ plural: `agent` ≠ `agents`
 - Tách keyword ra từng từ, check từng từ có trong slug không trước khi publish
+- Trước khi chốt slug, so overlap thủ công với TOÀN BỘ slug hiện có trên site (không chỉ pillar) — nhiều slug trong niche này đều có đuôi `-real-estate-agents` nên dễ vượt ngưỡng overlap >60% nếu không cẩn thận chọn phần đầu slug đủ khác biệt
 
 ---
 
@@ -393,5 +519,4 @@ Mỗi lần chạy tạo file: `article_cluster{N}_{slug}.py` lưu vào cùng fo
 |-------|----------|---------|
 | Excel keyword file | Có | Đường dẫn tuyệt đối đến file xlsx |
 | Tracker Sheet (Google Sheets) | Có | `fileId: 1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs` — cần quyền đọc qua Google Drive connector (`mcp__Google_Drive__read_file_content`). Đây là nguồn PILLAR_KW/dedup chính thức, đọc lại mỗi lần chạy vì nó thay đổi liên tục |
-| Publish date | Có | Theo schedule hiện tại |
-
+| Category | Có | `"AI Chatbot"` hoặc `"CRM Software"` tuỳ chủ đề bài (xem Bước 4) |
