@@ -32,6 +32,52 @@ Tổng hợp từ research (Snappa, ThumbnailCreator, Visme, vidIQ, DreamHost �
 
 ---
 
+## Phong cách hình ảnh (Visual Style) — checklist bổ sung
+
+Research thêm về việc chọn STYLE (không chỉ độ dễ đọc) cho thumbnail.
+
+### So sánh các style
+
+| Style | Ưu điểm | Khi nào dùng |
+|---|---|---|
+| **Flat illustration/icon** (đang dùng cho STATS/COMPARISON) | Scale tốt ở mọi kích thước, rẻ/nhanh để tạo hàng loạt, rõ ràng ở size nhỏ | Bài so sánh, số liệu, khái niệm trừu tượng (không có "cảnh" cụ thể để chụp) |
+| **Photography/photorealistic** (đang dùng cho HERO người) | Mặt người + cảm xúc tăng CTR đã kiểm chứng, tạo cảm giác "con người thật" đứng sau content | Bài news/case study có ngữ cảnh con người cụ thể (agent dùng tool, ai đó ra quyết định) |
+| **3D / semi-flat có gradient** | Nổi bật hơn flat thuần, cảm giác "cao cấp" hơn | Landing page/hero section — ít phù hợp cho khối lượng lớn bài blog hàng ngày |
+
+⚠️ Lưu ý quan trọng: **ảnh flat/illustration và ảnh photography phải cùng 1 "mood" màu sắc** (cùng palette, cùng độ tương phản) — nếu 2 style lệch nhau (vd 1 bên màu pastel nhẹ, 1 bên màu neon đậm) sẽ tạo cảm giác thiếu nhất quán, giảm uy tín thương hiệu dù từng ảnh riêng lẻ vẫn đẹp.
+
+### Brand consistency — chọn cố định 2-3 màu
+
+- Chọn **2-3 màu thương hiệu cố định** và dùng xuyên suốt mọi thumbnail (không đổi bảng màu tuỳ hứng mỗi bài) — đây là yếu tố tạo "nhận diện tức thời" khi lướt feed, được ghi nhận giúp CTR tăng tới ~38% ở kênh nhất quán màu sắc.
+- Có thể **mã hoá màu theo category** để người đọc phân biệt nhanh loại nội dung ngay từ thumbnail:
+  - AI Chatbot → xanh dương/indigo
+  - CRM Software → xanh lá/teal
+  - Real Estate Websites/IDX → navy/vàng gold
+  (đây là gợi ý dựa trên palette đã dùng tự nhiên trong các ảnh vừa tạo — có thể điều chỉnh theo brand guideline thật của Infina AI nếu có)
+
+### Template hoá thay vì tạo prompt tuỳ hứng mỗi bài
+
+Best practice khuyên dùng **3-5 template cố định layout**, chỉ thay nội dung/con số bên trong, thay vì nghĩ prompt mới hoàn toàn mỗi lần — giúp nhất quán mà vẫn đủ linh hoạt theo nội dung. Đề xuất áp dụng cho site này:
+
+| Template | Bố cục cố định | Dùng cho loại bài |
+|---|---|---|
+| **A — Single Stat** | 1 con số lớn + 1 icon nhỏ + label ngắn | Bài news có 1 con số/thống kê nổi bật (kiểu bài của mình) |
+| **B — Two-Way Compare** | 2 icon đối xứng trái-phải + 1 mũi tên/dấu vs ở giữa | Bài "X vs Y", "Standalone vs Embedded", "before/after" |
+| **C — Badge/Top Pick** | 1 icon trung tâm (cúp/sao) + headline ngắn phía trên | Bài listicle "Best X", "Top Picks" |
+| **D — Flow/Pipeline** | 2-3 icon nối bằng mũi tên theo 1 hướng | Bài giải thích quy trình/tích hợp (vd IDX feed, CRM integration) |
+| **E — Checklist ngắn** | 3 icon dấu check xếp NGANG (không xếp dọc — dễ bị crop khi ép 16:9) + headline | Bài buyer's guide/checklist |
+
+Đây gần đúng những gì đã áp dụng thực tế cho 8 bài vừa sửa hôm nay — nên xem như đã hình thành sẵn 5 template ở trên, từ giờ có thể tái sử dụng thay vì generate ngẫu nhiên mỗi lần.
+
+### Nhất quán vs đa dạng — điểm cân bằng
+
+Research chỉ ra không nên chọn cực đoan 1 trong 2:
+- **Không nên** dùng đúng 1 ảnh y hệt lặp lại (nhàm, không phân biệt được bài nào với bài nào — đúng vấn đề ban đầu của site này).
+- **Không nên** mỗi bài 1 style hoàn toàn khác biệt (mất nhận diện thương hiệu).
+- **Nên**: giữ cố định "hệ thống nền" — palette màu, tỉ lệ khung, mức độ chi tiết, bộ template ở trên — nhưng để nội dung cụ thể (icon nào, con số nào) thay đổi theo từng bài.
+
+---
+
 ## Nguồn tham khảo
 
 - [WordPress Featured Image Size & Tips — Snappa](https://snappa.com/blog/wordpress-featured-image-size/)
@@ -43,3 +89,9 @@ Tổng hợp từ research (Snappa, ThumbnailCreator, Visme, vidIQ, DreamHost �
 - [How to Create Clutter-Free Infographics — Visme](https://visme.co/blog/clutter-free-infographics/)
 - [YouTube Thumbnail Design Tips: Best Practices for 2026 — vidIQ](https://vidiq.com/blog/post/youtube-thumbnail-design-tips/)
 - [How to Improve Your YouTube Thumbnail CTR — vidIQ](https://vidiq.com/blog/post/youtube-custom-thumbnails-ctr/)
+- [Best Branding Image Styles for Businesses in 2026 — Its Jeff B](https://www.itsjeffb.com/post/best-branding-image-styles-for-businesses-in-2026)
+- [What Is Flat Design? A Complete 2026 Guide — Big Human](https://www.bighuman.com/blog/guide-to-flat-design-style)
+- [Flat Vector Illustration: A Complete Guide — Getillustrations](https://getillustrations.com/blog/flat-vector-illustration-guide/)
+- [Ultimate Guide To Thumbnail Branding — ThumbnailCreator](https://www.thumbnailcreator.com/blog/ultimate-thumbnail-branding-guide)
+- [YouTube Thumbnail Branding Consistency: Secrets to Higher CTR — AIThumbnail](https://www.aithumbnail.so/blog/youtube-thumbnail-branding-consistency)
+- [Generate Image Prompts for Blog Thumbnails Fast and Consistent — Our Code World](https://ourcodeworld.com/articles/read/3210/generate-image-prompts-for-blog-thumbnails-fast-and-consistent)
