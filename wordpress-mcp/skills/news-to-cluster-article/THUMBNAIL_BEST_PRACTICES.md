@@ -71,16 +71,19 @@ Best practice khuyên dùng **3-5 template cố định layout**, chỉ thay n�
 
 ### Prompt suffix chuẩn (copy-paste khi generate ảnh thumbnail mới)
 
-Dùng Gemini nano-banana, ghép `[mô tả icon]` + `[headline in hoa <20 ký tự]` + `[2 màu chủ đạo]` với suffix cố định sau — KHÔNG đổi phần suffix để giữ style nhất quán giữa các ảnh:
+**Style đã chốt: glossy/gradient (semi-flat 3D icon)** — KHÔNG phải flat 2D thuần. Dùng Gemini nano-banana, ghép `[mô tả icon]` + `[headline in hoa <20 ký tự]` + `[2 màu chủ đạo]` với suffix cố định sau — KHÔNG đổi phần suffix để giữ style nhất quán giữa các ảnh:
 
 ```
-, flat 2D solid color icons only, no gradient, no glossy shading, no drop shadow on icons,
-clean flat infographic style, single focal message, generous white space, bold sans-serif
-headline text under 20 characters, high contrast colors, minimal supporting icons only,
-no data table, no multi-column grid, no small print, no people, no brand names, professional design
+, all icons rendered in the same glossy gradient style with consistent lighting direction and
+matching highlight placement, semi-flat 3D icon look, subtle drop shadow beneath each icon,
+clean infographic style, single focal message, generous white space, bold sans-serif headline
+text under 20 characters, high contrast colors, minimal supporting icons only, no data table,
+no multi-column grid, no small print, no people, no brand names, professional design
 ```
 
-**Lý do thêm "flat 2D solid color icons only, no gradient, no glossy shading, no drop shadow on icons"**: phát hiện thực tế 1 ảnh có 2 icon bị lệch kỹ thuật render trong cùng khung — icon cúp có gradient/bóng (semi-flat) trong khi icon nhà bên cạnh lại flat solid hoàn toàn, do prompt cũ không ép rõ nên model tự quyết định ngẫu nhiên mỗi icon. Chọn flat 2D solid tuyệt đối (không gradient) làm chuẩn vì dễ tái tạo nhất quán hơn semi-flat qua nhiều lần generate khác nhau.
+**Lý do thêm "all icons rendered in the same glossy gradient style..."**: phát hiện thực tế 1 ảnh có 2 icon bị lệch kỹ thuật render trong cùng khung — icon cúp có gradient/bóng (semi-flat) trong khi icon nhà bên cạnh lại flat solid hoàn toàn, do prompt cũ không ép rõ nên model tự quyết định ngẫu nhiên mỗi icon. User xác nhận **thích style glossy/gradient hơn**, nên hướng sửa đúng là ép TẤT CẢ icon trong ảnh cùng dùng gradient + lighting nhất quán (không phải bỏ gradient đi thành flat 2D thuần — bản nháp đầu đã thử hướng này rồi bị user sửa lại).
+
+⚠️ **Lưu ý cho lần audit tiếp theo**: các ảnh Template A-E tạo trước thời điểm chốt style này (batch CRM 18 bài, batch Top-N 6 bài, batch listicle 7 bài — tổng ~31 ảnh) đều đang là **flat 2D solid thuần, chưa có gradient** theo style cũ. Nếu muốn đồng bộ toàn site sang glossy/gradient, cần generate lại các ảnh đó bằng suffix mới ở trên.
 
 ### Nhất quán vs đa dạng — điểm cân bằng
 
