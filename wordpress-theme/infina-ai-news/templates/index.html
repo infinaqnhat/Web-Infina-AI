@@ -32,17 +32,21 @@
             <!-- wp:query {"queryId":11,"query":{"perPage":3,"pages":0,"offset":1,"postType":"post","order":"desc","orderBy":"date","inherit":false},"className":"nr-side"} -->
             <div class="wp-block-query nr-side">
                 <!-- wp:post-template {"className":"nr-side-list"} -->
-                    <!-- wp:group {"className":"nr-side-item","layout":{"type":"constrained"}} -->
+                    <!-- wp:group {"className":"nr-side-item","layout":{"type":"flex","flexWrap":"nowrap"}} -->
                     <div class="wp-block-group nr-side-item">
-                        <!-- wp:group {"className":"nr-meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
-                        <div class="wp-block-group nr-meta">
-                            <!-- wp:post-terms {"term":"category","className":"nr-cat"} /-->
-                            <!-- wp:post-author-name {"className":"nr-author","isLink":false} /-->
-                            <!-- wp:post-date {"format":"M j, Y"} /-->
+                        <!-- wp:post-featured-image {"isLink":true,"className":"nr-side-thumb"} /-->
+                        <!-- wp:group {"className":"nr-side-body","layout":{"type":"constrained"}} -->
+                        <div class="wp-block-group nr-side-body">
+                            <!-- wp:group {"className":"nr-meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
+                            <div class="wp-block-group nr-meta">
+                                <!-- wp:post-terms {"term":"category","className":"nr-cat"} /-->
+                                <!-- wp:post-date {"format":"M j, Y"} /-->
+                            </div>
+                            <!-- /wp:group -->
+                            <!-- wp:post-title {"level":3,"isLink":true,"className":"nr-side-title"} /-->
+                            <!-- wp:post-excerpt {"excerptLength":16,"className":"nr-excerpt"} /-->
                         </div>
                         <!-- /wp:group -->
-                        <!-- wp:post-title {"level":3,"isLink":true,"className":"nr-side-title"} /-->
-                        <!-- wp:post-excerpt {"excerptLength":18,"className":"nr-excerpt"} /-->
                     </div>
                     <!-- /wp:group -->
                 <!-- /wp:post-template -->
@@ -63,21 +67,24 @@
             <h2 class="wp-block-heading nr-news-heading">News</h2>
             <!-- /wp:heading -->
 
-            <!-- wp:query {"queryId":12,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"className":"nr-table"} -->
+            <!-- wp:query {"queryId":12,"query":{"perPage":8,"pages":0,"offset":4,"postType":"post","order":"desc","orderBy":"date","inherit":false},"className":"nr-table"} -->
             <div class="wp-block-query nr-table">
-                <!-- wp:group {"className":"nr-row nr-row-head","layout":{"type":"flex","flexWrap":"nowrap"}} -->
-                <div class="wp-block-group nr-row nr-row-head">
-                    <span class="nr-c-date">Date</span>
-                    <span class="nr-c-cat">Category</span>
-                    <span class="nr-c-title">Title</span>
-                </div>
-                <!-- /wp:group -->
                 <!-- wp:post-template -->
                     <!-- wp:group {"className":"nr-row","layout":{"type":"flex","flexWrap":"nowrap"}} -->
                     <div class="wp-block-group nr-row">
-                        <!-- wp:post-date {"format":"M j, Y","className":"nr-c-date"} /-->
-                        <!-- wp:post-terms {"term":"category","className":"nr-c-cat"} /-->
-                        <!-- wp:post-title {"level":3,"isLink":true,"className":"nr-c-title"} /-->
+                        <!-- wp:post-featured-image {"isLink":true,"className":"nr-row-thumb"} /-->
+                        <!-- wp:group {"className":"nr-row-body","layout":{"type":"constrained"}} -->
+                        <div class="wp-block-group nr-row-body">
+                            <!-- wp:group {"className":"nr-meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
+                            <div class="wp-block-group nr-meta">
+                                <!-- wp:post-terms {"term":"category","className":"nr-cat"} /-->
+                                <!-- wp:post-date {"format":"M j, Y"} /-->
+                            </div>
+                            <!-- /wp:group -->
+                            <!-- wp:post-title {"level":3,"isLink":true,"className":"nr-row-title"} /-->
+                            <!-- wp:post-excerpt {"excerptLength":22,"className":"nr-excerpt"} /-->
+                        </div>
+                        <!-- /wp:group -->
                     </div>
                     <!-- /wp:group -->
                 <!-- /wp:post-template -->

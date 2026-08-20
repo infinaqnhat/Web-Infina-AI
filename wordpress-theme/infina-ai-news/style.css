@@ -7,7 +7,7 @@ Description: Newsroom-style block theme for the Infina AI blog. Matches the Infi
 Requires at least: 6.4
 Tested up to: 6.6
 Requires PHP: 7.4
-Version: 1.0.8
+Version: 1.0.9
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: infina-ai-news
@@ -94,9 +94,13 @@ img { max-width: 100%; height: auto; }
 .nr-lead-title a { color: var(--fg); transition: color .2s; }
 .nr-lead-q .wp-block-post:hover .nr-lead-title a { color: var(--blue); }
 
-.nr-side .nr-side-item { padding: 20px 0; border-top: 1px solid var(--border-light); }
+.nr-side .nr-side-item { gap: 16px !important; align-items: flex-start !important; padding: 18px 0; border-top: 1px solid var(--border-light); }
 .nr-side .wp-block-post:first-child .nr-side-item { padding-top: 0; border-top: none; }
-.nr-side-title { font-size: 18px !important; line-height: 1.3 !important; margin: 8px 0 6px !important; }
+.nr-side-thumb { flex: 0 0 104px; margin: 0 !important; }
+.nr-side-thumb img,
+.nr-side-thumb .nr-thumb-ph { width: 104px; height: 74px; object-fit: cover; border-radius: 10px; display: block; }
+.nr-side-body { flex: 1; min-width: 0; }
+.nr-side-title { font-size: 16px !important; line-height: 1.3 !important; margin: 6px 0 5px !important; }
 .nr-side-title a { color: var(--fg); transition: color .2s; }
 .nr-side-item:hover .nr-side-title a { color: var(--blue); }
 
@@ -114,14 +118,38 @@ img { max-width: 100%; height: auto; }
 .nr-table .wp-block-post-template { list-style: none; margin: 0; padding: 0; }
 .nr-table { transition: opacity 0.2s ease; }
 .nr-table.is-loading { opacity: 0.45; pointer-events: none; }
-.nr-row { display: flex; gap: 20px !important; align-items: baseline !important; padding: 18px 0 !important; border-top: 1px solid var(--border-light); }
-.nr-row-head { border-top: none; padding: 0 0 12px !important; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.nr-c-date { flex: 0 0 130px; font-size: 13px !important; color: var(--muted) !important; white-space: nowrap; margin: 0 !important; }
-.nr-c-cat { flex: 0 0 150px; font-size: 13px !important; color: var(--fg-secondary) !important; margin: 0 !important; }
-.nr-c-cat a { color: var(--fg-secondary); }
-.nr-c-title { flex: 1; font-size: 15.5px !important; font-weight: 600 !important; line-height: 1.45 !important; margin: 0 !important; }
-.nr-c-title a { color: var(--fg); transition: color .2s; }
-.nr-row:hover .nr-c-title a { color: var(--blue); }
+.nr-row { display: flex; gap: 20px !important; align-items: flex-start !important; padding: 22px 0 !important; border-top: 1px solid var(--border-light); }
+.nr-table .wp-block-post-template > .wp-block-post:first-child .nr-row { border-top: none; padding-top: 0 !important; }
+.nr-row-thumb { flex: 0 0 168px; margin: 0 !important; }
+.nr-row-thumb img,
+.nr-row-thumb .nr-thumb-ph { width: 168px; height: 112px; object-fit: cover; border-radius: 12px; display: block; }
+.nr-row-body { flex: 1; min-width: 0; }
+.nr-row-title { font-size: 17px !important; font-weight: 700 !important; line-height: 1.35 !important; margin: 4px 0 6px !important; letter-spacing: -0.01em; }
+.nr-row-title a { color: var(--fg); transition: color .2s; }
+.nr-row:hover .nr-row-title a { color: var(--blue); }
+.nr-row .nr-excerpt { font-size: 13.5px !important; }
+
+/* Branded fallback thumbnail (post without a featured image) */
+.nr-thumb-ph {
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+  color: #fff; font-weight: 800; letter-spacing: -0.02em;
+  font-size: 26px; line-height: 1;
+}
+.nr-side-thumb .nr-thumb-ph { font-size: 20px; }
+.nr-lead-image .nr-thumb-ph { width: 100%; aspect-ratio: 16 / 10; height: auto; font-size: 56px; border-radius: var(--radius); }
+
+@media (max-width: 600px) {
+  .nr-row { gap: 14px !important; padding: 16px 0 !important; }
+  .nr-row-thumb { flex: 0 0 116px; }
+  .nr-row-thumb img,
+  .nr-row-thumb .nr-thumb-ph { width: 116px; height: 82px; border-radius: 10px; }
+  .nr-row-title { font-size: 15px !important; }
+  .nr-row .nr-excerpt { display: none !important; }
+  .nr-side-thumb { flex: 0 0 88px; }
+  .nr-side-thumb img,
+  .nr-side-thumb .nr-thumb-ph { width: 88px; height: 62px; }
+}
 
 .nr-pagination { margin-top: 24px; padding-top: 8px; }
 .nr-pagination a, .nr-pagination .wp-block-query-pagination-numbers { font-size: 14px; font-weight: 600; color: var(--accent); }
@@ -214,9 +242,5 @@ main.single-post { padding-top: clamp(32px, 5vw, 56px) !important; padding-botto
   .nr-featured .wp-block-column, .nr-news .wp-block-column { flex-basis: 100% !important; max-width: 100% !important; }
 }
 @media (max-width: 600px) {
-  .nr-row { flex-wrap: wrap; gap: 4px 12px !important; padding: 16px 0 !important; }
-  .nr-row-head { display: none; }
-  .nr-c-title { order: -1; flex: 1 0 100%; font-size: 16px !important; }
-  .nr-c-date, .nr-c-cat { flex: 0 0 auto; }
   .site-footer .footer-inner { flex-direction: column; text-align: center; padding: 0 clamp(16px, 5vw, 24px); }
 }
