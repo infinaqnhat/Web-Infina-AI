@@ -69,6 +69,19 @@ Best practice khuyên dùng **3-5 template cố định layout**, chỉ thay n�
 
 Đây gần đúng những gì đã áp dụng thực tế cho 8 bài vừa sửa hôm nay — nên xem như đã hình thành sẵn 5 template ở trên, từ giờ có thể tái sử dụng thay vì generate ngẫu nhiên mỗi lần.
 
+### Prompt suffix chuẩn (copy-paste khi generate ảnh thumbnail mới)
+
+Dùng Gemini nano-banana, ghép `[mô tả icon]` + `[headline in hoa <20 ký tự]` + `[2 màu chủ đạo]` với suffix cố định sau — KHÔNG đổi phần suffix để giữ style nhất quán giữa các ảnh:
+
+```
+, flat 2D solid color icons only, no gradient, no glossy shading, no drop shadow on icons,
+clean flat infographic style, single focal message, generous white space, bold sans-serif
+headline text under 20 characters, high contrast colors, minimal supporting icons only,
+no data table, no multi-column grid, no small print, no people, no brand names, professional design
+```
+
+**Lý do thêm "flat 2D solid color icons only, no gradient, no glossy shading, no drop shadow on icons"**: phát hiện thực tế 1 ảnh có 2 icon bị lệch kỹ thuật render trong cùng khung — icon cúp có gradient/bóng (semi-flat) trong khi icon nhà bên cạnh lại flat solid hoàn toàn, do prompt cũ không ép rõ nên model tự quyết định ngẫu nhiên mỗi icon. Chọn flat 2D solid tuyệt đối (không gradient) làm chuẩn vì dễ tái tạo nhất quán hơn semi-flat qua nhiều lần generate khác nhau.
+
 ### Nhất quán vs đa dạng — điểm cân bằng
 
 Research chỉ ra không nên chọn cực đoan 1 trong 2:
