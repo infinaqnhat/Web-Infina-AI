@@ -102,6 +102,14 @@ Các Core Update gần đây phạt mạnh content AI mỏng, thiếu E-E-A-T. C
 
 ---
 
+## Bước 11 — Log vào Changelog
+
+Sau khi hoàn tất bất kỳ thay đổi nào ở trên (dù nhỏ như trim 1 meta description), append 1 dòng mới vào `SEO_UPDATE_CHANGELOG.md` (cùng thư mục skill): ngày, post ID, URL, loại thay đổi, chi tiết, lý do/trigger. Không sửa/xoá dòng cũ trong changelog — chỉ append.
+
+Đây là log riêng cho việc sửa bài cũ, khác với tracker sheet Google Sheets (chỉ log bài **mới** viết ra ở Bước 7 trong `SKILL.md`).
+
+---
+
 ## Kỳ vọng kết quả (theo data ngành)
 
 - Refresh theo quý (quarterly) hiệu quả hơn refresh hàng năm khoảng 42%
