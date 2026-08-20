@@ -455,6 +455,50 @@ Link sheet: `https://docs.google.com/spreadsheets/d/1uVI1tPQxhTUk4qj8NWZSi-EReEw
 
 ---
 
+## Bước 8 (Optional) — Kiểm tra traffic Google Search Console
+
+Không chạy mỗi ngày trong pipeline chính — chỉ dùng khi user hỏi về traffic/ranking/impressions của các bài đã đăng.
+
+**Credential:** service account key **không nằm trong repo này** (tránh commit secret vào git history). Key thật được lưu ở account-level skill copy tại `credentials/gsc_service_account.json` (cùng thư mục skill, ngoài GitHub). Service account email: `search-console-api@tidy-set-492904-b1.iam.gserviceaccount.com`, đã được cấp quyền `Full` trên 2 property: `https://infina.ai/` và `https://infina.ai/news/`.
+
+Không có sẵn `google-auth`/`google-api-python-client` trong môi trường — tự build JWT bằng `pyjwt` + `cryptography` rồi đổi lấy access token qua `token_uri`. Nếu `cryptography`/`cffi` bị lỗi native binding (`ModuleNotFoundError: cffi` hoặc rust panic), chạy `pip3 install --user --force-reinstall cffi cryptography` trước.
+
+```python
+import json, time, jwt, requests
+import os
+
+KEY_PATH = os.environ.get("GSC_SERVICE_ACCOUNT_KEY_PATH", "credentials/gsc_service_account.json")  # relative to skill dir
+SCOPE = "https://www.googleapis.com/auth/webmasters.readonly"
+
+def get_access_token():
+    creds = json.load(open(KEY_PATH))
+    now = int(time.time())
+    payload = {"iss": creds["client_email"], "scope": SCOPE, "aud": creds["token_uri"],
+               "iat": now, "exp": now + 3600}
+    assertion = jwt.encode(payload, creds["private_key"], algorithm="RS256")
+    resp = requests.post(creds["token_uri"], data={
+        "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+        "assertion": assertion,
+    }, timeout=30)
+    return resp.json()["access_token"]
+
+def query_search_analytics(site_url, start_date, end_date, dimensions=None, row_limit=25):
+    token = get_access_token()
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+    url = f"https://www.googleapis.com/webmasters/v3/sites/{requests.utils.quote(site_url, safe='')}/searchAnalytics/query"
+    body = {"startDate": start_date, "endDate": end_date, "rowLimit": row_limit}
+    if dimensions:
+        body["dimensions"] = dimensions
+    return requests.post(url, headers=headers, json=body, timeout=30).json()
+
+# Ví dụ: top pages theo impressions trong 28 ngày gần nhất
+# query_search_analytics("https://infina.ai/news/", "2026-07-22", "2026-08-19", dimensions=["page"], row_limit=30)
+```
+
+GSC data có độ trễ report ~2-3 ngày, nên `endDate` gần "hôm nay" thường trả về 0 cho vài ngày cuối. Dùng dimensions `["date"]`, `["page"]`, `["query"]` tuỳ nhu cầu. **Không bao giờ commit file key JSON thật hoặc `private_key` vào repo này** — key thật chỉ tồn tại ở account-level skill copy, ngoài GitHub.
+
+---
+
 ## Slug rules
 
 - Slug theo `FOCUS_KW` (cluster keyword), không theo `PILLAR_KW`
