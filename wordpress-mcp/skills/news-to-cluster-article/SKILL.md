@@ -112,62 +112,67 @@ Khi lỗi (status/date sai, thiếu field bắt buộc...), server trả `isErro
 
 ## Image Pipeline
 
-**Phương án A (đã test, dùng mặc định) — Grok API → WP Media trực tiếp:**
+**Phương án A (dùng mặc định, BẮT BUỘC) — Gemini `nano-banana` (`gemini-3.1-flash-lite-image`), $0.034/ảnh, native 1408×768, tự crop 16:9 bằng PIL:**
 ```python
-def grok_image(prompt):
-    r = requests.post(
-        "https://api.x.ai/v1/images/generations",
-        headers={"Authorization": f"Bearer {GROK_KEY}", "Content-Type": "application/json"},
-        json={"model": "grok-imagine-image", "prompt": prompt, "n": 1},
-        timeout=90
-    )
-    r.raise_for_status()
-    return r.json()["data"][0]["url"]
+import io
+from PIL import Image
 
-def upload_to_wp(img_url, alt, title):
-    resp = call("upload_media", {"image_url": img_url, "alt": alt, "title": title})
+def nano_banana(prompt, model="gemini-3.1-flash-lite-image", retries=2):
+    last_err = None
+    for attempt in range(retries):
+        try:
+            r = requests.post(
+                f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_KEY}",
+                json={"contents": [{"parts": [{"text": prompt}]}],
+                      "generationConfig": {"responseModalities": ["IMAGE"]}},
+                timeout=120,
+            )
+            r.raise_for_status()
+            parts = r.json()["candidates"][0]["content"]["parts"]
+            for p in parts:
+                if "inlineData" in p:
+                    img = Image.open(io.BytesIO(base64.b64decode(p["inlineData"]["data"])))
+                    w, h = img.size
+                    target = 16 / 9
+                    if w / h < target - 0.05:
+                        new_h = int(w / target); top = (h - new_h) // 2
+                        img = img.crop((0, top, w, top + new_h))
+                    elif w / h > target + 0.05:
+                        new_w = int(h * target); left = (w - new_w) // 2
+                        img = img.crop((left, 0, left + new_w, h))
+                    buf = io.BytesIO(); img.save(buf, format="JPEG", quality=92)
+                    return buf.getvalue()
+            raise Exception(f"No image: {r.json()}")
+        except Exception as e:
+            last_err = e
+    raise last_err
+
+def stage_and_upload(img_bytes, alt, title):
+    # nano_banana() trả về bytes ảnh — cần 1 URL public tạm trước khi WP media_sideload_image tải về.
+    # Bước trung gian: freeimage.host. Nếu freeimage.host lỗi (400 "Internal upload error" đã gặp
+    # thực tế), thử lại 1 lần; nếu vẫn lỗi mới báo cho user, KHÔNG bỏ qua bước upload ảnh.
+    b64 = base64.b64encode(img_bytes).decode()
+    r = requests.post("https://freeimage.host/api/1/upload",
+        data={"key": FREEIMAGE_KEY, "action": "upload", "source": b64, "format": "json"},
+        timeout=30)
+    if r.status_code != 200:
+        raise Exception(f"freeimage upload failed: {r.status_code} {r.text[:200]}")
+    tmp_url = r.json()["image"]["url"]
+    resp = call("upload_media", {"image_url": tmp_url, "alt": alt, "title": title})
     for part in resp.split("|"):
         part = part.strip()
         if part.startswith("source_url:"):
             return part.replace("source_url:", "").strip()
     raise Exception(f"Cannot parse upload_media response: {resp}")
 
-wp_url = upload_to_wp(grok_image(prompt), alt_text, title_text)
+wp_url = stage_and_upload(nano_banana(prompt), alt_text, title_text)
 ```
 
-**Lưu ý freeimage.host:** pipeline ban đầu đi qua `freeimage.host` làm bước trung gian (`grok_image → upload_to_freeimage → upload_to_wp`) để có URL ổn định trước khi WP sideload. `freeimage.host` có lúc trả lỗi 400 "Internal upload error" (lỗi phía họ, đã gặp thực tế) — khi đó **bỏ qua bước freeimage.host, upload thẳng URL tạm của Grok vào `upload_media`**, WP tự sideload qua HEAD-check content-type, vẫn hoạt động tốt (đã verify). Không cần retry freeimage.host nhiều lần, chuyển sang direct-upload ngay khi gặp lỗi.
+**Nếu Gemini lỗi liên tục (kể cả sau retry trong hàm trên):** thử lại thêm 1 lần thủ công (gọi lại `nano_banana()`), nếu vẫn lỗi thì **báo cho user trong tóm tắt**, KHÔNG tự ý fallback sang Grok — Grok đã bị loại khỏi pipeline vì cho ra ảnh illustration/style không đồng nhất với chuẩn photorealistic + glossy/gradient hiện tại của site.
 
-**Phương án B (tham khảo, chưa test trong pipeline này) — Gemini `nano-banana` (`gemini-3.1-flash-lite-image`), $0.034/ảnh, native 1408×768, tự crop 16:9 bằng PIL:**
-```python
-import io
-from PIL import Image
+**Phương án B (đã ngừng dùng, chỉ còn giá trị lịch sử) — Grok API:** từng là default ban đầu (`grok-imagine-image` qua `api.x.ai`), đã bị thay thế hoàn toàn bằng Gemini nano-banana. Không dùng lại trừ khi có chỉ đạo mới rõ ràng từ user.
 
-def nano_banana(prompt, model="gemini-3.1-flash-lite-image"):
-    r = requests.post(
-        f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_KEY}",
-        json={"contents": [{"parts": [{"text": prompt}]}],
-              "generationConfig": {"responseModalities": ["IMAGE"]}},
-        timeout=120,
-    )
-    parts = r.json()["candidates"][0]["content"]["parts"]
-    for p in parts:
-        if "inlineData" in p:
-            img = Image.open(io.BytesIO(base64.b64decode(p["inlineData"]["data"])))
-            w, h = img.size
-            target = 16 / 9
-            if w / h < target - 0.05:
-                new_h = int(w / target); top = (h - new_h) // 2
-                img = img.crop((0, top, w, top + new_h))
-            elif w / h > target + 0.05:
-                new_w = int(h * target); left = (w - new_w) // 2
-                img = img.crop((left, 0, left + new_w, h))
-            buf = io.BytesIO(); img.save(buf, format="JPEG", quality=92)
-            return buf.getvalue()
-    raise Exception(f"No image: {r.json()}")
-```
-Dùng phương án B nếu cần ảnh người thật chất lượng cao hơn (tay/ánh mắt/góc máy chuẩn) — xem "Image Prompt System" bên dưới để viết prompt đúng cách cho cả 2 phương án.
-
-Mỗi bài cần **4 ảnh**: HERO, STATS/DATA, DEMO, COMPARISON.
+Mỗi bài cần **4 ảnh**: HERO, STATS/DATA, DEMO, COMPARISON. Ảnh HERO vẫn tạo và chèn vào content như bình thường; riêng **featured image/thumbnail dùng STATS** (xem Bước 6 — lý do: tránh lặp lại HERO photo giống nhau trên trang chủ).
 
 ---
 
