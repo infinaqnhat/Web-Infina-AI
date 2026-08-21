@@ -83,7 +83,7 @@ no multi-column grid, no small print, no people, no brand names, professional de
 
 **Lý do thêm "all icons rendered in the same glossy gradient style..."**: phát hiện thực tế 1 ảnh có 2 icon bị lệch kỹ thuật render trong cùng khung — icon cúp có gradient/bóng (semi-flat) trong khi icon nhà bên cạnh lại flat solid hoàn toàn, do prompt cũ không ép rõ nên model tự quyết định ngẫu nhiên mỗi icon. User xác nhận **thích style glossy/gradient hơn**, nên hướng sửa đúng là ép TẤT CẢ icon trong ảnh cùng dùng gradient + lighting nhất quán (không phải bỏ gradient đi thành flat 2D thuần — bản nháp đầu đã thử hướng này rồi bị user sửa lại).
 
-⚠️ **Lưu ý cho lần audit tiếp theo**: các ảnh Template A-E tạo trước thời điểm chốt style này (batch CRM 18 bài, batch Top-N 6 bài, batch listicle 7 bài — tổng ~31 ảnh) đều đang là **flat 2D solid thuần, chưa có gradient** theo style cũ. Nếu muốn đồng bộ toàn site sang glossy/gradient, cần generate lại các ảnh đó bằng suffix mới ở trên.
+✅ **Cập nhật 2026-08-21 — đã hoàn tất đồng bộ toàn site**: 38 ảnh Template A-E flat 2D cũ đã được generate lại sang glossy/gradient (batch đồng bộ ngày 2026-08-20), cộng thêm 6 bài sót lại (#528, #521, #513, #504, #481, #286 — ảnh STATS/COMPARISON gốc từ pipeline per-article, không phải Template A-E, có bài còn là bar chart/dashboard vi phạm "no data table") cũng đã regenerate xong ngày 2026-08-21. Tính đến thời điểm này, toàn bộ 68 bài trên site đã đạt chuẩn glossy/gradient + checklist legibility. Bài mới publish từ nay theo `SKILL.md` Bước 6 mặc định dùng `IMG["STATS"]` (đã fix), nên sẽ tự động đạt chuẩn — không cần audit lại trừ khi có thay đổi style mới hoặc phát hiện lỗi cụ thể.
 
 ### Nhất quán vs đa dạng — điểm cân bằng
 
