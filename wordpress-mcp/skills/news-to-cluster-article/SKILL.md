@@ -503,6 +503,75 @@ Thứ tự cột đúng bằng thứ tự header hiện có: `#, Date, Title, UR
 
 ---
 
+## Bước 8 (Optional) — Kiểm tra traffic Google Search Console + Google Analytics
+
+Không chạy mỗi ngày trong pipeline chính — chỉ dùng khi user hỏi về traffic/ranking/impressions/users của site hoặc các bài đã đăng.
+
+**Credential:** dùng chung 1 service account cho cả 2 API — key thật **không nằm trong repo này** (tránh commit secret vào git history). Key thật lưu ở account-level skill copy tại `credentials/gsc_service_account.json` (cùng thư mục skill, ngoài GitHub). Service account email: `search-console-api@tidy-set-492904-b1.iam.gserviceaccount.com`.
+
+- **Search Console:** đã cấp quyền `Full` trên 2 property: `https://infina.ai/` và `https://infina.ai/news/`.
+- **Google Analytics (GA4):** đã được add vào GA4 với quyền đọc, property cần dùng là **"Infina AI" — `properties/505677884`** (thuộc account GA "RealStake", account ID `140795077`). Xác nhận truy cập được ngày 2026-08-24 — timeZone của property là `Asia/Saigon`, currencyCode `VND`.
+- **Lưu ý dựng lại từ đầu (container mới không còn `credentials/gsc_service_account.json`):** nếu file key không tồn tại ở đường dẫn trên, tìm bản gốc đã upload trong `/root/.claude/uploads/{session_id}/*infina_ai_search_console_api*.json` hoặc hỏi user upload lại. Nếu Admin API/Data API của GA trả lỗi `SERVICE_DISABLED`, đó là do 2 API `analyticsadmin.googleapis.com` và `analyticsdata.googleapis.com` chưa được bật trên GCP project `tidy-set-492904-b1` — báo user vào link `activationUrl` trong response lỗi để bấm Enable (không tự làm được qua API).
+
+Không có sẵn `google-auth`/`google-api-python-client` trong môi trường — tự build JWT bằng `pyjwt` + `cryptography` rồi đổi lấy access token qua `token_uri`. Nếu `cryptography`/`cffi` bị lỗi native binding (`ModuleNotFoundError: cffi` hoặc rust panic), chạy `pip3 install --user --force-reinstall cffi cryptography` trước. Access token GA và GSC dùng chung code JWT, chỉ khác `SCOPE`.
+
+```python
+import json, time, jwt, requests
+import os
+
+KEY_PATH = os.environ.get("GSC_SERVICE_ACCOUNT_KEY_PATH", "credentials/gsc_service_account.json")  # relative to skill dir
+
+def get_access_token(scope):
+    creds = json.load(open(KEY_PATH))
+    now = int(time.time())
+    payload = {"iss": creds["client_email"], "scope": scope, "aud": creds["token_uri"],
+               "iat": now, "exp": now + 3600}
+    assertion = jwt.encode(payload, creds["private_key"], algorithm="RS256")
+    resp = requests.post(creds["token_uri"], data={
+        "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+        "assertion": assertion,
+    }, timeout=30)
+    return resp.json()["access_token"]
+
+# --- Search Console ---
+def query_search_analytics(site_url, start_date, end_date, dimensions=None, row_limit=25):
+    token = get_access_token("https://www.googleapis.com/auth/webmasters.readonly")
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+    url = f"https://www.googleapis.com/webmasters/v3/sites/{requests.utils.quote(site_url, safe='')}/searchAnalytics/query"
+    body = {"startDate": start_date, "endDate": end_date, "rowLimit": row_limit}
+    if dimensions:
+        body["dimensions"] = dimensions
+    return requests.post(url, headers=headers, json=body, timeout=30).json()
+
+# Vi du: top pages theo impressions trong 28 ngay gan nhat
+# query_search_analytics("https://infina.ai/news/", "2026-07-22", "2026-08-19", dimensions=["page"], row_limit=30)
+
+# --- Google Analytics (GA4) ---
+GA_PROPERTY_ID = "505677884"  # "Infina AI" property
+
+def query_ga4_report(metrics, dimensions=None, start_date="7daysAgo", end_date="today", property_id=GA_PROPERTY_ID):
+    token = get_access_token("https://www.googleapis.com/auth/analytics.readonly")
+    headers = {"Authorization": f"Bearer {token}"}
+    body = {
+        "dateRanges": [{"startDate": start_date, "endDate": end_date}],
+        "metrics": [{"name": m} for m in metrics],
+    }
+    if dimensions:
+        body["dimensions"] = [{"name": d} for d in dimensions]
+        body["orderBys"] = [{"dimension": {"dimensionName": dimensions[0]}}]
+    url = f"https://analyticsdata.googleapis.com/v1beta/properties/{property_id}:runReport"
+    return requests.post(url, headers=headers, json=body, timeout=30).json()
+
+# Vi du: users/sessions/pageviews theo ngay, 7 ngay gan nhat
+# query_ga4_report(["activeUsers", "sessions", "screenPageViews"], dimensions=["date"])
+# Vi du: traffic theo landing page
+# query_ga4_report(["activeUsers", "sessions"], dimensions=["landingPage"], start_date="28daysAgo")
+```
+
+GSC data có độ trễ report ~2-3 ngày, nên `endDate` gần "hôm nay" thường trả về 0 cho vài ngày cuối. GA4 gần real-time hơn nhưng ngày hiện tại thường chưa đầy đủ (đang chạy dở). Dùng dimensions GSC `["date"]`, `["page"]`, `["query"]`; dimensions GA4 phổ biến `["date"]`, `["landingPage"]`, `["sessionDefaultChannelGroup"]`, `["deviceCategory"]` tuỳ nhu cầu. **Không bao giờ commit file key JSON thật hoặc `private_key` vào repo này** — key thật chỉ tồn tại ở account-level skill copy, ngoài GitHub.
+
+---
+
 ## Slug rules (critical)
 
 - Slug bám theo `FOCUS_KW` (cluster keyword của chính bài này), KHÔNG bám theo `PILLAR_KW`
