@@ -570,6 +570,38 @@ def query_ga4_report(metrics, dimensions=None, start_date="7daysAgo", end_date="
 
 GSC data có độ trễ report ~2-3 ngày, nên `endDate` gần "hôm nay" thường trả về 0 cho vài ngày cuối. GA4 gần real-time hơn nhưng ngày hiện tại thường chưa đầy đủ (đang chạy dở). Dùng dimensions GSC `["date"]`, `["page"]`, `["query"]`; dimensions GA4 phổ biến `["date"]`, `["landingPage"]`, `["sessionDefaultChannelGroup"]`, `["deviceCategory"]` tuỳ nhu cầu. **Không bao giờ commit file key JSON thật hoặc `private_key` vào repo này** — key thật chỉ tồn tại ở account-level skill copy, ngoài GitHub.
 
+**--- Microsoft Clarity (heatmap/engagement, khác hệ thống với Google) ---**
+
+User đã cấp 1 API token riêng (JWT, scope `Data.Export`, do Clarity tự phát hành trong project settings, không liên quan gì tới service account Google ở trên). Token thật lưu tại `credentials/clarity_api_token.txt` (account-level skill copy, ngoài GitHub, cùng thư mục với `gsc_service_account.json`). Token dùng trực tiếp làm Bearer, không cần build JWT/đổi access token như Google.
+
+```python
+import os, requests
+
+CLARITY_TOKEN_PATH = os.environ.get("CLARITY_TOKEN_PATH", "credentials/clarity_api_token.txt")
+
+def query_clarity(num_of_days=1, dimension1=None, dimension2=None, dimension3=None):
+    token = open(CLARITY_TOKEN_PATH).read().strip()
+    params = {"numOfDays": num_of_days}
+    if dimension1: params["dimension1"] = dimension1  # vd: "Browser", "Country", "Device", "PopularPages"...
+    if dimension2: params["dimension2"] = dimension2
+    if dimension3: params["dimension3"] = dimension3
+    r = requests.get(
+        "https://www.clarity.ms/export-data/api/v1/project-live-insights",
+        headers={"Authorization": f"Bearer {token}"},
+        params=params, timeout=30,
+    )
+    return r.json()
+
+# Vi du: data mac dinh 1 ngay gan nhat (tra ve toan bo cac metric: Traffic, EngagementTime,
+# ScrollDepth, DeadClickCount, RageClickCount, Browser, Device, OS, Country, PageTitle,
+# ReferrerUrl, PopularPages, v.v. — moi metric 1 object trong list ket qua)
+# query_clarity(num_of_days=1)
+```
+
+**Giới hạn quan trọng — KHÔNG được bỏ qua:** API Clarity giới hạn **tối đa 10 request/ngày/project** (tính theo project, không phải theo key). Chỉ gọi khi user thực sự hỏi về Clarity/heatmap/engagement, không gọi tuỳ tiện hoặc gọi lặp lại nhiều lần trong 1 lần kiểm tra. `numOfDays` tối đa hỗ trợ là 3 (API chỉ cho xem 1-3 ngày gần nhất, không có range dài hơn — muốn xu hướng dài hạn phải tự lưu lại kết quả qua nhiều lần gọi cách ngày). Project Clarity "Infina AI" track chung cả app (`ai.infina.vn`) lẫn blog (`infina.ai/news`) — phần lớn session sẽ là traffic app, không phải blog, cần lọc qua `PopularPages`/`ReferrerUrl` nếu chỉ quan tâm blog.
+
+**Nếu file token không tồn tại** (container mới, thư mục `credentials/` trống): tìm bản gốc user đã upload dạng `.txt` trong `/root/.claude/uploads/{session_id}/*Clarity*` hoặc hỏi user upload lại — không tự bịa token.
+
 ---
 
 ## Slug rules (critical)
