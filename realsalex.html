@@ -78,14 +78,6 @@
     .bframe-dot { width:11px; height:11px; border-radius:50%; background:#cdd4df; }
     .bframe-url { margin-left:14px; flex:1; background:#fff; border-radius:7px; font-size:12px; color:var(--muted); padding:5px 12px; border:1px solid var(--border-light); }
     .bframe img { border:0; border-radius:0; box-shadow:none; width:100%; }
-    /* Lifestyle band */
-    .lifestyle { position:relative; }
-    .lifestyle img { width:100%; height:clamp(280px,42vw,460px); object-fit:cover; display:block; }
-    .lifestyle-overlay { position:absolute; inset:0; display:flex; align-items:center; background:linear-gradient(90deg, rgba(0,15,46,.72) 0%, rgba(0,15,46,.35) 55%, rgba(0,15,46,0) 100%); }
-    .lifestyle-overlay .container { width:100%; }
-    .lifestyle-quote { max-width:540px; color:#fff; }
-    .lifestyle-quote p { font-size:clamp(20px,2.6vw,30px); font-weight:700; letter-spacing:-.02em; line-height:1.3; }
-    .lifestyle-quote span { display:block; margin-top:14px; font-size:14px; color:rgba(255,255,255,.8); }
 
     /* ===== Logo bar ===== */
     .logobar { background:var(--surface); border-top:1px solid var(--border-light); border-bottom:1px solid var(--border-light); padding:28px 0; }
@@ -158,7 +150,6 @@
     .results-band-metrics > div { min-width:120px; }
     .results-band-metrics b { display:block; font-size:clamp(28px,3.3vw,40px); font-weight:800; letter-spacing:-.03em; color:#fff; }
     .results-band-metrics span { font-size:13px; color:rgba(255,255,255,.82); }
-    .results-band-note { margin-top:28px; font-size:13px; font-style:italic; color:rgba(255,255,255,.72); }
     @media (max-width:600px){ .results-band-metrics{ gap:20px 30px; } }
 
     /* ===== FAQ ===== */
@@ -373,20 +364,6 @@
             <div><b>+40%</b><span>Team-lead span of control</span></div>
             <div><b>−50%</b><span>New-agent onboarding time</span></div>
           </div>
-          <p class="results-band-note">Illustrative targets, measured against your own baseline with the first team, not claimed as results.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Lifestyle band (Gemini) ===== -->
-  <section class="lifestyle">
-    <img src="uploads/realsalex-lifestyle.png" alt="A real estate agent reviewing homes with a buyer couple">
-    <div class="lifestyle-overlay">
-      <div class="container">
-        <div class="lifestyle-quote">
-          <p>Your agents show up to close. Real Sale X handles everything before that.</p>
-          <span>Every buyer nurtured, every hot signal caught, 24/7.</span>
         </div>
       </div>
     </div>
