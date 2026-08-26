@@ -97,8 +97,12 @@
     /* ===== Agents ===== */
     .agents-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
     @media (max-width:860px){ .agents-3{ grid-template-columns:1fr; max-width:520px; margin:0 auto; } }
-    .agent-c { background:#fff; border:1.5px solid var(--border-light); border-top:4px solid var(--accent); border-radius:18px; padding:28px 24px; transition:all .3s cubic-bezier(.16,1,.3,1); }
+    .agent-c { background:#fff; border:1.5px solid var(--border-light); border-radius:18px; overflow:hidden; transition:all .3s cubic-bezier(.16,1,.3,1); display:flex; flex-direction:column; }
     .agent-c:hover { transform:translateY(-5px); box-shadow:0 20px 48px -16px rgba(0,31,92,.22); }
+    .agent-img { position:relative; aspect-ratio:4/3; overflow:hidden; }
+    .agent-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s cubic-bezier(.16,1,.3,1); }
+    .agent-c:hover .agent-img img { transform:scale(1.04); }
+    .agent-body { padding:22px 24px 26px; }
     .agent-c .role { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
     .agent-c h3 { font-size:20px; font-weight:800; color:var(--accent); letter-spacing:-.02em; margin:6px 0 12px; }
     .agent-c p { font-size:14.5px; color:var(--fg-secondary); line-height:1.6; }
@@ -273,9 +277,18 @@
         <p>Sell-side, for brokerages selling residential inventory to home buyers.</p>
       </div>
       <div class="agents-3">
-        <div class="agent-c reveal"><div class="role">Research · to the buyer</div><h3>AI Home Buyer Advisor</h3><p>Answers property, legal &amp; finance questions 24/7 and guides the buyer's research inside their own Deal Room.</p></div>
-        <div class="agent-c reveal"><div class="role">The connective engine</div><h3>AI Pipeline + Intent Detection</h3><p>Captures behavior, scores buyer intent, and hands the agent the signal and the next best action.</p></div>
-        <div class="agent-c reveal"><div class="role">Work → close · to the agent</div><h3>AI Sales Assistant</h3><p>Drafts the message, recommends the next step, and helps your agent close the deal.</p></div>
+        <div class="agent-c reveal">
+          <div class="agent-img"><img src="uploads/realsalex-agent1.png" alt="A home buyer exploring listings on a laptop and phone at home" loading="lazy"></div>
+          <div class="agent-body"><div class="role">Research · to the buyer</div><h3>AI Home Buyer Advisor</h3><p>Answers property, legal &amp; finance questions 24/7 and guides the buyer's research inside their own Deal Room.</p></div>
+        </div>
+        <div class="agent-c reveal">
+          <div class="agent-img"><img src="uploads/realsalex-agent2.png" alt="An agent reviewing an intent-scored pipeline dashboard" loading="lazy"></div>
+          <div class="agent-body"><div class="role">The connective engine</div><h3>AI Pipeline + Intent Detection</h3><p>Captures behavior, scores buyer intent, and hands the agent the signal and the next best action.</p></div>
+        </div>
+        <div class="agent-c reveal">
+          <div class="agent-img"><img src="uploads/realsalex-agent3.png" alt="An agent messaging a client while a couple closes a deal" loading="lazy"></div>
+          <div class="agent-body"><div class="role">Work → close · to the agent</div><h3>AI Sales Assistant</h3><p>Drafts the message, recommends the next step, and helps your agent close the deal.</p></div>
+        </div>
       </div>
       <div class="journey reveal">
         <span>Explore</span><em>→</em><span>Compare</span><em>→</em><span>Work with an agent</span><em>→</em><span>Close</span>
