@@ -60,10 +60,6 @@
     .bframe-dot { width:11px; height:11px; border-radius:50%; background:#cdd4df; }
     .bframe-url { margin-left:14px; flex:1; background:#fff; border-radius:7px; font-size:12px; color:var(--muted); padding:5px 12px; border:1px solid var(--border-light); }
     .bframe img { border:0; border-radius:0; box-shadow:none; width:100%; }
-    /* Compare badges (temporary) */
-    .cmp { position:relative; }
-    .cmp-badge { display:inline-block; font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:#fff; background:var(--accent); border-radius:999px; padding:5px 14px; margin:0 auto 18px; }
-    .cmp-note { text-align:center; font-size:13px; color:var(--muted); padding:10px 0 0; }
     /* Lifestyle band */
     .lifestyle { position:relative; }
     .lifestyle img { width:100%; height:clamp(280px,42vw,460px); object-fit:cover; display:block; }
@@ -194,10 +190,9 @@
 
   <infina-nav active="salesx"></infina-nav>
 
-  <!-- ===== Hero — OPTION A: real screenshot + CSS browser frame ===== -->
-  <header class="hero cmp">
+  <!-- ===== Hero ===== -->
+  <header class="hero">
     <div class="hero-bg"></div>
-    <div class="container" style="text-align:center"><span class="cmp-badge">Option A · Real screenshot + browser frame</span></div>
     <div class="container hero-grid">
       <div class="hero-copy">
         <h1>Give your brokerage the <span class="accent">selling power of a team twice its size.</span></h1>
@@ -215,35 +210,13 @@
       <div class="hero-visual reveal">
         <div class="bframe">
           <div class="bframe-bar"><span class="bframe-dot"></span><span class="bframe-dot"></span><span class="bframe-dot"></span><span class="bframe-url">realsalex.infina.ai</span></div>
-          <img src="uploads/realsalex-dealroom.png" alt="Real Sale X Deal Room — buyer dashboard with AI advisor" loading="eager" fetchpriority="high">
+          <picture>
+            <source media="(max-width:640px)" srcset="uploads/realsalex-dealroom-mobile.png">
+            <img src="uploads/realsalex-dealroom.png" alt="Real Sale X Deal Room — buyer view with live AI advisor" loading="eager" fetchpriority="high">
+          </picture>
         </div>
       </div>
     </div>
-    <div class="container"><p class="cmp-note">↑ Option A — real UI screenshot, always crisp &amp; correct text, wrapped in a CSS browser frame.</p></div>
-  </header>
-
-  <!-- ===== Hero — OPTION B: Gemini-generated from the UI mockup ===== -->
-  <header class="hero cmp" style="padding-top:clamp(48px,6vw,72px);border-top:1px dashed var(--border)">
-    <div class="container" style="text-align:center"><span class="cmp-badge" style="background:var(--blue)">Option B · Gemini image (from UI mockup)</span></div>
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <h1>Give your brokerage the <span class="accent">selling power of a team twice its size.</span></h1>
-        <p class="hero-sub">Real Sale X puts an AI sales agent inside every buyer's Deal Room — answering 24/7, nurturing every deal, and alerting your agent with a drafted message the moment a buyer is ready to act.</p>
-        <div class="hero-ctas">
-          <a href="#demo" class="btn-primary">Book a 15-min demo</a>
-          <a href="#how" class="btn-ghost">See how it works</a>
-        </div>
-        <div class="hero-stats">
-          <div><strong>2×</strong><span>Selling power</span></div>
-          <div><strong>24/7</strong><span>Active nurturing</span></div>
-          <div><strong>30% → 90%</strong><span>Follow-up rate</span></div>
-        </div>
-      </div>
-      <div class="hero-visual reveal">
-        <img src="uploads/realsalex-hero-gemini.png" alt="Real Sale X product render" loading="lazy">
-      </div>
-    </div>
-    <div class="container"><p class="cmp-note">↑ Option B — Gemini render (frame + gradient baked in). Nicer backdrop, but AI slightly garbles UI text.</p></div>
   </header>
 
   <!-- ===== Logo bar ===== -->
