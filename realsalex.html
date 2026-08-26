@@ -40,20 +40,21 @@
     .reveal.visible { opacity:1; transform:none; }
 
     /* ===== Hero ===== */
-    .hero { position:relative; padding:clamp(130px,16vw,170px) 0 clamp(40px,6vw,64px); overflow:hidden; }
+    .hero { position:relative; padding:clamp(104px,11vw,132px) 0 clamp(40px,6vw,60px); overflow:hidden; }
+    .hero .container { max-width:1300px; }
     .hero-bg { position:absolute; inset:0; z-index:-2; background:radial-gradient(ellipse 70% 50% at 72% 26%, rgba(24,99,220,.14), transparent 60%), radial-gradient(ellipse 60% 50% at 15% 85%, rgba(0,31,92,.07), transparent 60%); }
     .hero-grid { display:grid; grid-template-columns:1.05fr 1fr; gap:56px; align-items:center; }
     @media (max-width:960px){ .hero-grid{ grid-template-columns:1fr; gap:40px; } }
     /* Desktop: balanced two columns — copy left, full video right on an equal-height stage (no bleed) */
     @media (min-width:961px){
       .hero-grid { grid-template-columns:1fr 1.06fr; gap:48px; align-items:stretch; }
-      .hero-visual { display:flex; align-items:center; justify-content:center; padding:26px; border-radius:24px;
+      .hero-visual { display:flex; align-items:center; justify-content:center; padding:16px; border-radius:22px;
                      background:linear-gradient(155deg, rgba(24,99,220,.07), rgba(0,31,92,.035) 70%); }
       .hero-visual .hero-video { width:100%; max-width:none; }
     }
-    .hero h1 { font-size:clamp(36px,5vw,60px); font-weight:800; letter-spacing:-.04em; line-height:1.06; }
+    .hero h1 { font-size:clamp(32px,4.1vw,50px); font-weight:800; letter-spacing:-.03em; line-height:1.08; }
     .hero h1 .accent { background:linear-gradient(135deg,var(--accent),#4c6ee6 55%,var(--accent)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
-    .hero-sub { font-size:19px; color:var(--fg-secondary); line-height:1.6; margin:24px 0 32px; max-width:560px; }
+    .hero-sub { font-size:17px; color:var(--fg-secondary); line-height:1.55; margin:20px 0 28px; max-width:520px; }
     .hero-ctas { display:flex; gap:14px; flex-wrap:wrap; }
     .hero-stats { display:flex; gap:0; margin-top:36px; flex-wrap:wrap; }
     .hero-stats div { padding-right:26px; margin-right:26px; border-right:1px solid var(--border); }
