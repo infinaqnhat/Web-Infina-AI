@@ -43,6 +43,7 @@
     .hero { position:relative; padding:clamp(104px,11vw,132px) 0 clamp(40px,6vw,60px); overflow:hidden; }
     .hero .container { max-width:1300px; }
     .hero-bg { position:absolute; inset:0; z-index:-2; background:radial-gradient(ellipse 70% 50% at 72% 26%, rgba(24,99,220,.14), transparent 60%), radial-gradient(ellipse 60% 50% at 15% 85%, rgba(0,31,92,.07), transparent 60%); }
+    .hero-grid-bg { position:absolute; inset:0; z-index:-2; pointer-events:none; background-image:linear-gradient(to right, rgba(24,99,220,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(24,99,220,.06) 1px, transparent 1px); background-size:56px 56px; -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); mask-image:radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%); }
     .hero-grid { display:grid; grid-template-columns:1.05fr 1fr; gap:56px; align-items:center; }
     @media (max-width:960px){ .hero-grid{ grid-template-columns:1fr; gap:40px; } }
     /* Desktop: balanced two columns, copy left, full video right on an equal-height stage (no bleed) */
@@ -212,6 +213,7 @@
   <!-- ===== Hero ===== -->
   <header class="hero">
     <div class="hero-bg"></div>
+    <div class="hero-grid-bg"></div>
     <div class="container hero-grid">
       <div class="hero-copy">
         <h1>Give your brokerage the <span class="accent">selling power of a team twice its size.</span></h1>
