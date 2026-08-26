@@ -44,6 +44,13 @@
     .hero-bg { position:absolute; inset:0; z-index:-2; background:radial-gradient(ellipse 70% 50% at 72% 26%, rgba(24,99,220,.14), transparent 60%), radial-gradient(ellipse 60% 50% at 15% 85%, rgba(0,31,92,.07), transparent 60%); }
     .hero-grid { display:grid; grid-template-columns:1.05fr 1fr; gap:56px; align-items:center; }
     @media (max-width:960px){ .hero-grid{ grid-template-columns:1fr; gap:40px; } }
+    /* Desktop: enlarge hero shot and let it bleed off the right edge (readable UI).
+       Cap the visual track (minmax max) so the wide image can't inflate it and squeeze the copy. */
+    @media (min-width:961px){
+      .hero-grid { grid-template-columns:1fr minmax(0,440px); gap:48px; align-items:center; overflow:visible; }
+      .hero-visual { justify-self:start; overflow:visible; }
+      .hero-visual .bframe { width:clamp(680px,56vw,1040px); max-width:none; }
+    }
     .hero h1 { font-size:clamp(36px,5vw,60px); font-weight:800; letter-spacing:-.04em; line-height:1.06; }
     .hero h1 .accent { background:linear-gradient(135deg,var(--accent),#4c6ee6 55%,var(--accent)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
     .hero-sub { font-size:19px; color:var(--fg-secondary); line-height:1.6; margin:24px 0 32px; max-width:560px; }
