@@ -190,7 +190,8 @@
     .results-hero-stat .num { font-size:clamp(64px,8vw,104px); font-weight:800; letter-spacing:-.04em; color:var(--blue); }
     .results-hero-stat .unit { font-size:clamp(28px,3.4vw,40px); font-weight:800; letter-spacing:-.02em; color:var(--blue); margin-left:6px; }
     .results-hero-stat .line2 { display:block; font-size:clamp(26px,3.2vw,36px); font-weight:800; letter-spacing:-.02em; color:var(--navy); margin-top:6px; }
-    .results-hero-stat .line2 span { border-bottom:4px solid #cfe0ff; padding-bottom:2px; }
+    .results-hero-stat .ul-word { position:relative; display:inline-block; }
+    .results-hero-stat .ul-word svg { position:absolute; left:-4px; bottom:-8px; width:110%; height:auto; }
     .results-note { display:flex; align-items:center; gap:8px; margin-top:22px; font-size:15px; color:#5b6472; }
     .results-bg { position:absolute; top:0; right:0; bottom:0; left:38%; z-index:0; }
     .results-bg img { display:block; width:100%; height:100%; object-fit:cover; object-position:100% center; }
@@ -470,7 +471,7 @@
           </div>
           <div class="results-hero-stat">
             <span class="num">10+</span><span class="unit">HOURS</span>
-            <span class="line2"><span>back every week.</span></span>
+            <span class="line2"><span class="ul-word">back<svg width="160" height="18" viewBox="0 0 160 18" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="underlineGradient" x1="3" y1="0" x2="157" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#8DBDFF" stop-opacity="0.95"/><stop offset="55%" stop-color="#A8CEFF" stop-opacity="0.75"/><stop offset="82%" stop-color="#BCD9FF" stop-opacity="0.45"/><stop offset="100%" stop-color="#D7E8FF" stop-opacity="0"/></linearGradient></defs><path d="M4 11.3 C29 8.8, 58 7.2, 88 7.1 C113 7.0, 136 7.7, 157 9.1 C136 9.0, 113 9.1, 88 9.7 C58 10.2, 29 12.1, 4 13.1 C2.7 13.1, 2.4 11.8, 4 11.3 Z" fill="url(#underlineGradient)"/></svg></span> every week.</span>
           </div>
           <div class="results-note">More time for clients, relationships, and growth.</div>
         </div>
