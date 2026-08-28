@@ -192,16 +192,20 @@
     .results-hero-stat .line2 { display:block; font-size:clamp(26px,3.2vw,36px); font-weight:800; letter-spacing:-.02em; color:var(--navy); margin-top:6px; }
     .results-hero-stat .line2 span { border-bottom:4px solid #cfe0ff; padding-bottom:2px; }
     .results-note { display:flex; align-items:center; gap:8px; margin-top:22px; font-size:15px; color:#5b6472; }
-    .results-photo { border-radius:16px; overflow:hidden; }
-    .results-photo img { display:block; width:100%; height:100%; object-fit:cover; }
-    .results-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:56px; padding-bottom:clamp(56px,8vw,96px); }
+    .results-bg { position:absolute; top:0; right:0; bottom:0; left:38%; z-index:0; }
+    .results-bg img { display:block; width:100%; height:100%; object-fit:cover; }
+    .results-bg::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#f2f6ff 0%,rgba(242,246,255,0) 22%); }
+    .results-bg::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(242,246,255,0) 60%,#e9f0ff 100%); }
+    .results-grid { position:relative; z-index:1; }
+    .results-photo { display:none; }
+    .results-cards { position:relative; z-index:1; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:56px; padding-bottom:clamp(56px,8vw,96px); }
     .rcard { background:#fff; border-radius:16px; padding:26px 22px; box-shadow:0 12px 30px rgba(0,31,92,.06); text-align:center; }
     .rcard-ic { width:56px; height:56px; border-radius:50%; background:#e7f0ff; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
     .rcard-ic svg { width:26px; height:26px; }
     .rcard-stat { display:block; font-size:26px; font-weight:800; letter-spacing:-.02em; color:var(--blue); }
     .rcard-label { display:block; font-size:15px; font-weight:700; color:var(--navy); margin-top:4px; }
     .rcard-desc { display:block; font-size:13.5px; color:#5b6472; margin-top:10px; line-height:1.5; }
-    @media (max-width:900px){ .results-grid{ grid-template-columns:1fr; } .results-photo{ order:-1; aspect-ratio:16/10; } .results-cards{ grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:900px){ .results-bg{ display:none; } .results-grid{ grid-template-columns:1fr; } .results-photo{ display:block; order:-1; aspect-ratio:16/10; border-radius:16px; overflow:hidden; } .results-photo img{ display:block; width:100%; height:100%; object-fit:cover; } .results-cards{ grid-template-columns:repeat(2,1fr); } }
 
     /* ===== FAQ ===== */
     .faq-section { background:var(--surface); }
@@ -450,6 +454,7 @@
 
   <!-- ===== Business case (results band) ===== -->
   <section class="results-band">
+    <div class="results-bg"><img src="uploads/realsalex-results-band.png" alt="A real estate sales team reviewing results together in a modern brokerage office"></div>
     <div class="container">
       <div class="results-grid">
         <div class="results-copy reveal">
