@@ -149,15 +149,27 @@ def nano_banana(prompt, model="gemini-3.1-flash-lite-image", retries=2):
 
 def stage_and_upload(img_bytes, alt, title):
     # nano_banana() trả về bytes ảnh — cần 1 URL public tạm trước khi WP media_sideload_image tải về.
-    # Bước trung gian: freeimage.host. Nếu freeimage.host lỗi (400 "Internal upload error" đã gặp
-    # thực tế), thử lại 1 lần; nếu vẫn lỗi mới báo cho user, KHÔNG bỏ qua bước upload ảnh.
-    b64 = base64.b64encode(img_bytes).decode()
-    r = requests.post("https://freeimage.host/api/1/upload",
-        data={"key": FREEIMAGE_KEY, "action": "upload", "source": b64, "format": "json"},
-        timeout=30)
-    if r.status_code != 200:
-        raise Exception(f"freeimage upload failed: {r.status_code} {r.text[:200]}")
-    tmp_url = r.json()["image"]["url"]
+    # Bước trung gian ưu tiên: freeimage.host. Nếu freeimage.host lỗi (400 "Internal upload error" —
+    # đã gặp thực tế nhiều lần, có lần lỗi kéo dài cả 1 lần chạy chứ không chỉ transient), tự động
+    # fallback sang litterbox.catbox.moe (không cần key, trả về URL image/jpeg trực tiếp, file tự xoá
+    # sau 1h — đủ dùng vì WP tải về ngay lập tức). KHÔNG bỏ qua bước upload ảnh, KHÔNG báo lỗi cho user
+    # nếu fallback thành công — chỉ báo nếu CẢ HAI đều lỗi.
+    try:
+        b64 = base64.b64encode(img_bytes).decode()
+        r = requests.post("https://freeimage.host/api/1/upload",
+            data={"key": FREEIMAGE_KEY, "action": "upload", "source": b64, "format": "json"},
+            timeout=30)
+        if r.status_code != 200:
+            raise Exception(f"freeimage upload failed: {r.status_code} {r.text[:200]}")
+        tmp_url = r.json()["image"]["url"]
+    except Exception:
+        r = requests.post("https://litterbox.catbox.moe/resources/internals/api.php",
+            data={"reqtype": "fileupload", "time": "1h"},
+            files={"fileToUpload": ("img.jpg", img_bytes, "image/jpeg")},
+            timeout=30)
+        if r.status_code != 200 or not r.text.strip().startswith("http"):
+            raise Exception(f"Ca freeimage.host lan litterbox.catbox.moe deu loi: {r.status_code} {r.text[:200]}")
+        tmp_url = r.text.strip()
     resp = call("upload_media", {"image_url": tmp_url, "alt": alt, "title": title})
     for part in resp.split("|"):
         part = part.strip()
@@ -167,6 +179,8 @@ def stage_and_upload(img_bytes, alt, title):
 
 wp_url = stage_and_upload(nano_banana(prompt), alt_text, title_text)
 ```
+
+**Lưu ý các host tạm khác đã thử và KHÔNG dùng được** (qua agent proxy của môi trường này): `0x0.st` (connection reset ở tầng proxy), `catbox.moe` file-upload thường (412 "Invalid uploader"), `tmpfiles.org` (trả về trang HTML preview chứ không phải URL ảnh trực tiếp, fail HEAD content-type check của WP). Chỉ `litterbox.catbox.moe` (biến thể "temp file" của catbox) đã verify hoạt động — dùng đúng endpoint `https://litterbox.catbox.moe/resources/internals/api.php` như code trên, không phải endpoint catbox.moe thường.
 
 **Nếu Gemini lỗi liên tục (kể cả sau retry trong hàm trên):** thử lại thêm 1 lần thủ công (gọi lại `nano_banana()`), nếu vẫn lỗi thì **báo cho user trong tóm tắt**, KHÔNG tự ý fallback sang Grok — Grok đã bị loại khỏi pipeline vì cho ra ảnh illustration/style không đồng nhất với chuẩn photorealistic + glossy/gradient hiện tại của site.
 
