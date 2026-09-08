@@ -265,7 +265,7 @@
         <p class="hero-sub">Real Sale Companion works alongside you: it answers your buyers 24/7, nurtures every deal, and pings you with a ready-to-send message the moment a buyer is ready to act.</p>
         <p class="hero-note">It handles the follow-up and admin, so you spend more time closing, not chasing.</p>
         <div class="hero-ctas">
-          <a href="#demo" class="btn-primary">Book a 15-min demo</a>
+          <a href="#demo" class="btn-primary">Pre-register: Get 3 months free</a>
           <a href="#how" class="btn-ghost">See how it works</a>
         </div>
         <div class="hero-stats">
@@ -510,13 +510,13 @@
     <div class="container lead-grid">
       <div class="lead-copy">
         <h2>Try it on your <span class="lead-highlight">next deals.</span> The results make the <span class="accent">decision.</span></h2>
-        <p class="lead-sub">Book a 15-min demo: we'll show you a Deal Room on your own pipeline and how it works alongside you.</p>
+        <p class="lead-sub">Pre-register today and lock in 3 months free when Real Sale Companion launches for your market.</p>
       </div>
 
       <form class="lead-form" id="lead-form" novalidate>
         <div class="lead-form-header">
-          <h3 class="lead-form-title">Book a demo</h3>
-          <p class="lead-form-sub">Infina AI team will respond within 1 business day.</p>
+          <h3 class="lead-form-title">Pre-register now</h3>
+          <p class="lead-form-sub">Limited spots. First 3 months free for early pre-registrants.</p>
         </div>
         <div class="lead-field">
           <input type="text" id="lf-name" name="fullName" required autocomplete="name" placeholder=" ">
@@ -539,10 +539,10 @@
           <label for="lf-message">What would you like to see? (optional)</label>
         </div>
         <button type="submit" class="lead-submit" id="lf-submit">
-          <span class="lead-submit-label">Book a 15-min demo</span>
+          <span class="lead-submit-label">Pre-register: Get 3 months free</span>
           <span class="lead-submit-spinner" aria-hidden="true"></span>
         </button>
-        <p class="lead-micro">No commitment. We respond within 1 business day.</p>
+        <p class="lead-micro">No payment required now. We'll confirm your free 3 months by email.</p>
         <div class="lead-status" id="lf-status" role="status" aria-live="polite"></div>
       </form>
     </div>
@@ -633,7 +633,7 @@
             }
           }
           status.className = 'lead-status success';
-          status.textContent = "Thank you! We'll be in touch within 1 business day.";
+          status.textContent = "Thank you! You're pre-registered. We'll confirm your 3 months free by email.";
           form.reset();
         } catch (err) {
           console.error('Form error:', err);
@@ -642,7 +642,7 @@
         } finally {
           submitBtn.disabled = false;
           submitBtn.classList.remove('loading');
-          submitBtn.querySelector('.lead-submit-label').textContent = 'Book a 15-min demo';
+          submitBtn.querySelector('.lead-submit-label').textContent = 'Pre-register: Get 3 months free';
         }
       });
     })();
