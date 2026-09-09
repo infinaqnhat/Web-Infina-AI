@@ -550,7 +550,7 @@
       <button type="button" class="demo-modal-close" id="demo-modal-close" aria-label="Close">&times;</button>
       <div class="demo-modal-icon">✓</div>
       <h3 class="demo-modal-title" id="demo-modal-title">Your Deal Room preview is ready.</h3>
-      <p class="demo-modal-text">Here's a sample of what your buyer would see for this listing.</p>
+      <p class="demo-modal-text">Here's a sample of what your buyer would see for this listing. We've also sent a copy to <strong id="demo-modal-email"></strong>.</p>
       <a class="btn-primary demo-modal-cta" href="realsalex-mockups/dealroom.html" target="_blank" rel="noopener">View the sample Deal Room</a>
     </div>
   </div>
@@ -614,6 +614,8 @@
           return;
         }
 
+        var enteredEmail = form.email.value.trim();
+
         submitBtn.disabled = true;
         submitBtn.classList.add('loading');
         submitBtn.querySelector('.lead-submit-label').textContent = 'Loading...';
@@ -623,6 +625,8 @@
           submitBtn.classList.remove('loading');
           submitBtn.querySelector('.lead-submit-label').textContent = 'Show me the Deal Room';
           form.reset();
+          var emailEl = document.getElementById('demo-modal-email');
+          if (emailEl) emailEl.textContent = enteredEmail;
           if (modalBackdrop) modalBackdrop.classList.add('open');
         }, 600);
       });
