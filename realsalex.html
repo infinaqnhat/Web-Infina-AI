@@ -259,6 +259,7 @@
     .demo-modal-icon { width:52px; height:52px; border-radius:50%; background:#e6f7ef; color:#059669; font-size:26px; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 18px; }
     .demo-modal-title { font-size:20px; font-weight:800; letter-spacing:-.02em; margin-bottom:10px; }
     .demo-modal-text { font-size:14.5px; color:var(--muted); line-height:1.6; margin-bottom:24px; }
+    .demo-modal-actions { display:flex; flex-direction:column; gap:10px; }
     .demo-modal-cta { width:100%; justify-content:center; }
   </style>
 </head>
@@ -276,8 +277,7 @@
         <p class="hero-sub">Real Sale X works alongside you: it answers your buyers 24/7, nurtures every deal, and pings you with a ready-to-send message the moment a buyer is ready to act.</p>
         <p class="hero-note">It handles the follow-up and admin, so you spend more time closing, not chasing.</p>
         <div class="hero-ctas">
-          <a href="#" class="btn-primary">Pre-register: Get 3 months free</a>
-          <a href="#see-it-work" class="btn-ghost">See how it works</a>
+          <a href="#see-it-work" class="btn-primary">See how it works</a>
         </div>
         <p class="hero-price-note">$49/month, up to 5 team members shared login. Free for your first 3 months when you pre-register today.</p>
         <div class="hero-stats">
@@ -556,7 +556,10 @@
       <div class="demo-modal-icon">✓</div>
       <h3 class="demo-modal-title" id="demo-modal-title">Your Deal Room preview is ready.</h3>
       <p class="demo-modal-text">Here's a sample of what your buyer would see for this listing.</p>
-      <a class="btn-primary demo-modal-cta" href="realsalex-mockups/dealroom.html" target="_blank" rel="noopener">View the sample Deal Room</a>
+      <div class="demo-modal-actions">
+        <a class="btn-primary demo-modal-cta" href="realsalex-mockups/dealroom.html" target="_blank" rel="noopener">View the sample Deal Room</a>
+        <a class="btn-ghost demo-modal-cta" href="#">Pre-register: Get 3 months free</a>
+      </div>
     </div>
   </div>
 
