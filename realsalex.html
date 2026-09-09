@@ -55,6 +55,7 @@
     .hero h1 .accent { background:linear-gradient(135deg,var(--accent),#4c6ee6 55%,var(--accent)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
     .hero-sub { font-size:16px; color:var(--fg-secondary); line-height:1.55; margin:18px 0 12px; max-width:500px; }
     .hero-note { font-size:14px; font-weight:600; color:var(--muted); line-height:1.5; margin:0 0 24px; max-width:480px; }
+    .hero-price-note { font-size:13px; color:var(--muted); line-height:1.5; margin:14px 0 0; max-width:440px; }
     .hero-ctas { display:flex; gap:14px; flex-wrap:wrap; }
     .hero-stats { display:flex; gap:0; margin-top:28px; flex-wrap:wrap; }
     .hero-stats div { padding-right:26px; margin-right:26px; border-right:1px solid var(--border); }
@@ -249,6 +250,16 @@
     .lead-status { font-size:14px; min-height:20px; }
     .lead-status.success { color:#059669; }
     .lead-status.error { color:#dc2626; }
+
+    /* ===== Fake success modal ===== */
+    .demo-modal-backdrop { position:fixed; inset:0; z-index:100; background:rgba(0,15,46,.55); display:none; align-items:center; justify-content:center; padding:20px; }
+    .demo-modal-backdrop.open { display:flex; }
+    .demo-modal { position:relative; background:#fff; border-radius:20px; padding:40px 36px; max-width:420px; width:100%; text-align:center; box-shadow:0 40px 100px rgba(0,0,0,.35); }
+    .demo-modal-close { position:absolute; top:14px; right:16px; background:none; border:0; font-size:22px; line-height:1; color:var(--muted); cursor:pointer; }
+    .demo-modal-icon { width:52px; height:52px; border-radius:50%; background:#e6f7ef; color:#059669; font-size:26px; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 18px; }
+    .demo-modal-title { font-size:20px; font-weight:800; letter-spacing:-.02em; margin-bottom:10px; }
+    .demo-modal-text { font-size:14.5px; color:var(--muted); line-height:1.6; margin-bottom:24px; }
+    .demo-modal-cta { width:100%; justify-content:center; }
   </style>
 </head>
 <body>
@@ -265,9 +276,10 @@
         <p class="hero-sub">Real Sale X works alongside you: it answers your buyers 24/7, nurtures every deal, and pings you with a ready-to-send message the moment a buyer is ready to act.</p>
         <p class="hero-note">It handles the follow-up and admin, so you spend more time closing, not chasing.</p>
         <div class="hero-ctas">
-          <a href="#demo" class="btn-primary">Pre-register: Get 3 months free</a>
-          <a href="#how" class="btn-ghost">See how it works</a>
+          <a href="#" class="btn-primary">Pre-register: Get 3 months free</a>
+          <a href="#see-it-work" class="btn-ghost">See how it works</a>
         </div>
+        <p class="hero-price-note">$49/month, up to 5 team members shared login. Free for your first 3 months when you pre-register today.</p>
         <div class="hero-stats">
           <div><strong>2×</strong><span>Selling power</span></div>
           <div><strong>24/7</strong><span>Active nurturing</span></div>
@@ -501,52 +513,52 @@
         <div class="faq-item reveal"><h3>Where does it talk to buyers?</h3><p>Right inside the Deal Room, where you and your buyer share one conversation. Buyers can also reply by SMS or WhatsApp, and everything stays in sync, no new portal to log into.</p></div>
         <div class="faq-item reveal"><h3>Who owns the data?</h3><p>You do. Every conversation becomes structured, company-owned buyer-intent data that stays with you.</p></div>
         <div class="faq-item reveal"><h3>Is it secure?</h3><p>Enterprise-grade security and access controls; we work with your IT, Security, and Legal teams on deployment and compliance.</p></div>
+        <div class="faq-item reveal"><h3>How much does it cost?</h3><p>$49/month, shared login for up to 5 team members, cancel anytime. Pre-register now and get your first 3 months free.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Final CTA + Lead form ===== -->
-  <section class="lead-section" id="demo">
+  <!-- ===== See how it works (front-end demo only) ===== -->
+  <section class="lead-section" id="see-it-work">
     <div class="container lead-grid">
       <div class="lead-copy">
-        <h2>Try it on your <span class="lead-highlight">next deals.</span> The results make the <span class="accent">decision.</span></h2>
-        <p class="lead-sub">Pre-register today and lock in 3 months free when Real Sale X launches for your market.</p>
+        <h2>See it work on a <span class="lead-highlight">real listing.</span></h2>
+        <p class="lead-sub">Paste a live Zillow listing and your email, we'll show you what your buyer's Deal Room looks like.</p>
       </div>
 
       <form class="lead-form" id="lead-form" novalidate>
         <div class="lead-form-header">
-          <h3 class="lead-form-title">Pre-register now</h3>
-          <p class="lead-form-sub">Limited spots. First 3 months free for early pre-registrants.</p>
+          <h3 class="lead-form-title">See how it works</h3>
+          <p class="lead-form-sub">Front-end preview only, no listing data is sent anywhere yet.</p>
         </div>
         <div class="lead-field">
-          <input type="text" id="lf-name" name="fullName" required autocomplete="name" placeholder=" ">
-          <label for="lf-name">Name</label>
+          <input type="url" id="lf-zillow" name="zillowUrl" required autocomplete="off" placeholder=" ">
+          <label for="lf-zillow">Zillow listing URL</label>
         </div>
         <div class="lead-field">
           <input type="email" id="lf-email" name="email" required autocomplete="email" placeholder=" ">
-          <label for="lf-email">Work email</label>
-        </div>
-        <div class="lead-field">
-          <input type="text" id="lf-company" name="company" autocomplete="organization" placeholder=" ">
-          <label for="lf-company">Brokerage / company (optional)</label>
-        </div>
-        <div class="lead-field">
-          <input type="tel" id="lf-phone" name="phone" autocomplete="tel" placeholder=" ">
-          <label for="lf-phone">Phone (optional)</label>
-        </div>
-        <div class="lead-field lead-textarea">
-          <textarea id="lf-message" name="message" rows="3" placeholder=" "></textarea>
-          <label for="lf-message">What would you like to see? (optional)</label>
+          <label for="lf-email">Email</label>
         </div>
         <button type="submit" class="lead-submit" id="lf-submit">
-          <span class="lead-submit-label">Pre-register: Get 3 months free</span>
+          <span class="lead-submit-label">Show me the Deal Room</span>
           <span class="lead-submit-spinner" aria-hidden="true"></span>
         </button>
-        <p class="lead-micro">No payment required now. We'll confirm your free 3 months by email.</p>
+        <p class="lead-micro">This is a front-end demo only. Nothing is submitted yet.</p>
         <div class="lead-status" id="lf-status" role="status" aria-live="polite"></div>
       </form>
     </div>
   </section>
+
+  <!-- ===== Fake success modal (front-end demo only) ===== -->
+  <div class="demo-modal-backdrop" id="demo-modal-backdrop">
+    <div class="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+      <button type="button" class="demo-modal-close" id="demo-modal-close" aria-label="Close">&times;</button>
+      <div class="demo-modal-icon">✓</div>
+      <h3 class="demo-modal-title" id="demo-modal-title">Your Deal Room preview is ready.</h3>
+      <p class="demo-modal-text">Here's a sample of what your buyer would see for this listing.</p>
+      <a class="btn-primary demo-modal-cta" href="realsalex-mockups/dealroom.html" target="_blank" rel="noopener">View the sample Deal Room</a>
+    </div>
+  </div>
 
   <infina-footer></infina-footer>
 
@@ -579,15 +591,17 @@
       els.forEach(function(el){ obs.observe(el); });
     })();
 
-    // Lead form, same Google Sheets endpoint as the rest of the site
+    // "See how it works" demo form, front-end only: no data is sent anywhere.
+    // Shows a fake success modal linking to the sample Deal Room mockup.
     (function(){
-      var SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyO618yfsKfO4nHni2qBe62GWp9fM0vEb0h-Gccw-1wV-w5wJpN3Zayhai1OFxPl98x/exec';
       var form = document.getElementById('lead-form');
       var submitBtn = document.getElementById('lf-submit');
       var status = document.getElementById('lf-status');
+      var modalBackdrop = document.getElementById('demo-modal-backdrop');
+      var modalClose = document.getElementById('demo-modal-close');
       if (!form) return;
 
-      form.addEventListener('submit', async function(e){
+      form.addEventListener('submit', function(e){
         e.preventDefault();
         status.className = 'lead-status'; status.textContent = '';
 
@@ -605,46 +619,25 @@
           return;
         }
 
-        var data = {
-          fullName: form.fullName.value.trim(),
-          email:    form.email.value.trim(),
-          company:  form.company.value.trim(),
-          phone:    form.phone.value.trim(),
-          message:  form.message.value.trim(),
-          source:   'realsalex-en',
-        };
-
         submitBtn.disabled = true;
         submitBtn.classList.add('loading');
-        submitBtn.querySelector('.lead-submit-label').textContent = 'Sending...';
+        submitBtn.querySelector('.lead-submit-label').textContent = 'Loading...';
 
-        try {
-          var fd = new FormData();
-          Object.keys(data).forEach(function(k){ fd.append(k, data[k]); });
-          var res = await fetch(SHEETS_ENDPOINT, { method:'POST', body:fd });
-          var txt = await res.text();
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          try {
-            var json = JSON.parse(txt);
-            if (json && json.ok === false) throw new Error(json.error || 'Sheet error');
-          } catch (parseErr) {
-            if (txt.indexOf('<!DOCTYPE') === 0 || txt.indexOf('<html') >= 0) {
-              throw new Error('Endpoint not public.');
-            }
-          }
-          status.className = 'lead-status success';
-          status.textContent = "Thank you! You're pre-registered. We'll confirm your 3 months free by email.";
-          form.reset();
-        } catch (err) {
-          console.error('Form error:', err);
-          status.className = 'lead-status error';
-          status.textContent = 'Something went wrong. Please try again or email us directly.';
-        } finally {
+        setTimeout(function(){
           submitBtn.disabled = false;
           submitBtn.classList.remove('loading');
-          submitBtn.querySelector('.lead-submit-label').textContent = 'Pre-register: Get 3 months free';
-        }
+          submitBtn.querySelector('.lead-submit-label').textContent = 'Show me the Deal Room';
+          form.reset();
+          if (modalBackdrop) modalBackdrop.classList.add('open');
+        }, 600);
       });
+
+      if (modalBackdrop) {
+        modalClose.addEventListener('click', function(){ modalBackdrop.classList.remove('open'); });
+        modalBackdrop.addEventListener('click', function(e){
+          if (e.target === modalBackdrop) modalBackdrop.classList.remove('open');
+        });
+      }
     })();
   </script>
 
