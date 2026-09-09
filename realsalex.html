@@ -247,7 +247,6 @@
     .lead-submit.loading::after { display:none; }
     @keyframes lead-spin { to { transform:rotate(360deg); } }
     .lead-micro { font-size:12px; color:var(--muted); text-align:center; }
-    .lead-incentive { font-size:13px; font-weight:700; color:var(--accent); text-align:center; margin:-2px 0 2px; }
     .lead-status { font-size:14px; min-height:20px; }
     .lead-status.success { color:#059669; }
     .lead-status.error { color:#dc2626; }
@@ -533,14 +532,13 @@
           <p class="lead-form-sub">Drop in one of your active listings and see your buyer's Deal Room in seconds.</p>
         </div>
         <div class="lead-field">
-          <input type="url" id="lf-zillow" name="zillowUrl" required autocomplete="off" placeholder=" ">
+          <input type="url" id="lf-zillow" name="zillowUrl" autocomplete="off" placeholder=" " value="https://www.zillow.com/homedetails/123-Main-St-Austin-TX-78701/12345678_zpid/">
           <label for="lf-zillow">Zillow listing URL</label>
         </div>
         <div class="lead-field">
           <input type="email" id="lf-email" name="email" required autocomplete="email" placeholder=" ">
           <label for="lf-email">Email</label>
         </div>
-        <p class="lead-incentive">Try it today and lock in 3 months free.</p>
         <button type="submit" class="lead-submit" id="lf-submit">
           <span class="lead-submit-label">Show me the Deal Room</span>
           <span class="lead-submit-spinner" aria-hidden="true"></span>
