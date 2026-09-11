@@ -115,15 +115,19 @@ Single-product deep dive for the Focus & Alignment agent. Hero ("The AI chief of
 - The `active` attribute on `<infina-nav>` is empty on `home.html` (no highlight) and one of `inside | work | personal | focus-alignment | about` elsewhere.
 - All `#demo` links target a future demo-booking destination — currently anchor-only.
 
-## Landing React Source of Truth
+## Landing React Harness
 
-This repo is also the **source of truth for the landing React bundle** synced
-one-way into `infina-pfa-80389` (read-only downstream). A minimal Vite harness
-(`package.json`, `vite.config.ts`, `tsconfig*`, `index.html`, `src/main.tsx`,
-`src/App.tsx`) makes `src/components/landing-v2/**`, `src/pages/landing/**`, and
-`src/styles/landing*.css` compile/render for verification. Sync via
-`scripts/sync-landing-to-pfa.sh`; PFA CI guards drift.
-See `docs/landing-source-of-truth.md` for the full contract.
+The React port under `src/` is a local verification harness for the static
+pages, not a deployable bundle. A minimal Vite setup (`package.json`,
+`vite.config.ts`, `tsconfig*`, `index.html`, `src/main.tsx`, `src/App.tsx`)
+makes `src/components/landing-v2/**`, `src/pages/landing/**`, and
+`src/styles/landing*.css` compile and render so a page can be checked against
+its HTML source before it is ported.
+
+The production runtime is `infina-ai-apps/apps/infina-ai`. It owns its own
+conventions (vi/en i18n copy modules, `hsl(var(--token))` theme colours,
+Tailwind utilities, tests) and pages are ported into it by hand; there is no
+sync script and this repo is not its source of truth.
 
 ## Things That Are NOT in This Repo
 

@@ -139,7 +139,7 @@ All pages declare the same `:root` custom-property set (brand color `#001F5C`, B
 - **Inline page CSS over a shared stylesheet** — each page is fully shippable on its own (e.g., for partner microsite reuse), at the cost of style drift risk.
 - **No router** — every nav link is a hard `<a href="*.html">` reload. Simpler, SEO-friendly, no client-side state to manage.
 - **No analytics yet** — easy to layer in (Plausible / Umami) by appending a script tag to each page when needed.
-- **Landing React = canonical, synced one-way to PFA** — the React port under `src/` is the source of truth for `infina-pfa-80389`'s landing; a minimal Vite harness verifies it locally and `scripts/sync-landing-to-pfa.sh` + a PFA CI drift check keep PFA read-only downstream. See `docs/landing-source-of-truth.md`.
+- **Landing React = verification harness only** — the React port under `src/` exists to check each page against its HTML source. Production lives in `infina-ai-apps/apps/infina-ai`, which owns its own i18n, theme-token and testing conventions; pages are ported into it by hand.
 
 ## 10. Diagram Style Reminder
 
