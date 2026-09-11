@@ -282,7 +282,6 @@
 .realsalex-page .demo-modal-icon { width: 52px; height: 52px; border-radius: 50%; background: #e6f7ef; color: #059669; font-size: 26px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
 .realsalex-page .demo-modal-title { font-size: 20px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 10px; }
 .realsalex-page .demo-modal-text { font-size: 14.5px; color: var(--muted); line-height: 1.6; margin-bottom: 24px; }
-.realsalex-page .demo-modal-cta { width: 100%; justify-content: center; }
 
 /* ── Nav ──────────────────────────────────────────────────────────
    realsalex.html has no nav CSS of its own: nav.js injects it at runtime.

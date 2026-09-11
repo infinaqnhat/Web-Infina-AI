@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 
-/** Sample Deal Room mockup, mirrored into the harness by setup-harness-assets.mjs. */
-const SAMPLE_DEAL_ROOM = "/realsalex-mockups/dealroom.html";
 const SAMPLE_ZILLOW_URL =
   "https://www.zillow.com/homedetails/123-Main-St-Austin-TX-78701/12345678_zpid/";
 const SUBMIT_LABEL = "Show me the Deal Room";
@@ -132,14 +130,9 @@ const RealSaleXDemo = () => {
             Here&apos;s a sample of what your buyer would see for this listing. We&apos;ve also sent
             a copy to <strong>{modalEmail}</strong>.
           </p>
-          <a
-            className="btn-primary demo-modal-cta"
-            href={SAMPLE_DEAL_ROOM}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View the sample Deal Room
-          </a>
+          {/* TODO: render the buyer's Deal Room link here once the backend
+              preview API (listing URL + email -> Deal Room URL) is live. The
+              static sample mockup that used to sit here was removed. */}
         </div>
       </div>
     </>
