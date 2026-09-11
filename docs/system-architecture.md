@@ -51,6 +51,7 @@ A static, build-free, multi-page marketing site. Each HTML page is self-containe
 | `personal.html` | `/personal` | `personal` |
 | `focus-alignment.html` | `/work/focus-alignment` | `focus-alignment` (lights up "AI Work") |
 | `about.html` | `/about` | `about` |
+| `realsalex.html` | `/realsalex` | (none — `nav.js` has no entry for this page) |
 
 ### Shared Web Components
 | Element | Module | Responsibility |

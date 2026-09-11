@@ -6,6 +6,7 @@ import LandingPersonal from "@/pages/landing/LandingPersonal";
 import LandingInside from "@/pages/landing/LandingInside";
 import LandingAbout from "@/pages/landing/LandingAbout";
 import LandingFocusAlignment from "@/pages/landing/LandingFocusAlignment";
+import LandingRealSaleX from "@/pages/landing/LandingRealSaleX";
 
 // Route table mirrors PFA's landing routes verbatim (path -> page), so a page
 // verified here behaves the same once synced. PFA owns these routes inside its
@@ -19,6 +20,7 @@ const App = () => (
       <Route path="/inside" element={<LandingInside />} />
       <Route path="/about" element={<LandingAbout />} />
       <Route path="/focus-alignment" element={<LandingFocusAlignment />} />
+      <Route path="/realsalex" element={<LandingRealSaleX />} />
     </Route>
   </Routes>
 );

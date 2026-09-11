@@ -10,7 +10,7 @@
 
 1. **hero** — H: "AI Specialists for Every Job"
 2. **partners** — assets: uploads/Securities Icon.png, uploads/Insurance Icon.png, uploads/Fintech Icon.jpg, uploads/Fund Management Icon.png, uploads/Bank Icon.jpg, uploads/e-Wallet Icon.jpg, uploads/Travel Icon.jpg, uploads/Securities, uploads/Insurance, uploads/Fintech, uploads/Fund, uploads/Bank, uploads/e-Wallet, uploads/Travel
-3. **products** `#products` — H: "The work you're struggling with? AI handles it." · CTA: "Explore AI SalesX →"
+3. **products** `#products` — H: "The work you're struggling with? AI handles it." · CTA: "Explore Real Sale X →"
 4. **core-section** `#core` — H: "One infinitely capable core that powers every specialist we build."
 5. **core-v2-section** `#core-v2` — H: "One platform, customizable for every job." · assets: #output-logo-mask
 6. **lead-section** `#demo` — H: "Book a demo and watch your job get done by Infina AI"

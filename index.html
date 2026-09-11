@@ -4,7 +4,30 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/landing-html/uploads/infina-ai-logo-web-329e3857.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Infina AI — Landing (verification harness)</title>
+    <title>Infina AI: Landing (verification harness)</title>
+
+    <!--
+      Harness shell only. This file is NOT carried by scripts/sync-landing-to-pfa.sh,
+      so nothing here ships downstream; PFA supplies its own document shell.
+      Both rules below exist so the harness renders the landing pages the same way
+      their source HTML does, which is what makes visual diffing against the static
+      pages trustworthy.
+    -->
+
+    <!-- Every landing source page loads this face. landing*.css only references
+         it via --font-body, so without the link the harness falls back to a
+         system font and every text block reflows. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+      /* landing.css resets `:where(.landing-root) *`, which covers everything
+         inside the wrapper but never <body> itself, so the UA default 8px
+         margin survives and insets every route by 8px on all four sides.
+         The source pages zero it with their own `* { margin:0 }`. */
+      body { margin: 0; }
+    </style>
   </head>
   <body>
     <div id="root"></div>

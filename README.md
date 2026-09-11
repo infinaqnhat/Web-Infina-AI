@@ -14,6 +14,7 @@ Six standalone HTML pages share a single navigation bar and footer via two Web C
 | `personal.html` | `/personal` | **Infina AI Personal** — consumer-facing AI specialists for everyday decisions |
 | `focus-alignment.html` | `/work/focus-alignment` | Deep-dive on the Focus & Alignment agent |
 | `about.html` | `/about` | Company story, timeline, differentiators |
+| `realsalex.html` | `/realsalex` | **Real Sale X** — sales companion for real-estate agents (Deal Room, buyer-intent scoring) |
 
 ## Shared Modules
 

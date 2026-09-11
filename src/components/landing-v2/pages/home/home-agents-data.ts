@@ -31,6 +31,8 @@ export interface WorkSpecialist {
   tagline: string;
   bullets: string[];
   exploreLabel: string;
+  /** Route the "Explore …" CTA points at. Mirrors the href on home.html. */
+  exploreHref: string;
 }
 
 // ── Inside panel ──────────────────────────────────────────────────────────────
@@ -128,7 +130,8 @@ export const workSpecialists: WorkSpecialist[] = [
       "WhatsApp agent qualifies leads & books meetings 24/7",
       "Briefs you before you step in — leads arrive warm",
     ],
-    exploreLabel: "Explore AI SalesX →",
+    exploreLabel: "Explore Real Sale X →",
+    exploreHref: "/realsalex",
   },
   {
     groupLabel: "Leadership · Decisions & intelligence",
@@ -140,6 +143,7 @@ export const workSpecialists: WorkSpecialist[] = [
       "Reports & emails drafted on command",
     ],
     exploreLabel: "Explore AI ManageX →",
+    exploreHref: "/work",
   },
   {
     groupLabel: "Back Office · Operations & efficiency",
@@ -151,5 +155,6 @@ export const workSpecialists: WorkSpecialist[] = [
       "Full spend visibility across every account",
     ],
     exploreLabel: "Explore AI OperateX →",
+    exploreHref: "/work",
   },
 ];

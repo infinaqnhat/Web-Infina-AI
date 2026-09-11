@@ -96,7 +96,7 @@ const WorkPanelBody = () => (
               <li key={b}>{b}</li>
             ))}
           </ul>
-          <Link className="agents-explore-cta" to="/work">
+          <Link className="agents-explore-cta" to={s.exploreHref}>
             {s.exploreLabel}
           </Link>
         </div>

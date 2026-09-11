@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export type ActivePage = "home" | "work" | "personal" | "about" | "inside" | "focus-alignment";
+export type ActivePage =
+  | "home"
+  | "work"
+  | "personal"
+  | "about"
+  | "inside"
+  | "focus-alignment"
+  | "realsalex";
 
 /**
  * Shared navigation bar for all landing pages.
@@ -11,8 +18,10 @@ export type ActivePage = "home" | "work" | "personal" | "about" | "inside" | "fo
  * ctaHref     — CTA href (hash for scroll or /path for route)
  * ctaExternal — if true, renders an <a target="_blank"> instead of hash scroll
  *
- * "AI Work" is a plain link to /work. The /focus-alignment route is still
- * reachable by direct URL but is not surfaced in the nav menu.
+ * "AI Work" is a plain link to /work. The /focus-alignment and /realsalex
+ * routes are still reachable by direct URL but are not surfaced in the nav
+ * menu, so on those pages no nav link is highlighted (same as the static
+ * pages, whose nav.js has no entry for them either).
  */
 interface LandingNavProps {
   activePage: ActivePage;

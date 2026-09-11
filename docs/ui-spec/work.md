@@ -17,7 +17,7 @@
 1. **hero** — H: "Your company's AI workforce."
 2. **section** — H: "What changes with Infina AI Work"
 3. **section** — H: "Works inside your setup. Acts the moment you ask."
-4. **section** `#agents` — H: "Find the specialist built for your team" · CTA: "Explore AI SalesX"
+4. **section** `#agents` — H: "Find the specialist built for your team" · CTA: "Explore Real Sale X"
 5. **section** — H: "Most AI gives answers. Infina AI Work delivers outcomes."
 6. **section** — H: "Real outcomes from real deployments"
 7. **lead-section** `#demo` — H: "Book a demo and watch your job get done by Infina AI"
