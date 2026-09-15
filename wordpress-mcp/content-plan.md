@@ -108,21 +108,25 @@ explainer (đổi format ngược SERP là lỗi theo đúng Bước 1.5). Vấn
 |---|---|---|---|---|---|
 | P1 | **Pillar = refresh #147** (không viết bài mới) | Giữ tiêu đề #147 hoặc đổi nhẹ, thêm góc RealSaleX + Fair Housing/TCPA compliance | `ai receptionist for real estate` (niche, đổi từ `ai voice assistants for real estate`) | Discovery/TOF | ✅ **Đã refresh 2026-09-15** — thêm H2 Fair Housing/TCPA (link #237), thêm đoạn dẫn chứng #390, thêm "AI Receptionist" vào intro + 1 H2, đổi seo_description. Giữ nguyên title/slug/seo_focus_keyword (chưa có GSC để biện minh đổi). Log chi tiết ở `skills/post-refresh/references/refresh-log.md`. Đã thêm link 2 chiều tới C1.4 (2026-09-15). Còn thiếu: mention RealSaleX cụ thể + link money page (chờ URL thật), link tới C1.1/C1.3 (chờ viết xong) |
 | ~~C1.2~~ | ~~Review/deep-dive~~ | ~~Best AI Call Center Software...~~ | — | — | ❌ Bỏ hẳn, gộp vào refresh #147 |
-| C1.1 | So sánh | [AI Receptionist vs Human Receptionist for Real Estate: Cost & ROI](https://infina.ai/news/?p=1217) (post ID 1217) | `ai receptionist vs human receptionist real estate` | Evaluation/MOF | 🟡 **Đã viết, đang DRAFT chờ duyệt** (2026-09-15) — 709 từ, density ~1.4%, link tới #147 (pillar) + C1.4 + #237 (TCPA), 1 external dofollow (getaira.io, số liệu cost/ROI thật). Slug: `ai-receptionist-vs-human-receptionist-real-estate` |
-| C1.3 | Buying guide | [AI Answering Service for Real Estate: How to Choose the Right One](https://infina.ai/news/?p=1219) (post ID 1219) | `ai answering service for real estate` | Decision/BOF | 🟡 **Đã viết, đang DRAFT chờ duyệt** (2026-09-15) — 674 từ, density ~1.8%, link tới #147 (pillar) + C1.1 + #237 (TCPA), 1 external dofollow (withallo.com). Có bảng câu hỏi checklist trước khi ký hợp đồng + mục phân biệt "answering service" vs "receptionist". Slug: `ai-answering-service-for-real-estate` |
+| C1.1 | So sánh | [AI Receptionist vs Human Receptionist for Real Estate: Cost & ROI](https://infina.ai/news/?p=1217) (post ID 1217) | `ai receptionist vs human receptionist real estate` | Evaluation/MOF | 🕐 **Đã schedule 16/09/2026 10:00** — 709 từ, density ~1.4%, link tới #147 (pillar) + C1.4 + #237 (TCPA), 1 external dofollow (getaira.io, số liệu cost/ROI thật). Slug: `ai-receptionist-vs-human-receptionist-real-estate` |
+| C1.3 | Buying guide | [AI Answering Service for Real Estate: How to Choose the Right One](https://infina.ai/news/?p=1219) (post ID 1219) | `ai answering service for real estate` | Decision/BOF | 🕐 **Đã schedule 17/09/2026 10:00** — 674 từ, density ~1.8%, link tới #147 (pillar) + C1.1 + #237 (TCPA), 1 external dofollow (withallo.com). Có bảng câu hỏi checklist trước khi ký hợp đồng + mục phân biệt "answering service" vs "receptionist". Slug: `ai-answering-service-for-real-estate` |
 | C1.4 | Support/how-to (bắc cầu sang Nhánh 2) | [AI Outbound Calling for Real Estate: How It Works in 2026](https://infina.ai/news/ai-outbound-calling-real-estate-lead-follow-up/) (post ID 1213) | `ai outbound calling for real estate` | Post-purchase/how-to | ✅ **Đã publish 2026-09-15** — 891 từ, density FOCUS_KW ~2%, link nội bộ tới #147 (pillar) + #237 (TCPA), 1 external dofollow (agentzap.ai). Featured image tái sử dụng ảnh của #147. Đã quay lại update #147 thêm link 2 chiều tới bài này (nhân tiện sửa 1 câu lặp có sẵn trong bản gốc #147). Còn thiếu: link tới P2 (chưa viết) và money page (chưa có URL) |
 
-**🎉 Nhánh 1 đã viết xong toàn bộ** (P1 refresh + 3 cluster) — chỉ còn C1.1/C1.3 đang chờ duyệt để
-publish. Internal link nội bộ nhánh đã đủ: #147 (pillar) ↔ C1.1/C1.3/C1.4, C1.4 ↔ P2 (Nhánh 2, chưa
-viết). Còn thiếu link tới money page RealSaleX ở cả 4 bài (chờ URL thật) và link C1.1/C1.3 ngược về
-#147 (làm sau khi 2 bài này publish, giống cách đã làm với C1.4).
+**🎉 Nhánh 1 đã viết xong toàn bộ** (P1 refresh + 3 cluster) — C1.1/C1.3 đã lên lịch (`status: future`),
+tự publish đúng giờ, không cần thao tác thêm để chúng lên bài. Internal link nội bộ nhánh đã đủ: #147
+(pillar) ↔ C1.1/C1.3/C1.4, C1.4 ↔ P2 (Nhánh 2, chưa viết). Còn thiếu link tới money page RealSaleX ở
+cả 4 bài (chờ URL thật) và link C1.1/C1.3 ngược về #147 (làm sau khi 2 bài này thực sự publish).
 
-**Việc cần làm tiếp cho nhánh này**:
-1. Duyệt + publish C1.1 (post 1217) và C1.3 (post 1219).
-2. Sau khi publish, quay lại #147 thêm link 2 chiều tới cả 2 (như đã làm với C1.4).
-3. Thêm 2 dòng vào `references/used-keywords.md` (bảng "đã publish") và xoá khỏi bảng "reserved".
-4. Paste 2 dòng mới vào tracker sheet (tôi sẽ đưa file `.tsv` sau khi publish).
-5. Khi GSC có lại credentials, check traffic/ranking thật của #147 — nếu đang có traffic tốt thì các
+**Lịch xuất bản Nhánh 1** (đã check trần 3 bài/ngày, chừa slot cho pipeline tin tức ~18h mỗi ngày):
+- 15/09/2026: C1.4 ✅ đã publish
+- 16/09/2026 10:00: C1.1 🕐 đã schedule
+- 17/09/2026 10:00: C1.3 🕐 đã schedule
+
+**Việc cần làm sau khi C1.1/C1.3 tự publish (16/09 và 17/09)**:
+1. Quay lại #147 thêm link 2 chiều tới từng bài (như đã làm với C1.4).
+2. Thêm dòng vào `references/used-keywords.md` (bảng "đã publish") và xoá khỏi bảng "reserved".
+3. Paste dòng mới vào tracker sheet (đưa file `.tsv` sau mỗi lần publish).
+4. Khi GSC có lại credentials, check traffic/ranking thật của #147 — nếu đang có traffic tốt thì các
    lần refresh sau nên nhẹ tay hơn để không phá ranking hiện có.
 
 ---
