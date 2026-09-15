@@ -159,5 +159,5 @@ qua hẳn bước convert Markdown → HTML sạch.
 
 Thêm vào đây các case thật đã gặp khi refresh bài trên site cụ thể của bạn (tên bài, chẩn đoán
 ban đầu, chẩn đoán đúng sau khi kiểm tra kỹ, kết quả sau khi sửa), để tránh lặp lại nhận định sai
-đã từng mắc, tương tự cách file gốc của site ToyHunter từng ghi lại 2 case thật giúp phát hiện
+đã từng mắc, tương tự cách file gốc của site production trước từng ghi lại 2 case thật giúp phát hiện
 lỗi "CTR trông thấp nhưng thực ra đúng benchmark" và lỗi "heading giả dạng `<strong>`".

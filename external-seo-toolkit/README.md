@@ -2,7 +2,7 @@
 
 Bộ công cụ SEO WordPress di động: viết bài chuẩn SEO, theo dõi Google Search Console (+ GA4/
 Clarity tùy chọn), refresh bài cũ dựa trên data thật. Được tách ra từ 1 site production khác
-(ToyHunter) để tái dùng cho site/repo mới. **Không bao gồm** phần mạng xã hội (Facebook/TikTok),
+để tái dùng cho site/repo mới. **Không bao gồm** phần mạng xã hội (Facebook/TikTok),
 chỉ tập trung blog + Search Console monitor + đăng bài qua WordPress.
 
 ## Đọc file này trước khi làm bất cứ điều gì
@@ -54,8 +54,8 @@ external-seo-toolkit/
 `create_product_variation`/`update_product_variation`/`list_product_variations`, cùng nhóm quản lý
 money page `set_affiliate_redirect`/`delete_affiliate_redirect`/`list_affiliate_redirects` (cloak link
 `/go/<slug>`) và `set_product_faq`/`delete_product_faq` (FAQPage schema)), port trực tiếp từ snippet
-chính của ToyHunter và genericize (đổi prefix `toyhunter_mcp_`/`toyhunter_go`/`_toyhunter_faq_schema`
-thành `seo_mcp_`/`seo_go`/`_seo_faq_schema`, bỏ tên miền/Shopee cứng trong mô tả tool). Skill
+gốc của site production kia và genericize (đổi prefix riêng của site đó thành
+`seo_mcp_`/`seo_go`/`_seo_faq_schema`, bỏ tên miền/Shopee cứng trong mô tả tool). Skill
 `pillar-cluster-writer` giờ dùng được trọn vẹn Bước 6/6.1/6.2 (link 2 chiều money page, CTA cloak link,
 FAQ schema) trên site mới mà không cần tự viết thêm code PHP. **Yêu cầu:** site đích phải chạy
 WooCommerce (các tool sản phẩm sẽ báo lỗi rõ ràng nếu WooCommerce chưa bật, không âm thầm hỏng).
@@ -76,7 +76,7 @@ chỉ cần:
 3. Kiểm tra endpoint hoạt động: `POST https://domain-that/wp-json/seo-mcp/v1/blog?key=<secret>`
    với body JSON-RPC `{"jsonrpc":"2.0","method":"tools/list","id":1}` phải trả về danh sách tool.
 4. Trong Claude Code, kết nối site này qua 1 MCP connector riêng (không dùng chung connector với
-   site ToyHunter cũ), hoặc lưu `SEO_MCP_SECRET`/endpoint để gọi thẳng qua `curl` nếu không dùng
+   site production cũ), hoặc lưu `SEO_MCP_SECRET`/endpoint để gọi thẳng qua `curl` nếu không dùng
    connector.
 
 ### 2. Tạo Google service account cho Search Console (bắt buộc nếu dùng skill `post-refresh`)
@@ -162,7 +162,7 @@ rulebook (nguồn tin cụ thể, tiêu chí chọn) phải viết lại hoàn t
 
 ## Nguồn gốc
 
-Bộ toolkit này được rút ra và tổng quát hóa từ skill thật đã dùng production cho site ToyHunter
-(toyhunter.shop, ngách retro handheld gaming), qua nhiều vòng chỉnh sửa dựa trên case thật (lỗi
+Bộ toolkit này được rút ra và tổng quát hóa từ skill thật đã dùng production cho 1 site thương
+mại điện tử ngách đồ chơi retro khác, qua nhiều vòng chỉnh sửa dựa trên case thật (lỗi
 CTR benchmark, lỗi heading giả, lỗi ảnh trùng, giới hạn thật của Clarity API...). Phần case cụ
-thể của ToyHunter đã được lược bỏ khi tách ra đây, chỉ giữ lại khung phương pháp chung.
+thể của site gốc đã được lược bỏ khi tách ra đây, chỉ giữ lại khung phương pháp chung.
