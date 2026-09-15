@@ -42,6 +42,31 @@ dung thật đã fetch. Xem mục "Bài đã có trên site" ngay dưới trư�
 liệu đã check, nhưng vẫn cần chạy Bước 1.5 (live-SERP) trước khi viết như quy trình yêu cầu, đây
 chỉ là kết quả check trên site mình, chưa check SERP Google thật.
 
+### Bài bổ trợ / liên quan (không phải trùng — chỉ để link thêm cho nhánh dày hơn)
+
+Sau khi loại các bài trùng nặng ở trên, plan chỉ còn **10 bài mới cần viết** (4 + 4 + 2) và
+**3 việc refresh**, khá mỏng so với plan gốc 13 bài. Đối chiếu thêm với 110 bài hiện có tìm được
+8 bài **không trùng chủ đề nhưng liên quan đủ gần để link vào** — không tính là node pillar/cluster
+mới, chỉ dùng làm "bài liên quan"/nguồn trích dẫn số liệu ngay trong nội dung bài mới, giúp mỗi
+nhánh có nhiều internal link + context hơn mà không tốn công viết thêm.
+
+| Bài đã có | Vì sao liên quan | Gắn vào nhánh nào |
+|---|---|---|
+| [#237 — TCPA Compliance for Real Estate Agents](https://infina.ai/news/tcpa-compliance-for-real-estate-agents/) | Luật FCC 2026 về consent cho AI gọi/nhắn tin tự động — áp dụng trực tiếp cho AI answering lẫn AI follow-up | Nhánh 1 (P1, C1.4) + Nhánh 2 (C2.3, C2.4) |
+| [#390 — AI ISAs Are Delivering 3x Higher Conversion Rates](https://infina.ai/news/ai-isa-conversion-rates-real-estate/) | Số liệu thật: 3x conversion, -35% cost/lead, 7x appointment — dẫn chứng mạnh cho cả 2 nhánh | Nhánh 1 (P1, C1.1) + Nhánh 2 (P2) |
+| [#1071 — AI Chat vs SMS Follow-Up for Real Estate](https://infina.ai/news/ai-chat-vs-sms-real-estate/) | So sánh kênh follow-up trực tiếp, không trùng software roundup | Nhánh 2 (C2.3) |
+| [#1078 — Chatbot vs Live Agent for Real Estate](https://infina.ai/news/chatbot-vs-live-agent-real-estate/) | Response time/conversion — hỗ trợ luận điểm tốc độ trả lời của P2 | Nhánh 2 (P2, C2.1) |
+| [#521 — Real Estate Contact Forms Are Losing the Highest-Intent Leads](https://infina.ai/news/real-estate-contact-form-conversion-rate/) | Số liệu 0.6% conversion rate, 78% buyer theo người reply trước — dẫn chứng cho pain point | Nhánh 2 (C2.1, C2.4) |
+| [#1122 — Your Next Listing Is Probably Already Sitting in Your CRM](https://infina.ai/news/database-reactivation-ai-seller-leads-real-estate-agents/) | Database reactivation, 10-20x ROI từ CRM cũ — góc khác với "setup follow-up mới" | Nhánh 2 (C2.3) |
+| [#1026 — Rechat Just Let Claude and ChatGPT Run Real Estate CRM Workflows Directly](https://infina.ai/news/ai-agent-integration-for-real-estate-crm-platforms/) | Case thật: AI agent chạy trực tiếp trong CRM — đúng luận điểm "CRM cần thêm lớp AI/intent" của P3 | Nhánh 3 (P3) |
+| [#1171 — Real's AI CRM Assistant Leo Is About to Meet 180,000 New RE/MAX Agents](https://infina.ai/news/ai-crm-assistant-brokerage-merger-rollout-agents/) | Case thật khác, quy mô lớn — thêm dẫn chứng cho P3 | Nhánh 3 (P3) |
+
+**Vẫn còn khá mỏng?** Đúng — đây là plan chỉ dựa trên 2988 keyword volume≥500 sau khi lọc; nếu muốn
+nhiều bài hơn có 2 hướng: (1) hạ ngưỡng volume xuống dưới 500 để mở thêm long-tail (rủi ro: nhiều
+biến thể/lỗi chính tả không dùng được, đã thấy ở batch loại bỏ ban đầu), hoặc (2) sau khi Nhánh 1+2
+publish và có GSC data thật, dùng `post-refresh` để tìm striking-distance keyword mới nảy sinh từ
+chính các bài mới này, mở rộng cluster theo dữ liệu thật thay vì đoán trước.
+
 ---
 
 ## Nhánh 1: AI Answering / Call Center / Receptionist — 🥇 ưu tiên cao nhất
