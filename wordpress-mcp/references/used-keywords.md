@@ -12,7 +12,7 @@ chỉ chặn trùng nội bộ site mình, không thay cho check SERP thật.
 
 ---
 
-## Bài đã publish (111 bài, seed 2026-09-15)
+## Bài đã publish (119 bài — 111 seed 2026-09-15 + 8 bài RealSaleX, 2 đang scheduled tính luôn)
 
 Nguồn `tracker #N` = lấy thẳng FOCUS_KW đã log trong Google Sheet tracker (đáng tin). Nguồn
 `suy đoán từ slug` = bài không có trong tracker (khác pipeline hoặc cũ hơn tracker), tự suy ra
@@ -130,23 +130,28 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-09-11 | `mls ai conversational search broker attribution agents` | [mls-ai-conversational-search-broker-attribution-agents](https://infina.ai/news/mls-ai-conversational-search-broker-attribution-agents/) | tracker #96 |
 | 2026-09-13 | `ai academy role based learning mls subscribers` | [ai-academy-role-based-learning-mls-subscribers](https://infina.ai/news/ai-academy-role-based-learning-mls-subscribers/) | tracker #97 |
 | 2026-09-14 | `ai contract data extraction closing automation agents` | [ai-contract-data-extraction-closing-automation-agents](https://infina.ai/news/ai-contract-data-extraction-closing-automation-agents/) | tracker #98 |
-| 2026-09-15 | `ai outbound calling real estate lead follow up` | [ai-outbound-calling-real-estate-lead-follow-up](https://infina.ai/news/ai-outbound-calling-real-estate-lead-follow-up/) | suy đoán từ slug |
+| 2026-09-15 | `ai outbound calling real estate lead follow up` | [ai-outbound-calling-real-estate-lead-follow-up](https://infina.ai/news/ai-outbound-calling-real-estate-lead-follow-up/) | tracker #99 (Plan) |
+| 2026-09-16 (scheduled) | `ai receptionist vs human receptionist real estate` | [ai-receptionist-vs-human-receptionist-real-estate](https://infina.ai/news/ai-receptionist-vs-human-receptionist-real-estate/) | content-plan C1.1 |
+| 2026-09-17 (scheduled) | `ai answering service for real estate` | [ai-answering-service-for-real-estate](https://infina.ai/news/ai-answering-service-for-real-estate/) | content-plan C1.3 |
+| 2026-09-18 (scheduled) | `real estate lead follow-up automation` | [real-estate-lead-follow-up-automation-guide](https://infina.ai/news/real-estate-lead-follow-up-automation-guide/) | content-plan P2 |
+| 2026-09-19 (scheduled) | `lead generation software for realtors` | [best-lead-generation-software-for-realtors](https://infina.ai/news/best-lead-generation-software-for-realtors/) | content-plan C2.1 |
+| 2026-09-20 (scheduled) | `automated lead follow-up for real estate` | [how-to-set-up-automated-lead-follow-up-real-estate](https://infina.ai/news/how-to-set-up-automated-lead-follow-up-real-estate/) | content-plan C2.3 |
+| 2026-09-21 (scheduled) | `facebook lead gen for realtors` | [facebook-lead-gen-for-realtors](https://infina.ai/news/facebook-lead-gen-for-realtors/) | content-plan C2.4 |
+| 2026-09-22 (scheduled) | `ai intent layer for real estate crm` | [ai-intent-layer-for-real-estate-crm](https://infina.ai/news/ai-intent-layer-for-real-estate-crm/) | content-plan P3 |
+| 2026-09-23 (scheduled) | `cinc crm review` | [cinc-crm-review-real-estate](https://infina.ai/news/cinc-crm-review-real-estate/) | content-plan C3.2 |
 
 ---
+
+## Keyword phụ (secondary), không phải FOCUS_KW chính của bài nào
+
+| Keyword | Gắn với | Ghi chú |
+|---|---|---|
+| `ai receptionist for real estate` | #147 (refresh 15/09) | Không phải FOCUS_KW chính trong Rank Math của #147 (vẫn là `ai voice assistants for real estate`), chỉ là keyword phụ đã cover trong nội dung — không dùng làm FOCUS_KW chính cho bài khác |
 
 ## Keyword đã reserved trong content-plan (CHƯA publish)
 
 Từ `content-plan.md` — bắt các keyword đã "có chủ" trong plan nhưng chưa lên bài thật, nên
 chưa xuất hiện ở bảng trên. Xoá dòng khỏi mục này và chuyển lên bảng trên khi bài đã publish.
 
-| Keyword | Vai trò | Nhánh | Ghi chú |
-|---|---|---|---|
-| `ai receptionist for real estate` | Secondary keyword của #147 (refresh) | Nhánh 1 | Không phải FOCUS_KW chính trong Rank Math của #147 (vẫn là `ai voice assistants for real estate`), nhưng đã cover nội dung — không dùng làm FOCUS_KW cho bài khác |
-| `ai receptionist vs human receptionist real estate` | C1.1 | Nhánh 1 | Chưa viết |
-| `ai answering service for real estate` | C1.3 | Nhánh 1 | Chưa viết |
-| `lead generation for realestate` | P2 (Pillar) | Nhánh 2 | Chưa viết |
-| `lead generation software` | C2.1 | Nhánh 2 | Chưa viết |
-| `lead generation systems` | C2.3 | Nhánh 2 | Chưa viết |
-| `facebook lead generation ads` | C2.4 | Nhánh 2 | Chưa viết |
-| `crm and lead generation` | P3 (Pillar nhẹ) | Nhánh 3 | Chưa viết, cần verify thêm vs #214 |
-| `cinc reviews` | C3.2 | Nhánh 3 | Chưa viết, gap thật đã verify |
+*(Trống — toàn bộ keyword trong content-plan.md hiện tại đã có bài thật, xem bảng "Bài đã publish"
+ở trên, kể cả những bài đang ở trạng thái scheduled.)*
