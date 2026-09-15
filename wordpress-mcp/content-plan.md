@@ -110,7 +110,7 @@ explainer (đổi format ngược SERP là lỗi theo đúng Bước 1.5). Vấn
 | ~~C1.2~~ | ~~Review/deep-dive~~ | ~~Best AI Call Center Software...~~ | — | — | ❌ Bỏ hẳn, gộp vào refresh #147 |
 | C1.1 | So sánh | AI Receptionist vs Human Receptionist: Cost, ROI, and What Real Estate Teams Should Know | `ai receptionist vs human receptionist real estate` (niche, long-tail, không có volume CSV — nhu cầu xác nhận qua SERP) | Evaluation/MOF | ✅ Viết mới, đã verify SERP |
 | C1.3 | Buying guide | How to Choose an AI Answering Service for Your Brokerage | `ai answering service for real estate` (niche, đổi từ bare `ai answering service`) | Decision/BOF | ✅ Viết mới, đã verify SERP |
-| C1.4 | Support/how-to (bắc cầu sang Nhánh 2) | How AI Outbound Calling Works for Real Estate Lead Follow-Up | `ai outbound calling real estate lead follow-up` (niche, đổi từ bare `ai outbound call`) | Post-purchase/how-to | ✅ Viết mới, cơ hội tốt nhất trong nhánh |
+| C1.4 | Support/how-to (bắc cầu sang Nhánh 2) | [AI Outbound Calling for Real Estate: How It Works in 2026](https://infina.ai/news/?p=1213) (post ID 1213) | `ai outbound calling for real estate` | Post-purchase/how-to | 🟡 **Đã viết, đang DRAFT chờ duyệt** (2026-09-15) — 891 từ, density FOCUS_KW ~2%, link nội bộ tới #147 (pillar) + #237 (TCPA), 1 external dofollow (agentzap.ai, số liệu lead follow-up). Featured image tái sử dụng ảnh của #147 (không có GEMINI_API_KEY để generate ảnh riêng). Slug: `ai-outbound-calling-real-estate-lead-follow-up`. Chưa publish — chờ người dùng duyệt |
 
 Nhánh 1 giờ chỉ còn **3 bài viết mới + 1 refresh** (thay vì 4 bài mới + tham chiếu #147 như trước).
 Internal link dự kiến: #147 (refresh, đóng vai pillar) ↔ C1.1/C1.3/C1.4, C1.4 ↔ P2 (Nhánh 2), tất cả
