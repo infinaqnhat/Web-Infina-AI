@@ -106,7 +106,7 @@ explainer (đổi format ngược SERP là lỗi theo đúng Bước 1.5). Vấn
 
 | ID | Vai trò | Tiêu đề dự kiến | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|---|
-| P1 | **Pillar = refresh #147** (không viết bài mới) | Giữ tiêu đề #147 hoặc đổi nhẹ, thêm góc RealSaleX + Fair Housing/TCPA compliance | `ai receptionist for real estate` (niche, đổi từ `ai voice assistants for real estate`) | Discovery/TOF | 🟢 Refresh, không viết mới |
+| P1 | **Pillar = refresh #147** (không viết bài mới) | Giữ tiêu đề #147 hoặc đổi nhẹ, thêm góc RealSaleX + Fair Housing/TCPA compliance | `ai receptionist for real estate` (niche, đổi từ `ai voice assistants for real estate`) | Discovery/TOF | ✅ **Đã refresh 2026-09-15** — thêm H2 Fair Housing/TCPA (link #237), thêm đoạn dẫn chứng #390, thêm "AI Receptionist" vào intro + 1 H2, đổi seo_description. Giữ nguyên title/slug/seo_focus_keyword (chưa có GSC để biện minh đổi). Log chi tiết ở `skills/post-refresh/references/refresh-log.md`. Còn thiếu: mention RealSaleX cụ thể + link money page (chờ URL thật), link tới C1.1/C1.3/C1.4 (chờ viết xong) |
 | ~~C1.2~~ | ~~Review/deep-dive~~ | ~~Best AI Call Center Software...~~ | — | — | ❌ Bỏ hẳn, gộp vào refresh #147 |
 | C1.1 | So sánh | AI Receptionist vs Human Receptionist: Cost, ROI, and What Real Estate Teams Should Know | `ai receptionist vs human receptionist real estate` (niche, long-tail, không có volume CSV — nhu cầu xác nhận qua SERP) | Evaluation/MOF | ✅ Viết mới, đã verify SERP |
 | C1.3 | Buying guide | How to Choose an AI Answering Service for Your Brokerage | `ai answering service for real estate` (niche, đổi từ bare `ai answering service`) | Decision/BOF | ✅ Viết mới, đã verify SERP |
