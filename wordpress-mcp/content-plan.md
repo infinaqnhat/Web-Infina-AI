@@ -26,7 +26,7 @@ dung thật đã fetch. Xem mục "Bài đã có trên site" ngay dưới trư�
 
 | Bài đã có | FOCUS_KW đã log | Trùng ID nào | Mức độ | Việc nên làm |
 |---|---|---|---|---|
-| [#147 — 7 Best AI Voice Assistants for Real Estate Agents](https://infina.ai/news/best-ai-voice-assistants-for-real-estate/) | `ai voice assistants for real estate` | **P1, C1.2** | 🔴 Nặng — meta description bài này gần như y hệt pitch "answer every inbound call... 24/7" mà P1 định viết, có mention "outbound call" | Đổi format P1 sang explainer (khác intent với listicle #147), verify lại bằng SERP thật trước khi chốt |
+| [#147 — 7 Best AI Voice Assistants for Real Estate Agents](https://infina.ai/news/best-ai-voice-assistants-for-real-estate/) | `ai voice assistants for real estate` | **P1, C1.2** | 🔴 Nặng — meta description bài này gần như y hệt pitch "answer every inbound call... 24/7" mà P1 định viết, có mention "outbound call" | **Cập nhật 2026-09-15 (đã verify SERP thật)**: bỏ hẳn viết P1/C1.2 mới, refresh #147 làm pillar chính thức của Nhánh 1, đổi FOCUS_KW sang `ai receptionist for real estate` — xem chi tiết ở mục Nhánh 1 |
 | [#223 — Speed-to-Lead: How Real Estate Agent CRM Closes the 15-Hour Gap](https://infina.ai/news/real-estate-agent-crm-speed-to-lead/) | `real estate agent crm` | **C2.2** | 🔴 Nặng — đã có đúng số liệu 15-hour/40-50%, đã mention Follow Up Boss + kvCORE | Bỏ viết C2.2 mới, refresh bài này (skill `post-refresh`) + thêm link về money page |
 | [#384 — Best CRM Software for Real Estate Agents: Full Comparison](https://infina.ai/news/best-crm-software-real-estate-agents/) | `best crm software` | **C3.1, C3.3** | 🔴 Nặng — đã cover Follow Up Boss + kvCORE | Bỏ viết C3.1/C3.3 dạng bài riêng, refresh 1 trong 3 bài CRM roundup thay vì tạo bài mới |
 | [#207 — Best Real Estate Agent CRM Software in 2026](https://infina.ai/news/best-crm-for-real-estate/) | `best crm for real estate` | **C3.1, C3.3** | 🔴 Nặng — cùng lý do trên | (gộp chung xử lý với #384) |
@@ -38,14 +38,15 @@ dung thật đã fetch. Xem mục "Bài đã có trên site" ngay dưới trư�
 | [#521 — Real Estate Contact Forms Are Losing the Highest-Intent Leads](https://infina.ai/news/real-estate-contact-form-conversion-rate/) | — | **C2.1** | 🟡 Nhẹ | Góc form capture, không phải lead-gen software roundup — khả năng vẫn ổn |
 | **CINC** (brand) | — | **C3.2** | ✅ Không tìm thấy ở bài nào | Gap thật, giữ nguyên trong plan |
 
-**Không tìm thấy bài nào trùng**: C1.1, C1.3, C1.4, C2.3, C2.4 — 5 slot này vẫn là gap thật theo dữ
-liệu đã check, nhưng vẫn cần chạy Bước 1.5 (live-SERP) trước khi viết như quy trình yêu cầu, đây
-chỉ là kết quả check trên site mình, chưa check SERP Google thật.
+**Không tìm thấy bài nào trùng**: C1.1, C1.3, C1.4, C2.3, C2.4 — gap thật. Riêng **C1.1/C1.3/C1.4
+đã verify thêm bằng live-SERP thật** (xem mục Nhánh 1), C2.3/C2.4 vẫn mới chỉ check nội bộ site,
+chưa chạy Bước 1.5.
 
 ### Bài bổ trợ / liên quan (không phải trùng — chỉ để link thêm cho nhánh dày hơn)
 
-Sau khi loại các bài trùng nặng ở trên, plan chỉ còn **10 bài mới cần viết** (4 + 4 + 2) và
-**3 việc refresh**, khá mỏng so với plan gốc 13 bài. Đối chiếu thêm với 110 bài hiện có tìm được
+Sau khi loại các bài trùng nặng + verify SERP thật cho Nhánh 1, plan chỉ còn **9 bài mới cần viết**
+(3 + 4 + 2) và **4 việc refresh** (#147, #223, 1 trong 3 bài CRM roundup, và tùy chọn thêm), khá
+mỏng so với plan gốc 13 bài. Đối chiếu thêm với 110 bài hiện có tìm được
 8 bài **không trùng chủ đề nhưng liên quan đủ gần để link vào** — không tính là node pillar/cluster
 mới, chỉ dùng làm "bài liên quan"/nguồn trích dẫn số liệu ngay trong nội dung bài mới, giúp mỗi
 nhánh có nhiều internal link + context hơn mà không tốn công viết thêm.
@@ -74,16 +75,50 @@ chính các bài mới này, mở rộng cluster theo dữ liệu thật thay v�
 Vì sao cao nhất: đúng câu pitch chính của sản phẩm ("AI agent trả lời buyer 24/7 trong Deal Room
 riêng"), không phải liên tưởng xa.
 
-| ID | Vai trò | Tiêu đề dự kiến | Focus keyword (tier volume) | Funnel | Trạng thái |
-|---|---|---|---|---|---|
-| P1 | **Pillar** | AI Receptionist for Real Estate: How 24/7 AI Call Answering Works | `ai receptionist` (50k, niche xuống "for real estate" khi viết) | Discovery/TOF | 🔴 Trùng #147 — đổi format sang explainer trước khi viết |
-| C1.1 | So sánh | AI Receptionist vs Human Receptionist: What Real Estate Teams Should Know | `ai call center` (50k) | Evaluation/MOF | ✅ Gap, viết mới được |
-| C1.2 | Review/deep-dive | Best AI Call Center Software for Real Estate Brokerages in 2026 | `ai call center software` (5k) | Evaluation/MOF | 🔴 Trùng #147 (cùng format listicle) — cân nhắc gộp vào refresh #147 thay vì bài riêng |
-| C1.3 | Buying guide | How to Choose an AI Answering Service for Your Brokerage | `ai answering service` (5k) | Decision/BOF | ✅ Gap, viết mới được |
-| C1.4 | Support/how-to (bắc cầu sang Nhánh 2) | How AI Outbound Calling Works for Real Estate Lead Follow-Up | `ai outbound call` (50k) | Post-purchase/how-to | ✅ Gap (chỉ 1 mention nhỏ ở #147), viết mới được |
+### Check keyword + live-SERP (2026-09-15) — đổi cả cách chọn keyword lẫn cấu trúc nhánh
 
-Internal link dự kiến: P1 ↔ C1.1/C1.3/C1.4, C1.4 ↔ P2 (Nhánh 2), P1 ↔ #147 (refresh, link chéo 2
-chiều thay vì cannibalize), tất cả link về money page RealSaleX.
+Check lại toàn bộ 9.524 dòng CSV gốc (không chỉ file đã lọc volume≥500): **không có bất kỳ biến thể
+nào ghép "real estate" với receptionist/call center/answering service/outbound call.** 5 FOCUS_KW
+ban đầu (`ai receptionist`, `ai call center`, `ai call center software`, `ai answering service`,
+`ai outbound call`) đều là thuật ngữ generic, không phân biệt ngành.
+
+Chạy live-SERP thật (web search) cho từng keyword:
+
+| Keyword | SERP thật | Kết luận |
+|---|---|---|
+| `ai receptionist` (bare) | Toàn trang sản phẩm vendor (Zoom, RingCentral, Retell AI, GoTo...) | 🔴 Navigational — không nhắm keyword bare này |
+| `ai call center software` (bare) | Toàn site review SaaS lớn (Verint, Aircall, Zendesk...), 0 kết quả real estate | 🔴 Quá rộng, không cạnh tranh nổi |
+| `ai receptionist for real estate` (niche, không có trong CSV) | 10+ bài "Best AI Receptionist for Real Estate... Compared" thật (cloudtalk, evs7, getaira, dialraven, callbirdai, agentzap, kennarealestate, marblism, dialnote, callagentai) | ✅ Nhu cầu có thật, nhưng rất đông đối thủ, định dạng listicle/so sánh |
+| `ai answering service for real estate` (niche) | 6+ bài "X options compared" thật (elevenlabs, evs7, myaifrontdesk, withallo, beside, vocalyai, serviceagent) | ✅ Có thật, cũng khá đông |
+| `ai outbound calling real estate lead follow-up` (niche) | Mix explainer + listicle (retellai, aloware, instadesk, connectcallai, lumay...), ít đối thủ site-native hơn 2 keyword trên | ✅ Cơ hội tốt nhất trong nhóm |
+| "AI vs human receptionist real estate" | getaira.io đã có bài đúng góc "Cost & ROI Compared" | ✅ Góc thật, vẫn làm được nếu đủ khác biệt |
+
+**Phát hiện thêm**: nhiều bài đối thủ nhắc **Fair Housing compliance** khi AI receptionist trả lời
+câu hỏi buyer — góc này chưa bài nào của mình (kể cả #147) cover, ghép với #237 (TCPA) đã có sẵn
+thành 1 lợi thế khác biệt thật, không phải phỏng đoán.
+
+**Sửa sai của bản plan trước**: từng đề xuất "đổi P1 sang explainer để tránh trùng format với #147"
+— sai, vì SERP thật cho thấy định dạng đúng cho intent này là **listicle/so sánh**, không phải
+explainer (đổi format ngược SERP là lỗi theo đúng Bước 1.5). Vấn đề thật là P1 và #147 đang nhắm
+**chung 1 intent** ("best AI answering cho real estate"), không phải vấn đề format.
+
+### Cấu trúc mới
+
+| ID | Vai trò | Tiêu đề dự kiến | Focus keyword | Funnel | Trạng thái |
+|---|---|---|---|---|---|
+| P1 | **Pillar = refresh #147** (không viết bài mới) | Giữ tiêu đề #147 hoặc đổi nhẹ, thêm góc RealSaleX + Fair Housing/TCPA compliance | `ai receptionist for real estate` (niche, đổi từ `ai voice assistants for real estate`) | Discovery/TOF | 🟢 Refresh, không viết mới |
+| ~~C1.2~~ | ~~Review/deep-dive~~ | ~~Best AI Call Center Software...~~ | — | — | ❌ Bỏ hẳn, gộp vào refresh #147 |
+| C1.1 | So sánh | AI Receptionist vs Human Receptionist: Cost, ROI, and What Real Estate Teams Should Know | `ai receptionist vs human receptionist real estate` (niche, long-tail, không có volume CSV — nhu cầu xác nhận qua SERP) | Evaluation/MOF | ✅ Viết mới, đã verify SERP |
+| C1.3 | Buying guide | How to Choose an AI Answering Service for Your Brokerage | `ai answering service for real estate` (niche, đổi từ bare `ai answering service`) | Decision/BOF | ✅ Viết mới, đã verify SERP |
+| C1.4 | Support/how-to (bắc cầu sang Nhánh 2) | How AI Outbound Calling Works for Real Estate Lead Follow-Up | `ai outbound calling real estate lead follow-up` (niche, đổi từ bare `ai outbound call`) | Post-purchase/how-to | ✅ Viết mới, cơ hội tốt nhất trong nhánh |
+
+Nhánh 1 giờ chỉ còn **3 bài viết mới + 1 refresh** (thay vì 4 bài mới + tham chiếu #147 như trước).
+Internal link dự kiến: #147 (refresh, đóng vai pillar) ↔ C1.1/C1.3/C1.4, C1.4 ↔ P2 (Nhánh 2), tất cả
+link về money page RealSaleX.
+
+**Việc cần làm tiếp cho nhánh này**: khi GSC có lại credentials, check traffic/ranking thật của
+#147 trước khi refresh — nếu #147 đang có traffic tốt, refresh nhẹ (thêm section mới) để không phá
+vỡ ranking hiện có; nếu traffic yếu, có thể viết lại sâu hơn.
 
 ---
 
