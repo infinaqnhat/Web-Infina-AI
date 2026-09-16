@@ -643,7 +643,12 @@
     document.querySelectorAll('[data-create]').forEach(function(btn){
       btn.addEventListener('click', startCreate);
     });
-    document.getElementById('sticky-cta-btn').addEventListener('click', startCreate);
+    document.getElementById('sticky-cta-btn').addEventListener('click', function(){
+      var heroBox = document.querySelector('.hero .create-box');
+      var heroInput = document.getElementById('url-1');
+      if (heroBox) heroBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (heroInput) setTimeout(function(){ heroInput.focus(); }, 420);
+    });
 
     document.getElementById('demo-reset-btn').addEventListener('click', function(){
       clearInterval(buildTimer);
