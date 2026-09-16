@@ -3,7 +3,12 @@
 
   var CSS = [
     'infina-nav { display: contents; }',
-    'nav.infina-nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-light, rgba(0,0,0,.08)); z-index: 1000; }',
+    'nav.infina-nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-light, rgba(0,0,0,.08)); z-index: 1000; transition: background .3s, border-color .3s, backdrop-filter .3s; }',
+    'nav.infina-nav.is-transparent { background: transparent; backdrop-filter: none; border-bottom-color: transparent; }',
+    'nav.infina-nav.is-transparent .logo-badge { background: rgba(255,255,255,.95); border-radius: 8px; padding: 6px 10px; display: inline-flex; align-items: center; }',
+    'nav.infina-nav.is-transparent .nav-center a { color: rgba(255,255,255,.88); }',
+    'nav.infina-nav.is-transparent .nav-center a.active { color: #fff; }',
+    'nav.infina-nav.is-transparent .nav-toggle { color: #fff; }',
     '.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: 1200px; margin: 0 auto; padding: 0 32px; }',
     '.logo { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 600; letter-spacing: -0.03em; }',
     '.logo-img { height: 23px; width: auto; display: block; }',
@@ -56,7 +61,7 @@
     '}'
   ].join('\n');
 
-  var LOGO_SVG = '<img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img">';
+  var LOGO_SVG = '<span class="logo-badge"><img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img"></span>';
   var CHEVRON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>';
   var HAMBURGER = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
 
@@ -79,9 +84,10 @@
     var isSalesX = active === 'salesx';
     var ctaText = this.getAttribute('cta-text') || 'Book a demo';
     var ctaHref = this.getAttribute('cta-href') || '#demo';
+    var transparentUntilScroll = this.hasAttribute('transparent-until-scroll');
 
     var nav = document.createElement('nav');
-    nav.className = 'infina-nav';
+    nav.className = 'infina-nav' + (transparentUntilScroll ? ' is-transparent' : '');
 
     var toggleClass = 'nav-dropdown-toggle' + (isWorkGroup ? ' active' : '');
     nav.innerHTML =
@@ -174,6 +180,16 @@
     window.addEventListener('resize', function () {
       if (window.innerWidth > 768 && document.body.classList.contains('nav-open')) setOpen(false);
     });
+
+    if (transparentUntilScroll) {
+      var updateNavSolidity = function () {
+        var threshold = window.innerHeight * 0.7;
+        nav.classList.toggle('is-transparent', window.scrollY < threshold);
+      };
+      updateNavSolidity();
+      window.addEventListener('scroll', updateNavSolidity, { passive: true });
+      window.addEventListener('resize', updateNavSolidity);
+    }
 
     this.remove();
   }
