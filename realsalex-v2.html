@@ -84,7 +84,7 @@
 
     /* ===== Today vs Advisor comparison ===== */
     .compare-heads { display:grid; grid-template-columns:1fr 44px 1fr; gap:0 20px; margin-bottom:8px; }
-    @media (max-width:700px){ .compare-heads{ grid-template-columns:1fr; gap:4px; } .compare-heads > div:nth-child(2){ display:none; } }
+    @media (max-width:700px){ .compare-heads{ display:none; } }
     .compare-heads .today b { color:var(--fg); }
     .compare-heads .today span { color:var(--muted); }
     .compare-heads .advisor { text-align:right; }
@@ -100,6 +100,11 @@
     .compare-cell.today { font-size:15.5px; color:var(--muted); line-height:1.5; }
     .compare-cell.advisor { font-size:17px; font-weight:600; color:var(--fg); line-height:1.5; text-align:right; }
     @media (max-width:700px){ .compare-cell.advisor{ text-align:left; } }
+    .compare-tag { display:none; }
+    @media (max-width:700px){
+      .compare-tag { display:block; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+      .compare-cell.advisor .compare-tag { color:var(--blue); }
+    }
     .compare-arrow { display:flex; align-items:center; justify-content:center; color:var(--blue); }
     @media (max-width:700px){ .compare-arrow{ display:none; } }
     .pull-quote { text-align:center; max-width:760px; margin:0 auto; font-size:clamp(22px,2.6vw,30px); font-style:italic; font-weight:600; color:var(--accent); line-height:1.4; letter-spacing:-.01em; }
@@ -268,19 +273,19 @@
       </div>
       <div class="compare-table reveal">
         <div class="compare-row">
-          <div class="compare-cell today">Agent sends a listing link</div>
+          <div class="compare-cell today"><span class="compare-tag">Today</span>Agent sends a listing link</div>
           <div class="compare-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-          <div class="compare-cell advisor">Agent sends an advisor</div>
+          <div class="compare-cell advisor"><span class="compare-tag">With Home Advisor</span>Agent sends an advisor</div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell today">Buyer browses Zillow, searches elsewhere, asks ChatGPT or Claude</div>
+          <div class="compare-cell today"><span class="compare-tag">Today</span>Buyer browses Zillow, searches elsewhere, asks ChatGPT or Claude</div>
           <div class="compare-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-          <div class="compare-cell advisor">Buyer asks everything in one place</div>
+          <div class="compare-cell advisor"><span class="compare-tag">With Home Advisor</span>Buyer asks everything in one place</div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell today">Buyer eventually comes back, or connects with another agent instead</div>
+          <div class="compare-cell today"><span class="compare-tag">Today</span>Buyer eventually comes back, or connects with another agent instead</div>
           <div class="compare-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-          <div class="compare-cell advisor">Agent stays connected to the conversation</div>
+          <div class="compare-cell advisor"><span class="compare-tag">With Home Advisor</span>Agent stays connected to the conversation</div>
         </div>
       </div>
       <p class="pull-quote reveal" style="margin-top:clamp(40px,5vw,64px);">You remain the trusted advisor even when you're not available.</p>
