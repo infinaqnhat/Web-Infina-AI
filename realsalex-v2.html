@@ -75,11 +75,9 @@
 
     /* ===== Today vs Advisor comparison ===== */
     .compare-heads { display:grid; grid-template-columns:1fr 44px 1fr; gap:0 20px; margin-bottom:8px; }
-    @media (max-width:700px){ .compare-heads{ display:none; } }
     .compare-heads .today b { color:var(--fg); }
     .compare-heads .today span { color:var(--muted); }
     .compare-heads .advisor { text-align:right; }
-    @media (max-width:700px){ .compare-heads .advisor{ text-align:left; margin-top:18px; } }
     .compare-heads b { display:block; font-size:20px; font-weight:800; letter-spacing:-.01em; }
     .compare-heads span { display:block; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-top:4px; }
     .compare-heads .advisor b { color:var(--accent); }
@@ -87,17 +85,25 @@
     .compare-table { display:flex; flex-direction:column; }
     .compare-row { display:grid; grid-template-columns:1fr 44px 1fr; gap:0 20px; align-items:center; padding:22px 0; border-top:1px solid var(--border-light); }
     .compare-row:last-child { border-bottom:1px solid var(--border-light); }
-    @media (max-width:700px){ .compare-row{ grid-template-columns:1fr; gap:10px; padding:18px 0; } }
     .compare-cell.today { font-size:15.5px; color:var(--muted); line-height:1.5; }
     .compare-cell.advisor { font-size:17px; font-weight:600; color:var(--fg); line-height:1.5; text-align:right; }
-    @media (max-width:700px){ .compare-cell.advisor{ text-align:left; } }
     .compare-tag { display:none; }
-    @media (max-width:700px){
-      .compare-tag { display:block; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
-      .compare-cell.advisor .compare-tag { color:var(--blue); }
-    }
     .compare-arrow { display:flex; align-items:center; justify-content:center; color:var(--blue); }
-    @media (max-width:700px){ .compare-arrow{ display:none; } }
+
+    @media (max-width:700px){
+      .compare-heads { grid-template-columns:1fr 20px 1fr; gap:0 10px; margin-bottom:2px; }
+      .compare-heads b { font-size:13px; }
+      .compare-heads span { display:none; }
+      .compare-row { grid-template-columns:1fr 20px 1fr; gap:0 10px; padding:14px 0; align-items:start; }
+      .compare-cell.today { grid-column:1; font-size:12.5px; padding-right:2px; }
+      .compare-cell.advisor { grid-column:3; font-size:12.5px; font-weight:700; text-align:right; padding-left:2px; }
+      .compare-arrow { display:none; }
+      .compare-row::after { content:''; grid-column:2; align-self:stretch; border-left:1px solid var(--border-light); }
+    }
+    @media (max-width:380px){
+      .compare-heads b { font-size:12px; }
+      .compare-cell.today, .compare-cell.advisor { font-size:11.5px; }
+    }
     .pull-quote { text-align:center; max-width:760px; margin:0 auto; font-size:clamp(22px,2.6vw,30px); font-style:italic; font-weight:600; color:var(--accent); line-height:1.4; letter-spacing:-.01em; }
 
     /* ===== Advisor demo card ===== */
