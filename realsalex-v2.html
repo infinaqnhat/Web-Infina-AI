@@ -28,8 +28,10 @@
 
     .section { padding:var(--section-gap) 0; }
     .section-head { text-align:center; max-width:720px; margin:0 auto 56px; }
-    .section-head h2 { font-size:clamp(28px,3.6vw,44px); font-weight:800; letter-spacing:-.03em; line-height:1.15; }
+    .section-head h2 { font-size:clamp(28px,3.6vw,44px); font-weight:800; letter-spacing:-.03em; line-height:1.15; color:var(--accent); }
     .section-head p { font-size:17px; color:var(--muted); margin-top:16px; line-height:1.7; }
+    @keyframes gradient-shift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    h2 .accent, .final-cta h2 .accent { background:linear-gradient(135deg,var(--accent) 0%,#6fa8ff 50%,var(--accent) 100%); background-size:200% 200%; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; animation:gradient-shift 4s ease infinite; }
     .eyebrow { display:block; font-size:13px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
 
     .btn-primary { background:var(--accent); color:#fff; padding:15px 30px; border-radius:999px; font-size:15px; font-weight:600; display:inline-flex; align-items:center; gap:9px; border:0; cursor:pointer; transition:all .25s; white-space:nowrap; }
@@ -206,7 +208,7 @@
 
     /* ===== Final CTA ===== */
     .final-cta { background:linear-gradient(180deg,#f0f3f9,#e8edf7); text-align:center; }
-    .final-cta h2 { font-size:clamp(30px,4vw,48px); font-weight:800; line-height:1.1; letter-spacing:-.03em; }
+    .final-cta h2 { font-size:clamp(30px,4vw,48px); font-weight:800; line-height:1.1; letter-spacing:-.03em; color:var(--accent); }
     .final-cta .italic-line { font-size:clamp(20px,2.2vw,26px); font-style:italic; font-weight:600; color:var(--accent); margin-top:16px; }
     .final-create { max-width:520px; margin:36px auto 0; }
 
@@ -290,7 +292,7 @@
     <div class="container">
       <div class="section-head reveal">
         <span class="eyebrow">What your client opens</span>
-        <h2>Ask anything about the listing.</h2>
+        <h2>Ask anything <span class="accent">about the listing.</span></h2>
         <p>A private page for this property, with an advisor that answers instantly and cites its sources.</p>
       </div>
       <div class="demo-wrap reveal">
@@ -355,7 +357,7 @@
   <section class="section">
     <div class="container">
       <div class="section-head reveal">
-        <h2>Three reasons agents send an advisor.</h2>
+        <h2>Three reasons agents <span class="accent">send an advisor.</span></h2>
       </div>
       <div class="aic-3">
         <div class="aic reveal">
@@ -383,7 +385,7 @@
       <div class="trust-grid">
         <div class="reveal">
           <span class="eyebrow">An extension of you, not a replacement</span>
-          <h2 style="font-size:clamp(28px,3.6vw,42px); font-weight:800; letter-spacing:-.02em; line-height:1.15;">Your client. Your relationship. Your data.</h2>
+          <h2 style="font-size:clamp(28px,3.6vw,42px); font-weight:800; letter-spacing:-.02em; line-height:1.15; color:var(--accent);">Your client. Your relationship. <span class="accent">Your data.</span></h2>
           <ul class="trust-list">
             <li><span class="dot"></span><span class="tx">The advisor cites its sources.</span></li>
             <li><span class="dot"></span><span class="tx">It does not invent answers when information is unavailable.</span></li>
@@ -426,7 +428,7 @@
   <!-- ===== Final CTA ===== -->
   <section class="section final-cta">
     <div class="container">
-      <h2>Your next client doesn't need<br>another listing link.</h2>
+      <h2>Your next client doesn't need<br><span class="accent">another listing link.</span></h2>
       <p class="italic-line">Give them an advisor they can talk to.</p>
       <div class="create-box final-create">
         <div class="create-row">
