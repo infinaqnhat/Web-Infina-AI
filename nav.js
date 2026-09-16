@@ -77,6 +77,8 @@
     var isPersonal = active === 'personal';
     var isAbout = active === 'about';
     var isSalesX = active === 'salesx';
+    var ctaText = this.getAttribute('cta-text') || 'Book a demo';
+    var ctaHref = this.getAttribute('cta-href') || '#demo';
 
     var nav = document.createElement('nav');
     nav.className = 'infina-nav';
@@ -90,7 +92,7 @@
           '<a href="work.html"' + (isWork ? ' class="active"' : '') + '>AI Work</a>' +
           '<a href="personal.html"' + (isPersonal ? ' class="active"' : '') + '>AI Personal</a>' +
         '</div>' +
-        '<a href="#demo" class="nav-cta">Book a demo</a>' +
+        '<a href="' + ctaHref + '" class="nav-cta">' + ctaText + '</a>' +
       '</div>';
 
     this.parentNode.insertBefore(nav, this);
@@ -134,10 +136,10 @@
     if (isPersonal) aPersonal.classList.add('active');
     panel.appendChild(aPersonal);
 
-    // Book a demo CTA
+    // CTA
     var aCta = document.createElement('a');
-    aCta.href = '#demo';
-    aCta.textContent = 'Book a demo';
+    aCta.href = ctaHref;
+    aCta.textContent = ctaText;
     aCta.className = 'nav-mobile-cta';
     panel.appendChild(aCta);
 
