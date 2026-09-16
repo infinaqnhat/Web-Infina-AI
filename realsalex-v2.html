@@ -107,8 +107,14 @@
     .demo-live-tag { flex-shrink:0; display:inline-flex; align-items:center; gap:6px; background:var(--blue-light); color:var(--blue); font-size:12px; font-weight:700; padding:6px 12px; border-radius:999px; white-space:nowrap; }
     .demo-live-tag::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--blue); animation:demo-blink 1.3s infinite; }
     @keyframes demo-blink { 0%,60%,100%{opacity:.3} 30%{opacity:1} }
-    .demo-photo { aspect-ratio:16/9; overflow:hidden; }
-    .demo-photo img { width:100%; height:100%; object-fit:cover; }
+    .demo-gallery { display:grid; grid-template-columns:1.6fr 1fr; grid-template-rows:100%; gap:2px; aspect-ratio:16/9; overflow:hidden; }
+    .demo-gallery-main { overflow:hidden; }
+    .demo-gallery-main img { width:100%; height:100%; object-fit:cover; display:block; }
+    .demo-gallery-side { display:grid; grid-template-rows:repeat(4,1fr); gap:2px; }
+    .demo-gallery-thumb { position:relative; overflow:hidden; }
+    .demo-gallery-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+    .demo-gallery-more-tag { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; background:rgba(0,15,46,.6); color:#fff; font-size:12px; font-weight:700; padding:6px; }
+    @media (max-width:520px){ .demo-gallery{ grid-template-columns:1fr; aspect-ratio:auto; } .demo-gallery-side{ display:none; } }
     .demo-specs { display:flex; flex-wrap:wrap; gap:4px 16px; padding:14px 22px; border-bottom:1px solid var(--border-light); font-size:14px; color:var(--fg-secondary); }
     .demo-specs b { color:var(--fg); }
     .demo-body { padding:22px; display:flex; flex-direction:column; gap:18px; }
@@ -286,9 +292,15 @@
             <div class="who"><b id="demo-advisor-name">Alex Rivera's Home Advisor</b><span id="demo-brokerage">Meridian Realty · Austin, TX</span></div>
             <span class="demo-live-tag">Live · answers 24/7</span>
           </div>
-          <figure class="demo-photo" style="margin:0;">
-            <img src="uploads/property-123-main.jpg" alt="123 Main Street, Austin TX exterior photo" loading="lazy">
-          </figure>
+          <div class="demo-gallery">
+            <div class="demo-gallery-main"><img src="uploads/property-123-main.jpg" alt="123 Main Street, Austin TX exterior photo" loading="lazy"></div>
+            <div class="demo-gallery-side">
+              <div class="demo-gallery-thumb"><img src="uploads/property-123-main-living.jpg" alt="123 Main Street living room" loading="lazy"></div>
+              <div class="demo-gallery-thumb"><img src="uploads/property-123-main-kitchen.jpg" alt="123 Main Street kitchen" loading="lazy"></div>
+              <div class="demo-gallery-thumb"><img src="uploads/property-123-main-bedroom.jpg" alt="123 Main Street primary bedroom" loading="lazy"></div>
+              <div class="demo-gallery-thumb demo-gallery-more"><img src="uploads/property-123-main-backyard.jpg" alt="123 Main Street backyard patio" loading="lazy"><span class="demo-gallery-more-tag">See all 5 photos</span></div>
+            </div>
+          </div>
           <div class="demo-specs">
             <b>123 Main Street, Austin TX</b><span>$845,000</span><span>4 bd · 3 ba</span><span>2,410 sq ft</span><span>46 days on market</span>
           </div>
