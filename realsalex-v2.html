@@ -293,7 +293,7 @@
           <span class="eyebrow" style="color:rgba(255,255,255,.75);">For listing agents</span>
           <h1>Don't just plant a sign. <span class="accent">Send a 24/7 Home Concierge with it.</span></h1>
           <p class="hero-sub">Add a QR code to your yard sign so anyone driving by can ask your Concierge about the listing instantly, day or night, before they ever call you.</p>
-          <div class="create-box">
+          <div class="create-box" id="hero-create-qr">
             <span class="create-label">Paste a property listing</span>
             <div class="create-row">
               <input type="url" id="url-qr" value="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" placeholder="Paste a Zillow, Redfin, Realtor.com or MLS link..." aria-label="Property listing URL">
@@ -807,6 +807,14 @@
         document.querySelectorAll('.infina-nav .nav-center a').forEach(function(a){
           a.classList.toggle('is-active', Number(a.getAttribute('data-slide')) === index);
         });
+
+        var isListing = index === 1;
+        var ctaText = isListing ? 'Create QR Code →' : 'Create Home Concierge →';
+        var ctaHref = isListing ? '#hero-create-qr' : '#hero-create';
+        var navCta = document.querySelector('.infina-nav .nav-cta');
+        var navMobileCta = document.querySelector('.infina-nav .nav-mobile-cta');
+        if (navCta) { navCta.textContent = ctaText; navCta.setAttribute('href', ctaHref); }
+        if (navMobileCta) { navMobileCta.textContent = ctaText; navMobileCta.setAttribute('href', ctaHref); }
       }
       window.switchHeroSlide = switchSlide;
 
