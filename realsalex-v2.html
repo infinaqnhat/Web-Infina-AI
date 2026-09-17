@@ -61,6 +61,22 @@
     .create-row .btn-primary { min-height:48px; padding:0 24px; font-size:14.5px; }
     .create-note { font-size:12.5px; color:rgba(255,255,255,.8); margin:12px 0 0; }
     @media (max-width:600px){ .hero{ min-height:auto; } }
+    .hero-seller { min-height:auto; padding:clamp(72px,10vh,110px) 0; }
+
+    /* QR result panel (seller hero) */
+    .qr-result { margin-top:22px; max-width:600px; }
+    .qr-loading { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); backdrop-filter:blur(6px); border-radius:20px; padding:22px; }
+    .qr-loading h4 { color:#fff; font-size:15px; font-weight:800; margin-bottom:16px; }
+    .qr-steps { display:flex; flex-direction:column; gap:10px; }
+    .qr-step { display:grid; grid-template-columns:18px minmax(0,1fr); gap:10px; align-items:baseline; font-size:14px; color:rgba(255,255,255,.55); }
+    .qr-step .mark { font-size:13px; color:rgba(255,255,255,.55); }
+    .qr-step.is-done { color:#fff; }
+    .qr-step.is-done .mark { color:#bcd4ff; }
+    .qr-built { display:flex; gap:20px; align-items:center; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); backdrop-filter:blur(6px); border-radius:20px; padding:22px; }
+    .qr-built img { width:104px; height:104px; border-radius:10px; background:#fff; padding:6px; flex-shrink:0; }
+    .qr-built-text b { display:block; color:#fff; font-size:15px; font-weight:800; margin-bottom:6px; }
+    .qr-built-text p { color:rgba(255,255,255,.85); font-size:13.5px; line-height:1.5; margin-bottom:12px; }
+    @media (max-width:520px){ .qr-built{ flex-direction:column; text-align:center; } }
 
     /* ===== Today vs Advisor comparison ===== */
     .compare-heads { display:grid; grid-template-columns:1fr 44px 1fr; gap:0 20px; margin-bottom:8px; }
@@ -242,6 +258,42 @@
       </div>
     </div>
   </header>
+
+  <!-- ===== Hero 2: For listing agents (QR code) ===== -->
+  <section class="hero hero-seller">
+    <img class="hero-photo" src="uploads/hero-seller-signqr.jpg" alt="A For Sale yard sign with a QR code sticker in front of a home" fetchpriority="low" loading="lazy">
+    <div class="hero-scrim"></div>
+    <div class="container">
+      <div class="hero-copy">
+        <span class="eyebrow" style="color:rgba(255,255,255,.75);">For listing agents</span>
+        <h1>Don't just plant a sign. <span class="accent">Send a 24/7 Home Concierge with it.</span></h1>
+        <p class="hero-sub">Add a QR code to your yard sign so anyone driving by can ask your Concierge about the listing instantly, day or night, before they ever call you.</p>
+        <div class="create-box">
+          <span class="create-label">Paste a property listing</span>
+          <div class="create-row">
+            <input type="url" id="url-qr" value="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" placeholder="Paste a Zillow, Redfin, Realtor.com or MLS link..." aria-label="Property listing URL">
+            <button type="button" class="btn-primary" id="qr-create-btn">Create QR Code →</button>
+          </div>
+          <p class="create-note">No printer needed. Works with any phone camera.</p>
+        </div>
+
+        <div class="qr-result" id="qr-result" hidden>
+          <div class="qr-loading" id="qr-loading">
+            <h4>Generating your QR code</h4>
+            <div class="qr-steps" id="qr-steps"></div>
+          </div>
+          <div class="qr-built" id="qr-built" hidden>
+            <img src="uploads/qr-sample.png" alt="Sample QR code for the listing">
+            <div class="qr-built-text">
+              <b>Your QR code is ready.</b>
+              <p>Print it on your yard sign or open house flyer. Visitors scan it to ask your Concierge about 124 Oak Street, day or night.</p>
+              <button type="button" class="btn-secondary" id="qr-download-btn">Download QR Code</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ===== Hero video (own section) ===== -->
   <section class="section hero-video-section">
@@ -665,6 +717,49 @@
       if (navigator.clipboard) navigator.clipboard.writeText(link).catch(function(){});
       copyBtn.textContent = 'Copied';
       setTimeout(function(){ copyBtn.textContent = 'Copy link'; }, 1600);
+    });
+
+    // ===== Create QR Code flow (seller hero), front-end only, demo-only visual =====
+    var QR_STEPS = [
+      "Reading the listing",
+      "Generating your QR code",
+      "Preparing your yard sign design"
+    ];
+    var qrTimer = null;
+    var qrStep = 0;
+
+    function renderQrSteps() {
+      var wrap = document.getElementById('qr-steps');
+      wrap.innerHTML = '';
+      QR_STEPS.forEach(function(label, i){
+        var done = i < qrStep;
+        var div = document.createElement('div');
+        div.className = 'qr-step' + (done ? ' is-done' : '');
+        div.innerHTML = '<span class="mark">' + (done ? '✓' : '·') + '</span><span>' + escapeHtml(label) + '</span>';
+        wrap.appendChild(div);
+      });
+    }
+
+    document.getElementById('qr-create-btn').addEventListener('click', function(){
+      var result = document.getElementById('qr-result');
+      var loading = document.getElementById('qr-loading');
+      var built = document.getElementById('qr-built');
+      result.hidden = false;
+      built.hidden = true;
+      loading.hidden = false;
+      clearInterval(qrTimer);
+      qrStep = 0;
+      renderQrSteps();
+      qrTimer = setInterval(function(){
+        qrStep++;
+        if (qrStep >= QR_STEPS.length) {
+          clearInterval(qrTimer);
+          loading.hidden = true;
+          built.hidden = false;
+          return;
+        }
+        renderQrSteps();
+      }, 620);
     });
 
     // init
