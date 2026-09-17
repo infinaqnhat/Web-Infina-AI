@@ -51,7 +51,7 @@
     .hero-copy { max-width:640px; text-align:left; }
     .hero-video-section { padding-top:0; display:none; }
     .hero h1 { font-size:clamp(32px,4.6vw,50px); font-weight:800; letter-spacing:-.03em; line-height:1.12; color:#fff; }
-    .hero h1 .accent { background:linear-gradient(135deg,#bcd4ff,#fff 55%,#bcd4ff); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+    .hero h1 .accent { background:linear-gradient(135deg,#6ee7b7,#4ade80 55%,#6ee7b7); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
     .hero-sub { font-size:17px; color:rgba(255,255,255,.92); line-height:1.55; margin:18px 0 0; max-width:56ch; text-shadow:0 1px 8px rgba(0,0,0,.25); }
     .create-box { margin-top:30px; max-width:600px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); backdrop-filter:blur(6px); border-radius:20px; padding:22px; }
     .create-label { display:block; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.85); margin-bottom:10px; }
@@ -277,7 +277,7 @@
       <div class="container">
         <div class="hero-copy">
           <span class="eyebrow" style="color:rgba(255,255,255,.75);">For buying agents</span>
-          <h1>Don't send your client a link. <span class="accent">Send a 24/7 Home Concierge.</span></h1>
+          <h1>Don't send your client a link. <span class="accent">Send a 24/7 Personal Home Concierge.</span></h1>
           <p class="hero-sub">Turn any property listing into a private AI Concierge that answers your buyer's questions around the clock, with you still at the center of the relationship.</p>
           <div class="create-box" id="hero-create">
             <span class="create-label">Paste a property listing</span>
@@ -297,15 +297,15 @@
       <div class="container">
         <div class="hero-copy">
           <span class="eyebrow" style="color:rgba(255,255,255,.75);">For listing agents</span>
-          <h1>Don't just plant a sign. <span class="accent">Send a 24/7 Home Concierge with it.</span></h1>
+          <h1>Don't put up your contact info. <span class="accent">Send potential buyers to a 24/7 Property Expert.</span></h1>
           <p class="hero-sub">Add a QR code to your yard sign so anyone driving by can ask your Concierge about the listing instantly, day or night, before they ever call you.</p>
           <div class="create-box" id="hero-create-qr">
-            <span class="create-label">Paste a property listing</span>
+            <span class="create-label">Paste link to your listing</span>
             <div class="create-row">
               <input type="url" id="url-qr" value="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" placeholder="Paste a Zillow, Redfin, Realtor.com or MLS link..." aria-label="Property listing URL">
-              <button type="button" class="btn-primary" id="qr-create-btn">Create QR Code →</button>
+              <button type="button" class="btn-primary" id="qr-create-btn">Create Property Expert →</button>
             </div>
-            <p class="create-note">No printer needed. Works with any phone camera.</p>
+            <p class="create-note">No setup. No upload. Create your Property Expert in under a minute.</p>
           </div>
 
           <div class="qr-result" id="qr-result" hidden>
@@ -831,7 +831,7 @@
         });
 
         var isListing = index === 1;
-        var ctaText = isListing ? 'Create QR Code →' : 'Create Home Concierge →';
+        var ctaText = isListing ? 'Create Property Expert →' : 'Create Home Concierge →';
         var ctaHref = isListing ? '#hero-create-qr' : '#hero-create';
         var navCta = document.querySelector('.infina-nav .nav-cta');
         var navMobileCta = document.querySelector('.infina-nav .nav-mobile-cta');
