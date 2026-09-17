@@ -11,6 +11,7 @@
     '.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: 1200px; margin: 0 auto; padding: 0 32px; }',
     '.logo { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 600; letter-spacing: -0.03em; }',
     '.logo-img { height: 23px; width: auto; display: block; }',
+    'nav.infina-nav.logo-lg .logo-img { height: 36px; }',
     '.nav-center { display: flex; align-items: center; gap: 40px; }',
     '.nav-center a { font-size: 15px; font-weight: 500; color: var(--fg-secondary, #6b7280); transition: color .2s; position: relative; text-decoration: none; }',
     '.nav-center a.active { color: var(--fg, #111827); }',
@@ -84,9 +85,10 @@
     var ctaText = this.getAttribute('cta-text') || 'Book a demo';
     var ctaHref = this.getAttribute('cta-href') || '#demo';
     var transparentUntilScroll = this.hasAttribute('transparent-until-scroll');
+    var logoLarge = this.hasAttribute('logo-lg');
 
     var nav = document.createElement('nav');
-    nav.className = 'infina-nav' + (transparentUntilScroll ? ' is-transparent' : '');
+    nav.className = 'infina-nav' + (transparentUntilScroll ? ' is-transparent' : '') + (logoLarge ? ' logo-lg' : '');
 
     var toggleClass = 'nav-dropdown-toggle' + (isWorkGroup ? ' active' : '');
     nav.innerHTML =
