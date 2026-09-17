@@ -50,15 +50,15 @@
     .hero-scrim { position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(0,10,35,.25) 0%, rgba(0,10,35,.05) 14%, rgba(0,10,35,.03) 38%, rgba(0,10,35,.24) 100%), linear-gradient(90deg, rgba(0,8,28,.37) 0%, rgba(0,8,28,.24) 55%, rgba(0,8,28,0) 88%); }
 
     /* Cloud-shaped white backdrop behind the nav logo */
-    .brand-cloud { position:relative; width:300px; height:104px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .brand-cloud__bg { position:absolute; inset:0; width:100%; height:100%; overflow:visible; filter:drop-shadow(0 5px 13px rgba(9,50,105,.07)); transition:opacity .3s; }
+    .brand-cloud { position:relative; width:260px; height:136px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .brand-cloud__bg { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 5px 13px rgba(9,50,105,.15)); transition:opacity .3s; }
     nav.infina-nav:not(.is-transparent) .brand-cloud__bg { opacity:0; }
-    .brand-cloud__logo { position:relative; z-index:1; height:23px; width:auto; max-width:68%; }
-    nav.infina-nav.logo-lg .brand-cloud { width:340px; height:118px; }
-    nav.infina-nav.logo-lg .brand-cloud__logo { height:32px; }
-    nav.infina-nav.logo-lg .logo { align-self:flex-start; margin-top:4px; }
-    @media (max-width:600px){ .brand-cloud{ width:240px; height:83px; } .brand-cloud__logo{ max-width:68%; } }
-    @media (max-width:768px){ nav.infina-nav.logo-lg .brand-cloud{ width:240px; height:83px; } nav.infina-nav.logo-lg .brand-cloud__logo{ height:23px; } }
+    .brand-cloud__logo { position:relative; z-index:1; height:23px; width:auto; max-width:56%; }
+    nav.infina-nav.logo-lg .brand-cloud { width:300px; height:157px; }
+    nav.infina-nav.logo-lg .brand-cloud__logo { height:30px; }
+    nav.infina-nav.logo-lg .logo { align-self:flex-start; margin-top:0; }
+    @media (max-width:600px){ .brand-cloud{ width:210px; height:110px; } }
+    @media (max-width:768px){ nav.infina-nav.logo-lg .brand-cloud{ width:210px; height:110px; } nav.infina-nav.logo-lg .brand-cloud__logo{ height:23px; } }
     .hero-copy { max-width:640px; text-align:left; }
     .hero-video-section { padding-top:0; display:none; }
     .hero h1 { font-size:clamp(32px,4.6vw,50px); font-weight:800; letter-spacing:-.03em; line-height:1.12; color:#fff; }
@@ -946,9 +946,7 @@
         var wrap = document.createElement('span');
         wrap.className = 'brand-cloud';
         wrap.innerHTML =
-          '<svg class="brand-cloud__bg" viewBox="0 0 360 125" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
-            '<path d="M35 98 C18 97 8 86 9 72 C10 59 19 49 33 47 C39 32 55 24 72 27 C84 12 106 8 123 19 C139 8 162 9 177 21 C193 13 214 16 226 29 C245 27 260 36 265 49 C281 50 292 60 292 73 C292 87 281 96 265 97 C251 105 231 106 216 101 C198 108 176 107 159 102 C141 108 119 107 103 102 C87 108 67 106 55 101 C48 103 41 102 35 98 Z" fill="#fff"/>' +
-          '</svg>' +
+          '<img class="brand-cloud__bg" src="uploads/cloud-shape.png" alt="" aria-hidden="true">' +
           '<img class="brand-cloud__logo" src="' + src + '" alt="' + alt + '">';
         logoImg.replaceWith(wrap);
       }
