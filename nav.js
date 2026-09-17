@@ -39,6 +39,7 @@
     '@media (max-width: 768px) {',
     '  nav.infina-nav .nav-center { display: none; }',
     '  nav.infina-nav .nav-cta { display: none; }',
+    '  nav.infina-nav.logo-lg .logo-img { height: 23px; }',
     '  .nav-toggle { display: block; }',
     '  .nav-mobile-panel { display: flex; flex-direction: column; position: fixed; top: 72px; left: 0; right: 0; background: rgba(255,255,255,.98); backdrop-filter: blur(20px); padding: 8px 24px 20px; gap: 0; border-bottom: 1px solid var(--border-light, rgba(0,0,0,.08)); box-shadow: 0 10px 30px rgba(0,0,0,.06); transform: translateY(-12px); opacity: 0; visibility: hidden; transition: transform .25s ease, opacity .25s ease, visibility .25s ease; z-index: 999; }',
     '  body.nav-open .nav-mobile-panel { transform: translateY(0); opacity: 1; visibility: visible; }',
