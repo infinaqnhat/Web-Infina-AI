@@ -51,6 +51,8 @@
 
     /* Cloud-shaped white backdrop behind the nav logo */
     .brand-cloud { position:relative; width:220px; height:70px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .brand-cloud__bg { transition:opacity .3s; }
+    nav.infina-nav:not(.is-transparent) .brand-cloud__bg { opacity:0; }
     .brand-cloud__bg { position:absolute; width:108%; height:115%; left:50%; top:50%; transform:translate(-50%,-50%); overflow:visible; filter:drop-shadow(0 1px 2px rgba(0,40,100,.06)) drop-shadow(0 6px 16px rgba(0,40,100,.1)); }
     .brand-cloud__logo { position:relative; z-index:2; height:23px; width:auto; max-width:78%; }
     nav.infina-nav.logo-lg .brand-cloud { width:250px; height:80px; }
