@@ -726,8 +726,8 @@
       btn.addEventListener('click', startCreate);
     });
     document.getElementById('sticky-cta-btn').addEventListener('click', function(){
-      var heroBox = document.querySelector('.hero .create-box');
-      var heroInput = document.getElementById('url-1');
+      var heroBox = document.querySelector('.hero-slide.is-active .create-box');
+      var heroInput = document.querySelector('.hero-slide.is-active .create-row input');
       if (heroBox) heroBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
       if (heroInput) setTimeout(function(){ heroInput.focus(); }, 420);
     });
@@ -815,6 +815,10 @@
         var navMobileCta = document.querySelector('.infina-nav .nav-mobile-cta');
         if (navCta) { navCta.textContent = ctaText; navCta.setAttribute('href', ctaHref); }
         if (navMobileCta) { navMobileCta.textContent = ctaText; navMobileCta.setAttribute('href', ctaHref); }
+
+        var stickyBtn = document.getElementById('sticky-cta-btn');
+        if (stickyBtn) stickyBtn.textContent = ctaText;
+        if (window.updateStickyTarget) window.updateStickyTarget();
       }
       window.switchHeroSlide = switchSlide;
 
@@ -863,15 +867,28 @@
       els.forEach(function(el){ obs.observe(el); });
     })();
 
-    // Sticky mobile CTA: show once the hero create box scrolls out of view
+    // Sticky mobile CTA: show once the ACTIVE tab's create box scrolls out of view
     (function(){
       var sticky = document.getElementById('sticky-cta');
-      var heroBox = document.querySelector('.hero .create-box');
-      if (!sticky || !heroBox) return;
-      var obs = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){ sticky.classList.toggle('show', !e.isIntersecting); });
-      }, { threshold: 0 });
-      obs.observe(heroBox);
+      if (!sticky) return;
+      var currentObs = null;
+
+      function setupStickyObserver(){
+        if (currentObs) { currentObs.disconnect(); currentObs = null; }
+        var activeBox = document.querySelector('.hero-slide.is-active .create-box');
+        if (!activeBox) return;
+        currentObs = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){ sticky.classList.toggle('show', !e.isIntersecting); });
+        }, { threshold: 0 });
+        currentObs.observe(activeBox);
+        // avoid a flash of the wrong state right after switching tabs
+        var rect = activeBox.getBoundingClientRect();
+        var inView = rect.bottom > 0 && rect.top < window.innerHeight;
+        sticky.classList.toggle('show', !inView);
+      }
+
+      window.updateStickyTarget = setupStickyObserver;
+      setupStickyObserver();
     })();
   </script>
 
