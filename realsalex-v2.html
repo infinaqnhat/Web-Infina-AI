@@ -50,10 +50,12 @@
     .hero-scrim { position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(0,10,35,.25) 0%, rgba(0,10,35,.05) 14%, rgba(0,10,35,.03) 38%, rgba(0,10,35,.24) 100%), linear-gradient(90deg, rgba(0,8,28,.37) 0%, rgba(0,8,28,.24) 55%, rgba(0,8,28,0) 88%); }
 
     /* Cloud-shaped white backdrop behind the nav logo */
-    .brand-cloud { position:relative; display:inline-flex; align-items:center; padding:16px 24px; }
-    .brand-cloud__bg { position:absolute; inset:-14px -22px; filter:drop-shadow(0 4px 12px rgba(0,45,120,.08)); }
-    .brand-cloud__logo { position:relative; z-index:1; height:23px; width:auto; }
+    .brand-cloud { position:relative; width:220px; height:70px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .brand-cloud__bg { position:absolute; width:108%; height:115%; left:50%; top:50%; transform:translate(-50%,-50%); overflow:visible; filter:drop-shadow(0 1px 2px rgba(0,40,100,.06)) drop-shadow(0 6px 16px rgba(0,40,100,.1)); }
+    .brand-cloud__logo { position:relative; z-index:2; height:23px; width:auto; max-width:78%; }
+    nav.infina-nav.logo-lg .brand-cloud { width:250px; height:80px; }
     nav.infina-nav.logo-lg .brand-cloud__logo { height:32px; }
+    @media (max-width:600px){ .brand-cloud{ width:180px; height:58px; } .brand-cloud__logo{ max-width:73%; } }
     @media (max-width:768px){ nav.infina-nav.logo-lg .brand-cloud{ width:180px; height:56px; } nav.infina-nav.logo-lg .brand-cloud__logo{ height:23px; } }
     .hero-copy { max-width:640px; text-align:left; }
     .hero-video-section { padding-top:0; display:none; }
@@ -942,15 +944,8 @@
         var wrap = document.createElement('span');
         wrap.className = 'brand-cloud';
         wrap.innerHTML =
-          '<svg class="brand-cloud__bg" viewBox="0 0 330 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
-            '<g fill="#ffffff">' +
-              '<ellipse cx="165" cy="58" rx="150" ry="36"/>' +
-              '<circle cx="50" cy="34" r="28"/>' +
-              '<circle cx="95" cy="22" r="24"/>' +
-              '<circle cx="150" cy="18" r="26"/>' +
-              '<circle cx="210" cy="24" r="24"/>' +
-              '<circle cx="260" cy="36" r="22"/>' +
-            '</g>' +
+          '<svg class="brand-cloud__bg" viewBox="0 0 380 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+            '<path d="M38 92 C18 90 7 78 10 63 C12 51 21 43 35 41 C35 27 48 18 62 20 C70 8 88 5 101 13 C112 3 132 4 143 14 C158 4 180 6 190 17 C204 5 226 6 238 17 C253 8 273 12 281 25 C298 21 314 30 317 43 C337 43 350 54 350 68 C350 82 338 91 322 92 C309 103 290 104 276 96 C261 105 241 105 227 97 C211 106 190 106 175 97 C159 105 138 104 124 96 C108 104 88 102 77 94 C63 99 48 98 38 92 Z" fill="#fff"/>' +
           '</svg>' +
           '<img class="brand-cloud__logo" src="' + src + '" alt="' + alt + '">';
         logoImg.replaceWith(wrap);
