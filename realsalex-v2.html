@@ -62,14 +62,16 @@
     .create-note { font-size:12.5px; color:rgba(255,255,255,.8); margin:12px 0 0; }
     @media (max-width:600px){ .hero{ min-height:auto; } }
 
-    /* Hero slider (tabs + swipe) */
+    /* Hero slider (tabs + swipe): a real sliding track, one slide-width per tab */
     .hero-slider { position:relative; overflow:hidden; }
-    .hero-slide { display:none; }
-    .hero-slide.is-active { display:flex; }
-    .hero-tabs { position:absolute; top:96px; left:0; right:0; z-index:5; display:flex; justify-content:center; gap:8px; padding:0 20px; }
-    .hero-tab { font-family:var(--font-body); font-size:13.5px; font-weight:700; color:rgba(255,255,255,.75); background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.3); backdrop-filter:blur(6px); padding:9px 18px; border-radius:999px; cursor:pointer; transition:all .2s; }
-    .hero-tab:hover { color:#fff; background:rgba(255,255,255,.2); }
-    .hero-tab.is-active { color:var(--accent); background:#fff; border-color:#fff; }
+    .hero-track { display:flex; width:200%; transition:transform .5s cubic-bezier(.65,0,.35,1); will-change:transform; }
+    .hero-slide { width:50%; flex-shrink:0; display:flex; }
+    .hero-tabs { position:absolute; top:96px; left:0; right:0; z-index:5; display:flex; justify-content:center; padding:0 20px; }
+    .hero-tabs-inner { position:relative; display:inline-flex; gap:2px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.3); backdrop-filter:blur(6px); border-radius:999px; padding:4px; }
+    .hero-tab-indicator { position:absolute; top:4px; bottom:4px; left:4px; width:0; background:#fff; border-radius:999px; transition:transform .35s cubic-bezier(.4,0,.2,1), width .35s cubic-bezier(.4,0,.2,1); z-index:0; }
+    .hero-tab { position:relative; z-index:1; font-family:var(--font-body); font-size:13.5px; font-weight:700; color:rgba(255,255,255,.75); background:transparent; border:0; padding:9px 18px; border-radius:999px; cursor:pointer; transition:color .3s; }
+    .hero-tab:hover { color:#fff; }
+    .hero-tab.is-active { color:var(--accent); }
     @media (max-width:600px){ .hero-tabs{ top:80px; } .hero-tab{ font-size:12px; padding:8px 14px; } }
     @media (min-width:769px){ .hero-tabs{ display:none; } }
 
@@ -261,10 +263,14 @@
   <!-- ===== Hero slider: Buying agent / Listing agent tabs ===== -->
   <header class="hero-slider" id="hero-slider">
     <div class="hero-tabs">
-      <button type="button" class="hero-tab is-active" data-slide="0">For Buying Agent</button>
-      <button type="button" class="hero-tab" data-slide="1">For Listing Agent</button>
+      <div class="hero-tabs-inner">
+        <span class="hero-tab-indicator"></span>
+        <button type="button" class="hero-tab is-active" data-slide="0">For Buying Agent</button>
+        <button type="button" class="hero-tab" data-slide="1">For Listing Agent</button>
+      </div>
     </div>
 
+    <div class="hero-track" id="hero-track">
     <div class="hero-slide hero is-active" data-slide-panel="0">
       <img class="hero-photo" src="uploads/hero-fullbleed-bright2.jpg" alt="A happy couple holding keys in front of their new home" fetchpriority="high">
       <div class="hero-scrim"></div>
@@ -318,6 +324,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
   </header>
 
@@ -797,13 +804,28 @@
     (function(){
       var slider = document.getElementById('hero-slider');
       if (!slider) return;
+      var track = document.getElementById('hero-track');
       var tabs = slider.querySelectorAll('.hero-tab');
       var panels = slider.querySelectorAll('.hero-slide');
+      var indicator = slider.querySelector('.hero-tab-indicator');
+
+      function moveIndicator(activeTab){
+        if (!indicator || !activeTab) return;
+        indicator.style.width = activeTab.offsetWidth + 'px';
+        indicator.style.transform = 'translateX(' + activeTab.offsetLeft + 'px)';
+      }
 
       function switchSlide(index){
         index = Math.max(0, Math.min(panels.length - 1, index));
-        tabs.forEach(function(t){ t.classList.toggle('is-active', Number(t.getAttribute('data-slide')) === index); });
+        var activeTab = null;
+        tabs.forEach(function(t){
+          var isMatch = Number(t.getAttribute('data-slide')) === index;
+          t.classList.toggle('is-active', isMatch);
+          if (isMatch) activeTab = t;
+        });
+        moveIndicator(activeTab);
         panels.forEach(function(p){ p.classList.toggle('is-active', Number(p.getAttribute('data-slide-panel')) === index); });
+        if (track) track.style.transform = 'translateX(-' + (index * 50) + '%)';
         document.querySelectorAll('.infina-nav .nav-center a').forEach(function(a){
           a.classList.toggle('is-active', Number(a.getAttribute('data-slide')) === index);
         });
@@ -821,6 +843,10 @@
         if (window.updateStickyTarget) window.updateStickyTarget();
       }
       window.switchHeroSlide = switchSlide;
+
+      // Position the indicator under the initially active tab, and keep it aligned on resize
+      moveIndicator(slider.querySelector('.hero-tab.is-active'));
+      window.addEventListener('resize', function(){ moveIndicator(slider.querySelector('.hero-tab.is-active')); });
 
       tabs.forEach(function(tab){
         tab.addEventListener('click', function(){ switchSlide(Number(tab.getAttribute('data-slide'))); });
