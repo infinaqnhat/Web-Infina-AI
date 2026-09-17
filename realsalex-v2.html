@@ -48,11 +48,6 @@
     .hero { position:relative; min-height:100vh; min-height:100dvh; display:flex; align-items:center; overflow:hidden; padding:clamp(120px,14vh,160px) 0 64px; scroll-margin-top:80px; }
     .hero-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:70% center; z-index:-2; }
     .hero-scrim { position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(0,10,35,.25) 0%, rgba(0,10,35,.05) 14%, rgba(0,10,35,.03) 38%, rgba(0,10,35,.24) 100%), linear-gradient(90deg, rgba(0,8,28,.37) 0%, rgba(0,8,28,.24) 55%, rgba(0,8,28,0) 88%); }
-
-    /* Soft "cloud" glow behind the nav logo, CSS-only so it stays put on any screen size */
-    .logo-glow { position:fixed; top:0; left:0; width:380px; height:130px; z-index:900; pointer-events:none; opacity:0; transition:opacity .3s; background:radial-gradient(ellipse 65% 70% at 22% 30%, rgba(255,255,255,.92), rgba(255,255,255,.55) 40%, rgba(255,255,255,0) 78%); }
-    nav.infina-nav.is-transparent + .logo-glow { opacity:1; }
-    @media (max-width:768px){ .logo-glow{ width:200px; height:74px; } }
     .hero-copy { max-width:640px; text-align:left; }
     .hero-video-section { padding-top:0; display:none; }
     .hero h1 { font-size:clamp(32px,4.6vw,50px); font-weight:800; letter-spacing:-.03em; line-height:1.12; color:#fff; }
@@ -264,7 +259,6 @@
 <body>
 
   <infina-nav active="salesx" cta-text="Create Home Concierge →" cta-href="#hero-create" transparent-until-scroll transparent-until="#hero-slider" logo-lg></infina-nav>
-  <div class="logo-glow" id="logo-glow"></div>
 
   <!-- ===== Hero slider: Buying agent / Listing agent tabs ===== -->
   <header class="hero-slider" id="hero-slider">
