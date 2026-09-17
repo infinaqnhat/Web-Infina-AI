@@ -61,7 +61,16 @@
     .create-row .btn-primary { min-height:48px; padding:0 24px; font-size:14.5px; }
     .create-note { font-size:12.5px; color:rgba(255,255,255,.8); margin:12px 0 0; }
     @media (max-width:600px){ .hero{ min-height:auto; } }
-    .hero-seller { min-height:auto; padding:clamp(72px,10vh,110px) 0; }
+
+    /* Hero slider (tabs + swipe) */
+    .hero-slider { position:relative; overflow:hidden; }
+    .hero-slide { display:none; }
+    .hero-slide.is-active { display:flex; }
+    .hero-tabs { position:absolute; top:96px; left:0; right:0; z-index:5; display:flex; justify-content:center; gap:8px; padding:0 20px; }
+    .hero-tab { font-family:var(--font-body); font-size:13.5px; font-weight:700; color:rgba(255,255,255,.75); background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.3); backdrop-filter:blur(6px); padding:9px 18px; border-radius:999px; cursor:pointer; transition:all .2s; }
+    .hero-tab:hover { color:#fff; background:rgba(255,255,255,.2); }
+    .hero-tab.is-active { color:var(--accent); background:#fff; border-color:#fff; }
+    @media (max-width:600px){ .hero-tabs{ top:80px; } .hero-tab{ font-size:12px; padding:8px 14px; } }
 
     /* QR result panel (seller hero) */
     .qr-result { margin-top:22px; max-width:600px; }
@@ -237,64 +246,70 @@
 </head>
 <body>
 
-  <infina-nav active="salesx" cta-text="Create Home Concierge →" cta-href="#hero-create" transparent-until-scroll transparent-until="#hero-seller"></infina-nav>
+  <infina-nav active="salesx" cta-text="Create Home Concierge →" cta-href="#hero-create" transparent-until-scroll transparent-until="#hero-slider"></infina-nav>
 
-  <!-- ===== Hero (full-bleed photo) ===== -->
-  <header class="hero" id="hero-buyer">
-    <img class="hero-photo" src="uploads/hero-fullbleed-bright2.jpg" alt="A happy couple holding keys in front of their new home" fetchpriority="high">
-    <div class="hero-scrim"></div>
-    <div class="container">
-      <div class="hero-copy">
-        <span class="eyebrow" style="color:rgba(255,255,255,.75);">For buying agents</span>
-        <h1>Don't send your client a link. <span class="accent">Send a 24/7 Home Concierge.</span></h1>
-        <p class="hero-sub">Turn any property listing into a private AI Concierge that answers your buyer's questions around the clock, with you still at the center of the relationship.</p>
-        <div class="create-box" id="hero-create">
-          <span class="create-label">Paste a property listing</span>
-          <div class="create-row">
-            <input type="url" id="url-1" value="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" placeholder="Paste a Zillow, Redfin, Realtor.com or MLS link..." aria-label="Property listing URL">
-            <button type="button" class="btn-primary" data-create="1">Create Home Concierge →</button>
+  <!-- ===== Hero slider: Buying agent / Listing agent tabs ===== -->
+  <header class="hero-slider" id="hero-slider">
+    <div class="hero-tabs">
+      <button type="button" class="hero-tab is-active" data-slide="0">For Buying Agent</button>
+      <button type="button" class="hero-tab" data-slide="1">For Listing Agent</button>
+    </div>
+
+    <div class="hero-slide hero is-active" data-slide-panel="0">
+      <img class="hero-photo" src="uploads/hero-fullbleed-bright2.jpg" alt="A happy couple holding keys in front of their new home" fetchpriority="high">
+      <div class="hero-scrim"></div>
+      <div class="container">
+        <div class="hero-copy">
+          <span class="eyebrow" style="color:rgba(255,255,255,.75);">For buying agents</span>
+          <h1>Don't send your client a link. <span class="accent">Send a 24/7 Home Concierge.</span></h1>
+          <p class="hero-sub">Turn any property listing into a private AI Concierge that answers your buyer's questions around the clock, with you still at the center of the relationship.</p>
+          <div class="create-box" id="hero-create">
+            <span class="create-label">Paste a property listing</span>
+            <div class="create-row">
+              <input type="url" id="url-1" value="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" placeholder="Paste a Zillow, Redfin, Realtor.com or MLS link..." aria-label="Property listing URL">
+              <button type="button" class="btn-primary" data-create="1">Create Home Concierge →</button>
+            </div>
+            <p class="create-note">No CRM connection. No setup. Create your first advisor in under a minute.</p>
           </div>
-          <p class="create-note">No CRM connection. No setup. Create your first advisor in under a minute.</p>
         </div>
       </div>
     </div>
-  </header>
 
-  <!-- ===== Hero 2: For listing agents (QR code) ===== -->
-  <section class="hero hero-seller" id="hero-seller">
-    <img class="hero-photo" src="uploads/hero-seller-signqr.jpg" alt="A For Sale yard sign with a QR code sticker in front of a home" fetchpriority="low" loading="lazy">
-    <div class="hero-scrim"></div>
-    <div class="container">
-      <div class="hero-copy">
-        <span class="eyebrow" style="color:rgba(255,255,255,.75);">For listing agents</span>
-        <h1>Don't just plant a sign. <span class="accent">Send a 24/7 Home Concierge with it.</span></h1>
-        <p class="hero-sub">Add a QR code to your yard sign so anyone driving by can ask your Concierge about the listing instantly, day or night, before they ever call you.</p>
-        <div class="create-box">
-          <span class="create-label">Paste a property listing</span>
-          <div class="create-row">
-            <input type="url" id="url-qr" value="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" placeholder="Paste a Zillow, Redfin, Realtor.com or MLS link..." aria-label="Property listing URL">
-            <button type="button" class="btn-primary" id="qr-create-btn">Create QR Code →</button>
+    <div class="hero-slide hero hero-seller" data-slide-panel="1">
+      <img class="hero-photo" src="uploads/hero-seller-signqr.jpg" alt="A For Sale yard sign with a QR code sticker in front of a home" loading="lazy">
+      <div class="hero-scrim"></div>
+      <div class="container">
+        <div class="hero-copy">
+          <span class="eyebrow" style="color:rgba(255,255,255,.75);">For listing agents</span>
+          <h1>Don't just plant a sign. <span class="accent">Send a 24/7 Home Concierge with it.</span></h1>
+          <p class="hero-sub">Add a QR code to your yard sign so anyone driving by can ask your Concierge about the listing instantly, day or night, before they ever call you.</p>
+          <div class="create-box">
+            <span class="create-label">Paste a property listing</span>
+            <div class="create-row">
+              <input type="url" id="url-qr" value="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" placeholder="Paste a Zillow, Redfin, Realtor.com or MLS link..." aria-label="Property listing URL">
+              <button type="button" class="btn-primary" id="qr-create-btn">Create QR Code →</button>
+            </div>
+            <p class="create-note">No printer needed. Works with any phone camera.</p>
           </div>
-          <p class="create-note">No printer needed. Works with any phone camera.</p>
-        </div>
 
-        <div class="qr-result" id="qr-result" hidden>
-          <div class="qr-loading" id="qr-loading">
-            <h4>Generating your QR code</h4>
-            <div class="qr-steps" id="qr-steps"></div>
-          </div>
-          <div class="qr-built" id="qr-built" hidden>
-            <img src="uploads/qr-sample.png" alt="Sample QR code for the listing">
-            <div class="qr-built-text">
-              <b>Your QR code is ready.</b>
-              <p>Print it on your yard sign or open house flyer. Visitors scan it to ask your Concierge about 124 Oak Street, day or night.</p>
-              <button type="button" class="btn-secondary" id="qr-download-btn">Download QR Code</button>
+          <div class="qr-result" id="qr-result" hidden>
+            <div class="qr-loading" id="qr-loading">
+              <h4>Generating your QR code</h4>
+              <div class="qr-steps" id="qr-steps"></div>
+            </div>
+            <div class="qr-built" id="qr-built" hidden>
+              <img src="uploads/qr-sample.png" alt="Sample QR code for the listing">
+              <div class="qr-built-text">
+                <b>Your QR code is ready.</b>
+                <p>Print it on your yard sign or open house flyer. Visitors scan it to ask your Concierge about 124 Oak Street, day or night.</p>
+                <button type="button" class="btn-secondary" id="qr-download-btn">Download QR Code</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </header>
 
   <!-- ===== Hero video (own section) ===== -->
   <section class="section hero-video-section">
@@ -768,6 +783,37 @@
     renderThread();
     showStage('idle');
 
+    // ===== Hero slider: tabs + swipe =====
+    (function(){
+      var slider = document.getElementById('hero-slider');
+      if (!slider) return;
+      var tabs = slider.querySelectorAll('.hero-tab');
+      var panels = slider.querySelectorAll('.hero-slide');
+
+      function switchSlide(index){
+        index = Math.max(0, Math.min(panels.length - 1, index));
+        tabs.forEach(function(t){ t.classList.toggle('is-active', Number(t.getAttribute('data-slide')) === index); });
+        panels.forEach(function(p){ p.classList.toggle('is-active', Number(p.getAttribute('data-slide-panel')) === index); });
+      }
+      window.switchHeroSlide = switchSlide;
+
+      tabs.forEach(function(tab){
+        tab.addEventListener('click', function(){ switchSlide(Number(tab.getAttribute('data-slide'))); });
+      });
+
+      var touchStartX = null;
+      slider.addEventListener('touchstart', function(e){ touchStartX = e.touches[0].clientX; }, { passive:true });
+      slider.addEventListener('touchend', function(e){
+        if (touchStartX === null) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        touchStartX = null;
+        if (Math.abs(dx) < 50) return;
+        var current = 0;
+        tabs.forEach(function(t){ if (t.classList.contains('is-active')) current = Number(t.getAttribute('data-slide')); });
+        switchSlide(dx < 0 ? current + 1 : current - 1);
+      }, { passive:true });
+    })();
+
     // Hero TVC, click to load & play (self-hosted, keeps LCP fast)
     (function(){
       var box = document.querySelector('.hero-video');
@@ -811,11 +857,19 @@
   <script src="nav.js"></script>
   <script>
     // Page-specific nav links: replace the generic AI Inside/Work/Personal links
-    // with section jumps to the two hero flows on this page.
+    // with tab switches for the hero slider on this page.
     (function(){
+      function goToSlide(index){
+        var slider = document.getElementById('hero-slider');
+        if (slider) slider.scrollIntoView({ behavior:'smooth', block:'start' });
+        if (window.switchHeroSlide) window.switchHeroSlide(index);
+      }
       var navCenter = document.querySelector('.infina-nav .nav-center');
       if (navCenter) {
-        navCenter.innerHTML = '<a href="#hero-buyer">For Buying Agent</a><a href="#hero-seller">For Listing Agent</a>';
+        navCenter.innerHTML = '<a href="#hero-slider" data-slide="0">For Buying Agent</a><a href="#hero-slider" data-slide="1">For Listing Agent</a>';
+        navCenter.querySelectorAll('a').forEach(function(a){
+          a.addEventListener('click', function(e){ e.preventDefault(); goToSlide(Number(a.getAttribute('data-slide'))); });
+        });
       }
       var panel = document.querySelector('.infina-nav .nav-mobile-panel');
       if (panel) {
@@ -827,10 +881,10 @@
           if (toggle) toggle.setAttribute('aria-expanded', 'false');
           panel.setAttribute('aria-hidden', 'true');
         };
-        var a1 = document.createElement('a'); a1.href = '#hero-buyer'; a1.textContent = 'For Buying Agent';
-        var a2 = document.createElement('a'); a2.href = '#hero-seller'; a2.textContent = 'For Listing Agent';
-        a1.addEventListener('click', closeMobileNav);
-        a2.addEventListener('click', closeMobileNav);
+        var a1 = document.createElement('a'); a1.href = '#hero-slider'; a1.textContent = 'For Buying Agent';
+        var a2 = document.createElement('a'); a2.href = '#hero-slider'; a2.textContent = 'For Listing Agent';
+        a1.addEventListener('click', function(e){ e.preventDefault(); closeMobileNav(); goToSlide(0); });
+        a2.addEventListener('click', function(e){ e.preventDefault(); closeMobileNav(); goToSlide(1); });
         panel.appendChild(a1);
         panel.appendChild(a2);
         if (cta) panel.appendChild(cta);
