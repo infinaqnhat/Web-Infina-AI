@@ -71,6 +71,16 @@
     .hero-tab:hover { color:#fff; background:rgba(255,255,255,.2); }
     .hero-tab.is-active { color:var(--accent); background:#fff; border-color:#fff; }
     @media (max-width:600px){ .hero-tabs{ top:80px; } .hero-tab{ font-size:12px; padding:8px 14px; } }
+    @media (min-width:769px){ .hero-tabs{ display:none; } }
+
+    /* Nav-center styled as the single tab control on desktop */
+    .infina-nav .nav-center { gap:8px; }
+    .infina-nav .nav-center a { font-size:13.5px; font-weight:700; padding:9px 18px; border-radius:999px; border:1px solid rgba(255,255,255,.3); background:rgba(255,255,255,.12); backdrop-filter:blur(6px); transition:all .2s; }
+    .infina-nav .nav-center a::after { display:none !important; }
+    .infina-nav.is-transparent .nav-center a:hover { color:#fff; background:rgba(255,255,255,.2); }
+    .infina-nav.is-transparent .nav-center a.is-active { color:var(--accent); background:#fff; border-color:#fff; }
+    .infina-nav:not(.is-transparent) .nav-center a { color:var(--fg-secondary); background:var(--surface); border-color:var(--border); }
+    .infina-nav:not(.is-transparent) .nav-center a.is-active { color:#fff; background:var(--accent); border-color:var(--accent); }
 
     /* QR result panel (seller hero) */
     .qr-result { margin-top:22px; max-width:600px; }
@@ -794,6 +804,9 @@
         index = Math.max(0, Math.min(panels.length - 1, index));
         tabs.forEach(function(t){ t.classList.toggle('is-active', Number(t.getAttribute('data-slide')) === index); });
         panels.forEach(function(p){ p.classList.toggle('is-active', Number(p.getAttribute('data-slide-panel')) === index); });
+        document.querySelectorAll('.infina-nav .nav-center a').forEach(function(a){
+          a.classList.toggle('is-active', Number(a.getAttribute('data-slide')) === index);
+        });
       }
       window.switchHeroSlide = switchSlide;
 
@@ -866,7 +879,7 @@
       }
       var navCenter = document.querySelector('.infina-nav .nav-center');
       if (navCenter) {
-        navCenter.innerHTML = '<a href="#hero-slider" data-slide="0">For Buying Agent</a><a href="#hero-slider" data-slide="1">For Listing Agent</a>';
+        navCenter.innerHTML = '<a href="#hero-slider" data-slide="0" class="is-active">For Buying Agent</a><a href="#hero-slider" data-slide="1">For Listing Agent</a>';
         navCenter.querySelectorAll('a').forEach(function(a){
           a.addEventListener('click', function(e){ e.preventDefault(); goToSlide(Number(a.getAttribute('data-slide'))); });
         });
