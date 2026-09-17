@@ -5,7 +5,6 @@
     'infina-nav { display: contents; }',
     'nav.infina-nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-light, rgba(0,0,0,.08)); z-index: 1000; transition: background .3s, border-color .3s, backdrop-filter .3s; }',
     'nav.infina-nav.is-transparent { background: transparent; backdrop-filter: none; border-bottom-color: transparent; }',
-    'nav.infina-nav.is-transparent .logo-badge { background: rgba(255,255,255,.95); border-radius: 8px; padding: 6px 10px; display: inline-flex; align-items: center; }',
     'nav.infina-nav.is-transparent .nav-center a { color: rgba(255,255,255,.88); }',
     'nav.infina-nav.is-transparent .nav-center a.active { color: #fff; }',
     'nav.infina-nav.is-transparent .nav-toggle { color: #fff; }',
