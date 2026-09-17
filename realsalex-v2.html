@@ -45,7 +45,7 @@
     .reveal.visible { opacity:1; transform:none; }
 
     /* ===== Hero (full-bleed photo) ===== */
-    .hero { position:relative; min-height:100vh; min-height:100dvh; display:flex; align-items:center; overflow:hidden; padding:clamp(120px,14vh,160px) 0 64px; }
+    .hero { position:relative; min-height:100vh; min-height:100dvh; display:flex; align-items:center; overflow:hidden; padding:clamp(120px,14vh,160px) 0 64px; scroll-margin-top:80px; }
     .hero-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:70% center; z-index:-2; }
     .hero-scrim { position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(0,10,35,.25) 0%, rgba(0,10,35,.05) 14%, rgba(0,10,35,.03) 38%, rgba(0,10,35,.24) 100%), linear-gradient(90deg, rgba(0,8,28,.37) 0%, rgba(0,8,28,.24) 55%, rgba(0,8,28,0) 88%); }
     .hero-copy { max-width:640px; text-align:left; }
@@ -237,14 +237,15 @@
 </head>
 <body>
 
-  <infina-nav active="salesx" cta-text="Create Home Concierge →" cta-href="#hero-create" transparent-until-scroll></infina-nav>
+  <infina-nav active="salesx" cta-text="Create Home Concierge →" cta-href="#hero-create" transparent-until-scroll transparent-until="#hero-seller"></infina-nav>
 
   <!-- ===== Hero (full-bleed photo) ===== -->
-  <header class="hero">
+  <header class="hero" id="hero-buyer">
     <img class="hero-photo" src="uploads/hero-fullbleed-bright2.jpg" alt="A happy couple holding keys in front of their new home" fetchpriority="high">
     <div class="hero-scrim"></div>
     <div class="container">
       <div class="hero-copy">
+        <span class="eyebrow" style="color:rgba(255,255,255,.75);">For buying agents</span>
         <h1>Don't send your client a link. <span class="accent">Send a 24/7 Home Concierge.</span></h1>
         <p class="hero-sub">Turn any property listing into a private AI Concierge that answers your buyer's questions around the clock, with you still at the center of the relationship.</p>
         <div class="create-box" id="hero-create">
@@ -260,7 +261,7 @@
   </header>
 
   <!-- ===== Hero 2: For listing agents (QR code) ===== -->
-  <section class="hero hero-seller">
+  <section class="hero hero-seller" id="hero-seller">
     <img class="hero-photo" src="uploads/hero-seller-signqr.jpg" alt="A For Sale yard sign with a QR code sticker in front of a home" fetchpriority="low" loading="lazy">
     <div class="hero-scrim"></div>
     <div class="container">
@@ -808,6 +809,34 @@
   </script>
 
   <script src="nav.js"></script>
+  <script>
+    // Page-specific nav links: replace the generic AI Inside/Work/Personal links
+    // with section jumps to the two hero flows on this page.
+    (function(){
+      var navCenter = document.querySelector('.infina-nav .nav-center');
+      if (navCenter) {
+        navCenter.innerHTML = '<a href="#hero-buyer">For Buying Agent</a><a href="#hero-seller">For Listing Agent</a>';
+      }
+      var panel = document.querySelector('.infina-nav .nav-mobile-panel');
+      if (panel) {
+        var cta = panel.querySelector('.nav-mobile-cta');
+        panel.innerHTML = '';
+        var closeMobileNav = function(){
+          document.body.classList.remove('nav-open');
+          var toggle = document.querySelector('.infina-nav .nav-toggle');
+          if (toggle) toggle.setAttribute('aria-expanded', 'false');
+          panel.setAttribute('aria-hidden', 'true');
+        };
+        var a1 = document.createElement('a'); a1.href = '#hero-buyer'; a1.textContent = 'For Buying Agent';
+        var a2 = document.createElement('a'); a2.href = '#hero-seller'; a2.textContent = 'For Listing Agent';
+        a1.addEventListener('click', closeMobileNav);
+        a2.addEventListener('click', closeMobileNav);
+        panel.appendChild(a1);
+        panel.appendChild(a2);
+        if (cta) panel.appendChild(cta);
+      }
+    })();
+  </script>
   <script src="footer.js"></script>
 </body>
 </html>

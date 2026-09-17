@@ -182,8 +182,13 @@
     });
 
     if (transparentUntilScroll) {
+      var untilSelector = this.getAttribute('transparent-until');
       var updateNavSolidity = function () {
         var threshold = window.innerHeight * 0.7;
+        if (untilSelector) {
+          var untilEl = document.querySelector(untilSelector);
+          if (untilEl) threshold = untilEl.getBoundingClientRect().bottom + window.scrollY - 80;
+        }
         nav.classList.toggle('is-transparent', window.scrollY < threshold);
       };
       updateNavSolidity();
