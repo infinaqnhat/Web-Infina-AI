@@ -48,6 +48,13 @@
     .hero { position:relative; min-height:100vh; min-height:100dvh; display:flex; align-items:center; overflow:hidden; padding:clamp(120px,14vh,160px) 0 64px; scroll-margin-top:80px; }
     .hero-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:70% center; z-index:-2; }
     .hero-scrim { position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(0,10,35,.25) 0%, rgba(0,10,35,.05) 14%, rgba(0,10,35,.03) 38%, rgba(0,10,35,.24) 100%), linear-gradient(90deg, rgba(0,8,28,.37) 0%, rgba(0,8,28,.24) 55%, rgba(0,8,28,0) 88%); }
+
+    /* Cloud-shaped white backdrop behind the nav logo */
+    .brand-cloud { position:relative; display:inline-flex; align-items:center; padding:16px 24px; }
+    .brand-cloud__bg { position:absolute; inset:-14px -22px; filter:drop-shadow(0 4px 12px rgba(0,45,120,.08)); }
+    .brand-cloud__logo { position:relative; z-index:1; height:23px; width:auto; }
+    nav.infina-nav.logo-lg .brand-cloud__logo { height:32px; }
+    @media (max-width:768px){ nav.infina-nav.logo-lg .brand-cloud{ width:180px; height:56px; } nav.infina-nav.logo-lg .brand-cloud__logo{ height:23px; } }
     .hero-copy { max-width:640px; text-align:left; }
     .hero-video-section { padding-top:0; display:none; }
     .hero h1 { font-size:clamp(32px,4.6vw,50px); font-weight:800; letter-spacing:-.03em; line-height:1.12; color:#fff; }
@@ -926,6 +933,29 @@
         if (slider) slider.scrollIntoView({ behavior:'smooth', block:'start' });
         if (window.switchHeroSlide) window.switchHeroSlide(index);
       }
+
+      // Wrap the logo in a cloud-shaped white backdrop so it stays legible over the hero photo
+      var logoImg = document.querySelector('.infina-nav .logo-img');
+      if (logoImg) {
+        var src = logoImg.getAttribute('src');
+        var alt = logoImg.getAttribute('alt');
+        var wrap = document.createElement('span');
+        wrap.className = 'brand-cloud';
+        wrap.innerHTML =
+          '<svg class="brand-cloud__bg" viewBox="0 0 330 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+            '<g fill="#ffffff">' +
+              '<ellipse cx="165" cy="58" rx="150" ry="36"/>' +
+              '<circle cx="50" cy="34" r="28"/>' +
+              '<circle cx="95" cy="22" r="24"/>' +
+              '<circle cx="150" cy="18" r="26"/>' +
+              '<circle cx="210" cy="24" r="24"/>' +
+              '<circle cx="260" cy="36" r="22"/>' +
+            '</g>' +
+          '</svg>' +
+          '<img class="brand-cloud__logo" src="' + src + '" alt="' + alt + '">';
+        logoImg.replaceWith(wrap);
+      }
+
       var navCenter = document.querySelector('.infina-nav .nav-center');
       if (navCenter) {
         navCenter.innerHTML = '<a href="#hero-slider" data-slide="0" class="is-active">For Buying Agent</a><a href="#hero-slider" data-slide="1">For Listing Agent</a>';
