@@ -232,7 +232,7 @@
     /* ===== Buyer-intent insights (listing agent only) ===== */
     .intent-staircase { position:relative; max-width:1080px; margin:56px auto 0; padding-bottom:14px; }
     .intent-highest { position:absolute; top:-38px; right:6px; display:flex; align-items:center; gap:6px; font-size:13px; font-style:italic; color:var(--blue); }
-    .intent-highest svg { transform:scaleX(-1); }
+    .intent-highest-mobile { display:none; }
     .intent-funnel { display:flex; flex-direction:row; align-items:flex-end; gap:0; }
     .intent-step { position:relative; min-width:0; display:flex; flex-direction:column; border-radius:16px 16px 0 0; padding:22px 20px 34px; flex-basis:0; }
     .intent-step.lvl-1 { flex-grow:1.6; height:190px; }
@@ -249,7 +249,8 @@
     @media (max-width:900px){
       .intent-staircase { margin-top:16px; padding-bottom:0; }
       .intent-highest { position:static; justify-content:flex-end; margin-top:14px; }
-      .intent-highest svg { transform:scaleX(-1) rotate(-40deg); }
+      .intent-highest-desktop { display:none; }
+      .intent-highest-mobile { display:block; }
       .intent-funnel { flex-direction:column; max-width:680px; align-items:stretch; padding-left:34px; position:relative; }
       .intent-step { flex:none; height:auto !important; border-radius:16px; padding:22px 60px 22px 24px; margin-bottom:26px; }
       .intent-step:last-child { margin-bottom:0; }
@@ -662,7 +663,11 @@
           </div>
         </div>
         <div class="intent-floor"></div>
-        <span class="intent-highest"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Highest intent</span>
+        <span class="intent-highest">
+          <svg class="intent-highest-desktop" width="34" height="22" viewBox="0 0 44 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M42 2C28 3 16 10 8 22" stroke="#0A2A66" stroke-width="1.8" stroke-linecap="round"/><path d="M8 22L9.5 15.5" stroke="#0A2A66" stroke-width="1.8" stroke-linecap="round"/><path d="M8 22L14 19.5" stroke="#0A2A66" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <svg class="intent-highest-mobile" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:scaleX(-1) rotate(-40deg);"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          Highest intent
+        </span>
         <div class="intent-outro"><span>From curiosity to closing</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
       </div>
     </div>
