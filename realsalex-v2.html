@@ -230,13 +230,21 @@
     .trust-photo img { width:100%; height:100%; object-fit:cover; object-position:70% center; }
 
     /* ===== Buyer-intent insights (listing agent only) ===== */
-    .intent-funnel { max-width:680px; margin:16px auto 0; display:flex; flex-direction:column; }
-    .intent-step { border-radius:16px; padding:22px 28px; }
-    .intent-arrow { display:flex; justify-content:center; padding:6px 0; color:var(--border); }
+    .intent-funnel { max-width:1080px; margin:16px auto 0; display:flex; flex-direction:row; align-items:stretch; gap:0; }
+    .intent-step { flex:1; min-width:0; display:flex; flex-direction:column; border-radius:16px; padding:22px 22px; }
+    .intent-arrow { display:flex; align-items:center; justify-content:center; flex:0 0 auto; padding:0 6px; color:var(--border); }
+    .intent-arrow svg { transform:rotate(-90deg); }
     .intent-stage { display:block; font-size:12px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; margin-bottom:10px; opacity:.75; }
-    .intent-example { font-size:17px; font-style:italic; line-height:1.5; }
+    .intent-example { font-size:15.5px; font-style:italic; line-height:1.5; }
     .intent-quotes { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
-    .intent-quote-tag { font-size:13px; font-weight:600; font-style:italic; padding:6px 12px; border-radius:999px; background:rgba(255,255,255,.5); }
+    .intent-quote-tag { font-size:12.5px; font-weight:600; font-style:italic; padding:6px 12px; border-radius:999px; background:rgba(255,255,255,.5); }
+    @media (max-width:900px){
+      .intent-funnel { flex-direction:column; max-width:680px; }
+      .intent-step { flex:none; padding:22px 28px; }
+      .intent-arrow { padding:6px 0; }
+      .intent-arrow svg { transform:none; }
+      .intent-example { font-size:17px; }
+    }
     .intent-step.lvl-1 { background:var(--surface); color:var(--fg); }
     .intent-step.lvl-1 .intent-quote-tag { background:#fff; color:var(--fg-secondary); }
     .intent-step.lvl-2 { background:rgba(24,99,220,.07); color:var(--fg); }
