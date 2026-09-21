@@ -52,6 +52,8 @@
     .hero-copy { max-width:640px; text-align:left; }
     .hero-video-section { padding-top:0; display:none; }
     .hero h1 { font-size:clamp(32px,4.6vw,50px); font-weight:800; letter-spacing:-.03em; line-height:1.12; color:#fff; }
+    .mobile-break { display:none; }
+    @media (max-width:600px){ .mobile-break { display:inline; } }
     .hero h1 .accent { background:linear-gradient(135deg,#bcd4ff,#fff 55%,#bcd4ff); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
     .hero-sub { font-size:17px; color:rgba(255,255,255,.92); line-height:1.55; margin:18px 0 0; max-width:56ch; text-shadow:0 1px 8px rgba(0,0,0,.25); }
     .create-box { margin-top:30px; max-width:600px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); backdrop-filter:blur(6px); border-radius:20px; padding:22px; }
@@ -372,7 +374,7 @@
       <div class="hero-scrim"></div>
       <div class="container">
         <div class="hero-copy">
-          <h1>Don't just send a listing. Send a <span class="accent">Concierge.</span></h1>
+          <h1>Don't just send a listing.<br class="mobile-break"> Send a <span class="accent">Concierge.</span></h1>
           <p class="hero-sub">Give every buyer a 24/7 Personal Home Concierge that learns what matters to them, helps them evaluate every home, and takes actions for them, with you still at the center of the relationship.</p>
           <div class="create-box" id="hero-create">
             <span class="create-label">Paste a property listing</span>
@@ -391,7 +393,7 @@
       <div class="hero-scrim"></div>
       <div class="container">
         <div class="hero-copy">
-          <h1>Turn every brochure and yard sign into a <span class="accent">24/7 Property Expert.</span></h1>
+          <h1>Turn every brochure and yard sign into a <span class="accent">24/7<br class="mobile-break"> Property Expert.</span></h1>
           <p class="hero-sub">Scan the QR Code to get an AI expert that knows everything about the property and help buyers instantly from details and disclosures to pricing and next steps at any time 24/7.</p>
           <div class="create-box" id="hero-create-qr">
             <span class="create-label">Paste link to your listing</span>
