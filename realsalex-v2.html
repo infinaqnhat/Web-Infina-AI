@@ -245,15 +245,25 @@
     .intent-icon { position:absolute; left:20px; bottom:0; transform:translateY(50%); width:34px; height:34px; border-radius:50%; background:#fff; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--blue); z-index:2; }
     .intent-step.lvl-4 .intent-icon { border-color:rgba(255,255,255,.4); color:#fff; background:var(--accent); }
     .intent-floor { height:10px; border-radius:999px; background:var(--border-light); box-shadow:inset 0 2px 5px rgba(0,0,0,.12); margin-top:0; }
+    .intent-outro { display:none; }
     @media (max-width:900px){
       .intent-staircase { margin-top:16px; padding-bottom:0; }
-      .intent-highest { display:none; }
-      .intent-funnel { flex-direction:column; max-width:680px; align-items:stretch; }
-      .intent-step { flex:none; height:auto !important; border-radius:16px; padding:22px 28px 22px 60px; }
-      .intent-icon { left:16px; top:22px; bottom:auto; transform:none; }
+      .intent-highest { position:static; justify-content:flex-end; margin-top:14px; }
+      .intent-highest svg { transform:scaleX(-1) rotate(-40deg); }
+      .intent-funnel { flex-direction:column; max-width:680px; align-items:stretch; padding-left:34px; position:relative; }
+      .intent-step { flex:none; height:auto !important; border-radius:16px; padding:22px 60px 22px 24px; margin-bottom:26px; }
+      .intent-step:last-child { margin-bottom:0; }
+      .intent-step::before { content:''; position:absolute; left:-30px; top:26px; width:14px; height:14px; border-radius:50%; box-shadow:0 0 0 4px #eef2fb; z-index:2; }
+      .intent-step:not(:last-child)::after { content:''; position:absolute; left:-24px; top:26px; width:2px; height:calc(100% + 26px); background:var(--border); z-index:1; }
+      .intent-step.lvl-1::before { background:#bcd4ff; }
+      .intent-step.lvl-2::before { background:#6f9dff; }
+      .intent-step.lvl-3::before { background:var(--blue); }
+      .intent-step.lvl-4::before { background:var(--accent); box-shadow:0 0 0 4px #eef2fb, 0 0 0 6px rgba(0,31,92,.18); }
+      .intent-icon { left:auto; right:20px; top:20px; bottom:auto; transform:none; }
       .intent-example { font-size:17px; }
       .intent-count { font-size:26px; }
       .intent-floor { display:none; }
+      .intent-outro { display:flex; flex-direction:column; align-items:center; gap:6px; margin-top:22px; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
     }
     .intent-step.lvl-1 { background:var(--surface); color:var(--fg); }
     .intent-step.lvl-2 { background:rgba(24,99,220,.07); color:var(--fg); }
@@ -625,7 +635,6 @@
         <p>Not all questions mean the same thing. Property Expert helps you see which ones do.</p>
       </div>
       <div class="intent-staircase">
-        <span class="intent-highest"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Highest intent</span>
         <div class="intent-funnel reveal">
           <div class="intent-step lvl-1">
             <span class="intent-count">42 buyers</span>
@@ -653,6 +662,8 @@
           </div>
         </div>
         <div class="intent-floor"></div>
+        <span class="intent-highest"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Highest intent</span>
+        <div class="intent-outro"><span>From curiosity to closing</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
       </div>
     </div>
   </section>
