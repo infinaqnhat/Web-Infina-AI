@@ -429,22 +429,38 @@
             <div class="who"><b id="demo-advisor-name">Alex Rivera's Home Concierge</b><span id="demo-brokerage">Meridian Realty · Austin, TX</span></div>
             <span class="demo-live-tag">Live · answers 24/7</span>
           </div>
-          <div class="demo-gallery">
-            <div class="demo-gallery-main"><img src="uploads/property-123-main.jpg" alt="123 Main Street, Austin TX exterior photo" loading="lazy"></div>
-            <div class="demo-gallery-side">
-              <div class="demo-gallery-thumb"><img src="uploads/property-123-main-living.jpg" alt="123 Main Street living room" loading="lazy"></div>
-              <div class="demo-gallery-thumb"><img src="uploads/property-123-main-kitchen.jpg" alt="123 Main Street kitchen" loading="lazy"></div>
-              <div class="demo-gallery-thumb"><img src="uploads/property-123-main-bedroom.jpg" alt="123 Main Street primary bedroom" loading="lazy"></div>
-              <div class="demo-gallery-thumb demo-gallery-more"><img src="uploads/property-123-main-backyard.jpg" alt="123 Main Street backyard patio" loading="lazy"><span class="demo-gallery-more-tag">See all 5 photos</span></div>
+          <div class="tab-copy" data-tab="buying">
+            <div class="demo-gallery">
+              <div class="demo-gallery-main"><img src="uploads/property-123-main.jpg" alt="123 Main Street, Austin TX exterior photo" loading="lazy"></div>
+              <div class="demo-gallery-side">
+                <div class="demo-gallery-thumb"><img src="uploads/property-123-main-living.jpg" alt="123 Main Street living room" loading="lazy"></div>
+                <div class="demo-gallery-thumb"><img src="uploads/property-123-main-kitchen.jpg" alt="123 Main Street kitchen" loading="lazy"></div>
+                <div class="demo-gallery-thumb"><img src="uploads/property-123-main-bedroom.jpg" alt="123 Main Street primary bedroom" loading="lazy"></div>
+                <div class="demo-gallery-thumb demo-gallery-more"><img src="uploads/property-123-main-backyard.jpg" alt="123 Main Street backyard patio" loading="lazy"><span class="demo-gallery-more-tag">See all 5 photos</span></div>
+              </div>
+            </div>
+            <div class="demo-specs">
+              <b>123 Main Street, Austin TX</b><span>$845,000</span><span>4 bd · 3 ba</span><span>2,410 sq ft</span><span>46 days on market</span>
             </div>
           </div>
-          <div class="demo-specs">
-            <b>123 Main Street, Austin TX</b><span>$845,000</span><span>4 bd · 3 ba</span><span>2,410 sq ft</span><span>46 days on market</span>
+          <div class="tab-copy" data-tab="listing" hidden>
+            <div class="demo-gallery">
+              <div class="demo-gallery-main"><img src="uploads/property-148-maple-main.jpg" alt="148 Maple Ave, Mapleton exterior photo" loading="lazy"></div>
+              <div class="demo-gallery-side">
+                <div class="demo-gallery-thumb"><img src="uploads/property-148-maple-living.jpg" alt="148 Maple Ave living room" loading="lazy"></div>
+                <div class="demo-gallery-thumb"><img src="uploads/property-148-maple-kitchen.jpg" alt="148 Maple Ave kitchen" loading="lazy"></div>
+                <div class="demo-gallery-thumb"><img src="uploads/property-148-maple-bedroom.jpg" alt="148 Maple Ave primary bedroom" loading="lazy"></div>
+                <div class="demo-gallery-thumb demo-gallery-more"><img src="uploads/property-148-maple-backyard.jpg" alt="148 Maple Ave backyard patio" loading="lazy"><span class="demo-gallery-more-tag">See all 5 photos</span></div>
+              </div>
+            </div>
+            <div class="demo-specs">
+              <b>148 Maple Ave, Mapleton</b><span>$748,000</span><span>4 bd · 3 ba</span><span>2,410 sq ft</span><span>Just listed</span>
+            </div>
           </div>
 
           <!-- Idle: chat demo -->
           <div class="demo-body" id="demo-idle">
-            <h3>Ask anything about 123 Main Street</h3>
+            <h3 id="demo-ask-title">Ask anything about 123 Main Street</h3>
             <div class="demo-thread" id="demo-thread"><!-- filled by JS --></div>
             <div>
               <div class="demo-chips" id="demo-chips"><!-- filled by JS --></div>
@@ -969,10 +985,12 @@
         var demoBrokerage = document.getElementById('demo-brokerage');
         var demoBuiltTitle = document.getElementById('demo-built-title');
         var demoShareLink = document.getElementById('demo-share-link');
-        if (demoName) demoName.textContent = isListing ? "123 Main Street's Property Expert" : "Alex Rivera's Home Concierge";
+        var demoAskTitle = document.getElementById('demo-ask-title');
+        if (demoName) demoName.textContent = isListing ? "148 Maple Ave's Property Expert" : "Alex Rivera's Home Concierge";
         if (demoBrokerage) demoBrokerage.textContent = isListing ? 'Listed by Sarah Jenkins, Broker' : 'Meridian Realty · Austin, TX';
-        if (demoBuiltTitle) demoBuiltTitle.textContent = isListing ? "123 Main Street's Property Expert is live for this listing." : "Alex Rivera's Home Concierge is live for this listing.";
-        if (demoShareLink) demoShareLink.textContent = isListing ? 'propertyexpert.realsalex.co/123-main-st' : 'advisor.realsalex.co/alex/123-main-st';
+        if (demoBuiltTitle) demoBuiltTitle.textContent = isListing ? "148 Maple Ave's Property Expert is live for this listing." : "Alex Rivera's Home Concierge is live for this listing.";
+        if (demoShareLink) demoShareLink.textContent = isListing ? 'propertyexpert.realsalex.co/148-maple-ave' : 'advisor.realsalex.co/alex/123-main-st';
+        if (demoAskTitle) demoAskTitle.textContent = isListing ? 'Ask anything about 148 Maple Ave' : 'Ask anything about 123 Main Street';
         var demoFooter = document.getElementById('demo-footer');
         if (demoFooter) demoFooter.textContent = isListing ? 'Sarah sees every question and can join the conversation at any point.' : 'Alex sees every question and can join the conversation at any point.';
 
