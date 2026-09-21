@@ -61,7 +61,6 @@
     .create-row input:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-light); }
     .create-row .btn-primary { min-height:48px; padding:0 24px; font-size:14.5px; }
     .create-note { font-size:12.5px; color:rgba(255,255,255,.8); margin:12px 0 0; }
-    @media (max-width:600px){ .hero{ min-height:auto; } }
 
     /* Hero slider (tabs + swipe): a real sliding track, one slide-width per tab */
     .hero-slider { position:relative; overflow:hidden; }
@@ -378,7 +377,7 @@
           <div class="create-box" id="hero-create">
             <span class="create-label">Paste a property listing</span>
             <div class="create-row">
-              <input type="url" id="url-1" value="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" placeholder="Paste a Zillow, Redfin, Realtor.com or MLS link..." aria-label="Property listing URL">
+              <input type="url" id="url-1" placeholder="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" aria-label="Property listing URL">
               <button type="button" class="btn-primary" data-create="1">Create Home Concierge →</button>
             </div>
             <p class="create-note">No CRM connection. No setup. Create your first advisor in under a minute.</p>
@@ -397,7 +396,7 @@
           <div class="create-box" id="hero-create-qr">
             <span class="create-label">Paste link to your listing</span>
             <div class="create-row">
-              <input type="url" id="url-qr" value="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" placeholder="Paste a Zillow, Redfin, Realtor.com or MLS link..." aria-label="Property listing URL">
+              <input type="url" id="url-qr" placeholder="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" aria-label="Property listing URL">
               <button type="button" class="btn-primary" id="qr-create-btn">Create Property Expert →</button>
             </div>
             <p class="create-note">No setup. No upload. Create your Property Expert in under a minute.</p>
@@ -821,7 +820,7 @@
       </div>
       <div class="create-box final-create">
         <div class="create-row">
-          <input type="url" id="url-2" value="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" placeholder="Paste a listing URL..." aria-label="Property listing URL">
+          <input type="url" id="url-2" placeholder="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" aria-label="Property listing URL">
           <button type="button" class="btn-primary" id="final-create-btn" data-create="2">Create Home Concierge →</button>
         </div>
         <p class="create-note" id="final-create-note">No signup required to see your first advisor.</p>
