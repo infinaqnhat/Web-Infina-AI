@@ -241,8 +241,6 @@
     .intent-arrow svg { transform:rotate(-90deg); }
     .intent-stage { display:block; font-size:12px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; margin-bottom:10px; opacity:.75; }
     .intent-example { font-size:14.5px; font-style:italic; line-height:1.5; }
-    .intent-quotes { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
-    .intent-quote-tag { font-size:12px; font-weight:600; font-style:italic; padding:6px 12px; border-radius:999px; background:rgba(255,255,255,.5); }
     @media (max-width:900px){
       .intent-funnel { flex-direction:column; max-width:680px; }
       .intent-step { flex:none; padding:22px 28px; }
@@ -252,13 +250,10 @@
       .intent-count { font-size:26px; }
     }
     .intent-step.lvl-1 { background:var(--surface); color:var(--fg); }
-    .intent-step.lvl-1 .intent-quote-tag { background:#fff; color:var(--fg-secondary); }
     .intent-step.lvl-2 { background:rgba(24,99,220,.07); color:var(--fg); }
-    .intent-step.lvl-2 .intent-quote-tag { background:rgba(24,99,220,.12); color:var(--blue); }
     .intent-step.lvl-3 { background:rgba(24,99,220,.16); color:var(--fg); }
     .intent-step.lvl-4 { background:var(--accent); color:#fff; }
     .intent-step.lvl-4 .intent-stage { opacity:.7; }
-    .intent-step.lvl-4 .intent-quote-tag { background:rgba(255,255,255,.16); color:#fff; }
 
     /* ===== Testimonials ===== */
     .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:36px; }
@@ -628,14 +623,12 @@
           <span class="intent-count">42 buyers</span>
           <span class="intent-stage">Exploring</span>
           <p class="intent-example">"When was the home built?"</p>
-          <div class="intent-quotes"><span class="intent-quote-tag">"Everyone keeps asking about the roof."</span></div>
         </div>
         <div class="intent-arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
         <div class="intent-step lvl-2">
           <span class="intent-count">27 buyers</span>
           <span class="intent-stage">Evaluating</span>
           <p class="intent-example">"How does this compare with nearby homes?"</p>
-          <div class="intent-quotes"><span class="intent-quote-tag">"Several buyers are comparing the asking price with recent sales."</span></div>
         </div>
         <div class="intent-arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
         <div class="intent-step lvl-3">
@@ -648,10 +641,6 @@
           <span class="intent-count">6 buyers</span>
           <span class="intent-stage">Ready to act</span>
           <p class="intent-example">"When are offers due?" · "Can I tour tomorrow?" · "How do I contact the listing agent?"</p>
-          <div class="intent-quotes">
-            <span class="intent-quote-tag">"Three buyers asked about offer timing today."</span>
-            <span class="intent-quote-tag">"Two buyers requested a showing."</span>
-          </div>
         </div>
       </div>
     </div>
