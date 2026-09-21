@@ -180,6 +180,10 @@
     .demo-chip { font-family:var(--font-body); font-size:13.5px; padding:8px 14px; border-radius:999px; border:1.5px solid var(--border); background:#fff; color:var(--fg-secondary); cursor:pointer; text-align:left; transition:all .15s; }
     .demo-chip:hover { border-color:var(--blue); color:var(--blue); }
     .demo-chip.is-active { background:var(--accent); color:#fff; border-color:var(--accent); }
+    .persona-pills { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+    .persona-pill { font-family:var(--font-body); font-size:12.5px; font-weight:700; padding:7px 14px; border-radius:999px; border:1.5px solid var(--border); background:#fff; color:var(--fg-secondary); cursor:pointer; transition:all .15s; }
+    .persona-pill:hover { border-color:var(--blue); color:var(--blue); }
+    .persona-pill.is-active { background:var(--accent); color:#fff; border-color:var(--accent); }
     .demo-ask-row { display:flex; gap:8px; }
     .demo-ask-row input { flex:1; min-height:46px; font-family:var(--font-body); font-size:15px; border:1.5px solid var(--border); border-radius:10px; padding:0 14px; outline:none; }
     .demo-ask-row input:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-light); }
@@ -460,6 +464,13 @@
 
           <!-- Idle: chat demo -->
           <div class="demo-body" id="demo-idle">
+            <div class="persona-pills tab-copy" data-tab="listing" hidden id="demo-persona-pills">
+              <button type="button" class="persona-pill" data-persona="buyer">First-time buyer</button>
+              <button type="button" class="persona-pill" data-persona="upgrade">Upgrade</button>
+              <button type="button" class="persona-pill" data-persona="investment">Investment</button>
+              <button type="button" class="persona-pill" data-persona="flip">Flip</button>
+              <button type="button" class="persona-pill" data-persona="vacation">Vacation home</button>
+            </div>
             <h3 id="demo-ask-title">Ask anything about 123 Main Street</h3>
             <div class="demo-thread" id="demo-thread"><!-- filled by JS --></div>
             <div>
@@ -662,6 +673,65 @@
   </div>
 
   <script>
+    // ===== Buyer-purpose analyses for the listing-agent demo (148 Maple Ave) =====
+    var PERSONAS = {
+      buyer: {
+        q: "What should I know before making an offer?",
+        lead: "Three things worth knowing before you commit.",
+        points: [
+          { n: "01", t: "At $748,000 with 10% down, expect a monthly payment near $4,950 including taxes and insurance, budget accordingly against your income." },
+          { n: "02", t: "HVAC was replaced in 2021 and there are no reported roof leaks, but ask for a home inspection to confirm attic insulation and water heater age." },
+          { n: "03", t: "Mapleton Elementary is rated 8/10 and a 5-minute walk away, a common reason buyers choose this block." }
+        ],
+        close: "I can pull the full inspection report and school zoning map if you want to go deeper before your offer.",
+        sources: ["MLS", "Public Records", "School District Data"]
+      },
+      upgrade: {
+        q: "Is this a good move up from my current home?",
+        lead: "Here's how this compares to a typical move-up purchase.",
+        points: [
+          { n: "01", t: "At 2,410 sq ft with 4 beds and 3 baths, this runs about 30% larger than the median starter home in Mapleton." },
+          { n: "02", t: "Homes in this price range are averaging 12 days on market this quarter, plan your sale timeline to avoid carrying two mortgages." },
+          { n: "03", t: "Factor in about 6% combined agent commission plus transfer taxes on your sale, typically $45k-55k on a similar-priced departure home." }
+        ],
+        close: "Want me to estimate your net proceeds from selling your current home first?",
+        sources: ["MLS", "Local Market Data", "Public Records"]
+      },
+      investment: {
+        q: "Would this work as a rental property?",
+        lead: "Here's the rental math on this one.",
+        points: [
+          { n: "01", t: "Comparable rentals nearby lease for about $3,400/month. Against this list price, gross yield is roughly 5.5%, cap rate after expenses lands near 4.1%." },
+          { n: "02", t: "With 25% down at current rates, estimated cash-on-cash return is about 3.8%, below the 8% target most investors look for." },
+          { n: "03", t: "At $3,400 rent against an estimated $3,050 monthly debt service, DSCR is approximately 1.11, below the 1.20 most DSCR lenders require." }
+        ],
+        close: "This looks tight as a straight rental. Want me to model a house-hack scenario, or check nearby comps with stronger yield?",
+        sources: ["MLS", "Rental Comps", "Lender Guidelines"]
+      },
+      flip: {
+        q: "What's my max offer if I want to flip this?",
+        lead: "Running the 70% rule on this one.",
+        points: [
+          { n: "01", t: "Recently renovated 4-bed comps within half a mile closed between $305 and $320 a square foot, putting ARV near $770,000." },
+          { n: "02", t: "From the listing photos, this looks like a medium rehab (kitchen, baths, cosmetic), plan on $35-45 per square foot, or roughly $95,000." },
+          { n: "03", t: "70% of ARV ($539,000) minus rehab ($95,000) puts your max offer around $444,000, well below the $748,000 asking price." }
+        ],
+        close: "At the current price, this doesn't pencil as a flip. Want me to flag similar listings closer to that offer range?",
+        sources: ["MLS", "Comparable Sales", "Renovation Cost Data"]
+      },
+      vacation: {
+        q: "Could this work as a vacation home with rental income?",
+        lead: "Here's what matters for a vacation-use purchase.",
+        points: [
+          { n: "01", t: "Mapleton requires a short-term rental permit and caps rentals at 120 nights per year in this zoning district, confirm before counting on rental income." },
+          { n: "02", t: "Similar homes in the area average 48% occupancy annually, concentrated in summer and holiday weekends, not a year-round income stream." },
+          { n: "03", t: "Property tax, insurance and a rental-ready policy for this size home typically run $950-1,100/month before any mortgage." }
+        ],
+        close: "Want me to pull the exact permit rules for this zoning district and nearby occupancy data?",
+        sources: ["Local Ordinance", "Rental Market Data", "Public Records"]
+      }
+    };
+
     // ===== Content: canned Q&A, matched against free-text questions =====
     var QUESTIONS = [
       {
@@ -732,7 +802,7 @@
     var ROLE_LABEL = "Advisor";
 
     // ===== Demo card state =====
-    var demoState = { qi: 0, thinking: false, asked: null, unknown: false };
+    var demoState = { qi: 0, thinking: false, asked: null, unknown: false, persona: null };
 
     function matchQuestion(text) {
       var words = (text.toLowerCase().match(/[a-z$0-9]{4,}/g) || []);
@@ -760,11 +830,13 @@
 
     function renderThread() {
       var thread = document.getElementById('demo-thread');
-      var active = demoState.unknown
+      var active = demoState.persona
+        ? PERSONAS[demoState.persona]
+        : demoState.unknown
         ? { lead: "I do not have that in the listing, the disclosure or the public records for this property, so I am not going to guess.", points: [], close: "I have passed the question to " + AGENT_FIRST + ". The answer will appear here in this thread.", sources: ["Agent Notes"] }
         : QUESTIONS[demoState.qi];
-      var closeText = demoState.unknown ? active.close : active.close.split('%A').join(AGENT_FIRST);
-      var buyerText = demoState.asked || QUESTIONS[demoState.qi].q;
+      var closeText = (demoState.unknown && !demoState.persona) ? active.close : active.close.split('%A').join(AGENT_FIRST);
+      var buyerText = demoState.persona ? active.q : (demoState.asked || QUESTIONS[demoState.qi].q);
 
       var html = '<div class="demo-msg buyer"><span class="lbl">Buyer</span><p>' + escapeHtml(buyerText) + '</p></div>';
 
@@ -795,10 +867,10 @@
 
     var thinkTimer = null;
     function pickQuestion(i) {
-      if (i === demoState.qi && !demoState.asked) return;
+      if (i === demoState.qi && !demoState.asked && !demoState.persona) return;
       clearTimeout(thinkTimer);
-      demoState = { qi: i, thinking: true, asked: null, unknown: false };
-      renderChips(); renderThread();
+      demoState = { qi: i, thinking: true, asked: null, unknown: false, persona: null };
+      renderChips(); renderPersonaPills(); renderThread();
       thinkTimer = setTimeout(function(){ demoState.thinking = false; renderThread(); }, 640);
     }
 
@@ -808,11 +880,29 @@
       if (!text) return;
       var i = matchQuestion(text);
       clearTimeout(thinkTimer);
-      demoState = { qi: i < 0 ? demoState.qi : i, thinking: true, asked: text, unknown: i < 0 };
+      demoState = { qi: i < 0 ? demoState.qi : i, thinking: true, asked: text, unknown: i < 0, persona: null };
       input.value = '';
-      renderChips(); renderThread();
+      renderChips(); renderPersonaPills(); renderThread();
       thinkTimer = setTimeout(function(){ demoState.thinking = false; renderThread(); }, 700);
     }
+
+    function pickPersona(key) {
+      if (key === demoState.persona) return;
+      clearTimeout(thinkTimer);
+      demoState = { qi: demoState.qi, thinking: true, asked: null, unknown: false, persona: key };
+      renderChips(); renderPersonaPills(); renderThread();
+      thinkTimer = setTimeout(function(){ demoState.thinking = false; renderThread(); }, 640);
+    }
+
+    function renderPersonaPills() {
+      document.querySelectorAll('.persona-pill').forEach(function(btn){
+        btn.classList.toggle('is-active', btn.getAttribute('data-persona') === demoState.persona);
+      });
+    }
+
+    document.querySelectorAll('.persona-pill').forEach(function(btn){
+      btn.addEventListener('click', function(){ pickPersona(btn.getAttribute('data-persona')); });
+    });
 
     document.getElementById('demo-ask-btn').addEventListener('click', askFreeText);
     document.getElementById('demo-ask-input').addEventListener('keydown', function(e){ if (e.key === 'Enter') askFreeText(); });
@@ -996,7 +1086,15 @@
 
         AGENT_FIRST = isListing ? 'Sarah' : 'Alex';
         ROLE_LABEL = isListing ? 'Property Expert' : 'Advisor';
-        if (typeof renderThread === 'function') renderThread();
+        if (typeof pickPersona === 'function') {
+          clearTimeout(thinkTimer);
+          if (isListing) {
+            demoState = { qi: demoState.qi, thinking: false, asked: null, unknown: false, persona: 'buyer' };
+          } else {
+            demoState = { qi: 0, thinking: false, asked: null, unknown: false, persona: null };
+          }
+          renderChips(); renderPersonaPills(); renderThread();
+        }
         var demoLoadingTitle = document.getElementById('demo-loading-title');
         if (demoLoadingTitle) demoLoadingTitle.textContent = isListing ? 'Building your Property Expert' : 'Building your advisor';
 
