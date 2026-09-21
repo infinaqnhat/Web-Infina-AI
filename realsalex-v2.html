@@ -790,6 +790,64 @@
       }
     ];
 
+    var QUESTIONS_LISTING = [
+      {
+        q: "What should I know about this property?",
+        lead: "Here's a quick snapshot before you dig deeper.",
+        points: [
+          { n: "01", t: "Built in 2005, HVAC was replaced in 2021 and the roof was reshingled in 2016, no reported leaks since." },
+          { n: "02", t: "It's on well and septic rather than city utilities, common in Mapleton, budget for a septic inspection during your due diligence period." },
+          { n: "03", t: "Mapleton Elementary is rated 8/10 and a 5-minute walk away." }
+        ],
+        close: "Want me to pull the full disclosure or the septic service history next?",
+        sources: ["MLS", "Seller Disclosure", "Public Records"]
+      },
+      {
+        q: "What do the disclosures say about the roof?",
+        lead: "The disclosure covers the roof directly.",
+        points: [
+          { n: "01", t: "The roof was reshingled in 2016 and the seller reports no leaks or repairs since." },
+          { n: "02", t: "A minor granule loss was noted near the chimney flashing during the seller's last walkthrough, cosmetic, not flagged as active." },
+          { n: "03", t: "No warranty transfer is mentioned, ask the listing agent if the original roofing warranty is still active." }
+        ],
+        close: "I can request the roofing invoice from 2016 if you want it in writing.",
+        sources: ["Seller Disclosure", "MLS"]
+      },
+      {
+        q: "How does this price compare with recent nearby sales?",
+        lead: "Here's how $748,000 stacks up against the neighborhood.",
+        points: [
+          { n: "01", t: "Two comparable 4-bed homes within half a mile closed in the last 90 days at $305 and $320 a square foot." },
+          { n: "02", t: "At $748,000 for 2,410 sq ft, this listing works out to about $310 a square foot, right in the middle of that range." },
+          { n: "03", t: "It's just listed, so there's no price-history signal yet, comps suggest the asking price is fair, not aggressive." }
+        ],
+        close: "Want a full comps sheet with addresses and sale dates?",
+        sources: ["MLS", "Comparable Sales", "Public Records"]
+      },
+      {
+        q: "What should I pay attention to during the showing?",
+        lead: "A few specific things worth checking in person.",
+        points: [
+          { n: "01", t: "Test water pressure and check for any musty smell near the crawlspace access, common tell for well/septic homes." },
+          { n: "02", t: "Look at the attic insulation depth, the disclosure doesn't specify when it was last upgraded." },
+          { n: "03", t: "Ask to see the septic service records and confirm the tank was last pumped." }
+        ],
+        close: "I can put together a printable showing checklist if that's useful.",
+        sources: ["Seller Disclosure", "Agent Notes"]
+      },
+      {
+        q: "Are there any potential concerns I should investigate?",
+        lead: "Nothing major, but two items worth a closer look.",
+        points: [
+          { n: "01", t: "The disclosure notes a small foundation settling crack patched in 2020, the seller reports no movement since in yearly checks." },
+          { n: "02", t: "Being on well and septic means water quality and tank condition depend on maintenance history, not municipal oversight." },
+          { n: "03", t: "No inspection report is attached yet since this just listed, plan to schedule one early in your offer timeline." }
+        ],
+        close: "Want me to flag these for a home inspector's checklist before your first showing?",
+        sources: ["Seller Disclosure", "Public Records", "Agent Notes"]
+      }
+    ];
+
     var BUILD_STEPS = [
       "Reading the listing",
       "Pulling county records and tax history",
@@ -800,6 +858,7 @@
 
     var AGENT_FIRST = "Alex";
     var ROLE_LABEL = "Advisor";
+    var ACTIVE_QUESTIONS = QUESTIONS;
 
     // ===== Demo card state =====
     var demoState = { qi: 0, thinking: false, asked: null, unknown: false, persona: null };
@@ -807,7 +866,7 @@
     function matchQuestion(text) {
       var words = (text.toLowerCase().match(/[a-z$0-9]{4,}/g) || []);
       var best = -1, top = 0;
-      QUESTIONS.forEach(function(q, i){
+      ACTIVE_QUESTIONS.forEach(function(q, i){
         var hay = (q.q + " " + q.lead + " " + q.points.map(function(p){ return p.t; }).join(" ")).toLowerCase();
         var score = words.filter(function(w){ return hay.indexOf(w) > -1; }).length;
         if (score > top) { top = score; best = i; }
@@ -818,7 +877,7 @@
     function renderChips() {
       var wrap = document.getElementById('demo-chips');
       wrap.innerHTML = '';
-      QUESTIONS.forEach(function(q, i){
+      ACTIVE_QUESTIONS.forEach(function(q, i){
         var btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'demo-chip' + (i === demoState.qi && !demoState.asked ? ' is-active' : '');
@@ -834,9 +893,9 @@
         ? PERSONAS[demoState.persona]
         : demoState.unknown
         ? { lead: "I do not have that in the listing, the disclosure or the public records for this property, so I am not going to guess.", points: [], close: "I have passed the question to " + AGENT_FIRST + ". The answer will appear here in this thread.", sources: ["Agent Notes"] }
-        : QUESTIONS[demoState.qi];
+        : ACTIVE_QUESTIONS[demoState.qi];
       var closeText = (demoState.unknown && !demoState.persona) ? active.close : active.close.split('%A').join(AGENT_FIRST);
-      var buyerText = demoState.persona ? active.q : (demoState.asked || QUESTIONS[demoState.qi].q);
+      var buyerText = demoState.persona ? active.q : (demoState.asked || ACTIVE_QUESTIONS[demoState.qi].q);
 
       var html = '<div class="demo-msg buyer"><span class="lbl">Buyer</span><p>' + escapeHtml(buyerText) + '</p></div>';
 
@@ -1086,10 +1145,11 @@
 
         AGENT_FIRST = isListing ? 'Sarah' : 'Alex';
         ROLE_LABEL = isListing ? 'Property Expert' : 'Advisor';
+        ACTIVE_QUESTIONS = isListing ? QUESTIONS_LISTING : QUESTIONS;
         if (typeof pickPersona === 'function') {
           clearTimeout(thinkTimer);
           if (isListing) {
-            demoState = { qi: demoState.qi, thinking: false, asked: null, unknown: false, persona: 'buyer' };
+            demoState = { qi: 0, thinking: false, asked: null, unknown: false, persona: 'buyer' };
           } else {
             demoState = { qi: 0, thinking: false, asked: null, unknown: false, persona: null };
           }
