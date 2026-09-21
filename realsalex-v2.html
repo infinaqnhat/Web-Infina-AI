@@ -225,6 +225,18 @@
     .trust-photo { border-radius:16px; overflow:hidden; aspect-ratio:3/2; }
     .trust-photo img { width:100%; height:100%; object-fit:cover; object-position:70% center; }
 
+    /* ===== Buyer-intent insights (listing agent only) ===== */
+    .insight-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; margin-top:16px; }
+    @media (max-width:860px){ .insight-grid{ grid-template-columns:1fr; gap:36px; } }
+    .insight-quotes { display:flex; flex-direction:column; gap:16px; }
+    .insight-quote { border-left:3px solid var(--blue); padding:14px 20px; background:var(--surface); border-radius:0 12px 12px 0; font-size:16px; font-style:italic; color:var(--fg-secondary); }
+    .insight-funnel { display:flex; flex-direction:column; }
+    .insight-step { position:relative; padding:0 0 28px 32px; border-left:2px solid var(--border); }
+    .insight-step:last-child { border-color:transparent; padding-bottom:0; }
+    .insight-step::before { content:''; position:absolute; left:-6px; top:2px; width:10px; height:10px; border-radius:50%; background:var(--blue); }
+    .insight-step b { display:block; font-size:15px; color:var(--accent); margin-bottom:4px; }
+    .insight-step span { font-size:15px; color:var(--muted); font-style:italic; }
+
     /* ===== Testimonials ===== */
     .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:36px; }
     @media (max-width:860px){ .testi-grid{ grid-template-columns:1fr; max-width:480px; margin:0 auto; } }
@@ -550,6 +562,31 @@
         <figure class="trust-photo reveal" style="margin:0;">
           <img src="uploads/realsalex-results-band.png" alt="An agent sitting with two clients in a living room">
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Buyer-intent insights (listing agent only) ===== -->
+  <section class="section tab-copy" data-tab="listing" hidden>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Know what buyers care about</span>
+        <h2>Turn curiosity into <span class="accent">intent.</span></h2>
+        <p>Not all questions mean the same thing. Property Expert helps you see which ones do.</p>
+      </div>
+      <div class="insight-grid">
+        <div class="insight-quotes reveal">
+          <div class="insight-quote">"Everyone keeps asking about the roof."</div>
+          <div class="insight-quote">"Several buyers are comparing the asking price with recent sales."</div>
+          <div class="insight-quote">"Three buyers asked about offer timing today."</div>
+          <div class="insight-quote">"Two buyers requested a showing."</div>
+        </div>
+        <div class="insight-funnel reveal">
+          <div class="insight-step"><b>Exploring</b><span>"When was the home built?"</span></div>
+          <div class="insight-step"><b>Evaluating</b><span>"How does this compare with nearby homes?"</span></div>
+          <div class="insight-step"><b>Doing diligence</b><span>"What does the disclosure say about foundation work?"</span></div>
+          <div class="insight-step"><b>Ready to act</b><span>"When are offers due?"</span></div>
+        </div>
       </div>
     </div>
   </section>
