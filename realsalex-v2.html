@@ -840,6 +840,11 @@
         var stickyBtn = document.getElementById('sticky-cta-btn');
         if (stickyBtn) stickyBtn.textContent = ctaText;
         if (window.updateStickyTarget) window.updateStickyTarget();
+
+        document.body.classList.toggle('is-tab-listing', isListing);
+        document.querySelectorAll('.tab-copy').forEach(function(el){
+          el.hidden = el.getAttribute('data-tab') !== (isListing ? 'listing' : 'buying');
+        });
       }
       window.switchHeroSlide = switchSlide;
 
