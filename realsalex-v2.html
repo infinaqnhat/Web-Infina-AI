@@ -618,14 +618,20 @@
   <!-- ===== Final CTA ===== -->
   <section class="section final-cta">
     <div class="container">
-      <h2>Your next client doesn't need<br><span class="accent">another listing link.</span></h2>
-      <p class="italic-line">Give them an advisor they can talk to.</p>
+      <div class="tab-copy" data-tab="buying">
+        <h2>Your next client doesn't need<br><span class="accent">another listing link.</span></h2>
+        <p class="italic-line">Give them an advisor they can talk to.</p>
+      </div>
+      <div class="tab-copy" data-tab="listing" hidden>
+        <h2>Your next listing doesn't need<br><span class="accent">another static page.</span></h2>
+        <p class="italic-line">Property Expert doesn't replace you. It extends you.</p>
+      </div>
       <div class="create-box final-create">
         <div class="create-row">
           <input type="url" id="url-2" value="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" placeholder="Paste a listing URL..." aria-label="Property listing URL">
-          <button type="button" class="btn-primary" data-create="2">Create Home Concierge →</button>
+          <button type="button" class="btn-primary" id="final-create-btn" data-create="2">Create Home Concierge →</button>
         </div>
-        <p class="create-note">No signup required to see your first advisor.</p>
+        <p class="create-note" id="final-create-note">No signup required to see your first advisor.</p>
       </div>
     </div>
   </section>
@@ -816,6 +822,11 @@
     }
 
     function startCreate() {
+      if (document.body.classList.contains('is-tab-listing')) {
+        document.getElementById('hero-slider').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(function(){ document.getElementById('qr-create-btn').click(); }, 420);
+        return;
+      }
       document.getElementById('see-it-work').scrollIntoView({ behavior: 'smooth', block: 'start' });
       clearInterval(buildTimer);
       buildStep = 0;
@@ -967,6 +978,11 @@
         if (typeof renderThread === 'function') renderThread();
         var demoLoadingTitle = document.getElementById('demo-loading-title');
         if (demoLoadingTitle) demoLoadingTitle.textContent = isListing ? 'Building your Property Expert' : 'Building your advisor';
+
+        var finalCreateBtn = document.getElementById('final-create-btn');
+        var finalCreateNote = document.getElementById('final-create-note');
+        if (finalCreateBtn) finalCreateBtn.textContent = ctaText;
+        if (finalCreateNote) finalCreateNote.textContent = isListing ? 'No CRM connection. No complicated setup. Start with one listing.' : 'No signup required to see your first advisor.';
       }
       window.switchHeroSlide = switchSlide;
 
