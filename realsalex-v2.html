@@ -482,12 +482,12 @@
             <div class="compare-cell advisor"><span class="compare-tag">With Property Expert</span>Yard sign links to a Property Expert</div>
           </div>
           <div class="compare-row">
-            <div class="compare-cell today"><span class="compare-tag">Today</span>Buyer drives by, googles the address, guesses at the details</div>
+            <div class="compare-cell today"><span class="compare-tag">Today</span>Buyers look up the property on a portal</div>
             <div class="compare-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-            <div class="compare-cell advisor"><span class="compare-tag">With Property Expert</span>Buyer scans the QR and gets answers grounded in real data</div>
+            <div class="compare-cell advisor"><span class="compare-tag">With Property Expert</span>Buyers get all their questions answered by Property Expert</div>
           </div>
           <div class="compare-row">
-            <div class="compare-cell today"><span class="compare-tag">Today</span>Buyer loses interest before ever calling you</div>
+            <div class="compare-cell today"><span class="compare-tag">Today</span>You wouldn't know who and how many were interested and what made each lose interest in the property</div>
             <div class="compare-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
             <div class="compare-cell advisor"><span class="compare-tag">With Property Expert</span>Property Expert keeps them engaged and flags you when they're ready to act</div>
           </div>
@@ -1127,6 +1127,15 @@
 
     document.getElementById('demo-ask-btn').addEventListener('click', askFreeText);
     document.getElementById('demo-ask-input').addEventListener('keydown', function(e){ if (e.key === 'Enter') askFreeText(); });
+
+    // Clear the example placeholder as soon as the listing-URL inputs are focused
+    ['url-1', 'url-qr', 'url-2'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (!el) return;
+      var originalPlaceholder = el.getAttribute('placeholder');
+      el.addEventListener('focus', function(){ el.setAttribute('placeholder', ''); });
+      el.addEventListener('blur', function(){ if (!el.value) el.setAttribute('placeholder', originalPlaceholder); });
+    });
 
     // ===== Create Home Concierge flow (loading -> built), front-end only =====
     var buildTimer = null;
