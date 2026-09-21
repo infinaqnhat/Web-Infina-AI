@@ -229,6 +229,57 @@
     .trust-photo { border-radius:16px; overflow:hidden; aspect-ratio:3/2; }
     .trust-photo img { width:100%; height:100%; object-fit:cover; object-position:70% center; }
 
+    /* ===== Grounded-in-listing data diagram (listing agent only) ===== */
+    .grounded-diagram { max-width:1140px; margin:0 auto; }
+    .source-icon { width:26px; height:26px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .source-icon.sm { width:20px; height:20px; border-radius:6px; }
+    .icon-blue { background:rgba(24,99,220,.12); color:var(--blue); }
+    .icon-green { background:rgba(16,163,102,.12); color:#0e9f61; }
+    .icon-purple { background:rgba(139,92,246,.12); color:#7c3aed; }
+    .icon-amber { background:rgba(217,146,26,.14); color:#b8790f; }
+    .icon-rose { background:rgba(225,60,90,.12); color:#d13a5c; }
+    .grounded-flow { display:grid; grid-template-columns:1fr auto 200px auto minmax(0,1fr); grid-template-rows:repeat(3,1fr); align-items:stretch; column-gap:8px; }
+    .grounded-sources { grid-column:1; grid-row:1/4; display:grid; grid-template-rows:repeat(3,1fr); gap:14px; }
+    .source-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .source-card { display:flex; align-items:center; gap:10px; background:#fff; border-radius:12px; padding:12px 14px; font-size:13.5px; font-weight:700; color:var(--fg); box-shadow:0 1px 2px rgba(0,0,0,.04); }
+    .grounded-arrows { grid-column:2; grid-row:1/4; display:grid; grid-template-rows:repeat(3,1fr); color:#9fc2ff; }
+    .arrow-cell { display:flex; align-items:center; justify-content:center; }
+    .grounded-center { grid-column:3; grid-row:1/4; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; }
+    .center-node { background:#fff; border-radius:20px; padding:26px 22px; display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center; box-shadow:0 0 0 8px rgba(24,99,220,.06), 0 12px 28px rgba(24,99,220,.14); color:var(--blue); }
+    .center-node span { font-size:15px; font-weight:800; color:var(--accent); line-height:1.25; }
+    .center-dashed { width:2px; height:36px; margin-top:10px; background:repeating-linear-gradient(to bottom, var(--border) 0 4px, transparent 4px 8px); }
+    .grounded-output { grid-column:5; grid-row:1/4; display:flex; align-items:center; gap:14px; }
+    .output-arrow { color:var(--blue); flex-shrink:0; }
+    .answer-card { background:#fff; border-radius:16px; padding:20px 22px; box-shadow:0 1px 2px rgba(0,0,0,.04); flex:1; }
+    .answer-card p { font-size:16px; font-weight:700; color:var(--accent); margin-top:8px; line-height:1.4; }
+    .answer-check { width:36px; height:36px; border-radius:50%; background:rgba(16,163,102,.14); color:#0e9f61; display:flex; align-items:center; justify-content:center; }
+    .answer-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+    .answer-tag { display:flex; align-items:center; gap:6px; font-size:12px; font-weight:700; padding:5px 10px 5px 6px; border-radius:999px; background:var(--surface); color:var(--fg-secondary); }
+    .answer-source-link { display:flex; align-items:center; gap:5px; margin-top:12px; font-size:11.5px; font-weight:800; letter-spacing:.05em; color:var(--muted); }
+    .grounded-callout { grid-column:3/6; margin-top:16px; display:flex; align-items:center; gap:10px; justify-self:center; border:1.5px solid var(--border); border-radius:999px; padding:10px 20px; font-size:13.5px; color:var(--fg-secondary); }
+    .callout-icon { color:var(--blue); flex-shrink:0; display:flex; }
+    .grounded-badges { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px; }
+    .grounded-badge { background:#fff; border-radius:14px; padding:18px 20px; display:flex; align-items:flex-start; gap:12px; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+    .badge-icon { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .grounded-badge b { display:block; font-size:14.5px; color:var(--accent); }
+    .grounded-badge span { font-size:13px; color:var(--muted); }
+    .grounded-tagline { text-align:right; margin-top:18px; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .grounded-mobile-arrows { display:none; }
+    @media (max-width:900px){
+      .grounded-flow { grid-template-columns:1fr; grid-template-rows:none; }
+      .grounded-sources { grid-column:1; grid-row:auto; grid-template-rows:none; grid-template-columns:1fr 1fr; display:grid; gap:12px; }
+      .source-row { display:contents; }
+      .grounded-sources .source-row:nth-child(3) { display:none; }
+      .grounded-arrows { display:none; }
+      .grounded-mobile-arrows { display:flex; justify-content:center; gap:0; margin:0; color:#9fc2ff; }
+      .grounded-center { grid-column:1; grid-row:auto; margin:0 auto; }
+      .grounded-output { grid-column:1; grid-row:auto; flex-direction:column; margin-top:16px; }
+      .output-arrow { transform:rotate(90deg); }
+      .grounded-callout { grid-column:1; margin-top:18px; text-align:left; }
+      .grounded-badges { grid-template-columns:1fr; margin-top:20px; }
+      .grounded-tagline { display:none; }
+    }
+
     /* ===== Buyer-intent insights (listing agent only) ===== */
     .intent-staircase { position:relative; max-width:1080px; margin:56px auto 0; padding-bottom:14px; }
     .intent-highest { position:absolute; top:-38px; right:6px; display:flex; align-items:center; gap:6px; font-size:13px; font-style:italic; color:var(--blue); }
@@ -592,9 +643,9 @@
   <!-- ===== Data trust ===== -->
   <section class="section" style="background:var(--surface);">
     <div class="container">
-      <div class="trust-grid">
-        <div class="reveal">
-          <div class="tab-copy" data-tab="buying">
+      <div class="tab-copy" data-tab="buying">
+        <div class="trust-grid">
+          <div class="reveal">
             <span class="eyebrow">An extension of you, not a replacement</span>
             <h2 style="font-size:clamp(28px,3.6vw,42px); font-weight:800; letter-spacing:-.02em; line-height:1.15; color:var(--accent);">Your client. Your relationship. <span class="accent">Your data.</span></h2>
             <ul class="trust-list">
@@ -605,24 +656,87 @@
               <li><span class="dot"></span><span class="tx">You can delete your data at any time.</span></li>
             </ul>
           </div>
-          <div class="tab-copy" data-tab="listing" hidden>
-            <span class="eyebrow">Not another chatbot</span>
-            <h2 style="font-size:clamp(28px,3.6vw,42px); font-weight:800; letter-spacing:-.02em; line-height:1.15; color:var(--accent);">Grounded in your listing. <span class="accent">Never guessing.</span></h2>
-            <ul class="trust-list">
-              <li><span class="dot"></span><span class="tx">Combines listing data, disclosures, inspection reports, public records, comps and HOA documents.</span></li>
-              <li><span class="dot"></span><span class="tx">Cites its source: MLS, seller disclosure, public records, HOA, or you.</span></li>
-              <li><span class="dot"></span><span class="tx">If it isn't sure, it says so and offers to ask you instead of inventing an answer.</span></li>
-              <li><span class="dot"></span><span class="tx">Every buyer gets a private, separate conversation.</span></li>
-              <li><span class="dot"></span><span class="tx">No login required for buyers to start.</span></li>
-            </ul>
-          </div>
+          <figure class="trust-photo reveal" style="margin:0;">
+            <img src="uploads/realsalex-results-band.png" alt="An agent sitting with two clients in a living room">
+          </figure>
         </div>
-        <figure class="trust-photo reveal tab-copy" data-tab="buying" style="margin:0;">
-          <img src="uploads/realsalex-results-band.png" alt="An agent sitting with two clients in a living room">
-        </figure>
-        <figure class="trust-photo reveal tab-copy" data-tab="listing" hidden style="margin:0;">
-          <img src="uploads/trust-listing-agent.jpg" alt="A listing agent reviewing property disclosures and inspection reports at a desk">
-        </figure>
+      </div>
+
+      <div class="tab-copy" data-tab="listing" hidden>
+        <div class="section-head reveal">
+          <span class="eyebrow">Not another chatbot</span>
+          <h2>Grounded in your listing. <span class="accent">Never guessing.</span></h2>
+          <p>Answers powered by real listing data.</p>
+        </div>
+
+        <div class="grounded-diagram reveal">
+          <div class="grounded-flow">
+            <div class="grounded-sources">
+              <div class="source-row">
+                <div class="source-card"><span class="source-icon icon-blue"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>MLS</div>
+                <div class="source-card"><span class="source-icon icon-green"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span>Seller Disclosure</div>
+              </div>
+              <div class="source-row">
+                <div class="source-card"><span class="source-icon icon-purple"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span>Inspection Report</div>
+                <div class="source-card"><span class="source-icon icon-amber"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v10M19 10v10M9 10v10M15 10v10"/><path d="M3 21h18"/></svg></span>Public Records</div>
+              </div>
+              <div class="source-row">
+                <div class="source-card"><span class="source-icon icon-blue"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3.1-5 7-5s7 1.7 7 5"/><circle cx="17" cy="9" r="2.3"/><path d="M15.5 20c.3-1.8 1.7-3.1 3.5-3.5"/></svg></span>HOA</div>
+                <div class="source-card"><span class="source-icon icon-rose"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="12" width="4" height="8"/><rect x="10" y="7" width="4" height="13"/><rect x="16" y="3" width="4" height="17"/></svg></span>Comps</div>
+              </div>
+            </div>
+
+            <div class="grounded-arrows">
+              <span class="arrow-cell"><svg width="70" height="60" viewBox="0 0 180 110" fill="none"><path d="M6 8 C 70 8, 82 32, 92 58 C 101 82, 118 98, 164 98" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M164 98 L154 92 M164 98 L154 104" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="arrow-cell"><svg width="70" height="14" viewBox="0 0 180 24" fill="none"><path d="M6 12 H164" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M164 12 L154 6 M164 12 L154 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="arrow-cell"><svg width="70" height="60" viewBox="0 0 180 110" fill="none"><path d="M6 102 C 70 102, 82 78, 92 52 C 101 28, 118 12, 164 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M164 12 L154 6 M164 12 L154 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+
+            <div class="grounded-mobile-arrows">
+              <svg width="120" height="65" viewBox="0 0 240 130" fill="none"><path d="M20 10 C20 55, 70 60, 110 60 C155 60, 175 75, 190 110" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M190 110L182 99" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M190 110L201 101" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="10" r="7" fill="currentColor"/></svg>
+              <svg width="120" height="65" viewBox="0 0 240 130" fill="none"><path d="M220 10 C220 55, 170 60, 130 60 C85 60, 65 75, 50 110" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M50 110L39 101" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M50 110L58 99" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="220" cy="10" r="7" fill="currentColor"/></svg>
+            </div>
+
+            <div class="grounded-center">
+              <div class="center-node">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+                <span>Property Expert</span>
+              </div>
+              <span class="center-dashed"></span>
+            </div>
+
+            <div class="grounded-output">
+              <span class="output-arrow"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              <div class="answer-card">
+                <span class="answer-check"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></span>
+                <p>Foundation repairs completed in 2022.</p>
+                <div class="answer-tags">
+                  <span class="answer-tag"><span class="source-icon icon-green sm"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span>Seller Disclosure</span>
+                  <span class="answer-tag"><span class="source-icon icon-purple sm"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span>Inspection Report</span>
+                </div>
+                <a href="#" class="answer-source-link">SOURCE SHOWN <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="grounded-callout">
+            <span class="callout-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+            If the answer isn't in the data, it says so.
+          </div>
+
+          <div class="grounded-badges">
+            <div class="grounded-badge">
+              <span class="badge-icon icon-blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span>
+              <div><b>Private buyer conversations</b><span>Every buyer gets a confidential chat.</span></div>
+            </div>
+            <div class="grounded-badge">
+              <span class="badge-icon icon-green"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
+              <div><b>No login required</b><span>Get answers instantly.</span></div>
+            </div>
+          </div>
+
+          <p class="grounded-tagline">Real data. Real answers. A more confident next move.</p>
+        </div>
       </div>
     </div>
   </section>
