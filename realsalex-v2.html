@@ -406,8 +406,10 @@
   <section class="section demo-section" id="see-it-work">
     <div class="container">
       <div class="section-head reveal">
-        <h2>What your <span class="accent">client gets</span></h2>
-        <p>A private page for this property, with an advisor that answers instantly and cites its sources.</p>
+        <div class="tab-copy" data-tab="buying"><h2>What your <span class="accent">client gets</span></h2>
+        <p>A private page for this property, with an advisor that answers instantly and cites its sources.</p></div>
+        <div class="tab-copy" data-tab="listing" hidden><h2>What <span class="accent">buyers get</span></h2>
+        <p>A private page for this listing, with a Property Expert that answers instantly and cites its sources.</p></div>
       </div>
       <div class="demo-wrap reveal">
         <div class="demo-card">
@@ -443,7 +445,7 @@
 
           <!-- Loading -->
           <div class="demo-loading" id="demo-loading" hidden>
-            <h3>Building your advisor</h3>
+            <h3 id="demo-loading-title">Building your advisor</h3>
             <div class="demo-steps" id="demo-steps"><!-- filled by JS --></div>
           </div>
 
@@ -628,6 +630,7 @@
     ];
 
     var AGENT_FIRST = "Alex";
+    var ROLE_LABEL = "Advisor";
 
     // ===== Demo card state =====
     var demoState = { qi: 0, thinking: false, asked: null, unknown: false };
@@ -669,7 +672,7 @@
       if (demoState.thinking) {
         html += '<div class="demo-thinking"><span></span><span></span><span></span></div>';
       } else {
-        html += '<div class="demo-msg advisor"><span class="lbl">Advisor</span><div class="bubble"><p>' + escapeHtml(active.lead) + '</p>';
+        html += '<div class="demo-msg advisor"><span class="lbl">' + ROLE_LABEL + '</span><div class="bubble"><p>' + escapeHtml(active.lead) + '</p>';
         if (active.points && active.points.length) {
           html += '<ol class="demo-points">';
           active.points.forEach(function(pt){
@@ -873,6 +876,23 @@
         document.querySelectorAll('.tab-copy').forEach(function(el){
           el.hidden = el.getAttribute('data-tab') !== (isListing ? 'listing' : 'buying');
         });
+
+        var demoName = document.getElementById('demo-advisor-name');
+        var demoBrokerage = document.getElementById('demo-brokerage');
+        var demoBuiltTitle = document.getElementById('demo-built-title');
+        var demoShareLink = document.getElementById('demo-share-link');
+        if (demoName) demoName.textContent = isListing ? "123 Main Street's Property Expert" : "Alex Rivera's Home Concierge";
+        if (demoBrokerage) demoBrokerage.textContent = isListing ? 'Listed by Sarah Jenkins, Broker' : 'Meridian Realty · Austin, TX';
+        if (demoBuiltTitle) demoBuiltTitle.textContent = isListing ? "123 Main Street's Property Expert is live for this listing." : "Alex Rivera's Home Concierge is live for this listing.";
+        if (demoShareLink) demoShareLink.textContent = isListing ? 'propertyexpert.realsalex.co/123-main-st' : 'advisor.realsalex.co/alex/123-main-st';
+        var demoFooter = document.getElementById('demo-footer');
+        if (demoFooter) demoFooter.textContent = isListing ? 'Sarah sees every question and can join the conversation at any point.' : 'Alex sees every question and can join the conversation at any point.';
+
+        AGENT_FIRST = isListing ? 'Sarah' : 'Alex';
+        ROLE_LABEL = isListing ? 'Property Expert' : 'Advisor';
+        if (typeof renderThread === 'function') renderThread();
+        var demoLoadingTitle = document.getElementById('demo-loading-title');
+        if (demoLoadingTitle) demoLoadingTitle.textContent = isListing ? 'Building your Property Expert' : 'Building your advisor';
       }
       window.switchHeroSlide = switchSlide;
 
