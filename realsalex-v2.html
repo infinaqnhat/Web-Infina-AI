@@ -230,24 +230,30 @@
     .trust-photo img { width:100%; height:100%; object-fit:cover; object-position:70% center; }
 
     /* ===== Buyer-intent insights (listing agent only) ===== */
-    .intent-funnel { max-width:1080px; margin:16px auto 0; display:flex; flex-direction:row; align-items:stretch; gap:0; }
-    .intent-step { min-width:0; display:flex; flex-direction:column; border-radius:16px; padding:22px 20px; flex-basis:0; }
-    .intent-step.lvl-1 { flex-grow:1.6; }
-    .intent-step.lvl-2 { flex-grow:1.2; }
-    .intent-step.lvl-3 { flex-grow:.9; }
-    .intent-step.lvl-4 { flex-grow:.65; }
+    .intent-staircase { position:relative; max-width:1080px; margin:56px auto 0; padding-bottom:14px; }
+    .intent-highest { position:absolute; top:-38px; right:6px; display:flex; align-items:center; gap:6px; font-size:13px; font-style:italic; color:var(--blue); }
+    .intent-highest svg { transform:scaleX(-1); }
+    .intent-funnel { display:flex; flex-direction:row; align-items:flex-end; gap:0; }
+    .intent-step { position:relative; min-width:0; display:flex; flex-direction:column; border-radius:16px 16px 0 0; padding:22px 20px 34px; flex-basis:0; }
+    .intent-step.lvl-1 { flex-grow:1.6; height:190px; }
+    .intent-step.lvl-2 { flex-grow:1.2; height:230px; }
+    .intent-step.lvl-3 { flex-grow:.9; height:270px; }
+    .intent-step.lvl-4 { flex-grow:.65; height:320px; }
     .intent-count { font-size:30px; font-weight:800; letter-spacing:-.02em; line-height:1; margin-bottom:10px; }
-    .intent-arrow { display:flex; align-items:center; justify-content:center; flex:0 0 auto; padding:0 4px; color:var(--blue); }
-    .intent-arrow svg { transform:rotate(-90deg); }
     .intent-stage { display:block; font-size:12px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; margin-bottom:10px; opacity:.75; }
     .intent-example { font-size:14.5px; font-style:italic; line-height:1.5; }
+    .intent-icon { position:absolute; left:20px; bottom:0; transform:translateY(50%); width:34px; height:34px; border-radius:50%; background:#fff; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--blue); z-index:2; }
+    .intent-step.lvl-4 .intent-icon { border-color:rgba(255,255,255,.4); color:#fff; background:var(--accent); }
+    .intent-floor { height:10px; border-radius:999px; background:var(--border-light); box-shadow:inset 0 2px 5px rgba(0,0,0,.12); margin-top:0; }
     @media (max-width:900px){
-      .intent-funnel { flex-direction:column; max-width:680px; }
-      .intent-step { flex:none; padding:22px 28px; }
-      .intent-arrow { padding:6px 0; }
-      .intent-arrow svg { transform:none; }
+      .intent-staircase { margin-top:16px; padding-bottom:0; }
+      .intent-highest { display:none; }
+      .intent-funnel { flex-direction:column; max-width:680px; align-items:stretch; }
+      .intent-step { flex:none; height:auto !important; border-radius:16px; padding:22px 28px 22px 60px; }
+      .intent-icon { left:16px; top:22px; bottom:auto; transform:none; }
       .intent-example { font-size:17px; }
       .intent-count { font-size:26px; }
+      .intent-floor { display:none; }
     }
     .intent-step.lvl-1 { background:var(--surface); color:var(--fg); }
     .intent-step.lvl-2 { background:rgba(24,99,220,.07); color:var(--fg); }
@@ -618,30 +624,35 @@
         <h2>Turn curiosity into <span class="accent">intent.</span></h2>
         <p>Not all questions mean the same thing. Property Expert helps you see which ones do.</p>
       </div>
-      <div class="intent-funnel reveal">
-        <div class="intent-step lvl-1">
-          <span class="intent-count">42 buyers</span>
-          <span class="intent-stage">Exploring</span>
-          <p class="intent-example">"When was the home built?"</p>
+      <div class="intent-staircase">
+        <span class="intent-highest"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Highest intent</span>
+        <div class="intent-funnel reveal">
+          <div class="intent-step lvl-1">
+            <span class="intent-count">42 buyers</span>
+            <span class="intent-stage">Exploring</span>
+            <p class="intent-example">"When was the home built?"</p>
+            <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span>
+          </div>
+          <div class="intent-step lvl-2">
+            <span class="intent-count">27 buyers</span>
+            <span class="intent-stage">Evaluating</span>
+            <p class="intent-example">"How does this compare with nearby homes?"</p>
+            <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+          </div>
+          <div class="intent-step lvl-3">
+            <span class="intent-count">14 buyers</span>
+            <span class="intent-stage">Doing diligence</span>
+            <p class="intent-example">"What does the disclosure say about foundation work?"</p>
+            <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span>
+          </div>
+          <div class="intent-step lvl-4">
+            <span class="intent-count">6 buyers</span>
+            <span class="intent-stage">Ready to act</span>
+            <p class="intent-example">"When are offers due?" · "Can I tour tomorrow?" · "How do I contact the listing agent?"</p>
+            <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+          </div>
         </div>
-        <div class="intent-arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
-        <div class="intent-step lvl-2">
-          <span class="intent-count">27 buyers</span>
-          <span class="intent-stage">Evaluating</span>
-          <p class="intent-example">"How does this compare with nearby homes?"</p>
-        </div>
-        <div class="intent-arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
-        <div class="intent-step lvl-3">
-          <span class="intent-count">14 buyers</span>
-          <span class="intent-stage">Doing diligence</span>
-          <p class="intent-example">"What does the disclosure say about foundation work?"</p>
-        </div>
-        <div class="intent-arrow"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
-        <div class="intent-step lvl-4">
-          <span class="intent-count">6 buyers</span>
-          <span class="intent-stage">Ready to act</span>
-          <p class="intent-example">"When are offers due?" · "Can I tour tomorrow?" · "How do I contact the listing agent?"</p>
-        </div>
+        <div class="intent-floor"></div>
       </div>
     </div>
   </section>
