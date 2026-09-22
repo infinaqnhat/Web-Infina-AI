@@ -830,7 +830,7 @@
     </div>
   </section>
 
-  <infina-footer></infina-footer>
+  <infina-footer links='[{"text":"For Buyer Agent","href":"#hero-slider","dataSlide":"0"},{"text":"For Listing Agent","href":"#hero-slider","dataSlide":"1"}]'></infina-footer>
 
   <div id="sticky-cta">
     <button type="button" class="btn-primary" id="sticky-cta-btn">Create Home Concierge →</button>
@@ -1509,5 +1509,19 @@
     })();
   </script>
   <script src="footer.js"></script>
+  <script>
+    // Wire the page-specific footer links to the same hero tab switch as the nav
+    (function(){
+      var footerLinks = document.querySelectorAll('footer.infina-footer .footer-links a[data-slide]');
+      footerLinks.forEach(function(a){
+        a.addEventListener('click', function(e){
+          e.preventDefault();
+          var slider = document.getElementById('hero-slider');
+          if (slider) slider.scrollIntoView({ behavior:'smooth', block:'start' });
+          if (window.switchHeroSlide) window.switchHeroSlide(Number(a.getAttribute('data-slide')));
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -25,6 +25,24 @@
         document.head.appendChild(s);
       }
 
+      var linksAttr = this.getAttribute('links');
+      var links = [
+        { text: 'Inside', href: 'inside.html' },
+        { text: 'Work', href: 'work.html' },
+        { text: 'Personal', href: 'personal.html' }
+      ];
+      if (linksAttr) {
+        try {
+          var parsed = JSON.parse(linksAttr);
+          if (Array.isArray(parsed) && parsed.length) links = parsed;
+        } catch (e) {}
+      }
+
+      var linksHtml = links.map(function (l) {
+        var extra = l.dataSlide !== undefined ? ' data-slide="' + l.dataSlide + '"' : '';
+        return '<a href="' + l.href + '"' + extra + '>' + l.text + '</a>';
+      }).join('');
+
       var footer = document.createElement('footer');
       footer.className = 'infina-footer';
       footer.innerHTML =
@@ -32,11 +50,7 @@
           '<div class="footer-logo">' +
             '<img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI">' +
           '</div>' +
-          '<div class="footer-links">' +
-            '<a href="inside.html">Inside</a>' +
-            '<a href="work.html">Work</a>' +
-            '<a href="personal.html">Personal</a>' +
-          '</div>' +
+          '<div class="footer-links">' + linksHtml + '</div>' +
           '<p class="footer-copy">© 2026 Infina. All rights reserved.</p>' +
         '</div>';
 
