@@ -356,7 +356,7 @@
 </head>
 <body>
 
-  <infina-nav active="salesx" cta-text="Create Home Concierge →" cta-href="#hero-create" transparent-until-scroll transparent-until="#hero-slider" logo-lg></infina-nav>
+  <infina-nav active="salesx" cta-text="Create Property Expert →" cta-href="#hero-create-qr" transparent-until-scroll transparent-until="#hero-slider" logo-lg></infina-nav>
 
   <!-- ===== Hero slider: Buying agent / Listing agent tabs ===== -->
   <header class="hero-slider" id="hero-slider">
@@ -368,7 +368,7 @@
       </div>
     </div>
 
-    <div class="hero-track" id="hero-track">
+    <div class="hero-track" id="hero-track" style="transform:translateX(-50%);">
     <div class="hero-slide hero is-active" data-slide-panel="0">
       <img class="hero-photo" src="uploads/hero-boss-gen.jpg" alt="A happy couple holding keys in front of their new home" fetchpriority="high">
       <div class="hero-scrim"></div>
@@ -1079,10 +1079,10 @@
       "Publishing your advisor"
     ];
 
-    var AGENT_FIRST = "Alex";
-    var ROLE_LABEL = "Advisor";
-    var ACTIVE_QUESTIONS = QUESTIONS;
-    var ACTIVE_PERSONAS = PERSONAS_BUYER;
+    var AGENT_FIRST = "Sarah";
+    var ROLE_LABEL = "Property Expert";
+    var ACTIVE_QUESTIONS = QUESTIONS_LISTING;
+    var ACTIVE_PERSONAS = PERSONAS_LISTING;
 
     // ===== Demo card state =====
     var demoState = { qi: 0, thinking: false, asked: null, unknown: false, persona: 'buyer' };
@@ -1396,6 +1396,9 @@
       }
       window.switchHeroSlide = switchSlide;
 
+      // Default to the Listing Agent (Property Expert) tab on page load
+      switchSlide(1);
+
       // Position the indicator under the initially active tab, and keep it aligned on resize
       moveIndicator(slider.querySelector('.hero-tab.is-active'));
       window.addEventListener('resize', function(){ moveIndicator(slider.querySelector('.hero-tab.is-active')); });
@@ -1483,7 +1486,7 @@
 
       var navCenter = document.querySelector('.infina-nav .nav-center');
       if (navCenter) {
-        navCenter.innerHTML = '<a href="#hero-slider" data-slide="0" class="is-active">For Buyer Agent</a><a href="#hero-slider" data-slide="1">For Listing Agent</a>';
+        navCenter.innerHTML = '<a href="#hero-slider" data-slide="0">For Buyer Agent</a><a href="#hero-slider" data-slide="1" class="is-active">For Listing Agent</a>';
         navCenter.querySelectorAll('a').forEach(function(a){
           a.addEventListener('click', function(e){ e.preventDefault(); goToSlide(Number(a.getAttribute('data-slide'))); });
         });
