@@ -363,8 +363,8 @@
     <div class="hero-tabs">
       <div class="hero-tabs-inner">
         <span class="hero-tab-indicator"></span>
-        <button type="button" class="hero-tab is-active" data-slide="0">For Buyer Agent</button>
         <button type="button" class="hero-tab" data-slide="1">For Listing Agent</button>
+        <button type="button" class="hero-tab is-active" data-slide="0">For Buyer Agent</button>
       </div>
     </div>
 
@@ -830,7 +830,7 @@
     </div>
   </section>
 
-  <infina-footer links='[{"text":"For Buyer Agent","href":"#hero-slider","dataSlide":"0"},{"text":"For Listing Agent","href":"#hero-slider","dataSlide":"1"}]'></infina-footer>
+  <infina-footer links='[{"text":"For Listing Agent","href":"#hero-slider","dataSlide":"1"},{"text":"For Buyer Agent","href":"#hero-slider","dataSlide":"0"}]'></infina-footer>
 
   <div id="sticky-cta">
     <button type="button" class="btn-primary" id="sticky-cta-btn">Create Home Concierge →</button>
@@ -1486,7 +1486,7 @@
 
       var navCenter = document.querySelector('.infina-nav .nav-center');
       if (navCenter) {
-        navCenter.innerHTML = '<a href="#hero-slider" data-slide="0">For Buyer Agent</a><a href="#hero-slider" data-slide="1" class="is-active">For Listing Agent</a>';
+        navCenter.innerHTML = '<a href="#hero-slider" data-slide="1" class="is-active">For Listing Agent</a><a href="#hero-slider" data-slide="0">For Buyer Agent</a>';
         navCenter.querySelectorAll('a').forEach(function(a){
           a.addEventListener('click', function(e){ e.preventDefault(); goToSlide(Number(a.getAttribute('data-slide'))); });
         });
@@ -1505,8 +1505,8 @@
         var a2 = document.createElement('a'); a2.href = '#hero-slider'; a2.textContent = 'For Listing Agent';
         a1.addEventListener('click', function(e){ e.preventDefault(); closeMobileNav(); goToSlide(0); });
         a2.addEventListener('click', function(e){ e.preventDefault(); closeMobileNav(); goToSlide(1); });
-        panel.appendChild(a1);
         panel.appendChild(a2);
+        panel.appendChild(a1);
         if (cta) panel.appendChild(cta);
       }
     })();
