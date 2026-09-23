@@ -259,7 +259,7 @@
     .answer-source-link { display:flex; align-items:center; gap:5px; margin-top:12px; font-size:11.5px; font-weight:800; letter-spacing:.05em; color:var(--muted); }
     .grounded-callout { grid-column:3/6; margin-top:16px; display:flex; align-items:center; gap:10px; justify-self:center; border:1.5px solid var(--border); border-radius:999px; padding:10px 20px; font-size:13.5px; color:var(--fg-secondary); }
     .callout-icon { color:var(--blue); flex-shrink:0; display:flex; }
-    .grounded-badges { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px; }
+    .grounded-badges { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-top:28px; }
     .grounded-badge { background:#fff; border-radius:14px; padding:18px 20px; display:flex; align-items:flex-start; gap:12px; box-shadow:0 1px 2px rgba(0,0,0,.04); }
     .badge-icon { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .grounded-badge b { display:block; font-size:14.5px; color:var(--accent); }
@@ -285,15 +285,17 @@
     .intent-highest-mobile { display:none; }
     .intent-funnel { display:flex; flex-direction:row; align-items:flex-end; gap:0; }
     .intent-step { position:relative; min-width:0; display:flex; flex-direction:column; border-radius:16px 16px 0 0; padding:22px 20px 34px; flex-basis:0; }
-    .intent-step.lvl-1 { flex-grow:1.6; height:190px; }
-    .intent-step.lvl-2 { flex-grow:1.2; height:230px; }
+    .intent-step.lvl-1 { flex-grow:1.5; height:190px; }
+    .intent-step.lvl-2 { flex-grow:1.15; height:230px; }
     .intent-step.lvl-3 { flex-grow:.9; height:270px; }
-    .intent-step.lvl-4 { flex-grow:.65; height:320px; }
+    .intent-step.lvl-4 { flex-grow:.75; height:320px; }
+    .intent-step.lvl-5 { flex-grow:.65; height:360px; }
     .intent-count { font-size:30px; font-weight:800; letter-spacing:-.02em; line-height:1; margin-bottom:10px; }
+    .intent-step.lvl-4 .intent-count, .intent-step.lvl-5 .intent-count { font-size:24px; white-space:nowrap; }
     .intent-stage { display:block; font-size:12px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; margin-bottom:10px; opacity:.75; }
     .intent-example { font-size:14.5px; font-style:italic; line-height:1.5; }
     .intent-icon { position:absolute; left:20px; bottom:0; transform:translateY(50%); width:34px; height:34px; border-radius:50%; background:#fff; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--blue); z-index:2; }
-    .intent-step.lvl-4 .intent-icon { border-color:rgba(255,255,255,.4); color:#fff; background:var(--accent); }
+    .intent-step.lvl-4 .intent-icon, .intent-step.lvl-5 .intent-icon { border-color:rgba(255,255,255,.4); color:#fff; background:var(--accent); }
     .intent-floor { height:10px; border-radius:999px; background:var(--border-light); box-shadow:inset 0 2px 5px rgba(0,0,0,.12); margin-top:0; }
     .intent-outro { display:none; }
     @media (max-width:900px){
@@ -310,6 +312,7 @@
       .intent-step.lvl-2::before { background:#6f9dff; }
       .intent-step.lvl-3::before { background:var(--blue); }
       .intent-step.lvl-4::before { background:var(--accent); box-shadow:0 0 0 4px #eef2fb, 0 0 0 6px rgba(0,31,92,.18); }
+      .intent-step.lvl-5::before { background:var(--accent-dark); box-shadow:0 0 0 4px #eef2fb, 0 0 0 6px rgba(0,19,64,.22); }
       .intent-icon { left:auto; right:20px; top:20px; bottom:auto; transform:none; }
       .intent-example { font-size:17px; }
       .intent-count { font-size:26px; }
@@ -321,6 +324,8 @@
     .intent-step.lvl-3 { background:rgba(24,99,220,.16); color:var(--fg); }
     .intent-step.lvl-4 { background:var(--accent); color:#fff; }
     .intent-step.lvl-4 .intent-stage { opacity:.7; }
+    .intent-step.lvl-5 { background:var(--accent-dark); color:#fff; }
+    .intent-step.lvl-5 .intent-stage { opacity:.7; }
 
     /* ===== Testimonials ===== */
     .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:36px; }
@@ -732,6 +737,10 @@
               <span class="badge-icon icon-green"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
               <div><b>No login required</b><span>Get answers instantly.</span></div>
             </div>
+            <div class="grounded-badge">
+              <span class="badge-icon icon-amber"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+              <div><b>Share it everywhere</b><span>Property page, listing campaigns, open-house materials, or a yard sign QR.</span></div>
+            </div>
           </div>
 
         </div>
@@ -772,6 +781,12 @@
             <span class="intent-stage">Ready to act</span>
             <p class="intent-example">"When are offers due?" · "Can I tour tomorrow?" · "How do I contact the listing agent?"</p>
             <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+          </div>
+          <div class="intent-step lvl-5">
+            <span class="intent-count">2 buyers</span>
+            <span class="intent-stage">Closing</span>
+            <p class="intent-example">"What's the inspection deadline?" · "When do we get the keys?"</p>
+            <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></span>
           </div>
         </div>
         <div class="intent-floor"></div>
