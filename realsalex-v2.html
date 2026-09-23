@@ -213,15 +213,9 @@
     [hidden] { display:none !important; }
 
     /* ===== Workflow (listing agent only) ===== */
-    .workflow-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
-    @media (max-width:860px){ .workflow-grid{ grid-template-columns:1fr; gap:32px; } }
-    .workflow-intro h2 { font-size:clamp(28px,3.6vw,42px); font-weight:800; letter-spacing:-.02em; line-height:1.15; color:var(--accent); margin-top:14px; }
-    .workflow-intro p { font-size:17px; color:var(--muted); margin-top:16px; line-height:1.7; }
-    .workflow-list { list-style:none; counter-reset:workflow; display:flex; flex-direction:column; gap:28px; }
-    .workflow-item { position:relative; padding-left:40px; }
-    .workflow-item::before { counter-increment:workflow; content:counter(workflow); position:absolute; left:0; top:1px; width:26px; height:26px; border-radius:50%; background:var(--accent-light); color:var(--accent); font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center; }
-    .workflow-item b { display:block; font-size:17px; color:var(--accent); margin-bottom:6px; }
-    .workflow-item p { font-size:15px; color:var(--muted); line-height:1.6; }
+    .workflow-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+    @media (max-width:900px){ .workflow-grid{ grid-template-columns:1fr 1fr; } }
+    @media (max-width:600px){ .workflow-grid{ grid-template-columns:1fr; max-width:520px; margin:0 auto; } }
 
     /* ===== Three reasons ===== */
     .aic-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
@@ -815,18 +809,32 @@
   <!-- ===== How it works (listing agent only) ===== -->
   <section class="section tab-copy" data-tab="listing" hidden>
     <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">The entire buyer journey</span>
+        <h2>Keep the conversation moving toward <span class="accent">a decision.</span></h2>
+        <p>Property Expert is designed to carry questions forward as interest becomes a showing, an offer, and a transaction. You see where your attention can help.</p>
+      </div>
       <div class="workflow-grid">
-        <div class="workflow-intro reveal">
-          <span class="eyebrow">The entire buyer journey</span>
-          <h2>Keep the conversation moving toward a decision.</h2>
-          <p>Property Expert is designed to carry questions forward as interest becomes a showing, an offer, and a transaction. You see where your attention can help.</p>
+        <div class="aic reveal">
+          <span class="aic-num">01</span>
+          <h3>Discovery → informed interest.</h3>
+          <p>Answer property questions from current listing materials and invite the buyer to explore what matters.</p>
         </div>
-        <ol class="workflow-list reveal">
-          <li class="workflow-item"><b>Discovery → informed interest.</b><p>Answer property questions from current listing materials and invite the buyer to explore what matters.</p></li>
-          <li class="workflow-item"><b>Interest → a showing.</b><p>Capture a tour request and the buyer's questions so you can prepare a relevant visit.</p></li>
-          <li class="workflow-item"><b>Showing → an offer conversation.</b><p>Ask what remains unresolved. Route requests about price, terms, or repairs to the agents for discussion.</p></li>
-          <li class="workflow-item"><b>Accepted offer → closing.</b><p>Organize authorized document requests, inspection questions, and agreed milestones. Flag open items for the responsible professional.</p></li>
-        </ol>
+        <div class="aic reveal">
+          <span class="aic-num">02</span>
+          <h3>Interest → a showing.</h3>
+          <p>Capture a tour request and the buyer's questions so you can prepare a relevant visit.</p>
+        </div>
+        <div class="aic reveal">
+          <span class="aic-num">03</span>
+          <h3>Showing → an offer conversation.</h3>
+          <p>Ask what remains unresolved. Route requests about price, terms, or repairs to the agents for discussion.</p>
+        </div>
+        <div class="aic reveal">
+          <span class="aic-num">04</span>
+          <h3>Accepted offer → closing.</h3>
+          <p>Organize authorized document requests, inspection questions, and agreed milestones. Flag open items for the responsible professional.</p>
+        </div>
       </div>
     </div>
   </section>
