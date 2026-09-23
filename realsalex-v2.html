@@ -285,11 +285,12 @@
     .intent-highest-mobile { display:none; }
     .intent-funnel { display:flex; flex-direction:row; align-items:flex-end; gap:0; }
     .intent-step { position:relative; min-width:0; display:flex; flex-direction:column; border-radius:16px 16px 0 0; padding:22px 20px 34px; flex-basis:0; }
-    .intent-step.lvl-1 { flex-grow:1.5; height:190px; }
-    .intent-step.lvl-2 { flex-grow:1.15; height:230px; }
-    .intent-step.lvl-3 { flex-grow:.9; height:270px; }
-    .intent-step.lvl-4 { flex-grow:.75; height:320px; }
-    .intent-step.lvl-5 { flex-grow:.65; height:360px; }
+    .intent-step.lvl-1 { flex-grow:1.15; height:190px; }
+    .intent-step.lvl-2 { flex-grow:1.05; height:230px; }
+    .intent-step.lvl-3 { flex-grow:1; height:270px; }
+    .intent-step.lvl-4 { flex-grow:.95; height:320px; }
+    .intent-step.lvl-5 { flex-grow:.9; height:360px; }
+    .intent-divider { display:block; width:32px; height:2px; border-radius:2px; background:currentColor; opacity:.35; margin:2px 0 14px; }
     .intent-count { font-size:30px; font-weight:800; letter-spacing:-.02em; line-height:1; margin-bottom:10px; }
     .intent-step.lvl-4 .intent-count, .intent-step.lvl-5 .intent-count { font-size:24px; white-space:nowrap; }
     .intent-stage { display:block; font-size:12px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; margin-bottom:10px; opacity:.75; }
@@ -760,31 +761,31 @@
         <div class="intent-funnel reveal">
           <div class="intent-step lvl-1">
             <span class="intent-count">42 buyers</span>
-            <span class="intent-stage">Exploring</span>
+            <span class="intent-stage">Exploring</span><span class="intent-divider"></span>
             <p class="intent-example">"When was the home built?"</p>
             <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span>
           </div>
           <div class="intent-step lvl-2">
             <span class="intent-count">27 buyers</span>
-            <span class="intent-stage">Evaluating</span>
+            <span class="intent-stage">Evaluating</span><span class="intent-divider"></span>
             <p class="intent-example">"How does this compare with nearby homes?"</p>
             <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
           </div>
           <div class="intent-step lvl-3">
             <span class="intent-count">14 buyers</span>
-            <span class="intent-stage">Doing diligence</span>
+            <span class="intent-stage">Doing diligence</span><span class="intent-divider"></span>
             <p class="intent-example">"What does the disclosure say about foundation work?"</p>
             <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span>
           </div>
           <div class="intent-step lvl-4">
             <span class="intent-count">6 buyers</span>
-            <span class="intent-stage">Ready to act</span>
+            <span class="intent-stage">Ready to act</span><span class="intent-divider"></span>
             <p class="intent-example">"When are offers due?" · "Can I tour tomorrow?" · "How do I contact the listing agent?"</p>
             <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
           </div>
           <div class="intent-step lvl-5">
             <span class="intent-count">2 buyers</span>
-            <span class="intent-stage">Closing</span>
+            <span class="intent-stage">Closing</span><span class="intent-divider"></span>
             <p class="intent-example">"What's the inspection deadline?" · "When do we get the keys?"</p>
             <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></span>
           </div>
