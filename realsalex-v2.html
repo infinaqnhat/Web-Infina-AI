@@ -212,6 +212,17 @@
 
     [hidden] { display:none !important; }
 
+    /* ===== Workflow (listing agent only) ===== */
+    .workflow-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+    @media (max-width:860px){ .workflow-grid{ grid-template-columns:1fr; gap:32px; } }
+    .workflow-intro h2 { font-size:clamp(28px,3.6vw,42px); font-weight:800; letter-spacing:-.02em; line-height:1.15; color:var(--accent); margin-top:14px; }
+    .workflow-intro p { font-size:17px; color:var(--muted); margin-top:16px; line-height:1.7; }
+    .workflow-list { list-style:none; counter-reset:workflow; display:flex; flex-direction:column; gap:28px; }
+    .workflow-item { position:relative; padding-left:40px; }
+    .workflow-item::before { counter-increment:workflow; content:counter(workflow); position:absolute; left:0; top:1px; width:26px; height:26px; border-radius:50%; background:var(--accent-light); color:var(--accent); font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+    .workflow-item b { display:block; font-size:17px; color:var(--accent); margin-bottom:6px; }
+    .workflow-item p { font-size:15px; color:var(--muted); line-height:1.6; }
+
     /* ===== Three reasons ===== */
     .aic-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
     @media (max-width:760px){ .aic-3{ grid-template-columns:1fr; max-width:520px; margin:0 auto; } }
@@ -797,6 +808,25 @@
           Highest intent
         </span>
         <div class="intent-outro"><span>From curiosity to closing</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== How it works (listing agent only) ===== -->
+  <section class="section tab-copy" data-tab="listing" hidden>
+    <div class="container">
+      <div class="workflow-grid">
+        <div class="workflow-intro reveal">
+          <span class="eyebrow">The entire buyer journey</span>
+          <h2>Keep the conversation moving toward a decision.</h2>
+          <p>Property Expert is designed to carry questions forward as interest becomes a showing, an offer, and a transaction. You see where your attention can help.</p>
+        </div>
+        <ol class="workflow-list reveal">
+          <li class="workflow-item"><b>Discovery → informed interest.</b><p>Answer property questions from current listing materials and invite the buyer to explore what matters.</p></li>
+          <li class="workflow-item"><b>Interest → a showing.</b><p>Capture a tour request and the buyer's questions so you can prepare a relevant visit.</p></li>
+          <li class="workflow-item"><b>Showing → an offer conversation.</b><p>Ask what remains unresolved. Route requests about price, terms, or repairs to the agents for discussion.</p></li>
+          <li class="workflow-item"><b>Accepted offer → closing.</b><p>Organize authorized document requests, inspection questions, and agreed milestones. Flag open items for the responsible professional.</p></li>
+        </ol>
       </div>
     </div>
   </section>
