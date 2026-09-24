@@ -1921,8 +1921,13 @@
       }
       window.switchHeroSlide = switchSlide;
 
-      // Default to the Listing Agent (Property Expert) tab on page load
-      switchSlide(1);
+      // Default to the Listing Agent (Property Expert) tab on page load,
+      // unless the URL hash requests a specific tab (#buyer-agent or #listing-agent)
+      var initialSlide = 1;
+      var initialHash = (window.location.hash || '').toLowerCase();
+      if (initialHash === '#buyer-agent' || initialHash === '#buyer') initialSlide = 0;
+      else if (initialHash === '#listing-agent' || initialHash === '#listing') initialSlide = 1;
+      switchSlide(initialSlide);
 
       // Position the indicator under the initially active tab, and keep it aligned on resize
       moveIndicator(slider.querySelector('.hero-tab.is-active'));
@@ -2011,8 +2016,11 @@
 
       var navCenter = document.querySelector('.infina-nav .nav-center');
       if (navCenter) {
-        navCenter.innerHTML = '<a href="#hero-slider" data-slide="1" class="is-active">For Listing Agent</a><a href="#hero-slider" data-slide="0">For Buyer Agent</a>';
+        var activePanelEl = document.querySelector('.hero-slide.is-active');
+        var activeIndex = activePanelEl ? Number(activePanelEl.getAttribute('data-slide-panel')) : 1;
+        navCenter.innerHTML = '<a href="#hero-slider" data-slide="1">For Listing Agent</a><a href="#hero-slider" data-slide="0">For Buyer Agent</a>';
         navCenter.querySelectorAll('a').forEach(function(a){
+          a.classList.toggle('is-active', Number(a.getAttribute('data-slide')) === activeIndex);
           a.addEventListener('click', function(e){ e.preventDefault(); goToSlide(Number(a.getAttribute('data-slide'))); });
         });
       }
