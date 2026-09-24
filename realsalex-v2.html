@@ -291,16 +291,16 @@
     .aic p { font-size:14.5px; color:var(--fg-secondary); line-height:1.6; }
 
     /* ===== Decision room dashboard (buyer agent only) ===== */
-    .decision-card { max-width:1040px; margin:0 auto; background:#fff; border:1.5px solid var(--border-light); border-radius:20px; padding:28px; }
-    .decision-eyebrow { font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
-    .decision-title { font-size:24px; font-weight:800; color:var(--accent); letter-spacing:-.01em; margin:6px 0 4px; }
+    .decision-card { max-width:1320px; margin:0 auto; background:#fff; border:1.5px solid var(--border-light); border-radius:20px; overflow:hidden; }
+    .decision-topbar { display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; background:var(--blue-light); padding:24px 32px; border-bottom:1px solid var(--border-light); }
+    .decision-title { font-size:26px; font-weight:800; color:var(--accent); letter-spacing:-.01em; margin:0 0 4px; }
     .decision-meta { font-size:14px; color:var(--muted); }
-    .status-pill { display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; background:var(--blue-light); color:var(--blue); font-size:13.5px; font-weight:700; margin-top:22px; }
+    .status-pill { display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; background:#fff; color:var(--blue); font-size:13.5px; font-weight:700; flex-shrink:0; }
     .status-pill svg { flex-shrink:0; }
-    .decision-columns { display:grid; grid-template-columns:1fr 1fr; gap:36px; margin-top:24px; }
-    @media (max-width:700px){ .decision-columns { grid-template-columns:1fr; gap:32px; } }
+    .decision-columns { display:grid; grid-template-columns:1fr 1fr; gap:36px; padding:32px; }
+    @media (max-width:700px){ .decision-columns { grid-template-columns:1fr; gap:32px; padding:20px; } .decision-topbar { padding:20px; } }
     .decision-col { display:flex; flex-direction:column; }
-    .decision-photo { width:100%; aspect-ratio:4/3; border-radius:14px; object-fit:cover; margin-bottom:24px; }
+    .decision-photo { width:100%; aspect-ratio:3/2; border-radius:14px; object-fit:cover; margin-bottom:24px; }
     .decision-label { display:block; font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin:0 0 14px; }
     .case-progress { display:flex; align-items:flex-start; }
     .case-step { flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; }
@@ -312,18 +312,17 @@
     .case-step.is-done .case-line, .case-step.is-current .case-line { background:var(--blue); }
     .case-step-label { font-size:12px; font-weight:700; color:var(--fg); margin-top:10px; }
     .case-step:not(.is-done):not(.is-current) .case-step-label { color:var(--muted); font-weight:600; }
-    @media (max-width:600px){ .case-step-label { font-size:11px; } .decision-card { padding:20px; } }
-    .key-items { display:flex; flex-direction:column; }
-    .key-item { display:flex; align-items:center; gap:14px; padding:14px 10px; border-top:1px solid var(--border-light); border-radius:10px; }
-    .key-item:first-child { border-top:none; }
-    .key-item.is-highlight { background:var(--blue-light); }
+    @media (max-width:600px){ .case-step-label { font-size:11px; } }
+    .key-items { display:flex; flex-direction:column; gap:12px; }
+    .key-item { display:flex; align-items:center; gap:14px; padding:16px; border:1.5px solid var(--border-light); border-radius:14px; }
+    .key-item.is-highlight { background:var(--blue-light); border-color:transparent; }
     .key-icon { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .key-text { flex:1; min-width:0; }
     .key-text b { display:block; font-size:14.5px; color:var(--fg); }
     .key-text span { font-size:13px; color:var(--muted); }
     .key-status { font-size:12.5px; font-weight:700; padding:6px 12px; border-radius:999px; white-space:nowrap; flex-shrink:0; }
     .key-status.is-done { background:rgba(16,163,102,.12); color:#0e9f61; }
-    .key-status.is-attn { background:var(--blue-light); color:var(--blue); }
+    .key-status.is-attn { background:#fff; color:var(--blue); }
     .key-status.is-due { background:rgba(217,146,26,.16); color:#b8790f; }
     .key-status.is-pending { background:var(--surface); color:var(--muted); }
     .key-chevron { color:var(--muted); flex-shrink:0; }
@@ -933,13 +932,16 @@
         <p>The relationship continues after a tour or an offer. Home Concierge helps organize questions and flag issues for your attention.</p>
       </div>
       <div class="decision-card reveal">
-        <span class="decision-eyebrow">Decision room</span>
-        <h3 class="decision-title">123 Main Street</h3>
-        <p class="decision-meta">4 bed &middot; 3 bath &middot; 2,410 sq ft &middot; Austin, TX</p>
-        <span class="status-pill">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3.1-5 7-5s7 1.7 7 5"/></svg>
-          Buyer ready: 3 items need attention
-        </span>
+        <div class="decision-topbar">
+          <div>
+            <h3 class="decision-title">123 Main Street</h3>
+            <p class="decision-meta">4 bed &middot; 3 bath &middot; 2,410 sq ft &middot; Austin, TX</p>
+          </div>
+          <span class="status-pill">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3.1-5 7-5s7 1.7 7 5"/></svg>
+            Buyer ready: 3 items need attention
+          </span>
+        </div>
 
         <div class="decision-columns">
           <div class="decision-col">
