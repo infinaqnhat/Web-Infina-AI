@@ -295,14 +295,14 @@
     .decision-eyebrow { font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
     .decision-title { font-size:24px; font-weight:800; color:var(--accent); letter-spacing:-.01em; margin:6px 0 4px; }
     .decision-meta { font-size:14px; color:var(--muted); }
-    .decision-header { display:flex; gap:22px; margin-top:22px; align-items:stretch; }
-    .decision-photo { width:240px; height:auto; border-radius:14px; object-fit:cover; flex-shrink:0; align-self:stretch; }
-    @media (max-width:700px){ .decision-photo { display:none; } }
-    .decision-headinfo { flex:1; min-width:0; }
-    .status-pill { display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; background:var(--blue-light); color:var(--blue); font-size:13.5px; font-weight:700; margin-bottom:24px; }
+    .status-pill { display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; background:var(--blue-light); color:var(--blue); font-size:13.5px; font-weight:700; margin-top:22px; }
     .status-pill svg { flex-shrink:0; }
-    .decision-label { display:block; font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin:24px 0 14px; }
-    .case-progress { display:flex; align-items:flex-start; margin-bottom:28px; }
+    .decision-columns { display:grid; grid-template-columns:1fr 1fr; gap:36px; margin-top:24px; }
+    @media (max-width:700px){ .decision-columns { grid-template-columns:1fr; gap:32px; } }
+    .decision-col { display:flex; flex-direction:column; }
+    .decision-photo { width:100%; aspect-ratio:4/3; border-radius:14px; object-fit:cover; margin-bottom:24px; }
+    .decision-label { display:block; font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin:0 0 14px; }
+    .case-progress { display:flex; align-items:flex-start; }
     .case-step { flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; }
     .case-dot { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#fff; border:2.5px solid var(--border); color:var(--muted); z-index:2; flex-shrink:0; }
     .case-step.is-done .case-dot { background:var(--blue); border-color:var(--blue); color:#fff; }
@@ -310,7 +310,7 @@
     .case-line { position:absolute; top:13px; left:-50%; width:100%; height:2px; background:var(--border); z-index:1; }
     .case-step:first-child .case-line { display:none; }
     .case-step.is-done .case-line, .case-step.is-current .case-line { background:var(--blue); }
-    .case-step-label { font-size:13px; font-weight:700; color:var(--fg); margin-top:10px; }
+    .case-step-label { font-size:12px; font-weight:700; color:var(--fg); margin-top:10px; }
     .case-step:not(.is-done):not(.is-current) .case-step-label { color:var(--muted); font-weight:600; }
     @media (max-width:600px){ .case-step-label { font-size:11px; } .decision-card { padding:20px; } }
     .key-items { display:flex; flex-direction:column; }
@@ -936,13 +936,14 @@
         <span class="decision-eyebrow">Decision room</span>
         <h3 class="decision-title">123 Main Street</h3>
         <p class="decision-meta">4 bed &middot; 3 bath &middot; 2,410 sq ft &middot; Austin, TX</p>
-        <div class="decision-header">
-          <img class="decision-photo" src="uploads/property-123-main.jpg" alt="123 Main Street, Austin TX exterior photo">
-          <div class="decision-headinfo">
-            <span class="status-pill">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3.1-5 7-5s7 1.7 7 5"/></svg>
-              Buyer ready: 3 items need attention
-            </span>
+        <span class="status-pill">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3.1-5 7-5s7 1.7 7 5"/></svg>
+          Buyer ready: 3 items need attention
+        </span>
+
+        <div class="decision-columns">
+          <div class="decision-col">
+            <img class="decision-photo" src="uploads/property-123-main.jpg" alt="123 Main Street, Austin TX exterior photo">
 
             <span class="decision-label">Case progress</span>
             <div class="case-progress">
@@ -968,30 +969,30 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <span class="decision-label">Key items</span>
-        <div class="key-items">
+          <div class="decision-col">
+            <span class="decision-label">Key items</span>
+            <div class="key-items">
               <div class="key-item">
                 <span class="key-icon icon-green"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></span>
-                <span class="key-text"><b>Financing verified</b><span>Lender pre-approval received. Confirm final conditions are met before the deadline.</span></span>
+                <span class="key-text"><b>Financing verified</b><span>Lender pre-approval received.</span></span>
                 <span class="key-status is-done">Completed</span>
               </div>
               <div class="key-item is-highlight">
                 <span class="key-icon icon-blue"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg></span>
-                <span class="key-text"><b>Inspection question</b><span>Roof shows signs of prior repair. Review photos and inspector notes, then advise next steps.</span></span>
+                <span class="key-text"><b>Inspection question</b><span>Roof shows signs of prior repair.</span></span>
                 <span class="key-status is-attn">Needs agent</span>
                 <span class="key-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
               </div>
               <div class="key-item">
                 <span class="key-icon icon-amber"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-                <span class="key-text"><b>Document deadline</b><span>Finalize disclosures and sign by Oct 12.</span></span>
+                <span class="key-text"><b>Document deadline</b><span>Finalize disclosures and sign.</span></span>
                 <span class="key-status is-due">Due Oct 12</span>
                 <span class="key-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
               </div>
               <div class="key-item">
                 <span class="key-icon icon-rose"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span>
-                <span class="key-text"><b>Patio repair credit</b><span>Seller reviewing requested credit. Review their feedback and confirm next steps.</span></span>
+                <span class="key-text"><b>Patio repair credit</b><span>Seller reviewing requested credit.</span></span>
                 <span class="key-status is-pending">Under review</span>
                 <span class="key-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
               </div>
@@ -1010,6 +1011,8 @@
                 <span>Inspection contingency</span>
               </div>
             </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
