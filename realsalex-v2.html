@@ -291,14 +291,14 @@
     .aic p { font-size:14.5px; color:var(--fg-secondary); line-height:1.6; }
 
     /* ===== Decision room dashboard (buyer agent only) ===== */
-    .decision-card { max-width:900px; margin:0 auto; background:#fff; border:1.5px solid var(--border-light); border-radius:20px; padding:28px; }
+    .decision-card { max-width:1040px; margin:0 auto; background:#fff; border:1.5px solid var(--border-light); border-radius:20px; padding:28px; }
     .decision-eyebrow { font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
     .decision-title { font-size:24px; font-weight:800; color:var(--accent); letter-spacing:-.01em; margin:6px 0 4px; }
     .decision-meta { font-size:14px; color:var(--muted); }
-    .decision-body { display:flex; gap:22px; margin-top:22px; align-items:stretch; }
-    .decision-photo { width:220px; height:auto; min-height:100%; border-radius:14px; object-fit:cover; flex-shrink:0; align-self:stretch; }
-    @media (max-width:600px){ .decision-photo { display:none; } }
-    .decision-main { flex:1; min-width:0; }
+    .decision-header { display:flex; gap:22px; margin-top:22px; align-items:stretch; }
+    .decision-photo { width:240px; height:auto; border-radius:14px; object-fit:cover; flex-shrink:0; align-self:stretch; }
+    @media (max-width:700px){ .decision-photo { display:none; } }
+    .decision-headinfo { flex:1; min-width:0; }
     .status-pill { display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; background:var(--blue-light); color:var(--blue); font-size:13.5px; font-weight:700; margin-bottom:24px; }
     .status-pill svg { flex-shrink:0; }
     .decision-label { display:block; font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin:24px 0 14px; }
@@ -936,9 +936,9 @@
         <span class="decision-eyebrow">Decision room</span>
         <h3 class="decision-title">123 Main Street</h3>
         <p class="decision-meta">4 bed &middot; 3 bath &middot; 2,410 sq ft &middot; Austin, TX</p>
-        <div class="decision-body">
+        <div class="decision-header">
           <img class="decision-photo" src="uploads/property-123-main.jpg" alt="123 Main Street, Austin TX exterior photo">
-          <div class="decision-main">
+          <div class="decision-headinfo">
             <span class="status-pill">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3.1-5 7-5s7 1.7 7 5"/></svg>
               Buyer ready: 3 items need attention
@@ -967,9 +967,11 @@
                 <span class="case-step-label">Closing</span>
               </div>
             </div>
+          </div>
+        </div>
 
-            <span class="decision-label">Key items</span>
-            <div class="key-items">
+        <span class="decision-label">Key items</span>
+        <div class="key-items">
               <div class="key-item">
                 <span class="key-icon icon-green"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></span>
                 <span class="key-text"><b>Financing verified</b><span>Lender pre-approval received. Confirm final conditions are met before the deadline.</span></span>
@@ -1008,8 +1010,6 @@
                 <span>Inspection contingency</span>
               </div>
             </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
