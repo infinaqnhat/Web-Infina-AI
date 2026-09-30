@@ -6,9 +6,11 @@ URL: *chưa deploy* (bản draft `realsalex.html` trên nhánh `main`, chưa có
 thêm internal link tới money page (xem `skills/pillar-cluster-writer/SKILL.md`) — đây là việc
 còn thiếu duy nhất áp dụng cho toàn bộ plan.
 
-**🎉 Trạng thái tổng quan (2026-09-15): CẢ 3 NHÁNH ĐÃ VIẾT XONG.** 9 bài mới (3 pillar + 6 cluster)
-đã viết, 4 bài cũ đã refresh, tất cả đã publish hoặc lên lịch tự động. Không cần viết thêm bài nào
-trừ khi mở rộng plan sau này (xem mục cuối file).
+**🎉 Trạng thái tổng quan (2026-09-15): CẢ 3 NHÁNH GỐC ĐÃ VIẾT XONG.** 9 bài mới (3 pillar + 6
+cluster) đã viết, 4 bài cũ đã refresh, tất cả đã publish hoặc lên lịch tự động.
+
+**🆕 Mở rộng (2026-09-30): thêm 2 bài vào Nhánh 3** (C3.4, C3.5 — góc "Customer Engagement
+Platform"), đã duyệt plan, **chưa viết**. Xem chi tiết ở mục Nhánh 3 bên dưới.
 
 ## Lịch xuất bản đầy đủ (đã check trần 3 bài/ngày, chừa slot cho pipeline tin tức ~18h mỗi ngày)
 
@@ -119,17 +121,19 @@ chiều), C2.4 → #147 (mention Fair Housing/Housing Special Ad Category).
 
 ---
 
-## Nhánh 3: CRM Add-on / Alternatives & Pricing — 🥈 ưu tiên 2 — ✅ HOÀN THÀNH
+## Nhánh 3: CRM Add-on / Alternatives & Pricing — 🥈 ưu tiên 2 — 🕐 Phần gốc đã xong, đang mở rộng
 
 Góc bắt buộc: viết kiểu "CRM sẵn có thiếu gì mà cần thêm lớp intent", KHÔNG viết "X vs Y CRM nào
 tốt hơn" — target là người đã có CRM rồi, RealSaleX bổ sung chứ không thay thế.
 
 | ID | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|---|
-| P3 | Pillar (nhẹ) | [AI Intent Layer for Real Estate CRM: What It Adds](https://infina.ai/news/?p=1232) (ID 1232) | `ai intent layer for real estate crm` | Evaluation/MOF | 🕐 Schedule 22/09 10:00 |
+| P3 | Pillar (nhẹ) | [AI Intent Layer for Real Estate CRM: What It Adds](https://infina.ai/news/?p=1232) (ID 1232) | `ai intent layer for real estate crm` | Evaluation/MOF | ✅ Published |
 | ~~C3.1~~ | ~~Follow Up Boss Review~~ | ❌ Bỏ, thay bằng refresh [#384](https://infina.ai/news/best-crm-software-real-estate-agents/) | — | — | ✅ #384 đã refresh 15/09, thêm link P3 |
-| C3.2 | Review + gap thật | [CINC CRM Review: Pricing, Features, and Buyer Follow-Up Gaps](https://infina.ai/news/?p=1234) (ID 1234) | `cinc crm review` | Evaluation/MOF | 🕐 Schedule 23/09 10:00 |
+| C3.2 | Review + gap thật | [CINC CRM Review: Pricing, Features, and Buyer Follow-Up Gaps](https://infina.ai/news/?p=1234) (ID 1234) | `cinc crm review` | Evaluation/MOF | ✅ Published |
 | ~~C3.3~~ | ~~kvCORE Pricing~~ | ❌ Bỏ, cùng xử lý qua refresh #384 | — | — | ✅ |
+| C3.4 | So sánh (MOF) | *Customer Engagement Platform vs CRM for Real Estate* | `customer engagement platform vs crm` | Evaluation/MOF | 🕐 Đã duyệt plan 30/09, chưa viết |
+| C3.5 | Listicle chiến lược (TOF) | *Customer Engagement Strategies for Real Estate Agents* | niche từ `digital customer engagement` + `customer engagement examples` | Discovery/TOF | 🕐 Đã duyệt plan 30/09, chưa viết |
 
 **Đổi FOCUS_KW so với plan gốc**: `crm and lead generation` → `ai intent layer for real estate crm`
 (P3, khớp SERP thật về "AI follow-up shift to intent signals" thay vì generic CRM+leadgen). C3.2
@@ -138,6 +142,34 @@ gói Solo/Ramp/Pro/Select, điểm mạnh/yếu) đã verify qua web search trư
 
 Internal link: P3 ↔ C3.2 (2 chiều), P3 ↔ #384 (refresh, thay C3.1/C3.3), P3 ↔ #214 (link chéo,
 không cannibalize), P3 ↔ P2 (định vị bổ sung CRM).
+
+### C3.4 + C3.5 — mở rộng "Customer Engagement Platform" (2026-09-30)
+
+**Bối cảnh**: user gửi thêm 148 keyword mới (export Google Keyword Planner) về "customer engagement
+platform" (CEP), đã merge vào
+`wordpress-mcp/skills/news-to-cluster-article/keywords/Infina_AI_RealSale_Keyword_Stats_2026-09-15.csv`
+(commit `d0f17c3`). CEP được xác nhận là **góc định vị lại 1 phần RealSaleX**, không phải sản phẩm
+tách riêng — audience vẫn brokerage/agent bất động sản Mỹ, money page vẫn RealSaleX (chưa deploy).
+
+**Vì sao KHÔNG tạo hẳn 1 "Nhánh CEP" riêng** (đã cân nhắc rồi bỏ): live-SERP check cho thấy niche
+hóa "customer engagement platform for real estate" đá thẳng vào sân đã có của Nhánh 3 hiện tại
+(Sierra Interactive, Zoho SalesIQ, Salesforce, Creatio đều frame CEP-cho-real-estate y hệt nội dung
+"CRM cho real estate" đã có ở #207/#384/#214/#230/#405). Tạo nhánh mới riêng sẽ tự cannibalize nội
+bộ nhiều hơn là mở ra SERP mới, nên quyết định **nhét 2 bài mới vào Nhánh 3 sẵn có** thay vì tạo
+nhánh 5.
+
+**Kết quả check volume + live-SERP (2026-09-30) cho từng nhóm keyword ứng viên**:
+
+| Nhóm keyword | Volume (tier) | Kết luận |
+|---|---|---|
+| `customer engagement platform`, `customer experience automation platform`, `omnichannel customer engagement platform`, `best customer engagement platform` (bare) | 500-5000 | ❌ Bỏ — SERP bị vendor tỷ đô chiếm 100% (Twilio, Salesforce, Zendesk, Braze, Talon.One, Bloomreach...), **zero** kết quả real estate dù niche hay không |
+| `what is customer engagement`, `CEP customer engagement platform meaning` (bare) | 500, 50 | ❌ Bỏ — cùng lý do, toàn IBM/Salesforce/Wikipedia/Martech.zone. Lưu ý: competition index thấp (idx=1) trong file KHÔNG phản ánh độ khó SERP organic thật — đây là competition Ads, dễ gây hiểu lầm |
+| `what is a customer engagement platform for real estate`, `...real estate agents need` (niche) | 500 (bare gốc) | ❌ Bỏ — SERP real estate có thật (Sierra Interactive, Zoho SalesIQ, realestatecrm.io...) nhưng nội dung đọc y hệt "CRM cho real estate" đã có → cannibalize nội bộ với #207/#384/#214, không đáng viết bài riêng |
+| `customer engagement platform vs crm` | 50, comp idx **0** | ✅ Giữ — C3.4. Generic có 9+ bài (leat, courier, moengage, informatica...) nhưng **chưa site real estate nào viết bản riêng**, khớp đúng pitch RealSaleX (bổ sung CRM bằng lớp engagement/intent) |
+| `digital customer engagement real estate`, `customer engagement examples real estate` (niche) | 500 (bare gốc) | ✅ Giữ — C3.5. SERP real estate có thật (Spectrio, Transactly, ETG.digital, commercial-realestate-training.com) nhưng đối thủ toàn agency blog nhỏ, chưa ai làm bài resource chuẩn SEO — format listicle chiến lược/ví dụ, khác hẳn format so sánh phần mềm nên không đụng Nhánh 3 hiện có |
+
+Internal link dự kiến khi viết: C3.4 ↔ C3.5 (2 chiều), cả 2 ↔ P3 (#1232) + #384, C3.4 → money page
+RealSaleX (khi có URL).
 
 ---
 
@@ -171,3 +203,5 @@ riêng, không giữ backlog.
    khi có dữ liệu GSC thật.
 4. **`references/used-keywords.md`**: cần cập nhật dần khi mỗi bài trong lịch ở trên tự publish
    (chuyển từ bảng "reserved" sang bảng "đã publish").
+5. **Viết C3.4 + C3.5** (Nhánh 3, góc Customer Engagement Platform) — plan đã duyệt 30/09, chưa
+   viết bài thật. Theo đúng quy trình `skills/pillar-cluster-writer/SKILL.md` Bước 5 trở đi.
