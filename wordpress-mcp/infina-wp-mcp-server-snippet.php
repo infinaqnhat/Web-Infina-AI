@@ -139,7 +139,19 @@ function infina_mcp_set_redirect( $post_id, $url_to, $header_code, &$note ) {
             return false;
         }
     } catch ( \Throwable $e ) {
-        $note = ' Luu y: tao redirect tu dong loi (' . $e->getMessage() . '), hay set thu cong qua WP Admin.';
+        // DEBUG TAM THOI: liet ke public static method/property that cua class de tim dung API,
+        // vi 'from_array' doan sai cho ban Rank Math nay. Xoa doan reflection nay sau khi sua xong.
+        $debug = '';
+        try {
+            $rc = new \ReflectionClass( '\RankMath\Redirections\Redirection' );
+            $methods = array_map( function ( $m ) {
+                return $m->isStatic() ? 'static ' . $m->getName() : $m->getName();
+            }, $rc->getMethods( \ReflectionMethod::IS_PUBLIC ) );
+            $debug = ' | Public methods: ' . implode( ', ', $methods );
+        } catch ( \Throwable $e2 ) {
+            $debug = ' | (khong reflect duoc: ' . $e2->getMessage() . ')';
+        }
+        $note = ' Luu y: tao redirect tu dong loi (' . $e->getMessage() . '), hay set thu cong qua WP Admin.' . $debug;
         return false;
     }
 
