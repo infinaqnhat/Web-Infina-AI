@@ -83,6 +83,13 @@ Cụm đã audit + xử lý cannibalization đầy đủ (xem refresh-log.md). C
 góc đủ khác biệt để không cần gộp chung: Pillar A nhắm "conversational AI / lead follow-up bot",
 Pillar B nhắm "customer service platform" (rộng hơn, bao cả tool CS tổng quát như Zendesk/Intercom).
 
+**Internal link đã verify + fix (01/10/2026)**: phát hiện link nội bộ claimed trong content map
+trước đó phần lớn chưa từng được verify thật (chỉ 1/11 cluster article thực sự link ngược về đúng
+pillar của nó). Đã fetch live content qua WP REST API, xác nhận và vá thiếu link 2 chiều cho cả 12
+bài (2 pillar + 10 cluster) — xem chi tiết refresh-log.md. 7 cụm còn lại (CRM, Landing Pages, AI
+Voice, Website Design, Website Builder, IDX, Lead Gen) **chưa verify link thật**, không nên tin nhãn
+"exist" cũ trong artifact cho các cụm đó cho tới khi được check lại.
+
 **Keyword research mới (2026-10-01)**: user gửi thêm ~1520 keyword export (Google Keyword Planner)
 về chủ đề "chatbot" và "conversational AI" nói chung, đã merge vào file keyword stats (1486 keyword
 mới/không trùng, tổng file giờ 11158 dòng). Đã rà soát: **chỉ có 1 keyword thật sự niche real estate
