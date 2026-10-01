@@ -127,31 +127,22 @@ function infina_mcp_set_redirect( $post_id, $url_to, $header_code, &$note ) {
     }
 
     try {
-        // DEBUG TAM THOI: in ra signature (ten tham so + default) cua tung method/constructor
-        // lien quan, va danh sach property public, de xac nhan dung API truoc khi code that.
-        $rc = new \ReflectionClass( '\RankMath\Redirections\Redirection' );
-        $sig = function ( $method_name ) use ( $rc ) {
-            if ( ! $rc->hasMethod( $method_name ) ) {
-                return "{$method_name}(?)";
-            }
-            $m = $rc->getMethod( $method_name );
-            $parts = array_map( function ( $p ) {
-                $def = $p->isDefaultValueAvailable() ? ( '=' . wp_json_encode( $p->getDefaultValue() ) ) : '';
-                return '$' . $p->getName() . $def;
-            }, $m->getParameters() );
-            return "{$method_name}(" . implode( ', ', $parts ) . ')';
-        };
-        $props = array_map( function ( $p ) {
-            return $p->getName();
-        }, $rc->getProperties( \ReflectionProperty::IS_PUBLIC ) );
-
-        $debug = ' | ' . $sig( '__construct' ) . ' | ' . $sig( 'create' ) . ' | ' . $sig( 'from' )
-            . ' | ' . $sig( 'add_source' ) . ' | ' . $sig( 'add_sources' ) . ' | ' . $sig( 'add_destination' )
-            . ' | ' . $sig( 'set_status' ) . ' | Public props: ' . implode( ', ', $props );
-        $note = ' DEBUG (chua tao redirect that):' . $debug;
-        return false;
+        // API thuc te cua Rank Math (verify qua Reflection ngay tren site nay, khong phai
+        // tai lieu chinh thuc): Redirection::from( $data ) nhan 1 mang voi key 'sources'
+        // (mang cac ['pattern'=>..,'comparison'=>..]), 'url_to', 'header_code', 'status'.
+        $redirection = \RankMath\Redirections\Redirection::from( [
+            'sources'     => [ [ 'pattern' => $path, 'comparison' => 'exact' ] ],
+            'url_to'      => $url_to,
+            'header_code' => (int) $header_code,
+            'status'      => 'active',
+        ] );
+        $saved = $redirection->save();
+        if ( empty( $saved ) ) {
+            $note = ' Luu y: goi Rank Math Redirection::save() khong tra ve ket qua, redirect co the chua duoc tao - kiem tra lai thu cong trong Rank Math > Redirections.';
+            return false;
+        }
     } catch ( \Throwable $e ) {
-        $note = ' Luu y: reflect loi (' . $e->getMessage() . '), hay set thu cong qua WP Admin.';
+        $note = ' Luu y: tao redirect tu dong loi (' . $e->getMessage() . '), hay set thu cong qua WP Admin.';
         return false;
     }
 
