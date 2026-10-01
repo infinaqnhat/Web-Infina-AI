@@ -168,23 +168,21 @@ function infina_mcp_set_redirect( $post_id, $url_to, $header_code, &$note ) {
         $cache_row = $wpdb->get_row( "SELECT * FROM {$cache_table} LIMIT 1", ARRAY_A );
         $cache_dump = $cache_row ? wp_json_encode( $cache_row ) : '(bang cache rong)';
 
-        $cache_class_candidates = [
-            '\RankMath\Redirections\Cache',
-            '\RankMath\Redirections\DB',
-            '\RankMath\Redirections\Redirections',
-        ];
-        $cache_class_info = '';
-        foreach ( $cache_class_candidates as $cls ) {
-            if ( class_exists( $cls ) ) {
-                $rc2 = new \ReflectionClass( $cls );
-                $static_methods = array_map( function ( $m ) {
-                    return $m->getName();
-                }, array_filter( $rc2->getMethods( \ReflectionMethod::IS_PUBLIC | \ReflectionMethod::IS_STATIC ) ) );
-                $cache_class_info .= " [{$cls} static methods: " . implode( ', ', $static_methods ) . ']';
+        // Da xac dinh Cache::add la method can goi. Lay chu ky tham so chinh xac.
+        $rc2 = new \ReflectionClass( '\RankMath\Redirections\Cache' );
+        $sig = function ( $method_name ) use ( $rc2 ) {
+            if ( ! $rc2->hasMethod( $method_name ) ) {
+                return "{$method_name}(?)";
             }
-        }
-
-        $note = " DEBUG cache_table={$cache_table} content=" . $cache_dump . ' | classes:' . ( $cache_class_info ?: ' (khong thay class nao trong 3 candidate)' );
+            $m = $rc2->getMethod( $method_name );
+            $parts = array_map( function ( $p ) {
+                $def = $p->isDefaultValueAvailable() ? ( '=' . wp_json_encode( $p->getDefaultValue() ) ) : '';
+                $type = $p->hasType() ? $p->getType() . ' ' : '';
+                return $type . '$' . $p->getName() . $def;
+            }, $m->getParameters() );
+            return "{$method_name}(" . implode( ', ', $parts ) . ')';
+        };
+        $note = " DEBUG cache_row_example={$cache_dump} | " . $sig( 'add' ) . ' | ' . $sig( 'purge' ) . ' | ' . $sig( 'purge_by_object_id' ) . ' | ' . $sig( 'get_by_object_id' );
         return false;
     } catch ( \Throwable $e ) {
         $note = ' Luu y: tao redirect tu dong loi (' . $e->getMessage() . '), hay set thu cong qua WP Admin.';
