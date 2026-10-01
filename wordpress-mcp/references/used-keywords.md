@@ -6,6 +6,13 @@ FOCUS_KW mới nào — cho cả skill `news-to-cluster-article` lẫn plan Real
 (2026-09-15), sau đó cần tự cập nhật tay mỗi khi có bài mới — không tự động đồng bộ lại với
 Sheet hay WordPress.
 
+**⚠️ Cannibalization đã xử lý (01/10/2026)**: cụm "chatbot cho real estate" từng có 16 bài trùng
+lặp nặng. Đã merge 4 bài yếu nhất vào 2 bài hub mạnh nhất (xem các dòng đánh dấu **ĐÃ MERGE** bên
+dưới + chi tiết đầy đủ ở `skills/post-refresh/references/refresh-log.md`). Khi check trùng cho
+keyword mới thuộc cụm chatbot, ưu tiên gắn vào 2 hub còn sống (`best-chatbot-customer-service-real-estate`,
+`best-conversational-ai-chatbot-for-real-estate`) thay vì viết bài riêng — 4 URL bị merge chỉ còn
+là stub redirect, không phải nội dung thật.
+
 **Cách check nhanh**: Ctrl+F / grep từ khóa định dùng trong file này trước, sau đó vẫn nên check
 thêm Bước 1.5 (live-SERP) theo đúng quy trình `seo-blog-writer`/`pillar-cluster-writer` — file này
 chỉ chặn trùng nội bộ site mình, không thay cho check SERP thật.
@@ -20,10 +27,10 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 
 | Ngày | Keyword | URL | Nguồn |
 |---|---|---|---|
-| 2026-06-05 | `ai chatbot for real estate lead capture` | [best-ai-chatbot-for-real-estate-lead-capture](https://infina.ai/news/best-ai-chatbot-for-real-estate-lead-capture/) | tracker #1 |
+| 2026-06-05 | `ai chatbot for real estate lead capture` | ~~[best-ai-chatbot-for-real-estate-lead-capture](https://infina.ai/news/best-ai-chatbot-for-real-estate-lead-capture/)~~ → **ĐÃ MERGE 01/10/2026 vào [best-chatbot-customer-service-real-estate](https://infina.ai/news/best-chatbot-customer-service-real-estate/)** (301 redirect, stub) | tracker #1 |
 | 2026-06-05 | `genai economy first revenue number` | [genai-economy-first-revenue-number](https://infina.ai/news/genai-economy-first-revenue-number/) | suy đoán từ slug |
-| 2026-06-09 | `chatbot customer service real estate` | [best-chatbot-customer-service-real-estate](https://infina.ai/news/best-chatbot-customer-service-real-estate/) | tracker #2 |
-| 2026-06-13 | `ai chat platform real estate` | [best-ai-chat-platform-real-estate](https://infina.ai/news/best-ai-chat-platform-real-estate/) | tracker #3 |
+| 2026-06-09 | `chatbot customer service real estate` | [best-chatbot-customer-service-real-estate](https://infina.ai/news/best-chatbot-customer-service-real-estate/) — **hub, đã hấp thụ thêm keyword/tool từ 2 bài merge** (ai chat platform, ai chatbot lead capture — xem dòng tracker #1 và #3), giờ review 15 tool | tracker #2 |
+| 2026-06-13 | `ai chat platform real estate` | ~~[best-ai-chat-platform-real-estate](https://infina.ai/news/best-ai-chat-platform-real-estate/)~~ → **ĐÃ MERGE 01/10/2026 vào [best-chatbot-customer-service-real-estate](https://infina.ai/news/best-chatbot-customer-service-real-estate/)** (301 redirect, stub) | tracker #3 |
 | 2026-06-14 | `the u s governments reported ban on foreign access to anthropics models` | [the-u-s-governments-reported-ban-on-foreign-access-to-anthropics-models](https://infina.ai/news/the-u-s-governments-reported-ban-on-foreign-access-to-anthropics-models/) | suy đoán từ slug |
 | 2026-06-17 | `ai virtual assistant real estate` | [best-ai-virtual-assistant-real-estate](https://infina.ai/news/best-ai-virtual-assistant-real-estate/) | tracker #4 |
 | 2026-06-17 | `is openai in trouble` | [is-openai-in-trouble](https://infina.ai/news/is-openai-in-trouble/) | suy đoán từ slug |
@@ -108,11 +115,11 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-08-26 | `real estate chatbot that reads listing photos` | [real-estate-chatbot-that-reads-listing-photos](https://infina.ai/news/real-estate-chatbot-that-reads-listing-photos/) | tracker #81 |
 | 2026-08-26 | `luxury real estate website design` | [luxury-real-estate-website-design](https://infina.ai/news/luxury-real-estate-website-design/) | tracker #72 |
 | 2026-08-27 | `ai assistant instead of software stack real estate agents` | [ai-assistant-instead-of-software-stack-real-estate-agents](https://infina.ai/news/ai-assistant-instead-of-software-stack-real-estate-agents/) | tracker #82 |
-| 2026-08-27 | `best conversational chatbot for real estate` | [best-conversational-chatbot-for-real-estate](https://infina.ai/news/best-conversational-chatbot-for-real-estate/) | tracker #74 |
-| 2026-08-27 | `best conversational ai chatbot for real estate` | [best-conversational-ai-chatbot-for-real-estate](https://infina.ai/news/best-conversational-ai-chatbot-for-real-estate/) | tracker #73 |
+| 2026-08-27 | `best conversational chatbot for real estate` | ~~[best-conversational-chatbot-for-real-estate](https://infina.ai/news/best-conversational-chatbot-for-real-estate/)~~ → **ĐÃ MERGE 01/10/2026 vào [best-conversational-ai-chatbot-for-real-estate](https://infina.ai/news/best-conversational-ai-chatbot-for-real-estate/)** (301 redirect, stub) | tracker #74 |
+| 2026-08-27 | `best conversational ai chatbot for real estate` | [best-conversational-ai-chatbot-for-real-estate](https://infina.ai/news/best-conversational-ai-chatbot-for-real-estate/) — **hub, đã hấp thụ thêm keyword/tool từ 2 bài merge** (best conversational chatbot, best ai conversational bot — xem dòng tracker #74 và #75), giờ review 11 tool | tracker #73 |
 | 2026-08-28 | `ai chatbot mortgage document errors real estate agents` | [ai-chatbot-mortgage-document-errors-real-estate-agents](https://infina.ai/news/ai-chatbot-mortgage-document-errors-real-estate-agents/) | tracker #83 |
 | 2026-08-28 | `ai chat vs sms real estate` | [ai-chat-vs-sms-real-estate](https://infina.ai/news/ai-chat-vs-sms-real-estate/) | tracker #76 |
-| 2026-08-28 | `best ai conversational bot for real estate` | [best-ai-conversational-bot-for-real-estate](https://infina.ai/news/best-ai-conversational-bot-for-real-estate/) | tracker #75 |
+| 2026-08-28 | `best ai conversational bot for real estate` | ~~[best-ai-conversational-bot-for-real-estate](https://infina.ai/news/best-ai-conversational-bot-for-real-estate/)~~ → **ĐÃ MERGE 01/10/2026 vào [best-conversational-ai-chatbot-for-real-estate](https://infina.ai/news/best-conversational-ai-chatbot-for-real-estate/)** (301 redirect, stub) | tracker #75 |
 | 2026-08-29 | `database reactivation ai seller leads real estate agents` | [database-reactivation-ai-seller-leads-real-estate-agents](https://infina.ai/news/database-reactivation-ai-seller-leads-real-estate-agents/) | tracker #84 |
 | 2026-08-29 | `chatbot vs live agent real estate` | [chatbot-vs-live-agent-real-estate](https://infina.ai/news/chatbot-vs-live-agent-real-estate/) | tracker #78 |
 | 2026-08-29 | `no code chatbot platform real estate` | [no-code-chatbot-platform-real-estate](https://infina.ai/news/no-code-chatbot-platform-real-estate/) | tracker #77 |
