@@ -203,23 +203,28 @@ function infina_mcp_set_redirect( $post_id, $url_to, $header_code, &$note ) {
             }
         }
 
-        // DEBUG round 5: match_redirections() tim ra dung record qua goi truc tiep, nhung
-        // live request van khong redirect. Nghi ngo co 1 postmeta rieng (vd 'rank_math_redirect')
-        // ma UI Advanced tab cua tung post tu dong set, va day moi la cai live hook thuc su doc
-        // (khong phai query bang Redirections/Cache tu URL string). So sanh postmeta cua #637
-        // (dang chay that, co Hits) voi bai test cua minh (object_id = $post_id).
-        $all_meta_637  = get_post_meta( 637 );
-        $rank_meta_637 = array_filter( $all_meta_637, function ( $k ) {
-            return stripos( $k, 'redirect' ) !== false;
-        }, ARRAY_FILTER_USE_KEY );
-        $all_meta_ours  = get_post_meta( $post_id );
-        $rank_meta_ours = array_filter( $all_meta_ours, function ( $k ) {
-            return stripos( $k, 'redirect' ) !== false;
-        }, ARRAY_FILTER_USE_KEY );
+        // DEBUG round 6: postmeta rong ca 2 ben -> khong phai co che postmeta. Nghi ngo tiep:
+        // co 1 OPTION/transient cache tong hop toan bo active redirects, chi duoc rebuild khi
+        // tao qua UI Admin (not qua goi API tho cua minh). Liet ke moi option co chua "redirect"
+        // trong ten, kem do dai gia tri (khong dump full neu qua dai).
+        global $wpdb;
+        $opt_rows = $wpdb->get_results(
+            "SELECT option_name, LENGTH(option_value) AS len FROM {$wpdb->options} WHERE option_name LIKE '%redirect%' OR option_name LIKE '%rank_math%'",
+            ARRAY_A
+        );
+        $opt_dump = [];
+        foreach ( $opt_rows as $o ) {
+            $name = $o['option_name'];
+            $len  = (int) $o['len'];
+            if ( $len > 0 && $len <= 500 ) {
+                $val = get_option( $name );
+                $opt_dump[] = "{$name} (len={$len}) = " . wp_json_encode( $val );
+            } else {
+                $opt_dump[] = "{$name} (len={$len}, qua dai de dump)";
+            }
+        }
 
-        $note = " DEBUG round5: postmeta#637(redirect*)=" . wp_json_encode( $rank_meta_637 )
-            . ' | postmeta#' . $post_id . '(redirect*)=' . wp_json_encode( $rank_meta_ours )
-            . ' | match_redirections_ok=' . ( $match_result !== 'match_redirections khong ton tai hoac loi' ? 'yes' : 'no' );
+        $note = ' DEBUG round6 options: ' . implode( ' || ', $opt_dump );
         return false;
     } catch ( \Throwable $e ) {
         $note = ' Luu y: tao redirect tu dong loi (' . $e->getMessage() . '), hay set thu cong qua WP Admin.';
