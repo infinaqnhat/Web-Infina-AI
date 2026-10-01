@@ -159,31 +159,19 @@ function infina_mcp_set_redirect( $post_id, $url_to, $header_code, &$note ) {
             return false;
         }
 
-        // DEBUG TAM THOI round 2: bang chinh co du lieu dung, nhung bang cache chi co 1 dong
-        // duy nhat (co the la 1 cache tong hop, khong phai 1 dong/redirect) - redirect that
-        // chay dua vao bang cache nay nen chua "len" du lieu moi. Doc noi dung dong cache do
-        // + tim class Cache co the de goi method rebuild cache.
-        global $wpdb;
-        $cache_table = $wpdb->prefix . 'rank_math_redirections_cache';
-        $cache_row = $wpdb->get_row( "SELECT * FROM {$cache_table} LIMIT 1", ARRAY_A );
-        $cache_dump = $cache_row ? wp_json_encode( $cache_row ) : '(bang cache rong)';
-
-        // Da xac dinh Cache::add la method can goi. Lay chu ky tham so chinh xac.
-        $rc2 = new \ReflectionClass( '\RankMath\Redirections\Cache' );
-        $sig = function ( $method_name ) use ( $rc2 ) {
-            if ( ! $rc2->hasMethod( $method_name ) ) {
-                return "{$method_name}(?)";
-            }
-            $m = $rc2->getMethod( $method_name );
-            $parts = array_map( function ( $p ) {
-                $def = $p->isDefaultValueAvailable() ? ( '=' . wp_json_encode( $p->getDefaultValue() ) ) : '';
-                $type = $p->hasType() ? $p->getType() . ' ' : '';
-                return $type . '$' . $p->getName() . $def;
-            }, $m->getParameters() );
-            return "{$method_name}(" . implode( ', ', $parts ) . ')';
-        };
-        $note = " DEBUG cache_row_example={$cache_dump} | " . $sig( 'add' ) . ' | ' . $sig( 'purge' ) . ' | ' . $sig( 'purge_by_object_id' ) . ' | ' . $sig( 'get_by_object_id' );
-        return false;
+        // QUAN TRONG: Redirection::save() chi ghi vao bang chinh wp_rank_math_redirections,
+        // KHONG tu dong tao dong trong wp_rank_math_redirections_cache - ma bang cache nay
+        // moi la noi engine redirect thuc te doc de khop URL luc co request. Phai tu goi
+        // Cache::add() voi dung cau truc da verify qua reflection/doc du lieu that tren site.
+        if ( class_exists( '\RankMath\Redirections\Cache' ) ) {
+            \RankMath\Redirections\Cache::add( [
+                'from_url'      => ltrim( $path, '/' ),
+                'redirection_id'=> $redirection->get_id(),
+                'object_id'     => $post_id,
+                'object_type'   => 'post',
+                'is_redirected' => 1,
+            ] );
+        }
     } catch ( \Throwable $e ) {
         $note = ' Luu y: tao redirect tu dong loi (' . $e->getMessage() . '), hay set thu cong qua WP Admin.';
         return false;
