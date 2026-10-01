@@ -59,7 +59,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-08-03 | `crm pipeline` | [crm-pipeline-management](https://infina.ai/news/crm-pipeline-management/) | tracker #18 |
 | 2026-08-04 | `free crm for real estate` | [best-free-crm-for-real-estate-agents](https://infina.ai/news/best-free-crm-for-real-estate-agents/) | tracker #27 |
 | 2026-08-05 | `best crm for real estate teams 2026` | [best-crm-for-real-estate-teams-2026](https://infina.ai/news/best-crm-for-real-estate-teams-2026/) | suy đoán từ slug |
-| 2026-08-06 | `top crm tools for real estate teams` | [top-crm-tools-for-real-estate-teams](https://infina.ai/news/top-crm-tools-for-real-estate-teams/) | suy đoán từ slug |
+| 2026-08-06 | `top crm tools for real estate teams` | [top-crm-tools-for-real-estate-teams](https://infina.ai/news/top-crm-tools-for-real-estate-teams/) | suy đoán từ slug — ⚠️ ĐÃ MERGE (2026-10-01) vào best-crm-for-real-estate, redirect 301 đã set, stub "This guide has moved" |
 | 2026-08-07 | `real estate ai adoption statistics 2026` | [real-estate-ai-adoption-statistics-2026](https://infina.ai/news/real-estate-ai-adoption-statistics-2026/) | tracker #19 |
 | 2026-08-07 | `tcpa compliance for real estate agents` | [tcpa-compliance-for-real-estate-agents](https://infina.ai/news/tcpa-compliance-for-real-estate-agents/) | tracker #16 |
 | 2026-08-08 | `answer engine optimization for real estate agents` | [answer-engine-optimization-for-real-estate-agents](https://infina.ai/news/answer-engine-optimization-for-real-estate-agents/) | tracker #20 |
@@ -68,7 +68,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-08-10 | `real estate agent crm` | [real-estate-agent-crm-speed-to-lead](https://infina.ai/news/real-estate-agent-crm-speed-to-lead/) | tracker #15 |
 | 2026-08-11 | `autonomous ai workforce real estate teams` | [autonomous-ai-workforce-real-estate-teams](https://infina.ai/news/autonomous-ai-workforce-real-estate-teams/) | tracker #30 |
 | 2026-08-11 | `crm management` | [crm-management-real-estate-agents-beginners-guide](https://infina.ai/news/crm-management-real-estate-agents-beginners-guide/) | tracker #24 |
-| 2026-08-11 | `best crm software` | [best-crm-software-real-estate-agents](https://infina.ai/news/best-crm-software-real-estate-agents/) | tracker #22 |
+| 2026-08-11 | `best crm software` | [best-crm-software-real-estate-agents](https://infina.ai/news/best-crm-software-real-estate-agents/) | tracker #22 — ⚠️ ĐÃ MERGE (2026-10-01) vào best-crm-for-real-estate (đổi vai trò Pillar sang #207), redirect 301 đã set, stub "This guide has moved" |
 | 2026-08-12 | `ai hallucination risk real estate listings` | [ai-hallucination-risk-real-estate-listings](https://infina.ai/news/ai-hallucination-risk-real-estate-listings/) | tracker #31 |
 | 2026-08-12 | `free real estate website builder` | [free-real-estate-website-builder](https://infina.ai/news/free-real-estate-website-builder/) | tracker #43 |
 | 2026-08-12 | `real estate agent website builder` | [real-estate-agent-website-builder](https://infina.ai/news/real-estate-agent-website-builder/) | tracker #41 |
