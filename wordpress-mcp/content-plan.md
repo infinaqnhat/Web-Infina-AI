@@ -298,12 +298,12 @@ tiên cao nhất để audit tiếp theo.
 
 ---
 
-### Cụm 3: Website Builder / IDX — 14 bài sống (15 gốc, 1 đã merge trong case #546 trước đây)
+### Cụm 3: Website Builder / IDX — 13 bài sống (15 gốc, 2 đã merge: case #546 cũ + case #553 2026-10-01)
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
-| **Pillar** | [Best Real Estate Website Builders for Agents and Brokers (2026)](https://infina.ai/news/real-estate-website-builder/) | `real estate website builder` | Discovery/TOF | ✅ Hub, đã hấp thụ 1 bài (case cũ) |
-| 🔎 Review/list (roundup) | [Best Real Estate Website Builder: Features, Pricing and IDX Compared](https://infina.ai/news/best-real-estate-website-builder/) | `best real estate website builder` | Evaluation/MOF | 🔎 đã gỡ link chéo trước đó, CHƯA audit nội dung có trùng Pillar không |
+| **Pillar** | [Best Real Estate Website Builders for Agents and Brokers (2026)](https://infina.ai/news/real-estate-website-builder/) | `real estate website builder` | Discovery/TOF | ✅ Hub, đã hấp thụ 2 bài (case #546 cũ + case #553 2026-10-01) |
+| ~~🔎 Review/list (roundup)~~ | ~~Best Real Estate Website Builder: Features, Pricing and IDX Compared~~ | `best real estate website builder` | Evaluation/MOF | ⚠️ ĐÃ MERGE (2026-10-01) vào Pillar, stub + redirect 301 live |
 | Review (niche: solo agent) | [Best Real Estate Agent Website Builder for Solo Agents](https://infina.ai/news/real-estate-agent-website-builder/) | `real estate agent website builder` | Evaluation/MOF | niche rõ, rủi ro thấp |
 | Review (niche: realtor) | [Best Website Builder for Realtors: Top Picks Reviewed](https://infina.ai/news/best-website-builder-for-realtors/) | `best website builder for realtors` | Evaluation/MOF | niche rõ |
 | Review (niche: free) | [Free Real Estate Website Builder: What You Get vs. What You Pay For](https://infina.ai/news/free-real-estate-website-builder/) | `free real estate website builder` | Evaluation/MOF | niche rõ |
@@ -317,7 +317,7 @@ tiên cao nhất để audit tiếp theo.
 | How-to (kỹ thuật) | [IDX Feed: What It Is and How to Set It Up](https://infina.ai/news/idx-feed-real-estate-setup/) | `idx feed` | Post-purchase/how-to | gần góc với dòng trên |
 | Buying guide | [Real Estate Agent Websites with IDX: What to Look For Before You Buy](https://infina.ai/news/real-estate-agent-websites-with-idx/) | `real estate agent websites with idx` | Decision/BOF | — |
 
-**2 bài đã merge trước đây**: [Real Estate Website Builder with IDX](https://infina.ai/news/real-estate-website-builder-with-idx/) → stub, redirect 301 sang Pillar #546 (case cũ). [Best IDX Website for Realtors: In-Depth Platform Reviews](https://infina.ai/news/best-idx-website-for-realtors/) → stub, redirect 301 sang `idx-website-for-realtors` (2026-10-01). Xem refresh-log.md cho cả 2.
+**3 bài đã merge trước đây**: [Real Estate Website Builder with IDX](https://infina.ai/news/real-estate-website-builder-with-idx/) → stub, redirect 301 sang Pillar #546 (case cũ). [Best IDX Website for Realtors: In-Depth Platform Reviews](https://infina.ai/news/best-idx-website-for-realtors/) → stub, redirect 301 sang `idx-website-for-realtors` (2026-10-01). [Best Real Estate Website Builder: Features, Pricing and IDX Compared](https://infina.ai/news/best-real-estate-website-builder/) → stub, redirect 301 sang Pillar `real-estate-website-builder` (2026-10-01). Xem refresh-log.md cho cả 3.
 
 ---
 
@@ -394,7 +394,7 @@ Theo đúng mức độ rủi ro giảm dần. Cách xử lý gợi ý: lặp l�
 |---|---|---|---|
 | 1 (cao nhất) | CRM Software | [best-crm-for-real-estate](https://infina.ai/news/best-crm-for-real-estate/), [top-crm-tools-real-estate-teams](https://infina.ai/news/top-crm-tools-real-estate-teams/), [best-crm-real-estate-teams-2026](https://infina.ai/news/best-crm-real-estate-teams-2026/), [best-crm-buying-guide-real-estate-agents](https://infina.ai/news/best-crm-buying-guide-real-estate-agents/), vs. Pillar chính #384 | **5 bài roundup "best/top CRM"** cùng nhắm 1 nhóm keyword rộng — quy mô còn lớn hơn cụm Chatbot trước khi audit (6 bài) |
 | ~~2~~ | Website Builder / IDX | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [idx-website-for-realtors](https://infina.ai/news/idx-website-for-realtors/) (hub) vs ~~best-idx-website-for-realtors~~ (merged, redirect 301 live) | Đọc full nội dung: trùng gần như toàn bộ (cùng 3/4 platform + cùng khung phân tích). Merge xong, xem refresh-log.md |
-| 2 | Website Builder / IDX | [real-estate-website-builder](https://infina.ai/news/real-estate-website-builder/) (Pillar) vs [best-real-estate-website-builder](https://infina.ai/news/best-real-estate-website-builder/) | Đã gỡ link chéo ở case #546 trước, chưa audit nội dung |
+| ~~2~~ | Website Builder / IDX | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [real-estate-website-builder](https://infina.ai/news/real-estate-website-builder/) (Pillar, hub) vs ~~best-real-estate-website-builder~~ (merged, redirect 301 live) | Đọc full nội dung: 5/6 platform trùng y hệt (tagline + giá + kết luận). Merge xong, giữ lại 1 FAQ "AgentFire teams vs solo" từ bài yếu. Xem refresh-log.md |
 | 3 | CRM Software | [crm-marketing-real-estate](https://infina.ai/news/crm-marketing-real-estate/) vs [crm-marketing-software-real-estate-guide](https://infina.ai/news/crm-marketing-software-real-estate-guide/) | Cùng chủ đề "CRM marketing", chỉ khác khung định nghĩa vs ứng dụng |
 | 3 | Chatbot | [what-is-a-conversational-chatbot-real-estate](https://infina.ai/news/what-is-a-conversational-chatbot-real-estate/) vs [conversational-chat-real-estate](https://infina.ai/news/conversational-chat-real-estate/) | Cùng dạng định nghĩa TOF, focus keyword gần như đồng nghĩa |
 | 4 | AI Voice | [best-ai-virtual-assistant-real-estate](https://infina.ai/news/best-ai-virtual-assistant-real-estate/) vs Pillar #147 (`best-ai-voice-assistants-for-real-estate`) | Publish trước khi Nhánh 1 lên plan, chưa từng đối chiếu |

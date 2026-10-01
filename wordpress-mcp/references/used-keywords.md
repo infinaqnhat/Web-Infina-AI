@@ -95,8 +95,8 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-08-19 | `open house landing page` | [open-house-landing-page](https://infina.ai/news/open-house-landing-page/) | tracker #57 |
 | 2026-08-20 | `ai property research tools real estate teams` | [ai-property-research-tools-real-estate-teams](https://infina.ai/news/ai-property-research-tools-real-estate-teams/) | tracker #56 |
 | 2026-08-20 | `best website builder for realtors` | [best-website-builder-for-realtors](https://infina.ai/news/best-website-builder-for-realtors/) | tracker #42 |
-| 2026-08-20 | `best real estate website builder` | [best-real-estate-website-builder](https://infina.ai/news/best-real-estate-website-builder/) | tracker #40 |
-| 2026-08-20 | `real estate website builder` | [real-estate-website-builder](https://infina.ai/news/real-estate-website-builder/) | tracker #39 |
+| 2026-08-20 | `best real estate website builder` | [best-real-estate-website-builder](https://infina.ai/news/best-real-estate-website-builder/) | tracker #40 — ⚠️ ĐÃ MERGE (2026-10-01) vào #39 real-estate-website-builder, redirect 301 đã set, stub "This guide has moved" |
+| 2026-08-20 | `real estate website builder` | [real-estate-website-builder](https://infina.ai/news/real-estate-website-builder/) | tracker #39 — ✅ HUB (2026-10-01, đã nhận thêm FAQ "AgentFire teams vs solo" từ #40) |
 | 2026-08-21 | `ai deployment maturity real estate firms` | [ai-deployment-maturity-real-estate-firms](https://infina.ai/news/ai-deployment-maturity-real-estate-firms/) | tracker #63 |
 | 2026-08-21 | `home valuation landing page` | [home-valuation-landing-page](https://infina.ai/news/home-valuation-landing-page/) | tracker #60 |
 | 2026-08-21 | `real estate landing page` | [real-estate-landing-page-guide](https://infina.ai/news/real-estate-landing-page-guide/) | tracker #59 |
