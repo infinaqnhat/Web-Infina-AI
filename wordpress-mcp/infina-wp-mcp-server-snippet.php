@@ -172,6 +172,42 @@ function infina_mcp_set_redirect( $post_id, $url_to, $header_code, &$note ) {
                 'is_redirected' => 1,
             ] );
         }
+
+        // DEBUG TAM THOI round 4: curl van khong thay 301 du da ghi ca 2 bang, va da loai tru
+        // plugin cache (khong co plugin cache nao cai). Goi thang ham DB::match_redirections
+        // (ham that engine dung de khop URL luc co request that) voi dung path vua tao, de xem
+        // No co tim ra redirect nay khong - neu KHONG, loi nam o dinh dang du lieu; neu CO, loi
+        // nam o cho khac (vd hook template_redirect khong duoc dang ky dung thoi diem).
+        global $wpdb;
+        $main_table  = $wpdb->prefix . 'rank_math_redirections';
+        $cache_table = $wpdb->prefix . 'rank_math_redirections_cache';
+        $main_count  = $wpdb->get_var( "SELECT COUNT(*) FROM {$main_table}" );
+        $cache_count = $wpdb->get_var( "SELECT COUNT(*) FROM {$cache_table}" );
+        $our_main_rows = $wpdb->get_results( $wpdb->prepare(
+            "SELECT id, url_to, header_code, status FROM {$main_table} WHERE sources LIKE %s",
+            '%' . $wpdb->esc_like( ltrim( $path, '/' ) ) . '%'
+        ), ARRAY_A );
+        $our_cache_rows = $wpdb->get_results( $wpdb->prepare(
+            "SELECT * FROM {$cache_table} WHERE from_url = %s",
+            ltrim( $path, '/' )
+        ), ARRAY_A );
+
+        $match_result = 'match_redirections khong ton tai hoac loi';
+        if ( method_exists( '\RankMath\Redirections\DB', 'match_redirections' ) ) {
+            try {
+                $uri = ltrim( $path, '/' );
+                $matched = \RankMath\Redirections\DB::match_redirections( $uri );
+                $match_result = wp_json_encode( $matched );
+            } catch ( \Throwable $e3 ) {
+                $match_result = 'loi khi goi: ' . $e3->getMessage();
+            }
+        }
+
+        $note = " DEBUG round4: main_count={$main_count} cache_count={$cache_count}"
+            . ' | our_main_rows=' . wp_json_encode( $our_main_rows )
+            . ' | our_cache_rows=' . wp_json_encode( $our_cache_rows )
+            . ' | match_redirections("' . ltrim( $path, '/' ) . '")=' . $match_result;
+        return false;
     } catch ( \Throwable $e ) {
         $note = ' Luu y: tao redirect tu dong loi (' . $e->getMessage() . '), hay set thu cong qua WP Admin.';
         return false;
