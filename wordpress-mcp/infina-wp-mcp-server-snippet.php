@@ -23,12 +23,18 @@
 //   delete_media   - xoa han 1 media (bo qua thung rac, xoa ca file goc)
 // SEO: Rank Math. Media: chi anh. Khong ho tro xoa post (chi xoa media).
 //
-// Luu y ve redirect_to: dung API noi bo cua Rank Math (class RankMath\Redirections\
-// Redirection::from_array()->save()), day la API KHONG CHINH THUC/khong duoc Rank Math
-// tai lieu hoa cong khai, suy ra tu hanh vi thuc te cua UI "Redirect" trong Advanced tab
-// cua tung post. Neu Rank Math doi cau truc noi bo o ban cap nhat sau, ham nay co the
-// ngung hoat dong - luon fallback ve cach set thu cong qua WP Admin (Edit post -> Rank
-// Math SEO -> Advanced -> bat toggle Redirect) neu goi tool bao loi "khong tim thay class".
+// Luu y ve redirect_to: ghi vao bang cua Rank Math (class RankMath\Redirections\
+// Redirection::from()->save() + Cache::add(), API noi bo KHONG CHINH THUC, suy ra qua
+// Reflection truc tiep tren site nay, khong phai tai lieu Rank Math cong khai) de bai
+// hien dung trong UI Rank Math > Redirections. NHUNG: da verify thuc te la hook noi bo
+// cua Rank Math KHONG tu kich hoat redirect that cho cac row tao qua API tho (chi hoat
+// dong neu tao qua UI Admin, ly do chua xac dinh ro - co the 1 buoc an trong AJAX handler
+// cua UI). Vi vay file nay tu dang ky 1 hook 'template_redirect' rieng (xem gan dau file,
+// truoc function nay) tu doc thang bang Rank Math va goi wp_safe_redirect() - day moi la
+// co che THUC SU khien redirect hoat dong, khong phu thuoc hook an cua Rank Math.
+// Neu Rank Math doi cau truc DB noi bo o ban cap nhat sau, ca 2 co che tren co the ngung
+// hoat dong - fallback ve cach set thu cong qua WP Admin (Edit post -> Rank Math SEO ->
+// Advanced -> bat toggle Redirect) neu goi tool bao loi.
 // =================================================================
 
 function infina_mcp_get_secret() {
@@ -46,6 +52,38 @@ add_action( 'rest_api_init', function () {
         'permission_callback' => 'infina_mcp_check_permission',
     ] );
 } );
+
+// Backstop tu thuc hien redirect: qua test thuc te, Redirection::from()->save() +
+// Cache::add() (API tao bang chinh/cache cua Rank Math) ghi DU LIEU dung 100% (verify qua
+// DB::match_redirections() tra ve dung record), nhung hook noi bo cua Rank Math khong tu
+// kich hoat redirect that cho cac row tao qua API tho nay (chi UI Admin moi kich hoat duoc,
+// co the do 1 buoc trong AJAX handler cua UI ma khong lam duoc khi goi API truc tiep - chua
+// xac dinh ro). De redirect_to hoat dong that su thay vi chi "trong co ve dung", tu dang ky
+// 1 hook early o day, doc thang tu bang chinh cua Rank Math roi tu wp_redirect(), khong phu
+// thuoc vao co che an cua Rank Math nua.
+add_action( 'template_redirect', function () {
+    if ( ! class_exists( '\RankMath\Redirections\DB' ) || ! method_exists( '\RankMath\Redirections\DB', 'match_redirections' ) ) {
+        return;
+    }
+    $uri = isset( $_SERVER['REQUEST_URI'] ) ? ltrim( (string) wp_parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' ) : '';
+    if ( $uri === '' ) {
+        return;
+    }
+    try {
+        $match = \RankMath\Redirections\DB::match_redirections( $uri );
+    } catch ( \Throwable $e ) {
+        return;
+    }
+    if ( empty( $match ) || empty( $match['url_to'] ) || ( $match['status'] ?? '' ) !== 'active' ) {
+        return;
+    }
+    $code = (int) ( $match['header_code'] ?? 301 );
+    if ( $code < 300 || $code >= 400 ) {
+        $code = 301;
+    }
+    wp_safe_redirect( $match['url_to'], $code );
+    exit;
+}, 1 );
 
 function infina_mcp_check_permission( WP_REST_Request $request ) {
     $configured_secret = infina_mcp_get_secret();
@@ -173,59 +211,6 @@ function infina_mcp_set_redirect( $post_id, $url_to, $header_code, &$note ) {
             ] );
         }
 
-        // DEBUG TAM THOI round 4: curl van khong thay 301 du da ghi ca 2 bang, va da loai tru
-        // plugin cache (khong co plugin cache nao cai). Goi thang ham DB::match_redirections
-        // (ham that engine dung de khop URL luc co request that) voi dung path vua tao, de xem
-        // No co tim ra redirect nay khong - neu KHONG, loi nam o dinh dang du lieu; neu CO, loi
-        // nam o cho khac (vd hook template_redirect khong duoc dang ky dung thoi diem).
-        global $wpdb;
-        $main_table  = $wpdb->prefix . 'rank_math_redirections';
-        $cache_table = $wpdb->prefix . 'rank_math_redirections_cache';
-        $main_count  = $wpdb->get_var( "SELECT COUNT(*) FROM {$main_table}" );
-        $cache_count = $wpdb->get_var( "SELECT COUNT(*) FROM {$cache_table}" );
-        $our_main_rows = $wpdb->get_results( $wpdb->prepare(
-            "SELECT id, url_to, header_code, status FROM {$main_table} WHERE sources LIKE %s",
-            '%' . $wpdb->esc_like( ltrim( $path, '/' ) ) . '%'
-        ), ARRAY_A );
-        $our_cache_rows = $wpdb->get_results( $wpdb->prepare(
-            "SELECT * FROM {$cache_table} WHERE from_url = %s",
-            ltrim( $path, '/' )
-        ), ARRAY_A );
-
-        $match_result = 'match_redirections khong ton tai hoac loi';
-        if ( method_exists( '\RankMath\Redirections\DB', 'match_redirections' ) ) {
-            try {
-                $uri = ltrim( $path, '/' );
-                $matched = \RankMath\Redirections\DB::match_redirections( $uri );
-                $match_result = wp_json_encode( $matched );
-            } catch ( \Throwable $e3 ) {
-                $match_result = 'loi khi goi: ' . $e3->getMessage();
-            }
-        }
-
-        // DEBUG round 6: postmeta rong ca 2 ben -> khong phai co che postmeta. Nghi ngo tiep:
-        // co 1 OPTION/transient cache tong hop toan bo active redirects, chi duoc rebuild khi
-        // tao qua UI Admin (not qua goi API tho cua minh). Liet ke moi option co chua "redirect"
-        // trong ten, kem do dai gia tri (khong dump full neu qua dai).
-        global $wpdb;
-        $opt_rows = $wpdb->get_results(
-            "SELECT option_name, LENGTH(option_value) AS len FROM {$wpdb->options} WHERE option_name LIKE '%redirect%' OR option_name LIKE '%rank_math%'",
-            ARRAY_A
-        );
-        $opt_dump = [];
-        foreach ( $opt_rows as $o ) {
-            $name = $o['option_name'];
-            $len  = (int) $o['len'];
-            if ( $len > 0 && $len <= 500 ) {
-                $val = get_option( $name );
-                $opt_dump[] = "{$name} (len={$len}) = " . wp_json_encode( $val );
-            } else {
-                $opt_dump[] = "{$name} (len={$len}, qua dai de dump)";
-            }
-        }
-
-        $note = ' DEBUG round6 options: ' . implode( ' || ', $opt_dump );
-        return false;
     } catch ( \Throwable $e ) {
         $note = ' Luu y: tao redirect tu dong loi (' . $e->getMessage() . '), hay set thu cong qua WP Admin.';
         return false;
