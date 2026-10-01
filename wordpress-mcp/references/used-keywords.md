@@ -49,7 +49,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-07-21 | `zendesk sunshine conversations alternative` | [zendesk-sunshine-conversations-alternative-real-estate](https://infina.ai/news/zendesk-sunshine-conversations-alternative-real-estate/) | tracker #10 |
 | 2026-07-26 | `crm marketing software` | [crm-marketing-software-real-estate-guide](https://infina.ai/news/crm-marketing-software-real-estate-guide/) | tracker #29 |
 | 2026-07-27 | `best crm` | [best-crm-buying-guide-real-estate-agents](https://infina.ai/news/best-crm-buying-guide-real-estate-agents/) | tracker #28 |
-| 2026-07-28 | `conversational chat real estate` | [conversational-chat-real-estate](https://infina.ai/news/conversational-chat-real-estate/) | tracker #11 |
+| 2026-07-28 | `conversational chat real estate` | [conversational-chat-real-estate](https://infina.ai/news/conversational-chat-real-estate/) | tracker #11 — ⚠️ ĐÃ MERGE (2026-10-01) vào what-is-a-conversational-chatbot-real-estate, redirect 301 đã set, stub "This guide has moved" |
 | 2026-07-29 | `best crm for real estate` | [best-crm-for-real-estate](https://infina.ai/news/best-crm-for-real-estate/) | tracker #12 |
 | 2026-07-30 | `ai crm` | [ai-crm-real-estate](https://infina.ai/news/ai-crm-real-estate/) | tracker #13 |
 | 2026-07-30 | `claude fable 5 is back` | [claude-fable-5-is-back](https://infina.ai/news/claude-fable-5-is-back/) | suy đoán từ slug |
@@ -108,7 +108,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-08-23 | `website design for real estate agents` | [website-design-for-real-estate-agents](https://infina.ai/news/website-design-for-real-estate-agents/) | tracker #66 |
 | 2026-08-24 | `ai disclosure rules for real estate chatbots` | [ai-disclosure-rules-for-real-estate-chatbots](https://infina.ai/news/ai-disclosure-rules-for-real-estate-chatbots/) | tracker #79 |
 | 2026-08-24 | `web design for real estate agents` | [web-design-for-real-estate-agents](https://infina.ai/news/web-design-for-real-estate-agents/) | tracker #69 |
-| 2026-08-24 | `realtor website design` | [realtor-website-design](https://infina.ai/news/realtor-website-design/) | tracker #68 |
+| 2026-08-24 | `realtor website design` | [realtor-website-design](https://infina.ai/news/realtor-website-design/) | tracker #68 — ⚠️ ĐÃ MERGE (2026-10-01) vào website-design-for-real-estate-agents, redirect 301 đã set, stub "This guide has moved" |
 | 2026-08-25 | `ai usage without measurable impact real estate agents` | [ai-usage-without-measurable-impact-real-estate-agents](https://infina.ai/news/ai-usage-without-measurable-impact-real-estate-agents/) | tracker #80 |
 | 2026-08-25 | `real estate broker website design` | [real-estate-broker-website-design](https://infina.ai/news/real-estate-broker-website-design/) | tracker #71 |
 | 2026-08-25 | `real estate web design companies` | [real-estate-web-design-companies](https://infina.ai/news/real-estate-web-design-companies/) | tracker #70 |

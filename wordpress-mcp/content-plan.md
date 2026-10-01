@@ -4,8 +4,8 @@ File này gồm 2 phần: (1) content plan đang chạy cho RealSaleX, và (2) c
 bài đã publish trên site, map theo đúng khung pillar + cluster của `pillar-cluster-writer/SKILL.md`
 (86 bài evergreen chia theo pillar/cluster/funnel role, 36 bài News để riêng) — dùng để check
 cannibalization trước khi viết bài mới hoặc lên plan mới. Xem "Phần 2" ở cuối file, gồm cả 1 mục
-"Cannibalization cần audit" liệt kê các cặp bài nghi trùng chưa xử lý (ưu tiên cao nhất: cụm CRM
-Software, 5 bài "best/top CRM" roundup).
+"Cannibalization cần audit" — **tất cả 10 cặp phát hiện khi map lần 01/10/2026 đã audit xong**
+(6 merge, 2 internal-link fix, 2 giữ nguyên không đổi — xem chi tiết từng cặp + refresh-log.md).
 
 ---
 
@@ -252,8 +252,8 @@ Pillar B nhắm "customer service platform" (rộng hơn, bao cả tool CS tổn
 | So sánh | [AI Chat vs SMS Follow-Up for Real Estate](https://infina.ai/news/ai-chat-vs-sms-real-estate/) | `ai chat vs sms real estate` | Evaluation/MOF | — |
 | So sánh | [Chatbot vs Live Agent for Real Estate](https://infina.ai/news/chatbot-vs-live-agent-real-estate/) | `chatbot vs live agent real estate` | Evaluation/MOF | — |
 | So sánh/thay thế | [Zendesk Sunshine Conversations Alternative](https://infina.ai/news/zendesk-sunshine-conversations-alternative-real-estate/) | `zendesk sunshine conversations alternative` | Evaluation/MOF | — |
-| Định nghĩa | [What Is a Conversational Chatbot?](https://infina.ai/news/what-is-a-conversational-chatbot-real-estate/) | `conversational chatbot` | Discovery/TOF | 🔎 trùng góc với dòng dưới |
-| Định nghĩa | [Conversational Chat for Real Estate](https://infina.ai/news/conversational-chat-real-estate/) | `conversational chat real estate` | Discovery/TOF | 🔎 trùng góc với dòng trên |
+| ✅ Định nghĩa (HUB) | [What Is a Conversational Chatbot?](https://infina.ai/news/what-is-a-conversational-chatbot-real-estate/) | `conversational chatbot` | Discovery/TOF | ✅ HUB (2026-10-01) — đã hấp thụ seller qualification + post-showing follow-up từ bài dưới |
+| ~~Định nghĩa~~ | ~~Conversational Chat for Real Estate~~ | `conversational chat real estate` | Discovery/TOF | ⚠️ ĐÃ MERGE (2026-10-01) vào dòng trên, redirect 301 live |
 | Hỗ trợ (News) | [EU AI Act Disclosure Rules...](https://infina.ai/news/ai-disclosure-rules-for-real-estate-chatbots/) | `ai disclosure rules for real estate chatbots` | Post-purchase/support | — |
 | Hỗ trợ (News) | [This Chatbot Reads Your Listing Photos...](https://infina.ai/news/real-estate-chatbot-that-reads-listing-photos/) | `real estate chatbot that reads listing photos` | Post-purchase/support | — |
 | Hỗ trợ (News) | [A New Study Found AI Got 1 in 4 Mortgage Document Checks Wrong](https://infina.ai/news/ai-chatbot-mortgage-document-errors-real-estate-agents/) | `ai chatbot mortgage document errors real estate agents` | Post-purchase/support | — |
@@ -284,8 +284,8 @@ còn lại (#419 teams-niche, #444 buying-guide/BOF) giữ nguyên vì different
 | Định nghĩa | [What Is CRM Software?](https://infina.ai/news/what-is-crm-software/) | `what is crm software` | Discovery/TOF | = #230, Nhánh 4 đã bỏ, giữ nguyên không động |
 | Định nghĩa (beginner) | [CRM Software 101: A Beginner's Guide](https://infina.ai/news/crm-management-real-estate-agents-beginners-guide/) | `crm management` | Discovery/TOF | = #405, Nhánh 4 đã bỏ, giữ nguyên không động |
 | Định nghĩa (khác góc) | [AI CRM for Real Estate](https://infina.ai/news/ai-crm-real-estate/) | `ai crm` | Discovery/TOF | = #214, đã xác nhận khác góc Pillar nhẹ khi viết P3 |
-| 🔎 Sub-topic: marketing | [CRM Marketing for Real Estate](https://infina.ai/news/crm-marketing-real-estate/) | `crm marketing` | Evaluation/MOF | 🔎 trùng góc với dòng dưới |
-| 🔎 Sub-topic: marketing | [What Is CRM Marketing Software? A Guide for Real Estate Teams](https://infina.ai/news/crm-marketing-software-real-estate-guide/) | `crm marketing software` | Discovery/TOF | 🔎 trùng góc với dòng trên |
+| Sub-topic: marketing (strategy) | [CRM Marketing for Real Estate](https://infina.ai/news/crm-marketing-real-estate/) | `crm marketing` | Evaluation/MOF | ✅ ĐÃ AUDIT (2026-10-01): differentiation thật (funnel 5 giai đoạn) vs dòng dưới (định nghĩa category) — đã thêm link 2 chiều, giữ cả 2 |
+| Sub-topic: marketing (định nghĩa) | [What Is CRM Marketing Software? A Guide for Real Estate Teams](https://infina.ai/news/crm-marketing-software-real-estate-guide/) | `crm marketing software` | Discovery/TOF | ✅ ĐÃ AUDIT (2026-10-01): không trùng Pillar strategy ở trên, giữ nguyên |
 | Sub-topic: pipeline | [CRM Pipeline Management](https://infina.ai/news/crm-pipeline-management/) | `crm pipeline` | Evaluation/MOF | góc riêng, chưa thấy trùng |
 | Bridge → Website Builder | [CRM with Website Builder: Best Integrated Platforms](https://infina.ai/news/crm-with-website-builder-real-estate/) | `crm with website builder` | Evaluation/MOF | nối cụm 3 |
 | Bridge → IDX | [Real Estate CRM with IDX Integration: Best Platforms](https://infina.ai/news/real-estate-crm-with-idx/) | `real estate crm with idx` | Evaluation/MOF | nối cụm 3 |
@@ -336,8 +336,8 @@ bảng, chỉ thêm 1 bài phát hiện mới chưa từng đưa vào plan RealS
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
-| **Pillar** | [Real Estate Agent Website Design: What Actually Works in 2026](https://infina.ai/news/website-design-for-real-estate-agents/) | `website design for real estate agents` | Discovery/TOF | — |
-| 🔎 Discovery (gần trùng Pillar) | [Realtor Website Design: How to Stand Out and Convert More Visitors](https://infina.ai/news/realtor-website-design/) | `realtor website design` | Discovery/TOF | 🔎 cùng dạng TOF tổng quát với Pillar, chưa audit |
+| **Pillar (HUB)** | [Real Estate Agent Website Design: What Actually Works in 2026](https://infina.ai/news/website-design-for-real-estate-agents/) | `website design for real estate agents` | Discovery/TOF | ✅ HUB (2026-10-01) — đã hấp thụ section "Common Mistakes" từ dòng dưới |
+| ~~Discovery~~ | ~~Realtor Website Design: How to Stand Out and Convert More Visitors~~ | `realtor website design` | Discovery/TOF | ⚠️ ĐÃ MERGE (2026-10-01) vào Pillar, redirect 301 live |
 | Examples/inspiration | [Best Real Estate Website Design: 8 Examples to Model](https://infina.ai/news/best-real-estate-website-design/) | `best real estate website design` | Evaluation/MOF | — |
 | Decision (build vs buy) | [Web Design for Real Estate Agents: DIY vs. Hiring a Designer](https://infina.ai/news/web-design-for-real-estate-agents/) | `web design for real estate agents` | Decision/BOF | — |
 | Buying guide (agency) | [Real Estate Web Design Companies: How to Choose the Right One](https://infina.ai/news/real-estate-web-design-companies/) | `real estate web design companies` | Decision/BOF | — |
@@ -395,10 +395,10 @@ Theo đúng mức độ rủi ro giảm dần. Cách xử lý gợi ý: lặp l�
 | ~~1~~ | CRM Software | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [best-crm-for-real-estate](https://infina.ai/news/best-crm-for-real-estate/) (hub mới, #207) đã hấp thụ ~~best-crm-software-real-estate-agents~~ (#384, Pillar cũ) + ~~top-crm-tools-for-real-estate-teams~~ (#412) | Đọc full nội dung 5 bài: 3/5 trùng nhau thật (cùng pool 5 platform). Merge xong, đổi vai trò Pillar từ #384 sang #207 (internal link equity có sẵn ở #207: 15 vs 2). Giữ nguyên best-crm-for-real-estate-teams-2026 (niche teams) + best-crm-buying-guide-real-estate-agents (BOF). Xem refresh-log.md |
 | ~~2~~ | Website Builder / IDX | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [idx-website-for-realtors](https://infina.ai/news/idx-website-for-realtors/) (hub) vs ~~best-idx-website-for-realtors~~ (merged, redirect 301 live) | Đọc full nội dung: trùng gần như toàn bộ (cùng 3/4 platform + cùng khung phân tích). Merge xong, xem refresh-log.md |
 | ~~2~~ | Website Builder / IDX | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [real-estate-website-builder](https://infina.ai/news/real-estate-website-builder/) (Pillar, hub) vs ~~best-real-estate-website-builder~~ (merged, redirect 301 live) | Đọc full nội dung: 5/6 platform trùng y hệt (tagline + giá + kết luận). Merge xong, giữ lại 1 FAQ "AgentFire teams vs solo" từ bài yếu. Xem refresh-log.md |
-| 3 | CRM Software | [crm-marketing-real-estate](https://infina.ai/news/crm-marketing-real-estate/) vs [crm-marketing-software-real-estate-guide](https://infina.ai/news/crm-marketing-software-real-estate-guide/) | Cùng chủ đề "CRM marketing", chỉ khác khung định nghĩa vs ứng dụng |
-| 3 | Chatbot | [what-is-a-conversational-chatbot-real-estate](https://infina.ai/news/what-is-a-conversational-chatbot-real-estate/) vs [conversational-chat-real-estate](https://infina.ai/news/conversational-chat-real-estate/) | Cùng dạng định nghĩa TOF, focus keyword gần như đồng nghĩa |
-| 4 | AI Voice | [best-ai-virtual-assistant-real-estate](https://infina.ai/news/best-ai-virtual-assistant-real-estate/) vs Pillar #147 (`best-ai-voice-assistants-for-real-estate`) | Publish trước khi Nhánh 1 lên plan, chưa từng đối chiếu |
-| 5 (thấp) | Website Design | [website-design-for-real-estate-agents](https://infina.ai/news/website-design-for-real-estate-agents/) (Pillar) vs [realtor-website-design](https://infina.ai/news/realtor-website-design/) | Cùng dạng TOF tổng quát |
+| ~~3~~ | CRM Software | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [crm-marketing-real-estate](https://infina.ai/news/crm-marketing-real-estate/) vs [crm-marketing-software-real-estate-guide](https://infina.ai/news/crm-marketing-software-real-estate-guide/) | Đọc full nội dung: differentiation thật (funnel 5 giai đoạn vs định nghĩa category, chỉ trùng 2/4 platform). Giữ nguyên cả 2, chỉ thêm link 2 chiều |
+| ~~3~~ | Chatbot | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [what-is-a-conversational-chatbot-real-estate](https://infina.ai/news/what-is-a-conversational-chatbot-real-estate/) (hub) vs ~~conversational-chat-real-estate~~ (merged) | Đọc full nội dung: trùng gần như hoàn toàn (y hệt 4 tool: Structurely/Ylopo rAIya/Tidio/ManyChat). Merge xong, redirect 301 live |
+| ~~4~~ | AI Voice | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [best-ai-virtual-assistant-real-estate](https://infina.ai/news/best-ai-virtual-assistant-real-estate/) vs Pillar #147 (`best-ai-voice-assistants-for-real-estate`) | Đọc full nội dung: differentiation thật (đa kênh SMS/CRM/scheduling vs riêng voice/phone, chỉ trùng 3/7 tool). Giữ nguyên cả 2, không sửa gì |
+| ~~5~~ | Website Design | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [website-design-for-real-estate-agents](https://infina.ai/news/website-design-for-real-estate-agents/) (Pillar, hub) vs ~~realtor-website-design~~ (merged) | Đọc full nội dung: trùng gần như hoàn toàn (y hệt 3 platform: AgentFire/Real Geeks/Luxury Presence). Merge xong, redirect 301 live |
 | ~~5~~ | Landing Pages | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [real-estate-landing-page-guide](https://infina.ai/news/real-estate-landing-page-guide/) (Pillar) vs [high-converting-real-estate-landing-pages](https://infina.ai/news/high-converting-real-estate-landing-pages/) (cluster) | Đọc full nội dung: KHÔNG phải duplicate, là pillar/cluster hợp lệ — chỉ thiếu internal link nên Google cannibalize. Đã fix link 2 chiều, giữ cả 2 bài. Xem refresh-log.md |
 
 **Lưu ý**: bảng trên chỉ dựa trên title + focus keyword (suy luận, chưa đọc nội dung thật) — đúng
