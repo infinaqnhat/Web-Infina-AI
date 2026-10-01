@@ -17,10 +17,18 @@
 // ============================ CAC TOOL ============================
 //   list_posts     - liet ke bai theo trang thai (draft/publish/future/pending/private)
 //   create_post    - tao bai: status = draft | publish | future (scheduled, kem 'date')
-//   update_post    - sua bai bat ky + doi trang thai (draft/publish/future)
+//   update_post    - sua bai bat ky + doi trang thai (draft/publish/future), co the
+//                    kem redirect_to/redirect_type de tao 301 redirect qua Rank Math
 //   upload_media   - tai ANH tu URL https ve Media Library (chong SSRF)
 //   delete_media   - xoa han 1 media (bo qua thung rac, xoa ca file goc)
 // SEO: Rank Math. Media: chi anh. Khong ho tro xoa post (chi xoa media).
+//
+// Luu y ve redirect_to: dung API noi bo cua Rank Math (class RankMath\Redirections\
+// Redirection::from_array()->save()), day la API KHONG CHINH THUC/khong duoc Rank Math
+// tai lieu hoa cong khai, suy ra tu hanh vi thuc te cua UI "Redirect" trong Advanced tab
+// cua tung post. Neu Rank Math doi cau truc noi bo o ban cap nhat sau, ham nay co the
+// ngung hoat dong - luon fallback ve cach set thu cong qua WP Admin (Edit post -> Rank
+// Math SEO -> Advanced -> bat toggle Redirect) neu goi tool bao loi "khong tim thay class".
 // =================================================================
 
 function infina_mcp_get_secret() {
@@ -98,6 +106,47 @@ function infina_mcp_sideload_image( $url, $alt_text = '', $post_id = 0 ) {
     return $attachment_id;
 }
 
+// Tao/cap nhat 1 redirect 301 (hoac type khac) tu URL cua chinh $post_id sang $url_to,
+// qua Rank Math Redirections. Tra ve true/false (khong phai WP_Error) + ghi chu loi
+// qua tham chieu $note, vi day la 1 buoc "best-effort" khong duoc lam fail ca update_post.
+function infina_mcp_set_redirect( $post_id, $url_to, $header_code, &$note ) {
+    if ( ! class_exists( '\RankMath\Redirections\Redirection' ) ) {
+        $note = ' Luu y: khong tao duoc redirect tu dong (khong tim thay Rank Math Redirections module, co the module chua bat trong Rank Math > General Settings > General), hay set thu cong qua WP Admin (Edit post -> Rank Math SEO -> Advanced -> Redirect).';
+        return false;
+    }
+
+    $permalink = get_permalink( $post_id );
+    if ( ! $permalink ) {
+        $note = ' Luu y: khong lay duoc permalink cua post nay de lam nguon redirect.';
+        return false;
+    }
+    $path = wp_parse_url( $permalink, PHP_URL_PATH );
+    if ( empty( $path ) ) {
+        $note = ' Luu y: khong doc duoc duong dan tu permalink de lam nguon redirect.';
+        return false;
+    }
+
+    try {
+        $redirection = \RankMath\Redirections\Redirection::from_array( [
+            'sources'     => [ [ 'pattern' => $path, 'comparison' => 'exact' ] ],
+            'url_to'      => $url_to,
+            'header_code' => (int) $header_code,
+            'status'      => 'active',
+        ] );
+        $saved = $redirection->save();
+        if ( empty( $saved ) ) {
+            $note = ' Luu y: goi Rank Math Redirection::save() khong tra ve ket qua, redirect co the chua duoc tao - kiem tra lai thu cong trong Rank Math > Redirections.';
+            return false;
+        }
+    } catch ( \Throwable $e ) {
+        $note = ' Luu y: tao redirect tu dong loi (' . $e->getMessage() . '), hay set thu cong qua WP Admin.';
+        return false;
+    }
+
+    $note = " Da tao redirect {$header_code} tu {$path} sang {$url_to}.";
+    return true;
+}
+
 function infina_mcp_text_result( $text, $is_error = false ) {
     return [ 'isError' => (bool) $is_error, 'content' => [ [ 'type' => 'text', 'text' => $text ] ] ];
 }
@@ -134,7 +183,14 @@ function infina_mcp_apply_post_meta( $post_id, $args, $on_create = true ) {
             $image_note = ' Da gan anh dai dien.';
         }
     }
-    return $image_note;
+
+    $redirect_note = '';
+    if ( ! empty( $args['redirect_to'] ) ) {
+        $header_code = isset( $args['redirect_type'] ) ? (int) $args['redirect_type'] : 301;
+        infina_mcp_set_redirect( $post_id, (string) $args['redirect_to'], $header_code, $redirect_note );
+    }
+
+    return $image_note . $redirect_note;
 }
 
 // Chuan hoa & xac thuc status + date (cho create/update). Tra ve mang [status, extra] hoac WP_Error.
@@ -180,6 +236,8 @@ function infina_mcp_post_props( $for_update ) {
         'seo_focus_keyword' => [ 'type' => 'string', 'description' => 'Rank Math focus keyword' ],
         'image_url'         => [ 'type' => 'string', 'description' => 'URL anh https lam anh dai dien (featured image), tuy chon' ],
         'image_alt'         => [ 'type' => 'string', 'description' => 'Alt text cho anh dai dien, tuy chon' ],
+        'redirect_to'       => [ 'type' => 'string', 'description' => 'URL dich (https) de tao redirect tu permalink CUA CHINH POST NAY sang URL do, qua Rank Math Redirections. Dung khi gop/thu gon 1 bai thanh stub tro ve bai khac. De trong = khong tao/khong doi redirect hien co.' ],
+        'redirect_type'     => [ 'type' => 'integer', 'enum' => [ 301, 302, 307, 410, 451 ], 'description' => "Ma HTTP cho redirect, chi dung khi co 'redirect_to'. Mac dinh 301 (Permanent Move)." ],
     ];
     if ( $for_update ) {
         $props = [ 'post_id' => [ 'type' => 'integer', 'description' => 'ID bai can sua' ] ] + $props;
@@ -212,7 +270,7 @@ function infina_mcp_tools_schema() {
         ],
         [
             'name'        => 'update_post',
-            'description' => 'Cap nhat 1 bai viet bat ky (draft/publish/scheduled): noi dung, danh muc, tag, SEO, anh dai dien, va co the DOI trang thai (draft/publish/future).',
+            'description' => 'Cap nhat 1 bai viet bat ky (draft/publish/scheduled): noi dung, danh muc, tag, SEO, anh dai dien, co the DOI trang thai (draft/publish/future), va co the tao 301 redirect (redirect_to) tu chinh permalink bai nay sang 1 URL khac qua Rank Math - dung khi gop bai yeu vao bai manh hon.',
             'inputSchema' => [
                 'type'       => 'object',
                 'required'   => [ 'post_id' ],
