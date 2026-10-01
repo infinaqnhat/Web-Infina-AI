@@ -77,11 +77,21 @@ cụm đang được RealSaleX chủ động viết bài / mở rộng.
 
 ---
 
-### Cụm 1: Chatbot / Conversational AI — 15 bài sống (19 gốc, 4 đã merge 01/10/2026)
+### Cụm 1: Chatbot / Conversational AI — 14 bài sống (19 gốc, 5 đã merge 01/10/2026)
 
 Cụm đã audit + xử lý cannibalization đầy đủ (xem refresh-log.md). Có **2 pillar song song** vì 2
 góc đủ khác biệt để không cần gộp chung: Pillar A nhắm "conversational AI / lead follow-up bot",
 Pillar B nhắm "customer service platform" (rộng hơn, bao cả tool CS tổng quát như Zendesk/Intercom).
+
+**Keyword research mới (2026-10-01)**: user gửi thêm ~1520 keyword export (Google Keyword Planner)
+về chủ đề "chatbot" và "conversational AI" nói chung, đã merge vào file keyword stats (1486 keyword
+mới/không trùng, tổng file giờ 11158 dòng). Đã rà soát: **chỉ có 1 keyword thật sự niche real estate
+trong toàn bộ data mới** (`conversational ai for real estate`, vol 50, comp idx 2 — tình cờ đã là
+focus keyword của Pillar A, không phát hiện gap mới). ~1485 keyword còn lại là market research
+chung cho "chatbot/conversational AI" (ứng dụng học ngoại ngữ, tool enterprise như Amazon Connect/
+Azure/AWS, app chat AI tiêu dùng...) — không niche real estate, **chưa thấy cơ hội bài mới nào từ
+đợt keyword này** (khác hẳn đợt CEP trước, lúc đó tìm ra 2 bài mới rõ ràng). Giữ nguyên plan Cụm 1
+hiện tại, không thêm bài.
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
