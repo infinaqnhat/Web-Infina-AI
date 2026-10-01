@@ -161,3 +161,23 @@ Thêm vào đây các case thật đã gặp khi refresh bài trên site cụ th
 ban đầu, chẩn đoán đúng sau khi kiểm tra kỹ, kết quả sau khi sửa), để tránh lặp lại nhận định sai
 đã từng mắc, tương tự cách file gốc của site production trước từng ghi lại 2 case thật giúp phát hiện
 lỗi "CTR trông thấp nhưng thực ra đúng benchmark" và lỗi "heading giả dạng `<strong>`".
+
+### Case: cannibalization nội dung thật (không chỉ title) giữa nhiều bài cùng review 1 bộ sản phẩm
+
+Site này (infina.ai/news) có nhiều bài "best X website builder/CRM/chatbot" độc lập nhau nhưng vô
+tình review ĐÚNG CÙNG 1 bộ sản phẩm với ĐÚNG CÙNG kết luận "best for persona Y" (chỉ viết lại câu
+chữ) — ví dụ 3 bài về real estate website builder (#546, #553, #637) đều kết luận Real Geeks=solo
+agent, AgentFire=content/SEO, Sierra=high-volume team, kvCORE=brokerage. Đây là cannibalization
+thật ở mức nội dung, không chỉ trùng title/keyword — Google không phân biệt được nên rank fragment
+cả 3 bài ở vị trí tầm trung, không bài nào vào top 10 dù riêng lẻ không yếu. Cách phát hiện: khi
+thấy 1 trang striking-distance có vị trí gộp (GSC `pages`) tốt hơn hẳn vị trí thật của từng query
+riêng (GSC `queries --page`), nghi ngờ ngay cannibalization, so nội dung (danh sách sản phẩm +
+kết luận "best for") của các bài cùng chủ đề trên site trước khi kết luận là lỗi title/meta.
+
+**Xử lý khi quyết định gộp 1 bài yếu vào bài mạnh hơn:** WP MCP hiện tại (method `update_post`
+trong `infina-wp-mcp-server-snippet.php`) không có tool xoá post hay set redirect — nhưng **Rank
+Math có sẵn field "Redirect" ngay trong meta box Advanced của từng post** (toggle Redirect →
+chọn `301 Permanent Move` → nhập Destination URL), đây là cách user tự làm thủ công trong WP
+Admin sau khi mình đã gộp nội dung + thu gọn bài yếu thành stub qua `update_post`. Verify redirect
+đã live bằng `curl -s -o /dev/null -w "%{http_code} %{redirect_url}" <url cũ>`, phải ra `301` +
+đúng URL đích.
