@@ -115,6 +115,16 @@ function infina_mcp_set_redirect( $post_id, $url_to, $header_code, &$note ) {
         return false;
     }
 
+    // Chi cho tao redirect tu bai da PUBLISH: bai draft/pending/future thuong tra ve permalink
+    // dang query-string (?p=ID) thay vi slug that, khien wp_parse_url lay nham path goc (vd
+    // "/news/" - trung voi URL chuyen muc/trang chu) thay vi dung path rieng cua bai - da gap
+    // lai thuc te khi test, suyt tao nham redirect cho ca trang /news/. Day la lop an toan bat
+    // buoc, khong duoc bo qua.
+    if ( get_post_status( $post_id ) !== 'publish' ) {
+        $note = ' Luu y: KHONG tao redirect vi bai nay chua o trang thai publish (permalink chua on dinh, de lay nham path goc gay redirect sai cho ca site). Chi dung redirect_to cho bai da publish.';
+        return false;
+    }
+
     $permalink = get_permalink( $post_id );
     if ( ! $permalink ) {
         $note = ' Luu y: khong lay duoc permalink cua post nay de lam nguon redirect.';
@@ -123,6 +133,13 @@ function infina_mcp_set_redirect( $post_id, $url_to, $header_code, &$note ) {
     $path = wp_parse_url( $permalink, PHP_URL_PATH );
     if ( empty( $path ) ) {
         $note = ' Luu y: khong doc duoc duong dan tu permalink de lam nguon redirect.';
+        return false;
+    }
+    // Lop an toan thu 2: path phai chua dung slug cua bai (post_name), neu khong rat co the
+    // day la 1 path chung chung (vd trang chuyen muc/trang chu) chu khong phai rieng bai nay.
+    $slug = get_post_field( 'post_name', $post_id );
+    if ( empty( $slug ) || strpos( $path, $slug ) === false ) {
+        $note = " Luu y: KHONG tao redirect vi path lay duoc ({$path}) khong chua slug cua bai ({$slug}) - co the day la path chung chung, khong an toan de redirect. Set thu cong qua WP Admin.";
         return false;
     }
 
