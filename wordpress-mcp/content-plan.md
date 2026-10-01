@@ -351,7 +351,7 @@ bảng, chỉ thêm 1 bài phát hiện mới chưa từng đưa vào plan RealS
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
 | **Pillar** | [Real Estate Landing Page: Types, Elements, and How to Build One That Converts](https://infina.ai/news/real-estate-landing-page-guide/) | `real estate landing page` | Discovery/TOF | — |
-| 🔎 Discovery (gần trùng Pillar) | [High Converting Real Estate Landing Pages: What Makes Them Work](https://infina.ai/news/high-converting-real-estate-landing-pages/) | `high converting real estate landing pages` | Discovery/TOF | 🔎 cùng dạng "what makes a good landing page" với Pillar, chưa audit |
+| ✅ Evaluation/MOF (cluster hợp lệ) | [High Converting Real Estate Landing Pages: What Makes Them Work](https://infina.ai/news/high-converting-real-estate-landing-pages/) | `high converting real estate landing pages` | Evaluation/MOF | ✅ ĐÃ AUDIT (2026-10-01): không trùng, là deep-dive thật của Pillar — đã fix internal link 2 chiều, không merge |
 | Niche: open house | [Open House Landing Page: How to Build One That Actually Captures Leads](https://infina.ai/news/open-house-landing-page/) | `open house landing page` | Post-purchase/how-to | — |
 | Niche: agent chung | [Real Estate Agent Landing Page: What to Include and How to Convert Visitors](https://infina.ai/news/real-estate-agent-landing-page/) | `real estate agent landing page` | Post-purchase/how-to | — |
 | Niche: home valuation | [Home Valuation Landing Page: How to Build One That Converts Seller Leads](https://infina.ai/news/home-valuation-landing-page/) | `home valuation landing page` | Post-purchase/how-to | gần góc với dòng dưới (cùng target seller) |
@@ -399,7 +399,7 @@ Theo đúng mức độ rủi ro giảm dần. Cách xử lý gợi ý: lặp l�
 | 3 | Chatbot | [what-is-a-conversational-chatbot-real-estate](https://infina.ai/news/what-is-a-conversational-chatbot-real-estate/) vs [conversational-chat-real-estate](https://infina.ai/news/conversational-chat-real-estate/) | Cùng dạng định nghĩa TOF, focus keyword gần như đồng nghĩa |
 | 4 | AI Voice | [best-ai-virtual-assistant-real-estate](https://infina.ai/news/best-ai-virtual-assistant-real-estate/) vs Pillar #147 (`best-ai-voice-assistants-for-real-estate`) | Publish trước khi Nhánh 1 lên plan, chưa từng đối chiếu |
 | 5 (thấp) | Website Design | [website-design-for-real-estate-agents](https://infina.ai/news/website-design-for-real-estate-agents/) (Pillar) vs [realtor-website-design](https://infina.ai/news/realtor-website-design/) | Cùng dạng TOF tổng quát |
-| 5 (thấp) | Landing Pages | [real-estate-landing-page-guide](https://infina.ai/news/real-estate-landing-page-guide/) (Pillar) vs [high-converting-real-estate-landing-pages](https://infina.ai/news/high-converting-real-estate-landing-pages/) | Cùng dạng "điều gì làm landing page tốt" |
+| ~~5~~ | Landing Pages | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [real-estate-landing-page-guide](https://infina.ai/news/real-estate-landing-page-guide/) (Pillar) vs [high-converting-real-estate-landing-pages](https://infina.ai/news/high-converting-real-estate-landing-pages/) (cluster) | Đọc full nội dung: KHÔNG phải duplicate, là pillar/cluster hợp lệ — chỉ thiếu internal link nên Google cannibalize. Đã fix link 2 chiều, giữ cả 2 bài. Xem refresh-log.md |
 
 **Lưu ý**: bảng trên chỉ dựa trên title + focus keyword (suy luận, chưa đọc nội dung thật) — đúng
 quy trình `pillar-cluster-writer/SKILL.md` Bước 3, phải đọc full nội dung từng cặp trước khi kết
