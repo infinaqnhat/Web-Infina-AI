@@ -159,23 +159,32 @@ function infina_mcp_set_redirect( $post_id, $url_to, $header_code, &$note ) {
             return false;
         }
 
-        // DEBUG TAM THOI: redirect bao "da tao" nhung curl thuc te khong thay 301, nghi ngo
-        // data luu sai dinh dang hoac can buoc kich hoat/cache rieng. Doc lai dung row vua
-        // tao tu DB de doi chieu, va liet ke cac bang Rank Math co trong DB de biet dung ten.
+        // DEBUG TAM THOI round 2: bang chinh co du lieu dung, nhung bang cache chi co 1 dong
+        // duy nhat (co the la 1 cache tong hop, khong phai 1 dong/redirect) - redirect that
+        // chay dua vao bang cache nay nen chua "len" du lieu moi. Doc noi dung dong cache do
+        // + tim class Cache co the de goi method rebuild cache.
         global $wpdb;
-        $tables = $wpdb->get_col( "SHOW TABLES LIKE '%redirect%'" );
-        $row_dump = '';
-        $rid = method_exists( $redirection, 'get_id' ) ? $redirection->get_id() : 0;
-        foreach ( $tables as $t ) {
-            $row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE id = %d", $rid ), ARRAY_A );
-            if ( $row ) {
-                $row_dump .= " [{$t}] " . wp_json_encode( $row );
-            } else {
-                $cnt = $wpdb->get_var( "SELECT COUNT(*) FROM {$t}" );
-                $row_dump .= " [{$t}: khong co row id={$rid}, tong {$cnt} dong]";
+        $cache_table = $wpdb->prefix . 'rank_math_redirections_cache';
+        $cache_row = $wpdb->get_row( "SELECT * FROM {$cache_table} LIMIT 1", ARRAY_A );
+        $cache_dump = $cache_row ? wp_json_encode( $cache_row ) : '(bang cache rong)';
+
+        $cache_class_candidates = [
+            '\RankMath\Redirections\Cache',
+            '\RankMath\Redirections\DB',
+            '\RankMath\Redirections\Redirections',
+        ];
+        $cache_class_info = '';
+        foreach ( $cache_class_candidates as $cls ) {
+            if ( class_exists( $cls ) ) {
+                $rc2 = new \ReflectionClass( $cls );
+                $static_methods = array_map( function ( $m ) {
+                    return $m->getName();
+                }, array_filter( $rc2->getMethods( \ReflectionMethod::IS_PUBLIC | \ReflectionMethod::IS_STATIC ) ) );
+                $cache_class_info .= " [{$cls} static methods: " . implode( ', ', $static_methods ) . ']';
             }
         }
-        $note = " DEBUG redirect_id={$rid}, tables=" . implode( ',', $tables ) . $row_dump;
+
+        $note = " DEBUG cache_table={$cache_table} content=" . $cache_dump . ' | classes:' . ( $cache_class_info ?: ' (khong thay class nao trong 3 candidate)' );
         return false;
     } catch ( \Throwable $e ) {
         $note = ' Luu y: tao redirect tu dong loi (' . $e->getMessage() . '), hay set thu cong qua WP Admin.';
