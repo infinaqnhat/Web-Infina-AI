@@ -1,6 +1,8 @@
 .claude
 dist
 node_modules
+__pycache__
+*.pyc
 package-lock.json
 repomix-output.xml
 tsconfig.app.tsbuildinfo
