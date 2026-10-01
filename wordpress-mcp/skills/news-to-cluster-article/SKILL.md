@@ -225,6 +225,28 @@ Mỗi bài cần **4 ảnh**: HERO, STATS/DATA, DEMO, COMPARISON. Ảnh HERO v�
 | STATS | Diagram/infographic | — |
 | COMPARISON | Diagram/infographic | — |
 
+**Bảng so sánh/số liệu chi tiết nhiều hàng-cột (≥3 cột hoặc ≥4 hàng) — dùng `<table>` HTML thật trong thân bài, KHÔNG generate ảnh AI.** Lý do: ảnh AI dựng bảng hay bịa tên sản phẩm/số liệu không khớp nội dung bài (đã xảy ra thực tế ở bài `best-free-crm-for-real-estate-agents`, #438 — ảnh so sánh bịa 3 tên CRM giả, ảnh thống kê bịa % adoption kèm dòng disclaimer "hypothetical" nhỏ xíu không ai đọc được), và vi phạm luôn checklist thumbnail (`THUMBNAIL_BEST_PRACTICES.md`: "không dùng bảng dữ liệu nhiều hàng/cột làm ảnh"). Ảnh AI (STATS/COMPARISON Template A-E) chỉ dùng cho 1 con số/1 so sánh 2 phe đơn giản; bảng dữ liệu thật phải là markup, không phải ảnh.
+
+Theme site (`infina-ai-news/style.css`) đã tự style sẵn mọi `<table>` bên trong `.post-content` — border, header bg/màu chữ, zebra-stripe hàng chẵn — nên **hầu như không cần style riêng**, chỉ cần markup chuẩn:
+
+```html
+<figure class="wp-block-table"><div style="overflow-x:auto;">
+<table>
+<thead><tr>
+<th>Cột 1</th><th>Cột 2</th><th>Cột 3</th>
+</tr></thead>
+<tbody>
+<tr><td>...</td><td>...</td><td>...</td></tr>
+<tr><td>...</td><td>...</td><td>...</td></tr>
+</tbody>
+</table>
+</div></figure>
+```
+
+- Bọc `<div style="overflow-x:auto;">` quanh `<table>` (không phải quanh `<figure>`) để bảng ≥4 cột không vỡ layout mobile.
+- **KHÔNG tự thêm `style="background:...;color:...;"` lên `<tr>`/`<th>`** — theme đã tự set `background: var(--blue-soft) #EEF3FF` + `color: var(--navy) #001F5C` trực tiếp trên `th` (CSS rule `.post-content thead th`), set trên `tr` sẽ vô tác dụng vì `th` tự vẽ nền riêng đè lên, và nếu lỡ set `color:#fff` trên `th` thì inline style đó THẮNG theme (ra chữ trắng trên nền sáng, không đọc được — lỗi thật đã gặp). Nếu thật sự cần màu riêng khác theme mặc định, dùng đúng cặp theme: nền `#EEF3FF`, chữ `#001F5C`.
+- `<tbody>` không cần `style` cho hàng chẵn/lẻ — theme tự zebra-stripe hàng chẵn `#fafbfc`.
+
 ---
 
 ## Bước 1 — Crawl tin tức 7 ngày gần nhất
