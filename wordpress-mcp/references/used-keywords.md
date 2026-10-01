@@ -80,7 +80,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-08-14 | `broker idx` | [broker-idx-guide](https://infina.ai/news/broker-idx-guide/) | tracker #46 |
 | 2026-08-15 | `ai backoffice transaction management real estate` | [ai-backoffice-transaction-management-real-estate](https://infina.ai/news/ai-backoffice-transaction-management-real-estate/) | tracker #34 |
 | 2026-08-15 | `idx real estate websites` | [idx-real-estate-websites-examples](https://infina.ai/news/idx-real-estate-websites-examples/) | tracker #49 |
-| 2026-08-15 | `idx website for realtors` | [idx-website-for-realtors](https://infina.ai/news/idx-website-for-realtors/) | tracker #48 |
+| 2026-08-15 | `idx website for realtors` | [idx-website-for-realtors](https://infina.ai/news/idx-website-for-realtors/) | tracker #48 — ✅ HUB (2026-10-01, đã nhận thêm nội dung Sierra Interactive + "How to Evaluate" từ #54) |
 | 2026-08-16 | `ai data readiness for real estate brokerages` | [ai-data-readiness-for-real-estate-brokerages](https://infina.ai/news/ai-data-readiness-for-real-estate-brokerages/) | tracker #35 |
 | 2026-08-16 | `idx feed` | [idx-feed-real-estate-setup](https://infina.ai/news/idx-feed-real-estate-setup/) | tracker #51 |
 | 2026-08-16 | `idx mls` | [idx-mls-real-estate-guide](https://infina.ai/news/idx-mls-real-estate-guide/) | tracker #50 |
@@ -89,7 +89,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-08-17 | `real estate website builder with idx` | [real-estate-website-builder-with-idx](https://infina.ai/news/real-estate-website-builder-with-idx/) | tracker #52 |
 | 2026-08-18 | `real estate contact form conversion rate` | [real-estate-contact-form-conversion-rate](https://infina.ai/news/real-estate-contact-form-conversion-rate/) | tracker #37 |
 | 2026-08-18 | `real estate agent websites with idx` | [real-estate-agent-websites-with-idx](https://infina.ai/news/real-estate-agent-websites-with-idx/) | tracker #55 |
-| 2026-08-18 | `best idx website for realtors` | [best-idx-website-for-realtors](https://infina.ai/news/best-idx-website-for-realtors/) | tracker #54 |
+| 2026-08-18 | `best idx website for realtors` | [best-idx-website-for-realtors](https://infina.ai/news/best-idx-website-for-realtors/) | tracker #54 — ⚠️ ĐÃ MERGE (2026-10-01) vào #48 idx-website-for-realtors, redirect 301 đã set, stub "This guide has moved" |
 | 2026-08-19 | `embedded ai real estate brokerage platforms` | [embedded-ai-real-estate-brokerage-platforms](https://infina.ai/news/embedded-ai-real-estate-brokerage-platforms/) | tracker #38 |
 | 2026-08-19 | `real estate agent landing page` | [real-estate-agent-landing-page](https://infina.ai/news/real-estate-agent-landing-page/) | tracker #58 |
 | 2026-08-19 | `open house landing page` | [open-house-landing-page](https://infina.ai/news/open-house-landing-page/) | tracker #57 |
