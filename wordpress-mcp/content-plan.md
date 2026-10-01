@@ -87,8 +87,8 @@ Pillar B nhắm "customer service platform" (rộng hơn, bao cả tool CS tổn
 |---|---|---|---|---|
 | **Pillar A** | [Best Conversational AI Chatbots for Real Estate Agents in 2026](https://infina.ai/news/best-conversational-ai-chatbot-for-real-estate/) | `best conversational ai chatbot for real estate` | Discovery/TOF | ✅ Hub (đã hấp thụ 2 bài, 11 tool) |
 | **Pillar B** | [12 Best Chatbot Customer Service Tools for Real Estate](https://infina.ai/news/best-chatbot-customer-service-real-estate/) | `chatbot customer service real estate` | Discovery/TOF | ✅ Hub (đã hấp thụ 2 bài, 15 tool) |
-| Review/list | [7 Best Chatbot Builders for Real Estate](https://infina.ai/news/best-chatbot-builder-real-estate/) | `chatbot builder real estate` | Evaluation/MOF | — |
-| Review/list | [Best No-Code Chatbot Platform for Real Estate Websites in 2026](https://infina.ai/news/no-code-chatbot-platform-real-estate/) | `no code chatbot platform real estate` | Evaluation/MOF | 🔎 góc gần trùng "Chatbot Builders" ở trên, chưa audit |
+| ✅ Review/list (HUB) | [10 Best Chatbot Builders for Real Estate](https://infina.ai/news/best-chatbot-builder-real-estate/) | `chatbot builder real estate` | Evaluation/MOF | ✅ HUB (2026-10-01) — đã hấp thụ Chatfuel/GoHighLevel/Botsonic từ bài dưới |
+| ~~Review/list~~ | ~~Best No-Code Chatbot Platform for Real Estate Websites in 2026~~ | `no code chatbot platform real estate` | Evaluation/MOF | ⚠️ ĐÃ MERGE (2026-10-01) vào dòng trên, redirect 301 live |
 | So sánh | [Chatbot vs Conversational AI](https://infina.ai/news/chatbot-vs-conversational-ai-real-estate/) | `chatbot vs conversational ai real estate` | Evaluation/MOF | — |
 | So sánh | [GoHighLevel Chatbot vs Dedicated Real Estate Chatbots](https://infina.ai/news/gohighlevel-chatbot-vs-dedicated-real-estate-chatbot/) | `gohighlevel chatbot` | Evaluation/MOF | — |
 | So sánh | [AI Chat vs SMS Follow-Up for Real Estate](https://infina.ai/news/ai-chat-vs-sms-real-estate/) | `ai chat vs sms real estate` | Evaluation/MOF | — |
@@ -244,8 +244,8 @@ Housing + TCPA compliance.
 | ✅ Evaluation/MOF (cluster hợp lệ) | [High Converting Real Estate Landing Pages: What Makes Them Work](https://infina.ai/news/high-converting-real-estate-landing-pages/) | `high converting real estate landing pages` | Evaluation/MOF | ✅ ĐÃ AUDIT (2026-10-01): không trùng, là deep-dive thật của Pillar — đã fix internal link 2 chiều, không merge |
 | Niche: open house | [Open House Landing Page: How to Build One That Actually Captures Leads](https://infina.ai/news/open-house-landing-page/) | `open house landing page` | Post-purchase/how-to | — |
 | Niche: agent chung | [Real Estate Agent Landing Page: What to Include and How to Convert Visitors](https://infina.ai/news/real-estate-agent-landing-page/) | `real estate agent landing page` | Post-purchase/how-to | — |
-| Niche: home valuation | [Home Valuation Landing Page: How to Build One That Converts Seller Leads](https://infina.ai/news/home-valuation-landing-page/) | `home valuation landing page` | Post-purchase/how-to | gần góc với dòng dưới (cùng target seller) |
-| Niche: seller chung | [Seller Landing Pages Real Estate: Types That Convert](https://infina.ai/news/seller-landing-pages-real-estate/) | `seller landing pages real estate` | Post-purchase/how-to | gần góc với dòng trên |
+| Niche: home valuation | [Home Valuation Landing Page: How to Build One That Converts Seller Leads](https://infina.ai/news/home-valuation-landing-page/) | `home valuation landing page` | Post-purchase/how-to | ✅ ĐÃ AUDIT (2026-10-01): không trùng — là 1 trong 4 loại seller landing page của dòng dưới, đã thêm link ngược |
+| Niche: seller chung | [Seller Landing Pages Real Estate: Types That Convert](https://infina.ai/news/seller-landing-pages-real-estate/) | `seller landing pages real estate` | Post-purchase/how-to | ✅ ĐÃ AUDIT (2026-10-01): bài tổng quan 4 loại (home valuation/listing consultation/expired listing/market report), đã tự link xuống dòng trên từ trước |
 
 ---
 
@@ -289,7 +289,7 @@ Gen" → #147 (mention Fair Housing/Housing Special Ad Category).
 
 ---
 
-## Cannibalization — lịch sử audit (01/10/2026, tất cả 10 cặp đã xử lý)
+## Cannibalization — lịch sử audit (01/10/2026, tất cả 12 cặp đã xử lý)
 
 Phát hiện khi map lại 8 cụm lần đầu (01/10/2026). Quy trình: đọc full nội dung từng cặp, so sánh
 product/angle thật chứ không chỉ title, merge cặp nào có >60-70% nội dung trùng, giữ nguyên cặp nào
@@ -305,6 +305,8 @@ product/angle thật chứ không chỉ title, merge cặp nào có >60-70% nộ
 | ~~4~~ | Cụm 4 | [best-ai-virtual-assistant-real-estate](https://infina.ai/news/best-ai-virtual-assistant-real-estate/) vs Pillar #147 (`best-ai-voice-assistants-for-real-estate`) | ✅ Đọc full nội dung: differentiation thật (đa kênh SMS/CRM/scheduling vs riêng voice/phone, chỉ trùng 3/7 tool). Giữ nguyên cả 2, không sửa gì |
 | ~~5~~ | Cụm 5 | [website-design-for-real-estate-agents](https://infina.ai/news/website-design-for-real-estate-agents/) (Pillar, hub) vs ~~realtor-website-design~~ (merged) | ✅ Đọc full nội dung: trùng gần như hoàn toàn (y hệt 3 platform: AgentFire/Real Geeks/Luxury Presence). Merge xong |
 | ~~5~~ | Cụm 6 | [real-estate-landing-page-guide](https://infina.ai/news/real-estate-landing-page-guide/) (Pillar) vs [high-converting-real-estate-landing-pages](https://infina.ai/news/high-converting-real-estate-landing-pages/) (cluster) | ✅ Đọc full nội dung: KHÔNG phải duplicate, là pillar/cluster hợp lệ — chỉ thiếu internal link nên Google cannibalize. Đã fix link 2 chiều, giữ cả 2 bài |
+| ~~6~~ | Cụm 1 | [best-chatbot-builder-real-estate](https://infina.ai/news/best-chatbot-builder-real-estate/) (hub) vs ~~no-code-chatbot-platform-real-estate~~ (merged, redirect 301 live) | ✅ Đọc full nội dung: trùng 4/7 tool (Tidio/ManyChat/Landbot/Intercom) với "best for" tagline gần như y hệt, cùng khung "How to Choose". Merge xong, đổi "7 Best" → "10 Best" |
+| ~~6~~ | Cụm 6 | [home-valuation-landing-page](https://infina.ai/news/home-valuation-landing-page/) vs [seller-landing-pages-real-estate](https://infina.ai/news/seller-landing-pages-real-estate/) | ✅ Đọc full nội dung: KHÔNG phải duplicate — seller-landing-pages là bài tổng quan 4 loại, home-valuation là deep-dive 1 trong 4 loại đó. Đã fix link 2 chiều, giữ cả 2 bài |
 
 Xem `skills/post-refresh/references/refresh-log.md` cho diễn giải đầy đủ từng case (số liệu GSC,
 nội dung đã sửa, redirect đã verify).
@@ -337,7 +339,7 @@ nội dung đã sửa, redirect đã verify).
    "reserved" sang bảng "đã publish").
 5. **Viết 2 bài CEP** (Cụm 2, góc Customer Engagement Platform) — plan đã duyệt 30/09, chưa viết
    bài thật. Theo đúng quy trình `skills/pillar-cluster-writer/SKILL.md` Bước 5 trở đi.
-6. **Cụm 1 còn 1 cặp nghi trùng chưa audit**: "7 Best Chatbot Builders" vs "Best No-Code Chatbot
-   Platform" — impression thấp, chưa ưu tiên.
-7. **Cụm 6 còn 1 cặp nghi trùng nhẹ chưa audit**: "Home Valuation Landing Page" vs "Seller Landing
-   Pages" — cùng target seller, impression thấp, chưa ưu tiên.
+
+**Tất cả cặp nghi trùng phát hiện khi map 8 Cụm (01/10/2026) đã audit xong** — bao gồm 2 cặp cuối
+cùng (Chatbot Builders vs No-Code Chatbot Platform ở Cụm 1, Home Valuation vs Seller Landing Pages
+ở Cụm 6), xem "Cannibalization — lịch sử audit" bên dưới.
