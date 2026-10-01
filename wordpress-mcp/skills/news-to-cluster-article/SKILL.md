@@ -22,12 +22,14 @@ Crawl tin tức mới theo 10 mảng → đối chiếu Google Sheet tracker (ng
 | 85 | CRM Software | Bài về CRM, sales automation, lead management |
 | 1  | News | Bài tin tức thời sự chung (không phải cluster real estate) |
 
-Truyền category **bằng tên** vào param `categories` (KHÔNG phải ID số — WP MCP tự resolve tên category thành term, tạo mới nếu tên chưa tồn tại):
+Truyền category **bằng tên** vào param `categories` (WP MCP tự resolve tên category thành term qua `wp_set_post_terms`, tạo mới nếu tên chưa tồn tại):
 ```python
 "categories": ["CRM Software"]
 "categories": ["AI Chatbot"]
 ```
 Chọn category theo chủ đề bài: CRM/sales automation → "CRM Software", chatbot/AI assistant/ISA/compliance → "AI Chatbot".
+
+**Đã gặp thực tế (01/10/2026, bài #1415):** truyền `"categories": ["CRM Software"]` cả ở `create_post` lẫn `update_post` sau đó đều không gán được category (REST API trả về `"categories": []"` dù response báo thành công và `tags` bằng tên trong CÙNG lúc gán đúng bình thường) — không rõ nguyên nhân (không phải lỗi proxy/cache, đã kiểm tra nhiều lần). Workaround verify hoạt động: truyền **ID dạng string** thay vì tên, vd `"categories": ["85"]` cho "CRM Software" (tra ID qua `GET https://infina.ai/news/wp-json/wp/v2/categories?per_page=100&_fields=id,name` — "AI Chatbot"=19, "CRM Software"=85). Nếu gặp lại category rỗng sau khi publish, luôn `curl` REST API verify `categories` field rồi fix bằng ID ngay, đừng chỉ tin message "Da cap nhat" là đã thành công.
 
 ---
 
@@ -180,7 +182,19 @@ def stage_and_upload(img_bytes, alt, title):
 wp_url = stage_and_upload(nano_banana(prompt), alt_text, title_text)
 ```
 
-**Lưu ý các host tạm khác đã thử và KHÔNG dùng được** (qua agent proxy của môi trường này): `0x0.st` (connection reset ở tầng proxy), `catbox.moe` file-upload thường (412 "Invalid uploader"), `tmpfiles.org` (trả về trang HTML preview chứ không phải URL ảnh trực tiếp, fail HEAD content-type check của WP). Chỉ `litterbox.catbox.moe` (biến thể "temp file" của catbox) đã verify hoạt động — dùng đúng endpoint `https://litterbox.catbox.moe/resources/internals/api.php` như code trên, không phải endpoint catbox.moe thường.
+**Lưu ý các host tạm khác đã thử và KHÔNG dùng được** (qua agent proxy của môi trường này): `0x0.st` (connection reset ở tầng proxy), `catbox.moe` file-upload thường (412 "Invalid uploader"), `tmpfiles.org` (trả về trang HTML preview chứ không phải URL ảnh trực tiếp, fail HEAD content-type check của WP). `litterbox.catbox.moe` từng hoạt động tốt nhưng đã gặp lỗi 500 "Internal Server Error" liên tục (01/10/2026, không phải lỗi proxy — đã xác nhận qua `__agentproxy/status` không có relay failure) — khi gặp, fallback ngay sang `uguu.se`:
+
+```python
+def upload_uguu(img_bytes):
+    r = requests.post("https://uguu.se/upload",
+        files={"files[]": ("img.jpg", img_bytes, "image/jpeg")}, timeout=30)
+    r.raise_for_status()
+    data = r.json()
+    if not data.get("success"):
+        raise Exception(f"uguu failed: {data}")
+    return data["files"][0]["url"]  # vd: https://h.uguu.se/xxxxx.jpg
+```
+Đã verify hoạt động tốt (không cần key, trả JSON có `files[0].url`, URL serve đúng `content-type: image/jpeg`). Thử theo thứ tự: freeimage.host → litterbox.catbox.moe → uguu.se.
 
 **Nếu Gemini lỗi liên tục (kể cả sau retry trong hàm trên):** thử lại thêm 1 lần thủ công (gọi lại `nano_banana()`), nếu vẫn lỗi thì **báo cho user trong tóm tắt**, KHÔNG tự ý fallback sang Grok — Grok đã bị loại khỏi pipeline vì cho ra ảnh illustration/style không đồng nhất với chuẩn photorealistic + glossy/gradient hiện tại của site.
 
