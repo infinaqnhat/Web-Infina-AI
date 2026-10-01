@@ -203,10 +203,23 @@ function infina_mcp_set_redirect( $post_id, $url_to, $header_code, &$note ) {
             }
         }
 
-        $note = " DEBUG round4: main_count={$main_count} cache_count={$cache_count}"
-            . ' | our_main_rows=' . wp_json_encode( $our_main_rows )
-            . ' | our_cache_rows=' . wp_json_encode( $our_cache_rows )
-            . ' | match_redirections("' . ltrim( $path, '/' ) . '")=' . $match_result;
+        // DEBUG round 5: match_redirections() tim ra dung record qua goi truc tiep, nhung
+        // live request van khong redirect. Nghi ngo co 1 postmeta rieng (vd 'rank_math_redirect')
+        // ma UI Advanced tab cua tung post tu dong set, va day moi la cai live hook thuc su doc
+        // (khong phai query bang Redirections/Cache tu URL string). So sanh postmeta cua #637
+        // (dang chay that, co Hits) voi bai test cua minh (object_id = $post_id).
+        $all_meta_637  = get_post_meta( 637 );
+        $rank_meta_637 = array_filter( $all_meta_637, function ( $k ) {
+            return stripos( $k, 'redirect' ) !== false;
+        }, ARRAY_FILTER_USE_KEY );
+        $all_meta_ours  = get_post_meta( $post_id );
+        $rank_meta_ours = array_filter( $all_meta_ours, function ( $k ) {
+            return stripos( $k, 'redirect' ) !== false;
+        }, ARRAY_FILTER_USE_KEY );
+
+        $note = " DEBUG round5: postmeta#637(redirect*)=" . wp_json_encode( $rank_meta_637 )
+            . ' | postmeta#' . $post_id . '(redirect*)=' . wp_json_encode( $rank_meta_ours )
+            . ' | match_redirections_ok=' . ( $match_result !== 'match_redirections khong ton tai hoac loi' ? 'yes' : 'no' );
         return false;
     } catch ( \Throwable $e ) {
         $note = ' Luu y: tao redirect tu dong loi (' . $e->getMessage() . '), hay set thu cong qua WP Admin.';
