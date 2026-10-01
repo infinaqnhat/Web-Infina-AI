@@ -1,244 +1,86 @@
 # Content Plan
 
-File này gồm 2 phần: (1) content plan đang chạy cho RealSaleX, và (2) content map — toàn bộ 122
-bài đã publish trên site, map theo đúng khung pillar + cluster của `pillar-cluster-writer/SKILL.md`
-(86 bài evergreen chia theo pillar/cluster/funnel role, 36 bài News để riêng) — dùng để check
-cannibalization trước khi viết bài mới hoặc lên plan mới. Xem "Phần 2" ở cuối file, gồm cả 1 mục
-"Cannibalization cần audit" — **tất cả 10 cặp phát hiện khi map lần 01/10/2026 đã audit xong**
-(6 merge, 2 internal-link fix, 2 giữ nguyên không đổi — xem chi tiết từng cặp + refresh-log.md).
+File này là bản đồ content đầy đủ cho `infina.ai/news` — **8 Cụm pillar + cluster**, áp dụng đúng
+khung của `skills/pillar-cluster-writer/SKILL.md` (1 pillar bao quát + 2-4 cluster theo vai trò
+funnel: So sánh/Evaluation-MOF, Review/Evaluation-MOF, Buying guide/Decision-BOF, Support-how-to/
+Discovery-Post-purchase), bao trùm **86 bài evergreen** đã publish (loại 36 bài News/Market
+Commentary — tin tức thời sự không có "chủ đề lớn" chung để làm pillar).
+
+**RealSaleX (AI Deal Room)** — SaaS B2B cho brokerage bất động sản Mỹ, URL chưa deploy — đang chủ
+động viết bài mới vào **3 trong 8 cụm** dưới đây (đánh dấu badge 🎯 RealSaleX ở từng cụm): Cụm 2
+(CRM Software, góc "bổ sung intent layer"), Cụm 4 (AI Voice/Virtual Assistant/Receptionist), Cụm 7
+(Lead Generation/Follow-up Automation). Các cụm còn lại là nội dung sitewide đã có sẵn, dùng để
+check cannibalization trước khi lên plan mới.
+
+Toàn bộ **10 cặp cannibalization** phát hiện khi map lại ngày 01/10/2026 đã audit xong (6 merge,
+2 internal-link fix, 2 giữ nguyên không đổi) — xem mục "Cannibalization — lịch sử audit" cuối file
+và `skills/post-refresh/references/refresh-log.md` cho chi tiết từng case.
 
 ---
 
-## Phần 1: RealSaleX (AI Deal Room)
-
-Money page: **RealSaleX (AI Deal Room)** — SaaS B2B cho brokerage bất động sản Mỹ.
-URL: *chưa deploy* (bản draft `realsalex.html` trên nhánh `main`, chưa có path chính thức trên
-`infina.ai`). Cập nhật URL thật vào đây ngay khi có, rồi quay lại **cả 9 bài mới** bên dưới để
-thêm internal link tới money page (xem `skills/pillar-cluster-writer/SKILL.md`) — đây là việc
-còn thiếu duy nhất áp dụng cho toàn bộ plan.
-
-**🎉 Trạng thái tổng quan (2026-09-15): CẢ 3 NHÁNH GỐC ĐÃ VIẾT XONG.** 9 bài mới (3 pillar + 6
-cluster) đã viết, 4 bài cũ đã refresh, tất cả đã publish hoặc lên lịch tự động.
-
-**🆕 Mở rộng (2026-09-30): thêm 2 bài vào Nhánh 3** (C3.4, C3.5 — góc "Customer Engagement
-Platform"), đã duyệt plan, **chưa viết**. Xem chi tiết ở mục Nhánh 3 bên dưới.
-
-## Lịch xuất bản đầy đủ (đã check trần 3 bài/ngày, chừa slot cho pipeline tin tức ~18h mỗi ngày)
+## Lịch xuất bản RealSaleX (9 bài mới, đã publish/schedule hết — 15-23/09/2026)
 
 | Ngày | Bài | ID | Trạng thái |
 |---|---|---|---|
-| 15/09/2026 | C1.4 — AI Outbound Calling for Real Estate | 1213 | ✅ Published |
-| 16/09/2026 10:00 | C1.1 — AI Receptionist vs Human Receptionist | 1217 | 🕐 Scheduled |
-| 17/09/2026 10:00 | C1.3 — AI Answering Service for Real Estate | 1219 | 🕐 Scheduled |
-| 18/09/2026 10:00 | P2 — Real Estate Lead Follow-Up Automation Guide | 1223 | 🕐 Scheduled |
-| 19/09/2026 10:00 | C2.1 — Best Lead Generation Software for Realtors | 1225 | 🕐 Scheduled |
-| 20/09/2026 10:00 | C2.3 — Automated Lead Follow-Up 5-Step Setup Guide | 1227 | 🕐 Scheduled |
-| 21/09/2026 10:00 | C2.4 — Facebook Lead Gen for Realtors | 1229 | 🕐 Scheduled |
-| 22/09/2026 10:00 | P3 — AI Intent Layer for Real Estate CRM | 1232 | 🕐 Scheduled |
-| 23/09/2026 10:00 | C3.2 — CINC CRM Review | 1234 | 🕐 Scheduled |
+| 15/09/2026 | AI Outbound Calling for Real Estate (Cụm 4) | 1213 | ✅ Published |
+| 16/09/2026 10:00 | AI Receptionist vs Human Receptionist (Cụm 4) | 1217 | ✅ Published |
+| 17/09/2026 10:00 | AI Answering Service for Real Estate (Cụm 4) | 1219 | ✅ Published |
+| 18/09/2026 10:00 | Real Estate Lead Follow-Up Automation Guide (Cụm 7, pillar) | 1223 | ✅ Published |
+| 19/09/2026 10:00 | Best Lead Generation Software for Realtors (Cụm 7) | 1225 | ✅ Published |
+| 20/09/2026 10:00 | Automated Lead Follow-Up 5-Step Setup Guide (Cụm 7) | 1227 | ✅ Published |
+| 21/09/2026 10:00 | Facebook Lead Gen for Realtors (Cụm 7) | 1229 | ✅ Published |
+| 22/09/2026 10:00 | AI Intent Layer for Real Estate CRM (Cụm 2, pillar nhẹ) | 1232 | ✅ Published |
+| 23/09/2026 10:00 | CINC CRM Review (Cụm 2) | 1234 | ✅ Published |
 
-Refresh (cùng ngày 15/09/2026, đã publish, không cần schedule): **#147** (pillar Nhánh 1),
-**#223** (thay C2.2, Nhánh 2), **#384** (thay C3.1+C3.3, Nhánh 3).
+Refresh (cùng ngày 15/09/2026, đã publish): **#147** (pillar Cụm 4), **#223** (Cụm 2, thay C2.2).
+#384 (pillar Cụm 2 lúc đó, thay C3.1+C3.3) đã bị merge vào #207 ngày 01/10 — xem Cụm 2 bên dưới.
 
-**Việc cần làm sau mỗi lần 1 bài trong bảng trên tự publish đúng giờ** (không cần nhắc, tự theo dõi
-phiên sau):
-1. Nếu bài đó là **pillar** (P1=#147 đã xong, P2, P3): quay lại các cluster liên quan để xác nhận
-   link 2 chiều đã đúng (thường đã có sẵn trong nội dung, chỉ cần verify live).
-2. Thêm dòng vào `references/used-keywords.md` (chuyển từ bảng "reserved" sang bảng "đã publish").
-3. Paste dòng mới vào tracker sheet ("Infina News — Published Articles Tracker") — đưa file `.tsv`
-   mỗi lần có bài live mới.
-4. Khi GSC có lại credentials, check traffic/ranking thật của các bài — ưu tiên refresh nhẹ thay vì
-   viết lại nếu bài đang có traffic.
-
-**⚠️ Lưu ý về link nội bộ trong lúc rollout**: các bài trong Nhánh 2/3 đã được viết với link chéo
-đầy đủ giữa nhau ngay từ đầu (không đợi từng bài publish rồi mới thêm link như cách làm ở Nhánh 1).
-Vì lên lịch trải dài nhiều ngày, sẽ có **vài ngày link nội bộ trỏ tới bài chưa publish** (404/không
-truy cập được cho tới đúng ngày) — tự hết khi từng bài lần lượt lên lịch xong theo bảng trên, không
-cần sửa gì thêm.
+**⚠️ Lưu ý lịch sử về link nội bộ lúc rollout** (không cần hành động gì thêm, đã tự hết): các bài
+Cụm 7/Cụm 2 được viết với link chéo đầy đủ ngay từ đầu, nên có vài ngày link trỏ tới bài chưa
+publish (404 tạm thời) trong lúc lịch trải dài nhiều ngày — tự hết khi từng bài lần lượt lên lịch
+xong theo bảng trên.
 
 ---
 
-## Bài đã có trên site — map vào plan (check 2026-09-15)
+## Bài đã có trên site — map vào RealSaleX khi viết (check 2026-09-15, cập nhật 01/10)
 
 Đối chiếu 110 bài publish (qua `list_posts` + fetch nội dung thật, không suy đoán từ tiêu đề) với
-3 nhánh. Phát hiện **trùng chủ đề khá nặng ở Nhánh 2 và Nhánh 3** — 2 nhánh này đã có sẵn 1 phần
-nội dung tương đương trên site, nên đã refresh bài cũ thay vì viết đè.
+3 cụm RealSaleX đang viết. Phát hiện **trùng chủ đề khá nặng ở Cụm 7 và Cụm 2** — nên đã refresh
+bài cũ thay vì viết đè.
 
 | Bài đã có | FOCUS_KW đã log | Trùng ID nào | Việc đã làm |
 |---|---|---|---|
-| [#147 — 7 Best AI Voice Assistants for Real Estate Agents](https://infina.ai/news/best-ai-voice-assistants-for-real-estate/) | `ai voice assistants for real estate` | P1, C1.2 | ✅ Refreshed 15/09 — dùng làm pillar chính thức Nhánh 1 thay vì viết P1/C1.2 mới |
-| [#223 — Speed-to-Lead](https://infina.ai/news/real-estate-agent-crm-speed-to-lead/) | `real estate agent crm` | C2.2 | ✅ Refreshed 15/09 — thêm link tới P2, thay thế C2.2 |
-| [#207 — Best Real Estate Agent CRM Software](https://infina.ai/news/best-crm-for-real-estate/) | `best crm for real estate` | C3.1, C3.3 | ✅ **ĐỔI VAI TRÒ PILLAR (2026-10-01)**: #207 giờ là pillar chính thức Nhánh 3 RealSaleX thay cho #384 (xem lý do ở mục Cannibalization #4 + refresh-log.md) — đã hấp thụ mục "None of These Ship a True Intent Layer" + link P3 từ #384, và "Integrations That Matter" từ #412 |
-| ~~#384 — Best CRM Software for Real Estate Agents~~ | `best crm software` | C3.1, C3.3 | ⚠️ ĐÃ MERGE (2026-10-01) vào #207, redirect 301 live. Lý do đổi hub: #207 có 15 inbound link sitewide sẵn có, #384 chỉ có 2 (từ CINC review + Intent Layer) — xem refresh-log.md |
-| [#444 — Best CRM for Real Estate Agents: A Buyer's Guide](https://infina.ai/news/best-crm-buying-guide-real-estate-agents/) | `best crm` | C3.1, C3.3 | Giữ nguyên — BOF buying-guide khác funnel stage, không trùng #207 (xem Cannibalization #4) |
-| [#230 — What Is CRM Software?](https://infina.ai/news/what-is-crm-software/) / [#405 — CRM Software 101](https://infina.ai/news/crm-management-real-estate-agents-beginners-guide/) | — | Nhánh 4 | ❌ Nhánh 4 bỏ hẳn, không cần động vào 2 bài này |
-| [#214 — AI CRM for Real Estate](https://infina.ai/news/ai-crm-real-estate/) | `ai crm` | P3 | Đã đọc kỹ trước khi viết P3 — khác góc (định nghĩa + tool listicle vs. "bổ sung intent layer cho CRM sẵn có"), P3 link ngược lại #214 cho người cần chọn CRM từ đầu |
-| **CINC** (brand) | — | C3.2 | ✅ Xác nhận gap thật, đã viết C3.2 |
+| [#147 — 7 Best AI Voice Assistants for Real Estate Agents](https://infina.ai/news/best-ai-voice-assistants-for-real-estate/) | `ai voice assistants for real estate` | Cụm 4 (P1, C1.2) | ✅ Refreshed 15/09 — dùng làm pillar chính thức Cụm 4 thay vì viết P1/C1.2 mới |
+| [#223 — Speed-to-Lead](https://infina.ai/news/real-estate-agent-crm-speed-to-lead/) | `real estate agent crm` | Cụm 7 (C2.2) | ✅ Refreshed 15/09 — thêm link tới pillar Cụm 7, thay thế C2.2 |
+| [#207 — Best Real Estate Agent CRM Software](https://infina.ai/news/best-crm-for-real-estate/) | `best crm for real estate` | Cụm 2 (C3.1, C3.3) | ✅ **ĐỔI VAI TRÒ PILLAR (2026-10-01)**: #207 giờ là pillar chính thức Cụm 2 thay cho #384 (xem lý do ở mục Cannibalization #4 + refresh-log.md) — đã hấp thụ mục "None of These Ship a True Intent Layer" + link pillar nhẹ từ #384, và "Integrations That Matter" từ #412 |
+| ~~#384 — Best CRM Software for Real Estate Agents~~ | `best crm software` | Cụm 2 (C3.1, C3.3) | ⚠️ ĐÃ MERGE (2026-10-01) vào #207, redirect 301 live. Lý do đổi hub: #207 có 15 inbound link sitewide sẵn có, #384 chỉ có 2 (từ CINC review + Intent Layer) — xem refresh-log.md |
+| [#444 — Best CRM for Real Estate Agents: A Buyer's Guide](https://infina.ai/news/best-crm-buying-guide-real-estate-agents/) | `best crm` | Cụm 2 (C3.1, C3.3) | Giữ nguyên — BOF buying-guide khác funnel stage, không trùng #207 (xem Cannibalization #4) |
+| [#230 — What Is CRM Software?](https://infina.ai/news/what-is-crm-software/) / [#405 — CRM Software 101](https://infina.ai/news/crm-management-real-estate-agents-beginners-guide/) | — | — | ❌ Hướng "CRM Software generic" đã bỏ hẳn khỏi plan RealSaleX, không cần động vào 2 bài này (đã cover đúng góc "CRM là gì") |
+| [#214 — AI CRM for Real Estate](https://infina.ai/news/ai-crm-real-estate/) | `ai crm` | Cụm 2 (pillar nhẹ) | Đã đọc kỹ trước khi viết pillar nhẹ — khác góc (định nghĩa + tool listicle vs. "bổ sung intent layer cho CRM sẵn có"), pillar nhẹ link ngược lại #214 cho người cần chọn CRM từ đầu |
+| **CINC** (brand) | — | Cụm 2 (C3.2) | ✅ Xác nhận gap thật, đã viết C3.2 |
 
 ### Bài bổ trợ / liên quan (không trùng — dùng để link thêm, đã áp dụng khi viết)
 
 | Bài đã có | Gắn vào bài nào |
 |---|---|
-| [#237 — TCPA Compliance for Real Estate Agents](https://infina.ai/news/tcpa-compliance-for-real-estate-agents/) | #147, C1.1, C1.4, C2.4 |
-| [#390 — AI ISAs Are Delivering 3x Higher Conversion Rates](https://infina.ai/news/ai-isa-conversion-rates-real-estate/) | #147 |
+| [#237 — TCPA Compliance for Real Estate Agents](https://infina.ai/news/tcpa-compliance-for-real-estate-agents/) | #147, C1.1, C1.4, C2.4 (Cụm 4 + Cụm 7) |
+| [#390 — AI ISAs Are Delivering 3x Higher Conversion Rates](https://infina.ai/news/ai-isa-conversion-rates-real-estate/) | #147 (Cụm 4) |
 | [#1026 — Rechat AI Agent Integration for CRM](https://infina.ai/news/ai-agent-integration-for-real-estate-crm-platforms/) | (chưa dùng, vẫn còn để trích dẫn thêm khi refresh sau) |
 | [#1171 — RE/MAX Leo AI CRM Assistant](https://infina.ai/news/ai-crm-assistant-brokerage-merger-rollout-agents/) | (chưa dùng, vẫn còn để trích dẫn thêm khi refresh sau) |
 
 ---
 
-## Nhánh 1: AI Answering / Call Center / Receptionist — 🥇 ưu tiên cao nhất — ✅ HOÀN THÀNH
+## 8 Cụm nội dung (toàn site, Pillar + Cluster)
 
-Vì sao cao nhất: đúng câu pitch chính của sản phẩm ("AI agent trả lời buyer 24/7 trong Deal Room
-riêng"). **Đã đổi hướng so với plan gốc sau khi check keyword + live-SERP thật (2026-09-15)**: CSV
-gốc không có biến thể "real estate" nào cho cụm receptionist/call center — 5 FOCUS_KW ban đầu đều
-là thuật ngữ generic. Chạy live-SERP xác nhận: `ai receptionist`/`ai call center software` (bare)
-bị vendor/SaaS lớn chiếm SERP hoàn toàn; bản niche `... for real estate` mới có nhu cầu thật (10+
-đối thủ dạng listicle cho riêng "ai receptionist for real estate"). Từ đó: bỏ viết P1/C1.2 mới,
-dùng #147 (đã refresh) làm pillar, chỉ viết 3 cluster với keyword niche đã verify.
-
-| ID | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
-|---|---|---|---|---|---|
-| P1 | Pillar = refresh #147 | [#147](https://infina.ai/news/best-ai-voice-assistants-for-real-estate/) | `ai receptionist for real estate` | Discovery/TOF | ✅ Published (refresh 15/09) |
-| C1.1 | So sánh | [AI Receptionist vs Human Receptionist for Real Estate: Cost & ROI](https://infina.ai/news/?p=1217) (ID 1217) | `ai receptionist vs human receptionist real estate` | Evaluation/MOF | 🕐 Schedule 16/09 10:00 |
-| C1.3 | Buying guide | [AI Answering Service for Real Estate: How to Choose the Right One](https://infina.ai/news/?p=1219) (ID 1219) | `ai answering service for real estate` | Decision/BOF | 🕐 Schedule 17/09 10:00 |
-| C1.4 | Support/how-to → bắc cầu Nhánh 2 | [AI Outbound Calling for Real Estate: How It Works in 2026](https://infina.ai/news/ai-outbound-calling-real-estate-lead-follow-up/) (ID 1213) | `ai outbound calling for real estate` | Post-purchase/how-to | ✅ Published 15/09 |
-
-Internal link: #147 ↔ C1.1/C1.3/C1.4 (2 chiều, đã verify live), C1.4 ↔ P2 (Nhánh 2, đã có link).
-Điểm khác biệt đã thêm vào #147 mà đối thủ chưa cover: mục Fair Housing + TCPA compliance.
-
----
-
-## Nhánh 2: Lead Generation + Follow-up Automation — 🥇 ưu tiên cao nhất — ✅ HOÀN THÀNH
-
-Vì sao cao nhất: khớp thẳng "The Leak" trong pitch deck (40-50% lead không được follow-up).
-
-| ID | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
-|---|---|---|---|---|---|
-| P2 | Pillar | [Real Estate Lead Follow-Up Automation: The Complete 2026 Guide](https://infina.ai/news/?p=1223) (ID 1223) | `real estate lead follow-up automation` | Discovery/TOF | 🕐 Schedule 18/09 10:00 |
-| C2.1 | Review/list | [Best Lead Generation Software for Realtors in 2026](https://infina.ai/news/?p=1225) (ID 1225) | `lead generation software for realtors` | Evaluation/MOF | 🕐 Schedule 19/09 10:00 |
-| ~~C2.2~~ | ~~Giải thích/pain-point~~ | ❌ Bỏ, thay bằng refresh [#223](https://infina.ai/news/real-estate-agent-crm-speed-to-lead/) | — | — | ✅ #223 đã refresh 15/09, thêm link P2 |
-| C2.3 | Buying guide/how-to | [Automated Lead Follow-Up for Real Estate: A 5-Step Setup Guide](https://infina.ai/news/?p=1227) (ID 1227) | `automated lead follow-up for real estate` | Decision/BOF | 🕐 Schedule 20/09 10:00 |
-| C2.4 | Kênh cụ thể | [Facebook Lead Gen for Realtors: Turning Ad Leads Into Showings](https://infina.ai/news/?p=1229) (ID 1229) | `facebook lead gen for realtors` | Decision/BOF | 🕐 Schedule 21/09 10:00 |
-
-**Đổi FOCUS_KW so với plan gốc** (bài học từ Nhánh 1 — niche hoá thay vì dùng keyword generic từ
-CSV): `lead generation for realestate` → `real estate lead follow-up automation` (P2, khớp đúng
-intent bài); `lead generation software` → `lead generation software for realtors` (C2.1); `lead
-generation systems` → `automated lead follow-up for real estate` (C2.3); `facebook lead generation
-ads` → `facebook lead gen for realtors` (C2.4) — tất cả đã verify có SERP thật khớp định dạng dự
-kiến (listicle cho C2.1, mix explainer/how-to cho C2.3, mix cho C2.4) qua web search 2026-09-15.
-
-Internal link: P2 ↔ C2.1/C2.3/C2.4 (2 chiều), P2 ↔ #223 (refresh), P2 ↔ C1.4 (chéo nhánh, cả 2
-chiều), C2.4 → #147 (mention Fair Housing/Housing Special Ad Category).
-
----
-
-## Nhánh 3: CRM Add-on / Alternatives & Pricing — 🥈 ưu tiên 2 — 🕐 Phần gốc đã xong, đang mở rộng
-
-Góc bắt buộc: viết kiểu "CRM sẵn có thiếu gì mà cần thêm lớp intent", KHÔNG viết "X vs Y CRM nào
-tốt hơn" — target là người đã có CRM rồi, RealSaleX bổ sung chứ không thay thế.
-
-| ID | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
-|---|---|---|---|---|---|
-| P3 | Pillar (nhẹ) | [AI Intent Layer for Real Estate CRM: What It Adds](https://infina.ai/news/?p=1232) (ID 1232) | `ai intent layer for real estate crm` | Evaluation/MOF | ✅ Published |
-| ~~C3.1~~ | ~~Follow Up Boss Review~~ | ❌ Bỏ, thay bằng refresh [#207](https://infina.ai/news/best-crm-for-real-estate/) (đã đổi pillar từ #384 sang #207, 01/10/2026) | — | — | ✅ #207 đã refresh 01/10, thêm link P3 + mục Intent Layer |
-| C3.2 | Review + gap thật | [CINC CRM Review: Pricing, Features, and Buyer Follow-Up Gaps](https://infina.ai/news/?p=1234) (ID 1234) | `cinc crm review` | Evaluation/MOF | ✅ Published |
-| ~~C3.3~~ | ~~kvCORE Pricing~~ | ❌ Bỏ, cùng xử lý qua refresh #207 | — | — | ✅ |
-| C3.4 | So sánh (MOF) | *Customer Engagement Platform vs CRM for Real Estate* | `customer engagement platform vs crm` | Evaluation/MOF | 🕐 Đã duyệt plan 30/09, chưa viết |
-| C3.5 | Listicle chiến lược (TOF) | *Customer Engagement Strategies for Real Estate Agents* | niche từ `digital customer engagement` + `customer engagement examples` | Discovery/TOF | 🕐 Đã duyệt plan 30/09, chưa viết |
-
-**Đổi FOCUS_KW so với plan gốc**: `crm and lead generation` → `ai intent layer for real estate crm`
-(P3, khớp SERP thật về "AI follow-up shift to intent signals" thay vì generic CRM+leadgen). C3.2
-dùng `cinc crm review` (niche cụ thể hơn `cinc reviews`). Dữ liệu CINC thật (giá từ $900/tháng,
-gói Solo/Ramp/Pro/Select, điểm mạnh/yếu) đã verify qua web search trước khi viết, không suy đoán.
-
-Internal link: P3 ↔ C3.2 (2 chiều), P3 ↔ #384 (refresh, thay C3.1/C3.3), P3 ↔ #214 (link chéo,
-không cannibalize), P3 ↔ P2 (định vị bổ sung CRM).
-
-### C3.4 + C3.5 — mở rộng "Customer Engagement Platform" (2026-09-30)
-
-**Bối cảnh**: user gửi thêm 148 keyword mới (export Google Keyword Planner) về "customer engagement
-platform" (CEP), đã merge vào
-`wordpress-mcp/skills/news-to-cluster-article/keywords/Infina_AI_RealSale_Keyword_Stats_2026-09-15.csv`
-(commit `d0f17c3`). CEP được xác nhận là **góc định vị lại 1 phần RealSaleX**, không phải sản phẩm
-tách riêng — audience vẫn brokerage/agent bất động sản Mỹ, money page vẫn RealSaleX (chưa deploy).
-
-**Vì sao KHÔNG tạo hẳn 1 "Nhánh CEP" riêng** (đã cân nhắc rồi bỏ): live-SERP check cho thấy niche
-hóa "customer engagement platform for real estate" đá thẳng vào sân đã có của Nhánh 3 hiện tại
-(Sierra Interactive, Zoho SalesIQ, Salesforce, Creatio đều frame CEP-cho-real-estate y hệt nội dung
-"CRM cho real estate" đã có ở #207/#384/#214/#230/#405). Tạo nhánh mới riêng sẽ tự cannibalize nội
-bộ nhiều hơn là mở ra SERP mới, nên quyết định **nhét 2 bài mới vào Nhánh 3 sẵn có** thay vì tạo
-nhánh 5.
-
-**Kết quả check volume + live-SERP (2026-09-30) cho từng nhóm keyword ứng viên**:
-
-| Nhóm keyword | Volume (tier) | Kết luận |
-|---|---|---|
-| `customer engagement platform`, `customer experience automation platform`, `omnichannel customer engagement platform`, `best customer engagement platform` (bare) | 500-5000 | ❌ Bỏ — SERP bị vendor tỷ đô chiếm 100% (Twilio, Salesforce, Zendesk, Braze, Talon.One, Bloomreach...), **zero** kết quả real estate dù niche hay không |
-| `what is customer engagement`, `CEP customer engagement platform meaning` (bare) | 500, 50 | ❌ Bỏ — cùng lý do, toàn IBM/Salesforce/Wikipedia/Martech.zone. Lưu ý: competition index thấp (idx=1) trong file KHÔNG phản ánh độ khó SERP organic thật — đây là competition Ads, dễ gây hiểu lầm |
-| `what is a customer engagement platform for real estate`, `...real estate agents need` (niche) | 500 (bare gốc) | ❌ Bỏ — SERP real estate có thật (Sierra Interactive, Zoho SalesIQ, realestatecrm.io...) nhưng nội dung đọc y hệt "CRM cho real estate" đã có → cannibalize nội bộ với #207/#384/#214, không đáng viết bài riêng |
-| `customer engagement platform vs crm` | 50, comp idx **0** | ✅ Giữ — C3.4. Generic có 9+ bài (leat, courier, moengage, informatica...) nhưng **chưa site real estate nào viết bản riêng**, khớp đúng pitch RealSaleX (bổ sung CRM bằng lớp engagement/intent) |
-| `digital customer engagement real estate`, `customer engagement examples real estate` (niche) | 500 (bare gốc) | ✅ Giữ — C3.5. SERP real estate có thật (Spectrio, Transactly, ETG.digital, commercial-realestate-training.com) nhưng đối thủ toàn agency blog nhỏ, chưa ai làm bài resource chuẩn SEO — format listicle chiến lược/ví dụ, khác hẳn format so sánh phần mềm nên không đụng Nhánh 3 hiện có |
-
-Internal link dự kiến khi viết: C3.4 ↔ C3.5 (2 chiều), cả 2 ↔ P3 (#1232) + #384, C3.4 → money page
-RealSaleX (khi có URL).
-
----
-
-## Nhánh 4: CRM Software (generic) — ❌ đã bỏ hẳn
-
-#230 và #405 đã cover đúng góc "CRM là gì / CRM 101" mà nhánh này định làm — không tạo pillar
-riêng, không giữ backlog.
-
----
-
-## Bị loại khỏi plan (không dùng)
-
-- **Local-intent** ("realtor near me"...) — khớp SERP local pack, sai định dạng site.
-- **Consumer FSBO/tìm agent** ("sell house without realtor"...) — sai audience (người mua/bán nhà,
-  không phải broker/agent).
-- **Document/Transaction Management** — sản phẩm hoạt động ở giai đoạn buyer tìm hiểu/so sánh,
-  không phải giai đoạn ký hợp đồng.
-- **Website/IDX, Reviews/Reputation** — không liên quan sản phẩm hoặc đã có pillar cũ cover.
-
----
-
-## Việc còn lại (toàn plan)
-
-1. **Money page URL**: chưa deploy trên `infina.ai`. Khi có URL thật, quay lại cả 9 bài mới +
-   3 bài refresh để thêm internal link tới money page (hiện tất cả đang ghi "chờ URL").
-2. **GSC/GA4 credentials**: đã có key thật (verify hoạt động 2026-09-15), nhưng chỉ lưu session-only
-   (repo public, không commit key) — cần check lại traffic/ranking của các bài mới sau khi chúng đủ
-   thời gian lên SERP (2-3 tuần), dùng skill `post-refresh`.
-3. **Mở rộng plan nếu cần thêm bài**: 2 hướng đã note trước — hạ ngưỡng volume CSV xuống dưới 500,
-   hoặc dùng `post-refresh` tìm striking-distance keyword mới nảy sinh từ chính 9 bài vừa viết sau
-   khi có dữ liệu GSC thật.
-4. **`references/used-keywords.md`**: cần cập nhật dần khi mỗi bài trong lịch ở trên tự publish
-   (chuyển từ bảng "reserved" sang bảng "đã publish").
-5. **Viết C3.4 + C3.5** (Nhánh 3, góc Customer Engagement Platform) — plan đã duyệt 30/09, chưa
-   viết bài thật. Theo đúng quy trình `skills/pillar-cluster-writer/SKILL.md` Bước 5 trở đi.
-
----
-
-## Phần 2: Content Map — Toàn bộ bài đã publish trên site, map theo Pillar + Cluster
-
-Áp dụng đúng khung của `skills/pillar-cluster-writer/SKILL.md` (1 pillar bao quát + 2-4 cluster
-theo vai trò funnel: So sánh/Evaluation-MOF, Review/Evaluation-MOF, Buying guide/Decision-BOF,
-Support-how-to/Discovery-Post-purchase) để map lại **86 bài evergreen** (8 cụm, loại cụm News/Market
-Commentary — 36 bài tin tức thời sự không có "chủ đề lớn" chung để làm pillar, không thuộc mô hình
-này) đã publish trên `infina.ai/news`, không phải chỉ RealSaleX. Việc map lại này (01/10/2026) phát
-hiện thêm vài cụm có dấu hiệu cannibalization CHƯA từng audit (xem mục "Cannibalization cần audit"
-ở cuối) — tương tự pattern đã xử lý xong ở cụm Chatbot (xem
-`skills/post-refresh/references/refresh-log.md` 01/10/2026).
-
-**Chú thích trạng thái**: ✅ Hub/Pillar sống · ⚠️ Đã merge → stub (redirect 301, xem bảng dưới) ·
-🔎 Cần audit cannibalization (title/focus keyword gần trùng, chưa kiểm tra nội dung thật).
+**Chú thích trạng thái**: ✅ Hub/Pillar sống · ⚠️ Đã merge → stub (redirect 301) · 🎯 RealSaleX =
+cụm đang được RealSaleX chủ động viết bài / mở rộng.
 
 ---
 
 ### Cụm 1: Chatbot / Conversational AI — 15 bài sống (19 gốc, 4 đã merge 01/10/2026)
 
-Cụm duy nhất đã audit + xử lý cannibalization đầy đủ (xem refresh-log.md). Có **2 pillar song song**
-vì 2 góc đủ khác biệt để không cần gộp chung: Pillar A nhắm "conversational AI / lead follow-up bot",
+Cụm đã audit + xử lý cannibalization đầy đủ (xem refresh-log.md). Có **2 pillar song song** vì 2
+góc đủ khác biệt để không cần gộp chung: Pillar A nhắm "conversational AI / lead follow-up bot",
 Pillar B nhắm "customer service platform" (rộng hơn, bao cả tool CS tổng quát như Zendesk/Intercom).
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
@@ -263,7 +105,7 @@ Pillar B nhắm "customer service platform" (rộng hơn, bao cả tool CS tổn
 
 ---
 
-### Cụm 2: CRM Software — 20 bài sống (22 gốc, 2 đã merge 2026-10-01)
+### Cụm 2: CRM Software — 🎯 RealSaleX (góc "CRM Add-on / Alternatives & Pricing") — 20 bài sống (22 gốc, 2 đã merge 2026-10-01)
 
 **✅ ĐÃ AUDIT (2026-10-01)** — cụm cannibalization LỚN NHẤT đã xử lý xong, xem refresh-log.md.
 Phát hiện 5 bài "best/top CRM" roundup trùng gần hết cùng 1 pool platform (Follow Up Boss/Lofty/
@@ -275,26 +117,61 @@ còn lại (#419 teams-niche, #444 buying-guide/BOF) giữ nguyên vì different
 |---|---|---|---|---|
 | **Pillar chính (ĐÃ ĐỔI 01/10)** | [Best Real Estate Agent CRM Software in 2026](https://infina.ai/news/best-crm-for-real-estate/) | `best crm for real estate` | Evaluation/MOF | ✅ = #207, giờ là HUB — đã hấp thụ #384 (Intent Layer section) + #412 (Integrations section) |
 | ~~Pillar chính (cũ)~~ | ~~Best CRM Software for Real Estate Agents~~ | `best crm software` | Discovery/TOF | ⚠️ ĐÃ MERGE (2026-10-01) vào #207, redirect 301 live |
-| **Pillar nhẹ (RealSaleX P3)** | [AI Intent Layer for Real Estate CRM: What It Adds](https://infina.ai/news/ai-intent-layer-for-real-estate-crm/) | `ai intent layer for real estate crm` | Evaluation/MOF | ✅ góc "bổ sung CRM sẵn có", khác hẳn roundup — đã sửa link trỏ về #207 thay vì #384 |
-| Review (brand cụ thể) | [CINC CRM Review: Pricing, Features, and Buyer Follow-Up Gaps](https://infina.ai/news/cinc-crm-review-real-estate/) | `cinc crm review` | Evaluation/MOF | ✅ cluster của Pillar nhẹ — đã sửa link trỏ về #207 thay vì #384 |
+| **Pillar nhẹ 🎯 RealSaleX** | [AI Intent Layer for Real Estate CRM: What It Adds](https://infina.ai/news/ai-intent-layer-for-real-estate-crm/) | `ai intent layer for real estate crm` | Evaluation/MOF | ✅ góc "bổ sung CRM sẵn có", khác hẳn roundup — đã sửa link trỏ về #207 thay vì #384 |
+| Review (brand cụ thể) 🎯 RealSaleX | [CINC CRM Review: Pricing, Features, and Buyer Follow-Up Gaps](https://infina.ai/news/cinc-crm-review-real-estate/) | `cinc crm review` | Evaluation/MOF | ✅ cluster của pillar nhẹ — đã sửa link trỏ về #207 thay vì #384 |
+| So sánh (MOF) 🎯 RealSaleX — chưa viết | *Customer Engagement Platform vs CRM for Real Estate* | `customer engagement platform vs crm` | Evaluation/MOF | 🕐 Đã duyệt plan 30/09, chưa viết — xem "Mở rộng CEP" bên dưới |
+| Listicle chiến lược (TOF) 🎯 RealSaleX — chưa viết | *Customer Engagement Strategies for Real Estate Agents* | niche từ `digital customer engagement` + `customer engagement examples` | Discovery/TOF | 🕐 Đã duyệt plan 30/09, chưa viết — xem "Mở rộng CEP" bên dưới |
 | ~~🔎 Review/list (roundup)~~ | ~~Top CRM Tools for Real Estate Agents and Teams~~ | `crm tools for real estate` | Evaluation/MOF | ⚠️ ĐÃ MERGE (2026-10-01) vào #207, redirect 301 live |
 | Review/list (niche: teams) | [Best CRM for Real Estate Teams: Top Picks for 2026](https://infina.ai/news/best-crm-for-real-estate-teams-2026/) | `best crm for real estate teams` | Evaluation/MOF | ✅ ĐÃ AUDIT: niche "teams" thật, rank tốt nhất nhóm (pos 5.0) — giữ nguyên |
 | Buying guide (BOF) | [Best CRM for Real Estate Agents: A Buyer's Guide (2026)](https://infina.ai/news/best-crm-buying-guide-real-estate-agents/) | `best crm` | Decision/BOF | ✅ ĐÃ AUDIT: funnel stage khác thật (quy trình đánh giá 14 ngày, red flags) — giữ nguyên |
 | Review/list (niche: free) | [Best Free CRM for Real Estate Agents in 2026](https://infina.ai/news/best-free-crm-for-real-estate-agents/) | `free crm for real estate` | Evaluation/MOF | niche hoá rõ (free tier), rủi ro thấp hơn 4 dòng trên |
-| Định nghĩa | [What Is CRM Software?](https://infina.ai/news/what-is-crm-software/) | `what is crm software` | Discovery/TOF | = #230, Nhánh 4 đã bỏ, giữ nguyên không động |
-| Định nghĩa (beginner) | [CRM Software 101: A Beginner's Guide](https://infina.ai/news/crm-management-real-estate-agents-beginners-guide/) | `crm management` | Discovery/TOF | = #405, Nhánh 4 đã bỏ, giữ nguyên không động |
-| Định nghĩa (khác góc) | [AI CRM for Real Estate](https://infina.ai/news/ai-crm-real-estate/) | `ai crm` | Discovery/TOF | = #214, đã xác nhận khác góc Pillar nhẹ khi viết P3 |
+| Định nghĩa | [What Is CRM Software?](https://infina.ai/news/what-is-crm-software/) | `what is crm software` | Discovery/TOF | = #230, giữ nguyên không động |
+| Định nghĩa (beginner) | [CRM Software 101: A Beginner's Guide](https://infina.ai/news/crm-management-real-estate-agents-beginners-guide/) | `crm management` | Discovery/TOF | = #405, giữ nguyên không động |
+| Định nghĩa (khác góc) | [AI CRM for Real Estate](https://infina.ai/news/ai-crm-real-estate/) | `ai crm` | Discovery/TOF | = #214, đã xác nhận khác góc pillar nhẹ |
 | Sub-topic: marketing (strategy) | [CRM Marketing for Real Estate](https://infina.ai/news/crm-marketing-real-estate/) | `crm marketing` | Evaluation/MOF | ✅ ĐÃ AUDIT (2026-10-01): differentiation thật (funnel 5 giai đoạn) vs dòng dưới (định nghĩa category) — đã thêm link 2 chiều, giữ cả 2 |
-| Sub-topic: marketing (định nghĩa) | [What Is CRM Marketing Software? A Guide for Real Estate Teams](https://infina.ai/news/crm-marketing-software-real-estate-guide/) | `crm marketing software` | Discovery/TOF | ✅ ĐÃ AUDIT (2026-10-01): không trùng Pillar strategy ở trên, giữ nguyên |
+| Sub-topic: marketing (định nghĩa) | [What Is CRM Marketing Software? A Guide for Real Estate Teams](https://infina.ai/news/crm-marketing-software-real-estate-guide/) | `crm marketing software` | Discovery/TOF | ✅ ĐÃ AUDIT (2026-10-01): không trùng pillar strategy ở trên, giữ nguyên |
 | Sub-topic: pipeline | [CRM Pipeline Management](https://infina.ai/news/crm-pipeline-management/) | `crm pipeline` | Evaluation/MOF | góc riêng, chưa thấy trùng |
-| Bridge → Website Builder | [CRM with Website Builder: Best Integrated Platforms](https://infina.ai/news/crm-with-website-builder-real-estate/) | `crm with website builder` | Evaluation/MOF | nối cụm 3 |
-| Bridge → IDX | [Real Estate CRM with IDX Integration: Best Platforms](https://infina.ai/news/real-estate-crm-with-idx/) | `real estate crm with idx` | Evaluation/MOF | nối cụm 3 |
-| Cross-link → Nhánh 2 | [Speed-to-Lead: How Real Estate Agent CRM Closes the 15-Hour Gap](https://infina.ai/news/real-estate-agent-crm-speed-to-lead/) | `real estate agent crm` | Evaluation/MOF | = #223, dùng làm C2.2 thay thế ở Nhánh 2 (Phần 1) |
+| Bridge → Cụm 3 | [CRM with Website Builder: Best Integrated Platforms](https://infina.ai/news/crm-with-website-builder-real-estate/) | `crm with website builder` | Evaluation/MOF | nối Cụm 3 |
+| Bridge → Cụm 3 | [Real Estate CRM with IDX Integration: Best Platforms](https://infina.ai/news/real-estate-crm-with-idx/) | `real estate crm with idx` | Evaluation/MOF | nối Cụm 3 |
+| Cross-link → Cụm 7 🎯 RealSaleX | [Speed-to-Lead: How Real Estate Agent CRM Closes the 15-Hour Gap](https://infina.ai/news/real-estate-agent-crm-speed-to-lead/) | `real estate agent crm` | Evaluation/MOF | = #223, dùng thay C2.2 ở Cụm 7 |
 | Hỗ trợ (News) | [Rechat Just Let Claude and ChatGPT Run Real Estate CRM Workflows Directly](https://infina.ai/news/ai-agent-integration-for-real-estate-crm-platforms/) | `ai agent integration for real estate crm platforms` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Real's AI CRM Assistant Leo...](https://infina.ai/news/ai-crm-assistant-brokerage-merger-rollout-agents/) | `ai crm assistant brokerage merger rollout agents` | Post-purchase/support | — |
 | Hỗ trợ (News) | [eXp Realty Says Its All-in-One AI Platform Cuts Software Costs by 70%](https://infina.ai/news/exp-nexus-crm-software-cost-reduction-agents/) | `exp nexus crm software cost reduction agents` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Nearly 10% of Borrowers Are Now Choosing ARMs...](https://infina.ai/news/arm-borrower-tracking-real-estate-agent-crm/) | `arm borrower tracking real estate agent crm` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Lofty Launches an MCP Server So Any AI Can Plug Into Its CRM](https://infina.ai/news/open-ai-protocol-real-estate-crm-brokerages/) | `open ai protocol real estate crm brokerages` | Post-purchase/support | — |
+
+**Góc bắt buộc cho phần RealSaleX trong cụm này**: viết kiểu "CRM sẵn có thiếu gì mà cần thêm lớp
+intent", KHÔNG viết "X vs Y CRM nào tốt hơn" — target là người đã có CRM rồi, RealSaleX bổ sung chứ
+không thay thế. Internal link: pillar nhẹ ↔ C3.2 (2 chiều), pillar nhẹ ↔ #207 (pillar chính), pillar
+nhẹ ↔ #214 (link chéo, không cannibalize), pillar nhẹ ↔ pillar Cụm 7 (định vị bổ sung CRM).
+
+#### Mở rộng "Customer Engagement Platform" (CEP) — 2 bài chưa viết (2026-09-30)
+
+**Bối cảnh**: user gửi thêm 148 keyword mới (export Google Keyword Planner) về "customer engagement
+platform" (CEP), đã merge vào
+`wordpress-mcp/skills/news-to-cluster-article/keywords/Infina_AI_RealSale_Keyword_Stats_2026-09-15.csv`
+(commit `d0f17c3`). CEP được xác nhận là **góc định vị lại 1 phần RealSaleX**, không phải sản phẩm
+tách riêng — audience vẫn brokerage/agent bất động sản Mỹ.
+
+**Vì sao KHÔNG tạo hẳn 1 cụm "CEP" riêng** (đã cân nhắc rồi bỏ): live-SERP check cho thấy niche hóa
+"customer engagement platform for real estate" đá thẳng vào sân đã có của Cụm 2 hiện tại (Sierra
+Interactive, Zoho SalesIQ, Salesforce, Creatio đều frame CEP-cho-real-estate y hệt nội dung "CRM
+cho real estate" đã có ở #207/#214/#230/#405). Tạo cụm mới riêng sẽ tự cannibalize nội bộ nhiều hơn
+là mở ra SERP mới, nên quyết định **nhét 2 bài mới vào Cụm 2 sẵn có** (2 dòng "chưa viết" ở bảng
+trên) thay vì tạo cụm 9.
+
+**Kết quả check volume + live-SERP (2026-09-30) cho từng nhóm keyword ứng viên**:
+
+| Nhóm keyword | Volume (tier) | Kết luận |
+|---|---|---|
+| `customer engagement platform`, `customer experience automation platform`, `omnichannel customer engagement platform`, `best customer engagement platform` (bare) | 500-5000 | ❌ Bỏ — SERP bị vendor tỷ đô chiếm 100% (Twilio, Salesforce, Zendesk, Braze, Talon.One, Bloomreach...), **zero** kết quả real estate dù niche hay không |
+| `what is customer engagement`, `CEP customer engagement platform meaning` (bare) | 500, 50 | ❌ Bỏ — cùng lý do, toàn IBM/Salesforce/Wikipedia/Martech.zone. Lưu ý: competition index thấp (idx=1) trong file KHÔNG phản ánh độ khó SERP organic thật — đây là competition Ads, dễ gây hiểu lầm |
+| `what is a customer engagement platform for real estate`, `...real estate agents need` (niche) | 500 (bare gốc) | ❌ Bỏ — SERP real estate có thật (Sierra Interactive, Zoho SalesIQ, realestatecrm.io...) nhưng nội dung đọc y hệt "CRM cho real estate" đã có → cannibalize nội bộ với #207/#214, không đáng viết bài riêng |
+| `customer engagement platform vs crm` | 50, comp idx **0** | ✅ Giữ — Generic có 9+ bài (leat, courier, moengage, informatica...) nhưng **chưa site real estate nào viết bản riêng**, khớp đúng pitch RealSaleX (bổ sung CRM bằng lớp engagement/intent) |
+| `digital customer engagement real estate`, `customer engagement examples real estate` (niche) | 500 (bare gốc) | ✅ Giữ — SERP real estate có thật (Spectrio, Transactly, ETG.digital, commercial-realestate-training.com) nhưng đối thủ toàn agency blog nhỏ, chưa ai làm bài resource chuẩn SEO — format listicle chiến lược/ví dụ, khác hẳn format so sánh phần mềm nên không đụng phần còn lại của Cụm 2 |
+
+Internal link dự kiến khi viết: 2 bài CEP ↔ nhau (2 chiều), cả 2 ↔ pillar nhẹ (#1232) + #207, bài
+"vs CRM" → money page RealSaleX (khi có URL).
 
 ---
 
@@ -321,14 +198,27 @@ còn lại (#419 teams-niche, #444 buying-guide/BOF) giữ nguyên vì different
 
 ---
 
-### Cụm 4: AI Voice / Virtual Assistant / Receptionist — 5 bài (= Nhánh 1 RealSaleX, xem Phần 1)
+### Cụm 4: AI Voice / Virtual Assistant / Receptionist — 🎯 RealSaleX (🥇 ưu tiên cao nhất) — ✅ HOÀN THÀNH — 5 bài
 
-Cụm này trùng hoàn toàn với Nhánh 1 đã map chi tiết ở Phần 1 (P1/C1.1/C1.3/C1.4) — không lặp lại
-bảng, chỉ thêm 1 bài phát hiện mới chưa từng đưa vào plan RealSaleX:
+Vì sao ưu tiên cao nhất: đúng câu pitch chính của sản phẩm ("AI agent trả lời buyer 24/7 trong Deal
+Room riêng"). **Đã đổi hướng so với plan gốc sau khi check keyword + live-SERP thật (2026-09-15)**:
+CSV gốc không có biến thể "real estate" nào cho cụm receptionist/call center — 5 FOCUS_KW ban đầu
+đều là thuật ngữ generic. Chạy live-SERP xác nhận: `ai receptionist`/`ai call center software`
+(bare) bị vendor/SaaS lớn chiếm SERP hoàn toàn; bản niche `... for real estate` mới có nhu cầu thật
+(10+ đối thủ dạng listicle cho riêng "ai receptionist for real estate"). Từ đó: bỏ viết pillar/C1.2
+mới, dùng #147 (đã refresh) làm pillar, chỉ viết 3 cluster với keyword niche đã verify.
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
-| 🔎 Review/list (roundup) | [7 Best AI Virtual Assistants for Real Estate](https://infina.ai/news/best-ai-virtual-assistant-real-estate/) | `ai virtual assistant real estate` | Evaluation/MOF | 🔎 publish 17/06, TRƯỚC khi Nhánh 1 được lên plan (15/09) — chưa từng đối chiếu với Pillar #147 (`best-ai-voice-assistants-for-real-estate`), 2 bài có thể trùng nội dung thật (voice vs virtual assistant) |
+| **Pillar = refresh #147** | [7 Best AI Voice Assistants for Real Estate Agents](https://infina.ai/news/best-ai-voice-assistants-for-real-estate/) | `ai receptionist for real estate` | Discovery/TOF | ✅ Published (refresh 15/09) |
+| So sánh | [AI Receptionist vs Human Receptionist for Real Estate: Cost & ROI](https://infina.ai/news/ai-receptionist-vs-human-receptionist-real-estate/) | `ai receptionist vs human receptionist real estate` | Evaluation/MOF | ✅ Published 16/09 |
+| Buying guide | [AI Answering Service for Real Estate: How to Choose the Right One](https://infina.ai/news/ai-answering-service-for-real-estate/) | `ai answering service for real estate` | Decision/BOF | ✅ Published 17/09 |
+| Support/how-to → bắc cầu Cụm 7 | [AI Outbound Calling for Real Estate: How It Works in 2026](https://infina.ai/news/ai-outbound-calling-real-estate-lead-follow-up/) | `ai outbound calling for real estate` | Post-purchase/how-to | ✅ Published 15/09 |
+| Review/list (phát hiện thêm 01/10) | [7 Best AI Virtual Assistants for Real Estate](https://infina.ai/news/best-ai-virtual-assistant-real-estate/) | `ai virtual assistant real estate` | Evaluation/MOF | ✅ ĐÃ AUDIT 01/10: differentiation thật (đa kênh SMS/CRM/scheduling vs riêng voice/phone, chỉ trùng 3/7 tool) — giữ nguyên, không sửa gì |
+
+Internal link: #147 ↔ 3 cluster (2 chiều, đã verify live). Cluster "AI Outbound Calling" ↔ pillar
+Cụm 7 (chéo cụm, đã có link). Điểm khác biệt đã thêm vào #147 mà đối thủ chưa cover: mục Fair
+Housing + TCPA compliance.
 
 ---
 
@@ -359,17 +249,32 @@ bảng, chỉ thêm 1 bài phát hiện mới chưa từng đưa vào plan RealS
 
 ---
 
-### Cụm 7: Lead Generation / Follow-up Automation — 8 bài (= Nhánh 2 RealSaleX, xem Phần 1)
+### Cụm 7: Lead Generation / Follow-up Automation — 🎯 RealSaleX (🥇 ưu tiên cao nhất) — ✅ HOÀN THÀNH — 8 bài
 
-Trùng hoàn toàn với Nhánh 2 đã map chi tiết ở Phần 1 (P2/C2.1/C2.3/C2.4 + #223). Các bài còn lại
-trong cụm là News hỗ trợ, chưa gắn vào plan RealSaleX:
+Vì sao ưu tiên cao nhất: khớp thẳng "The Leak" trong pitch deck (40-50% lead không được follow-up).
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
+| **Pillar** | [Real Estate Lead Follow-Up Automation: The Complete 2026 Guide](https://infina.ai/news/real-estate-lead-follow-up-automation-guide/) | `real estate lead follow-up automation` | Discovery/TOF | ✅ Published 18/09 |
+| Review/list | [Best Lead Generation Software for Realtors in 2026](https://infina.ai/news/best-lead-generation-software-for-realtors/) | `lead generation software for realtors` | Evaluation/MOF | ✅ Published 19/09 |
+| Giải thích/pain-point = refresh #223 | [Speed-to-Lead: How Real Estate Agent CRM Closes the 15-Hour Gap](https://infina.ai/news/real-estate-agent-crm-speed-to-lead/) | `real estate agent crm` | Evaluation/MOF | ✅ #223 đã refresh 15/09, thêm link Pillar |
+| Buying guide/how-to | [Automated Lead Follow-Up for Real Estate: A 5-Step Setup Guide](https://infina.ai/news/how-to-set-up-automated-lead-follow-up-real-estate/) | `automated lead follow-up for real estate` | Decision/BOF | ✅ Published 20/09 |
+| Kênh cụ thể | [Facebook Lead Gen for Realtors: Turning Ad Leads Into Showings](https://infina.ai/news/facebook-lead-gen-for-realtors/) | `facebook lead gen for realtors` | Decision/BOF | ✅ Published 21/09 |
 | Hỗ trợ | [Real Estate Contact Forms Are Losing the Highest-Intent Leads](https://infina.ai/news/real-estate-contact-form-conversion-rate/) | `real estate contact form conversion rate` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Your Next Listing Is Probably Already Sitting in Your CRM](https://infina.ai/news/database-reactivation-ai-seller-leads-real-estate-agents/) | `database reactivation ai seller leads real estate agents` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Realtor.com Just Named the Best Week to Buy in 2026...](https://infina.ai/news/buyer-lead-nurture-campaign-real-estate-agents/) | `buyer lead nurture campaign real estate agents` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Sellers Now Outnumber Buyers by 57.9%...](https://infina.ai/news/seller-lead-prioritization-real-estate-pipeline/) | `seller lead prioritization real estate pipeline` | Post-purchase/support | — |
+
+**Đổi FOCUS_KW so với plan gốc** (bài học từ Cụm 4 — niche hoá thay vì dùng keyword generic từ CSV):
+`lead generation for realestate` → `real estate lead follow-up automation` (Pillar, khớp đúng intent
+bài); `lead generation software` → `lead generation software for realtors`; `lead generation
+systems` → `automated lead follow-up for real estate`; `facebook lead generation ads` → `facebook
+lead gen for realtors` — tất cả đã verify có SERP thật khớp định dạng dự kiến qua web search
+2026-09-15.
+
+Internal link: Pillar ↔ 3 cluster review/buying-guide/kênh (2 chiều), Pillar ↔ #223 (refresh),
+Pillar ↔ cluster "AI Outbound Calling" của Cụm 4 (chéo cụm, cả 2 chiều), cluster "Facebook Lead
+Gen" → #147 (mention Fair Housing/Housing Special Ad Category).
 
 ---
 
@@ -377,31 +282,62 @@ trong cụm là News hỗ trợ, chưa gắn vào plan RealSaleX:
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
-| **Pillar (nhẹ)** | [TCPA Compliance for Real Estate Agents](https://infina.ai/news/tcpa-compliance-for-real-estate-agents/) | `tcpa compliance for real estate agents` | Discovery/TOF | ✅ = #237, đã link từ #147/C1.1/C1.4/C2.4 |
+| **Pillar (nhẹ)** | [TCPA Compliance for Real Estate Agents](https://infina.ai/news/tcpa-compliance-for-real-estate-agents/) | `tcpa compliance for real estate agents` | Discovery/TOF | ✅ = #237, đã link từ #147/Cụm 4/Cụm 7 |
 | Hỗ trợ (News) | [AI-Written Listing Descriptions Are Creating Fair Housing Liability](https://infina.ai/news/ai-hallucination-risk-real-estate-listings/) | `ai hallucination risk real estate listings` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Colorado's New AI Law Sets a Deadline for Automated Decisions](https://infina.ai/news/ai-decision-making-compliance-real-estate-agents/) | `ai decision making compliance real estate agents` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Seller Impersonation Fraud Attempts Just Doubled](https://infina.ai/news/seller-impersonation-fraud-prevention-real-estate-agents/) | `seller impersonation fraud prevention real estate agents` | Post-purchase/support | — |
 
 ---
 
-### Cannibalization cần audit (phát hiện khi map pillar+cluster, 01/10/2026 — CHƯA xử lý)
+## Cannibalization — lịch sử audit (01/10/2026, tất cả 10 cặp đã xử lý)
 
-Theo đúng mức độ rủi ro giảm dần. Cách xử lý gợi ý: lặp lại quy trình đã dùng cho cụm Chatbot
-(đọc full nội dung từng cặp, so sánh product/angle thật chứ không chỉ title, merge cặp nào có
->60-70% nội dung trùng, giữ nguyên cặp nào đã niche hoá đủ rõ).
+Phát hiện khi map lại 8 cụm lần đầu (01/10/2026). Quy trình: đọc full nội dung từng cặp, so sánh
+product/angle thật chứ không chỉ title, merge cặp nào có >60-70% nội dung trùng, giữ nguyên cặp nào
+đã niche hoá đủ rõ — theo đúng `pillar-cluster-writer/SKILL.md` Bước 3.
 
-| Ưu tiên | Cụm | Các bài nghi trùng | Vì sao đáng ngại |
+| Ưu tiên | Cụm | Các bài nghi trùng | Kết luận |
 |---|---|---|---|
-| ~~1~~ | CRM Software | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [best-crm-for-real-estate](https://infina.ai/news/best-crm-for-real-estate/) (hub mới, #207) đã hấp thụ ~~best-crm-software-real-estate-agents~~ (#384, Pillar cũ) + ~~top-crm-tools-for-real-estate-teams~~ (#412) | Đọc full nội dung 5 bài: 3/5 trùng nhau thật (cùng pool 5 platform). Merge xong, đổi vai trò Pillar từ #384 sang #207 (internal link equity có sẵn ở #207: 15 vs 2). Giữ nguyên best-crm-for-real-estate-teams-2026 (niche teams) + best-crm-buying-guide-real-estate-agents (BOF). Xem refresh-log.md |
-| ~~2~~ | Website Builder / IDX | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [idx-website-for-realtors](https://infina.ai/news/idx-website-for-realtors/) (hub) vs ~~best-idx-website-for-realtors~~ (merged, redirect 301 live) | Đọc full nội dung: trùng gần như toàn bộ (cùng 3/4 platform + cùng khung phân tích). Merge xong, xem refresh-log.md |
-| ~~2~~ | Website Builder / IDX | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [real-estate-website-builder](https://infina.ai/news/real-estate-website-builder/) (Pillar, hub) vs ~~best-real-estate-website-builder~~ (merged, redirect 301 live) | Đọc full nội dung: 5/6 platform trùng y hệt (tagline + giá + kết luận). Merge xong, giữ lại 1 FAQ "AgentFire teams vs solo" từ bài yếu. Xem refresh-log.md |
-| ~~3~~ | CRM Software | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [crm-marketing-real-estate](https://infina.ai/news/crm-marketing-real-estate/) vs [crm-marketing-software-real-estate-guide](https://infina.ai/news/crm-marketing-software-real-estate-guide/) | Đọc full nội dung: differentiation thật (funnel 5 giai đoạn vs định nghĩa category, chỉ trùng 2/4 platform). Giữ nguyên cả 2, chỉ thêm link 2 chiều |
-| ~~3~~ | Chatbot | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [what-is-a-conversational-chatbot-real-estate](https://infina.ai/news/what-is-a-conversational-chatbot-real-estate/) (hub) vs ~~conversational-chat-real-estate~~ (merged) | Đọc full nội dung: trùng gần như hoàn toàn (y hệt 4 tool: Structurely/Ylopo rAIya/Tidio/ManyChat). Merge xong, redirect 301 live |
-| ~~4~~ | AI Voice | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [best-ai-virtual-assistant-real-estate](https://infina.ai/news/best-ai-virtual-assistant-real-estate/) vs Pillar #147 (`best-ai-voice-assistants-for-real-estate`) | Đọc full nội dung: differentiation thật (đa kênh SMS/CRM/scheduling vs riêng voice/phone, chỉ trùng 3/7 tool). Giữ nguyên cả 2, không sửa gì |
-| ~~5~~ | Website Design | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [website-design-for-real-estate-agents](https://infina.ai/news/website-design-for-real-estate-agents/) (Pillar, hub) vs ~~realtor-website-design~~ (merged) | Đọc full nội dung: trùng gần như hoàn toàn (y hệt 3 platform: AgentFire/Real Geeks/Luxury Presence). Merge xong, redirect 301 live |
-| ~~5~~ | Landing Pages | ✅ **ĐÃ XỬ LÝ (2026-10-01)**: [real-estate-landing-page-guide](https://infina.ai/news/real-estate-landing-page-guide/) (Pillar) vs [high-converting-real-estate-landing-pages](https://infina.ai/news/high-converting-real-estate-landing-pages/) (cluster) | Đọc full nội dung: KHÔNG phải duplicate, là pillar/cluster hợp lệ — chỉ thiếu internal link nên Google cannibalize. Đã fix link 2 chiều, giữ cả 2 bài. Xem refresh-log.md |
+| ~~1~~ | Cụm 2 | [best-crm-for-real-estate](https://infina.ai/news/best-crm-for-real-estate/) (hub mới, #207) đã hấp thụ ~~best-crm-software-real-estate-agents~~ (#384, Pillar cũ) + ~~top-crm-tools-for-real-estate-teams~~ (#412) | ✅ Đọc full nội dung 5 bài: 3/5 trùng nhau thật (cùng pool 5 platform). Merge xong, đổi vai trò Pillar từ #384 sang #207 (internal link equity có sẵn ở #207: 15 vs 2). Giữ nguyên best-crm-for-real-estate-teams-2026 (niche teams) + best-crm-buying-guide-real-estate-agents (BOF) |
+| ~~2~~ | Cụm 3 | [idx-website-for-realtors](https://infina.ai/news/idx-website-for-realtors/) (hub) vs ~~best-idx-website-for-realtors~~ (merged, redirect 301 live) | ✅ Đọc full nội dung: trùng gần như toàn bộ (cùng 3/4 platform + cùng khung phân tích). Merge xong |
+| ~~2~~ | Cụm 3 | [real-estate-website-builder](https://infina.ai/news/real-estate-website-builder/) (Pillar, hub) vs ~~best-real-estate-website-builder~~ (merged, redirect 301 live) | ✅ Đọc full nội dung: 5/6 platform trùng y hệt (tagline + giá + kết luận). Merge xong, giữ lại 1 FAQ "AgentFire teams vs solo" từ bài yếu |
+| ~~3~~ | Cụm 2 | [crm-marketing-real-estate](https://infina.ai/news/crm-marketing-real-estate/) vs [crm-marketing-software-real-estate-guide](https://infina.ai/news/crm-marketing-software-real-estate-guide/) | ✅ Đọc full nội dung: differentiation thật (funnel 5 giai đoạn vs định nghĩa category, chỉ trùng 2/4 platform). Giữ nguyên cả 2, chỉ thêm link 2 chiều |
+| ~~3~~ | Cụm 1 | [what-is-a-conversational-chatbot-real-estate](https://infina.ai/news/what-is-a-conversational-chatbot-real-estate/) (hub) vs ~~conversational-chat-real-estate~~ (merged) | ✅ Đọc full nội dung: trùng gần như hoàn toàn (y hệt 4 tool: Structurely/Ylopo rAIya/Tidio/ManyChat). Merge xong |
+| ~~4~~ | Cụm 4 | [best-ai-virtual-assistant-real-estate](https://infina.ai/news/best-ai-virtual-assistant-real-estate/) vs Pillar #147 (`best-ai-voice-assistants-for-real-estate`) | ✅ Đọc full nội dung: differentiation thật (đa kênh SMS/CRM/scheduling vs riêng voice/phone, chỉ trùng 3/7 tool). Giữ nguyên cả 2, không sửa gì |
+| ~~5~~ | Cụm 5 | [website-design-for-real-estate-agents](https://infina.ai/news/website-design-for-real-estate-agents/) (Pillar, hub) vs ~~realtor-website-design~~ (merged) | ✅ Đọc full nội dung: trùng gần như hoàn toàn (y hệt 3 platform: AgentFire/Real Geeks/Luxury Presence). Merge xong |
+| ~~5~~ | Cụm 6 | [real-estate-landing-page-guide](https://infina.ai/news/real-estate-landing-page-guide/) (Pillar) vs [high-converting-real-estate-landing-pages](https://infina.ai/news/high-converting-real-estate-landing-pages/) (cluster) | ✅ Đọc full nội dung: KHÔNG phải duplicate, là pillar/cluster hợp lệ — chỉ thiếu internal link nên Google cannibalize. Đã fix link 2 chiều, giữ cả 2 bài |
 
-**Lưu ý**: bảng trên chỉ dựa trên title + focus keyword (suy luận, chưa đọc nội dung thật) — đúng
-quy trình `pillar-cluster-writer/SKILL.md` Bước 3, phải đọc full nội dung từng cặp trước khi kết
-luận có cannibalize thật hay không (có thể chỉ là tên gần giống nhưng nội dung đã niche hoá đủ,
-giống trường hợp #4 niche "investor" trong cụm Website Builder).
+Xem `skills/post-refresh/references/refresh-log.md` cho diễn giải đầy đủ từng case (số liệu GSC,
+nội dung đã sửa, redirect đã verify).
+
+---
+
+## Bị loại khỏi plan (không dùng)
+
+- **Local-intent** ("realtor near me"...) — khớp SERP local pack, sai định dạng site.
+- **Consumer FSBO/tìm agent** ("sell house without realtor"...) — sai audience (người mua/bán nhà,
+  không phải broker/agent).
+- **Document/Transaction Management** — sản phẩm hoạt động ở giai đoạn buyer tìm hiểu/so sánh,
+  không phải giai đoạn ký hợp đồng.
+- **Cụm "CRM Software generic"** — #230 và #405 đã cover đúng góc "CRM là gì / CRM 101" mà hướng
+  này định làm, không tạo pillar riêng, không giữ backlog (đã gộp làm 2 dòng trong Cụm 2).
+- **Cụm "Customer Engagement Platform" riêng** — cannibalize với Cụm 2, gộp 2 bài vào thay vì tách
+  cụm (xem "Mở rộng CEP" ở Cụm 2).
+
+---
+
+## Việc còn lại (toàn plan)
+
+1. **Money page URL**: RealSaleX chưa deploy trên `infina.ai`. Khi có URL thật, quay lại cả 9 bài
+   RealSaleX (Cụm 2/4/7) để thêm internal link tới money page (hiện tất cả đang ghi "chờ URL").
+2. **GSC/GA4 credentials**: đã có key thật, lưu session-only (repo public, không commit key) — cần
+   check lại traffic/ranking định kỳ dùng skill `post-refresh`.
+3. **Mở rộng plan nếu cần thêm bài**: hạ ngưỡng volume CSV xuống dưới 500, hoặc dùng `post-refresh`
+   tìm striking-distance keyword mới nảy sinh từ dữ liệu GSC thật.
+4. **`references/used-keywords.md`**: cần cập nhật dần khi có bài mới publish (chuyển từ bảng
+   "reserved" sang bảng "đã publish").
+5. **Viết 2 bài CEP** (Cụm 2, góc Customer Engagement Platform) — plan đã duyệt 30/09, chưa viết
+   bài thật. Theo đúng quy trình `skills/pillar-cluster-writer/SKILL.md` Bước 5 trở đi.
+6. **Cụm 1 còn 1 cặp nghi trùng chưa audit**: "7 Best Chatbot Builders" vs "Best No-Code Chatbot
+   Platform" — impression thấp, chưa ưu tiên.
+7. **Cụm 6 còn 1 cặp nghi trùng nhẹ chưa audit**: "Home Valuation Landing Page" vs "Seller Landing
+   Pages" — cùng target seller, impression thấp, chưa ưu tiên.
