@@ -158,6 +158,25 @@ function infina_mcp_set_redirect( $post_id, $url_to, $header_code, &$note ) {
             $note = ' Luu y: goi Rank Math Redirection::save() khong tra ve ket qua, redirect co the chua duoc tao - kiem tra lai thu cong trong Rank Math > Redirections.';
             return false;
         }
+
+        // DEBUG TAM THOI: redirect bao "da tao" nhung curl thuc te khong thay 301, nghi ngo
+        // data luu sai dinh dang hoac can buoc kich hoat/cache rieng. Doc lai dung row vua
+        // tao tu DB de doi chieu, va liet ke cac bang Rank Math co trong DB de biet dung ten.
+        global $wpdb;
+        $tables = $wpdb->get_col( "SHOW TABLES LIKE '%redirect%'" );
+        $row_dump = '';
+        $rid = method_exists( $redirection, 'get_id' ) ? $redirection->get_id() : 0;
+        foreach ( $tables as $t ) {
+            $row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE id = %d", $rid ), ARRAY_A );
+            if ( $row ) {
+                $row_dump .= " [{$t}] " . wp_json_encode( $row );
+            } else {
+                $cnt = $wpdb->get_var( "SELECT COUNT(*) FROM {$t}" );
+                $row_dump .= " [{$t}: khong co row id={$rid}, tong {$cnt} dong]";
+            }
+        }
+        $note = " DEBUG redirect_id={$rid}, tables=" . implode( ',', $tables ) . $row_dump;
+        return false;
     } catch ( \Throwable $e ) {
         $note = ' Luu y: tao redirect tu dong loi (' . $e->getMessage() . '), hay set thu cong qua WP Admin.';
         return false;
