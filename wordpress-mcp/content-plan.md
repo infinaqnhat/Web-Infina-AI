@@ -336,6 +336,19 @@ Gen" → #147 (mention Fair Housing/Housing Special Ad Category).
 | Hỗ trợ (News) | [Colorado's New AI Law Sets a Deadline for Automated Decisions](https://infina.ai/news/ai-decision-making-compliance-real-estate-agents/) | `ai decision making compliance real estate agents` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Seller Impersonation Fraud Attempts Just Doubled](https://infina.ai/news/seller-impersonation-fraud-prevention-real-estate-agents/) | `seller impersonation fraud prevention real estate agents` | Post-purchase/support | — |
 
+**Internal link đã verify + fix (02/10/2026)**: fetch 4 bài qua WP REST API. Đây là cụm có tình
+trạng tệ nhất trong cả 8 cụm — pillar #237 KHÔNG link tới bất kỳ bài nào trong 3 bài cluster của
+chính nó (chỉ link chéo cụm sang Cụm 4/Cụm 7), dù content-plan.md claim "đã link từ #147/Cụm
+4/Cụm 7" (đúng, nhưng đó là chiều NGOÀI vào, không phải pillar tự link RA cluster của mình).
+Chiều ngược: #492 (ai-decision-making-compliance) đã tự link về pillar #237 từ trước; #475
+(ai-hallucination-risk) và #1260 (seller-impersonation-fraud) thì chưa link về pillar. Đã sửa: (1)
+pillar #237 — nối thêm 3 link vào đoạn "Related Reading" có sẵn, trỏ tới cả 3 bài cluster. (2) #475
+— thêm 1 câu vào đoạn Related Reading có sẵn, link về pillar #237. (3) #1260 — thêm 1 câu tương tự,
+link về pillar #237 (giữ nguyên 2 link chéo cụm cũ). Verify lại cả 4 bài qua REST API — link 2 chiều
+đầy đủ. Đây là cụm cuối cùng trong 8 cụm — **toàn bộ 8/8 cụm nội dung của site giờ đã được verify
+internal link thật qua REST API (không còn cụm nào dựa vào claim "✓ exist" chưa kiểm chứng của
+artifact RealSaleX Content Map cũ)**.
+
 ---
 
 ## Cannibalization — lịch sử audit (01/10/2026, tất cả 12 cặp đã xử lý)
