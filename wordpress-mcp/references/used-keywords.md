@@ -146,6 +146,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-09-21 (scheduled) | `facebook lead gen for realtors` | [facebook-lead-gen-for-realtors](https://infina.ai/news/facebook-lead-gen-for-realtors/) | content-plan C2.4 |
 | 2026-09-22 (scheduled) | `ai intent layer for real estate crm` | [ai-intent-layer-for-real-estate-crm](https://infina.ai/news/ai-intent-layer-for-real-estate-crm/) | content-plan P3 |
 | 2026-09-23 (scheduled) | `cinc crm review` | [cinc-crm-review-real-estate](https://infina.ai/news/cinc-crm-review-real-estate/) | content-plan C3.2 |
+| 2026-10-02 | `follow up boss real estate crm` | [follow-up-boss-real-estate-crm](https://infina.ai/news/follow-up-boss-real-estate-crm/) | content-plan Cụm 2, gap keyword US 02/10 (ID 1449) |
 
 ---
 
