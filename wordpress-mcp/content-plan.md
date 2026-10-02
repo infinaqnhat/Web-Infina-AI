@@ -259,6 +259,10 @@ cả 4 bài (3 cluster + #110). Xem chi tiết refresh-log.md.
 
 ### Cụm 5: Website / Web Design — 7 bài, tất cả sống
 
+**Internal link đã verify + fix (02/10/2026)**: check link thật qua WP REST API cho cả 6 bài. Chiều
+cluster→pillar đã tốt sẵn (5/5), chỉ pillar #975 thiếu link ra 4/5 cluster. Đã vá xong — xem chi tiết
+refresh-log.md. Còn 1 cụm chưa verify: Compliance/Legal/Risk (Cụm 8).
+
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
 | **Pillar (HUB)** | [Real Estate Agent Website Design: What Actually Works in 2026](https://infina.ai/news/website-design-for-real-estate-agents/) | `website design for real estate agents` | Discovery/TOF | ✅ HUB (2026-10-01) — đã hấp thụ section "Common Mistakes" từ dòng dưới |
