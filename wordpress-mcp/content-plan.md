@@ -127,6 +127,14 @@ hiện tại, không thêm bài.
 **✅ ĐÃ AUDIT (2026-10-01)** — cụm cannibalization LỚN NHẤT đã xử lý xong, xem refresh-log.md.
 Phát hiện 5 bài "best/top CRM" roundup trùng gần hết cùng 1 pool platform (Follow Up Boss/Lofty/
 Wise Agent/LionDesk/kvCORE). 3 bài (#384 Pillar cũ, #207, #412) là duplicate thật → gộp vào #207
+
+**Internal link đã verify + fix (02/10/2026)**: tiếp nối việc verify Cụm 1 — check link thật qua WP
+REST API cho cả 20 bài (2 pillar + 18 cluster). Internal link ở cụm này tốt hơn hẳn Cụm 1 (phần lớn
+cluster đã tự link về pillar sẵn), nhưng vẫn thiếu: Pillar chính #207 chỉ link thật tới 1/13 cluster
+claimed, Pillar nhẹ #1232 thiếu 3/5. Đã vá xong 8 bài (2 pillar + 6 cluster) — xem chi tiết refresh-log.md.
+Phát hiện thêm: vài bài (#1026, #1184, #1329) link qua slug stub cũ (#384/#412 trước khi merge 01/10)
+thay vì thẳng pillar hiện tại — vẫn chạy được nhờ redirect 301 nhưng đã đổi sang link trực tiếp. 6 cụm
+còn lại (Landing Pages, AI Voice, Website Design, Website Builder, IDX, Lead Gen) **chưa verify link thật**.
 (đổi vai trò hub từ #384 sang #207 vì #207 có sẵn 15 inbound link sitewide, #384 chỉ có 2). 2 bài
 còn lại (#419 teams-niche, #444 buying-guide/BOF) giữ nguyên vì differentiation thật.
 
