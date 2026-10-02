@@ -144,6 +144,9 @@ còn lại (#419 teams-niche, #444 buying-guide/BOF) giữ nguyên vì different
 | ~~Pillar chính (cũ)~~ | ~~Best CRM Software for Real Estate Agents~~ | `best crm software` | Discovery/TOF | ⚠️ ĐÃ MERGE (2026-10-01) vào #207, redirect 301 live |
 | **Pillar nhẹ 🎯 RealSaleX** | [AI Intent Layer for Real Estate CRM: What It Adds](https://infina.ai/news/ai-intent-layer-for-real-estate-crm/) | `ai intent layer for real estate crm` | Evaluation/MOF | ✅ góc "bổ sung CRM sẵn có", khác hẳn roundup — đã sửa link trỏ về #207 thay vì #384 |
 | Review (brand cụ thể) 🎯 RealSaleX | [CINC CRM Review: Pricing, Features, and Buyer Follow-Up Gaps](https://infina.ai/news/cinc-crm-review-real-estate/) | `cinc crm review` | Evaluation/MOF | ✅ cluster của pillar nhẹ — đã sửa link trỏ về #207 thay vì #384 |
+| Review (brand cụ thể) 🎯 RealSaleX — chưa viết | *Follow Up Boss Real Estate CRM Review: Pricing, Features, and the Follow-Up Gap* | `follow up boss real estate crm` | Evaluation/MOF | 🕐 Plan 02/10 — 5.050/mo, comp **Thấp**, ưu tiên #1. Xem "Mở rộng CRM gap" bên dưới |
+| Review/list (niche: broker) — chưa viết | *Real Estate Broker CRM: What Brokerages Need That Agent CRMs Miss* | `real estate broker crm` | Evaluation/MOF | 🕐 Plan 02/10 — 5.050/mo. ⚠️ phải phân tuyến rõ với #419 (teams) |
+| Định nghĩa (niche RE) — chưa viết | *What Does CRM Mean in Real Estate? A Plain-English Guide for Agents* | `what does crm mean in real estate` | Discovery/TOF | 🕐 Plan 02/10 — cụm định nghĩa 3.000/mo. ⚠️ phải phân tuyến rõ với #230 (generic business) |
 | So sánh (MOF) 🎯 RealSaleX — chưa viết | *Customer Engagement Platform vs CRM for Real Estate* | `customer engagement platform vs crm` | Evaluation/MOF | 🕐 Đã duyệt plan 30/09, chưa viết — xem "Mở rộng CEP" bên dưới |
 | Listicle chiến lược (TOF) 🎯 RealSaleX — chưa viết | *Customer Engagement Strategies for Real Estate Agents* | niche từ `digital customer engagement` + `customer engagement examples` | Discovery/TOF | 🕐 Đã duyệt plan 30/09, chưa viết — xem "Mở rộng CEP" bên dưới |
 | ~~🔎 Review/list (roundup)~~ | ~~Top CRM Tools for Real Estate Agents and Teams~~ | `crm tools for real estate` | Evaluation/MOF | ⚠️ ĐÃ MERGE (2026-10-01) vào #207, redirect 301 live |
@@ -186,7 +189,83 @@ trùng bài free-CRM; `real estate crm with website` trùng bridge `crm-with-web
 Add-on / Alternatives & Pricing" đã chốt cho RealSaleX ở cụm này): `follow up boss real estate crm`
 (5.000/mo, competition Thấp — cơ hội lớn nhất), `lofty real estate crm`, `zoho real estate crm`,
 `hubspot real estate crm`, `salesforce real estate crm` (mỗi cái 500/mo), cùng `real estate crm cost`
-và `real estate crm pricing` (500/mo, đúng mảng "Pricing" trong định vị cụm). Chưa lên plan bài cụ thể.
+và `real estate crm pricing` (500/mo, đúng mảng "Pricing" trong định vị cụm).
+
+#### Mở rộng "CRM gap từ US keyword data" — 3 bài chưa viết (2026-10-02)
+
+**Bối cảnh**: từ batch 394 keyword US-geo merge ngày 02/10, rà soát toàn bộ 378 keyword US-relevant
+(đã lọc geo Ấn/Dubai/Úc + nhóm job/tuyển dụng) và map với 20 bài sống của cụm. Phần lớn keyword
+volume cao là **biến thể roundup** của pillar #207 (`real estate crm`, `best real estate crm`,
+`real estate crm software|systems|programs`, `top 10 real estate crm` — tổng ~25.000/mo) → **KHÔNG
+viết bài mới**, chỉ tối ưu on-page #207 để hứng biến thể (xem mục "Việc on-page" bên dưới). Sau khi
+loại nhóm đó, còn đúng 3 gap thật đáng viết bài riêng.
+
+**Live-SERP check (2026-10-02)** — theo đúng quy trình đã áp dụng cho batch CEP:
+
+| Nhóm keyword | Volume | SERP thật | Kết luận |
+|---|---|---|---|
+| `follow up boss real estate crm` + `fub real estate crm` | 5.050, comp **Thấp** | Capterra (nhiều ccTLD = trang intl yếu), FitSmallBusiness, SoftwarePundit, Google Workspace Marketplace. Biến thể "alternatives" còn yếu hơn: goliathdata, theaicareerlab, costbench, stackscored — toàn aggregator chất lượng thấp | ✅ Viết — **chưa publisher real-estate-native nào sở hữu SERP này**, mà FUB lại là CRM phổ biến nhất trong nhóm khách RealSaleX nhắm (người đã có CRM) |
+| `real estate broker crm` + `real estate crm for brokers` | 5.050 | Toàn trang vendor (TotalBrokerage, Propertybase, Wise Agent broker page, BrokerSmart, ClientEdge) + softwarefinder, sell.do (Ấn). Chỉ Zapier có bài editorial | ✅ Viết — SERP thiếu hẳn bài editorial trung lập, và nhu cầu brokerage (roster, chia hoa hồng, back-office) khác thật so với agent/team |
+| `what does crm mean in real estate` + 15 biến thể định nghĩa | 3.000 | Nimble, Luxury Presence, Empire Learning, MRI, Blaze, Zenu (Úc), Planfix — vendor blog + 1 site đào tạo RE, không ai thống trị | ✅ Viết — TOF dễ rank nhất, và #230 hiện tại viết **generic cho mọi business**, không niche real estate |
+| `commercial real estate crm` (5 kw) | 1.150 | — | ❌ Bỏ — sạch gap nhưng **lệch ICP**: broker thương mại ≠ agent residential mà RealSaleX nhắm |
+| `yardi`, `mri`, `valuation`, `rental`, `underwriting software` | ~1.500 | — | ❌ Bỏ — property management/enterprise software, sai audience hoàn toàn |
+| DIY template (`excel`, `google sheets`, `notion`, `open source`) | 600 | — | ❌ Bỏ — intent là người *không* muốn trả tiền cho CRM, lead chất lượng thấp |
+
+**Bài 1 — Follow Up Boss review** (ưu tiên cao nhất: volume lớn nhất + competition thấp nhất)
+- FOCUS_KW: `follow up boss real estate crm` · phụ: `fub real estate crm`, `real estate crm pricing`
+- SEO_TITLE dự kiến: *Follow Up Boss Real Estate CRM Review: Pricing, Features, and the Follow-Up Gap*
+- Vai trò/funnel: Review (brand cụ thể) 🎯 RealSaleX — **dùng đúng format #1234 (CINC review)**, Evaluation/MOF
+- Góc bắt buộc: theo rule cụm — KHÔNG viết "FUB vs X cái nào tốt hơn". Viết "FUB mạnh ở đâu, hổng
+  chỗ nào (không có lớp intent/dự đoán), RealSaleX bổ sung lên trên FUB". Target chính là người
+  **đang dùng FUB rồi**, không phải người đang chọn CRM đầu tiên.
+- Outline H2: (1) What Follow Up Boss Is Built For — lead routing, 250+ integration, cấu trúc team ·
+  (2) Follow Up Boss Pricing in 2026 — Grow $69/user, Pro $499/10 user, Platform $1.000/30 user ·
+  (3) What Follow Up Boss Does Well · (4) Where Follow Up Boss Leaves Gaps — reactive chứ không
+  predictive, chi phí/user đau với solo agent · (5) Who Should Still Use Follow Up Boss ·
+  (6) Adding an Intent Layer on Top of Follow Up Boss ← pitch RealSaleX · (7) Related Reading
+- Internal link: → #207 (pillar chính), → #1232 (pillar nhẹ, 2 chiều), → #1234 (CINC review, cross
+  review 2 chiều), → #1223 (pillar Cụm 7, vì FUB là công cụ follow-up)
+
+**Bài 2 — Real estate broker CRM** (volume ngang bài 1 nhưng công viết nặng hơn)
+- FOCUS_KW: `real estate broker crm` · phụ: `real estate crm for brokers`, `best real estate crm system`
+- SEO_TITLE dự kiến: *Real Estate Broker CRM: What Brokerages Need That Agent CRMs Miss*
+- Vai trò/funnel: Review/list (niche: broker), Evaluation/MOF
+- ⚠️ **Chống cannibalize với #419** (`best crm for real estate teams`): phải phân tuyến rõ ngay
+  trong bài — #419 nhắm **team leader trong 1 brokerage** (5-20 agent, chủ yếu lo lead routing);
+  bài này nhắm **chủ brokerage** (50+ agent, lo roster/onboarding agent, chia hoa hồng, lưu trữ hồ
+  sơ tuân thủ, transaction back-office, giữ chân/tuyển agent). Dành hẳn 1 H2 để tách 2 nhu cầu này.
+- Outline H2: (1) What a Real Estate Broker CRM Has to Do That an Agent CRM Does Not · (2) Agent
+  Roster, Lead Distribution, and Commission Splits · (3) Compliance and Record Retention at the
+  Brokerage Level ← cầu nối Cụm 8 · (4) Best Real Estate Broker CRM Platforms in 2026 —
+  TotalBrokerage, Lone Wolf/Propertybase, BoldTrail, Wise Agent (broker tier), Sierra Interactive ·
+  (5) Broker CRM vs Team CRM: Which One You Actually Need ← H2 xử lý cannibalization ·
+  (6) What Brokerage CRMs Still Do Not Do ← pitch RealSaleX
+- Internal link: → #207, → #419 (2 chiều, bắt buộc để Google phân biệt 2 intent), → #237 (Cụm 8
+  compliance), → #1232
+
+**Bài 3 — CRM nghĩa là gì trong real estate** (dễ rank nhất, nên viết sớm để gom traffic TOF)
+- FOCUS_KW: `what does crm mean in real estate` (chọn biến thể câu hỏi vì tự nhiên trong title +
+  dễ ăn featured snippet) · phụ gom vào H2/body: `crm real estate meaning`, `real estate crm
+  meaning`, `meaning of crm in real estate`, `crm full form in real estate`, `real estate crm
+  definition`, `what is real estate crm software`, `crm used in real estate`, `role of crm in real estate`
+- SEO_TITLE dự kiến: *What Does CRM Mean in Real Estate? A Plain-English Guide for Agents*
+- Vai trò/funnel: Định nghĩa (niche real estate), Discovery/TOF
+- ⚠️ **Chống cannibalize với #230** (`what is crm software`): #230 định nghĩa CRM cho **mọi loại
+  hình doanh nghiệp** (H2 hiện tại toàn "Types of CRM Software", "Top CRM Software Platforms"), bài
+  mới chỉ nói **CRM trong ngữ cảnh bất động sản**. Link 2 chiều và nêu thẳng phạm vi khác nhau.
+- Outline H2: (1) What Does CRM Mean in Real Estate? — đoạn định nghĩa ngắn tối ưu snippet, kèm
+  "CRM full form" = Customer Relationship Management · (2) What a Real Estate CRM Actually Stores —
+  contact + mức quan tâm bất động sản + nguồn lead + hoạt động MLS/IDX (chỗ khác biệt lớn nhất so
+  với CRM generic) · (3) How a Real Estate CRM Differs From a Generic Business CRM ← chỗ link #230 ·
+  (4) What Agents Use a CRM For Day to Day · (5) Do You Need a CRM as a New Agent? ← hứng
+  `best crm for new real estate agents` · (6) Related Reading
+- Internal link: → #207, → #230 (2 chiều), → #405 (beginner guide), → #214
+
+**Thứ tự viết đề xuất**: Bài 3 (dễ nhất, gom TOF) → Bài 1 (ROI cao nhất) → Bài 2 (nặng nhất).
+
+**Việc on-page kèm theo (không phải bài mới)**: bổ sung biến thể `real estate crm systems`,
+`real estate crm programs`, `real estate crm platforms`, `top 10 real estate crm` vào title tag/H2
+của #207 để pillar tự hứng ~25.000/mo biến thể roundup thay vì tách bài gây cannibalize.
 
 #### Mở rộng "Customer Engagement Platform" (CEP) — 2 bài chưa viết (2026-09-30)
 
