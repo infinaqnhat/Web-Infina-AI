@@ -202,6 +202,12 @@ Internal link dự kiến khi viết: 2 bài CEP ↔ nhau (2 chiều), cả 2 �
 
 ### Cụm 3: Website Builder / IDX — 13 bài sống (15 gốc, 2 đã merge: case #546 cũ + case #553 2026-10-01)
 
+**Internal link đã verify + fix (02/10/2026)**: check link thật qua WP REST API cho 12 bài live tìm
+thấy (chênh 1 so với "13 bài sống" ghi ở trên, không ảnh hưởng việc fix). Cluster→pillar chính #546
+vốn đã tốt (11/11 tự link sẵn), nhưng pillar #546 chỉ link ra 1/10 cluster, và IDX sub-hub #610 (dòng
+"✅ HUB 2026-10-01" bên dưới) hoàn toàn không được 5 bài IDX khác trỏ về. Đã vá xong 7 bài — xem chi
+tiết refresh-log.md. 3 cụm còn lại (Website Design, Lead Generation, Compliance) **chưa verify link thật**.
+
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
 | **Pillar** | [Best Real Estate Website Builders for Agents and Brokers (2026)](https://infina.ai/news/real-estate-website-builder/) | `real estate website builder` | Discovery/TOF | ✅ Hub, đã hấp thụ 2 bài (case #546 cũ + case #553 2026-10-01) |
