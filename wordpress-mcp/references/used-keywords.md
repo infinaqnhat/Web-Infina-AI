@@ -147,6 +147,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-09-22 (scheduled) | `ai intent layer for real estate crm` | [ai-intent-layer-for-real-estate-crm](https://infina.ai/news/ai-intent-layer-for-real-estate-crm/) | content-plan P3 |
 | 2026-09-23 (scheduled) | `cinc crm review` | [cinc-crm-review-real-estate](https://infina.ai/news/cinc-crm-review-real-estate/) | content-plan C3.2 |
 | 2026-10-02 | `follow up boss real estate crm` | [follow-up-boss-real-estate-crm](https://infina.ai/news/follow-up-boss-real-estate-crm/) | content-plan Cụm 2, gap keyword US 02/10 (ID 1449) |
+| 2026-10-03 (scheduled) | `what does crm mean in real estate` | [what-does-crm-mean-in-real-estate](https://infina.ai/news/what-does-crm-mean-in-real-estate/) | content-plan Cụm 2, gap keyword US 02/10 (ID 1458) |
 
 ---
 
