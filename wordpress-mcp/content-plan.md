@@ -293,6 +293,11 @@ lại (Website Builder/IDX, AI Voice, Website Design, Lead Generation, Complianc
 
 Vì sao ưu tiên cao nhất: khớp thẳng "The Leak" trong pitch deck (40-50% lead không được follow-up).
 
+**Internal link đã verify + fix (02/10/2026)**: "✅ HOÀN THÀNH" chỉ có nghĩa nội dung đã viết xong,
+chưa có nghĩa link đã đúng — check qua WP REST API phát hiện pillar #1223 thiếu link ra 4/8 bài (3
+bài Hỗ trợ/News + #521), và 3 trong số đó không link ngược về pillar. Đã vá xong — xem chi tiết
+refresh-log.md. Còn 2 cụm chưa verify: Website Design (Cụm 5), Compliance/Legal/Risk (Cụm 8).
+
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
 | **Pillar** | [Real Estate Lead Follow-Up Automation: The Complete 2026 Guide](https://infina.ai/news/real-estate-lead-follow-up-automation-guide/) | `real estate lead follow-up automation` | Discovery/TOF | ✅ Published 18/09 |
