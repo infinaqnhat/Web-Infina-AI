@@ -245,6 +245,10 @@ Internal link: #147 ↔ 3 cluster (2 chiều, đã verify live). Cluster "AI Out
 Cụm 7 (chéo cụm, đã có link). Điểm khác biệt đã thêm vào #147 mà đối thủ chưa cover: mục Fair
 Housing + TCPA compliance.
 
+**Internal link re-verify (02/10/2026)**: check lại qua WP REST API — claim "đã verify live" ở trên
+gần đúng, chỉ thiếu pillar #147 chưa link tới #1217 và #1219 (2/4 bài). Đã thêm, giờ pillar link đủ
+cả 4 bài (3 cluster + #110). Xem chi tiết refresh-log.md.
+
 ---
 
 ### Cụm 5: Website / Web Design — 7 bài, tất cả sống
