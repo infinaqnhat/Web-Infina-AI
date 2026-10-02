@@ -170,6 +170,24 @@ intent", KHÔNG viết "X vs Y CRM nào tốt hơn" — target là người đã
 không thay thế. Internal link: pillar nhẹ ↔ C3.2 (2 chiều), pillar nhẹ ↔ #207 (pillar chính), pillar
 nhẹ ↔ #214 (link chéo, không cannibalize), pillar nhẹ ↔ pillar Cụm 7 (định vị bổ sung CRM).
 
+**Keyword research mới (2026-10-02)**: user gửi thêm 456 keyword export (Google Keyword Planner)
+về chủ đề "real estate CRM", đã merge vào file keyword stats (394 keyword mới/không trùng, 62 đã
+có sẵn; tổng file giờ 11552 dòng). Khác 2 batch trước, đây là **export theo geo Hoa Kỳ với volume
+thực tế** (5.000 / 500 / 50) chứ không phải số liệu bị thổi phồng của export cũ — chính xác hơn
+cho thị trường US đang target.
+
+Rà soát 31 keyword có volume ≥500/tháng: **phần lớn đã được phủ về ngữ nghĩa** bởi các bài hiện có,
+KHÔNG nên viết bài mới vì sẽ cannibalize — `real estate crm` / `best real estate crm` /
+`real estate crm software|systems|programs` (5.000/mo) trùng intent pillar chính #207; `crm real
+estate meaning` / `what does crm mean in real estate` trùng #230 + #405; `free real estate crm`
+trùng bài free-CRM; `real estate crm with website` trùng bridge `crm-with-website-builder-real-estate`.
+
+**Gap thật sự phát hiện được — nhóm competitor/brand keyword** (chưa có bài nào, đúng góc "CRM
+Add-on / Alternatives & Pricing" đã chốt cho RealSaleX ở cụm này): `follow up boss real estate crm`
+(5.000/mo, competition Thấp — cơ hội lớn nhất), `lofty real estate crm`, `zoho real estate crm`,
+`hubspot real estate crm`, `salesforce real estate crm` (mỗi cái 500/mo), cùng `real estate crm cost`
+và `real estate crm pricing` (500/mo, đúng mảng "Pricing" trong định vị cụm). Chưa lên plan bài cụ thể.
+
 #### Mở rộng "Customer Engagement Platform" (CEP) — 2 bài chưa viết (2026-09-30)
 
 **Bối cảnh**: user gửi thêm 148 keyword mới (export Google Keyword Planner) về "customer engagement
