@@ -263,6 +263,11 @@ Housing + TCPA compliance.
 
 ### Cụm 6: Landing Pages — 6 bài, tất cả sống
 
+**Internal link đã verify + fix (02/10/2026)**: check link thật qua WP REST API cho cả 6 bài. Pillar
+thiếu link tới 3/5 cluster (#924, #936, #942); 4/5 cluster (#918, #924, #936, #942) thiếu link ngược
+về pillar dù content-plan claim đã có. Đã vá xong toàn bộ — xem chi tiết refresh-log.md. 5 cụm còn
+lại (Website Builder/IDX, AI Voice, Website Design, Lead Generation, Compliance) **chưa verify link thật**.
+
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
 | **Pillar** | [Real Estate Landing Page: Types, Elements, and How to Build One That Converts](https://infina.ai/news/real-estate-landing-page-guide/) | `real estate landing page` | Discovery/TOF | — |
