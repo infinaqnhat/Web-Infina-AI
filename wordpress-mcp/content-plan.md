@@ -343,6 +343,7 @@ mới, dùng #147 (đã refresh) làm pillar, chỉ viết 3 cluster với keywo
 | Buying guide | [AI Answering Service for Real Estate: How to Choose the Right One](https://infina.ai/news/ai-answering-service-for-real-estate/) | `ai answering service for real estate` | Decision/BOF | ✅ Published 17/09 |
 | Support/how-to → bắc cầu Cụm 7 | [AI Outbound Calling for Real Estate: How It Works in 2026](https://infina.ai/news/ai-outbound-calling-real-estate-lead-follow-up/) | `ai outbound calling for real estate` | Post-purchase/how-to | ✅ Published 15/09 |
 | Review/list (phát hiện thêm 01/10) | [7 Best AI Virtual Assistants for Real Estate](https://infina.ai/news/best-ai-virtual-assistant-real-estate/) | `ai virtual assistant real estate` | Evaluation/MOF | ✅ ĐÃ AUDIT 01/10: differentiation thật (đa kênh SMS/CRM/scheduling vs riêng voice/phone, chỉ trùng 3/7 tool) — giữ nguyên, không sửa gì |
+| Hỗ trợ (News) | [Nearly 1 in 5 Homes Cut Price in September, and Agents Are Running Out of Call Hours](https://infina.ai/news/ai-voice-calls-for-listing-price-updates/) | `ai voice calls for listing price updates` | Post-purchase/support | ✅ Published 02/10 = #1467. Pillar #147 lần đầu được dùng làm PILLAR_URL cho bài News (đa dạng link equity) |
 
 Internal link: #147 ↔ 3 cluster (2 chiều, đã verify live). Cluster "AI Outbound Calling" ↔ pillar
 Cụm 7 (chéo cụm, đã có link). Điểm khác biệt đã thêm vào #147 mà đối thủ chưa cover: mục Fair
