@@ -18,9 +18,14 @@ Crawl tin tức mới theo 10 mảng → đối chiếu Google Sheet tracker (ng
 
 | ID | Tên | Dùng cho |
 |----|-----|---------|
-| 19 | AI Chatbot | Bài về chatbot, AI assistant, conversational AI, ISA |
+| 19 | AI Chatbot | Bài về chatbot, AI assistant, conversational AI, ISA, AI voice |
 | 85 | CRM Software | Bài về CRM, sales automation, lead management |
+| 153 | Real Estate Websites | Bài về website builder, IDX, MLS feed, landing page, web design |
+| 289 | Real Estate Chatbots | (đã tồn tại trên site, ít dùng — ưu tiên 19) |
+| 13 | Thought Leadership | (đã tồn tại trên site, ít dùng) |
 | 1  | News | Bài tin tức thời sự chung (không phải cluster real estate) |
+
+**Bảng trên đã bổ sung 03/10/2026** sau khi phát hiện bản cũ chỉ liệt kê 19/85/1 trong khi site thực tế có 6 category — bài IDX/website dùng **153**, không phải 19 hay 85 (verify bằng `GET /wp-json/wp/v2/posts?slug=idx-website-for-realtors&_fields=categories`). Luôn tra lại danh sách thật qua `GET https://infina.ai/news/wp-json/wp/v2/categories?per_page=100&_fields=id,name` nếu chủ đề bài không khớp 3 dòng đầu.
 
 Truyền category **bằng tên** vào param `categories` (WP MCP tự resolve tên category thành term qua `wp_set_post_terms`, tạo mới nếu tên chưa tồn tại):
 ```python
@@ -341,7 +346,17 @@ def is_duplicate(candidate_slug, candidate_title, existing_posts):
 
 ## Bước 2b — Đọc Tracker Sheet (nguồn PILLAR_KW chính thức, ưu tiên hơn Excel)
 
-Google Sheet **"Infina News — Published Articles Tracker"** (`fileId: 1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs`) là **nguồn sự thật sống** (live source of truth) về việc keyword nào đã "có chủ" — ưu tiên hơn Excel `Content Pillars (AIDA)` vì Excel chỉ là kế hoạch tĩnh, còn sheet này phản ánh đúng những gì đã thực sự publish. Đọc bằng `mcp__Google_Drive__read_file_content` (fileId ở trên) trước mỗi lần chọn keyword mới.
+Google Sheet **"Infina News — Published Articles Tracker"** (`fileId: 1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs`) là **nguồn sự thật sống** (live source of truth) về việc keyword nào đã "có chủ" — ưu tiên hơn Excel `Content Pillars (AIDA)` vì Excel chỉ là kế hoạch tĩnh, còn sheet này phản ánh đúng những gì đã thực sự publish.
+
+⚠️ **Dùng `mcp__Google_Drive__download_file_content` với `exportMimeType: "text/csv"`, KHÔNG dùng `read_file_content`** (đã gặp thực tế 02/10/2026): `read_file_content` trả về bản tóm tắt dạng "Table Sample Data" chỉ gồm header + **đúng 1 dòng mẫu**, không phải toàn bộ 120+ dòng — nếu dedup dựa vào đó sẽ bỏ sót gần như toàn bộ keyword đã dùng mà không có cảnh báo nào. `download_file_content` trả base64 của CSV đầy đủ (chỉ sheet đầu tiên "Published article", đúng sheet cần), decode rồi parse bằng `csv.reader`.
+
+```python
+import base64, csv, io
+raw = base64.b64decode(download_file_content(FILE_ID, exportMimeType="text/csv")["content"]).decode()
+rows = list(csv.DictReader(io.StringIO(raw)))   # cột: #, Date, Title, URL, Focus Keyword, Type
+used_keywords = {r["Focus Keyword"].strip().lower() for r in rows if r.get("Focus Keyword")}
+plan_rows = [r for r in rows if r["Type"].strip().lower() == "plan"]
+```
 
 Cấu trúc cột: `#, Date, Title, URL, Focus Keyword, Type` — `Type` chỉ có 2 giá trị:
 
