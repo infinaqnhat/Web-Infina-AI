@@ -434,6 +434,7 @@ Gen" → #147 (mention Fair Housing/Housing Special Ad Category).
 | Hỗ trợ (News) | [AI-Written Listing Descriptions Are Creating Fair Housing Liability](https://infina.ai/news/ai-hallucination-risk-real-estate-listings/) | `ai hallucination risk real estate listings` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Colorado's New AI Law Sets a Deadline for Automated Decisions](https://infina.ai/news/ai-decision-making-compliance-real-estate-agents/) | `ai decision making compliance real estate agents` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Seller Impersonation Fraud Attempts Just Doubled](https://infina.ai/news/seller-impersonation-fraud-prevention-real-estate-agents/) | `seller impersonation fraud prevention real estate agents` | Post-purchase/support | — |
+| Hỗ trợ (News) | [Two Wire Fraud Companies Just Merged, and the Agent Is Still the Weak Link](https://infina.ai/news/how-agents-protect-clients-from-wire-fraud/) | `how agents protect clients from wire fraud` | Post-purchase/support | ✅ Published 04/10 = #1481. Góc wire fraud lúc closing, khác #1260 (impersonation phía seller). Link 2 chiều với pillar #237 |
 
 **Internal link đã verify + fix (02/10/2026)**: fetch 4 bài qua WP REST API. Đây là cụm có tình
 trạng tệ nhất trong cả 8 cụm — pillar #237 KHÔNG link tới bất kỳ bài nào trong 3 bài cluster của

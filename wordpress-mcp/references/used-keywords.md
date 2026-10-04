@@ -151,6 +151,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-10-04 (scheduled) | `real estate broker crm` | [real-estate-broker-crm](https://infina.ai/news/real-estate-broker-crm/) | content-plan Cụm 2, gap keyword US 02/10 (ID 1462) |
 | 2026-10-02 | `ai voice calls for listing price updates` | [ai-voice-calls-for-listing-price-updates](https://infina.ai/news/ai-voice-calls-for-listing-price-updates/) | news-to-cluster-article, pillar #147 Cụm 4 (ID 1467) |
 | 2026-10-03 | `off mls listings on agent idx websites` | [off-mls-listings-on-agent-idx-websites](https://infina.ai/news/off-mls-listings-on-agent-idx-websites/) | news-to-cluster-article, pillar IDX hub Cụm 3 (ID 1473) |
+| 2026-10-04 | `how agents protect clients from wire fraud` | [how-agents-protect-clients-from-wire-fraud](https://infina.ai/news/how-agents-protect-clients-from-wire-fraud/) | news-to-cluster-article, pillar #237 Cụm 8 (ID 1481) |
 
 ---
 
