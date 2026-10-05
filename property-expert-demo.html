@@ -75,6 +75,11 @@
     /* ===== Center chat ===== */
     .chat-card { display:flex; flex-direction:column; height:calc(100vh - 100px); min-height:560px; }
     .chat-scroll { flex:1; overflow-y:auto; padding:26px; display:flex; flex-direction:column; gap:18px; }
+    @media (max-width:1100px){
+      .chat-card { height:auto; min-height:0; }
+      .chat-scroll { flex:none; max-height:60vh; }
+    }
+    @media (max-width:760px){ .gallery { aspect-ratio:16/9; } }
     .msg { display:flex; gap:12px; max-width:88%; }
     .msg-bot { align-self:flex-start; }
     .msg-user { align-self:flex-end; flex-direction:row-reverse; }
