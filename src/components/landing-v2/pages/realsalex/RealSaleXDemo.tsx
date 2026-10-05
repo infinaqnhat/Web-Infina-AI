@@ -1,141 +1,146 @@
 import { useEffect, useRef, useState } from "react";
-import type { FormEvent } from "react";
+import { useStepSequence } from "@/components/landing-v2/hooks/use-step-sequence";
+import type { AgentTab } from "./realsalex-content-data";
+import { BUILD_STEPS, demoTabCopy } from "./realsalex-demo-card-copy-data";
+import RealSaleXDemoChat from "./RealSaleXDemoChat";
 
-const SAMPLE_ZILLOW_URL =
-  "https://www.zillow.com/homedetails/123-Main-St-Austin-TX-78701/12345678_zpid/";
-const SUBMIT_LABEL = "Show me the Deal Room";
+const TABS: AgentTab[] = ["buying", "listing"];
+const STEP_INTERVAL_MS = 620;
+const COPIED_RESET_MS = 1600;
+
+interface RealSaleXDemoProps {
+  tab: AgentTab;
+  /** Each increment replays the "Building your advisor" sequence. */
+  buildRunNonce: number;
+}
 
 /**
- * RealSaleXDemo — "See it work on a real listing" form plus its success modal.
- * Mirrors <section class="lead-section" id="see-it-work"> and the
- * .demo-modal-backdrop block in Web-Infina-AI/realsalex.html.
+ * "What your client gets" demo card (#see-it-work). Mirrors
+ * <section class="section demo-section" id="see-it-work"> in
+ * Web-Infina-AI/realsalex-v2.html.
  *
- * FRONT-END ONLY: nothing is submitted anywhere and no email is sent. The
- * 600ms delay and the modal are a scripted preview of the real flow, matching
- * the source page exactly.
+ * Three stages share one card: idle (the chat demo), loading (scripted build
+ * checklist) and built (share link). FRONT-END ONLY: nothing is created or
+ * sent, the share link is a fixed sample per tab.
+ * TODO: show the real advisor URL from the backend preview API once it is live.
  *
- * Inputs stay uncontrolled so the source's two native behaviors survive the
- * port: checkValidity() drives the error state, and the floating labels rely
- * on `placeholder=" "` with `:not(:placeholder-shown)`.
+ * The build stage survives a tab switch (only its copy changes), the chat
+ * resets to its first persona; both match the source.
  */
-const RealSaleXDemo = () => {
-  const formRef = useRef<HTMLFormElement>(null);
-  const timerRef = useRef<number>();
-  const [status, setStatus] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [modalEmail, setModalEmail] = useState<string | null>(null);
+const RealSaleXDemo = ({ tab, buildRunNonce }: RealSaleXDemoProps) => {
+  const copy = demoTabCopy[tab];
+  const { status, step, start, reset } = useStepSequence(BUILD_STEPS.length, STEP_INTERVAL_MS);
+  const [copied, setCopied] = useState(false);
+  const copiedTimer = useRef<number>();
 
-  // Unmounting mid-delay would otherwise reset a detached form and set state
-  // on a gone component.
-  useEffect(() => () => window.clearTimeout(timerRef.current), []);
+  useEffect(() => {
+    if (buildRunNonce > 0) start();
+  }, [buildRunNonce, start]);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = formRef.current;
-    if (!form || loading) return;
+  useEffect(() => () => window.clearTimeout(copiedTimer.current), []);
 
-    setStatus("");
-
-    let firstInvalid: HTMLInputElement | undefined;
-    for (const el of Array.from(form.querySelectorAll<HTMLInputElement>("[required]"))) {
-      const ok = el.checkValidity();
-      el.classList.toggle("invalid", !ok);
-      if (!ok && !firstInvalid) firstInvalid = el;
-    }
-    if (firstInvalid) {
-      setStatus("Please fill in all required fields.");
-      firstInvalid.focus();
-      return;
-    }
-
-    const enteredEmail = new FormData(form).get("email")?.toString().trim() ?? "";
-    setLoading(true);
-
-    timerRef.current = window.setTimeout(() => {
-      setLoading(false);
-      form.reset();
-      setModalEmail(enteredEmail);
-    }, 600);
+  const copyLink = () => {
+    navigator.clipboard?.writeText(copy.shareLink).catch(() => {});
+    setCopied(true);
+    window.clearTimeout(copiedTimer.current);
+    copiedTimer.current = window.setTimeout(() => setCopied(false), COPIED_RESET_MS);
   };
 
-  const closeModal = () => setModalEmail(null);
-
   return (
-    <>
-      <section className="lead-section" id="see-it-work">
-        <div className="container lead-grid">
-          <div className="lead-copy">
-            <h2>
-              See it work on a <span className="lead-highlight">real listing.</span>
-            </h2>
-            <p className="lead-sub">
-              Paste a live Zillow listing and your email, we&apos;ll show you what your
-              buyer&apos;s Deal Room looks like.
-            </p>
-          </div>
-
-          <form className="lead-form" ref={formRef} onSubmit={handleSubmit} noValidate>
-            <div className="lead-form-header">
-              <h3 className="lead-form-title">See how it works</h3>
-              <p className="lead-form-sub">
-                Drop in one of your active listings and see your buyer&apos;s Deal Room in seconds.
-              </p>
+    <section className="section demo-section" id="see-it-work">
+      <div className="container">
+        <div className="section-head reveal">
+          {TABS.map((key) => (
+            <div key={key} className="tab-copy" hidden={key !== tab}>
+              <h2>
+                {demoTabCopy[key].heading.title}
+                <span className="accent">{demoTabCopy[key].heading.accent}</span>
+              </h2>
+              <p>{demoTabCopy[key].heading.sub}</p>
             </div>
-            <div className="lead-field">
-              <input
-                type="url"
-                id="lf-zillow"
-                name="zillowUrl"
-                autoComplete="off"
-                placeholder=" "
-                defaultValue={SAMPLE_ZILLOW_URL}
-              />
-              <label htmlFor="lf-zillow">Zillow listing URL</label>
-            </div>
-            <div className="lead-field">
-              <input type="email" id="lf-email" name="email" required autoComplete="email" placeholder=" " />
-              <label htmlFor="lf-email">Email</label>
-            </div>
-            <button
-              type="submit"
-              className={`lead-submit${loading ? " loading" : ""}`}
-              id="lf-submit"
-              disabled={loading}
-            >
-              <span className="lead-submit-label">{loading ? "Loading..." : SUBMIT_LABEL}</span>
-              <span className="lead-submit-spinner" aria-hidden="true" />
-            </button>
-            <div className={`lead-status${status ? " error" : ""}`} role="status" aria-live="polite">
-              {status}
-            </div>
-          </form>
+          ))}
         </div>
-      </section>
+        <div className="demo-wrap reveal">
+          <div className="demo-card">
+            <div className="demo-card-head">
+              <div className="who">
+                <b>{copy.advisorName}</b>
+                <span>{copy.brokerage}</span>
+              </div>
+              <span className="demo-live-tag">Live · answers 24/7</span>
+            </div>
 
-      <div
-        className={`demo-modal-backdrop${modalEmail !== null ? " open" : ""}`}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) closeModal();
-        }}
-      >
-        <div className="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
-          <button type="button" className="demo-modal-close" onClick={closeModal} aria-label="Close">
-            &times;
-          </button>
-          <div className="demo-modal-icon">✓</div>
-          <h3 className="demo-modal-title" id="demo-modal-title">
-            Your Deal Room preview is ready.
-          </h3>
-          <p className="demo-modal-text">
-            Here&apos;s a sample of what your buyer would see for this listing. We&apos;ve also sent
-            a copy to <strong>{modalEmail}</strong>.
-          </p>
-          {/* TODO: render the buyer's Deal Room link here once the backend
-              preview API (listing URL + email -> Deal Room URL) is live. The
-              static sample mockup that used to sit here was removed. */}
+            {TABS.map((key) => {
+              const [main, ...thumbs] = demoTabCopy[key].gallery;
+              return (
+                <div key={key} className="tab-copy" hidden={key !== tab}>
+                  <div className="demo-gallery">
+                    <div className="demo-gallery-main">
+                      <img src={main.src} alt={main.alt} loading="lazy" />
+                    </div>
+                    <div className="demo-gallery-side">
+                      {thumbs.map((img, i) => {
+                        const isLast = i === thumbs.length - 1;
+                        return (
+                          <div key={img.src} className={`demo-gallery-thumb${isLast ? " demo-gallery-more" : ""}`}>
+                            <img src={img.src} alt={img.alt} loading="lazy" />
+                            {isLast && <span className="demo-gallery-more-tag">See all 5 photos</span>}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div className="demo-specs">
+                    <b>{demoTabCopy[key].address}</b>
+                    {demoTabCopy[key].specs.map((spec) => (
+                      <span key={spec}>{spec}</span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+
+            <RealSaleXDemoChat key={tab} tab={tab} hidden={status !== "idle"} />
+
+            <div className="demo-loading" hidden={status !== "running"}>
+              <h3>{copy.loadingTitle}</h3>
+              <div className="demo-steps">
+                {BUILD_STEPS.map((label, i) => (
+                  <div key={label} className={`demo-step${i < step ? " is-done" : ""}`}>
+                    <span className="mark">{i < step ? "✓" : "·"}</span>
+                    <span className="lbl-t">{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="demo-built" hidden={status !== "done"}>
+              <span className="tag-ready">Ready to send</span>
+              <h3>{copy.builtTitle}</h3>
+              <p>
+                It has read the listing, the county records and the disclosure. Send this link instead of the
+                listing, and you'll see every question your buyer asks.
+              </p>
+              <div className="demo-link-row">
+                <span>{copy.shareLink}</span>
+                <button type="button" className="btn-secondary" onClick={copyLink}>
+                  {copied ? "Copied" : "Copy link"}
+                </button>
+              </div>
+              <div className="demo-built-actions">
+                <button type="button" className="btn-ghost" onClick={reset}>
+                  Back to the example
+                </button>
+              </div>
+            </div>
+
+            <div className="demo-footer" hidden={status === "running"}>
+              {copy.footer}
+            </div>
+          </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

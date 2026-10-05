@@ -1,74 +1,129 @@
-import { useRevealOnScroll } from "@/components/landing-v2/hooks/use-reveal-on-scroll";
-import { journeyAgents, journeyStages } from "./realsalex-content-data";
+import { Fragment } from "react";
+import { journeyStages } from "./realsalex-journey-data";
+import type { JourneySectionCopy, JourneyStep } from "./realsalex-journey-data";
+import { RealSaleXIcon } from "./realsalex-icons";
+
+const lastIndex = journeyStages.length - 1;
+
+/** First dot is filled blue, last is the green "done" dot, the rest are hollow. */
+const dotModifier = (i: number) => (i === 0 ? " is-filled" : i === lastIndex ? " is-done" : "");
+
+/** Card body shared by the stacked mobile card and the fanned desktop card. */
+const StepText = ({ step, isLast }: { step: JourneyStep; isLast: boolean }) => (
+  <>
+    <div className="journey-head">
+      <span className="aic-num">{step.num}</span>
+      <h3>{step.title}</h3>
+    </div>
+    <p className="journey-sub">{step.sub}</p>
+    <div className="journey-pill-row">
+      <span className={`journey-icon${isLast ? " is-done" : ""}`}>
+        <RealSaleXIcon name={step.icon} size={14} strokeWidth={isLast ? 2.5 : 2} />
+      </span>
+      <span className="journey-pill">{step.pill}</span>
+    </div>
+    <p>{step.text}</p>
+  </>
+);
 
 /**
- * RealSaleXJourney — the 4-stage buyer journey linked by one animated arrow,
- * followed by the three agents behind it.
- * Mirrors <section class="section" id="how"> in Web-Infina-AI/realsalex.html.
+ * "How it works" journey: 4 step cards over an Exploration → Transaction
+ * timeline. realsalex-v2.html renders it once per tab with different copy.
  *
- * The arrow is a single non-scaling-stroke SVG behind the stage grid; the
- * per-stage .jdot markers sit on top of it. The dashed white overlay path
- * animates left-to-right and is disabled under prefers-reduced-motion (CSS).
- *
- * The section keeps the source's inline `background:var(--surface)` because
- * that override lives on the element in the static page, not in its stylesheet.
+ * Two layouts ship together and CSS shows one: .journey-mobile (stacked
+ * cards, ≤900px) and .journey-desktop (fanned, rotated cards, ≥901px).
  */
-const RealSaleXJourney = () => {
-  const revealRef = useRevealOnScroll<HTMLElement>();
-
+const RealSaleXJourney = ({ copy, hidden }: { copy: JourneySectionCopy; hidden: boolean }) => {
+  const { steps } = copy;
   return (
-    <section className="section" id="how" style={{ background: "var(--surface)" }} ref={revealRef}>
+    <section className="section" hidden={hidden}>
       <div className="container">
         <div className="section-head reveal">
-          <h2>One companion, the whole journey, from first inquiry to closed deal.</h2>
-          <p>Sell-side, for brokerages selling residential inventory to home buyers.</p>
+          <span className="eyebrow">{copy.eyebrow}</span>
+          <h2>
+            {copy.title}
+            <span className="accent">{copy.accent}</span>
+          </h2>
+          <p>{copy.sub}</p>
         </div>
 
-        <div className="journey-flow reveal">
-          <svg className="journey-arrow" viewBox="0 0 1200 180" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="jgrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stopColor="#1863dc" stopOpacity=".28" />
-                <stop offset=".55" stopColor="#1863dc" />
-                <stop offset="1" stopColor="#0f4fc0" />
-              </linearGradient>
-            </defs>
-            <path className="jarrow-glow" d="M28,90 L1172,90" fill="none" stroke="#1863dc" strokeWidth="18" strokeLinecap="round" opacity=".12" vectorEffect="non-scaling-stroke" />
-            <path className="jarrow-line" d="M28,90 L1172,90" fill="none" stroke="url(#jgrad)" strokeWidth="7" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-            <path className="jarrow-flow" d="M28,90 L1172,90" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeDasharray="2 30" opacity=".75" vectorEffect="non-scaling-stroke" />
-          </svg>
-
-          <div className="jstages">
-            {journeyStages.map((stage) => (
-              <div className="jstage" key={stage.num}>
-                <div className="jhead">
-                  <span className="jnum">{stage.num}</span>
-                  <span className="jname">{stage.name}</span>
-                </div>
-                <p className="jsub">{stage.sub}</p>
-                <div className="jphoto">
-                  <img src={stage.image} alt={stage.imageAlt} loading="lazy" />
-                  <span className="jdot" />
-                  <div className="jchip">
-                    <span className="jchip-ic">{stage.chipIcon}</span>
-                    <span className="jchip-tx">{stage.chipText}</span>
+        <div className="journey-mobile reveal">
+          {steps.map((step, i) => {
+            const isLast = i === steps.length - 1;
+            return (
+              <Fragment key={step.num}>
+                {i > 0 && (
+                  <span className="journey-m-arrow">
+                    <RealSaleXIcon name="arrowDown" size={18} strokeWidth={2.5} />
+                  </span>
+                )}
+                <div className={`journey-m-card${isLast ? " is-last" : ""}`}>
+                  <div className="journey-m-text">
+                    <StepText step={step} isLast={isLast} />
                   </div>
+                  <img className="journey-m-photo" src={step.photoMobile ?? step.photo} alt={step.alt} />
                 </div>
+              </Fragment>
+            );
+          })}
+          <div className="journey-m-timeline">
+            <div className="journey-m-track">
+              <div className="journey-m-dots">
+                {journeyStages.map((stage, i) => (
+                  <div key={stage.stage} className="journey-m-dot-wrap">
+                    <span className={`journey-m-dot${dotModifier(i)}`} />
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <div className="journey-m-labels">
+              {journeyStages.map((stage) => (
+                <span key={stage.stage} className="journey-m-label">
+                  {stage.stage}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="agents-icons reveal">
-          {journeyAgents.map((agent) => (
-            <div className="aic" key={agent.title}>
-              <span className="aic-ic">{agent.icon}</span>
-              <div>
-                <h3>{agent.title}</h3>
-                <p>{agent.text}</p>
+        <div className="journey-desktop reveal">
+          <div className="journey-row">
+            {steps.map((step, i) => (
+              <Fragment key={step.num}>
+                {i > 0 && (
+                  <span className="journey-arrow">
+                    <RealSaleXIcon name="arrowRight" size={16} strokeWidth={2.5} />
+                  </span>
+                )}
+                <div className={`journey-card j-${i + 1}`}>
+                  <img className="journey-photo" src={step.photo} alt={step.alt} />
+                  <div className="journey-mask" />
+                  <div className="journey-content">
+                    <StepText step={step} isLast={i === steps.length - 1} />
+                  </div>
+                </div>
+              </Fragment>
+            ))}
+          </div>
+          <div className="journey-timeline">
+            <div className="journey-track">
+              <div className="journey-dots">
+                {journeyStages.map((stage, i) => (
+                  <div key={stage.stage} className="journey-dot-wrap">
+                    <span className={`journey-dot${dotModifier(i)}`} />
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
+            <div className="journey-labels">
+              {journeyStages.map((stage) => (
+                <div key={stage.stage} className="journey-label">
+                  <b>{stage.label}</b>
+                  <span>{stage.stage}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
