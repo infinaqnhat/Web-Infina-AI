@@ -58,6 +58,14 @@ Add its basename to the `PAGES` array in `scripts/extract-ui-spec.mjs`, then run
 
 ---
 
-**Last synced to nx:** `9493c0d` — initial baseline (commit that introduced this spec). All 7
-pages were already ported to `apps/infina-ai` per the completed migration, so Nx ≈ HTML here.
-Future syncs diff `git diff 9493c0d..HEAD -- docs/ui-spec/`. Bump this sha after each sync.
+**Last synced to nx:** `31e298e` — the 7 spec pages plus `realsalex-v2.html` (outside this spec)
+match `apps/infina-ai` at this commit (Nx side: RealStake/infina-ai-apps#357). In Nx, v2 is the
+homepage `/` for visitors outside Vietnam; visitors in Vietnam get `home.html` at `/vn`, and
+`/realsale` keeps the earlier Real Sale page (v1). Nx deliberately differs in the create flow: every
+create button redirects to an external create page (`?type=buyer|listing`, plus the pasted listing
+link as `url`), so the build checklist, built state and QR panel are not ported, and neither is
+`property-expert-demo.html`. The Nx footer also adds an "IP Geolocation by DB-IP" link, which its
+geo-IP licence requires.
+The AUTO zones were last regenerated at `9493c0d`; the `home.html` / `work.html` edits since then are
+already in Nx, so they are not pending work if `npm run spec` surfaces them.
+Future syncs diff `git diff 31e298e..HEAD -- docs/ui-spec/ realsalex-v2.html`. Bump this sha after each sync.
