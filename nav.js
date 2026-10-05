@@ -3,10 +3,15 @@
 
   var CSS = [
     'infina-nav { display: contents; }',
-    'nav.infina-nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-light, rgba(0,0,0,.08)); z-index: 1000; }',
+    'nav.infina-nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-light, rgba(0,0,0,.08)); z-index: 1000; transition: background .3s, border-color .3s, backdrop-filter .3s; }',
+    'nav.infina-nav.is-transparent { background: transparent; backdrop-filter: none; border-bottom-color: transparent; }',
+    'nav.infina-nav.is-transparent .nav-center a { color: rgba(255,255,255,.88); }',
+    'nav.infina-nav.is-transparent .nav-center a.active { color: #fff; }',
+    'nav.infina-nav.is-transparent .nav-toggle { color: #fff; }',
     '.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: 1200px; margin: 0 auto; padding: 0 32px; }',
     '.logo { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 600; letter-spacing: -0.03em; }',
     '.logo-img { height: 23px; width: auto; display: block; }',
+    'nav.infina-nav.logo-lg .logo-img { height: 36px; }',
     '.nav-center { display: flex; align-items: center; gap: 40px; }',
     '.nav-center a { font-size: 15px; font-weight: 500; color: var(--fg-secondary, #6b7280); transition: color .2s; position: relative; text-decoration: none; }',
     '.nav-center a.active { color: var(--fg, #111827); }',
@@ -34,6 +39,7 @@
     '@media (max-width: 768px) {',
     '  nav.infina-nav .nav-center { display: none; }',
     '  nav.infina-nav .nav-cta { display: none; }',
+    '  nav.infina-nav.logo-lg .logo-img { height: 23px; }',
     '  .nav-toggle { display: block; }',
     '  .nav-mobile-panel { display: flex; flex-direction: column; position: fixed; top: 72px; left: 0; right: 0; background: rgba(255,255,255,.98); backdrop-filter: blur(20px); padding: 8px 24px 20px; gap: 0; border-bottom: 1px solid var(--border-light, rgba(0,0,0,.08)); box-shadow: 0 10px 30px rgba(0,0,0,.06); transform: translateY(-12px); opacity: 0; visibility: hidden; transition: transform .25s ease, opacity .25s ease, visibility .25s ease; z-index: 999; }',
     '  body.nav-open .nav-mobile-panel { transform: translateY(0); opacity: 1; visibility: visible; }',
@@ -56,7 +62,7 @@
     '}'
   ].join('\n');
 
-  var LOGO_SVG = '<img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img">';
+  var LOGO_SVG = '<span class="logo-badge"><img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI" class="logo-img"></span>';
   var CHEVRON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>';
   var HAMBURGER = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
 
@@ -77,9 +83,13 @@
     var isPersonal = active === 'personal';
     var isAbout = active === 'about';
     var isSalesX = active === 'salesx';
+    var ctaText = this.getAttribute('cta-text') || 'Book a demo';
+    var ctaHref = this.getAttribute('cta-href') || '#demo';
+    var transparentUntilScroll = this.hasAttribute('transparent-until-scroll');
+    var logoLarge = this.hasAttribute('logo-lg');
 
     var nav = document.createElement('nav');
-    nav.className = 'infina-nav';
+    nav.className = 'infina-nav' + (transparentUntilScroll ? ' is-transparent' : '') + (logoLarge ? ' logo-lg' : '');
 
     var toggleClass = 'nav-dropdown-toggle' + (isWorkGroup ? ' active' : '');
     nav.innerHTML =
@@ -90,7 +100,7 @@
           '<a href="work.html"' + (isWork ? ' class="active"' : '') + '>AI Work</a>' +
           '<a href="personal.html"' + (isPersonal ? ' class="active"' : '') + '>AI Personal</a>' +
         '</div>' +
-        '<a href="#demo" class="nav-cta">Book a demo</a>' +
+        '<a href="' + ctaHref + '" class="nav-cta">' + ctaText + '</a>' +
       '</div>';
 
     this.parentNode.insertBefore(nav, this);
@@ -134,10 +144,10 @@
     if (isPersonal) aPersonal.classList.add('active');
     panel.appendChild(aPersonal);
 
-    // Book a demo CTA
+    // CTA
     var aCta = document.createElement('a');
-    aCta.href = '#demo';
-    aCta.textContent = 'Book a demo';
+    aCta.href = ctaHref;
+    aCta.textContent = ctaText;
     aCta.className = 'nav-mobile-cta';
     panel.appendChild(aCta);
 
@@ -172,6 +182,21 @@
     window.addEventListener('resize', function () {
       if (window.innerWidth > 768 && document.body.classList.contains('nav-open')) setOpen(false);
     });
+
+    if (transparentUntilScroll) {
+      var untilSelector = this.getAttribute('transparent-until');
+      var updateNavSolidity = function () {
+        var threshold = window.innerHeight * 0.7;
+        if (untilSelector) {
+          var untilEl = document.querySelector(untilSelector);
+          if (untilEl) threshold = untilEl.getBoundingClientRect().bottom + window.scrollY - 80;
+        }
+        nav.classList.toggle('is-transparent', window.scrollY < threshold);
+      };
+      updateNavSolidity();
+      window.addEventListener('scroll', updateNavSolidity, { passive: true });
+      window.addEventListener('resize', updateNavSolidity);
+    }
 
     this.remove();
   }

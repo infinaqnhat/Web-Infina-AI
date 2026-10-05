@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send a 24/7 Home Concierge</title>
+  <meta name="description" content="Don't send your client a link, send a 24/7 Home Concierge. Turn any property listing into a private AI Concierge that answers your buyer's questions around the clock, with you still at the center of the relationship.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#ffffff; --surface:#fafafa; --fg:#1a1f2e; --fg-secondary:#334155; --muted:#64748b;
+      --border:#e5e7eb; --border-light:#f2f2f2;
+      --accent:#001F5C; --accent-dark:#001340; --accent-light:rgba(0,31,92,.08);
+      --blue:#1863dc; --blue-light:rgba(24,99,220,.08);
+      --font-body:'Be Vietnam Pro',-apple-system,system-ui,sans-serif;
+      --section-gap:clamp(56px,7vw,88px); --radius:20px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--font-body); background:var(--bg); color:var(--fg); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; padding-bottom:0; }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; height:auto; display:block; }
+    .container { max-width:1160px; margin:0 auto; padding:0 32px; }
+    @media (max-width:600px){ .container{ padding:0 20px; } }
+
+    .section { padding:var(--section-gap) 0; }
+    .section-head { text-align:center; max-width:720px; margin:0 auto 56px; }
+    .section-head h2 { font-size:clamp(28px,3.6vw,44px); font-weight:800; letter-spacing:-.03em; line-height:1.15; color:var(--accent); }
+    .section-head p { font-size:17px; color:var(--muted); margin-top:16px; line-height:1.7; }
+    @keyframes gradient-shift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    h2 .accent, .final-cta h2 .accent { background:linear-gradient(135deg,var(--accent) 0%,#6fa8ff 50%,var(--accent) 100%); background-size:200% 200%; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; animation:gradient-shift 4s ease infinite; }
+    .eyebrow { display:block; font-size:13px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+
+    .btn-primary { background:var(--accent); color:#fff; padding:15px 30px; border-radius:999px; font-size:15px; font-weight:600; display:inline-flex; align-items:center; gap:9px; border:0; cursor:pointer; transition:all .25s; white-space:nowrap; }
+    .btn-primary:hover { background:var(--accent-dark); transform:translateY(-2px); box-shadow:0 16px 32px rgba(0,31,92,.3); }
+    .btn-ghost { background:transparent; color:var(--fg); padding:14px 28px; border-radius:999px; font-size:15px; font-weight:600; border:1.5px solid var(--border); transition:all .25s; }
+    .btn-ghost:hover { border-color:var(--fg); background:var(--surface); }
+    .btn-secondary { background:var(--blue-light); color:var(--blue); padding:12px 20px; border-radius:999px; font-size:14px; font-weight:700; border:0; cursor:pointer; transition:all .2s; }
+    .btn-secondary:hover { background:rgba(24,99,220,.16); }
+
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+
+    /* ===== Hero (full-bleed photo) ===== */
+    .hero { position:relative; min-height:100vh; min-height:100dvh; display:flex; align-items:center; overflow:hidden; padding:clamp(120px,14vh,160px) 0 64px; scroll-margin-top:80px; }
+    .hero-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:70% center; z-index:-2; }
+    .hero-scrim { position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(0,10,35,.225) 0%, rgba(0,10,35,.04) 14%, rgba(0,10,35,.02) 38%, rgba(0,10,35,.225) 100%), linear-gradient(90deg, rgba(0,8,28,.34) 0%, rgba(0,8,28,.19) 55%, rgba(0,8,28,0) 88%); }
+
+    .hero-copy { max-width:640px; text-align:left; }
+    .hero-video-section { padding-top:0; display:none; }
+    .hero h1 { font-size:clamp(32px,4.6vw,50px); font-weight:800; letter-spacing:-.03em; line-height:1.12; color:#fff; -webkit-text-stroke:3px rgba(5,35,90,.9); paint-order:stroke fill; text-shadow:1px 1.5px 0 rgba(5,35,90,.9); }
+    .mobile-break { display:none; }
+    @media (max-width:600px){ .mobile-break { display:inline; } }
+    .hero h1 .accent { color:#9cc2ff; -webkit-text-stroke:3px rgba(5,35,90,.9); paint-order:stroke fill; text-shadow:1px 1.5px 0 rgba(5,35,90,.9); }
+    .hero-sub { font-size:17px; font-weight:500; color:#fff; line-height:1.55; margin:18px 0 0; max-width:56ch; text-shadow:0 1px 4px rgba(0,20,60,.4), 0 1px 12px rgba(0,20,60,.3); }
+    .create-box { margin-top:30px; max-width:600px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); backdrop-filter:blur(6px); border-radius:20px; padding:22px; }
+    .create-label { display:block; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.85); margin-bottom:10px; }
+    .create-row { display:flex; flex-wrap:wrap; gap:10px; align-items:stretch; }
+    .create-row input { flex:1 1 260px; min-height:48px; font-family:var(--font-body); font-size:15px; color:var(--fg); background:#fff; border:1.5px solid var(--border); border-radius:12px; padding:0 16px; outline:none; transition:border-color .15s, box-shadow .15s; }
+    .create-row input:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-light); }
+    .create-row .btn-primary { min-height:48px; padding:0 24px; font-size:14.5px; }
+    .create-note { font-size:12.5px; color:rgba(255,255,255,.8); margin:12px 0 0; }
+
+    /* Hero slider (tabs + swipe): a real sliding track, one slide-width per tab */
+    .hero-slider { position:relative; overflow:hidden; }
+    .hero-track { display:flex; width:200%; transition:transform .5s cubic-bezier(.65,0,.35,1); will-change:transform; }
+    .hero-slide { width:50%; flex-shrink:0; display:flex; }
+    .hero-tabs { position:absolute; top:96px; left:0; right:0; z-index:5; display:flex; justify-content:center; padding:0 20px; }
+    .hero-tabs-inner { position:relative; display:inline-flex; gap:2px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.3); backdrop-filter:blur(6px); border-radius:999px; padding:4px; }
+    .hero-tab-indicator { position:absolute; top:4px; bottom:4px; left:4px; width:0; background:#fff; border-radius:999px; transition:transform .35s cubic-bezier(.4,0,.2,1), width .35s cubic-bezier(.4,0,.2,1); z-index:0; }
+    .hero-tab { position:relative; z-index:1; font-family:var(--font-body); font-size:13.5px; font-weight:700; color:rgba(255,255,255,.75); background:transparent; border:0; padding:9px 18px; border-radius:999px; cursor:pointer; transition:color .3s; }
+    .hero-tab:hover { color:#fff; }
+    .hero-tab.is-active { color:var(--accent); }
+    @media (max-width:600px){ .hero-tabs{ top:80px; } .hero-tab{ font-size:12px; padding:8px 14px; } }
+    @media (min-width:769px){ .hero-tabs{ display:none; } }
+
+    /* Nav-center styled as the single tab control on desktop */
+    .infina-nav .nav-center { gap:8px; }
+    .infina-nav .nav-center a { font-size:13.5px; font-weight:700; padding:9px 18px; border-radius:999px; border:1px solid rgba(255,255,255,.3); background:rgba(255,255,255,.12); backdrop-filter:blur(6px); transition:all .2s; }
+    .infina-nav .nav-center a::after { display:none !important; }
+    .infina-nav.is-transparent .nav-center a:hover { color:#fff; background:rgba(255,255,255,.2); }
+    .infina-nav.is-transparent .nav-center a.is-active { color:var(--accent); background:#fff; border-color:#fff; }
+    .infina-nav:not(.is-transparent) .nav-center a { color:var(--fg-secondary); background:var(--surface); border-color:var(--border); }
+    .infina-nav:not(.is-transparent) .nav-center a.is-active { color:#fff; background:var(--accent); border-color:var(--accent); }
+
+    /* QR result panel (seller hero) */
+    .qr-result { margin-top:22px; max-width:600px; }
+    .qr-loading { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); backdrop-filter:blur(6px); border-radius:20px; padding:22px; }
+    .qr-loading h4 { color:#fff; font-size:15px; font-weight:800; margin-bottom:16px; }
+    .qr-steps { display:flex; flex-direction:column; gap:10px; }
+    .qr-step { display:grid; grid-template-columns:18px minmax(0,1fr); gap:10px; align-items:baseline; font-size:14px; color:rgba(255,255,255,.55); }
+    .qr-step .mark { font-size:13px; color:rgba(255,255,255,.55); }
+    .qr-step.is-done { color:#fff; }
+    .qr-step.is-done .mark { color:#bcd4ff; }
+    .qr-built { display:flex; gap:20px; align-items:center; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); backdrop-filter:blur(6px); border-radius:20px; padding:22px; }
+    .qr-built img { width:104px; height:104px; border-radius:10px; background:#fff; padding:6px; flex-shrink:0; }
+    .qr-built-text b { display:block; color:#fff; font-size:15px; font-weight:800; margin-bottom:6px; }
+    .qr-built-text p { color:rgba(255,255,255,.85); font-size:13.5px; line-height:1.5; margin-bottom:12px; }
+    @media (max-width:520px){ .qr-built{ flex-direction:column; text-align:center; } }
+
+    /* ===== Today vs Advisor comparison ===== */
+    .compare-heads { display:grid; grid-template-columns:1fr 44px 1fr; gap:0 20px; margin-bottom:8px; }
+    .compare-heads .today b { color:var(--fg); }
+    .compare-heads .today span { color:var(--muted); }
+    .compare-heads .advisor { text-align:right; }
+    .compare-heads b { display:block; font-size:20px; font-weight:800; letter-spacing:-.01em; }
+    .compare-heads span { display:block; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-top:4px; }
+    .compare-heads .advisor b { color:var(--accent); }
+    .compare-heads .advisor span { color:var(--blue); }
+    .compare-table { display:flex; flex-direction:column; }
+    .compare-row { display:grid; grid-template-columns:1fr 44px 1fr; gap:0 20px; align-items:center; padding:22px 0; border-top:1px solid var(--border-light); }
+    .compare-row:last-child { border-bottom:1px solid var(--border-light); }
+    .compare-cell.today { font-size:15.5px; color:var(--muted); line-height:1.5; }
+    .compare-cell.advisor { font-size:17px; font-weight:600; color:var(--fg); line-height:1.5; text-align:right; }
+    .compare-tag { display:none; }
+    .compare-arrow { display:flex; align-items:center; justify-content:center; color:var(--blue); }
+
+    @media (max-width:700px){
+      .compare-heads { grid-template-columns:1fr 20px 1fr; gap:0 10px; margin-bottom:2px; }
+      .compare-heads b { font-size:13px; }
+      .compare-heads span { display:none; }
+      .compare-row { grid-template-columns:1fr 20px 1fr; gap:0 10px; padding:14px 0; align-items:start; }
+      .compare-cell.today { grid-column:1; font-size:12.5px; padding-right:2px; }
+      .compare-cell.advisor { grid-column:3; font-size:12.5px; font-weight:700; text-align:right; padding-left:2px; }
+      .compare-arrow { display:none; }
+      .compare-row::after { content:''; grid-column:2; align-self:stretch; border-left:1px solid var(--border-light); }
+    }
+    @media (max-width:380px){
+      .compare-heads b { font-size:12px; }
+      .compare-cell.today, .compare-cell.advisor { font-size:11.5px; }
+    }
+    .pull-quote { text-align:center; max-width:760px; margin:0 auto; font-size:clamp(22px,2.6vw,30px); font-style:italic; font-weight:600; color:var(--accent); line-height:1.4; letter-spacing:-.01em; }
+
+    /* ===== Advisor demo card ===== */
+    .demo-section { background:var(--surface); }
+    .demo-wrap { max-width:680px; margin:0 auto; }
+    .demo-card { background:#fff; border:1px solid var(--border-light); border-radius:20px; box-shadow:0 30px 80px -30px rgba(0,31,92,.28); overflow:hidden; }
+    .demo-card-head { display:flex; align-items:center; gap:14px; padding:18px 22px; border-bottom:1px solid var(--border-light); }
+    .demo-card-head .who { flex:1; min-width:0; }
+    .demo-card-head .who b { display:block; font-size:17px; font-weight:800; letter-spacing:-.01em; }
+    .demo-card-head .who span { font-size:13px; color:var(--muted); }
+    .demo-live-tag { flex-shrink:0; display:inline-flex; align-items:center; gap:6px; background:var(--blue-light); color:var(--blue); font-size:12px; font-weight:700; padding:6px 12px; border-radius:999px; white-space:nowrap; }
+    .demo-live-tag::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--blue); animation:demo-blink 1.3s infinite; }
+    @keyframes demo-blink { 0%,60%,100%{opacity:.3} 30%{opacity:1} }
+    .demo-gallery { display:grid; grid-template-columns:1.6fr 1fr; grid-template-rows:100%; gap:2px; aspect-ratio:16/9; overflow:hidden; }
+    .demo-gallery-main { overflow:hidden; }
+    .demo-gallery-main img { width:100%; height:100%; object-fit:cover; display:block; }
+    .demo-gallery-side { display:grid; grid-template-rows:repeat(4,1fr); gap:2px; }
+    .demo-gallery-thumb { position:relative; overflow:hidden; }
+    .demo-gallery-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+    .demo-gallery-more-tag { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; background:rgba(0,15,46,.6); color:#fff; font-size:12px; font-weight:700; padding:6px; }
+    @media (max-width:520px){ .demo-gallery{ grid-template-columns:1fr; aspect-ratio:auto; } .demo-gallery-side{ display:none; } }
+    .demo-specs { display:flex; flex-wrap:wrap; gap:4px 16px; padding:14px 22px; border-bottom:1px solid var(--border-light); font-size:14px; color:var(--fg-secondary); }
+    .demo-specs b { color:var(--fg); }
+    .demo-body { padding:22px; display:flex; flex-direction:column; gap:18px; }
+    .demo-body h3 { font-size:19px; font-weight:800; letter-spacing:-.01em; }
+    .demo-thread { display:flex; flex-direction:column; gap:14px; }
+    .demo-msg { display:flex; flex-direction:column; gap:6px; }
+    .demo-msg .lbl { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .demo-msg.buyer { align-items:flex-end; }
+    .demo-msg.buyer .lbl { align-self:flex-end; }
+    .demo-msg.buyer p { background:var(--surface); border-radius:14px 14px 2px 14px; padding:11px 16px; max-width:88%; font-size:16px; line-height:1.5; }
+    .demo-msg.advisor .lbl { color:var(--blue); }
+    .demo-msg.advisor .bubble { background:var(--surface); border:1px solid var(--border-light); border-radius:2px 14px 14px 14px; padding:16px 18px; max-width:96%; display:flex; flex-direction:column; gap:10px; }
+    .demo-msg.advisor .bubble p { font-size:15.5px; line-height:1.6; }
+    .demo-points { list-style:none; display:flex; flex-direction:column; gap:12px; }
+    .demo-points li { display:grid; grid-template-columns:22px minmax(0,1fr); gap:10px; }
+    .demo-points b { color:var(--blue); font-size:14px; font-weight:800; }
+    .demo-points span { font-size:14.5px; line-height:1.55; color:var(--fg-secondary); }
+    .demo-sources { display:flex; flex-wrap:wrap; gap:6px 10px; margin-top:6px; padding-top:12px; border-top:1px solid var(--border-light); }
+    .demo-sources .lbl { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .demo-sources span.src { font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--blue); }
+    .demo-thinking { display:inline-flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--border-light); border-radius:2px 14px 14px 14px; padding:14px 16px; width:fit-content; }
+    .demo-thinking span { width:6px; height:6px; border-radius:50%; background:var(--blue); animation:demo-blink 1.1s infinite; }
+    .demo-thinking span:nth-child(2){ animation-delay:.18s; }
+    .demo-thinking span:nth-child(3){ animation-delay:.36s; }
+    .demo-chips { display:flex; flex-wrap:wrap; gap:8px; padding-top:16px; border-top:1px solid var(--border-light); }
+    .demo-chip { font-family:var(--font-body); font-size:13.5px; padding:8px 14px; border-radius:999px; border:1.5px solid var(--border); background:#fff; color:var(--fg-secondary); cursor:pointer; text-align:left; transition:all .15s; }
+    .demo-chip:hover { border-color:var(--blue); color:var(--blue); }
+    .demo-chip.is-active { background:var(--accent); color:#fff; border-color:var(--accent); }
+    .persona-pills { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+    .persona-pill { font-family:var(--font-body); font-size:12.5px; font-weight:700; padding:7px 14px; border-radius:999px; border:1.5px solid var(--border); background:#fff; color:var(--fg-secondary); cursor:pointer; transition:all .15s; }
+    .persona-pill:hover { border-color:var(--blue); color:var(--blue); }
+    .persona-pill.is-active { background:var(--accent); color:#fff; border-color:var(--accent); }
+    .demo-ask-row { display:flex; gap:8px; }
+    .demo-ask-row input { flex:1; min-height:46px; font-family:var(--font-body); font-size:15px; border:1.5px solid var(--border); border-radius:10px; padding:0 14px; outline:none; }
+    .demo-ask-row input:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-light); }
+    .demo-ask-row button { min-height:46px; padding:0 18px; border-radius:10px; background:var(--accent); color:#fff; border:0; font-size:16px; cursor:pointer; }
+    .demo-footer { padding:13px 22px; background:var(--surface); border-top:1px solid var(--border-light); font-size:13px; color:var(--muted); }
+
+    /* Loading state */
+    .demo-loading { padding:30px 22px 32px; }
+    .demo-loading h3 { font-size:19px; font-weight:800; margin-bottom:22px; }
+    .demo-steps { display:flex; flex-direction:column; gap:14px; }
+    .demo-step { display:grid; grid-template-columns:20px minmax(0,1fr); gap:12px; align-items:baseline; font-size:15.5px; }
+    .demo-step .mark { font-size:14px; color:var(--border); }
+    .demo-step.is-done .mark { color:var(--blue); }
+    .demo-step span.lbl-t { color:var(--border); }
+    .demo-step.is-done span.lbl-t { color:var(--fg); }
+
+    /* Built state */
+    .demo-built { padding:28px 22px 26px; }
+    .demo-built .tag-ready { display:block; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+    .demo-built h3 { font-size:21px; font-weight:800; letter-spacing:-.01em; }
+    .demo-built p { font-size:15px; line-height:1.6; color:var(--fg-secondary); margin-top:10px; }
+    .demo-link-row { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:18px; padding:12px 14px; background:var(--surface); border:1px solid var(--border-light); border-radius:12px; }
+    .demo-link-row span { flex:1 1 200px; min-width:0; font-size:14.5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--blue); font-weight:600; }
+    .demo-built-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+
+    [hidden] { display:none !important; }
+
+    /* ===== Journey (mobile only, listing agent) ===== */
+    .journey-mobile { display:none; }
+    @media (max-width:900px){
+      .journey-mobile { display:flex; flex-direction:column; gap:0; max-width:520px; margin:0 auto; }
+      .journey-m-card { display:flex; align-items:stretch; gap:14px; background:var(--accent-light); border-radius:18px; padding:20px; }
+      .journey-m-card.is-last { background:rgba(16,163,102,.12); }
+      .journey-m-text { flex:1 1 auto; min-width:0; display:flex; flex-direction:column; }
+      .journey-m-photo { width:100px; flex-shrink:0; border-radius:14px; object-fit:cover; align-self:stretch; }
+      .journey-m-arrow { display:flex; justify-content:center; padding:10px 0; color:var(--blue); }
+      .journey-mobile .journey-head { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+      .journey-mobile .journey-head .aic-num { width:30px; height:30px; border-radius:10px; font-size:13px; flex-shrink:0; }
+      .journey-mobile .journey-head h3 { font-size:17px; font-weight:800; color:var(--accent); letter-spacing:-.01em; }
+      .journey-mobile .journey-sub { font-size:14.5px; font-weight:700; color:var(--fg); margin-bottom:12px; line-height:1.4; }
+      .journey-mobile .journey-pill-row { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+      .journey-mobile .journey-icon { width:28px; height:28px; border-radius:50%; background:#fff; color:var(--accent); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+      .journey-mobile .journey-icon.is-done { background:rgba(16,163,102,.2); color:#0e9f61; }
+      .journey-mobile .journey-pill { display:inline-block; font-size:12.5px; font-weight:700; padding:5px 12px; border-radius:999px; background:#fff; color:var(--fg); width:fit-content; }
+      .journey-mobile .journey-m-text p:last-child { font-size:13.5px; color:var(--fg-secondary); line-height:1.55; }
+
+      .journey-m-timeline { margin:36px 0 0; }
+      .journey-m-track { position:relative; height:2px; background:linear-gradient(90deg, var(--blue) 0%, var(--blue) 70%, #0e9f61 100%); margin:0 10px; }
+      .journey-m-track::after { content:''; position:absolute; right:-12px; top:50%; transform:translateY(-50%); width:0; height:0; border-top:5px solid transparent; border-bottom:5px solid transparent; border-left:9px solid #0e9f61; }
+      .journey-m-dots { display:flex; justify-content:space-between; position:absolute; inset:0; padding:0 6px; }
+      .journey-m-dot-wrap { position:relative; display:flex; }
+      .journey-m-dot { position:absolute; top:50%; transform:translate(-50%,-50%); width:13px; height:13px; border-radius:50%; background:#fff; border:2.5px solid var(--blue); }
+      .journey-m-dot.is-filled { background:var(--blue); }
+      .journey-m-dot.is-done { border-color:#0e9f61; background:#0e9f61; }
+      .journey-m-labels { display:flex; justify-content:space-between; gap:4px; margin-top:22px; }
+      .journey-m-label { text-align:center; font-size:10.5px; font-weight:800; letter-spacing:0; color:var(--muted); flex:1 1 0; min-width:0; box-sizing:border-box; line-height:1.3; }
+    }
+
+    /* ===== Journey (desktop only, listing agent) ===== */
+    .journey-desktop { display:none; }
+    @media (min-width:901px){
+      .journey-desktop { display:block; padding:20px 0 70px; }
+      .journey-row { display:flex; align-items:center; justify-content:center; }
+      .journey-card { position:relative; width:270px; height:420px; flex-shrink:0; border-radius:20px; overflow:hidden; box-shadow:0 20px 40px rgba(0,20,60,.16); background:#fff; transition:transform .25s ease; }
+      .journey-card.j-1 { transform:rotate(-5deg); z-index:1; }
+      .journey-card.j-2 { transform:rotate(-2deg) translateY(-8px); z-index:2; }
+      .journey-card.j-3 { transform:rotate(2deg) translateY(-4px); z-index:3; }
+      .journey-card.j-4 { transform:rotate(5deg); z-index:4; }
+      .journey-card:hover { transform:rotate(0deg) translateY(-10px) scale(1.03); z-index:9; }
+      .journey-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+      .journey-mask { position:absolute; inset:0; background:linear-gradient(100deg, #fff 0%, #fff 38%, rgba(255,255,255,.85) 52%, rgba(255,255,255,0) 78%); }
+      .journey-content { position:relative; z-index:1; padding:22px 20px; height:100%; display:flex; flex-direction:column; }
+      .journey-head { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+      .journey-head .aic-num { width:32px; height:32px; border-radius:10px; font-size:13px; flex-shrink:0; }
+      .journey-head h3 { font-size:16px; font-weight:800; color:var(--accent); letter-spacing:-.01em; }
+      .journey-sub { font-size:13.5px; font-weight:700; color:var(--fg); margin-bottom:14px; line-height:1.4; }
+      .journey-pill-row { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+      .journey-icon { width:30px; height:30px; border-radius:50%; background:var(--accent-light); color:var(--accent); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+      .journey-icon.is-done { background:rgba(16,163,102,.14); color:#0e9f61; }
+      .journey-pill { display:inline-block; font-size:12.5px; font-weight:700; padding:5px 12px; border-radius:999px; background:var(--surface); color:var(--fg); width:fit-content; }
+      .journey-content p { font-size:13.5px; color:var(--fg-secondary); line-height:1.55; max-width:150px; }
+      .journey-arrow { position:relative; z-index:5; width:34px; height:34px; border-radius:50%; background:#fff; box-shadow:0 4px 10px rgba(0,20,60,.12); display:flex; align-items:center; justify-content:center; color:var(--blue); flex-shrink:0; margin:0 6px; }
+
+      .journey-timeline { max-width:900px; margin:56px auto 0; position:relative; }
+      .journey-track { position:relative; height:2px; background:linear-gradient(90deg, var(--blue) 0%, var(--blue) 70%, #0e9f61 100%); margin:0 20px; }
+      .journey-track::after { content:''; position:absolute; right:-14px; top:50%; transform:translateY(-50%); width:0; height:0; border-top:6px solid transparent; border-bottom:6px solid transparent; border-left:10px solid #0e9f61; }
+      .journey-dots { display:flex; justify-content:space-between; position:absolute; inset:0; padding:0 12px; }
+      .journey-dot-wrap { position:relative; display:flex; flex-direction:column; align-items:center; }
+      .journey-dot { position:absolute; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; border-radius:50%; background:#fff; border:3px solid var(--blue); }
+      .journey-dot.is-filled { background:var(--blue); }
+      .journey-dot.is-done { border-color:#0e9f61; background:#0e9f61; }
+      .journey-labels { display:flex; justify-content:space-between; margin-top:38px; }
+      .journey-label { text-align:center; width:170px; }
+      .journey-label b { display:block; font-size:15px; color:var(--accent); }
+      .journey-label span { display:block; font-size:11px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); margin-top:6px; }
+    }
+
+    /* ===== Three reasons ===== */
+    .aic-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    @media (max-width:760px){ .aic-3{ grid-template-columns:1fr; max-width:520px; margin:0 auto; } }
+    .aic { display:flex; flex-direction:column; gap:14px; background:#fff; border:1.5px solid var(--border-light); border-radius:16px; padding:26px 24px; }
+    .aic-num { display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:12px; background:var(--accent-light); color:var(--accent); font-size:16px; font-weight:800; }
+    .aic h3 { font-size:19px; font-weight:800; color:var(--fg); letter-spacing:-.01em; }
+    .aic p { font-size:14.5px; color:var(--fg-secondary); line-height:1.6; }
+
+    /* ===== Buyer profile card (buyer agent only) ===== */
+    .buyer-card { max-width:1320px; margin:0 auto; background:#fff; border:1.5px solid var(--border-light); border-radius:20px; overflow:hidden; }
+    .buyer-topbar { display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; padding:28px 32px 22px; }
+    .buyer-who { display:flex; align-items:center; gap:16px; }
+    .buyer-avatar { width:64px; height:64px; border-radius:50%; object-fit:cover; flex-shrink:0; }
+    .buyer-name { font-size:22px; font-weight:800; color:var(--accent); letter-spacing:-.01em; margin:0 0 4px; }
+    .buyer-status { font-size:14px; color:var(--muted); display:flex; align-items:center; gap:7px; }
+    .buyer-dot { width:8px; height:8px; border-radius:50%; background:#0e9f61; flex-shrink:0; }
+    .buyer-contact { display:flex; flex-wrap:wrap; gap:20px; }
+    .buyer-contact span { display:flex; align-items:center; gap:7px; font-size:13.5px; color:var(--fg-secondary); font-weight:600; }
+    .buyer-contact svg { color:var(--blue); flex-shrink:0; }
+    .buyer-tags { display:flex; flex-wrap:wrap; align-items:center; gap:14px; padding:0 32px 22px; border-bottom:1px solid var(--border-light); }
+    .buyer-tags span { display:flex; align-items:center; gap:7px; font-size:13.5px; color:var(--fg-secondary); font-weight:600; padding-right:14px; border-right:1px solid var(--border-light); }
+    .buyer-tags span:last-child { border-right:none; padding-right:0; }
+    .buyer-tags svg { color:var(--blue); flex-shrink:0; }
+    @media (max-width:700px){ .buyer-topbar, .buyer-tags { padding-left:20px; padding-right:20px; } }
+    .buyer-group { padding:20px 32px; }
+    .buyer-group.is-alert { background:rgba(225,60,90,.06); }
+    @media (max-width:700px){ .buyer-group { padding:16px 20px; } }
+    .buyer-group-head { display:flex; align-items:center; gap:10px; font-size:16px; font-weight:800; color:var(--accent); margin-bottom:14px; }
+    .buyer-group-icon { color:var(--blue); display:flex; }
+    .buyer-group-icon.is-alert { color:#d13a5c; }
+    .buyer-group-count { display:inline-flex; align-items:center; justify-content:center; min-width:22px; height:22px; padding:0 6px; border-radius:999px; background:var(--blue-light); color:var(--blue); font-size:12px; font-weight:800; }
+    .buyer-group-count.is-alert { background:rgba(225,60,90,.14); color:#d13a5c; }
+    .buyer-row { display:flex; align-items:center; gap:14px; padding:14px; border:1.5px solid var(--border-light); border-radius:14px; background:#fff; }
+    .buyer-row + .buyer-row { margin-top:12px; }
+    .buyer-row.is-alert { border-color:rgba(225,60,90,.25); }
+    .buyer-row-icon { color:#d13a5c; flex-shrink:0; display:flex; }
+    .buyer-row-photo { width:56px; height:56px; border-radius:10px; object-fit:cover; flex-shrink:0; }
+    .buyer-row-text { flex:1; min-width:0; }
+    .buyer-row-text b { display:block; font-size:14.5px; color:var(--fg); font-weight:700; line-height:1.4; }
+    .buyer-row-text span { font-size:13px; color:var(--muted); }
+    .buyer-row-status { font-size:12.5px; font-weight:700; padding:6px 12px; border-radius:999px; white-space:nowrap; flex-shrink:0; }
+    .buyer-row-status.is-alert { background:rgba(225,60,90,.14); color:#d13a5c; }
+    .buyer-row-status.is-due { background:rgba(217,146,26,.16); color:#b8790f; }
+    .buyer-row-status.is-done { background:rgba(16,163,102,.12); color:#0e9f61; }
+    .buyer-row-chevron { color:var(--muted); flex-shrink:0; }
+    @media (max-width:600px){
+      .buyer-row { flex-wrap:wrap; }
+      .buyer-row-icon { display:none; }
+      .buyer-row-text { flex:1 1 100%; order:2; margin-top:10px; }
+      .buyer-row-status { order:3; margin-top:10px; }
+      .buyer-row-chevron { display:none; }
+    }
+
+    /* ===== Data trust ===== */
+    .trust-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+    @media (max-width:860px){ .trust-grid{ grid-template-columns:1fr; gap:32px; } }
+    .trust-list { list-style:none; display:flex; flex-direction:column; gap:16px; margin-top:32px; }
+    .trust-list li { display:grid; grid-template-columns:16px minmax(0,1fr); gap:12px; align-items:baseline; }
+    .trust-list li span.dot { width:7px; height:7px; border-radius:50%; background:var(--blue); transform:translateY(-2px); }
+    .trust-list li span.tx { font-size:17px; line-height:1.5; }
+    .trust-photo { border-radius:16px; overflow:hidden; aspect-ratio:3/2; }
+    .trust-photo img { width:100%; height:100%; object-fit:cover; object-position:70% center; }
+
+    /* ===== Grounded-in-listing data diagram (listing agent only) ===== */
+    .grounded-diagram { max-width:1140px; margin:0 auto; }
+    .source-icon { width:26px; height:26px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .source-icon.sm { width:20px; height:20px; border-radius:6px; }
+    .icon-blue { background:rgba(24,99,220,.12); color:var(--blue); }
+    .icon-green { background:rgba(16,163,102,.12); color:#0e9f61; }
+    .icon-purple { background:rgba(139,92,246,.12); color:#7c3aed; }
+    .icon-amber { background:rgba(217,146,26,.14); color:#b8790f; }
+    .icon-rose { background:rgba(225,60,90,.12); color:#d13a5c; }
+    .grounded-flow { display:grid; grid-template-columns:1fr auto 200px auto minmax(0,1fr); grid-template-rows:repeat(3,1fr); align-items:stretch; column-gap:8px; }
+    .grounded-sources { grid-column:1; grid-row:1/4; display:grid; grid-template-rows:repeat(3,1fr); gap:14px; }
+    .source-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .source-card { display:flex; align-items:center; gap:10px; background:#fff; border-radius:12px; padding:12px 14px; font-size:13.5px; font-weight:700; color:var(--fg); box-shadow:0 1px 2px rgba(0,0,0,.04); }
+    .grounded-arrows { grid-column:2; grid-row:1/4; display:grid; grid-template-rows:repeat(3,1fr); color:#9fc2ff; }
+    .arrow-cell { display:flex; align-items:center; justify-content:center; }
+    .grounded-center { grid-column:3; grid-row:1/4; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; }
+    .center-node { background:#fff; border-radius:20px; padding:26px 22px; display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center; box-shadow:0 0 0 8px rgba(24,99,220,.06), 0 12px 28px rgba(24,99,220,.14); color:var(--blue); }
+    .center-node span { font-size:15px; font-weight:800; color:var(--accent); line-height:1.25; }
+    .center-dashed { width:2px; height:36px; margin-top:10px; background:repeating-linear-gradient(to bottom, var(--border) 0 4px, transparent 4px 8px); }
+    .grounded-output { grid-column:5; grid-row:1/4; display:flex; align-items:center; gap:14px; }
+    .output-arrow { color:var(--blue); flex-shrink:0; }
+    .answer-card { background:#fff; border-radius:16px; padding:20px 22px; box-shadow:0 1px 2px rgba(0,0,0,.04); flex:1; }
+    .answer-card p { font-size:16px; font-weight:700; color:var(--accent); margin-top:8px; line-height:1.4; }
+    .answer-check { width:36px; height:36px; border-radius:50%; background:rgba(16,163,102,.14); color:#0e9f61; display:flex; align-items:center; justify-content:center; }
+    .answer-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+    .answer-tag { display:flex; align-items:center; gap:6px; font-size:12px; font-weight:700; padding:5px 10px 5px 6px; border-radius:999px; background:var(--surface); color:var(--fg-secondary); }
+    .answer-source-link { display:flex; align-items:center; gap:5px; margin-top:12px; font-size:11.5px; font-weight:800; letter-spacing:.05em; color:var(--muted); }
+    .grounded-callout { grid-column:3/6; margin-top:16px; display:flex; align-items:center; gap:10px; justify-self:center; border:1.5px solid var(--border); border-radius:999px; padding:10px 20px; font-size:13.5px; color:var(--fg-secondary); }
+    .callout-icon { color:var(--blue); flex-shrink:0; display:flex; }
+    .grounded-badges { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-top:28px; }
+    .grounded-badge { background:#fff; border-radius:14px; padding:18px 20px; display:flex; align-items:flex-start; gap:12px; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+    .badge-icon { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .grounded-badge b { display:block; font-size:14.5px; color:var(--accent); }
+    .grounded-badge span { font-size:13px; color:var(--muted); }
+    .grounded-mobile-arrows { display:none; }
+    @media (max-width:900px){
+      .grounded-flow { grid-template-columns:1fr; grid-template-rows:none; }
+      .grounded-sources { grid-column:1; grid-row:auto; grid-template-rows:none; grid-template-columns:1fr 1fr; display:grid; gap:12px; }
+      .source-row { display:contents; }
+      .grounded-sources .source-row:nth-child(3) { display:none; }
+      .grounded-arrows { display:none; }
+      .grounded-mobile-arrows { display:flex; justify-content:center; gap:0; margin:0; color:#9fc2ff; }
+      .grounded-center { grid-column:1; grid-row:auto; margin:0 auto; }
+      .grounded-output { grid-column:1; grid-row:auto; flex-direction:column; margin-top:16px; }
+      .output-arrow { transform:rotate(90deg); }
+      .grounded-callout { grid-column:1; margin-top:18px; text-align:left; }
+      .grounded-badges { grid-template-columns:1fr; margin-top:20px; }
+    }
+
+    /* ===== Buyer-intent insights (listing agent only) ===== */
+    .intent-staircase { position:relative; max-width:1080px; margin:56px auto 0; padding-bottom:14px; }
+    .intent-highest { position:absolute; top:-38px; right:6px; display:flex; align-items:center; gap:6px; font-size:13px; font-style:italic; color:var(--blue); }
+    .intent-highest-mobile { display:none; }
+    .intent-funnel { display:flex; flex-direction:row; align-items:flex-end; gap:0; }
+    .intent-step { position:relative; min-width:0; display:flex; flex-direction:column; border-radius:16px 16px 0 0; padding:22px 20px 34px; flex-basis:0; }
+    .intent-step.lvl-1 { flex-grow:1.15; height:220px; }
+    .intent-step.lvl-2 { flex-grow:1.05; height:280px; }
+    .intent-step.lvl-3 { flex-grow:1; height:340px; }
+    .intent-step.lvl-4 { flex-grow:.95; height:400px; }
+    .intent-divider { display:block; width:32px; height:2px; border-radius:2px; background:currentColor; opacity:.35; margin:2px 0 14px; }
+    .intent-count { font-size:30px; font-weight:800; letter-spacing:-.02em; line-height:1; margin-bottom:10px; }
+    .intent-step.lvl-4 .intent-count { font-size:24px; white-space:nowrap; }
+    .intent-stage { display:block; font-size:12px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; margin-bottom:10px; opacity:.75; }
+    .intent-example { font-size:14.5px; font-style:italic; line-height:1.5; }
+    .intent-icon { position:absolute; left:20px; bottom:0; transform:translateY(50%); width:34px; height:34px; border-radius:50%; background:#fff; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--blue); z-index:2; }
+    .intent-step.lvl-4 .intent-icon { border-color:rgba(255,255,255,.4); color:#fff; background:var(--accent); }
+    .intent-floor { height:10px; border-radius:999px; background:var(--border-light); box-shadow:inset 0 2px 5px rgba(0,0,0,.12); margin-top:0; }
+    .intent-outro { display:none; }
+    @media (max-width:900px){
+      .intent-staircase { margin-top:16px; padding-bottom:0; }
+      .intent-highest { position:static; justify-content:flex-end; margin-top:14px; }
+      .intent-highest-desktop { display:none; }
+      .intent-highest-mobile { display:block; }
+      .intent-funnel { flex-direction:column; max-width:680px; align-items:stretch; padding-left:34px; position:relative; }
+      .intent-step { flex:none; height:auto !important; border-radius:16px; padding:22px 60px 22px 24px; margin-bottom:26px; }
+      .intent-step:last-child { margin-bottom:0; }
+      .intent-step::before { content:''; position:absolute; left:-30px; top:26px; width:14px; height:14px; border-radius:50%; box-shadow:0 0 0 4px #eef2fb; z-index:2; }
+      .intent-step:not(:last-child)::after { content:''; position:absolute; left:-24px; top:26px; width:2px; height:calc(100% + 26px); background:var(--border); z-index:1; }
+      .intent-step.lvl-1::before { background:#bcd4ff; }
+      .intent-step.lvl-2::before { background:#6f9dff; }
+      .intent-step.lvl-3::before { background:var(--blue); }
+      .intent-step.lvl-4::before { background:var(--accent); box-shadow:0 0 0 4px #eef2fb, 0 0 0 6px rgba(0,31,92,.18); }
+      .intent-icon { left:auto; right:20px; top:20px; bottom:auto; transform:none; }
+      .intent-example { font-size:17px; }
+      .intent-count { font-size:26px; }
+      .intent-floor { display:none; }
+      .intent-outro { display:flex; flex-direction:column; align-items:center; gap:6px; margin-top:22px; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    }
+    .intent-step.lvl-1 { background:var(--surface); color:var(--fg); }
+    .intent-step.lvl-2 { background:rgba(24,99,220,.07); color:var(--fg); }
+    .intent-step.lvl-3 { background:rgba(24,99,220,.16); color:var(--fg); }
+    .intent-step.lvl-4 { background:var(--accent); color:#fff; }
+    .intent-step.lvl-4 .intent-stage { opacity:.7; }
+
+    /* ===== Testimonials ===== */
+    .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:36px; }
+    @media (max-width:860px){ .testi-grid{ grid-template-columns:1fr; max-width:480px; margin:0 auto; } }
+    .testi { display:flex; flex-direction:column; gap:20px; }
+    .testi blockquote { font-size:18px; font-style:italic; font-weight:600; line-height:1.5; color:var(--fg); }
+    .testi-who { display:flex; align-items:center; gap:12px; }
+    .testi-avatar { width:44px; height:44px; border-radius:50%; background:var(--border-light); flex-shrink:0; object-fit:cover; display:block; }
+    .testi-who b { display:block; font-size:14px; font-weight:800; }
+    .testi-who span { display:block; font-size:12.5px; color:var(--muted); }
+
+    /* ===== Final CTA ===== */
+    .final-cta { background:linear-gradient(180deg,#f0f3f9,#e8edf7); text-align:center; }
+    .final-cta h2 { font-size:clamp(30px,4vw,48px); font-weight:800; line-height:1.1; letter-spacing:-.03em; color:var(--accent); }
+    .final-cta .italic-line { font-size:clamp(20px,2.2vw,26px); font-style:italic; font-weight:600; color:var(--accent); margin-top:16px; }
+    .final-create { max-width:560px; margin:36px auto 0; }
+    .final-create .create-note { color:var(--muted); }
+    .final-create .create-row { flex-wrap:nowrap; gap:0; background:#fff; border:1.5px solid var(--border); border-radius:999px; padding:6px 6px 6px 22px; }
+    .final-create .create-row input { flex:1 1 auto; min-width:0; border:0; border-radius:0; padding:0 12px 0 0; }
+    .final-create .create-row input:focus { box-shadow:none; }
+    .final-create .create-row .btn-primary { flex-shrink:0; border-radius:999px; }
+    @media (max-width:520px){
+      .final-create .create-row { flex-wrap:wrap; background:none; border:0; padding:0; gap:10px; }
+      .final-create .create-row input { border:1.5px solid var(--border); border-radius:12px; padding:0 16px; flex:1 1 100%; }
+      .final-create .create-row .btn-primary { flex:1 1 100%; width:100%; justify-content:center; }
+    }
+
+    /* ===== Sticky mobile CTA ===== */
+    #sticky-cta { position:fixed; left:0; right:0; bottom:0; z-index:70; padding:12px 16px calc(12px + env(safe-area-inset-bottom)); background:#fff; border-top:1px solid var(--border-light); box-shadow:0 -10px 30px rgba(0,0,0,.08); display:none; }
+    #sticky-cta .btn-primary { width:100%; justify-content:center; }
+    @media (max-width:760px){ #sticky-cta.show{ display:block; } body{ padding-bottom:78px; } }
+  </style>
+</head>
+<body>
+
+  <infina-nav active="salesx" cta-text="Create Property Expert →" cta-href="#hero-create-qr" transparent-until-scroll transparent-until="#hero-slider" logo-lg></infina-nav>
+
+  <!-- ===== Hero slider: Buying agent / Listing agent tabs ===== -->
+  <header class="hero-slider" id="hero-slider">
+    <div class="hero-tabs">
+      <div class="hero-tabs-inner">
+        <span class="hero-tab-indicator"></span>
+        <button type="button" class="hero-tab" data-slide="1">For Listing Agent</button>
+        <button type="button" class="hero-tab is-active" data-slide="0">For Buyer Agent</button>
+      </div>
+    </div>
+
+    <div class="hero-track" id="hero-track" style="transform:translateX(-50%);">
+    <div class="hero-slide hero is-active" data-slide-panel="0">
+      <img class="hero-photo" src="uploads/hero-boss-gen.jpg" alt="A happy couple holding keys in front of their new home" fetchpriority="high">
+      <div class="hero-scrim"></div>
+      <div class="container">
+        <div class="hero-copy">
+          <h1>Don't just send a listing.<br class="mobile-break"> Send a <span class="accent">Concierge.</span></h1>
+          <p class="hero-sub">Give every buyer a 24/7 Personal Home Concierge that learns what matters to them, helps them evaluate every home, and takes actions for them, with you still at the center of the relationship.</p>
+          <div class="create-box" id="hero-create">
+            <span class="create-label">Paste a property listing</span>
+            <div class="create-row">
+              <input type="url" id="url-1" placeholder="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" aria-label="Property listing URL">
+              <button type="button" class="btn-primary" data-create="1">Create Home Concierge →</button>
+            </div>
+            <p class="create-note">No CRM connection. No setup. Create your first advisor in under a minute.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide hero hero-seller" data-slide-panel="1">
+      <img class="hero-photo" src="uploads/hero-listing-new.jpg" alt="A For Sale yard sign with a QR code sticker in front of a home" loading="lazy">
+      <div class="hero-scrim"></div>
+      <div class="container">
+        <div class="hero-copy">
+          <h1>Turn every brochure and yard sign into a <span class="accent">24/7<br class="mobile-break"> Property Expert.</span></h1>
+          <p class="hero-sub">Scan the QR Code to get an AI expert that knows everything about the property and help buyers instantly from details and disclosures to pricing and next steps at any time 24/7.</p>
+          <div class="create-box" id="hero-create-qr">
+            <span class="create-label">Paste link to your listing</span>
+            <div class="create-row">
+              <input type="url" id="url-qr" placeholder="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" aria-label="Property listing URL">
+              <button type="button" class="btn-primary" id="qr-create-btn">Create Property Expert →</button>
+            </div>
+            <p class="create-note">No setup. No upload. Create your Property Expert in under a minute.</p>
+          </div>
+
+          <div class="qr-result" id="qr-result" hidden>
+            <div class="qr-loading" id="qr-loading">
+              <h4>Generating your QR code</h4>
+              <div class="qr-steps" id="qr-steps"></div>
+            </div>
+            <div class="qr-built" id="qr-built" hidden>
+              <img src="uploads/qr-sample.png" alt="Sample QR code for the listing">
+              <div class="qr-built-text">
+                <b>Your QR code is ready.</b>
+                <p>Print it on your yard sign or open house flyer. Visitors scan it to ask your Concierge about 124 Oak Street, day or night.</p>
+                <button type="button" class="btn-secondary" id="qr-download-btn">Download QR Code</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- ===== Hero video (own section) ===== -->
+  <section class="section hero-video-section">
+    <div class="container">
+      <span class="eyebrow" style="text-align:center; display:block; margin-bottom:20px;">See how it works</span>
+      <div class="hero-visual reveal">
+        <div class="hero-video" data-src="uploads/realsalex-tvc.mp4">
+          <img class="hero-video-poster" src="uploads/realsalex-tvc-poster.jpg" alt="Real Sale X, watch the film" loading="lazy" width="1920" height="1080">
+          <button class="hero-play" type="button" aria-label="Play the Real Sale X film">
+            <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+          </button>
+          <span class="hero-video-label">Watch the film · 0:48</span>
+          <a class="hero-video-fallback" href="uploads/realsalex-tvc.mp4">Watch the Real Sale X film</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Today vs With Home Concierge ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="tab-copy" data-tab="buying">
+        <span class="eyebrow" style="text-align:center; display:block;">The same buyer, two experiences</span>
+        <div class="compare-heads reveal" style="margin-top:8px;">
+          <div class="today"><b>Today</b><span>Your buyer is on their own</span></div>
+          <div></div>
+          <div class="advisor"><b>With Home Concierge</b><span>Your buyer has you</span></div>
+        </div>
+        <div class="compare-table reveal">
+          <div class="compare-row">
+            <div class="compare-cell today"><span class="compare-tag">Today</span>Agent sends a listing link</div>
+            <div class="compare-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="compare-cell advisor"><span class="compare-tag">With Home Concierge</span>Agent sends an advisor</div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell today"><span class="compare-tag">Today</span>Buyer browses Zillow, searches elsewhere, asks ChatGPT or Claude</div>
+            <div class="compare-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="compare-cell advisor"><span class="compare-tag">With Home Concierge</span>Buyer asks everything in one place</div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell today"><span class="compare-tag">Today</span>Often, buyer connects with another agent. If buyer eventually comes back, they need to brief you all the details</div>
+            <div class="compare-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="compare-cell advisor"><span class="compare-tag">With Home Concierge</span>Agent stays connected to the conversation</div>
+          </div>
+        </div>
+        <p class="pull-quote reveal" style="margin-top:clamp(40px,5vw,64px);">You remain the trusted advisor even when you're not available.</p>
+      </div>
+      <div class="tab-copy" data-tab="listing" hidden>
+        <span class="eyebrow" style="text-align:center; display:block;">The same yard sign, two outcomes</span>
+        <div class="compare-heads reveal" style="margin-top:8px;">
+          <div class="today"><b>Today</b><span>Buyers drive by and guess</span></div>
+          <div></div>
+          <div class="advisor"><b>With Property Expert</b><span>Buyers get real answers</span></div>
+        </div>
+        <div class="compare-table reveal">
+          <div class="compare-row">
+            <div class="compare-cell today"><span class="compare-tag">Today</span>Yard sign shows a phone number</div>
+            <div class="compare-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="compare-cell advisor"><span class="compare-tag">With Property Expert</span>Yard sign links to a Property Expert</div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell today"><span class="compare-tag">Today</span>Buyers look up the property on a portal</div>
+            <div class="compare-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="compare-cell advisor"><span class="compare-tag">With Property Expert</span>Buyers get all their questions answered by Property Expert</div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell today"><span class="compare-tag">Today</span>You wouldn't know who and how many were interested and what made each lose interest in the property</div>
+            <div class="compare-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <div class="compare-cell advisor"><span class="compare-tag">With Property Expert</span>Property Expert keeps them engaged and flags you when they're ready to act</div>
+          </div>
+        </div>
+        <p class="pull-quote reveal" style="margin-top:clamp(40px,5vw,64px);">Every listing works for you even when you're not available.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Advisor demo card ===== -->
+  <section class="section demo-section" id="see-it-work">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="tab-copy" data-tab="buying"><h2>What your <span class="accent">client gets</span></h2>
+        <p>A private page for this property, with an advisor that answers instantly and cites its sources.</p></div>
+        <div class="tab-copy" data-tab="listing" hidden><h2>What <span class="accent">buyers get</span></h2>
+        <p>A private page for this listing, with a Property Expert that answers instantly and cites its sources.</p></div>
+      </div>
+      <div class="demo-wrap reveal">
+        <div class="demo-card">
+          <div class="demo-card-head">
+            <div class="who"><b id="demo-advisor-name">Alex Rivera's Home Concierge</b><span id="demo-brokerage">Meridian Realty · Austin, TX</span></div>
+            <span class="demo-live-tag">Live · answers 24/7</span>
+          </div>
+          <div class="tab-copy" data-tab="buying">
+            <div class="demo-gallery">
+              <div class="demo-gallery-main"><img src="uploads/property-123-main.jpg" alt="123 Main Street, Austin TX exterior photo" loading="lazy"></div>
+              <div class="demo-gallery-side">
+                <div class="demo-gallery-thumb"><img src="uploads/property-123-main-living.jpg" alt="123 Main Street living room" loading="lazy"></div>
+                <div class="demo-gallery-thumb"><img src="uploads/property-123-main-kitchen.jpg" alt="123 Main Street kitchen" loading="lazy"></div>
+                <div class="demo-gallery-thumb"><img src="uploads/property-123-main-bedroom.jpg" alt="123 Main Street primary bedroom" loading="lazy"></div>
+                <div class="demo-gallery-thumb demo-gallery-more"><img src="uploads/property-123-main-backyard.jpg" alt="123 Main Street backyard patio" loading="lazy"><span class="demo-gallery-more-tag">See all 5 photos</span></div>
+              </div>
+            </div>
+            <div class="demo-specs">
+              <b>123 Main Street, Austin TX</b><span>$845,000</span><span>4 bd · 3 ba</span><span>2,410 sq ft</span><span>46 days on market</span>
+            </div>
+          </div>
+          <div class="tab-copy" data-tab="listing" hidden>
+            <div class="demo-gallery">
+              <div class="demo-gallery-main"><img src="uploads/property-148-maple-main.jpg" alt="148 Maple Ave, Mapleton exterior photo" loading="lazy"></div>
+              <div class="demo-gallery-side">
+                <div class="demo-gallery-thumb"><img src="uploads/property-148-maple-living.jpg" alt="148 Maple Ave living room" loading="lazy"></div>
+                <div class="demo-gallery-thumb"><img src="uploads/property-148-maple-kitchen.jpg" alt="148 Maple Ave kitchen" loading="lazy"></div>
+                <div class="demo-gallery-thumb"><img src="uploads/property-148-maple-bedroom.jpg" alt="148 Maple Ave primary bedroom" loading="lazy"></div>
+                <div class="demo-gallery-thumb demo-gallery-more"><img src="uploads/property-148-maple-backyard.jpg" alt="148 Maple Ave backyard patio" loading="lazy"><span class="demo-gallery-more-tag">See all 5 photos</span></div>
+              </div>
+            </div>
+            <div class="demo-specs">
+              <b>148 Maple Ave, Mapleton</b><span>$748,000</span><span>4 bd · 3 ba</span><span>2,410 sq ft</span><span>Just listed</span>
+            </div>
+          </div>
+
+          <!-- Idle: chat demo -->
+          <div class="demo-body" id="demo-idle">
+            <div class="persona-pills" id="demo-persona-pills">
+              <button type="button" class="persona-pill" data-persona="buyer">First-time buyer</button>
+              <button type="button" class="persona-pill" data-persona="upgrade">Upgrade</button>
+              <button type="button" class="persona-pill" data-persona="investment">Investment</button>
+              <button type="button" class="persona-pill" data-persona="flip">Flip</button>
+              <button type="button" class="persona-pill" data-persona="vacation">Vacation home</button>
+            </div>
+            <h3 id="demo-ask-title">Ask anything about 123 Main Street</h3>
+            <div class="demo-thread" id="demo-thread"><!-- filled by JS --></div>
+            <div>
+              <div class="demo-chips" id="demo-chips"><!-- filled by JS --></div>
+              <div class="demo-ask-row" style="margin-top:12px;">
+                <input type="text" id="demo-ask-input" placeholder="Ask about this property..." aria-label="Ask the advisor about this property">
+                <button type="button" id="demo-ask-btn" aria-label="Send question">→</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Loading -->
+          <div class="demo-loading" id="demo-loading" hidden>
+            <h3 id="demo-loading-title">Building your advisor</h3>
+            <div class="demo-steps" id="demo-steps"><!-- filled by JS --></div>
+          </div>
+
+          <!-- Built -->
+          <div class="demo-built" id="demo-built" hidden>
+            <span class="tag-ready">Ready to send</span>
+            <h3 id="demo-built-title">Alex Rivera's Home Concierge is live for this listing.</h3>
+            <p>It has read the listing, the county records and the disclosure. Send this link instead of the listing, and you'll see every question your buyer asks.</p>
+            <div class="demo-link-row">
+              <span id="demo-share-link">advisor.realsalex.co/alex/123-main-st</span>
+              <button type="button" class="btn-secondary" id="demo-copy-btn">Copy link</button>
+            </div>
+            <div class="demo-built-actions">
+              <button type="button" class="btn-ghost" id="demo-reset-btn">Back to the example</button>
+            </div>
+          </div>
+
+          <div class="demo-footer" id="demo-footer">Alex sees every question and can join the conversation at any point.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Three reasons (listing agent only) ===== -->
+  <section class="section tab-copy" data-tab="listing" hidden>
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Three reasons agents <span class="accent">send a Property Expert.</span></h2>
+      </div>
+      <div class="aic-3">
+        <div class="aic reveal">
+          <span class="aic-num">01</span>
+          <h3>Always available.</h3>
+          <p>Answer every buyer 24/7, even at night, on weekends, or while you're with another client.</p>
+        </div>
+        <div class="aic reveal">
+          <span class="aic-num">02</span>
+          <h3>Moves buyers forward.</h3>
+          <p>Help buyers request disclosures, book a showing, or compare the property, not just answer questions.</p>
+        </div>
+        <div class="aic reveal">
+          <span class="aic-num">03</span>
+          <h3>Helps you win listings.</h3>
+          <p>Show sellers their home gets its own 24/7 expert, not just another listing page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Engage / Understand / Follow up (buyer agent only) ===== -->
+  <section class="section tab-copy" data-tab="buying" hidden>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Before the first showing</span>
+        <h2>Give every question <span class="accent">a next step.</span></h2>
+        <p>As buyers ask about 123 Main Street, you learn what matters to them, and when to step in.</p>
+      </div>
+      <div class="aic-3">
+        <div class="aic reveal">
+          <span class="aic-num">01</span>
+          <h3>Make replying easy.</h3>
+          <p>Start with one approachable question about the property. Buyers can answer by text or voice, at their own pace.</p>
+        </div>
+        <div class="aic reveal">
+          <span class="aic-num">02</span>
+          <h3>Discover needs and readiness.</h3>
+          <p>As they ask about this home, learn their must-haves, budget comfort, and timing. Unanswered questions stay visible so you know what to ask next.</p>
+        </div>
+        <div class="aic reveal">
+          <span class="aic-num">03</span>
+          <h3>Match the next step to the buyer.</h3>
+          <p>Help early browsers clarify what they want, and connect ready buyers to a tour or a call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Once the buyer is ready (buyer agent only) ===== -->
+  <section class="section tab-copy" data-tab="buying" hidden>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Once the buyer is ready</span>
+        <h2>Address obstacles while there's <span class="accent">time to act.</span></h2>
+        <p>The relationship continues after a tour or an offer. Home Concierge helps organize questions and flag issues for your attention.</p>
+      </div>
+      <div class="buyer-card reveal">
+        <div class="buyer-topbar">
+          <div class="buyer-who">
+            <img class="buyer-avatar" src="uploads/avatar-alex-rivera.jpg" alt="Alex Rivera">
+            <div>
+              <h3 class="buyer-name">Alex Rivera</h3>
+              <p class="buyer-status"><span class="buyer-dot"></span>Active buyer &middot; 3 homes in consideration</p>
+            </div>
+          </div>
+          <div class="buyer-contact">
+            <span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>alex.rivera@example.com</span>
+            <span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.1-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 2 .6 2.9a2 2 0 01-.5 2.1L8 10a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.9.5 2.9.6a2 2 0 011.7 2.1z"/></svg>(512) 555-0148</span>
+          </div>
+        </div>
+
+        <div class="buyer-tags">
+          <span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Austin, TX</span>
+          <span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>First-time buyer</span>
+          <span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Pre-approved</span>
+          <span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 12.3L12.7 20.2a1 1 0 01-1.4 0l-8-8A1 1 0 013 11.5V4a1 1 0 011-1h7.5a1 1 0 01.7.3l8 8a1 1 0 010 1.4z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg>Budget up to $900K</span>
+          <span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6"/><path d="M3 18h18M5 10V7a1 1 0 011-1h5a1 1 0 011 1v3"/></svg>3-4 bed</span>
+        </div>
+
+        <div class="buyer-group is-alert">
+          <div class="buyer-group-head">
+            <span class="buyer-group-icon is-alert"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg></span>
+            Needs your attention
+            <span class="buyer-group-count is-alert">2</span>
+          </div>
+          <div class="buyer-row is-alert">
+            <span class="buyer-row-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg></span>
+            <img class="buyer-row-photo" src="uploads/property-123-main-thumb.jpg" alt="123 Main Street">
+            <span class="buyer-row-text"><b>Was this repaired professionally, or should we ask for a closer inspection?</b><span>123 Main Street &middot; Inspection</span></span>
+            <span class="buyer-row-status is-alert">Needs attention</span>
+            <span class="buyer-row-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+          <div class="buyer-row is-alert">
+            <span class="buyer-row-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg></span>
+            <img class="buyer-row-photo" src="uploads/property-123-main-thumb.jpg" alt="123 Main Street">
+            <span class="buyer-row-text"><b>Can we get the patio repair credit in writing before we sign?</b><span>123 Main Street &middot; Credit</span></span>
+            <span class="buyer-row-status is-alert">Needs attention</span>
+            <span class="buyer-row-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+
+        <div class="buyer-group">
+          <div class="buyer-group-head">
+            <span class="buyer-group-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span>
+            Other questions
+            <span class="buyer-group-count">3</span>
+          </div>
+          <div class="buyer-row">
+            <img class="buyer-row-photo" src="uploads/property-lakeview-88.jpg" alt="88 Lakeview Drive">
+            <span class="buyer-row-text"><b>Does the HOA allow short-term rentals?</b><span>88 Lakeview Drive &middot; HOA</span></span>
+            <span class="buyer-row-status is-due">Following up</span>
+            <span class="buyer-row-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+          <div class="buyer-row">
+            <img class="buyer-row-photo" src="uploads/property-oaklane-42.jpg" alt="42 Oak Lane">
+            <span class="buyer-row-text"><b>Is the lender fully confirmed for this property?</b><span>42 Oak Lane &middot; Financing</span></span>
+            <span class="buyer-row-status is-done">Answered</span>
+            <span class="buyer-row-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+          <div class="buyer-row">
+            <img class="buyer-row-photo" src="uploads/property-123-main-thumb.jpg" alt="123 Main Street">
+            <span class="buyer-row-text"><b>When exactly is the disclosure deadline?</b><span>123 Main Street &middot; Timeline</span></span>
+            <span class="buyer-row-status is-done">Answered</span>
+            <span class="buyer-row-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== How it works (buyer agent only) ===== -->
+  <section class="section tab-copy" data-tab="buying" hidden>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">The agent's advantage</span>
+        <h2>Know what matters. <span class="accent">Know where to help.</span></h2>
+        <p>A focused briefing brings together the buyer's stated needs, timing, open questions, and next step. You can start informed and carry that understanding through the purchase.</p>
+      </div>
+
+      <div class="journey-mobile reveal">
+        <div class="journey-m-card">
+          <div class="journey-m-text">
+            <div class="journey-head"><span class="aic-num">01</span><h3>Share at first contact.</h3></div>
+            <p class="journey-sub">Before you know their budget or timeline.</p>
+            <div class="journey-pill-row">
+              <span class="journey-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span>
+              <span class="journey-pill">First contact</span>
+            </div>
+            <p>Share Home Concierge for 123 Main Street before you know the buyer's needs, budget, or timeline.</p>
+          </div>
+          <img class="journey-m-photo" src="uploads/buyer-journey-contact.jpg" alt="A woman smiling at her phone at home, receiving a first message">
+        </div>
+        <span class="journey-m-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+        <div class="journey-m-card">
+          <div class="journey-m-text">
+            <div class="journey-head"><span class="aic-num">02</span><h3>Build understanding through conversation.</h3></div>
+            <p class="journey-sub">Learn as the buyer replies.</p>
+            <div class="journey-pill-row">
+              <span class="journey-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span>
+              <span class="journey-pill">Ongoing conversation</span>
+            </div>
+            <p>Learn from volunteered answers and update the buyer's profile as their plans develop.</p>
+          </div>
+          <img class="journey-m-photo" src="uploads/buyer-journey-conversation.jpg" alt="A hand writing on a new home checklist">
+        </div>
+        <span class="journey-m-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6-6 6"/></svg></span>
+        <div class="journey-m-card">
+          <div class="journey-m-text">
+            <div class="journey-head"><span class="aic-num">03</span><h3>Step in when your expertise matters.</h3></div>
+            <p class="journey-sub">A concrete reason to connect.</p>
+            <div class="journey-pill-row">
+              <span class="journey-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+              <span class="journey-pill">Your expertise</span>
+            </div>
+            <p>A tour request, a changed move date, or an unresolved concern gives you a concrete reason to connect.</p>
+          </div>
+          <img class="journey-m-photo" src="uploads/buyer-journey-connect-mobile.jpg" alt="An agent smiling while calling a buyer">
+        </div>
+        <span class="journey-m-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6-6 6"/></svg></span>
+        <div class="journey-m-card is-last">
+          <div class="journey-m-text">
+            <div class="journey-head"><span class="aic-num">04</span><h3>Carry the context through closing.</h3></div>
+            <p class="journey-sub">Keep priorities in view.</p>
+            <div class="journey-pill-row">
+              <span class="journey-icon is-done"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span class="journey-pill">Through closing</span>
+            </div>
+            <p>Use those priorities to guide the search, clarify concerns, and keep purchase tasks in view.</p>
+          </div>
+          <img class="journey-m-photo" src="uploads/buyer-journey-closing-mobile.jpg" alt="A house with a SOLD sign in the front yard">
+        </div>
+
+        <div class="journey-m-timeline">
+          <div class="journey-m-track">
+            <div class="journey-m-dots">
+              <div class="journey-m-dot-wrap"><span class="journey-m-dot is-filled"></span></div>
+              <div class="journey-m-dot-wrap"><span class="journey-m-dot"></span></div>
+              <div class="journey-m-dot-wrap"><span class="journey-m-dot"></span></div>
+              <div class="journey-m-dot-wrap"><span class="journey-m-dot is-done"></span></div>
+            </div>
+          </div>
+          <div class="journey-m-labels">
+            <span class="journey-m-label">Exploration</span>
+            <span class="journey-m-label">Intent</span>
+            <span class="journey-m-label">Negotiation</span>
+            <span class="journey-m-label">Transaction</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-desktop reveal">
+        <div class="journey-row">
+          <div class="journey-card j-1">
+            <img class="journey-photo" src="uploads/buyer-journey-contact.jpg" alt="A woman smiling at her phone at home, receiving a first message">
+            <div class="journey-mask"></div>
+            <div class="journey-content">
+              <div class="journey-head"><span class="aic-num">01</span><h3>Share at first contact.</h3></div>
+              <p class="journey-sub">Before you know their budget or timeline.</p>
+              <div class="journey-pill-row">
+                <span class="journey-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span>
+                <span class="journey-pill">First contact</span>
+              </div>
+              <p>Share Home Concierge for 123 Main Street before you know the buyer's needs, budget, or timeline.</p>
+            </div>
+          </div>
+          <span class="journey-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="journey-card j-2">
+            <img class="journey-photo" src="uploads/buyer-journey-conversation.jpg" alt="A hand writing on a new home checklist">
+            <div class="journey-mask"></div>
+            <div class="journey-content">
+              <div class="journey-head"><span class="aic-num">02</span><h3>Build understanding through conversation.</h3></div>
+              <p class="journey-sub">Learn as the buyer replies.</p>
+              <div class="journey-pill-row">
+                <span class="journey-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span>
+                <span class="journey-pill">Ongoing conversation</span>
+              </div>
+              <p>Learn from volunteered answers and update the buyer's profile as their plans develop.</p>
+            </div>
+          </div>
+          <span class="journey-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="journey-card j-3">
+            <img class="journey-photo" src="uploads/buyer-journey-connect.jpg" alt="An agent smiling while calling a buyer">
+            <div class="journey-mask"></div>
+            <div class="journey-content">
+              <div class="journey-head"><span class="aic-num">03</span><h3>Step in when your expertise matters.</h3></div>
+              <p class="journey-sub">A concrete reason to connect.</p>
+              <div class="journey-pill-row">
+                <span class="journey-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+                <span class="journey-pill">Your expertise</span>
+              </div>
+              <p>A tour request, a changed move date, or an unresolved concern gives you a concrete reason to connect.</p>
+            </div>
+          </div>
+          <span class="journey-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="journey-card j-4">
+            <img class="journey-photo" src="uploads/buyer-journey-closing.jpg" alt="A house with a SOLD sign in the front yard">
+            <div class="journey-mask"></div>
+            <div class="journey-content">
+              <div class="journey-head"><span class="aic-num">04</span><h3>Carry the context through closing.</h3></div>
+              <p class="journey-sub">Keep priorities in view.</p>
+              <div class="journey-pill-row">
+                <span class="journey-icon is-done"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span class="journey-pill">Through closing</span>
+              </div>
+              <p>Use those priorities to guide the search, clarify concerns, and keep purchase tasks in view.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-timeline">
+          <div class="journey-track">
+            <div class="journey-dots">
+              <div class="journey-dot-wrap"><span class="journey-dot is-filled"></span></div>
+              <div class="journey-dot-wrap"><span class="journey-dot"></span></div>
+              <div class="journey-dot-wrap"><span class="journey-dot"></span></div>
+              <div class="journey-dot-wrap"><span class="journey-dot is-done"></span></div>
+            </div>
+          </div>
+          <div class="journey-labels">
+            <div class="journey-label"><b>Many questions</b><span>Exploration</span></div>
+            <div class="journey-label"><b>Qualified interest</b><span>Intent</span></div>
+            <div class="journey-label"><b>Serious conversation</b><span>Negotiation</span></div>
+            <div class="journey-label"><b>Action</b><span>Transaction</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== Data trust ===== -->
+  <section class="section" style="background:var(--surface);">
+    <div class="container">
+      <div class="tab-copy" data-tab="buying">
+        <div class="trust-grid">
+          <div class="reveal">
+            <span class="eyebrow">An extension of you, not a replacement</span>
+            <h2 style="font-size:clamp(28px,3.6vw,42px); font-weight:800; letter-spacing:-.02em; line-height:1.15; color:var(--accent);">Your client. Your relationship. <span class="accent">Your data.</span></h2>
+            <ul class="trust-list">
+              <li><span class="dot"></span><span class="tx">The advisor cites its sources.</span></li>
+              <li><span class="dot"></span><span class="tx">It does not invent answers when information is unavailable.</span></li>
+              <li><span class="dot"></span><span class="tx">You control the information supplied to the advisor.</span></li>
+              <li><span class="dot"></span><span class="tx">Your relationship data is not sold.</span></li>
+              <li><span class="dot"></span><span class="tx">You can delete your data at any time.</span></li>
+            </ul>
+          </div>
+          <figure class="trust-photo reveal" style="margin:0;">
+            <img src="uploads/realsalex-results-band.png" alt="An agent sitting with two clients in a living room">
+          </figure>
+        </div>
+      </div>
+
+      <div class="tab-copy" data-tab="listing" hidden>
+        <div class="section-head reveal">
+          <span class="eyebrow">Not another chatbot</span>
+          <h2>Grounded in your listing. <span class="accent">Never guessing.</span></h2>
+          <p>Answers powered by real listing data.</p>
+        </div>
+
+        <div class="grounded-diagram reveal">
+          <div class="grounded-flow">
+            <div class="grounded-sources">
+              <div class="source-row">
+                <div class="source-card"><span class="source-icon icon-blue"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>MLS</div>
+                <div class="source-card"><span class="source-icon icon-green"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span>Seller Disclosure</div>
+              </div>
+              <div class="source-row">
+                <div class="source-card"><span class="source-icon icon-purple"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span>Inspection Report</div>
+                <div class="source-card"><span class="source-icon icon-amber"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v10M19 10v10M9 10v10M15 10v10"/><path d="M3 21h18"/></svg></span>Public Records</div>
+              </div>
+              <div class="source-row">
+                <div class="source-card"><span class="source-icon icon-blue"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3.1-5 7-5s7 1.7 7 5"/><circle cx="17" cy="9" r="2.3"/><path d="M15.5 20c.3-1.8 1.7-3.1 3.5-3.5"/></svg></span>HOA</div>
+                <div class="source-card"><span class="source-icon icon-rose"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="12" width="4" height="8"/><rect x="10" y="7" width="4" height="13"/><rect x="16" y="3" width="4" height="17"/></svg></span>Comps</div>
+              </div>
+            </div>
+
+            <div class="grounded-arrows">
+              <span class="arrow-cell"><svg width="70" height="60" viewBox="0 0 180 110" fill="none"><path d="M6 8 C 70 8, 82 32, 92 58 C 101 82, 118 98, 164 98" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M164 98 L154 92 M164 98 L154 104" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="arrow-cell"><svg width="70" height="14" viewBox="0 0 180 24" fill="none"><path d="M6 12 H164" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M164 12 L154 6 M164 12 L154 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="arrow-cell"><svg width="70" height="60" viewBox="0 0 180 110" fill="none"><path d="M6 102 C 70 102, 82 78, 92 52 C 101 28, 118 12, 164 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M164 12 L154 6 M164 12 L154 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+
+            <div class="grounded-mobile-arrows">
+              <svg width="120" height="65" viewBox="0 0 240 130" fill="none"><path d="M20 10 C20 55, 70 60, 110 60 C150 60, 190 70, 190 110" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M190 110L182 98" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M190 110L198 98" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="10" r="7" fill="currentColor"/></svg>
+              <svg width="120" height="65" viewBox="0 0 240 130" fill="none"><path d="M220 10 C220 55, 170 60, 130 60 C90 60, 50 70, 50 110" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M50 110L42 98" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M50 110L58 98" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="220" cy="10" r="7" fill="currentColor"/></svg>
+            </div>
+
+            <div class="grounded-center">
+              <div class="center-node">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+                <span>Property Expert</span>
+              </div>
+              <span class="center-dashed"></span>
+            </div>
+
+            <div class="grounded-output">
+              <span class="output-arrow"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              <div class="answer-card">
+                <span class="answer-check"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></span>
+                <p>Foundation repairs completed in 2022.</p>
+                <div class="answer-tags">
+                  <span class="answer-tag"><span class="source-icon icon-green sm"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span>Seller Disclosure</span>
+                  <span class="answer-tag"><span class="source-icon icon-purple sm"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span>Inspection Report</span>
+                </div>
+                <a href="#" class="answer-source-link">SOURCE SHOWN <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="grounded-callout">
+            <span class="callout-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+            If the answer isn't in the data, it says so.
+          </div>
+
+          <div class="grounded-badges">
+            <div class="grounded-badge">
+              <span class="badge-icon icon-blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span>
+              <div><b>Private buyer conversations</b><span>Every buyer gets a confidential chat.</span></div>
+            </div>
+            <div class="grounded-badge">
+              <span class="badge-icon icon-green"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
+              <div><b>No login required</b><span>Get answers instantly.</span></div>
+            </div>
+            <div class="grounded-badge">
+              <span class="badge-icon icon-amber"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+              <div><b>Share it everywhere</b><span>Property page, listing campaigns, open-house materials, or a yard sign QR.</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== How it works (listing agent only) ===== -->
+  <section class="section tab-copy" data-tab="listing" hidden>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">The entire buyer journey</span>
+        <h2>Keep the conversation moving toward <span class="accent">a decision.</span></h2>
+        <p>Property Expert is designed to carry questions forward as interest becomes a showing, an offer, and a transaction. You see where your attention can help.</p>
+      </div>
+      <div class="journey-mobile reveal">
+        <div class="journey-m-card">
+          <div class="journey-m-text">
+            <div class="journey-head"><span class="aic-num">01</span><h3>Discovery</h3></div>
+            <p class="journey-sub">From questions to informed interest.</p>
+            <div class="journey-pill-row">
+              <span class="journey-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span>
+              <span class="journey-pill">Answer questions</span>
+            </div>
+            <p>Answer property questions from current listing materials and invite the buyer to explore what matters.</p>
+          </div>
+          <img class="journey-m-photo" src="uploads/journey-discovery.jpg" alt="A buyer relaxing at home, reading messages on her phone">
+        </div>
+        <span class="journey-m-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+        <div class="journey-m-card">
+          <div class="journey-m-text">
+            <div class="journey-head"><span class="aic-num">02</span><h3>Showing</h3></div>
+            <p class="journey-sub">From interest to a showing.</p>
+            <div class="journey-pill-row">
+              <span class="journey-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+              <span class="journey-pill">Prepare a tour</span>
+            </div>
+            <p>Capture a tour request and the buyer's questions so you can prepare a relevant visit.</p>
+          </div>
+          <img class="journey-m-photo" src="uploads/journey-showing.jpg" alt="An agent and a buyer talking during a home showing">
+        </div>
+        <span class="journey-m-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+        <div class="journey-m-card">
+          <div class="journey-m-text">
+            <div class="journey-head"><span class="aic-num">03</span><h3>Offer</h3></div>
+            <p class="journey-sub">From showing to a real conversation.</p>
+            <div class="journey-pill-row">
+              <span class="journey-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span>
+              <span class="journey-pill">Route key questions</span>
+            </div>
+            <p>Ask what remains unresolved. Route requests about price, terms, or repairs to the right people.</p>
+          </div>
+          <img class="journey-m-photo" src="uploads/journey-offer.jpg" alt="A hand reviewing a printed real estate offer">
+        </div>
+        <span class="journey-m-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+        <div class="journey-m-card is-last">
+          <div class="journey-m-text">
+            <div class="journey-head"><span class="aic-num">04</span><h3>Closing</h3></div>
+            <p class="journey-sub">From accepted offer to closing.</p>
+            <div class="journey-pill-row">
+              <span class="journey-icon is-done"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span class="journey-pill">Organize next steps</span>
+            </div>
+            <p>Organize document requests, inspection questions, and agreed milestones.</p>
+          </div>
+          <img class="journey-m-photo" src="uploads/journey-closing.jpg" alt="A house with a SOLD sign in the front yard">
+        </div>
+
+        <div class="journey-m-timeline">
+          <div class="journey-m-track">
+            <div class="journey-m-dots">
+              <div class="journey-m-dot-wrap"><span class="journey-m-dot is-filled"></span></div>
+              <div class="journey-m-dot-wrap"><span class="journey-m-dot"></span></div>
+              <div class="journey-m-dot-wrap"><span class="journey-m-dot"></span></div>
+              <div class="journey-m-dot-wrap"><span class="journey-m-dot is-done"></span></div>
+            </div>
+          </div>
+          <div class="journey-m-labels">
+            <span class="journey-m-label">Exploration</span>
+            <span class="journey-m-label">Intent</span>
+            <span class="journey-m-label">Negotiation</span>
+            <span class="journey-m-label">Transaction</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-desktop reveal">
+        <div class="journey-row">
+          <div class="journey-card j-1">
+            <img class="journey-photo" src="uploads/journey-discovery.jpg" alt="A buyer relaxing at home, reading messages on her phone">
+            <div class="journey-mask"></div>
+            <div class="journey-content">
+              <div class="journey-head"><span class="aic-num">01</span><h3>Discovery</h3></div>
+              <p class="journey-sub">From questions to informed interest.</p>
+              <div class="journey-pill-row">
+                <span class="journey-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span>
+                <span class="journey-pill">Answer questions</span>
+              </div>
+              <p>Answer property questions from current listing materials and invite the buyer to explore what matters.</p>
+            </div>
+          </div>
+          <span class="journey-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="journey-card j-2">
+            <img class="journey-photo" src="uploads/journey-showing.jpg" alt="An agent and a buyer talking during a home showing">
+            <div class="journey-mask"></div>
+            <div class="journey-content">
+              <div class="journey-head"><span class="aic-num">02</span><h3>Showing</h3></div>
+              <p class="journey-sub">From interest to a showing.</p>
+              <div class="journey-pill-row">
+                <span class="journey-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+                <span class="journey-pill">Prepare a tour</span>
+              </div>
+              <p>Capture a tour request and the buyer's questions so you can prepare a relevant visit.</p>
+            </div>
+          </div>
+          <span class="journey-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="journey-card j-3">
+            <img class="journey-photo" src="uploads/journey-offer.jpg" alt="A hand reviewing a printed real estate offer">
+            <div class="journey-mask"></div>
+            <div class="journey-content">
+              <div class="journey-head"><span class="aic-num">03</span><h3>Offer</h3></div>
+              <p class="journey-sub">From showing to a real conversation.</p>
+              <div class="journey-pill-row">
+                <span class="journey-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span>
+                <span class="journey-pill">Route key questions</span>
+              </div>
+              <p>Ask what remains unresolved. Route requests about price, terms, or repairs to the right people.</p>
+            </div>
+          </div>
+          <span class="journey-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="journey-card j-4">
+            <img class="journey-photo" src="uploads/journey-closing.jpg" alt="A house with a SOLD sign in the front yard">
+            <div class="journey-mask"></div>
+            <div class="journey-content">
+              <div class="journey-head"><span class="aic-num">04</span><h3>Closing</h3></div>
+              <p class="journey-sub">From accepted offer to closing.</p>
+              <div class="journey-pill-row">
+                <span class="journey-icon is-done"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span class="journey-pill">Organize next steps</span>
+              </div>
+              <p>Organize document requests, inspection questions, and agreed milestones.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-timeline">
+          <div class="journey-track">
+            <div class="journey-dots">
+              <div class="journey-dot-wrap"><span class="journey-dot is-filled"></span></div>
+              <div class="journey-dot-wrap"><span class="journey-dot"></span></div>
+              <div class="journey-dot-wrap"><span class="journey-dot"></span></div>
+              <div class="journey-dot-wrap"><span class="journey-dot is-done"></span></div>
+            </div>
+          </div>
+          <div class="journey-labels">
+            <div class="journey-label"><b>Many questions</b><span>Exploration</span></div>
+            <div class="journey-label"><b>Qualified interest</b><span>Intent</span></div>
+            <div class="journey-label"><b>Serious conversation</b><span>Negotiation</span></div>
+            <div class="journey-label"><b>Action</b><span>Transaction</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Buyer-intent insights (listing agent only) ===== -->
+  <section class="section tab-copy" data-tab="listing" hidden>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Know what buyers care about</span>
+        <h2>Turn curiosity into <span class="accent">intent.</span></h2>
+        <p>Not all questions mean the same thing. Property Expert helps you see which ones do.</p>
+      </div>
+      <div class="intent-staircase">
+        <div class="intent-funnel reveal">
+          <div class="intent-step lvl-1">
+            <span class="intent-count">42 buyers</span>
+            <span class="intent-stage">Exploration</span><span class="intent-divider"></span>
+            <p class="intent-example">"When was the home built?"</p>
+            <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span>
+          </div>
+          <div class="intent-step lvl-2">
+            <span class="intent-count">27 buyers</span>
+            <span class="intent-stage">Intent</span><span class="intent-divider"></span>
+            <p class="intent-example">"How does this compare with nearby homes?"</p>
+            <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+          </div>
+          <div class="intent-step lvl-3">
+            <span class="intent-count">14 buyers</span>
+            <span class="intent-stage">Negotiation</span><span class="intent-divider"></span>
+            <p class="intent-example">"What does the disclosure say about foundation work?"</p>
+            <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span>
+          </div>
+          <div class="intent-step lvl-4">
+            <span class="intent-count">8 buyers</span>
+            <span class="intent-stage">Transaction</span><span class="intent-divider"></span>
+            <p class="intent-example">"When are offers due?" · "Can I tour tomorrow?" · "What's the inspection deadline?" · "When do we get the keys?"</p>
+            <span class="intent-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+          </div>
+        </div>
+        <div class="intent-floor"></div>
+        <span class="intent-highest">
+          <svg class="intent-highest-desktop" width="34" height="22" viewBox="0 0 44 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M42 2C28 3 16 10 8 22" stroke="#0A2A66" stroke-width="1.8" stroke-linecap="round"/><path d="M8 22L9.5 15.5" stroke="#0A2A66" stroke-width="1.8" stroke-linecap="round"/><path d="M8 22L14 19.5" stroke="#0A2A66" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <svg class="intent-highest-mobile" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:scaleX(-1) rotate(-40deg);"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          Highest intent
+        </span>
+        <div class="intent-outro"><span>From curiosity to closing</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Testimonials ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">From agents sending advisors</span>
+      </div>
+      <div class="testi-grid">
+        <div class="testi reveal">
+          <blockquote>"I sent this instead of a Zillow link and my buyer asked 14 questions that night."</blockquote>
+          <div class="testi-who"><img class="testi-avatar" src="uploads/testi-dana.jpg" alt="Dana Whitfield"><span><b>Dana Whitfield</b><span>Compass · Austin, TX · $31M closed in the last 12 months</span></span></div>
+        </div>
+        <div class="testi reveal">
+          <blockquote>"My clients stopped calling at 9 PM with questions I had already answered twice."</blockquote>
+          <div class="testi-who"><img class="testi-avatar" src="uploads/testi-marcus.jpg" alt="Marcus Ellery"><span><b>Marcus Ellery</b><span>Coldwell Banker · Nashville, TN · $18M closed in the last 12 months</span></span></div>
+        </div>
+        <div class="testi reveal">
+          <blockquote>"The questions it got asked told me exactly what to negotiate on before I called the listing agent."</blockquote>
+          <div class="testi-who"><img class="testi-avatar" src="uploads/testi-priya.jpg" alt="Priya Raman"><span><b>Priya Raman</b><span>Douglas Elliman · Denver, CO · $44M closed in the last 12 months</span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== Final CTA ===== -->
+  <section class="section final-cta">
+    <div class="container">
+      <div class="tab-copy" data-tab="buying">
+        <h2>Your next client doesn't need<br><span class="accent">another listing link.</span></h2>
+        <p class="italic-line">Give them an advisor they can talk to.</p>
+      </div>
+      <div class="tab-copy" data-tab="listing" hidden>
+        <h2>Your next listing doesn't need<br><span class="accent">another static page.</span></h2>
+        <p class="italic-line">Property Expert doesn't replace you. It extends you.</p>
+      </div>
+      <div class="create-box final-create">
+        <div class="create-row">
+          <input type="url" id="url-2" placeholder="https://www.zillow.com/homedetails/8310-Regents-Rd-UNIT-2A-San-Diego-CA-92122/16836646_zpid/" aria-label="Property listing URL">
+          <button type="button" class="btn-primary" id="final-create-btn" data-create="2">Create Home Concierge →</button>
+        </div>
+        <p class="create-note" id="final-create-note">No signup required to see your first advisor.</p>
+      </div>
+    </div>
+  </section>
+
+  <infina-footer links='[{"text":"For Listing Agent","href":"#hero-slider","dataSlide":"1"},{"text":"For Buyer Agent","href":"#hero-slider","dataSlide":"0"}]'></infina-footer>
+
+  <div id="sticky-cta">
+    <button type="button" class="btn-primary" id="sticky-cta-btn">Create Home Concierge →</button>
+  </div>
+
+  <script>
+    // ===== Buyer-purpose analyses for the listing-agent demo (148 Maple Ave) =====
+    var PERSONAS_LISTING = {
+      buyer: {
+        q: "What should I know before making an offer?",
+        lead: "Three things worth knowing before you commit.",
+        points: [
+          { n: "01", t: "At $748,000 with 10% down, expect a monthly payment near $4,950 including taxes and insurance, budget accordingly against your income." },
+          { n: "02", t: "HVAC was replaced in 2021 and there are no reported roof leaks, but ask for a home inspection to confirm attic insulation and water heater age." },
+          { n: "03", t: "Mapleton Elementary is rated 8/10 and a 5-minute walk away, a common reason buyers choose this block." }
+        ],
+        close: "I can pull the full inspection report and school zoning map if you want to go deeper before your offer.",
+        sources: ["MLS", "Public Records", "School District Data"]
+      },
+      upgrade: {
+        q: "Is this a good move up from my current home?",
+        lead: "Here's how this compares to a typical move-up purchase.",
+        points: [
+          { n: "01", t: "At 2,410 sq ft with 4 beds and 3 baths, this runs about 30% larger than the median starter home in Mapleton." },
+          { n: "02", t: "Homes in this price range are averaging 12 days on market this quarter, plan your sale timeline to avoid carrying two mortgages." },
+          { n: "03", t: "Factor in about 6% combined agent commission plus transfer taxes on your sale, typically $45k-55k on a similar-priced departure home." }
+        ],
+        close: "Want me to estimate your net proceeds from selling your current home first?",
+        sources: ["MLS", "Local Market Data", "Public Records"]
+      },
+      investment: {
+        q: "Would this work as a rental property?",
+        lead: "Here's the rental math on this one.",
+        points: [
+          { n: "01", t: "Comparable rentals nearby lease for about $3,400/month. Against this list price, gross yield is roughly 5.5%, cap rate after expenses lands near 4.1%." },
+          { n: "02", t: "With 25% down at current rates, estimated cash-on-cash return is about 3.8%, below the 8% target most investors look for." },
+          { n: "03", t: "At $3,400 rent against an estimated $3,050 monthly debt service, DSCR is approximately 1.11, below the 1.20 most DSCR lenders require." }
+        ],
+        close: "This looks tight as a straight rental. Want me to model a house-hack scenario, or check nearby comps with stronger yield?",
+        sources: ["MLS", "Rental Comps", "Lender Guidelines"]
+      },
+      flip: {
+        q: "What's my max offer if I want to flip this?",
+        lead: "Running the 70% rule on this one.",
+        points: [
+          { n: "01", t: "Recently renovated 4-bed comps within half a mile closed between $305 and $320 a square foot, putting ARV near $770,000." },
+          { n: "02", t: "From the listing photos, this looks like a medium rehab (kitchen, baths, cosmetic), plan on $35-45 per square foot, or roughly $95,000." },
+          { n: "03", t: "70% of ARV ($539,000) minus rehab ($95,000) puts your max offer around $444,000, well below the $748,000 asking price." }
+        ],
+        close: "At the current price, this doesn't pencil as a flip. Want me to flag similar listings closer to that offer range?",
+        sources: ["MLS", "Comparable Sales", "Renovation Cost Data"]
+      },
+      vacation: {
+        q: "Could this work as a vacation home with rental income?",
+        lead: "Here's what matters for a vacation-use purchase.",
+        points: [
+          { n: "01", t: "Mapleton requires a short-term rental permit and caps rentals at 120 nights per year in this zoning district, confirm before counting on rental income." },
+          { n: "02", t: "Similar homes in the area average 48% occupancy annually, concentrated in summer and holiday weekends, not a year-round income stream." },
+          { n: "03", t: "Property tax, insurance and a rental-ready policy for this size home typically run $950-1,100/month before any mortgage." }
+        ],
+        close: "Want me to pull the exact permit rules for this zoning district and nearby occupancy data?",
+        sources: ["Local Ordinance", "Rental Market Data", "Public Records"]
+      }
+    };
+
+    // ===== Buyer-purpose analyses for the buyer-agent demo (123 Main Street) =====
+    var PERSONAS_BUYER = {
+      buyer: {
+        q: "What should I know before making an offer?",
+        lead: "Three things worth knowing before you commit.",
+        points: [
+          { n: "01", t: "At $845,000 with 10% down, expect a monthly payment near $5,850 including taxes and insurance, budget accordingly against your income." },
+          { n: "02", t: "The roof is original to the 2004 build with a repaired leak in 2019, ask for a roof certification inside your inspection period." },
+          { n: "03", t: "It sits at the edge of the Shoal Creek 500-year floodplain, most lenders here require a flood policy, roughly $640 a year." }
+        ],
+        close: "I can pull the full disclosure and flood zone map if you want to go deeper before your offer.",
+        sources: ["MLS", "Seller Disclosure", "Public Records"]
+      },
+      upgrade: {
+        q: "Is this a good move up from my current home?",
+        lead: "Here's how this compares to a typical move-up purchase.",
+        points: [
+          { n: "01", t: "At 2,410 sq ft with 4 beds and 3 baths, this runs about 25% larger than the median starter home in this pocket of Austin." },
+          { n: "02", t: "It has been on the market 46 days with one $20,000 price reduction, a sign there may be room to negotiate on your move-up budget." },
+          { n: "03", t: "Factor in about 6% combined agent commission plus transfer taxes on your sale, typically $48k-56k on a similar-priced departure home." }
+        ],
+        close: "Want me to estimate your net proceeds from selling your current home first?",
+        sources: ["MLS", "Local Market Data", "Public Records"]
+      },
+      investment: {
+        q: "Would this work as a rental property?",
+        lead: "Here's the rental math on this one.",
+        points: [
+          { n: "01", t: "Comparable rentals in this pocket of Austin lease for about $3,800/month. Against this list price, gross yield is roughly 5.4%, cap rate after expenses lands near 4.0%." },
+          { n: "02", t: "With 25% down at current rates, estimated cash-on-cash return is about 3.6%, below the 8% target most investors look for." },
+          { n: "03", t: "At $3,800 rent against an estimated $3,550 monthly debt service, DSCR is approximately 1.07, below the 1.20 most DSCR lenders require." }
+        ],
+        close: "This looks tight as a straight rental. Want me to model a house-hack scenario, or check nearby comps with stronger yield?",
+        sources: ["MLS", "Rental Comps", "Lender Guidelines"]
+      },
+      flip: {
+        q: "What's my max offer if I want to flip this?",
+        lead: "Running the 70% rule on this one.",
+        points: [
+          { n: "01", t: "Two comparable renovated 4-bed homes on this block closed at $329 and $336 a square foot in the last 90 days, putting ARV near $810,000." },
+          { n: "02", t: "The kitchen and studio look updated, but the original roof and dated systems suggest a medium rehab, plan on $35-45 per square foot, or roughly $95,000." },
+          { n: "03", t: "70% of ARV ($567,000) minus rehab ($95,000) puts your max offer around $472,000, well below the $845,000 asking price." }
+        ],
+        close: "At the current price, this doesn't pencil as a flip. Want me to flag similar listings closer to that offer range?",
+        sources: ["MLS", "Comparable Sales", "Renovation Cost Data"]
+      },
+      vacation: {
+        q: "Could this work as a vacation home with rental income?",
+        lead: "Here's what matters for a vacation-use purchase.",
+        points: [
+          { n: "01", t: "Austin requires a short-term rental license and this property's zoning allows it, but confirm HOA restrictions if one applies to this street." },
+          { n: "02", t: "Similar homes in this area average around 52% occupancy annually, concentrated around festival season and university events." },
+          { n: "03", t: "Property tax, insurance and a rental-ready policy for this size home typically run $1,050-1,250/month before any mortgage." }
+        ],
+        close: "Want me to pull the exact permit rules for this zoning district and nearby occupancy data?",
+        sources: ["Local Ordinance", "Rental Market Data", "Public Records"]
+      }
+    };
+
+    // ===== Content: canned Q&A, matched against free-text questions =====
+    var QUESTIONS = [
+      {
+        q: "What concerns would you have about this house?",
+        lead: "Three things I would investigate before making an offer.",
+        points: [
+          { n: "01", t: "The roof is original to the 2004 build. The disclosure notes a leak repaired above the garage in 2019, but no replacement: plan on $18–24k, and ask for a roof certification inside your inspection period." },
+          { n: "02", t: "It sits at the edge of the Shoal Creek 500-year floodplain. No claims on record, but most lenders on this street require a flood policy: roughly $640 a year." },
+          { n: "03", t: "Two homes on the same block closed at $329 and $336 a foot in the last 90 days. This one is asking $351, a gap worth a conversation before you write." }
+        ],
+        close: "I would want %A's read on the roof before you decide, she has walked four homes on this street this year. Want me to flag this for her?",
+        sources: ["MLS", "Seller Disclosure", "Public Records", "Agent Notes"]
+      },
+      {
+        q: "Is $845,000 fair for this street?",
+        lead: "It is priced above the block, and there is a reason for part of it.",
+        points: [
+          { n: "01", t: "Median close on Main Street over the last six months is $332 a foot. At $845,000 this is $351, about 6% above the block." },
+          { n: "02", t: "The 2022 kitchen and the detached studio are real: comparable renovated homes in Bryker Woods carry a $20–30k premium." },
+          { n: "03", t: "It has been listed 46 days with one $20,000 reduction. Sellers at that point have usually accepted that the first number was optimistic." }
+        ],
+        close: "%A has negotiated three offers in this pocket this year. She is the right person to tell you where the number actually lands.",
+        sources: ["MLS", "Public Records", "Comparable Sales", "Agent Notes"]
+      },
+      {
+        q: "What would my monthly payment be?",
+        lead: "At list price with 20% down, here is the shape of it.",
+        points: [
+          { n: "01", t: "$676,000 financed at today's 30-year rates works out to roughly $4,350 a month in principal and interest." },
+          { n: "02", t: "Travis County taxes on the current assessment add about $1,190 a month, and insurance, including the flood policy most lenders want here, about $310." },
+          { n: "03", t: "All in, expect $5,850 a month. There is no HOA on this street, worth $150–250 a month against comparable new-build options." }
+        ],
+        close: "These are estimates from public assessment data, not a quote. %A can introduce you to a lender who will put real numbers on it.",
+        sources: ["Public Records", "Tax Assessor", "MLS"]
+      },
+      {
+        q: "Why has it been on the market 46 days?",
+        lead: "Three plausible reasons, in the order I would weigh them.",
+        points: [
+          { n: "01", t: "It listed in late July, the slowest four weeks of the Austin year. Homes on this street that listed in April averaged 19 days." },
+          { n: "02", t: "The original price was $865,000, about 8% over the block. The reduction to $845,000 came at day 31." },
+          { n: "03", t: "There is nothing in the disclosure or permit history that would explain the time on market: no failed inspection, no back-out noted." }
+        ],
+        close: "Nothing here looks like a hidden problem. If you want, %A can ask the listing agent directly whether an offer has fallen through.",
+        sources: ["MLS", "Seller Disclosure", "Permit History"]
+      },
+      {
+        q: "How are the schools, and would we be zoned to them?",
+        lead: "You would be zoned to all three, and one of them has a caveat.",
+        points: [
+          { n: "01", t: "Casis Elementary, O. Henry Middle and Austin High: all three are inside the attendance boundary as drawn for the current year." },
+          { n: "02", t: "O. Henry has been over capacity for two years and the district has discussed boundary changes. Nothing is adopted, but worth watching if you have a child entering sixth grade." }
+        ],
+        close: "I am reading published boundaries, which the district can change. %A tracks these proposals and can tell you where the conversation stands.",
+        sources: ["School District", "Public Records", "Agent Notes"]
+      }
+    ];
+
+    var QUESTIONS_LISTING = [
+      {
+        q: "What should I know about this property?",
+        lead: "Here's a quick snapshot before you dig deeper.",
+        points: [
+          { n: "01", t: "Built in 2005, HVAC was replaced in 2021 and the roof was reshingled in 2016, no reported leaks since." },
+          { n: "02", t: "It's on well and septic rather than city utilities, common in Mapleton, budget for a septic inspection during your due diligence period." },
+          { n: "03", t: "Mapleton Elementary is rated 8/10 and a 5-minute walk away." }
+        ],
+        close: "Want me to pull the full disclosure or the septic service history next?",
+        sources: ["MLS", "Seller Disclosure", "Public Records"]
+      },
+      {
+        q: "What do the disclosures say about the roof?",
+        lead: "The disclosure covers the roof directly.",
+        points: [
+          { n: "01", t: "The roof was reshingled in 2016 and the seller reports no leaks or repairs since." },
+          { n: "02", t: "A minor granule loss was noted near the chimney flashing during the seller's last walkthrough, cosmetic, not flagged as active." },
+          { n: "03", t: "No warranty transfer is mentioned, ask the listing agent if the original roofing warranty is still active." }
+        ],
+        close: "I can request the roofing invoice from 2016 if you want it in writing.",
+        sources: ["Seller Disclosure", "MLS"]
+      },
+      {
+        q: "How does this price compare with recent nearby sales?",
+        lead: "Here's how $748,000 stacks up against the neighborhood.",
+        points: [
+          { n: "01", t: "Two comparable 4-bed homes within half a mile closed in the last 90 days at $305 and $320 a square foot." },
+          { n: "02", t: "At $748,000 for 2,410 sq ft, this listing works out to about $310 a square foot, right in the middle of that range." },
+          { n: "03", t: "It's just listed, so there's no price-history signal yet, comps suggest the asking price is fair, not aggressive." }
+        ],
+        close: "Want a full comps sheet with addresses and sale dates?",
+        sources: ["MLS", "Comparable Sales", "Public Records"]
+      },
+      {
+        q: "What should I pay attention to during the showing?",
+        lead: "A few specific things worth checking in person.",
+        points: [
+          { n: "01", t: "Test water pressure and check for any musty smell near the crawlspace access, common tell for well/septic homes." },
+          { n: "02", t: "Look at the attic insulation depth, the disclosure doesn't specify when it was last upgraded." },
+          { n: "03", t: "Ask to see the septic service records and confirm the tank was last pumped." }
+        ],
+        close: "I can put together a printable showing checklist if that's useful.",
+        sources: ["Seller Disclosure", "Agent Notes"]
+      },
+      {
+        q: "Are there any potential concerns I should investigate?",
+        lead: "Nothing major, but two items worth a closer look.",
+        points: [
+          { n: "01", t: "The disclosure notes a small foundation settling crack patched in 2020, the seller reports no movement since in yearly checks." },
+          { n: "02", t: "Being on well and septic means water quality and tank condition depend on maintenance history, not municipal oversight." },
+          { n: "03", t: "No inspection report is attached yet since this just listed, plan to schedule one early in your offer timeline." }
+        ],
+        close: "Want me to flag these for a home inspector's checklist before your first showing?",
+        sources: ["Seller Disclosure", "Public Records", "Agent Notes"]
+      }
+    ];
+
+    var BUILD_STEPS = [
+      "Reading the listing",
+      "Pulling county records and tax history",
+      "Matching comparable sales within 0.4 miles",
+      "Reading the seller's disclosure",
+      "Publishing your advisor"
+    ];
+
+    var AGENT_FIRST = "Sarah";
+    var ROLE_LABEL = "Property Expert";
+    var ACTIVE_QUESTIONS = QUESTIONS_LISTING;
+    var ACTIVE_PERSONAS = PERSONAS_LISTING;
+
+    // ===== Demo card state =====
+    var demoState = { qi: 0, thinking: false, asked: null, unknown: false, persona: 'buyer' };
+
+    function matchQuestion(text) {
+      var words = (text.toLowerCase().match(/[a-z$0-9]{4,}/g) || []);
+      var best = -1, top = 0;
+      ACTIVE_QUESTIONS.forEach(function(q, i){
+        var hay = (q.q + " " + q.lead + " " + q.points.map(function(p){ return p.t; }).join(" ")).toLowerCase();
+        var score = words.filter(function(w){ return hay.indexOf(w) > -1; }).length;
+        if (score > top) { top = score; best = i; }
+      });
+      return top >= 2 ? best : -1;
+    }
+
+    function renderChips() {
+      var wrap = document.getElementById('demo-chips');
+      wrap.innerHTML = '';
+      ACTIVE_QUESTIONS.forEach(function(q, i){
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'demo-chip' + (i === demoState.qi && !demoState.asked ? ' is-active' : '');
+        btn.textContent = q.q;
+        btn.addEventListener('click', function(){ pickQuestion(i); });
+        wrap.appendChild(btn);
+      });
+    }
+
+    function renderThread() {
+      var thread = document.getElementById('demo-thread');
+      var active = demoState.persona
+        ? ACTIVE_PERSONAS[demoState.persona]
+        : demoState.unknown
+        ? { lead: "I do not have that in the listing, the disclosure or the public records for this property, so I am not going to guess.", points: [], close: "I have passed the question to " + AGENT_FIRST + ". The answer will appear here in this thread.", sources: ["Agent Notes"] }
+        : ACTIVE_QUESTIONS[demoState.qi];
+      var closeText = (demoState.unknown && !demoState.persona) ? active.close : active.close.split('%A').join(AGENT_FIRST);
+      var buyerText = demoState.persona ? active.q : (demoState.asked || ACTIVE_QUESTIONS[demoState.qi].q);
+
+      var html = '<div class="demo-msg buyer"><span class="lbl">Buyer</span><p>' + escapeHtml(buyerText) + '</p></div>';
+
+      if (demoState.thinking) {
+        html += '<div class="demo-thinking"><span></span><span></span><span></span></div>';
+      } else {
+        html += '<div class="demo-msg advisor"><span class="lbl">' + ROLE_LABEL + '</span><div class="bubble"><p>' + escapeHtml(active.lead) + '</p>';
+        if (active.points && active.points.length) {
+          html += '<ol class="demo-points">';
+          active.points.forEach(function(pt){
+            html += '<li><b>' + pt.n + '</b><span>' + escapeHtml(pt.t) + '</span></li>';
+          });
+          html += '</ol>';
+        }
+        html += '<p>' + escapeHtml(closeText) + '</p>';
+        html += '<div class="demo-sources"><span class="lbl">Sources</span>';
+        active.sources.forEach(function(src){ html += '<span class="src">' + escapeHtml(src) + '</span>'; });
+        html += '</div></div></div>';
+      }
+      thread.innerHTML = html;
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, function(c){
+        return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+      });
+    }
+
+    var thinkTimer = null;
+    function pickQuestion(i) {
+      if (i === demoState.qi && !demoState.asked && !demoState.persona) return;
+      clearTimeout(thinkTimer);
+      demoState = { qi: i, thinking: true, asked: null, unknown: false, persona: null };
+      renderChips(); renderPersonaPills(); renderThread();
+      thinkTimer = setTimeout(function(){ demoState.thinking = false; renderThread(); }, 640);
+    }
+
+    function askFreeText() {
+      var input = document.getElementById('demo-ask-input');
+      var text = (input.value || '').trim();
+      if (!text) return;
+      var i = matchQuestion(text);
+      clearTimeout(thinkTimer);
+      demoState = { qi: i < 0 ? demoState.qi : i, thinking: true, asked: text, unknown: i < 0, persona: null };
+      input.value = '';
+      renderChips(); renderPersonaPills(); renderThread();
+      thinkTimer = setTimeout(function(){ demoState.thinking = false; renderThread(); }, 700);
+    }
+
+    function pickPersona(key) {
+      if (key === demoState.persona) return;
+      clearTimeout(thinkTimer);
+      demoState = { qi: demoState.qi, thinking: true, asked: null, unknown: false, persona: key };
+      renderChips(); renderPersonaPills(); renderThread();
+      thinkTimer = setTimeout(function(){ demoState.thinking = false; renderThread(); }, 640);
+    }
+
+    function renderPersonaPills() {
+      document.querySelectorAll('.persona-pill').forEach(function(btn){
+        btn.classList.toggle('is-active', btn.getAttribute('data-persona') === demoState.persona);
+      });
+    }
+
+    document.querySelectorAll('.persona-pill').forEach(function(btn){
+      btn.addEventListener('click', function(){ pickPersona(btn.getAttribute('data-persona')); });
+    });
+
+    document.getElementById('demo-ask-btn').addEventListener('click', askFreeText);
+    document.getElementById('demo-ask-input').addEventListener('keydown', function(e){ if (e.key === 'Enter') askFreeText(); });
+
+    // Clear the example placeholder as soon as the listing-URL inputs are focused
+    ['url-1', 'url-qr', 'url-2'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (!el) return;
+      var originalPlaceholder = el.getAttribute('placeholder');
+      el.addEventListener('focus', function(){ el.setAttribute('placeholder', ''); });
+      el.addEventListener('blur', function(){ if (!el.value) el.setAttribute('placeholder', originalPlaceholder); });
+    });
+
+    // ===== Create Home Concierge flow (loading -> built), front-end only =====
+    var buildTimer = null;
+    var buildStep = 0;
+
+    function showStage(stage) {
+      document.getElementById('demo-idle').hidden = stage !== 'idle';
+      document.getElementById('demo-loading').hidden = stage !== 'loading';
+      document.getElementById('demo-built').hidden = stage !== 'built';
+      document.getElementById('demo-footer').hidden = stage === 'loading';
+    }
+
+    function renderSteps() {
+      var wrap = document.getElementById('demo-steps');
+      wrap.innerHTML = '';
+      BUILD_STEPS.forEach(function(label, i){
+        var done = i < buildStep;
+        var div = document.createElement('div');
+        div.className = 'demo-step' + (done ? ' is-done' : '');
+        div.innerHTML = '<span class="mark">' + (done ? '✓' : '·') + '</span><span class="lbl-t">' + escapeHtml(label) + '</span>';
+        wrap.appendChild(div);
+      });
+    }
+
+    function startCreate() {
+      if (document.body.classList.contains('is-tab-listing')) {
+        document.getElementById('hero-slider').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(function(){ document.getElementById('qr-create-btn').click(); }, 420);
+        return;
+      }
+      document.getElementById('see-it-work').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      clearInterval(buildTimer);
+      buildStep = 0;
+      showStage('loading');
+      renderSteps();
+      buildTimer = setInterval(function(){
+        buildStep++;
+        if (buildStep >= BUILD_STEPS.length) {
+          clearInterval(buildTimer);
+          document.getElementById('demo-share-link').textContent = 'advisor.realsalex.co/alex/123-main-st';
+          showStage('built');
+          return;
+        }
+        renderSteps();
+      }, 620);
+    }
+
+    document.querySelectorAll('[data-create]').forEach(function(btn){
+      btn.addEventListener('click', startCreate);
+    });
+    document.getElementById('sticky-cta-btn').addEventListener('click', function(){
+      var heroBox = document.querySelector('.hero-slide.is-active .create-box');
+      var heroInput = document.querySelector('.hero-slide.is-active .create-row input');
+      if (heroBox) heroBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (heroInput) setTimeout(function(){ heroInput.focus(); }, 420);
+    });
+
+    document.getElementById('demo-reset-btn').addEventListener('click', function(){
+      clearInterval(buildTimer);
+      showStage('idle');
+    });
+
+    var copyBtn = document.getElementById('demo-copy-btn');
+    copyBtn.addEventListener('click', function(){
+      var link = document.getElementById('demo-share-link').textContent;
+      if (navigator.clipboard) navigator.clipboard.writeText(link).catch(function(){});
+      copyBtn.textContent = 'Copied';
+      setTimeout(function(){ copyBtn.textContent = 'Copy link'; }, 1600);
+    });
+
+    // ===== Create QR Code flow (seller hero), front-end only, demo-only visual =====
+    var QR_STEPS = [
+      "Reading the listing",
+      "Generating your QR code",
+      "Preparing your yard sign design"
+    ];
+    var qrTimer = null;
+    var qrStep = 0;
+
+    function renderQrSteps() {
+      var wrap = document.getElementById('qr-steps');
+      wrap.innerHTML = '';
+      QR_STEPS.forEach(function(label, i){
+        var done = i < qrStep;
+        var div = document.createElement('div');
+        div.className = 'qr-step' + (done ? ' is-done' : '');
+        div.innerHTML = '<span class="mark">' + (done ? '✓' : '·') + '</span><span>' + escapeHtml(label) + '</span>';
+        wrap.appendChild(div);
+      });
+    }
+
+    document.getElementById('qr-create-btn').addEventListener('click', function(){
+      var result = document.getElementById('qr-result');
+      var loading = document.getElementById('qr-loading');
+      var built = document.getElementById('qr-built');
+      result.hidden = false;
+      built.hidden = true;
+      loading.hidden = false;
+      clearInterval(qrTimer);
+      qrStep = 0;
+      renderQrSteps();
+      qrTimer = setInterval(function(){
+        qrStep++;
+        if (qrStep >= QR_STEPS.length) {
+          clearInterval(qrTimer);
+          loading.hidden = true;
+          built.hidden = false;
+          return;
+        }
+        renderQrSteps();
+      }, 620);
+    });
+
+    // init
+    renderChips();
+    renderPersonaPills();
+    renderThread();
+    showStage('idle');
+
+    // ===== Hero slider: tabs + swipe =====
+    (function(){
+      var slider = document.getElementById('hero-slider');
+      if (!slider) return;
+      var track = document.getElementById('hero-track');
+      var tabs = slider.querySelectorAll('.hero-tab');
+      var panels = slider.querySelectorAll('.hero-slide');
+      var indicator = slider.querySelector('.hero-tab-indicator');
+
+      function moveIndicator(activeTab){
+        if (!indicator || !activeTab) return;
+        indicator.style.width = activeTab.offsetWidth + 'px';
+        indicator.style.transform = 'translateX(' + activeTab.offsetLeft + 'px)';
+      }
+
+      function switchSlide(index){
+        index = Math.max(0, Math.min(panels.length - 1, index));
+        var activeTab = null;
+        tabs.forEach(function(t){
+          var isMatch = Number(t.getAttribute('data-slide')) === index;
+          t.classList.toggle('is-active', isMatch);
+          if (isMatch) activeTab = t;
+        });
+        moveIndicator(activeTab);
+        panels.forEach(function(p){ p.classList.toggle('is-active', Number(p.getAttribute('data-slide-panel')) === index); });
+        if (track) track.style.transform = 'translateX(-' + (index * 50) + '%)';
+        document.querySelectorAll('.infina-nav .nav-center a').forEach(function(a){
+          a.classList.toggle('is-active', Number(a.getAttribute('data-slide')) === index);
+        });
+
+        var isListing = index === 1;
+        var ctaText = isListing ? 'Create Property Expert →' : 'Create Home Concierge →';
+        var ctaHref = isListing ? '#hero-create-qr' : '#hero-create';
+        var navCta = document.querySelector('.infina-nav .nav-cta');
+        var navMobileCta = document.querySelector('.infina-nav .nav-mobile-cta');
+        if (navCta) { navCta.textContent = ctaText; navCta.setAttribute('href', ctaHref); }
+        if (navMobileCta) { navMobileCta.textContent = ctaText; navMobileCta.setAttribute('href', ctaHref); }
+
+        var stickyBtn = document.getElementById('sticky-cta-btn');
+        if (stickyBtn) stickyBtn.textContent = ctaText;
+        if (window.updateStickyTarget) window.updateStickyTarget();
+
+        document.body.classList.toggle('is-tab-listing', isListing);
+        document.querySelectorAll('.tab-copy').forEach(function(el){
+          el.hidden = el.getAttribute('data-tab') !== (isListing ? 'listing' : 'buying');
+        });
+
+        var demoName = document.getElementById('demo-advisor-name');
+        var demoBrokerage = document.getElementById('demo-brokerage');
+        var demoBuiltTitle = document.getElementById('demo-built-title');
+        var demoShareLink = document.getElementById('demo-share-link');
+        var demoAskTitle = document.getElementById('demo-ask-title');
+        if (demoName) demoName.textContent = isListing ? "148 Maple Ave's Property Expert" : "Alex Rivera's Home Concierge";
+        if (demoBrokerage) demoBrokerage.textContent = isListing ? 'Listed by Sarah Jenkins, Broker' : 'Meridian Realty · Austin, TX';
+        if (demoBuiltTitle) demoBuiltTitle.textContent = isListing ? "148 Maple Ave's Property Expert is live for this listing." : "Alex Rivera's Home Concierge is live for this listing.";
+        if (demoShareLink) demoShareLink.textContent = isListing ? 'propertyexpert.realsalex.co/148-maple-ave' : 'advisor.realsalex.co/alex/123-main-st';
+        if (demoAskTitle) demoAskTitle.textContent = isListing ? 'Ask anything about 148 Maple Ave' : 'Ask anything about 123 Main Street';
+        var demoFooter = document.getElementById('demo-footer');
+        if (demoFooter) demoFooter.textContent = isListing ? 'Sarah sees every question and can join the conversation at any point.' : 'Alex sees every question and can join the conversation at any point.';
+
+        AGENT_FIRST = isListing ? 'Sarah' : 'Alex';
+        ROLE_LABEL = isListing ? 'Property Expert' : 'Advisor';
+        ACTIVE_QUESTIONS = isListing ? QUESTIONS_LISTING : QUESTIONS;
+        ACTIVE_PERSONAS = isListing ? PERSONAS_LISTING : PERSONAS_BUYER;
+        if (typeof pickPersona === 'function') {
+          clearTimeout(thinkTimer);
+          demoState = { qi: 0, thinking: false, asked: null, unknown: false, persona: 'buyer' };
+          renderChips(); renderPersonaPills(); renderThread();
+        }
+        var demoLoadingTitle = document.getElementById('demo-loading-title');
+        if (demoLoadingTitle) demoLoadingTitle.textContent = isListing ? 'Building your Property Expert' : 'Building your advisor';
+
+        var finalCreateBtn = document.getElementById('final-create-btn');
+        var finalCreateNote = document.getElementById('final-create-note');
+        if (finalCreateBtn) finalCreateBtn.textContent = ctaText;
+        if (finalCreateNote) finalCreateNote.textContent = isListing ? 'No CRM connection. No complicated setup. Start with one listing.' : 'No signup required to see your first advisor.';
+      }
+      window.switchHeroSlide = switchSlide;
+
+      // Default to the Listing Agent (Property Expert) tab on page load,
+      // unless the URL hash requests a specific tab (#buyer-agent or #listing-agent)
+      var initialSlide = 1;
+      var initialHash = (window.location.hash || '').toLowerCase();
+      if (initialHash === '#buyer-agent' || initialHash === '#buyer') initialSlide = 0;
+      else if (initialHash === '#listing-agent' || initialHash === '#listing') initialSlide = 1;
+      switchSlide(initialSlide);
+
+      // Position the indicator under the initially active tab, and keep it aligned on resize
+      moveIndicator(slider.querySelector('.hero-tab.is-active'));
+      window.addEventListener('resize', function(){ moveIndicator(slider.querySelector('.hero-tab.is-active')); });
+
+      tabs.forEach(function(tab){
+        tab.addEventListener('click', function(){ switchSlide(Number(tab.getAttribute('data-slide'))); });
+      });
+
+      var touchStartX = null;
+      slider.addEventListener('touchstart', function(e){ touchStartX = e.touches[0].clientX; }, { passive:true });
+      slider.addEventListener('touchend', function(e){
+        if (touchStartX === null) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        touchStartX = null;
+        if (Math.abs(dx) < 50) return;
+        var current = 0;
+        tabs.forEach(function(t){ if (t.classList.contains('is-active')) current = Number(t.getAttribute('data-slide')); });
+        switchSlide(dx < 0 ? current + 1 : current - 1);
+      }, { passive:true });
+    })();
+
+    // Hero TVC, click to load & play (self-hosted, keeps LCP fast)
+    (function(){
+      var box = document.querySelector('.hero-video');
+      if (!box) return;
+      var played = false;
+      box.addEventListener('click', function(){
+        if (played) return; played = true;
+        var v = document.createElement('video');
+        v.src = box.getAttribute('data-src');
+        v.controls = true; v.autoplay = true; v.playsInline = true; v.preload = 'auto';
+        var poster = box.querySelector('.hero-video-poster');
+        if (poster) v.poster = poster.getAttribute('src');
+        box.innerHTML = '';
+        box.style.cursor = 'default';
+        box.appendChild(v);
+        var p = v.play(); if (p && p.catch) p.catch(function(){ v.controls = true; });
+      });
+    })();
+
+    // Reveal on scroll
+    (function(){
+      var els = document.querySelectorAll('.reveal');
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold:0.12 });
+      els.forEach(function(el){ obs.observe(el); });
+    })();
+
+    // Sticky mobile CTA: show once the ACTIVE tab's create box scrolls out of view
+    (function(){
+      var sticky = document.getElementById('sticky-cta');
+      if (!sticky) return;
+      var currentObs = null;
+
+      function setupStickyObserver(){
+        if (currentObs) { currentObs.disconnect(); currentObs = null; }
+        var activeBox = document.querySelector('.hero-slide.is-active .create-box');
+        if (!activeBox) return;
+        currentObs = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){ sticky.classList.toggle('show', !e.isIntersecting); });
+        }, { threshold: 0 });
+        currentObs.observe(activeBox);
+        // avoid a flash of the wrong state right after switching tabs
+        var rect = activeBox.getBoundingClientRect();
+        var inView = rect.bottom > 0 && rect.top < window.innerHeight;
+        sticky.classList.toggle('show', !inView);
+      }
+
+      window.updateStickyTarget = setupStickyObserver;
+      setupStickyObserver();
+    })();
+  </script>
+
+  <script src="nav.js"></script>
+  <script>
+    // Page-specific nav links: replace the generic AI Inside/Work/Personal links
+    // with tab switches for the hero slider on this page.
+    (function(){
+      function goToSlide(index){
+        var slider = document.getElementById('hero-slider');
+        if (slider) slider.scrollIntoView({ behavior:'smooth', block:'start' });
+        if (window.switchHeroSlide) window.switchHeroSlide(index);
+      }
+
+      var navCenter = document.querySelector('.infina-nav .nav-center');
+      if (navCenter) {
+        var activePanelEl = document.querySelector('.hero-slide.is-active');
+        var activeIndex = activePanelEl ? Number(activePanelEl.getAttribute('data-slide-panel')) : 1;
+        navCenter.innerHTML = '<a href="#hero-slider" data-slide="1">For Listing Agent</a><a href="#hero-slider" data-slide="0">For Buyer Agent</a>';
+        navCenter.querySelectorAll('a').forEach(function(a){
+          a.classList.toggle('is-active', Number(a.getAttribute('data-slide')) === activeIndex);
+          a.addEventListener('click', function(e){ e.preventDefault(); goToSlide(Number(a.getAttribute('data-slide'))); });
+        });
+      }
+      var panel = document.querySelector('.infina-nav .nav-mobile-panel');
+      if (panel) {
+        var cta = panel.querySelector('.nav-mobile-cta');
+        panel.innerHTML = '';
+        var closeMobileNav = function(){
+          document.body.classList.remove('nav-open');
+          var toggle = document.querySelector('.infina-nav .nav-toggle');
+          if (toggle) toggle.setAttribute('aria-expanded', 'false');
+          panel.setAttribute('aria-hidden', 'true');
+        };
+        var a1 = document.createElement('a'); a1.href = '#hero-slider'; a1.textContent = 'For Buyer Agent';
+        var a2 = document.createElement('a'); a2.href = '#hero-slider'; a2.textContent = 'For Listing Agent';
+        a1.addEventListener('click', function(e){ e.preventDefault(); closeMobileNav(); goToSlide(0); });
+        a2.addEventListener('click', function(e){ e.preventDefault(); closeMobileNav(); goToSlide(1); });
+        panel.appendChild(a2);
+        panel.appendChild(a1);
+        if (cta) panel.appendChild(cta);
+      }
+    })();
+  </script>
+  <script src="footer.js"></script>
+  <script>
+    // Wire the page-specific footer links to the same hero tab switch as the nav
+    (function(){
+      var footerLinks = document.querySelectorAll('footer.infina-footer .footer-links a[data-slide]');
+      footerLinks.forEach(function(a){
+        a.addEventListener('click', function(e){
+          e.preventDefault();
+          var slider = document.getElementById('hero-slider');
+          if (slider) slider.scrollIntoView({ behavior:'smooth', block:'start' });
+          if (window.switchHeroSlide) window.switchHeroSlide(Number(a.getAttribute('data-slide')));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
