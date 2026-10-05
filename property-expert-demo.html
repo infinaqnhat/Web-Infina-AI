@@ -82,7 +82,8 @@
       .talk-agent span { display:none; }
       .talk-agent { padding:9px 12px; }
     }
-    .chat-scroll { flex:1; overflow-y:auto; padding:26px; display:flex; flex-direction:column; gap:18px; }
+    .chat-scroll { flex:1; overflow-y:auto; }
+    .chat-thread { display:flex; flex-direction:column; gap:18px; padding:26px; }
     .msg { display:flex; gap:12px; max-width:88%; }
     .msg-bot { align-self:flex-start; }
     .msg-user { align-self:flex-end; flex-direction:row-reverse; }
@@ -217,7 +218,8 @@
       .m-stat svg { color:var(--blue); flex-shrink:0; }
       .m-stat b { display:block; font-size:13.5px; color:var(--fg); font-weight:700; }
 
-      .m-tabs { display:flex; gap:4px; padding:8px 10px; border-bottom:1px solid var(--border-light); background:#fff; flex-shrink:0; overflow-x:auto; }
+      /* The hero scrolls away with the thread; the tab bar then pins to the top */
+      .m-tabs { position:sticky; top:0; z-index:5; display:flex; gap:4px; padding:8px 10px; border-bottom:1px solid var(--border-light); background:#fff; flex-shrink:0; overflow-x:auto; }
       .m-tab { flex:1; min-width:64px; display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 4px; border:0; background:none; border-radius:10px; font-size:11.5px; font-weight:700; color:var(--muted); }
       .m-tab svg { color:var(--muted); }
       .m-tab.is-active { background:var(--blue-light); color:var(--blue); }
@@ -230,7 +232,8 @@
       .chip-row { padding-left:16px !important; padding-right:16px !important; }
       .follow-chip { font-size:12.5px; padding:7px 12px; }
 
-      .chat-scroll { padding:18px 16px; gap:16px; }
+      .chat-scroll { padding:0; }
+      .chat-thread { padding:18px 16px; gap:16px; }
       .msg { max-width:94%; }
       .insight-wrap { padding:15px; }
       .chat-input-row { padding:12px 14px; }
@@ -394,6 +397,7 @@
           </button>
         </div>
 
+        <div class="chat-scroll" id="chat-scroll">
         <div class="m-hero m-only">
           <div class="m-hero-photo">
             <img id="m-hero-img" src="uploads/property-123-main.jpg" alt="123 Main Street exterior">
@@ -419,7 +423,7 @@
           <button class="m-tab" type="button" data-sheet="nearby"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Nearby</button>
         </nav>
 
-        <div class="chat-scroll" id="chat-scroll">
+        <div class="chat-thread" id="chat-thread">
           <button class="m-persona-chip m-only" type="button" id="m-persona-chip" hidden>
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
             <span id="m-persona-chip-label">First-time buyer</span>
@@ -456,6 +460,7 @@
               </div>
             </div>
           </div>
+        </div>
         </div>
 
         <div class="chip-row" style="padding:0 22px;" id="chip-row-1">
@@ -791,6 +796,7 @@
     var fallbackAnswer = "Let me check that for you, I'll have an answer with sources shortly. In this demo, try one of the suggested questions above to see a full example.";
 
     var chatScroll = document.getElementById('chat-scroll');
+    var chatThread = document.getElementById('chat-thread');
     function scrollChatToBottom(){ chatScroll.scrollTop = chatScroll.scrollHeight; }
     function nowTime(){
       var d = new Date();
@@ -803,7 +809,7 @@
       var el = document.createElement('div');
       el.className = 'msg msg-user';
       el.innerHTML = '<span class="msg-avatar"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><div class="msg-body"><div class="msg-bubble">' + text + '</div><span class="msg-time">' + nowTime() + '</span></div>';
-      chatScroll.appendChild(el);
+      chatThread.appendChild(el);
     }
 
     function addBotAnswer(question){
@@ -817,7 +823,7 @@
         var cardsHtml = data.cards.map(function(c){ return insightCard(c[0], c[1], c[2], c[3]); }).join('');
         el.innerHTML = '<span class="msg-avatar"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><div class="msg-body"><div class="msg-bubble"><div class="insight-wrap"><p class="insight-intro">' + data.intro + '</p>' + cardsHtml + '<p class="insight-summary">' + data.summary + '</p></div></div><span class="msg-time">' + nowTime() + '</span></div>';
       }
-      chatScroll.appendChild(el);
+      chatThread.appendChild(el);
     }
 
     var BOT_AVATAR = '<span class="msg-avatar"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>';
@@ -827,7 +833,7 @@
       el.className = 'msg msg-bot';
       el.id = 'typing-indicator';
       el.innerHTML = BOT_AVATAR + '<div class="msg-body"><div class="typing" role="status" aria-label="Property Expert is typing"><i></i><i></i><i></i></div></div>';
-      chatScroll.appendChild(el);
+      chatThread.appendChild(el);
       return el;
     }
 
