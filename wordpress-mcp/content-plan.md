@@ -77,7 +77,7 @@ cụm đang được RealSaleX chủ động viết bài / mở rộng.
 
 ---
 
-### Cụm 1: Chatbot / Conversational AI — 14 bài sống (19 gốc, 5 đã merge 01/10/2026)
+### Cụm 1: Chatbot / Conversational AI, 14 bài sống (19 gốc, 5 đã merge 01/10/2026)
 
 Cụm đã audit + xử lý cannibalization đầy đủ (xem refresh-log.md). Có **2 pillar song song** vì 2
 góc đủ khác biệt để không cần gộp chung: Pillar A nhắm "conversational AI / lead follow-up bot",
@@ -122,7 +122,7 @@ hiện tại, không thêm bài.
 
 ---
 
-### Cụm 2: CRM Software — 🎯 RealSaleX (góc "CRM Add-on / Alternatives & Pricing") — 20 bài sống (22 gốc, 2 đã merge 2026-10-01)
+### Cụm 2: CRM Software, 🎯 RealSaleX (góc "CRM Add-on / Alternatives & Pricing"), 23 bài sống (22 gốc, 2 đã merge 2026-10-01, +3 bài lấp gap publish 02-04/10)
 
 **✅ ĐÃ AUDIT (2026-10-01)** — cụm cannibalization LỚN NHẤT đã xử lý xong, xem refresh-log.md.
 Phát hiện 5 bài "best/top CRM" roundup trùng gần hết cùng 1 pool platform (Follow Up Boss/Lofty/
@@ -145,8 +145,8 @@ còn lại (#419 teams-niche, #444 buying-guide/BOF) giữ nguyên vì different
 | **Pillar nhẹ 🎯 RealSaleX** | [AI Intent Layer for Real Estate CRM: What It Adds](https://infina.ai/news/ai-intent-layer-for-real-estate-crm/) | `ai intent layer for real estate crm` | Evaluation/MOF | ✅ góc "bổ sung CRM sẵn có", khác hẳn roundup — đã sửa link trỏ về #207 thay vì #384 |
 | Review (brand cụ thể) 🎯 RealSaleX | [CINC CRM Review: Pricing, Features, and Buyer Follow-Up Gaps](https://infina.ai/news/cinc-crm-review-real-estate/) | `cinc crm review` | Evaluation/MOF | ✅ cluster của pillar nhẹ — đã sửa link trỏ về #207 thay vì #384 |
 | Review (brand cụ thể) 🎯 RealSaleX | [Follow Up Boss Real Estate CRM Review: Pricing, Features, and the Follow-Up Gap](https://infina.ai/news/follow-up-boss-real-estate-crm/) | `follow up boss real estate crm` | Evaluation/MOF | ✅ Published 02/10 = #1449, 1.539 từ, density 0.65%, 2 bảng giá + 3 ảnh AI. Link ra #207/#444/#1232/#1234/#1223 |
-| Review/list (niche: broker) | [Real Estate Broker CRM: What Brokerages Need That Agent CRMs Miss](https://infina.ai/news/real-estate-broker-crm/) | `real estate broker crm` | Evaluation/MOF | 🕐 Scheduled 04/10 10:00 = #1462, 1.559 từ, density 0.83%. SERP check vs #419: 0 URL trùng. Có H2 riêng "Broker CRM vs Team CRM" phân tuyến. ⏳ **còn thiếu link ngược** từ #207/#419/#237 (chờ bài live) |
-| Định nghĩa (niche RE) | [What Does CRM Mean in Real Estate? A Plain-English Guide for Agents](https://infina.ai/news/what-does-crm-mean-in-real-estate/) | `what does crm mean in real estate` | Discovery/TOF | 🕐 Scheduled 03/10 10:00 = #1458, 1.141 từ, density 0.61%. SERP check: 0 URL trùng với #230 nên không cannibalize. ⏳ **còn thiếu link ngược** từ #230/#207/#405 (chờ bài live mới thêm, hiện slug còn 404) |
+| Review/list (niche: broker) | [Real Estate Broker CRM: What Brokerages Need That Agent CRMs Miss](https://infina.ai/news/real-estate-broker-crm/) | `real estate broker crm` | Evaluation/MOF | ✅ Published 04/10 = #1462, 1.559 từ, density 0.83%. SERP check vs #419: 0 URL trùng. Có H2 riêng "Broker CRM vs Team CRM" phân tuyến. Link ngược đã verify live 06/10: #207 ✅, #419 ✅. Riêng #237 (TCPA, Cụm 8) vẫn chưa trỏ ngược, hiện là link 1 chiều cross-cluster |
+| Định nghĩa (niche RE) | [What Does CRM Mean in Real Estate? A Plain-English Guide for Agents](https://infina.ai/news/what-does-crm-mean-in-real-estate/) | `what does crm mean in real estate` | Discovery/TOF | ✅ Published 03/10 = #1458, 1.141 từ, density 0.61%. SERP check: 0 URL trùng với #230 nên không cannibalize. Link ngược đã verify live 06/10: #230 ✅, #207 ✅, #405 ✅, đủ cả 3 chiều |
 | So sánh (MOF) 🎯 RealSaleX — chưa viết | *Customer Engagement Platform vs CRM for Real Estate* | `customer engagement platform vs crm` | Evaluation/MOF | 🕐 Đã duyệt plan 30/09, chưa viết — xem "Mở rộng CEP" bên dưới |
 | Listicle chiến lược (TOF) 🎯 RealSaleX — chưa viết | *Customer Engagement Strategies for Real Estate Agents* | niche từ `digital customer engagement` + `customer engagement examples` | Discovery/TOF | 🕐 Đã duyệt plan 30/09, chưa viết — xem "Mở rộng CEP" bên dưới |
 | ~~🔎 Review/list (roundup)~~ | ~~Top CRM Tools for Real Estate Agents and Teams~~ | `crm tools for real estate` | Evaluation/MOF | ⚠️ ĐÃ MERGE (2026-10-01) vào #207, redirect 301 live |
@@ -191,7 +191,7 @@ Add-on / Alternatives & Pricing" đã chốt cho RealSaleX ở cụm này): `fol
 `hubspot real estate crm`, `salesforce real estate crm` (mỗi cái 500/mo), cùng `real estate crm cost`
 và `real estate crm pricing` (500/mo, đúng mảng "Pricing" trong định vị cụm).
 
-#### Mở rộng "CRM gap từ US keyword data" — 3 bài chưa viết (2026-10-02)
+#### Mở rộng "CRM gap từ US keyword data", 3 bài, đã publish xong (plan 2026-10-02, publish 02-04/10)
 
 **Bối cảnh**: từ batch 394 keyword US-geo merge ngày 02/10, rà soát toàn bộ 378 keyword US-relevant
 (đã lọc geo Ấn/Dubai/Úc + nhóm job/tuyển dụng) và map với 20 bài sống của cụm. Phần lớn keyword
@@ -263,6 +263,18 @@ loại nhóm đó, còn đúng 3 gap thật đáng viết bài riêng.
 
 **Thứ tự viết đề xuất**: Bài 3 (dễ nhất, gom TOF) → Bài 1 (ROI cao nhất) → Bài 2 (nặng nhất).
 
+**Kết quả thực tế (cập nhật 2026-10-06)**: viết xong cả 3, thứ tự publish là Bài 1 → Bài 3 → Bài 2
+do rule tối đa 3 bài/ngày và giờ publish 10:00 cho bài evergreen.
+
+| Bài | Post | Publish | Số từ | Density | Link ngược đã verify live 06/10 |
+|---|---|---|---|---|---|
+| Bài 1 Follow Up Boss | #1449 | 02/10 | 1.539 | 0,65% | #207, #1232, #1234, #1223 |
+| Bài 3 Định nghĩa CRM | #1458 | 03/10 | 1.141 | 0,61% | #230, #207, #405 (đủ 3/3) |
+| Bài 2 Broker CRM | #1462 | 04/10 | 1.559 | 0,83% | #207, #419 (2/3, thiếu #237) |
+
+⏳ **Việc còn lại của nhóm này**: thêm 1 link từ #237 (TCPA compliance, Cụm 8) xuống #1462 để khép
+link 2 chiều cross-cluster. Hiện #1462 có trỏ lên #237 nhưng chiều ngược lại chưa có.
+
 **Việc on-page kèm theo (không phải bài mới)**: bổ sung biến thể `real estate crm systems`,
 `real estate crm programs`, `real estate crm platforms`, `top 10 real estate crm` vào title tag/H2
 của #207 để pillar tự hứng ~25.000/mo biến thể roundup thay vì tách bài gây cannibalize.
@@ -297,7 +309,7 @@ Internal link dự kiến khi viết: 2 bài CEP ↔ nhau (2 chiều), cả 2 �
 
 ---
 
-### Cụm 3: Website Builder / IDX — 13 bài sống (15 gốc, 2 đã merge: case #546 cũ + case #553 2026-10-01)
+### Cụm 3: Website Builder / IDX, 14 bài sống (15 gốc, 2 đã merge: case #546 cũ + case #553 2026-10-01, +1 bài News publish 03/10)
 
 **Internal link đã verify + fix (02/10/2026)**: check link thật qua WP REST API cho 12 bài live tìm
 thấy (chênh 1 so với "13 bài sống" ghi ở trên, không ảnh hưởng việc fix). Cluster→pillar chính #546
@@ -327,7 +339,7 @@ tiết refresh-log.md. 3 cụm còn lại (Website Design, Lead Generation, Comp
 
 ---
 
-### Cụm 4: AI Voice / Virtual Assistant / Receptionist — 🎯 RealSaleX (🥇 ưu tiên cao nhất) — ✅ HOÀN THÀNH — 5 bài
+### Cụm 4: AI Voice / Virtual Assistant / Receptionist, 🎯 RealSaleX (🥇 ưu tiên cao nhất), ✅ HOÀN THÀNH, 6 bài (+1 bài News publish 02/10)
 
 Vì sao ưu tiên cao nhất: đúng câu pitch chính của sản phẩm ("AI agent trả lời buyer 24/7 trong Deal
 Room riêng"). **Đã đổi hướng so với plan gốc sau khi check keyword + live-SERP thật (2026-09-15)**:
@@ -356,7 +368,7 @@ cả 4 bài (3 cluster + #110). Xem chi tiết refresh-log.md.
 
 ---
 
-### Cụm 5: Website / Web Design — 7 bài, tất cả sống
+### Cụm 5: Website / Web Design, 7 bài, tất cả sống
 
 **Internal link đã verify + fix (02/10/2026)**: check link thật qua WP REST API cho cả 6 bài. Chiều
 cluster→pillar đã tốt sẵn (5/5), chỉ pillar #975 thiếu link ra 4/5 cluster. Đã vá xong — xem chi tiết
@@ -374,7 +386,7 @@ refresh-log.md. Còn 1 cụm chưa verify: Compliance/Legal/Risk (Cụm 8).
 
 ---
 
-### Cụm 6: Landing Pages — 6 bài, tất cả sống
+### Cụm 6: Landing Pages, 6 bài, tất cả sống
 
 **Internal link đã verify + fix (02/10/2026)**: check link thật qua WP REST API cho cả 6 bài. Pillar
 thiếu link tới 3/5 cluster (#924, #936, #942); 4/5 cluster (#918, #924, #936, #942) thiếu link ngược
@@ -392,7 +404,7 @@ lại (Website Builder/IDX, AI Voice, Website Design, Lead Generation, Complianc
 
 ---
 
-### Cụm 7: Lead Generation / Follow-up Automation — 🎯 RealSaleX (🥇 ưu tiên cao nhất) — ✅ HOÀN THÀNH — 8 bài
+### Cụm 7: Lead Generation / Follow-up Automation, 🎯 RealSaleX (🥇 ưu tiên cao nhất), ✅ HOÀN THÀNH, 8 bài
 
 Vì sao ưu tiên cao nhất: khớp thẳng "The Leak" trong pitch deck (40-50% lead không được follow-up).
 
@@ -426,7 +438,7 @@ Gen" → #147 (mention Fair Housing/Housing Special Ad Category).
 
 ---
 
-### Cụm 8: Compliance / Legal / Risk — 4 bài, tất cả sống
+### Cụm 8: Compliance / Legal / Risk, 5 bài, tất cả sống (+1 bài News wire fraud publish 04/10)
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
