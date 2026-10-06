@@ -147,8 +147,8 @@ còn lại (#419 teams-niche, #444 buying-guide/BOF) giữ nguyên vì different
 | Review (brand cụ thể) 🎯 RealSaleX | [Follow Up Boss Real Estate CRM Review: Pricing, Features, and the Follow-Up Gap](https://infina.ai/news/follow-up-boss-real-estate-crm/) | `follow up boss real estate crm` | Evaluation/MOF | ✅ Published 02/10 = #1449, 1.539 từ, density 0.65%, 2 bảng giá + 3 ảnh AI. Link ra #207/#444/#1232/#1234/#1223 |
 | Review/list (niche: broker) | [Real Estate Broker CRM: What Brokerages Need That Agent CRMs Miss](https://infina.ai/news/real-estate-broker-crm/) | `real estate broker crm` | Evaluation/MOF | ✅ Published 04/10 = #1462, 1.559 từ, density 0.83%. SERP check vs #419: 0 URL trùng. Có H2 riêng "Broker CRM vs Team CRM" phân tuyến. Link ngược đã verify live 06/10: #207 ✅, #419 ✅, #237 ✅ (link cross-cluster 2 chiều, bổ sung 06/10) |
 | Định nghĩa (niche RE) | [What Does CRM Mean in Real Estate? A Plain-English Guide for Agents](https://infina.ai/news/what-does-crm-mean-in-real-estate/) | `what does crm mean in real estate` | Discovery/TOF | ✅ Published 03/10 = #1458, 1.141 từ, density 0.61%. SERP check: 0 URL trùng với #230 nên không cannibalize. Link ngược đã verify live 06/10: #230 ✅, #207 ✅, #405 ✅, đủ cả 3 chiều |
-| So sánh (MOF) 🎯 RealSaleX | [Customer Engagement Platform vs CRM for Real Estate: Where Each One Stops](https://infina.ai/news/customer-engagement-platform-vs-crm/) | `customer engagement platform vs crm` | Evaluation/MOF | 🕐 Scheduled 07/10 10:00 = #1487, 1.341 từ, density 0,60%. SERP generic sạch real estate (leat, cxtoday, courier, flarelane, salesmanago). External link: NAR REALTORS Technology Report (52% agent dùng AI soạn email follow-up, verify first-hand). ⏳ còn thiếu 3 ảnh + link ngược từ #207/#1232 (chờ bài live) |
-| Listicle chiến lược (TOF) 🎯 RealSaleX | [Real Estate Customer Engagement: 7 Tactics That Earn a Reply](https://infina.ai/news/real-estate-customer-engagement-strategies/) | `real estate customer engagement` | Discovery/TOF | 🕐 Scheduled 08/10 10:00 = #1488, 1.184 từ, density 0,59%. Chốt FOCUS_KW trong nhóm đã duyệt 30/09 (`digital customer engagement` + `customer engagement examples`), chọn biến thể 4 từ vì cụm 5 từ không lặp tự nhiên đủ để đạt sàn density. SERP: easysend, brillio, twilio, MRI, Sierra glossary, 0 URL trùng với SERP #1487 và 0 URL trùng với SERP bài chatbot customer service. ⏳ còn thiếu 3 ảnh + link ngược từ #207/#1232 (chờ bài live) |
+| So sánh (MOF) 🎯 RealSaleX | [Customer Engagement Platform vs CRM for Real Estate: Where Each One Stops](https://infina.ai/news/customer-engagement-platform-vs-crm/) | `customer engagement platform vs crm` | Evaluation/MOF | 🕐 Scheduled 07/10 10:00 = #1487, 1.341 từ, density 0,60%. SERP generic sạch real estate (leat, cxtoday, courier, flarelane, salesmanago). External link: NAR REALTORS Technology Report (52% agent dùng AI soạn email follow-up, verify first-hand). Ảnh: 3/3 đã gắn (1 HERO ảnh người 35mm + 2 infographic phẳng). ⏳ còn link ngược từ #207/#1232 (chờ bài live) |
+| Listicle chiến lược (TOF) 🎯 RealSaleX | [Real Estate Customer Engagement: 7 Tactics That Earn a Reply](https://infina.ai/news/real-estate-customer-engagement-strategies/) | `real estate customer engagement` | Discovery/TOF | 🕐 Scheduled 08/10 10:00 = #1488, 1.184 từ, density 0,59%. Chốt FOCUS_KW trong nhóm đã duyệt 30/09 (`digital customer engagement` + `customer engagement examples`), chọn biến thể 4 từ vì cụm 5 từ không lặp tự nhiên đủ để đạt sàn density. SERP: easysend, brillio, twilio, MRI, Sierra glossary, 0 URL trùng với SERP #1487 và 0 URL trùng với SERP bài chatbot customer service. Ảnh: 3/3 đã gắn (1 HERO ảnh người 35mm + 2 infographic phẳng). ⏳ còn link ngược từ #207/#1232 (chờ bài live) |
 | ~~🔎 Review/list (roundup)~~ | ~~Top CRM Tools for Real Estate Agents and Teams~~ | `crm tools for real estate` | Evaluation/MOF | ⚠️ ĐÃ MERGE (2026-10-01) vào #207, redirect 301 live |
 | Review/list (niche: teams) | [Best CRM for Real Estate Teams: Top Picks for 2026](https://infina.ai/news/best-crm-for-real-estate-teams-2026/) | `best crm for real estate teams` | Evaluation/MOF | ✅ ĐÃ AUDIT: niche "teams" thật, rank tốt nhất nhóm (pos 5.0) — giữ nguyên |
 | Buying guide (BOF) | [Best CRM for Real Estate Agents: A Buyer's Guide (2026)](https://infina.ai/news/best-crm-buying-guide-real-estate-agents/) | `best crm` | Decision/BOF | ✅ ĐÃ AUDIT: funnel stage khác thật (quy trình đánh giá 14 ngày, red flags) — giữ nguyên |
@@ -321,9 +321,14 @@ Link 2 chiều giữa 2 bài đã xong ngay khi tạo (#1488 → #1487 trong H2 
 #1223 (Cụm 7). External link của cả 2 là NAR REALTORS Technology Report, đọc trực tiếp từ trang
 NAR chứ không lấy qua search summary.
 
-⏳ **Việc còn lại của nhóm này**: (1) 3 ảnh AI cho mỗi bài, đang kẹt vì file Gemini API key nằm
-trong thư mục uploads đã mất khi container được cấp lại ngày 05/10; (2) link ngược từ #207 và
-#1232 xuống 2 bài này, để sau khi bài live thật thay vì trỏ vào URL còn 404.
+**Ảnh (2026-10-06)**: 6/6 ảnh đã generate và gắn xong. Key Gemini lấy từ Google Drive folder "Key"
+theo đúng nguồn credential ghi trong `post-refresh/SKILL.md`, không phải từ thư mục uploads đã mất
+khi container được cấp lại ngày 05/10. Mỗi bài 1 HERO ảnh người 35mm + 2 infographic phẳng
+navy/xanh, không chữ trong ảnh, alt của cả 6 ảnh đều chứa FOCUS_KW của bài tương ứng. Ảnh metrics
+của #1488 phải generate lại 1 lần vì viền thẻ ra không liền, có bậc thừa ở 2 cạnh bên.
+
+⏳ **Việc còn lại của nhóm này**: link ngược từ #207 và #1232 xuống 2 bài này, để sau khi bài live
+thật thay vì trỏ vào URL còn 404. Đã hẹn self check-in 07/10 10:15 và 08/10 10:15 để làm.
 
 ---
 
