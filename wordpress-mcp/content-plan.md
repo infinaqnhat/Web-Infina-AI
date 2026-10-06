@@ -145,7 +145,7 @@ còn lại (#419 teams-niche, #444 buying-guide/BOF) giữ nguyên vì different
 | **Pillar nhẹ 🎯 RealSaleX** | [AI Intent Layer for Real Estate CRM: What It Adds](https://infina.ai/news/ai-intent-layer-for-real-estate-crm/) | `ai intent layer for real estate crm` | Evaluation/MOF | ✅ góc "bổ sung CRM sẵn có", khác hẳn roundup — đã sửa link trỏ về #207 thay vì #384 |
 | Review (brand cụ thể) 🎯 RealSaleX | [CINC CRM Review: Pricing, Features, and Buyer Follow-Up Gaps](https://infina.ai/news/cinc-crm-review-real-estate/) | `cinc crm review` | Evaluation/MOF | ✅ cluster của pillar nhẹ — đã sửa link trỏ về #207 thay vì #384 |
 | Review (brand cụ thể) 🎯 RealSaleX | [Follow Up Boss Real Estate CRM Review: Pricing, Features, and the Follow-Up Gap](https://infina.ai/news/follow-up-boss-real-estate-crm/) | `follow up boss real estate crm` | Evaluation/MOF | ✅ Published 02/10 = #1449, 1.539 từ, density 0.65%, 2 bảng giá + 3 ảnh AI. Link ra #207/#444/#1232/#1234/#1223 |
-| Review/list (niche: broker) | [Real Estate Broker CRM: What Brokerages Need That Agent CRMs Miss](https://infina.ai/news/real-estate-broker-crm/) | `real estate broker crm` | Evaluation/MOF | ✅ Published 04/10 = #1462, 1.559 từ, density 0.83%. SERP check vs #419: 0 URL trùng. Có H2 riêng "Broker CRM vs Team CRM" phân tuyến. Link ngược đã verify live 06/10: #207 ✅, #419 ✅. Riêng #237 (TCPA, Cụm 8) vẫn chưa trỏ ngược, hiện là link 1 chiều cross-cluster |
+| Review/list (niche: broker) | [Real Estate Broker CRM: What Brokerages Need That Agent CRMs Miss](https://infina.ai/news/real-estate-broker-crm/) | `real estate broker crm` | Evaluation/MOF | ✅ Published 04/10 = #1462, 1.559 từ, density 0.83%. SERP check vs #419: 0 URL trùng. Có H2 riêng "Broker CRM vs Team CRM" phân tuyến. Link ngược đã verify live 06/10: #207 ✅, #419 ✅, #237 ✅ (link cross-cluster 2 chiều, bổ sung 06/10) |
 | Định nghĩa (niche RE) | [What Does CRM Mean in Real Estate? A Plain-English Guide for Agents](https://infina.ai/news/what-does-crm-mean-in-real-estate/) | `what does crm mean in real estate` | Discovery/TOF | ✅ Published 03/10 = #1458, 1.141 từ, density 0.61%. SERP check: 0 URL trùng với #230 nên không cannibalize. Link ngược đã verify live 06/10: #230 ✅, #207 ✅, #405 ✅, đủ cả 3 chiều |
 | So sánh (MOF) 🎯 RealSaleX — chưa viết | *Customer Engagement Platform vs CRM for Real Estate* | `customer engagement platform vs crm` | Evaluation/MOF | 🕐 Đã duyệt plan 30/09, chưa viết — xem "Mở rộng CEP" bên dưới |
 | Listicle chiến lược (TOF) 🎯 RealSaleX — chưa viết | *Customer Engagement Strategies for Real Estate Agents* | niche từ `digital customer engagement` + `customer engagement examples` | Discovery/TOF | 🕐 Đã duyệt plan 30/09, chưa viết — xem "Mở rộng CEP" bên dưới |
@@ -270,10 +270,12 @@ do rule tối đa 3 bài/ngày và giờ publish 10:00 cho bài evergreen.
 |---|---|---|---|---|---|
 | Bài 1 Follow Up Boss | #1449 | 02/10 | 1.539 | 0,65% | #207, #1232, #1234, #1223 |
 | Bài 3 Định nghĩa CRM | #1458 | 03/10 | 1.141 | 0,61% | #230, #207, #405 (đủ 3/3) |
-| Bài 2 Broker CRM | #1462 | 04/10 | 1.559 | 0,83% | #207, #419 (2/3, thiếu #237) |
+| Bài 2 Broker CRM | #1462 | 04/10 | 1.559 | 0,83% | #207, #419, #237 (đủ 3/3) |
 
-⏳ **Việc còn lại của nhóm này**: thêm 1 link từ #237 (TCPA compliance, Cụm 8) xuống #1462 để khép
-link 2 chiều cross-cluster. Hiện #1462 có trỏ lên #237 nhưng chiều ngược lại chưa có.
+✅ **Nhóm này đã khép hoàn toàn (06/10)**: link cuối cùng còn thiếu là #237 → #1462 đã bổ sung, đặt
+trong H2 "TCPA Compliance for Real Estate Agents in Practice" với góc lưu trữ hồ sơ consent ở cấp
+brokerage. Anchor text dùng đúng FOCUS_KW `real estate broker crm`. Density của #237 sau khi thêm
+đoạn: 0,61% (7 lần / 1.154 từ), vẫn trong ngưỡng Rank Math 0,5-2,5%.
 
 **Việc on-page kèm theo (không phải bài mới)**: bổ sung biến thể `real estate crm systems`,
 `real estate crm programs`, `real estate crm platforms`, `top 10 real estate crm` vào title tag/H2
