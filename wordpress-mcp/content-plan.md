@@ -461,7 +461,7 @@ Gen" → #147 (mention Fair Housing/Housing Special Ad Category).
 
 ---
 
-### Cụm 8: Compliance / Legal / Risk, 5 bài, tất cả sống (+1 bài News wire fraud publish 04/10)
+### Cụm 8: Compliance / Legal / Risk, 6 bài, tất cả sống (+1 News wire fraud 04/10, +1 News private listing law 06/10)
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
@@ -470,6 +470,7 @@ Gen" → #147 (mention Fair Housing/Housing Special Ad Category).
 | Hỗ trợ (News) | [Colorado's New AI Law Sets a Deadline for Automated Decisions](https://infina.ai/news/ai-decision-making-compliance-real-estate-agents/) | `ai decision making compliance real estate agents` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Seller Impersonation Fraud Attempts Just Doubled](https://infina.ai/news/seller-impersonation-fraud-prevention-real-estate-agents/) | `seller impersonation fraud prevention real estate agents` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Two Wire Fraud Companies Just Merged, and the Agent Is Still the Weak Link](https://infina.ai/news/how-agents-protect-clients-from-wire-fraud/) | `how agents protect clients from wire fraud` | Post-purchase/support | ✅ Published 04/10 = #1481. Góc wire fraud lúc closing, khác #1260 (impersonation phía seller). Link 2 chiều với pillar #237 |
+| Hỗ trợ (News) | [Three States Now Force Private Listings Public the Moment You Market Them](https://infina.ai/news/private-listing-marketing-rules/) | `private listing marketing rules` | Post-purchase/support | ✅ Published 06/10 = #1501, 876 từ, density 0,57%, 4 ảnh. Nguồn verify first-hand: CT Office of Legislative Research public act summary cho PA 26-23 (sSB 340) và Senate Bill Report cho WA SB 6091, không lấy số liệu từ search summary. Link 2 chiều với pillar #237 đã verify. Category 1 "News" vì bài thuần pháp lý, không có góc AI như #492/#1260/#1481 |
 
 **Internal link đã verify + fix (02/10/2026)**: fetch 4 bài qua WP REST API. Đây là cụm có tình
 trạng tệ nhất trong cả 8 cụm — pillar #237 KHÔNG link tới bất kỳ bài nào trong 3 bài cluster của

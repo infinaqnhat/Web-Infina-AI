@@ -154,6 +154,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-10-04 | `how agents protect clients from wire fraud` | [how-agents-protect-clients-from-wire-fraud](https://infina.ai/news/how-agents-protect-clients-from-wire-fraud/) | news-to-cluster-article, pillar #237 Cụm 8 (ID 1481) |
 | 2026-10-07 (scheduled) | `customer engagement platform vs crm` | [customer-engagement-platform-vs-crm](https://infina.ai/news/customer-engagement-platform-vs-crm/) | pillar-cluster-writer, pillar #207 Cụm 2, bài CEP 1/2 (ID 1487) |
 | 2026-10-08 (scheduled) | `real estate customer engagement` | [real-estate-customer-engagement-strategies](https://infina.ai/news/real-estate-customer-engagement-strategies/) | pillar-cluster-writer, pillar #207 Cụm 2, bài CEP 2/2 (ID 1488) |
+| 2026-10-06 | `private listing marketing rules` | [private-listing-marketing-rules](https://infina.ai/news/private-listing-marketing-rules/) | news-to-cluster-article, pillar #237 Cụm 8 (ID 1501) |
 
 ---
 
