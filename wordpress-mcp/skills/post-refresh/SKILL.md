@@ -30,7 +30,10 @@ trợ, mọi đề xuất phải bắt nguồn từ số liệu thật, không s
   private_key/client_email/token_uri` trước khi dùng). Dùng ngay trong script Python làm
   `sa_json` khi khởi tạo `GSCClient`, không echo/print nội dung ra ngoài, không set qua `export`
   trong Bash (dễ bị auto-mode classifier chặn vì "Credential Leakage" khi set biến môi trường
-  chứa key trực tiếp trong lệnh Bash — đọc/dùng trong script Python thì không bị chặn). Lý do
+  chứa key trực tiếp trong lệnh Bash). **Đính chính 2026-10-06**: ghi chú cũ ở đây từng nói
+  "đọc/dùng trong script Python thì không bị chặn", điều đó không còn đúng. Bước đọc key từ Drive
+  vẫn chạy bình thường, nhưng mọi cách đưa key đã giải mã xuống đĩa đều bị auto-mode classifier
+  chặn. Khi gặp, dừng lại và hỏi user thay vì tự tìm đường vòng. Lý do
   dùng Drive thay vì biến môi trường `SEO_GSC_SA_JSON`/file trong repo: biến môi trường set qua
   Edit environment chỉ áp dụng cho session MỚI, không nạp vào session đang chạy liên tục nhiều
   tuần (trường hợp thực tế của site này), còn lưu key thật vào repo git thì bị auto-mode
