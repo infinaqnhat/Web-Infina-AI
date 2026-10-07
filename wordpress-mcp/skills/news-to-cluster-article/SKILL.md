@@ -573,12 +573,42 @@ chỉ 1.800 chữ thì 20 link là **nhiều**, không phải vừa. Lỗi này 
 2026-10-07: lấy con số tuyệt đối 20-40 áp lên pillar 1.832 chữ rồi kết luận nhầm là "đang thiếu
 link". Luôn chia cho số chữ trước khi đánh giá.
 
+**Độ dài pillar: suy ra từ SỐ CLUSTER, đừng đặt mục tiêu số chữ.**
+
+⚠️ **Word count không phải ranking factor.** John Mueller: "Word count is not a ranking factor, save
+yourself the trouble." Danny Sullivan (2023): "The best word count needed to succeed in Google
+Search is not a thing, it doesn't exist." Mọi con số dưới đây là **mốc vận hành để tự soi**, không
+phải thứ Google đo. Bài dài rank tốt vì phủ chủ đề đủ và hút backlink, không phải vì dài.
+
+Logic đúng: pillar cần đủ section để tóm tắt **mọi subtopic trong cụm của nó, không hơn**. Pillar
+phủ 8 cluster đương nhiên ngắn hơn pillar phủ 30. Kết hợp với chuẩn "mỗi subtopic 100-200 chữ tóm
+tắt rồi link ra bài sâu":
+
+```
+do_dai_pillar ~= 400 (mo bai) + 150 x so_cluster + 200 (ket)
+```
+
+| Số cluster | Độ dài suy ra |
+|---|---|
+| 8 | ~1.800 chữ |
+| 15 | ~2.950 chữ |
+| 25 | ~4.350 chữ |
+| 30 | ~5.100 chữ |
+
+Khoảng tham khảo của ngành là **2.000-5.000 chữ, sweet spot quanh 3.000**, và nó chính là hệ quả
+của công thức trên khi cụm có 10-30 bài. Nếu pillar của bạn rơi ngoài khoảng đó, kiểm tra số cluster
+trước khi kết luận bài quá ngắn hay quá dài.
+
+**Pillar quá tải cụm thì tách, đừng viết dài vô hạn.** Chuẩn ngành là 8-15 cluster mỗi pillar. Vượt
+xa mức đó (ví dụ 40+) thì công thức sẽ đòi 6.000-7.000 chữ, lúc đó bài thành không đọc nổi. Giải
+pháp đúng là tách thành nhiều sub-hub, mỗi hub 10-15 cluster.
+
 **Ngưỡng khác đi kèm:**
 
 | Chỉ số | Khuyến nghị |
 |---|---|
-| Độ dài pillar | 3.000-5.000 chữ |
-| Số bài cluster trên 1 pillar | 8-15 lúc đầu, mở rộng dần |
+| Độ dài bài cluster | 1.200-2.000 chữ |
+| Số bài cluster trên 1 pillar | 8-15, vượt 20 thì cân nhắc tách sub-hub |
 | Mỗi bài cluster link ra | pillar + 2-3 bài cluster khác |
 | Pillar link tới cluster | mỗi cluster đúng 1 lần, không lặp |
 | Link tới money page | 1-3 lần, đặt ở chỗ intent mua cao nhất (sau phần so sánh, đánh giá, kết luận) |
@@ -601,10 +631,37 @@ lần không có con số cứng. Mọi ngưỡng trên là mốc tham chiếu �
 | `crm-pipeline-management` | 1.682 | 5 | 3,0 | thiếu |
 | `best-ai-virtual-assistant-real-estate` | 1.794 | 5 | 2,8 | thiếu |
 
-Đọc bảng này cho đúng: vấn đề lớn nhất **không phải** số link, mà là **pillar của site đang quá
-ngắn so với vai trò pillar**. Chỉ `real-estate-website-builder` đạt 3.000 chữ. Các pillar còn lại
-1.200-1.800 chữ, tức đang là bài cluster dài chứ chưa phải pillar. Thêm link vào một bài 1.800 chữ
-chỉ đẩy tỷ lệ lên vùng "nhiều" mà không giải quyết gốc.
+Đọc bảng này cho đúng: vấn đề không nằm ở số link mà ở **tỷ lệ giữa độ dài pillar và số cluster nó
+thật sự gánh**.
+
+⚠️ **Đếm số cluster bằng số inbound link là SAI.** Thử ngày 07/10/2026: `#207` nhận 47 inbound, nếu
+coi đó là 47 cluster thì công thức đòi 7.650 chữ và kết luận "pillar quá tải, phải tách". Soi kỹ thì
+**28 trong 47 bài đó còn link lên pillar của cụm khác**, tức chúng là link chéo cụm (bài IDX, landing
+page, web design tham chiếu sang CRM), không phải thành viên Cụm 2. Đổi sang đếm "chỉ link lên đúng
+1 pillar" lại hụt ngược, vì bài cluster hợp lệ mà có link chéo sẽ bị loại oan.
+
+**Kết luận phương pháp: không suy ra thành viên cụm từ link graph.** Nguồn đúng duy nhất là bảng
+phân cụm trong `content-plan.md`, nơi mỗi bài được gán cụm bằng quyết định biên tập. Link graph
+dùng để đo sức khoẻ link (inbound, outbound, mồ côi), không dùng để định nghĩa cụm.
+
+Số liệu đúng lấy từ `content-plan.md` ngày 07/10/2026:
+
+| Cụm | Bài sống | Pillar | Chữ pillar | Cần có | Chênh |
+|---|---|---|---|---|---|
+| Cụm 2 CRM Software | 25 | `best-crm-for-real-estate` | 1.832 | 4.350 | **-2.518** |
+| Cụm 1 Chatbot | 13 | `best-conversational-ai-chatbot` | 2.281 | 2.550 | -269 |
+| Cụm 3 Website Builder / IDX | 13 | `real-estate-website-builder` | 3.016 | 2.550 | **+466 đạt** |
+| Cụm 7 Lead Generation | 9 | `real-estate-lead-follow-up-automation-guide` | 722 | 1.950 | **-1.228** |
+| Cụm 4 AI Voice | 6 | `best-ai-voice-assistants-for-real-estate` | 2.251 | 1.500 | **+751 đạt** |
+| Cụm 5 Website / Web Design | 6 | `website-design-for-real-estate-agents` | 1.812 | 1.500 | **+312 đạt** |
+| Cụm 6 Landing Pages | 6 | `real-estate-landing-page-guide` | 988 | 1.500 | -512 |
+| Cụm 8 Compliance | 6 | `tcpa-compliance-for-real-estate-agents` | 1.180 | 1.500 | -320 |
+
+Ba cụm đã đạt. Hai cụm hụt nhiều nhất là **Cụm 2** (pillar 1.832 chữ gánh 25 bài) và **Cụm 7**
+(pillar chỉ 722 chữ gánh 9 bài, ngắn hơn cả một bài cluster bình thường).
+
+Không cụm nào vượt 25 bài, nên **chưa cụm nào cần tách sub-hub**. Việc cần làm là viết dài pillar
+cho đủ vai trò, không phải chia nhỏ cụm.
 
 Cách tự đo nhanh:
 
@@ -739,6 +796,8 @@ Số trang `IN=0` phải đi ngang hoặc giảm. Nếu nó tăng theo số bài
 - [LinkWhisper, how many internal links per page](https://linkwhisper.com/how-many-internal-links-per-page-the-answer/). Khoảng 20-40 cho pillar, với giả định pillar dài 3.000-5.000 chữ.
 - [Wellows, how many internal links per page SEO](https://wellows.com/blog/how-many-internal-links-per-page-seo/). Quy tắc 1 link mỗi 200-300 chữ.
 - [AirOps, how many internal links is too many](https://www.airops.com/blog/how-many-internal-links-is-too-many). Khoảng 3-5 link mỗi 1.000 chữ, nới tới 8 cho bài dài.
+- [Search Engine Roundtable, Google Says Word Count Is Not A Ranking Factor](https://www.seroundtable.com/google-word-count-is-not-a-ranking-factor-27994.html). Phát ngôn Mueller và Sullivan.
+- [Search Engine Journal, Content Length: Is It a Google Ranking Factor?](https://www.searchenginejournal.com/ranking-factors/content-length/). Tương quan không phải nhân quả.
 - [eesel, how many internal links per page for SEO](https://eesel.ai/blog/how-many-internal-links-per-page-seo). Mô hình hub and spoke, 2-3 link ngang mỗi cluster.
 
 ---
