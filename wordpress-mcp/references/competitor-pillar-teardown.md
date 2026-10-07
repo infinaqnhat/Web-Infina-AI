@@ -128,7 +128,7 @@ for r in sorted(rows, reverse=True)[:40]:
 | IN thấp, OUT cao | Trang index/listing, không phải pillar |
 | IN = 0 | **Trang mồ côi.** Đây là điểm yếu lớn nhất của đối thủ, xem Bước 6 |
 
-### Năm cái bẫy khi đọc con số này
+### Sáu cái bẫy khi đọc con số này
 
 **1. Phải cắt header/nav/footer trước khi đếm.** Nếu không, mọi trang trong menu sẽ có inbound bằng
 đúng tổng số trang và con số mất hết ý nghĩa. Đoạn `re.split` ở trên là bản tối giản, site nào không
@@ -167,6 +167,39 @@ Cách nhận ra: tính **tỷ lệ số trang có link tới nó**. Trên 50% th
 Site càng nhỏ thì pillar thật càng dễ vượt ngưỡng %. Cách làm đúng: tính tỷ lệ, sắp xếp giảm dần,
 rồi **nhìn 10 dòng đầu và tự loại bằng mắt** những trang rõ ràng là CTA, liên hệ, hoặc pháp lý
 (`/contact`, `/privacy-policy`, `/terms`, trang đăng ký, trang tải ebook). Mất 30 giây và không sai.
+
+**6. Đếm link là chưa đủ, phải xem link nằm Ở ĐÂU trong trang.** Theo patent reasonable surfer của
+Google (US8117209B1), trọng số mỗi link tính theo xác suất người đọc bấm vào, dựa trên vị trí link
+trong tài liệu, vị trí trong danh sách link, anchor text và mức liên quan. Nghĩa là 20 link nằm
+giữa các đoạn văn mạnh hơn hẳn 20 link dồn vào box cuối bài, dù script đếm ra cùng con số.
+
+Ba mức, đừng gộp mức 2 với mức 3:
+
+| Mức | Vị trí | Giá trị |
+|---|---|---|
+| 1 | Giữa đoạn văn, ngay chỗ nhắc chủ đề con | Cao nhất |
+| 2 | Box "Related Reading" cuối bài, anchor mô tả | Trung bình |
+| 3 | Nav, sidebar, footer, boilerplate lặp mọi trang | Thấp nhất |
+
+Cách đo tỷ lệ này cho 1 site bất kỳ, chạy trên nội dung đã fetch:
+
+```python
+import re
+TAIL = re.compile(r"<h2[^>]*>\s*(Related Reading|Final Thoughts|You might also)", re.I)
+def split_links(html, domain):
+    m = TAIL.search(html)
+    cut = m.start() if m else len(html)
+    pat = rf'href="https?://{re.escape(domain)}/[^"]*"'
+    return len(re.findall(pat, html[:cut])), len(re.findall(pat, html[cut:]))
+```
+
+**Ngưỡng tham chiếu: tối thiểu 50% link nội bộ nằm trong thân bài.** Đo trên 113 bài của
+`infina.ai/news` ngày 07/10/2026: chỉ 41% nằm trong thân bài, 59% dồn vào Related Reading và Final
+Thoughts. Khi soi đối thủ, một site có nhiều link nhưng toàn nằm ở boilerplate thì yếu hơn con số
+thô gợi ý, và ngược lại.
+
+Lưu ý mục lục (TOC) không thuộc nhóm này. Nó thường là anchor nhảy trong cùng trang nên không
+truyền equity sang trang khác, trừ khi link thẳng tới trang cluster.
 
 **4. Trang category và tag archive sẽ leo lên đầu bảng.** Mọi bài đều link về category của nó, nên
 archive luôn có inbound cao nhất site mà không phải pillar nội dung. Đo thật trên `infina.ai/news`:

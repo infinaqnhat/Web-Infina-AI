@@ -578,11 +578,48 @@ ra (vừa chạm ngưỡng dưới), `#546` có 15, `#214` có 11, `#237` có 9.
 là 1,23/bài so với chuẩn 2-3, chỉ 31% số bài đạt. Nghĩa là **pillar đang thiếu link ra, và link
 ngang là chỗ hổng lớn nhất**.
 
+### Đặt link ở đâu quan trọng ngang số lượng link
+
+Không phải mọi link trên 1 trang truyền cùng lượng equity. Theo patent **reasonable surfer** của
+Google (US8117209B1), trọng số mỗi link tính theo **xác suất người đọc thật sự bấm vào**, dựa trên
+vị trí link trong tài liệu, **vị trí link trong một danh sách link**, anchor text, cỡ chữ, và mức
+liên quan tới nội dung trang. Patent nêu đích danh nhóm ít được bấm: Terms of Service, banner
+quảng cáo, link không liên quan.
+
+Lưu ý đây là **patent**, không phải xác nhận Google đang chạy đúng như vậy hôm nay. Coi là bằng
+chứng mạnh về hướng, không phải sự thật tuyệt đối.
+
+**Ba mức giá trị, không phải hai:**
+
+| Mức | Vị trí | Giá trị |
+|---|---|---|
+| 1 | Giữa đoạn văn, ngay chỗ nhắc tới chủ đề con | Cao nhất |
+| 2 | Box "Related Reading" cuối bài, anchor mô tả, do biên tập đặt | Trung bình |
+| 3 | Nav, sidebar, footer, boilerplate lặp trên mọi trang | Thấp nhất |
+
+Đừng gộp mức 2 với mức 3. Related Reading vẫn nằm trong body, vẫn do người viết đặt, vẫn có anchor
+mô tả, nên nó khác hẳn footer. Nó yếu hơn link ngữ cảnh chứ không vô giá trị.
+
+**Ba quy tắc rút ra:**
+
+1. **Ưu tiên đặt link vào thân bài**, đúng chỗ nội dung nhắc tới chủ đề đó. Related Reading chỉ
+   dùng cho phần đuôi dài không nhét vào ngữ cảnh được một cách tự nhiên.
+2. **Trong box Đọc thêm, xếp bài quan trọng nhất lên đầu.** Patent tính cả thứ tự trong danh sách,
+   nên link thứ nhất khác link thứ năm.
+3. **Mục lục (TOC) không thuộc nhóm này.** TOC thường là anchor nhảy trong cùng trang (`#heading`),
+   không truyền equity sang trang khác. Nó phục vụ UX và featured snippet, không phải internal
+   linking, trừ khi nó link thẳng sang các trang cluster.
+
+**Ngưỡng tham chiếu: tối thiểu 50% link nội bộ của 1 bài nằm trong thân bài.** Đo ngày 07/10/2026
+trên 113 bài của `infina.ai/news`: chỉ **41% link nằm trong thân bài**, 59% dồn vào Related Reading
+và Final Thoughts. Tức là site đang lệch về phía đặt link cuối bài, cần kéo ngược lại.
+
 ### Ba việc bắt buộc, theo thứ tự rẻ tiền trước
 
-**1. Link ngang sang 2-3 bài cùng cụm, làm ngay lúc viết (Bước 5).** Rẻ nhất vì không phải sửa bài
-nào khác. Chọn bài cùng cụm có chủ đề gần nhất, viết thành câu có lý do để người đọc bấm, không
-phải liệt kê tiêu đề. Đây là việc quan trọng nhất trong cả Bước 6.5.
+**1. Link ngang sang 2-3 bài cùng cụm, ĐẶT TRONG THÂN BÀI, làm ngay lúc viết (Bước 5).** Rẻ nhất vì
+không phải sửa bài nào khác, và mạnh nhất vì nằm trong ngữ cảnh. Chọn bài cùng cụm có chủ đề gần
+nhất, chèn vào đúng đoạn đang nói về chủ đề đó, viết thành câu có lý do để người đọc bấm chứ không
+liệt kê tiêu đề. Đây là việc quan trọng nhất trong cả Bước 6.5.
 
 **2. Link lên pillar.** Bước 5 đã làm, chỉ cần verify lại.
 
@@ -619,6 +656,18 @@ def linked(from_id, to_slug):
 assert linked(new_post_id, PILLAR_SLUG), "bai moi chua link len pillar"
 assert linked(pid, SLUG),                "pillar chua link xuong bai moi"
 assert sum(linked(new_post_id, s) for s in SIBLING_SLUGS) >= 2, "thieu link ngang"
+
+# va kiem tra ty le link nam trong than bai, muc tieu >= 50%
+import re
+c = json.load(urllib.request.urlopen(
+    f"https://infina.ai/news/wp-json/wp/v2/posts/{new_post_id}?_fields=content"
+))["content"]["rendered"]
+m = re.search(r"<h2[^>]*>\s*(Related Reading|Final Thoughts)", c, re.I)
+cut = m.start() if m else len(c)
+pat = r'href="https://infina\.ai/news/[a-z0-9-]+/"'
+body, tail = len(re.findall(pat, c[:cut])), len(re.findall(pat, c[cut:]))
+print(f"link than bai {body} / cuoi bai {tail}")
+assert body >= tail, "qua nua link dang don o cuoi bai, keo bot vao than bai"
 ```
 
 ### Ba lưu ý
