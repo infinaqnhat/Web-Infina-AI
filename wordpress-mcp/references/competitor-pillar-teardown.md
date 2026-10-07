@@ -306,15 +306,30 @@ cannibalize**. Ghi lại, đó là cơ hội.
 
 | Tín hiệu | Ngưỡng tham chiếu (10/2026) |
 |---|---|
-| Số cluster trên 1 pillar | 5–15, khởi động 5–7 |
+| **Pillar, tổng link nội bộ đi ra** | **20–40** |
+| Số cluster trên 1 pillar | 5–15, khởi động 5–7, mở rộng tới 8–15 |
+| **Mỗi bài cluster link ra** | **pillar + 2–3 bài cluster khác** |
 | Độ dài pillar | 3.000–5.000 từ |
 | Mỗi subtopic trong pillar | 100–200 từ tóm tắt rồi link ra bài sâu |
 | Anchor text cluster → pillar | chứa keyword mục tiêu của pillar |
 | Link 2 chiều | bắt buộc chiều cluster → pillar |
 | Ngưỡng AI citation | 5+ trang liên kết nhau trong cùng 1 chủ đề |
 
+**Google không có giới hạn số link trên 1 trang.** Quy tắc "100 link mỗi trang" bị trích rất nhiều
+nhưng đã bỏ từ 2008, vốn là giới hạn kỹ thuật thời Googlebot chỉ tải khoảng 100KB đầu trang. Nên khi
+thấy pillar của đối thủ có 30-40 link nội bộ, đó là **dấu hiệu hub khoẻ**, không phải spam. Ngược
+lại pillar chỉ có 5-10 link ra là hub yếu, chưa gánh được cụm phía dưới.
+
+Hai dòng in đậm là hai chỉ số phân biệt nhanh nhất giữa cụm có kiến trúc và một đống bài rời rạc.
+Đo thật: `wiseagent.com` có **0 link cluster sang cluster** trên 250 bài blog, và 86% site mồ côi.
+
 Dùng bảng này để **so sánh giữa các đối thủ**, không phải để chấm đỗ/trượt. Một đối thủ có 4 cụm đạt
 chuẩn nguy hiểm hơn hẳn đối thủ có 12 cụm rời rạc.
+
+**Cũng dùng bảng này để tự soi site mình.** Đo ngày 07/10/2026 trên `infina.ai/news`: pillar mạnh
+nhất `#207` có 21 link ra (vừa chạm ngưỡng dưới), các pillar còn lại 9-15 nên **đang thiếu**. Link
+ngang trung bình 1,23/bài so với chuẩn 2-3, chỉ 31% số bài đạt. Tức là lỗi của mình không phải link
+quá nhiều mà là **chưa link đủ**.
 
 ---
 

@@ -8,7 +8,7 @@ description: "Crawl tin tức mới theo 10 mảng, đối chiếu keyword trong
 ## Mô tả
 Crawl tin tức mới theo 10 mảng → đối chiếu Google Sheet tracker (nguồn pillar/dedup chính thức) + WordPress → đối chiếu keyword trong Excel → chọn tin phù hợp → viết và đăng cluster article lên WordPress đạt Rank Math ≥80/100. Toàn bộ chạy qua API, không cần browser.
 
-**Nguyên tắc cốt lõi:** bài viết từ tin tức (cluster/spoke) luôn target một keyword long-tail RIÊNG của nó (`FOCUS_KW`), khác với keyword của pillar page (`PILLAR_KW`) mà nó link về. Không bao giờ để 2 bài trong site cùng target 1 keyword — pillar page giữ vị trí rank cho keyword đầu (head term), cluster article chỉ mượn góc tin tức để nhắm long-tail và đẩy internal link/topical authority về pillar. Nguồn xác định keyword nào đã "có chủ" (Plan = pillar, News = cluster đã viết) là Google Sheet tracker ở Bước 2b — đọc lại sheet này mỗi lần chạy, và append 1 dòng mới vào đó sau khi publish (Bước 7). **Link phải đi 2 chiều**: Bước 5 lo chiều cluster lên pillar, Bước 6.5 lo chiều pillar xuống cluster, bỏ Bước 6.5 là bài vừa publish thành trang mồ côi.
+**Nguyên tắc cốt lõi:** bài viết từ tin tức (cluster/spoke) luôn target một keyword long-tail RIÊNG của nó (`FOCUS_KW`), khác với keyword của pillar page (`PILLAR_KW`) mà nó link về. Không bao giờ để 2 bài trong site cùng target 1 keyword — pillar page giữ vị trí rank cho keyword đầu (head term), cluster article chỉ mượn góc tin tức để nhắm long-tail và đẩy internal link/topical authority về pillar. Nguồn xác định keyword nào đã "có chủ" (Plan = pillar, News = cluster đã viết) là Google Sheet tracker ở Bước 2b — đọc lại sheet này mỗi lần chạy, và append 1 dòng mới vào đó sau khi publish (Bước 7). **Link phải khép 3 chiều**: cluster lên pillar, cluster sang 2-3 bài cùng cụm, và pillar xuống cluster. Bước 6.5 lo cả ba, bỏ nó là bài vừa publish gần như không nhận tín hiệu nội bộ nào.
 
 **Lịch sử:** skill này có 2 nhánh phát triển từng tồn tại song song trên account (một nhánh tập trung compliance/tracker/anti-cannibalization, một nhánh tập trung chất lượng ảnh/category/rate-limit) — bản này là merge của cả hai, giữ lại phần tốt của từng bên.
 
@@ -547,20 +547,47 @@ resp = call("update_post", {"post_id": post_id, "seo_title": NEW_SEO_TITLE})
 
 ---
 
-## Bước 6.5: Thêm link NGƯỢC từ pillar xuống bài mới (BẮT BUỘC, không được bỏ)
+## Bước 6.5: Khép internal link 3 chiều cho bài mới (BẮT BUỘC, không được bỏ)
 
-Bước 5 đã cho bài mới link LÊN pillar. Chiều ngược lại, pillar link XUỐNG bài mới, **không tự xảy
-ra**, và nếu bỏ qua thì bài vừa publish sẽ không nhận một internal link nào từ bất kỳ đâu trên site.
+Bước 5 mới chỉ cho bài mới link LÊN pillar. Hai chiều còn lại không tự xảy ra, và thiếu chúng thì
+bài vừa publish gần như không nhận tín hiệu nội bộ nào.
 
-**Đây không phải lo xa.** Audit ngày 2026-10-07 bằng `scripts/competitor_teardown.py` chạy trên
-chính `infina.ai/news`: **35/130 trang (27%) không có inbound internal link nào**, trong đó 23 là
-bài bất động sản thật. Nguyên nhân duy nhất là skill này trước đây kết thúc ở Bước 7 mà không có
-bước nối ngược. Mỗi lần chạy pipeline là site có thêm đúng 1 trang mồ côi.
+**Đây không phải lo xa.** Audit 2026-10-07 bằng `scripts/competitor_teardown.py` chạy trên chính
+`infina.ai/news`: 35/130 trang không có inbound biên tập nào, 23 trong đó là bài bất động sản thật.
+Nguyên nhân duy nhất là skill này trước đây kết thúc ở Bước 7 mà không có bước khép link.
 
-### Làm gì
+### Ngưỡng khuyến nghị (đã verify, đừng tự chế số khác)
 
-**1. Lấy full content hiện tại của pillar.** `update_post` ghi đè toàn bộ `content`, không hỗ trợ
-sửa từng phần, nên phải fetch đủ trước khi sửa:
+| Chỉ số | Khuyến nghị | Ghi chú |
+|---|---|---|
+| Pillar, tổng link nội bộ đi ra | **20-40** | Pillar được phép nhiều hơn bài thường vì nó là hub, đó là chức năng của nó |
+| Số bài cluster trên 1 pillar | 8-15 lúc đầu, mở rộng dần | |
+| Mỗi bài cluster link ra | pillar + **2-3 bài cluster khác** | Đây là chỗ hay thiếu nhất |
+
+**Google KHÔNG có giới hạn số link/trang.** Quy tắc "100 link mỗi trang" bị trích rất nhiều nhưng
+đã bỏ từ 2008, nó vốn là giới hạn kỹ thuật thời Googlebot chỉ tải khoảng 100KB đầu trang. John
+Mueller khẳng định nhiều lần không có con số cứng. Thứ thật sự quan trọng là link có hữu ích cho
+người đọc không, và có làm loãng tín hiệu không.
+
+⚠️ **Đừng dùng con số "8-12 outbound cho pillar"** nếu bắt gặp nó ở đâu đó trong lịch sử ghi chép
+của dự án này. Đó là số liệu sai từng được đưa ra rồi đính chính ngày 2026-10-07. Pillar dưới 20
+link nội bộ là **thiếu**, không phải vừa.
+
+**Hiện trạng site tại 2026-10-07** để biết mình đang đứng đâu: pillar mạnh nhất `#207` có 21 link
+ra (vừa chạm ngưỡng dưới), `#546` có 15, `#214` có 11, `#237` có 9. Link ngang trung bình toàn site
+là 1,23/bài so với chuẩn 2-3, chỉ 31% số bài đạt. Nghĩa là **pillar đang thiếu link ra, và link
+ngang là chỗ hổng lớn nhất**.
+
+### Ba việc bắt buộc, theo thứ tự rẻ tiền trước
+
+**1. Link ngang sang 2-3 bài cùng cụm, làm ngay lúc viết (Bước 5).** Rẻ nhất vì không phải sửa bài
+nào khác. Chọn bài cùng cụm có chủ đề gần nhất, viết thành câu có lý do để người đọc bấm, không
+phải liệt kê tiêu đề. Đây là việc quan trọng nhất trong cả Bước 6.5.
+
+**2. Link lên pillar.** Bước 5 đã làm, chỉ cần verify lại.
+
+**3. Link ngược từ pillar xuống bài mới.** Cần fetch full content vì `update_post` ghi đè toàn bộ
+field `content`, không patch được:
 
 ```python
 import urllib.request, json
@@ -568,25 +595,19 @@ pid = PILLAR_POST_ID
 cur = json.load(urllib.request.urlopen(
     f"https://infina.ai/news/wp-json/wp/v2/posts/{pid}?_fields=id,slug,content"
 ))["content"]["rendered"]
-```
 
-**2. Nối 1 câu vào đoạn "Related Reading" có sẵn của pillar**, không tạo section mới, không viết lại
-bài. Anchor text phải chứa **FOCUS_KW của bài mới** (không phải PILLAR_KW, vì đây là chiều pillar
-truyền tín hiệu xuống cluster):
-
-```python
-OLD_TAIL = "</p>\n<h2>Final Thoughts</h2>"      # hoặc đoạn kết thật của pillar đó
+OLD_TAIL = "</p>\n<h2>Final Thoughts</h2>"      # hoac doan ket that cua pillar do
 ADD = (f' Để xem góc tin mới nhất, đọc thêm bài <a href="https://infina.ai/news/{SLUG}/">'
        f'{FOCUS_KW}</a>.')
 assert cur.count(OLD_TAIL) == 1, "khong tim thay diem noi, doc lai pillar"
-new = cur.replace(OLD_TAIL, ADD + OLD_TAIL)
-call("update_post", {"post_id": pid, "content": new})
+call("update_post", {"post_id": pid, "content": cur.replace(OLD_TAIL, ADD + OLD_TAIL)})
 ```
 
-Nếu pillar chưa có đoạn "Related Reading" thì chèn link vào đoạn body gần chủ đề nhất, vẫn ưu tiên
-link theo ngữ cảnh hơn là nhét vào cuối bài.
+Nếu pillar chưa có section "Related Reading" thì tạo mới ngay trước "Final Thoughts". Audit 07/10
+cho thấy 4 trên 5 pillar lớn vốn **không có section này**, và đó chính là lý do chúng không bao giờ
+link xuống bài con.
 
-**3. Verify 2 chiều bằng REST, không tin tool báo thành công.** Chạy xong mới được coi là hết bước:
+### Verify bằng REST, không tin tool báo thành công
 
 ```python
 def linked(from_id, to_slug):
@@ -595,27 +616,38 @@ def linked(from_id, to_slug):
     ))["content"]["rendered"]
     return f"/{to_slug}/" in c
 
-assert linked(pid, SLUG),        "pillar chua link xuong bai moi"
 assert linked(new_post_id, PILLAR_SLUG), "bai moi chua link len pillar"
+assert linked(pid, SLUG),                "pillar chua link xuong bai moi"
+assert sum(linked(new_post_id, s) for s in SIBLING_SLUGS) >= 2, "thieu link ngang"
 ```
 
-### Hai lưu ý
+### Ba lưu ý
 
-- **Bài đang ở `status: future` thì hoãn bước này lại.** Slug chưa live, trỏ pillar vào URL còn 404
-  là hại chứ không lợi. Đặt lịch quay lại làm ngay sau giờ publish, và ghi `⏳ còn thiếu link ngược`
-  vào `content-plan.md` để không quên.
-- **Density của pillar đổi sau khi nối thêm câu.** Tính lại, nếu rơi xuống dưới 0,5% thì chèn thêm 1
-  lần PILLAR_KW tự nhiên trong chính câu vừa thêm.
+- **Bài đang `status: future` thì hoãn chiều pillar xuống.** Slug chưa live, trỏ pillar vào URL còn
+  404 là hại. Đặt lịch quay lại sau giờ publish, và ghi `⏳ còn thiếu link ngược` vào
+  `content-plan.md` để không quên. Riêng link ngang thì làm được ngay vì nó nằm trong bài mới.
+- **Density của pillar đổi sau khi nối thêm câu.** Tính lại, dưới 0,5% thì chèn thêm 1 lần
+  PILLAR_KW tự nhiên trong chính câu vừa thêm.
+- **Mồ côi ở đây nghĩa là thiếu inbound BIÊN TẬP, không phải Google không thấy bài.** Mọi bài đều
+  nằm trong category archive `/news/category/<slug>/`, và archive đó là `index, follow` nên vẫn tạo
+  đường crawl. Vá link vẫn đáng làm vì nó là tín hiệu topical relevance và dòng PageRank thật,
+  nhưng đừng báo cáo nhầm thành "bài bị rớt khỏi index".
 
 ### Kiểm tra định kỳ
 
-Mỗi 10-15 bài publish, chạy lại script teardown trên chính site mình để đếm trang mồ côi:
+Mỗi 10-15 bài publish, chạy lại script teardown trên chính site mình:
 
 ```bash
 python3 wordpress-mcp/scripts/competitor_teardown.py infina.ai --path /news/
 ```
 
-Con số trang `IN=0` phải đi ngang hoặc giảm. Nếu nó tăng theo số bài publish thì Bước 6.5 đang bị bỏ.
+Số trang `IN=0` phải đi ngang hoặc giảm. Nếu nó tăng theo số bài publish thì Bước 6.5 đang bị bỏ.
+
+### Nguồn
+
+- [Search Engine Roundtable, There Is No Limit To The Number Of Links Per Page For Google](https://www.seroundtable.com/google-link-unlimited-18468.html). Phát ngôn của John Mueller, và lịch sử quy tắc 100 link.
+- [LinkWhisper, how many internal links per page](https://linkwhisper.com/how-many-internal-links-per-page-the-answer/). Khoảng 20-40 cho pillar.
+- [eesel, how many internal links per page for SEO](https://eesel.ai/blog/how-many-internal-links-per-page-seo). Mô hình hub and spoke, 2-3 link ngang mỗi cluster.
 
 ---
 
