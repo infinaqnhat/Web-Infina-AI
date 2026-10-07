@@ -707,9 +707,22 @@ thành slug sống `what-is-a-conversational-chatbot-real-estate`, thay section 
 Kết quả: **1.180 → 1.919 chữ, 8 link nội bộ (4,2/1.000), 100% trong thân bài, 5 link ngoài, density
 0,52%, 4 ảnh, 0 dash**. Link 2 chiều với cả 5 cluster đã verify lại.
 
-⚠️ **Còn tồn**: cả 5 cluster của cụm chỉ dài 558-908 chữ so với chuẩn 1.200-2.000, giống tình trạng
-Cụm 7. Và vì bài pillar từng sai về luật, nên **các bài cluster cùng cụm cũng cần rà lại claim pháp
-lý**, chưa làm.
+**✅ RÀ CLAIM PHÁP LÝ 5 BÀI CLUSTER CỤM 8 (2026-10-07)**: làm ngay sau vụ pillar, vì pillar sai thì
+cluster cùng chủ đề cũng đáng nghi. Kết quả nhẹ hơn nhiều so với pillar: **không bài nào sai luật**,
+nhưng có 2 lỗi trích dẫn và 1 lỗi trọng tâm.
+
+| Bài | Kết quả rà | Đã làm |
+|---|---|---|
+| **#492** Colorado AI law | ✅ **Sạch hoàn toàn.** Verify qua Epstein Becker Green: SB 24-205 bị repeal và thay bằng SB 26-189, ký 14/05/2026, hiệu lực 01/01/2027; pre-use notice, "up to 30 days" giải thích adverse outcome, meaningful human review, developer documentation. Tất cả khớp bài. Bài còn **nói nhẹ hơn thực tế**: luật ghi thẳng "residential real estate" là 1 trong các consequential decision category, bài chỉ suy luận gián tiếp | Không sửa |
+| **#1501** private listing rules | ✅ Sạch. Dòng Wisconsin verify lại: 2025 Wisconsin Act 69, ký 12/2025, hiệu lực 01/01/2027, public marketing trong 1 ngày làm việc trừ khi seller ký opt-out | Không sửa |
+| **#475** AI hallucination / Fair Housing | ✅ Số $26.262 **đúng và vẫn hiệu lực** (verify 24 C.F.R. 180.671 qua Cornell LII, sửa lần cuối 12/06/2025; HUD notice 2026 qua API Federal Register xác nhận không điều chỉnh cho 2026). ⚠️ Nhưng **sai trọng tâm**: bài gộp "hallucination" (sai sự thật) với "fair housing" (phân biệt đối xử) làm một, khiến người đọc tưởng fact-check là xong. Thực tế FHA là về phân biệt đối xử, nên câu mô tả khu dân cư hoàn toàn chính xác vẫn có thể là steering | **Đã sửa**: tách 2 loại lỗi thành 2 đoạn riêng, nêu rõ fact-check chỉ giải quyết loại 1, thêm cả 3 bậc phạt ($26.262 / $65.653 / $131.308) kèm trích dẫn CFR thật thay vì chỉ dựa 2 blog lạ, thêm bước review thứ 2 chuyên tìm steering, viết lại Final Thoughts |
+| **#1260** seller impersonation | ⚠️ **Tên nghiên cứu sai**: bài ghi "ALTA's 2026 Seller Impersonation Fraud Study", tên chính thức theo thông cáo của ALTA là **"ALTA Critical Issues Study: Seller Impersonation Fraud"**. Mẫu khảo sát cũng thiếu: 245 phản hồi phủ 40 bang **+ DC + US Virgin Islands**, khảo sát mùa xuân 2026 | **Đã sửa** tên + mẫu, và bổ sung 2 số liệu mạnh hơn cả headline mà bài bỏ sót: tỷ lệ bị tấn công trong **1 tháng** trước khảo sát tăng 19% → 45%, và 1/4 công ty bị tấn công có claim phải chi trả, nửa trong số đó chi phí trung bình trên $100.000 |
+| **#1481** wire fraud | ⚠️ **Link NAR trỏ sai chủ đề**: câu "NAR has been pushing its own fraud resources" lại link tới trang NAR về **pre-marketing/coming-soon listings**, không liên quan gì tới fraud (verify trực tiếp) | **Đã sửa**: đổi sang `nar.realtor/wire-fraud`, trang hub chống gian lận thật của NAR (verify 200), và viết lại câu cho khớp nội dung trang |
+
+Bài học: lỗi ở cluster không phải sai luật mà là **sai trích dẫn** (tên nguồn, link trỏ nhầm chủ đề).
+Loại này không ai phát hiện khi đọc lướt vì câu văn nghe hợp lý, chỉ lộ ra khi mở link và đối chiếu.
+
+⚠️ **Còn tồn**: cả 5 cluster vẫn chỉ 644-995 chữ so với chuẩn 1.200-2.000, giống tình trạng Cụm 7.
 
 ---
 

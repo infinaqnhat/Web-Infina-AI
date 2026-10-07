@@ -702,6 +702,13 @@ Quy tắc rút ra: với bài compliance/legal/tax/medical, **mỗi claim quy ph
 tới nguồn thật trước khi đụng vào bài**, và riêng nhóm này thì đọc trang nguồn chứ không tin bản tóm
 tắt của WebSearch. Chi tiết vụ việc trong `content-plan.md` mục Cụm 8.
 
+⚠️ **Mở link ra đọc, đừng chỉ tin câu văn quanh nó.** Rà 5 bài cluster Cụm 8 ngày 07/10 cho thấy
+loại lỗi phổ biến nhất ở cluster không phải sai luật mà là **sai trích dẫn**, và nó vô hình khi đọc
+lướt vì câu văn nghe hợp lý: #1481 có câu "NAR đang đẩy tài liệu chống gian lận cho hội viên" nhưng
+link lại trỏ tới trang NAR về pre-marketing/coming-soon listings, chẳng liên quan gì; #1260 gọi sai
+tên nghiên cứu của ALTA. Khi rà, mở từng link ngoài và hỏi: trang này có thật sự nói điều mà câu văn
+đang gán cho nó không?
+
 ⚠️ **Kiểm tra link có trỏ vào stub 301 không.** #237 đang link `conversational-chat-real-estate`,
 vốn là stub đã merge 01/10 và chỉ sống nhờ redirect. Link qua redirect vẫn chạy nhưng loãng tín hiệu
 và sẽ chết khi dọn redirect. Mỗi lần sửa bài, đối chiếu slug trong bài với danh sách bài đã merge
