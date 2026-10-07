@@ -186,6 +186,18 @@ Trên 20.000 URL thì đừng crawl hết, xem phần lấy mẫu bên dưới.*
 
 ### Bản song song, có lọc redirect và cache
 
+**Bản dùng thật nằm ở `wordpress-mcp/scripts/competitor_teardown.py`** (chỉ thư viện chuẩn, không
+cần cài gì), đã gộp đủ cả 4 bẫy ở trên, tự dò sitemap qua `robots.txt`, đi đệ quy sitemap index, và
+xử lý được cả WordPress cài trong subfolder:
+
+```bash
+python3 competitor_teardown.py www.example.com
+python3 competitor_teardown.py www.example.com --path /blog/ --workers 6
+python3 competitor_teardown.py www.example.com --sitemap https://www.example.com/custom-sitemap.xml
+```
+
+Bản rút gọn dưới đây giữ lại để hiểu logic:
+
 ```python
 # fast.py, chay: python3 fast.py <domain>
 import json, re, sys, time, urllib.request
