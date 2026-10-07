@@ -201,6 +201,18 @@ def upload_uguu(img_bytes):
 ```
 Đã verify hoạt động tốt (không cần key, trả JSON có `files[0].url`, URL serve đúng `content-type: image/jpeg`). Thử theo thứ tự: freeimage.host → litterbox.catbox.moe → uguu.se.
 
+⚠️ **`requests` không có sẵn trong container mới (07/10/2026).** Và `python3 -I` bỏ qua user
+site-packages, nên `pip install requests` cũng không cứu được: import vẫn fail. Mọi đoạn code dùng
+`requests` ở trên chỉ chạy khi môi trường tình cờ đã có nó. Dùng bản stdlib đã đóng gói sẵn thay vì
+ngồi sửa import:
+
+```bash
+python3 -I wordpress-mcp/scripts/gen_article_images.py spec.json
+```
+
+`spec.json` là `[{"name": "...", "alt": "...", "prompt": "..."}, ...]`. Script tự gắn negative
+guards, crop 16:9, upload uguu, in ra URL cho từng ảnh. Key đọc từ file `gkey` cạnh script.
+
 **Nếu Gemini lỗi liên tục (kể cả sau retry trong hàm trên):** thử lại thêm 1 lần thủ công (gọi lại `nano_banana()`), nếu vẫn lỗi thì **báo cho user trong tóm tắt**, KHÔNG tự ý fallback sang Grok — Grok đã bị loại khỏi pipeline vì cho ra ảnh illustration/style không đồng nhất với chuẩn photorealistic + glossy/gradient hiện tại của site.
 
 **Phương án B (đã ngừng dùng, chỉ còn giá trị lịch sử) — Grok API:** từng là default ban đầu (`grok-imagine-image` qua `api.x.ai`), đã bị thay thế hoàn toàn bằng Gemini nano-banana. Không dùng lại trừ khi có chỉ đạo mới rõ ràng từ user.
@@ -623,7 +635,7 @@ lần không có con số cứng. Mọi ngưỡng trên là mốc tham chiếu �
 | Pillar | Chữ | Link | /1.000 chữ | |
 |---|---|---|---|---|
 | `best-crm-for-real-estate` | 4.253 | 21 | 4,9 | vừa, sau khi mở rộng 07/10 |
-| `real-estate-lead-follow-up-automation-guide` | 722 | 9 | 12,5 | nhiều |
+| `real-estate-lead-follow-up-automation-guide` | 2.460 | 11 | 4,5 | vừa, sau khi mở rộng 07/10 |
 | `tcpa-compliance-for-real-estate-agents` | 1.180 | 8 | 6,8 | vừa |
 | `ai-crm-real-estate` | 1.656 | 10 | 6,0 | vừa |
 | `real-estate-agent-crm-speed-to-lead` | 1.498 | 7 | 4,7 | vừa |
@@ -651,15 +663,20 @@ Số liệu đúng lấy từ `content-plan.md` ngày 07/10/2026:
 | Cụm 2 CRM Software | 25 | `best-crm-for-real-estate` | 4.253 | 4.350 | **-97 đạt** |
 | Cụm 1 Chatbot | 13 | `best-conversational-ai-chatbot` | 2.281 | 2.550 | -269 |
 | Cụm 3 Website Builder / IDX | 13 | `real-estate-website-builder` | 3.016 | 2.550 | **+466 đạt** |
-| Cụm 7 Lead Generation | 9 | `real-estate-lead-follow-up-automation-guide` | 722 | 1.950 | **-1.228** |
+| Cụm 7 Lead Generation | 9 | `real-estate-lead-follow-up-automation-guide` | 2.460 | 1.950 | **+510 đạt** |
 | Cụm 4 AI Voice | 6 | `best-ai-voice-assistants-for-real-estate` | 2.251 | 1.500 | **+751 đạt** |
 | Cụm 5 Website / Web Design | 6 | `website-design-for-real-estate-agents` | 1.812 | 1.500 | **+312 đạt** |
 | Cụm 6 Landing Pages | 6 | `real-estate-landing-page-guide` | 988 | 1.500 | -512 |
 | Cụm 8 Compliance | 6 | `tcpa-compliance-for-real-estate-agents` | 1.180 | 1.500 | -320 |
 
-Bốn cụm đã đạt. Cụm 2 được mở rộng từ 1.832 lên 4.253 chữ ngày 07/10 qua 4 lần `update_post`
-tuần tự, xem `content-plan.md` mục Cụm 2 cho bảng từng bước. Cụm hụt nặng nhất còn lại là
-**Cụm 7** (pillar chỉ 722 chữ gánh 9 bài, ngắn hơn cả một bài cluster bình thường).
+Năm cụm đã đạt. Hai pillar yếu nhất đều được mở rộng ngày 07/10, xem `content-plan.md` mục Cụm 2
+và Cụm 7 cho bảng từng bước: Cụm 2 từ 1.832 lên 4.253 chữ qua 4 lần `update_post`, Cụm 7 từ 722 lên
+2.460 chữ qua 3 lần. Ba cụm còn hụt (Cụm 1, Cụm 6, Cụm 8) hụt 269-512 chữ, tức sửa trong 1 lần là
+xong, không cần làm nhiều bước.
+
+⚠️ **Độ dài pillar đạt không có nghĩa cả cụm đã khoẻ.** Audit Cụm 7 sau khi vá pillar cho thấy 7
+trong 8 bài cluster chỉ dài 536-766 chữ, so với chuẩn cluster 1.200-2.000. Đo pillar xong thì đo
+luôn phân bố độ dài của cluster, đừng dừng ở con số pillar.
 
 Không cụm nào vượt 25 bài, nên **chưa cụm nào cần tách sub-hub**. Việc cần làm là viết dài pillar
 cho đủ vai trò, không phải chia nhỏ cụm.

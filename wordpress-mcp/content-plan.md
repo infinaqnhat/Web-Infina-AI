@@ -574,6 +574,34 @@ Internal link: Pillar ↔ 3 cluster review/buying-guide/kênh (2 chiều), Pilla
 Pillar ↔ cluster "AI Outbound Calling" của Cụm 4 (chéo cụm, cả 2 chiều), cluster "Facebook Lead
 Gen" → #147 (mention Fair Housing/Housing Special Ad Category).
 
+**✅ MỞ RỘNG PILLAR #1223 (2026-10-07)**: pillar này là ca nặng nhất toàn site, nặng hơn #207. Không
+phải "bài ngắn" mà là **bộ khung**: 722 chữ chia cho 8 H2, mỗi section chỉ 44-135 chữ. Nó đang fail
+2 check Rank Math thật chứ không chỉ lệch benchmark: density FOCUS_KW 0,42% (dưới sàn 0,5%) và
+**không H2 nào chứa FOCUS_KW**. Link coverage thì đã đủ sẵn (pillar link xuống cả 9, cả 8 cluster
+link ngược lên), nên việc cần làm là viết cho đủ chứ không phải vá link.
+
+| Bước | Nội dung | Chữ sau bước |
+|---|---|---|
+| 1 | Viết lại intro, đổi tên 2 H2 để chứa FOCUS_KW, tách khái niệm thành 4 việc (acknowledgment / qualification / nurture / routing), building blocks từ 4 lên 5 mảnh kèm thứ tự xây và 2 failure mode. Thay nguồn ngoài. Dọn sạch 9 em-dash | 1.440 |
+| 2 | Thêm H2 "Follow-Up Is Not One Sequence" (kéo 3 bài News từ đuôi vào thân), mở rộng AI + Software, thêm H2 "How to Tell If It Is Working", lộ trình 30 ngày, **gỡ hẳn "Related Reading"** | 2.460 |
+| 3 | Sinh 2 infographic phẳng (Gemini + uguu), chèn vào Building Blocks và Follow-Up Is Not One Sequence | 2.460 |
+
+Kết quả đo lại trên REST: **2.460 chữ, 11 link nội bộ, 4,5/1.000 chữ, density 0,65%, FOCUS_KW trong
+3/9 H2, 3 ảnh, 0 em-dash, 100% link trong thân bài**. Thêm 2 link chéo cụm mới có lý do thật:
+`tcpa-compliance-for-real-estate-agents` (#237) ở mục AI vì automation SMS/gọi là đúng chỗ TCPA cắn,
+và `best-crm-for-real-estate` (#207) ở mục chọn phần mềm.
+
+⚠️ **Đã gỡ 1 claim sai trong bài cũ**: "following up within one minute... improve conversion odds by
+roughly 391%", dẫn blog Kixie. Con số 391% không truy được về nghiên cứu gốc nào, là vendor folklore.
+Thay bằng [The Short Life of Online Sales Leads](https://hbr.org/2011/03/the-short-life-of-online-sales-leads)
+(Oldroyd, McElheran, Elkington, HBR 3/2011): 2.241 công ty Mỹ, phản hồi trung bình 42 giờ, 23% không
+bao giờ trả lời. Tiêu đề/tác giả/ngày verify trực tiếp trên hbr.org; số liệu nằm sau paywall nên đối
+chiếu chéo nhiều nguồn độc lập. **Không** dùng con số 21x/100x của InsideSales 2007 vì đó là nghiên
+cứu do vendor tài trợ.
+
+⚠️ **Còn tồn**: 7 trong 8 bài cluster của cụm này chỉ dài 536-766 chữ, so với chuẩn cluster
+1.200-2.000. Chỉ #223 đạt (1.498). Vá pillar xong vẫn còn vấn đề cả cụm mỏng.
+
 ---
 
 ### Cụm 8: Compliance / Legal / Risk, 6 bài, tất cả sống (+1 News wire fraud 04/10, +1 News private listing law 06/10)
