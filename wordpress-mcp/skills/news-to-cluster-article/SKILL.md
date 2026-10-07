@@ -556,27 +556,68 @@ bài vừa publish gần như không nhận tín hiệu nội bộ nào.
 `infina.ai/news`: 35/130 trang không có inbound biên tập nào, 23 trong đó là bài bất động sản thật.
 Nguyên nhân duy nhất là skill này trước đây kết thúc ở Bước 7 mà không có bước khép link.
 
-### Ngưỡng khuyến nghị (đã verify, đừng tự chế số khác)
+### Ngưỡng khuyến nghị: tính theo TỶ LỆ với độ dài, không phải con số tuyệt đối
 
-| Chỉ số | Khuyến nghị | Ghi chú |
-|---|---|---|
-| Pillar, tổng link nội bộ đi ra | **20-40** | Pillar được phép nhiều hơn bài thường vì nó là hub, đó là chức năng của nó |
-| Số bài cluster trên 1 pillar | 8-15 lúc đầu, mở rộng dần | |
-| Mỗi bài cluster link ra | pillar + **2-3 bài cluster khác** | Đây là chỗ hay thiếu nhất |
+**Quy tắc chính: 3-5 link nội bộ cho mỗi 1.000 chữ thân bài**, tức khoảng 1 link mỗi 200-300 chữ.
+Bài dài có thể nới tới 8/1.000. Đây là chỉ số dùng được cho mọi loại bài, pillar lẫn cluster.
 
-**Google KHÔNG có giới hạn số link/trang.** Quy tắc "100 link mỗi trang" bị trích rất nhiều nhưng
-đã bỏ từ 2008, nó vốn là giới hạn kỹ thuật thời Googlebot chỉ tải khoảng 100KB đầu trang. John
-Mueller khẳng định nhiều lần không có con số cứng. Thứ thật sự quan trọng là link có hữu ích cho
-người đọc không, và có làm loãng tín hiệu không.
+| Độ dài bài | 3/1.000 | 5/1.000 | 8/1.000 |
+|---|---|---|---|
+| 1.000 chữ | 3 | 5 | 8 |
+| 1.800 chữ | 5 | 9 | 14 |
+| 3.000 chữ | 9 | 15 | 24 |
+| 5.000 chữ | 15 | 25 | 40 |
 
-⚠️ **Đừng dùng con số "8-12 outbound cho pillar"** nếu bắt gặp nó ở đâu đó trong lịch sử ghi chép
-của dự án này. Đó là số liệu sai từng được đưa ra rồi đính chính ngày 2026-10-07. Pillar dưới 20
-link nội bộ là **thiếu**, không phải vừa.
+⚠️ **Con số "20-40 link cho pillar" chỉ đúng khi pillar dài 3.000-5.000 chữ.** Nếu pillar của bạn
+chỉ 1.800 chữ thì 20 link là **nhiều**, không phải vừa. Lỗi này đã xảy ra thật trong dự án ngày
+2026-10-07: lấy con số tuyệt đối 20-40 áp lên pillar 1.832 chữ rồi kết luận nhầm là "đang thiếu
+link". Luôn chia cho số chữ trước khi đánh giá.
 
-**Hiện trạng site tại 2026-10-07** để biết mình đang đứng đâu: pillar mạnh nhất `#207` có 21 link
-ra (vừa chạm ngưỡng dưới), `#546` có 15, `#214` có 11, `#237` có 9. Link ngang trung bình toàn site
-là 1,23/bài so với chuẩn 2-3, chỉ 31% số bài đạt. Nghĩa là **pillar đang thiếu link ra, và link
-ngang là chỗ hổng lớn nhất**.
+**Ngưỡng khác đi kèm:**
+
+| Chỉ số | Khuyến nghị |
+|---|---|
+| Độ dài pillar | 3.000-5.000 chữ |
+| Số bài cluster trên 1 pillar | 8-15 lúc đầu, mở rộng dần |
+| Mỗi bài cluster link ra | pillar + 2-3 bài cluster khác |
+| Pillar link tới cluster | mỗi cluster đúng 1 lần, không lặp |
+| Link tới money page | 1-3 lần, đặt ở chỗ intent mua cao nhất (sau phần so sánh, đánh giá, kết luận) |
+| Money page nhận inbound | 10-20 link từ các trang liên quan |
+
+**Google không có giới hạn số link trên 1 trang.** Quy tắc "100 link mỗi trang" đã bỏ từ 2008, vốn
+là giới hạn kỹ thuật thời Googlebot chỉ tải khoảng 100KB đầu trang. John Mueller khẳng định nhiều
+lần không có con số cứng. Mọi ngưỡng trên là mốc tham chiếu để tự soi, không phải luật.
+
+**Hiện trạng site tại 2026-10-07**, đo bằng link nội bộ unique chia cho số chữ thân bài:
+
+| Pillar | Chữ | Link | /1.000 chữ | |
+|---|---|---|---|---|
+| `best-crm-for-real-estate` | 1.832 | 20 | 10,9 | nhiều |
+| `real-estate-lead-follow-up-automation-guide` | 722 | 9 | 12,5 | nhiều |
+| `tcpa-compliance-for-real-estate-agents` | 1.180 | 8 | 6,8 | vừa |
+| `ai-crm-real-estate` | 1.656 | 10 | 6,0 | vừa |
+| `real-estate-agent-crm-speed-to-lead` | 1.498 | 7 | 4,7 | vừa |
+| `real-estate-website-builder` | 3.016 | 14 | 4,6 | vừa |
+| `crm-pipeline-management` | 1.682 | 5 | 3,0 | thiếu |
+| `best-ai-virtual-assistant-real-estate` | 1.794 | 5 | 2,8 | thiếu |
+
+Đọc bảng này cho đúng: vấn đề lớn nhất **không phải** số link, mà là **pillar của site đang quá
+ngắn so với vai trò pillar**. Chỉ `real-estate-website-builder` đạt 3.000 chữ. Các pillar còn lại
+1.200-1.800 chữ, tức đang là bài cluster dài chứ chưa phải pillar. Thêm link vào một bài 1.800 chữ
+chỉ đẩy tỷ lệ lên vùng "nhiều" mà không giải quyết gốc.
+
+Cách tự đo nhanh:
+
+```python
+import re, json, urllib.request
+c = json.load(urllib.request.urlopen(
+    f"https://infina.ai/news/wp-json/wp/v2/posts/{POST_ID}?_fields=content"
+))["content"]["rendered"]
+t = re.sub("&[a-z#0-9]+;", " ", re.sub("<[^>]+>", " ", c))
+words = len(re.findall(r"[A-Za-z0-9,.%$-]+", t))
+links = len(set(re.findall(r'href="https://infina\.ai/news/([a-z0-9-]+)/"', c)))
+print(f"{words} chu, {links} link, {links/words*1000:.1f}/1000 chu")
+```
 
 ### Đặt link ở đâu quan trọng ngang số lượng link
 
@@ -695,7 +736,9 @@ Số trang `IN=0` phải đi ngang hoặc giảm. Nếu nó tăng theo số bài
 ### Nguồn
 
 - [Search Engine Roundtable, There Is No Limit To The Number Of Links Per Page For Google](https://www.seroundtable.com/google-link-unlimited-18468.html). Phát ngôn của John Mueller, và lịch sử quy tắc 100 link.
-- [LinkWhisper, how many internal links per page](https://linkwhisper.com/how-many-internal-links-per-page-the-answer/). Khoảng 20-40 cho pillar.
+- [LinkWhisper, how many internal links per page](https://linkwhisper.com/how-many-internal-links-per-page-the-answer/). Khoảng 20-40 cho pillar, với giả định pillar dài 3.000-5.000 chữ.
+- [Wellows, how many internal links per page SEO](https://wellows.com/blog/how-many-internal-links-per-page-seo/). Quy tắc 1 link mỗi 200-300 chữ.
+- [AirOps, how many internal links is too many](https://www.airops.com/blog/how-many-internal-links-is-too-many). Khoảng 3-5 link mỗi 1.000 chữ, nới tới 8 cho bài dài.
 - [eesel, how many internal links per page for SEO](https://eesel.ai/blog/how-many-internal-links-per-page-seo). Mô hình hub and spoke, 2-3 link ngang mỗi cluster.
 
 ---
