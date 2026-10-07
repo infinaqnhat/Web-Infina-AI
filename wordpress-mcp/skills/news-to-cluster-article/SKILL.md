@@ -8,7 +8,7 @@ description: "Crawl tin tức mới theo 10 mảng, đối chiếu keyword trong
 ## Mô tả
 Crawl tin tức mới theo 10 mảng → đối chiếu Google Sheet tracker (nguồn pillar/dedup chính thức) + WordPress → đối chiếu keyword trong Excel → chọn tin phù hợp → viết và đăng cluster article lên WordPress đạt Rank Math ≥80/100. Toàn bộ chạy qua API, không cần browser.
 
-**Nguyên tắc cốt lõi:** bài viết từ tin tức (cluster/spoke) luôn target một keyword long-tail RIÊNG của nó (`FOCUS_KW`), khác với keyword của pillar page (`PILLAR_KW`) mà nó link về. Không bao giờ để 2 bài trong site cùng target 1 keyword — pillar page giữ vị trí rank cho keyword đầu (head term), cluster article chỉ mượn góc tin tức để nhắm long-tail và đẩy internal link/topical authority về pillar. Nguồn xác định keyword nào đã "có chủ" (Plan = pillar, News = cluster đã viết) là Google Sheet tracker ở Bước 2b — đọc lại sheet này mỗi lần chạy, và append 1 dòng mới vào đó sau khi publish (Bước 7).
+**Nguyên tắc cốt lõi:** bài viết từ tin tức (cluster/spoke) luôn target một keyword long-tail RIÊNG của nó (`FOCUS_KW`), khác với keyword của pillar page (`PILLAR_KW`) mà nó link về. Không bao giờ để 2 bài trong site cùng target 1 keyword — pillar page giữ vị trí rank cho keyword đầu (head term), cluster article chỉ mượn góc tin tức để nhắm long-tail và đẩy internal link/topical authority về pillar. Nguồn xác định keyword nào đã "có chủ" (Plan = pillar, News = cluster đã viết) là Google Sheet tracker ở Bước 2b — đọc lại sheet này mỗi lần chạy, và append 1 dòng mới vào đó sau khi publish (Bước 7). **Link phải đi 2 chiều**: Bước 5 lo chiều cluster lên pillar, Bước 6.5 lo chiều pillar xuống cluster, bỏ Bước 6.5 là bài vừa publish thành trang mồ côi.
 
 **Lịch sử:** skill này có 2 nhánh phát triển từng tồn tại song song trên account (một nhánh tập trung compliance/tracker/anti-cannibalization, một nhánh tập trung chất lượng ảnh/category/rate-limit) — bản này là merge của cả hai, giữ lại phần tốt của từng bên.
 
@@ -40,7 +40,7 @@ Chọn category theo chủ đề bài: CRM/sales automation → "CRM Software", 
 
 ## Publishing Rules (kiểm tra TRƯỚC KHI PUBLISH)
 
-### Rule 1 — Chỉ 1 bài mỗi lần chạy, tối đa 3 bài/ngày
+### Rule 1: Chỉ 1 bài mỗi lần chạy, tối đa 3 bài/ngày
 Skill này chỉ viết **đúng 1 bài** mỗi lần được gọi. Ngoài ra, trước khi publish, đếm số bài đã publish trong cùng ngày (giờ site) qua `list_posts` (JSON-RPC, KHÔNG dùng REST API `/wp-json/wp/v2/posts` không xác thực — REST API công khai không thấy được bài `draft`, dễ đếm thiếu):
 ```python
 def count_posts_on_date(all_posts, target_date):
@@ -52,10 +52,10 @@ if count >= 3:
     print("STOP: Ngày này đã đủ 3 bài, dừng lại không publish thêm.")
 ```
 
-### Rule 2 — Không trùng focus keyword / slug / pillar keyword
+### Rule 2: Không trùng focus keyword / slug / pillar keyword
 Xem Bước 2 (dedup WordPress) + Bước 2b (tracker sheet) + Bước 4 (pillar vs cluster).
 
-### Rule 3 — Slug phải chứa từng chữ của FOCUS_KW
+### Rule 3: Slug phải chứa từng chữ của FOCUS_KW
 Xem Slug rules cuối file.
 
 ---
@@ -209,7 +209,7 @@ Mỗi bài cần **4 ảnh**: HERO, STATS/DATA, DEMO, COMPARISON. Ảnh HERO v�
 
 ---
 
-## Image Prompt System — viết prompt sao cho ảnh không bị lỗi
+## Image Prompt System: viết prompt sao cho ảnh không bị lỗi
 
 Áp dụng cho cả phương án A và B — đây là kinh nghiệm thực tế để tránh lỗi tay thừa ngón, ánh mắt sai hướng, tỉ lệ khung sai, chữ bị vỡ trên màn hình trong ảnh AI-generated.
 
@@ -268,7 +268,7 @@ Theme site (`infina-ai-news/style.css`) đã tự style sẵn mọi `<table>` b�
 
 ---
 
-## Bước 1 — Crawl tin tức 7 ngày gần nhất
+## Bước 1: Crawl tin tức 7 ngày gần nhất
 
 Dùng `WebSearch` tool để tìm tin mới cho từng mảng. Thay `YYYY-MM-DD` bằng ngày 7 ngày trước ngày chạy.
 
@@ -289,7 +289,7 @@ Top 3–5 tin mỗi mảng. Ưu tiên tin thực sự mới (trong tuần), có 
 
 ---
 
-## Bước 2 — Kiểm tra bài đã tồn tại trên WordPress
+## Bước 2: Kiểm tra bài đã tồn tại trên WordPress
 
 Pull toàn bộ bài đang có (published + scheduled/future + draft/...) trước khi chọn keyword, để tránh viết trùng. `list_posts` không phân trang — gọi 1 lần với `number` đủ lớn là lấy hết.
 
@@ -344,7 +344,7 @@ def is_duplicate(candidate_slug, candidate_title, existing_posts):
 
 ---
 
-## Bước 2b — Đọc Tracker Sheet (nguồn PILLAR_KW chính thức, ưu tiên hơn Excel)
+## Bước 2b: Đọc Tracker Sheet (nguồn PILLAR_KW chính thức, ưu tiên hơn Excel)
 
 Google Sheet **"Infina News — Published Articles Tracker"** (`fileId: 1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs`) là **nguồn sự thật sống** (live source of truth) về việc keyword nào đã "có chủ" — ưu tiên hơn Excel `Content Pillars (AIDA)` vì Excel chỉ là kế hoạch tĩnh, còn sheet này phản ánh đúng những gì đã thực sự publish.
 
@@ -386,7 +386,7 @@ plan_rows = [r for r in tracker if r["type"].lower() == "plan"]  # nguồn PILLA
 
 ---
 
-## Bước 3 — Đọc keyword groups từ Excel
+## Bước 3: Đọc keyword groups từ Excel
 
 Đọc file `AI_SalesX_Customer_Segments_Content_Pillars - Copy.xlsx` (trong repo: `wordpress-mcp/skills/news-to-cluster-article/keywords/AI_SalesX_Customer_Segments_Content_Pillars.xlsx`), dùng làm **nguồn tham khảo ý tưởng/chiến lược pillar** (7 Content Pillar theo AIDA), KHÔNG còn là nguồn PILLAR_KW độc quyền — Bước 2b (tracker sheet) mới là nguồn quyết định pillar nào thực sự đã tồn tại + URL thật của nó. Excel hữu ích khi tin tức khớp với 1 pillar theo kế hoạch AIDA nhưng pillar đó **chưa có bài Plan nào trên tracker** — lúc đó coi target keyword trong Excel như một PILLAR_KW "dự kiến" (chưa có URL thật để link, cân nhắc chọn pillar khác đã có bài Plan thật để link thay vào).
 
@@ -399,7 +399,7 @@ Lấy 2 loại dữ liệu tách biệt từ Excel:
 
 ---
 
-## Bước 4 — Map tin → pillar (để link) + chọn cluster keyword riêng (để viết) + chọn category
+## Bước 4: Map tin → pillar (để link) + chọn cluster keyword riêng (để viết) + chọn category
 
 *(Chỉ xét cluster keyword đã pass dedup check ở Bước 2 và Bước 2b)*
 
@@ -419,7 +419,7 @@ Chọn **top 1 bộ** (tin + cluster keyword + pillar target + category) có rel
 
 ---
 
-## Bước 5 — Viết cluster article
+## Bước 5: Viết cluster article
 
 **Cấu trúc HTML bài viết:**
 
@@ -488,7 +488,7 @@ def check_seo(content, keyword, seo_title=None, pillar_keyword=None, pillar_url=
         "issues": issues
     }
 
-# Dùng trước khi publish — LUÔN truyền seo_title, không chỉ content:
+# Dùng trước khi publish: LUÔN truyền seo_title, không chỉ content:
 seo = check_seo(CONTENT, FOCUS_KW, SEO_TITLE, PILLAR_KW, PILLAR_URL)
 if not seo["ok"]:
     print("SEO issues:", seo["issues"])
@@ -504,7 +504,7 @@ if not seo["ok"]:
 
 ---
 
-## Bước 6 — Xác định thời điểm publish + Publish lên WordPress
+## Bước 6: Xác định thời điểm publish + Publish lên WordPress
 
 Lấy giờ bài `status=publish` gần nhất trên WordPress (từ `posts` ở Bước 2), tính `target = giờ_bài_gần_nhất + 1 tiếng`:
 - Nếu `target` đã ở quá khứ so với giờ hiện tại → `create_post` với `status: "publish"` (publish ngay).
@@ -547,7 +547,79 @@ resp = call("update_post", {"post_id": post_id, "seo_title": NEW_SEO_TITLE})
 
 ---
 
-## Bước 7 — Log kết quả vào Tracker Sheet
+## Bước 6.5: Thêm link NGƯỢC từ pillar xuống bài mới (BẮT BUỘC, không được bỏ)
+
+Bước 5 đã cho bài mới link LÊN pillar. Chiều ngược lại, pillar link XUỐNG bài mới, **không tự xảy
+ra**, và nếu bỏ qua thì bài vừa publish sẽ không nhận một internal link nào từ bất kỳ đâu trên site.
+
+**Đây không phải lo xa.** Audit ngày 2026-10-07 bằng `scripts/competitor_teardown.py` chạy trên
+chính `infina.ai/news`: **35/130 trang (27%) không có inbound internal link nào**, trong đó 23 là
+bài bất động sản thật. Nguyên nhân duy nhất là skill này trước đây kết thúc ở Bước 7 mà không có
+bước nối ngược. Mỗi lần chạy pipeline là site có thêm đúng 1 trang mồ côi.
+
+### Làm gì
+
+**1. Lấy full content hiện tại của pillar.** `update_post` ghi đè toàn bộ `content`, không hỗ trợ
+sửa từng phần, nên phải fetch đủ trước khi sửa:
+
+```python
+import urllib.request, json
+pid = PILLAR_POST_ID
+cur = json.load(urllib.request.urlopen(
+    f"https://infina.ai/news/wp-json/wp/v2/posts/{pid}?_fields=id,slug,content"
+))["content"]["rendered"]
+```
+
+**2. Nối 1 câu vào đoạn "Related Reading" có sẵn của pillar**, không tạo section mới, không viết lại
+bài. Anchor text phải chứa **FOCUS_KW của bài mới** (không phải PILLAR_KW, vì đây là chiều pillar
+truyền tín hiệu xuống cluster):
+
+```python
+OLD_TAIL = "</p>\n<h2>Final Thoughts</h2>"      # hoặc đoạn kết thật của pillar đó
+ADD = (f' Để xem góc tin mới nhất, đọc thêm bài <a href="https://infina.ai/news/{SLUG}/">'
+       f'{FOCUS_KW}</a>.')
+assert cur.count(OLD_TAIL) == 1, "khong tim thay diem noi, doc lai pillar"
+new = cur.replace(OLD_TAIL, ADD + OLD_TAIL)
+call("update_post", {"post_id": pid, "content": new})
+```
+
+Nếu pillar chưa có đoạn "Related Reading" thì chèn link vào đoạn body gần chủ đề nhất, vẫn ưu tiên
+link theo ngữ cảnh hơn là nhét vào cuối bài.
+
+**3. Verify 2 chiều bằng REST, không tin tool báo thành công.** Chạy xong mới được coi là hết bước:
+
+```python
+def linked(from_id, to_slug):
+    c = json.load(urllib.request.urlopen(
+        f"https://infina.ai/news/wp-json/wp/v2/posts/{from_id}?_fields=content"
+    ))["content"]["rendered"]
+    return f"/{to_slug}/" in c
+
+assert linked(pid, SLUG),        "pillar chua link xuong bai moi"
+assert linked(new_post_id, PILLAR_SLUG), "bai moi chua link len pillar"
+```
+
+### Hai lưu ý
+
+- **Bài đang ở `status: future` thì hoãn bước này lại.** Slug chưa live, trỏ pillar vào URL còn 404
+  là hại chứ không lợi. Đặt lịch quay lại làm ngay sau giờ publish, và ghi `⏳ còn thiếu link ngược`
+  vào `content-plan.md` để không quên.
+- **Density của pillar đổi sau khi nối thêm câu.** Tính lại, nếu rơi xuống dưới 0,5% thì chèn thêm 1
+  lần PILLAR_KW tự nhiên trong chính câu vừa thêm.
+
+### Kiểm tra định kỳ
+
+Mỗi 10-15 bài publish, chạy lại script teardown trên chính site mình để đếm trang mồ côi:
+
+```bash
+python3 wordpress-mcp/scripts/competitor_teardown.py infina.ai --path /news/
+```
+
+Con số trang `IN=0` phải đi ngang hoặc giảm. Nếu nó tăng theo số bài publish thì Bước 6.5 đang bị bỏ.
+
+---
+
+## Bước 7: Log kết quả vào Tracker Sheet
 
 Sau khi publish thành công, phải **append 1 dòng mới** vào chính Google Sheet tracker ở Bước 2b (`1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs`).
 
@@ -568,7 +640,7 @@ Thứ tự cột đúng bằng thứ tự header hiện có: `#, Date, Title, UR
 
 ---
 
-## Bước 8 (Optional) — Kiểm tra traffic Google Search Console + Google Analytics
+## Bước 8 (Optional): Kiểm tra traffic Google Search Console + Google Analytics
 
 Không chạy mỗi ngày trong pipeline chính — chỉ dùng khi user hỏi về traffic/ranking/impressions/users của site hoặc các bài đã đăng.
 
@@ -659,7 +731,7 @@ def query_clarity(num_of_days=1, dimension1=None, dimension2=None, dimension3=No
 
 # Vi du: data mac dinh 1 ngay gan nhat (tra ve toan bo cac metric: Traffic, EngagementTime,
 # ScrollDepth, DeadClickCount, RageClickCount, Browser, Device, OS, Country, PageTitle,
-# ReferrerUrl, PopularPages, v.v. — moi metric 1 object trong list ket qua)
+# ReferrerUrl, PopularPages, v.v.: moi metric 1 object trong list ket qua)
 # query_clarity(num_of_days=1)
 ```
 

@@ -143,15 +143,19 @@ chứ không giúp gì. Ba lựa chọn: để nguyên, `noindex`, hoặc gỡ.
 
 ---
 
-#### Chặn tái diễn (quan trọng hơn cả việc vá)
+#### Chặn tái diễn: ✅ ĐÃ LÀM 2026-10-07
 
-Thêm **Bước 6.5** vào `news-to-cluster-article/SKILL.md`, chạy ngay sau khi publish:
+Đã thêm **Bước 6.5** vào `news-to-cluster-article/SKILL.md`, nằm giữa Bước 6 (publish) và Bước 7
+(log tracker), đánh dấu BẮT BUỘC:
 
-1. Fetch nội dung hiện tại của PILLAR_URL.
+1. Fetch full content hiện tại của PILLAR_URL (vì `update_post` ghi đè toàn bộ `content`).
 2. Nối 1 câu vào đoạn "Related Reading" có sẵn, anchor text chứa FOCUS_KW của bài mới.
-3. Verify 2 chiều bằng REST trước khi coi là xong.
+3. Verify 2 chiều bằng REST, có sẵn hàm `linked()` trong skill, đã test trên cặp #237 ↔ #1501.
+4. Bài `status: future` thì hoãn bước này tới sau giờ publish, không trỏ pillar vào URL còn 404.
+5. Mỗi 10-15 bài, chạy lại script teardown trên chính site để đếm trang `IN=0`, số đó phải đi ngang
+   hoặc giảm.
 
-Không có bước này thì cứ mỗi bài News publish là site có thêm 1 trang mồ côi.
+Còn lại Batch 1, 2, 3 bên dưới là phần vá 35 trang đã mồ côi sẵn.
 
 ---
 
