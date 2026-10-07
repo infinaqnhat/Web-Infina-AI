@@ -77,6 +77,84 @@ cụm đang được RealSaleX chủ động viết bài / mở rộng.
 
 ---
 
+### Vá 35 trang mồ côi (plan 2026-10-07)
+
+**Phát hiện**: chạy `scripts/competitor_teardown.py` trên chính site, 35/130 trang (27%) không nhận
+một internal link nào từ bài khác. Đã verify lại bằng REST trên 143 bài live, không phải lỗi crawl.
+
+**Nguyên nhân gốc**: skill `news-to-cluster-article` kết thúc ở Bước 7 (log tracker). Không có bước
+nào thêm link NGƯỢC từ pillar xuống bài mới. Mỗi bài News viết ra tự link lên pillar rồi nằm im,
+nên mồ côi tích tụ dần theo từng bài publish.
+
+**Phân loại 35 trang:**
+
+| Nhóm | Số | Xử lý |
+|---|---|---|
+| A. Bài bất động sản mồ côi | 23 | Vá link, chia 2 batch dưới |
+| B. Bài AI/tech lạc chủ đề (06-07/2026, ID #14-#53) | 11 | Cần quyết định riêng, xem cuối |
+| C. Trang index `/news` | 1 | Không phải mồ côi, bỏ qua |
+
+---
+
+#### Batch 1: sửa 5 trang, vá được 17/23 bài
+
+Cả 5 đích đều là hub/pillar thật, nên link xuống vừa đúng chuẩn pillar-cluster vừa truyền được
+authority. Mỗi lần sửa là nối thêm link vào đoạn "Related Reading" có sẵn, không viết lại bài.
+
+| Sửa trang | Thêm link tới |
+|---|---|
+| `ai-crm-real-estate` | ai-back-office-automation-real-estate-brokerages, ai-chief-of-staff-for-real-estate-agents, ai-deployment-maturity-real-estate-firms, ai-likely-to-sell-alerts-real-estate-agents, crm-for-real-estate-agents, real-estate-ai-adoption-statistics-2026 |
+| `real-estate-agent-crm-speed-to-lead` | ai-home-valuation-tool-real-estate-agent-website, ai-powered-follow-up-messages-real-estate-agents, google-home-listing-ads-real-estate-agent-leads, mortgage-rate-spike-real-estate-agent-response |
+| `crm-pipeline-management` | ai-relationship-manager-for-real-estate-leads, ai-usage-without-measurable-impact-real-estate-agents, financing-readiness-signals-for-real-estate-buyer-leads |
+| `best-ai-virtual-assistant-real-estate` | ai-digital-human-brokerage-website-adoption, ai-job-substitution-risk-real-estate-agents |
+| `crm-management-real-estate-agents-beginners-guide` | ai-academy-role-based-learning-mls-subscribers, ai-video-marketing-automation-real-estate-agents |
+
+⚠️ `crm-for-real-estate-agents` (#247, Cụm 2, publish 01/08) là **bài cluster thật chứ không phải
+News**, mồ côi từ đầu. Ưu tiên cao nhất trong batch này.
+
+#### Batch 2: 6 bài còn lại, KHÔNG route về bài News anh em
+
+Thuật toán phủ tối thiểu gợi ý sửa 6 bài News khác, nhưng News trỏ News thì gần như không truyền
+authority. Route thẳng về pillar đúng chủ đề thay vì theo link có sẵn:
+
+| Bài mồ côi | Pillar nên trỏ xuống |
+|---|---|
+| ai-contract-data-extraction-closing-automation-agents | #237 TCPA (Cụm 8) hoặc #207 |
+| mls-ai-conversational-search-broker-attribution-agents | pillar Cụm 1 Chatbot |
+| chatgpt-app-mortgage-matchup-real-estate-agent-visibility | pillar Cụm 5 Website / Web Design |
+| chatgpt-sycophantic-pricing-advice-real-estate-agents | #147 AI Voice (Cụm 4) |
+| agentic-ai-risk-concerns-real-estate-brokerage-leaders | #237 TCPA (Cụm 8) |
+| ai-flat-fee-brokerage-model-real-estate-agents | #207 CRM (Cụm 2) |
+
+#### Batch 3: 11 bài lạc chủ đề, cần bạn quyết
+
+`ai-cannot-learn-while-it-works`, `claude-fable-5-is-back`, `is-openai-in-trouble`,
+`claude-code-just-shipped-artifacts`, `genai-economy-first-revenue-number`,
+`microsoft-just-sent-6000-engineers-into-enterprise-buildings`,
+`most-ai-tools-stop-working-when-you-close-your-laptop`,
+`the-u-s-governments-reported-ban-on-foreign-access-to-anthropics-models`,
+`ai-just-moved-from-a-separate-tab-into-your-slack`,
+`claude-code-has-500000-lines-of-code-only-1-6-of-it-is-actually-ai`,
+`yc-spring-2026-the-agent-economy-has-actuaries-now`
+
+Đây là tin AI/tech chung từ 06-07/2026, có trước khi site chuyển hẳn sang bất động sản. Không thuộc
+cụm nào và không nên thuộc cụm nào. Vá link cho chúng sẽ làm loãng topical authority bất động sản
+chứ không giúp gì. Ba lựa chọn: để nguyên, `noindex`, hoặc gỡ.
+
+---
+
+#### Chặn tái diễn (quan trọng hơn cả việc vá)
+
+Thêm **Bước 6.5** vào `news-to-cluster-article/SKILL.md`, chạy ngay sau khi publish:
+
+1. Fetch nội dung hiện tại của PILLAR_URL.
+2. Nối 1 câu vào đoạn "Related Reading" có sẵn, anchor text chứa FOCUS_KW của bài mới.
+3. Verify 2 chiều bằng REST trước khi coi là xong.
+
+Không có bước này thì cứ mỗi bài News publish là site có thêm 1 trang mồ côi.
+
+---
+
 ### Cụm 1: Chatbot / Conversational AI, 14 bài sống (19 gốc, 5 đã merge 01/10/2026)
 
 Cụm đã audit + xử lý cannibalization đầy đủ (xem refresh-log.md). Có **2 pillar song song** vì 2
