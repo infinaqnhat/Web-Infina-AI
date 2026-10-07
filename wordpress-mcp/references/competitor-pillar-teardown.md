@@ -151,6 +151,111 @@ if final.rstrip("/") != u.rstrip("/"):
 **3. Cột DEPTH chỉ có nghĩa khi site dùng folder.** Blog phẳng kiểu `/<slug>/` sẽ cho DEPTH = 0 ở
 mọi dòng, lúc đó chỉ đọc IN và OUT.
 
+**4. Trang category và tag archive sẽ leo lên đầu bảng.** Mọi bài đều link về category của nó, nên
+archive luôn có inbound cao nhất site mà không phải pillar nội dung. Đo thật trên `infina.ai/news`:
+nếu không lọc, 3 vị trí dẫn đầu là `/crm-software/`, `/ai-chatbot/`, `/real-estate-websites/`, toàn
+archive. **Cách lọc: chỉ xếp hạng những URL có mặt trong sitemap bài viết**, bỏ mọi URL không nằm
+trong tập đó.
+
+---
+
+## Bước 2b: Khi site đối thủ lớn
+
+### Script chạy lâu bao lâu
+
+Đo thật trên môi trường này, 24 URL mẫu:
+
+| Cách chạy | Tốc độ | So với tuần tự |
+|---|---|---|
+| Tuần tự + `sleep(0.4)` (script ở trên) | 2,09 s/URL | 1x |
+| 8 luồng | 0,25 s/URL | 6,7x |
+| 16 luồng | 0,18 s/URL | 9,2x |
+
+Quy ra thời gian chạy:
+
+| Số URL | Script tuần tự | 12 luồng |
+|---|---|---|
+| 150 | ~5 phút | ~25 giây |
+| 1.000 | ~35 phút | ~3,5 phút |
+| 5.000 | ~3 giờ | ~17 phút |
+| 20.000 | ~12 giờ | ~1 giờ |
+| 100.000 | ~2,5 ngày | ~6 giờ |
+
+Mốc thực tế: **dưới 2.000 URL thì script tuần tự vẫn dùng được. Trên mức đó phải chạy song song.
+Trên 20.000 URL thì đừng crawl hết, xem phần lấy mẫu bên dưới.**
+
+### Bản song song, có lọc redirect và cache
+
+```python
+# fast.py, chay: python3 fast.py <domain>
+import json, re, sys, time, urllib.request
+from concurrent.futures import ThreadPoolExecutor
+
+DOMAIN, WORKERS, CACHE = sys.argv[1], 12, "graph.json"
+UA = {"User-Agent": "Mozilla/5.0"}
+LINK = re.compile(rf'href="(https?://{re.escape(DOMAIN)}/[^"#?]*)"')
+
+def fetch(u):
+    try:
+        req = urllib.request.Request(u, headers=UA)
+        with urllib.request.urlopen(req, timeout=30) as r:
+            final, html = r.geturl(), r.read().decode("utf-8", "ignore")
+    except Exception:
+        return u, None, set()
+    body = re.split(r"<main|<article", html, 1)[-1]
+    body = re.split(r"<footer", body, 1)[0]
+    return u, final, {l.rstrip("/") for l in LINK.findall(body)}
+
+xml = urllib.request.urlopen(
+    urllib.request.Request(f"https://{DOMAIN}/post-sitemap.xml", headers=UA)).read().decode()
+urls = re.findall(r"<loc>([^<]+)</loc>", xml)
+
+t = time.time()
+out, redirected = {}, []
+with ThreadPoolExecutor(max_workers=WORKERS) as ex:
+    for u, final, links in ex.map(fetch, urls):
+        if final is None:
+            continue
+        if final.rstrip("/") != u.rstrip("/"):
+            redirected.append(u)          # stub 301, loai khoi phan tich
+            continue
+        out[u.rstrip("/")] = links - {u.rstrip("/")}
+el = time.time() - t
+print(f"{len(urls)} URL trong {el:.1f}s, {len(redirected)} stub 301 da loai, {len(out)} trang that")
+json.dump({k: sorted(v) for k, v in out.items()}, open(CACHE, "w"))
+```
+
+Ba thứ bản này thêm so với bản tối giản: **song song 12 luồng**, **tự loại stub 301** (bẫy số 2), và
+**cache ra `graph.json`** để mọi phân tích sau đó chạy offline trong vài giây, không phải crawl lại.
+
+Giữ `WORKERS` ở mức 8-16. Cao hơn dễ bị rate-limit hoặc chặn IP, mà cũng không nhanh thêm bao nhiêu.
+Nếu đối thủ có Cloudflare, hạ xuống 4-6 và thêm `time.sleep` nhỏ.
+
+### Site quá lớn thì lấy mẫu, đừng crawl hết
+
+Mấu chốt: **để nhận diện pillar, ta chỉ cần THỨ HẠNG tương đối, không cần con số tuyệt đối.** Crawl
+20% số trang thì mọi inbound count chỉ còn ~20%, nhưng trang nào đứng đầu thì vẫn đứng đầu.
+
+Đo thật trên 129 trang của `infina.ai/news`, mỗi tỷ lệ chạy 60 lần lấy mẫu ngẫu nhiên:
+
+| Tỷ lệ mẫu | Đoán đúng pillar số 1 | Trùng top 10 | Trùng top 5 |
+|---|---|---|---|
+| 50% | 100% | 7,5/10 | 3,5/5 |
+| 30% | 100% | 6,8/10 | 3,2/5 |
+| 20% | 98% | 6,4/10 | 3,0/5 |
+| 10% | 83% | 5,0/10 | 2,5/5 |
+
+Kết luận dùng được ngay: **mẫu 20-30% là đủ để chỉ ra pillar chính gần như chắc chắn**, nhưng không
+đủ để xếp hạng chính xác nhóm giữa. Với teardown đối thủ thì vậy là đủ, vì ta cần biết trang nào là
+pillar chứ không cần biết trang xếp thứ 4 hay thứ 6.
+
+Hai cách thu hẹp khác, ưu tiên dùng trước khi lấy mẫu ngẫu nhiên:
+
+1. **Crawl đúng 1 folder.** Nếu chỉ quan tâm cụm CRM của đối thủ thì crawl `/blog/crm/` thay vì cả
+   site. Chính xác tuyệt đối trong phạm vi đó, và thường nhanh hơn lấy mẫu toàn site.
+2. **Lọc sitemap theo ngày.** Hầu hết sitemap có `<lastmod>`. Bài từ 3 năm trước hiếm khi là pillar
+   đang được nuôi, bỏ bớt cho nhẹ.
+
 ---
 
 ## Bước 3: Gom cụm theo hub
