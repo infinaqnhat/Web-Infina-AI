@@ -658,7 +658,7 @@ dùng để đo sức khoẻ link (inbound, outbound, mồ côi), không dùng �
 
 Số liệu đúng lấy từ `content-plan.md` ngày 07/10/2026:
 
-| Cụm | Bài sống | Pillar | Chữ pillar | Cần có | Chênh |
+| Cụm | Cluster (KHÔNG tính pillar) | Pillar | Chữ pillar | Cần có | Chênh |
 |---|---|---|---|---|---|
 | Cụm 2 CRM Software | 25 | `best-crm-for-real-estate` | 4.253 | 4.350 | **-97 đạt** |
 | Cụm 1 Chatbot | 13 trên **2 pillar** | A `best-conversational-ai-chatbot-for-real-estate` 3.030, B `best-chatbot-customer-service-real-estate` 3.991 | | 1.500 mỗi pillar | **đạt cả hai** |
@@ -666,13 +666,21 @@ Số liệu đúng lấy từ `content-plan.md` ngày 07/10/2026:
 | Cụm 7 Lead Generation | 9 | `real-estate-lead-follow-up-automation-guide` | 2.460 | 1.950 | **+510 đạt** |
 | Cụm 4 AI Voice | 6 | `best-ai-voice-assistants-for-real-estate` | 2.251 | 1.500 | **+751 đạt** |
 | Cụm 5 Website / Web Design | 6 | `website-design-for-real-estate-agents` | 1.812 | 1.500 | **+312 đạt** |
-| Cụm 6 Landing Pages | 6 | `real-estate-landing-page-guide` | 988 | 1.500 | -512 |
+| Cụm 6 Landing Pages | 5 | `real-estate-landing-page-guide` | 1.889 | 1.350 | **+539 đạt** |
 | Cụm 8 Compliance | 6 | `tcpa-compliance-for-real-estate-agents` | 1.180 | 1.500 | -320 |
+
+⚠️ Cột thứ 2 là **số cluster đã trừ pillar**. Vài dòng trong bảng này được lập trước khi làm rõ
+điểm đó nên có thể còn lệch 1 cluster, tức lệch 150 chữ ở cột "Cần có". Đích là sàn chứ không phải
+con số chính xác, và mọi pillar đã sửa đều vượt sàn có biên, nên không đáng đi tính lại cả bảng.
+Khi dùng cho 1 cụm cụ thể thì đếm lại từ `content-plan.md`.
 
 Năm cụm đã đạt. Hai pillar yếu nhất đều được mở rộng ngày 07/10, xem `content-plan.md` mục Cụm 2
 và Cụm 7 cho bảng từng bước: Cụm 2 từ 1.832 lên 4.253 chữ qua 4 lần `update_post`, Cụm 7 từ 722 lên
-2.460 chữ qua 3 lần. Hai cụm còn hụt (Cụm 6, Cụm 8) hụt 320-512 chữ, tức sửa trong 1 lần là xong, không cần làm nhiều
-bước.
+2.460 chữ qua 3 lần. Cụm còn hụt duy nhất là Cụm 8, hụt 320 chữ, sửa trong 1 lần là xong.
+
+⚠️ **Đếm cluster cho đúng: "N bài sống" trong `content-plan.md` đã GỒM pillar.** Cụm 6 từng bị
+ghi là cần 1.500 chữ vì lấy thẳng "6 bài" làm số cluster, trong khi thật ra là 1 pillar + 5
+cluster nên đích đúng là 1.350. Trừ pillar ra trước khi nhân 150.
 
 ⚠️ **Cụm có 2 pillar thì phải chia số cluster ra trước khi áp công thức.** Cụm 1 từng bị ghi là hụt
 269 chữ vì dồn cả 13 cluster lên 1 pillar. Thực tế cụm này có 2 pillar song song, mỗi pillar gánh ~6

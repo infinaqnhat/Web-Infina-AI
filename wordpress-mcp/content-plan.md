@@ -574,6 +574,30 @@ lại (Website Builder/IDX, AI Voice, Website Design, Lead Generation, Complianc
 | Niche: home valuation | [Home Valuation Landing Page: How to Build One That Converts Seller Leads](https://infina.ai/news/home-valuation-landing-page/) | `home valuation landing page` | Post-purchase/how-to | ✅ ĐÃ AUDIT (2026-10-01): không trùng — là 1 trong 4 loại seller landing page của dòng dưới, đã thêm link ngược |
 | Niche: seller chung | [Seller Landing Pages Real Estate: Types That Convert](https://infina.ai/news/seller-landing-pages-real-estate/) | `seller landing pages real estate` | Post-purchase/how-to | ✅ ĐÃ AUDIT (2026-10-01): bài tổng quan 4 loại (home valuation/listing consultation/expired listing/market report), đã tự link xuống dòng trên từ trước |
 
+**✅ MỞ RỘNG PILLAR #930 (2026-10-07)**: 988 → **1.889 chữ**, 1 lần `update_post`.
+
+Cụm này khoẻ nhất trong 3 cụm hụt: **cả 5 cluster đều 1.052-1.745 chữ và đều link ngược về pillar**,
+pillar cũng đã link đủ 5/5. Không phải vá link, chỉ thiếu độ dài.
+
+Lưu ý con số: SKILL.md ghi hụt 512 chữ (đích 1.500) vì tính 6 cluster. Thực tế cụm có 6 bài sống =
+1 pillar + **5 cluster**, nên công thức ra 1.350, hụt 362. Đã viết lên 1.889 cho thoáng vì các
+section cũ chỉ 83-260 chữ.
+
+Đã làm: gỡ 11 en-dash, mở rộng intro, thêm loại landing page thứ 5 (agent page) và đoạn về seller
+page types để kéo 2 link từ Related Reading vào thân bài, thêm 2 element (CTA đơn nhất, mobile và
+tốc độ), thêm H2 mới **"What Usually Goes Wrong"** với 4 failure mode và link chéo sang #1223 (Cụm 7
+follow-up, vì landing page không có follow-up là lỗi tốn tiền nhất), gỡ Related Reading, mở rộng
+Final Thoughts.
+
+Kết quả: **1.889 chữ, 8 link nội bộ (4,2/1.000), 100% trong thân bài, 2 link ngoài, density 0,85%,
+FOCUS_KW trong 4/6 H2, 3 ảnh, 0 dash**.
+
+⚠️ **Đã gỡ claim "converts paid traffic at 8 to 15 percent"** (không nguồn). Thay bằng số đo thật từ
+[Unbounce Conversion Benchmark Report](https://unbounce.com/industry/real-estate/): real estate
+median **2,2%**, top 25% đạt **20,2%**, trên 2.877 landing page và 891.959 conversion. Đọc trực tiếp
+trang nguồn, không lấy từ bản tóm tắt search, vì bản tóm tắt đầu tiên trả về 3,6%/7,1% là **sai**.
+Đây cũng là link ngoài authoritative thứ 2 bên cạnh carrot.com vốn chỉ là blog vendor.
+
 ---
 
 ### Cụm 7: Lead Generation / Follow-up Automation, 🎯 RealSaleX (🥇 ưu tiên cao nhất), ✅ HOÀN THÀNH, 8 bài
