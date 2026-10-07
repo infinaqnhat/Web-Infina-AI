@@ -570,7 +570,7 @@ Bài dài có thể nới tới 8/1.000. Đây là chỉ số dùng được cho
 
 ⚠️ **Con số "20-40 link cho pillar" chỉ đúng khi pillar dài 3.000-5.000 chữ.** Nếu pillar của bạn
 chỉ 1.800 chữ thì 20 link là **nhiều**, không phải vừa. Lỗi này đã xảy ra thật trong dự án ngày
-2026-10-07: lấy con số tuyệt đối 20-40 áp lên pillar 1.832 chữ rồi kết luận nhầm là "đang thiếu
+2026-10-07: lấy con số tuyệt đối 20-40 áp lên pillar 1.832 chữ (lúc đó) rồi kết luận nhầm là "đang thiếu
 link". Luôn chia cho số chữ trước khi đánh giá.
 
 **Độ dài pillar: suy ra từ SỐ CLUSTER, đừng đặt mục tiêu số chữ.**
@@ -622,7 +622,7 @@ lần không có con số cứng. Mọi ngưỡng trên là mốc tham chiếu �
 
 | Pillar | Chữ | Link | /1.000 chữ | |
 |---|---|---|---|---|
-| `best-crm-for-real-estate` | 1.832 | 20 | 10,9 | nhiều |
+| `best-crm-for-real-estate` | 4.253 | 21 | 4,9 | vừa, sau khi mở rộng 07/10 |
 | `real-estate-lead-follow-up-automation-guide` | 722 | 9 | 12,5 | nhiều |
 | `tcpa-compliance-for-real-estate-agents` | 1.180 | 8 | 6,8 | vừa |
 | `ai-crm-real-estate` | 1.656 | 10 | 6,0 | vừa |
@@ -648,7 +648,7 @@ Số liệu đúng lấy từ `content-plan.md` ngày 07/10/2026:
 
 | Cụm | Bài sống | Pillar | Chữ pillar | Cần có | Chênh |
 |---|---|---|---|---|---|
-| Cụm 2 CRM Software | 25 | `best-crm-for-real-estate` | 1.832 | 4.350 | **-2.518** |
+| Cụm 2 CRM Software | 25 | `best-crm-for-real-estate` | 4.253 | 4.350 | **-97 đạt** |
 | Cụm 1 Chatbot | 13 | `best-conversational-ai-chatbot` | 2.281 | 2.550 | -269 |
 | Cụm 3 Website Builder / IDX | 13 | `real-estate-website-builder` | 3.016 | 2.550 | **+466 đạt** |
 | Cụm 7 Lead Generation | 9 | `real-estate-lead-follow-up-automation-guide` | 722 | 1.950 | **-1.228** |
@@ -657,8 +657,9 @@ Số liệu đúng lấy từ `content-plan.md` ngày 07/10/2026:
 | Cụm 6 Landing Pages | 6 | `real-estate-landing-page-guide` | 988 | 1.500 | -512 |
 | Cụm 8 Compliance | 6 | `tcpa-compliance-for-real-estate-agents` | 1.180 | 1.500 | -320 |
 
-Ba cụm đã đạt. Hai cụm hụt nhiều nhất là **Cụm 2** (pillar 1.832 chữ gánh 25 bài) và **Cụm 7**
-(pillar chỉ 722 chữ gánh 9 bài, ngắn hơn cả một bài cluster bình thường).
+Bốn cụm đã đạt. Cụm 2 được mở rộng từ 1.832 lên 4.253 chữ ngày 07/10 qua 4 lần `update_post`
+tuần tự, xem `content-plan.md` mục Cụm 2 cho bảng từng bước. Cụm hụt nặng nhất còn lại là
+**Cụm 7** (pillar chỉ 722 chữ gánh 9 bài, ngắn hơn cả một bài cluster bình thường).
 
 Không cụm nào vượt 25 bài, nên **chưa cụm nào cần tách sub-hub**. Việc cần làm là viết dài pillar
 cho đủ vai trò, không phải chia nhỏ cụm.

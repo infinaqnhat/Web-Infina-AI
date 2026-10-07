@@ -365,10 +365,12 @@ Dùng bảng này để **so sánh giữa các đối thủ**, không phải đ�
 chuẩn nguy hiểm hơn hẳn đối thủ có 12 cụm rời rạc.
 
 **Cũng dùng bảng này để tự soi site mình.** Đo ngày 07/10/2026 trên `infina.ai/news` theo đúng tỷ
-lệ: `best-crm-for-real-estate` 1.832 chữ với 20 link ra 10,9/1.000 (nhiều), `crm-pipeline-management`
-1.682 chữ với 5 link ra 3,0/1.000 (thiếu). Nhưng kết luận quan trọng hơn con số link: chỉ 1 trong 8
-pillar đạt 3.000 chữ, phần còn lại 1.200-1.800 chữ nên **đang là bài cluster dài chứ chưa phải
-pillar**. Link ngang trung bình 1,23/bài so với chuẩn 2-3, chỉ 31% số bài đạt.
+lệ: `best-crm-for-real-estate` lúc đó 1.832 chữ với 20 link ra 10,9/1.000 (nhiều),
+`crm-pipeline-management` 1.682 chữ với 5 link ra 3,0/1.000 (thiếu). Nhưng kết luận quan trọng hơn
+con số link: chỉ 1 trong 8 pillar đạt 3.000 chữ, phần còn lại 1.200-1.800 chữ nên **đang là bài
+cluster dài chứ chưa phải pillar**. Cách chữa là viết dài pillar chứ không phải bớt link:
+`best-crm-for-real-estate` được mở rộng lên 4.253 chữ cùng ngày, giữ nguyên 21 link, tỷ lệ tự rơi
+về 4,9/1.000 mà không phải gỡ link nào. Link ngang trung bình 1,23/bài so với chuẩn 2-3, chỉ 31% số bài đạt.
 
 ---
 

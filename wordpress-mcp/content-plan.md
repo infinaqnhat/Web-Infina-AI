@@ -232,6 +232,27 @@ còn lại (Landing Pages, AI Voice, Website Design, Website Builder, IDX, Lead 
 (đổi vai trò hub từ #384 sang #207 vì #207 có sẵn 15 inbound link sitewide, #384 chỉ có 2). 2 bài
 còn lại (#419 teams-niche, #444 buying-guide/BOF) giữ nguyên vì differentiation thật.
 
+**✅ MỞ RỘNG PILLAR #207 (2026-10-07)**: audit ngày 07/10 cho thấy #207 chỉ dài 1.832 chữ với 20
+link nội bộ, tức 10,9 link/1.000 chữ, vượt xa ngưỡng 3-5/1.000. Chẩn đoán đúng không phải "quá
+nhiều link" mà là **pillar quá ngắn so với vai trò hub của 25 bài cluster**. Đã mở rộng qua 4 lần
+`update_post` tuần tự:
+
+| Bước | Nội dung | Chữ sau bước |
+|---|---|---|
+| 1 | Mở rộng "What Is a Real Estate CRM?", thêm H2 "Do You Actually Need One Yet?", gộp section Integrations rời vào phần tiêu chí | 2.104 |
+| 2 | Thêm đoạn "The limitation" cho cả 8 vendor, lead-in cho section vendor, đoạn đọc bảng so sánh | 2.963 |
+| 3 | Thêm 3 H2 mới: "Choosing by Role", "What a CRM Does After the Lead Arrives", "Where the CRM Meets Your Website and IDX" | 3.747 |
+| 4 | Thêm H2 "Where the Category Is Moving", mở rộng phần Intent Layer + Final Thoughts, **gỡ hẳn section "Related Reading"** | 4.253 |
+
+Kết quả đo lại trên REST: **4.253 chữ, 21 link nội bộ, 4,9 link/1.000 chữ** (đúng dải 3-5), density
+FOCUS_KW 0,68%, 8 link ngoài dofollow, 12 H2. Quan trọng nhất: **100% link nội bộ giờ nằm trong thân
+bài theo ngữ cảnh**, trước đó 16/21 link nằm trong danh sách "Related Reading" cuối bài. Không mất
+link nào khi gỡ danh sách: cả 16 slug đều đã được hấp thụ vào đoạn văn có lý do để người đọc bấm.
+Không thêm em-dash mới (25 em-dash còn lại đều là nội dung cũ, chưa dọn).
+
+⏳ Còn thiếu: link xuống #1487 và #1488 (chưa live lúc sửa, lịch 07/10 và 08/10 10:00): đã có
+check-in hẹn giờ cho cả hai.
+
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
 | **Pillar chính (ĐÃ ĐỔI 01/10)** | [Best Real Estate Agent CRM Software in 2026](https://infina.ai/news/best-crm-for-real-estate/) | `best crm for real estate` | Evaluation/MOF | ✅ = #207, giờ là HUB — đã hấp thụ #384 (Intent Layer section) + #412 (Integrations section) |
