@@ -96,7 +96,7 @@ nên mồ côi tích tụ dần theo từng bài publish.
 
 ---
 
-#### Batch 1: sửa 5 trang, vá được 17/23 bài
+#### Batch 1: ✅ XONG 2026-10-07, sửa 5 trang, vá 17/23 bài
 
 Cả 5 đích đều là hub/pillar thật, nên link xuống vừa đúng chuẩn pillar-cluster vừa truyền được
 authority. Mỗi lần sửa là nối thêm link vào đoạn "Related Reading" có sẵn, không viết lại bài.
@@ -108,6 +108,18 @@ authority. Mỗi lần sửa là nối thêm link vào đoạn "Related Reading"
 | `crm-pipeline-management` | ai-relationship-manager-for-real-estate-leads, ai-usage-without-measurable-impact-real-estate-agents, financing-readiness-signals-for-real-estate-buyer-leads |
 | `best-ai-virtual-assistant-real-estate` | ai-digital-human-brokerage-website-adoption, ai-job-substitution-risk-real-estate-agents |
 | `crm-management-real-estate-agents-beginners-guide` | ai-academy-role-based-learning-mls-subscribers, ai-video-marketing-automation-real-estate-agents |
+
+**Kết quả đo lại ngay sau khi sửa**, chạy `competitor_teardown.py infina.ai --path /news/`:
+
+| | Trang mồ côi |
+|---|---|
+| Trước Batch 1 | 35/130 (27%) |
+| Sau Batch 1 | **18/130 (14%)** |
+
+17/17 link pillar xuống cluster đã verify live bằng REST. Bốn pillar chưa có section "Related
+Reading" (#214, #223, #277, #110) thì thêm mới trước "Final Thoughts"; #405 đã có sẵn nên nối thêm
+vào đoạn có sẵn. Density của cả 5 pillar sau khi sửa đều còn trong ngưỡng, riêng #214 ở 3,21% là
+vượt trần 2,5% nhưng đó là lỗi có sẵn từ trước, việc thêm đoạn làm nó giảm nhẹ chứ không gây ra.
 
 ⚠️ `crm-for-real-estate-agents` (#247, Cụm 2, publish 01/08) là **bài cluster thật chứ không phải
 News**, mồ côi từ đầu. Ưu tiên cao nhất trong batch này.
