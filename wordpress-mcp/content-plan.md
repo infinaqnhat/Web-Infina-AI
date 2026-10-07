@@ -284,7 +284,7 @@ bài theo ngữ cảnh**, trước đó 16/21 link nằm trong danh sách "Relat
 link nào khi gỡ danh sách: cả 16 slug đều đã được hấp thụ vào đoạn văn có lý do để người đọc bấm.
 Không thêm em-dash mới (25 em-dash còn lại đều là nội dung cũ, chưa dọn).
 
-⏳ Còn thiếu: link xuống #1487 và #1488 (chưa live lúc sửa, lịch 07/10 và 08/10 10:00): đã có
+⏳ Còn thiếu: link xuống #1488 (lịch 08/10 10:00). Link xuống #1487 **đã thêm 07/10 18:15 sau khi bài live**. Đã có
 check-in hẹn giờ cho cả hai.
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
@@ -296,7 +296,7 @@ check-in hẹn giờ cho cả hai.
 | Review (brand cụ thể) 🎯 RealSaleX | [Follow Up Boss Real Estate CRM Review: Pricing, Features, and the Follow-Up Gap](https://infina.ai/news/follow-up-boss-real-estate-crm/) | `follow up boss real estate crm` | Evaluation/MOF | ✅ Published 02/10 = #1449, 1.539 từ, density 0.65%, 2 bảng giá + 3 ảnh AI. Link ra #207/#444/#1232/#1234/#1223 |
 | Review/list (niche: broker) | [Real Estate Broker CRM: What Brokerages Need That Agent CRMs Miss](https://infina.ai/news/real-estate-broker-crm/) | `real estate broker crm` | Evaluation/MOF | ✅ Published 04/10 = #1462, 1.559 từ, density 0.83%. SERP check vs #419: 0 URL trùng. Có H2 riêng "Broker CRM vs Team CRM" phân tuyến. Link ngược đã verify live 06/10: #207 ✅, #419 ✅, #237 ✅ (link cross-cluster 2 chiều, bổ sung 06/10) |
 | Định nghĩa (niche RE) | [What Does CRM Mean in Real Estate? A Plain-English Guide for Agents](https://infina.ai/news/what-does-crm-mean-in-real-estate/) | `what does crm mean in real estate` | Discovery/TOF | ✅ Published 03/10 = #1458, 1.141 từ, density 0.61%. SERP check: 0 URL trùng với #230 nên không cannibalize. Link ngược đã verify live 06/10: #230 ✅, #207 ✅, #405 ✅, đủ cả 3 chiều |
-| So sánh (MOF) 🎯 RealSaleX | [Customer Engagement Platform vs CRM for Real Estate: Where Each One Stops](https://infina.ai/news/customer-engagement-platform-vs-crm/) | `customer engagement platform vs crm` | Evaluation/MOF | 🕐 Scheduled 07/10 10:00 = #1487, 1.341 từ, density 0,60%. SERP generic sạch real estate (leat, cxtoday, courier, flarelane, salesmanago). External link: NAR REALTORS Technology Report (52% agent dùng AI soạn email follow-up, verify first-hand). Ảnh: 3/3 đã gắn (1 HERO ảnh người 35mm + 2 infographic phẳng). ⏳ còn link ngược từ #207/#1232 (chờ bài live) |
+| So sánh (MOF) 🎯 RealSaleX | [Customer Engagement Platform vs CRM for Real Estate: Where Each One Stops](https://infina.ai/news/customer-engagement-platform-vs-crm/) | `customer engagement platform vs crm` | Evaluation/MOF | 🕐 Scheduled 07/10 10:00 = #1487, 1.341 từ, density 0,60%. SERP generic sạch real estate (leat, cxtoday, courier, flarelane, salesmanago). External link: NAR REALTORS Technology Report (52% agent dùng AI soạn email follow-up, verify first-hand). Ảnh: 3/3 đã gắn (1 HERO ảnh người 35mm + 2 infographic phẳng). ✅ **Live 07/10 10:00. Link ngược từ #207 và #1232 đã thêm + verify 2 chiều qua REST ngày 07/10 18:15** |
 | Listicle chiến lược (TOF) 🎯 RealSaleX | [Real Estate Customer Engagement: 7 Tactics That Earn a Reply](https://infina.ai/news/real-estate-customer-engagement-strategies/) | `real estate customer engagement` | Discovery/TOF | 🕐 Scheduled 08/10 10:00 = #1488, 1.184 từ, density 0,59%. Chốt FOCUS_KW trong nhóm đã duyệt 30/09 (`digital customer engagement` + `customer engagement examples`), chọn biến thể 4 từ vì cụm 5 từ không lặp tự nhiên đủ để đạt sàn density. SERP: easysend, brillio, twilio, MRI, Sierra glossary, 0 URL trùng với SERP #1487 và 0 URL trùng với SERP bài chatbot customer service. Ảnh: 3/3 đã gắn (1 HERO ảnh người 35mm + 2 infographic phẳng). ⏳ còn link ngược từ #207/#1232 (chờ bài live) |
 | ~~🔎 Review/list (roundup)~~ | ~~Top CRM Tools for Real Estate Agents and Teams~~ | `crm tools for real estate` | Evaluation/MOF | ⚠️ ĐÃ MERGE (2026-10-01) vào #207, redirect 301 live |
 | Review/list (niche: teams) | [Best CRM for Real Estate Teams: Top Picks for 2026](https://infina.ai/news/best-crm-for-real-estate-teams-2026/) | `best crm for real estate teams` | Evaluation/MOF | ✅ ĐÃ AUDIT: niche "teams" thật, rank tốt nhất nhóm (pos 5.0) — giữ nguyên |
@@ -476,7 +476,7 @@ khi container được cấp lại ngày 05/10. Mỗi bài 1 HERO ảnh người
 navy/xanh, không chữ trong ảnh, alt của cả 6 ảnh đều chứa FOCUS_KW của bài tương ứng. Ảnh metrics
 của #1488 phải generate lại 1 lần vì viền thẻ ra không liền, có bậc thừa ở 2 cạnh bên.
 
-⏳ **Việc còn lại của nhóm này**: link ngược từ #207 và #1232 xuống 2 bài này, để sau khi bài live
+⏳ **Việc còn lại của nhóm này**: link ngược xuống #1488 (08/10). Phần #1487 **đã xong 07/10 18:15**, xem refresh-log. Nguyên tắc vẫn là chờ bài live
 thật thay vì trỏ vào URL còn 404. Đã hẹn self check-in 07/10 10:15 và 08/10 10:15 để làm.
 
 ---
