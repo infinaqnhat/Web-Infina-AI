@@ -666,7 +666,7 @@ cứu do vendor tài trợ.
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
-| **Pillar (nhẹ)** | [TCPA Compliance for Real Estate Agents](https://infina.ai/news/tcpa-compliance-for-real-estate-agents/) | `tcpa compliance for real estate agents` | Discovery/TOF | ✅ = #237, đã link từ #147/Cụm 4/Cụm 7 |
+| **Pillar (nhẹ)** | [TCPA Compliance for Real Estate Agents: What Is Actually in Force for AI Texting and Calling](https://infina.ai/news/tcpa-compliance-for-real-estate-agents/) | `tcpa compliance for real estate agents` | Discovery/TOF | ✅ = #237, **đã đính chính nội dung pháp lý sai + mở rộng 07/10**, xem dưới |
 | Hỗ trợ (News) | [AI-Written Listing Descriptions Are Creating Fair Housing Liability](https://infina.ai/news/ai-hallucination-risk-real-estate-listings/) | `ai hallucination risk real estate listings` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Colorado's New AI Law Sets a Deadline for Automated Decisions](https://infina.ai/news/ai-decision-making-compliance-real-estate-agents/) | `ai decision making compliance real estate agents` | Post-purchase/support | — |
 | Hỗ trợ (News) | [Seller Impersonation Fraud Attempts Just Doubled](https://infina.ai/news/seller-impersonation-fraud-prevention-real-estate-agents/) | `seller impersonation fraud prevention real estate agents` | Post-purchase/support | — |
@@ -685,6 +685,31 @@ link về pillar #237 (giữ nguyên 2 link chéo cụm cũ). Verify lại cả 
 đầy đủ. Đây là cụm cuối cùng trong 8 cụm — **toàn bộ 8/8 cụm nội dung của site giờ đã được verify
 internal link thật qua REST API (không còn cụm nào dựa vào claim "✓ exist" chưa kiểm chứng của
 artifact RealSaleX Content Map cũ)**.
+
+**🚨 ĐÍNH CHÍNH PHÁP LÝ + MỞ RỘNG PILLAR #237 (2026-10-07)**: đây không phải việc mở rộng thường. Khi
+verify các claim trước lúc viết thêm, phát hiện **claim nổi bật nhất của bài là SAI**, và nó là bài
+tư vấn tuân thủ pháp luật nên sai là tốn tiền thật cho người đọc.
+
+| Claim cũ trong bài | Thực tế |
+|---|---|
+| "FCC đã bịt lead generator loophole", "one-to-one consent only", "a single consent form can no longer authorize dozens of unrelated companies" | **Quy tắc one-to-one consent ĐÃ BỊ HUỶ.** Toà Phúc thẩm Liên bang Khu vực 11 vacate trong [Insurance Marketing Coalition v. FCC](https://www.mofo.com/resources/insights/250130-eleventh-circuit-vacates-fcc-s-tcpa-one-to-one-consent-rule) tháng 01/2025, vài ngày trước ngày có hiệu lực, với lý do FCC vượt thẩm quyền khi định nghĩa lại "prior express consent". Quy tắc này **chưa bao giờ có hiệu lực**. |
+| "An AI assistant... will violate the one-to-one consent rule" | Không có quy tắc đó để vi phạm. |
+| "Opt-outs must be honored everywhere... across every channel within 10 business days" | Đúng một nửa. Phần **đang có hiệu lực từ 11/04/2025**: revoke bằng bất kỳ cách hợp lý nào, phải nhận diện các keyword chuẩn (stop/quit/cancel/unsubscribe/revoke/opt out/end), xử lý trong **10 ngày làm việc**. Phần **"revoke-all"** (revoke ở 1 loại tin áp sang mọi loại tin khác, 47 C.F.R. § 64.1200(a)(10)) thì **chưa có hiệu lực**, FCC lùi tới **31/01/2027** bằng order DA-26-12A1 ngày 06/01/2026. |
+| "the National Do Not Call Registry now applies to text messages" (ngụ ý là thay đổi mới) | FCC coi tin nhắn là "call" theo TCPA từ lâu. Không phải thay đổi của 2026. |
+
+Nguồn đều verify first-hand qua WebFetch, không lấy từ bản tóm tắt search. Đã đổi luôn tiêu đề bài
+vì tiêu đề cũ ("What the 2026 FCC Rules Mean") hứa đúng cái quy tắc đã bị huỷ.
+
+Ngoài đính chính, bài còn được: gỡ 12 dash, sửa link trỏ vào stub 301 `conversational-chat-real-estate`
+thành slug sống `what-is-a-conversational-chatbot-real-estate`, thay section "Related Reading" bằng H2
+**"The Rest of the Compliance Surface"** có nội dung thật và hấp thụ cả 5 link cluster theo ngữ cảnh.
+
+Kết quả: **1.180 → 1.919 chữ, 8 link nội bộ (4,2/1.000), 100% trong thân bài, 5 link ngoài, density
+0,52%, 4 ảnh, 0 dash**. Link 2 chiều với cả 5 cluster đã verify lại.
+
+⚠️ **Còn tồn**: cả 5 cluster của cụm chỉ dài 558-908 chữ so với chuẩn 1.200-2.000, giống tình trạng
+Cụm 7. Và vì bài pillar từng sai về luật, nên **các bài cluster cùng cụm cũng cần rà lại claim pháp
+lý**, chưa làm.
 
 ---
 

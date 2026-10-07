@@ -667,7 +667,7 @@ Số liệu đúng lấy từ `content-plan.md` ngày 07/10/2026:
 | Cụm 4 AI Voice | 6 | `best-ai-voice-assistants-for-real-estate` | 2.251 | 1.500 | **+751 đạt** |
 | Cụm 5 Website / Web Design | 6 | `website-design-for-real-estate-agents` | 1.812 | 1.500 | **+312 đạt** |
 | Cụm 6 Landing Pages | 5 | `real-estate-landing-page-guide` | 1.889 | 1.350 | **+539 đạt** |
-| Cụm 8 Compliance | 6 | `tcpa-compliance-for-real-estate-agents` | 1.180 | 1.500 | -320 |
+| Cụm 8 Compliance | 5 | `tcpa-compliance-for-real-estate-agents` | 1.919 | 1.350 | **+569 đạt** |
 
 ⚠️ Cột thứ 2 là **số cluster đã trừ pillar**. Vài dòng trong bảng này được lập trước khi làm rõ
 điểm đó nên có thể còn lệch 1 cluster, tức lệch 150 chữ ở cột "Cần có". Đích là sàn chứ không phải
@@ -676,7 +676,7 @@ Khi dùng cho 1 cụm cụ thể thì đếm lại từ `content-plan.md`.
 
 Năm cụm đã đạt. Hai pillar yếu nhất đều được mở rộng ngày 07/10, xem `content-plan.md` mục Cụm 2
 và Cụm 7 cho bảng từng bước: Cụm 2 từ 1.832 lên 4.253 chữ qua 4 lần `update_post`, Cụm 7 từ 722 lên
-2.460 chữ qua 3 lần. Cụm còn hụt duy nhất là Cụm 8, hụt 320 chữ, sửa trong 1 lần là xong.
+2.460 chữ qua 3 lần. Cả 8 cụm giờ đều đạt sàn độ dài pillar.
 
 ⚠️ **Đếm cluster cho đúng: "N bài sống" trong `content-plan.md` đã GỒM pillar.** Cụm 6 từng bị
 ghi là cần 1.500 chữ vì lấy thẳng "6 bài" làm số cluster, trong khi thật ra là 1 pillar + 5
@@ -691,6 +691,21 @@ cluster nên chỉ cần 1.500 chữ, và cả hai đều đã vượt từ trư
 chữ nhưng Pillar A có **0 link ngoài** (fail Rank Math) và **7/8 link nội bộ dồn trong
 `<h3>Related Reading</h3>`**, Pillar B chỉ 1,9 link/1.000 chữ. Đo đủ bộ: độ dài, link/1.000 chữ, tỷ
 lệ link trong thân bài, số link ngoài, density, dash.
+
+⚠️ **Bài tư vấn pháp lý thì verify claim TRƯỚC khi viết thêm, không phải sau.** Ngày 07/10, lúc
+chuẩn bị mở rộng pillar Cụm 8, phát hiện claim nổi bật nhất của bài là sai: nó mô tả quy tắc FCC
+one-to-one consent như đang có hiệu lực, trong khi quy tắc đó **đã bị Toà Phúc thẩm Khu vực 11 huỷ
+tháng 01/2025, vài ngày trước ngày có hiệu lực**. Bài đã sống như vậy nhiều tháng. Nếu lúc đó chỉ lo
+thêm chữ cho đủ sàn thì sẽ viết thêm 700 chữ xây trên nền sai.
+
+Quy tắc rút ra: với bài compliance/legal/tax/medical, **mỗi claim quy phạm phải verify bằng WebFetch
+tới nguồn thật trước khi đụng vào bài**, và riêng nhóm này thì đọc trang nguồn chứ không tin bản tóm
+tắt của WebSearch. Chi tiết vụ việc trong `content-plan.md` mục Cụm 8.
+
+⚠️ **Kiểm tra link có trỏ vào stub 301 không.** #237 đang link `conversational-chat-real-estate`,
+vốn là stub đã merge 01/10 và chỉ sống nhờ redirect. Link qua redirect vẫn chạy nhưng loãng tín hiệu
+và sẽ chết khi dọn redirect. Mỗi lần sửa bài, đối chiếu slug trong bài với danh sách bài đã merge
+trong `content-plan.md`.
 
 ⚠️ **Regex đếm heading phải cho phép attribute.** `<h2>(.*?)</h2>` bỏ sót `<h2 id="...">`, khiến
 lần đo đầu tiên của Pillar B báo nhầm "chỉ có 1 H2" trong khi thật sự có 8. Luôn dùng
