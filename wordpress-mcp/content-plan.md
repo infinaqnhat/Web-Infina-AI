@@ -212,6 +212,40 @@ hiện tại, không thêm bài.
 | Hỗ trợ (News) | [A New Study Found AI Got 1 in 4 Mortgage Document Checks Wrong](https://infina.ai/news/ai-chatbot-mortgage-document-errors-real-estate-agents/) | `ai chatbot mortgage document errors real estate agents` | Post-purchase/support | — |
 | Hỗ trợ (News) | [A CRMLS Test Shows How Easily an AI Chatbot Can Leak Your MLS Data](https://infina.ai/news/ai-chatbot-mls-data-security-risk-brokerages/) | `ai chatbot mls data security risk brokerages` | Post-purchase/support | — |
 
+**✅ SỬA 2 PILLAR CỤM 1 (2026-10-07)**: ban đầu plan ghi Cụm 1 hụt 269 chữ. **Con số đó sai**, do
+tính cả 13 cluster dồn lên 1 pillar trong khi cụm này có 2 pillar song song chia nhau. Theo công
+thức, mỗi pillar gánh ~6 cluster nên cần 1.500 chữ, và cả hai đều đã vượt từ trước (A 2.281, B
+3.594). Cụm 1 **không hề thiếu độ dài**. Audit lại bằng REST thì vấn đề thật nằm chỗ khác:
+
+| | Pillar A #1056 | Pillar B #89 |
+|---|---|---|
+| Link ngoài | **0** (fail Rank Math) | 1 |
+| Link nội bộ nằm trong thân bài | **1/8** (7 link dồn ở `<h3>Related Reading</h3>`) | 2/7 |
+| Link/1.000 chữ | 3,5 | **1,9** (dưới sàn 3) |
+| En/em-dash | **28 en-dash** | 5 em-dash |
+| Khác | thiếu link tới 4 cluster | FOCUS_KW xuất hiện **0 lần**; tiêu đề ghi "12" nhưng có 15 tool |
+
+Đã sửa trong 1 lần `update_post` mỗi bài.
+
+**Pillar A #1056** (2.281 → 3.030 chữ): gỡ sạch 28 en-dash, thêm link dofollow ra site của cả 11
+vendor (đã verify 11/11 domain trả 200, và đây là cách sửa fail "0 external link" đúng kiểu bài
+roundup), thêm 2 H2 mới "Where the Handoff to a Human Belongs" và "Disclosure, Data, and What Can Go
+Wrong" để hấp thụ 4 cluster còn thiếu, hoà tan danh sách Related Reading vào thân bài. Kết quả:
+**12 link nội bộ (4,0/1.000), 100% trong thân bài, 12 link ngoài, density 0,53%, 0 dash**.
+
+**Pillar B #89** (3.594 → 3.991 chữ): đổi tiêu đề 12 → 15 cho khớp số tool thật, gỡ 5 em-dash, thêm
+5 link cluster theo ngữ cảnh, đổi `<h3>Related Reading</h3>` thành H2 "Before You Switch It On" có
+nội dung thật. Kết quả: **12 link nội bộ (3,0/1.000), 2 link ngoài, 0 dash**.
+
+⚠️ **FOCUS_KW của #89 giữ nguyên `chatbot customer service real estate`, chấp nhận fail check
+density** (quyết định của user 07/10). Lý do: cụm đó không đúng ngữ pháp tiếng Anh nên viết tự nhiên
+sẽ thành "chatbot customer service FOR real estate" và Rank Math không khớp; nhồi 18 lần cụm sai ngữ
+pháp hại readability hơn là được điểm. Bài dùng biến thể tự nhiên "chatbot customer service" 18 lần
+và "customer service chatbot" 9 lần.
+
+⚠️ **Đã gỡ claim "78% of buyers choose the first agent to respond"** khỏi #1056 và #89 vì không truy
+được nguồn gốc. Thay bằng HBR response-time audit. **Claim này vẫn còn trong #207**, chưa xử lý.
+
 **4 bài đã merge (01/10/2026)**: [Best AI Chatbot for Real Estate Lead Capture](https://infina.ai/news/best-ai-chatbot-for-real-estate-lead-capture/) + [8 Best AI Chat Platforms](https://infina.ai/news/best-ai-chat-platform-real-estate/) → stub, redirect 301 sang Pillar B. [Best Conversational Chatbot Platforms...](https://infina.ai/news/best-conversational-chatbot-for-real-estate/) + [Best AI Conversational Bots for Real Estate Follow-Up](https://infina.ai/news/best-ai-conversational-bot-for-real-estate/) → stub, redirect 301 sang Pillar A. Cả 4 redirect đã verify live qua curl.
 
 ---

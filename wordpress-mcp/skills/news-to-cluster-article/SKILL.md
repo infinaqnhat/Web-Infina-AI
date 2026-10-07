@@ -661,7 +661,7 @@ Số liệu đúng lấy từ `content-plan.md` ngày 07/10/2026:
 | Cụm | Bài sống | Pillar | Chữ pillar | Cần có | Chênh |
 |---|---|---|---|---|---|
 | Cụm 2 CRM Software | 25 | `best-crm-for-real-estate` | 4.253 | 4.350 | **-97 đạt** |
-| Cụm 1 Chatbot | 13 | `best-conversational-ai-chatbot` | 2.281 | 2.550 | -269 |
+| Cụm 1 Chatbot | 13 trên **2 pillar** | A `best-conversational-ai-chatbot-for-real-estate` 3.030, B `best-chatbot-customer-service-real-estate` 3.991 | | 1.500 mỗi pillar | **đạt cả hai** |
 | Cụm 3 Website Builder / IDX | 13 | `real-estate-website-builder` | 3.016 | 2.550 | **+466 đạt** |
 | Cụm 7 Lead Generation | 9 | `real-estate-lead-follow-up-automation-guide` | 2.460 | 1.950 | **+510 đạt** |
 | Cụm 4 AI Voice | 6 | `best-ai-voice-assistants-for-real-estate` | 2.251 | 1.500 | **+751 đạt** |
@@ -671,8 +671,22 @@ Số liệu đúng lấy từ `content-plan.md` ngày 07/10/2026:
 
 Năm cụm đã đạt. Hai pillar yếu nhất đều được mở rộng ngày 07/10, xem `content-plan.md` mục Cụm 2
 và Cụm 7 cho bảng từng bước: Cụm 2 từ 1.832 lên 4.253 chữ qua 4 lần `update_post`, Cụm 7 từ 722 lên
-2.460 chữ qua 3 lần. Ba cụm còn hụt (Cụm 1, Cụm 6, Cụm 8) hụt 269-512 chữ, tức sửa trong 1 lần là
-xong, không cần làm nhiều bước.
+2.460 chữ qua 3 lần. Hai cụm còn hụt (Cụm 6, Cụm 8) hụt 320-512 chữ, tức sửa trong 1 lần là xong, không cần làm nhiều
+bước.
+
+⚠️ **Cụm có 2 pillar thì phải chia số cluster ra trước khi áp công thức.** Cụm 1 từng bị ghi là hụt
+269 chữ vì dồn cả 13 cluster lên 1 pillar. Thực tế cụm này có 2 pillar song song, mỗi pillar gánh ~6
+cluster nên chỉ cần 1.500 chữ, và cả hai đều đã vượt từ trước. Kiểm tra số pillar trong
+`content-plan.md` trước khi kết luận một cụm thiếu độ dài.
+
+⚠️ **Độ dài đạt không có nghĩa pillar khoẻ.** Audit Cụm 1 ngày 07/10 cho thấy cả 2 pillar đều thừa
+chữ nhưng Pillar A có **0 link ngoài** (fail Rank Math) và **7/8 link nội bộ dồn trong
+`<h3>Related Reading</h3>`**, Pillar B chỉ 1,9 link/1.000 chữ. Đo đủ bộ: độ dài, link/1.000 chữ, tỷ
+lệ link trong thân bài, số link ngoài, density, dash.
+
+⚠️ **Regex đếm heading phải cho phép attribute.** `<h2>(.*?)</h2>` bỏ sót `<h2 id="...">`, khiến
+lần đo đầu tiên của Pillar B báo nhầm "chỉ có 1 H2" trong khi thật sự có 8. Luôn dùng
+`<h2[^>]*>(.*?)</h2>`.
 
 ⚠️ **Độ dài pillar đạt không có nghĩa cả cụm đã khoẻ.** Audit Cụm 7 sau khi vá pillar cho thấy 7
 trong 8 bài cluster chỉ dài 536-766 chữ, so với chuẩn cluster 1.200-2.000. Đo pillar xong thì đo
