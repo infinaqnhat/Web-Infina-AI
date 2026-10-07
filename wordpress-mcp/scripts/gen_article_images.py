@@ -6,7 +6,7 @@
 spec.json:
     [{"name": "hero", "alt": "...", "prompt": "..."}, ...]
 
-Mỗi ảnh được ghi ra <name>.jpg cạnh script và in ra 1 dòng kèm URL uguu. Lấy URL
+Mỗi ảnh được ghi ra <name>.jpg trong thư mục đang chạy và in ra 1 dòng kèm URL uguu. Lấy URL
 đó đưa vào `upload_media` (ảnh trong thân bài) hoặc thẳng vào `image_url` của
 `update_post` (featured image, tránh tạo attachment mồ côi).
 
@@ -15,8 +15,10 @@ trong container mới, và `python3 -I` bỏ qua user site-packages nên `pip in
 requests` cũng không cứu được. Đoạn code dùng `requests` trong SKILL.md chỉ chạy
 khi môi trường đã có sẵn nó; script này thì chạy ở mọi nơi.
 
-API key đọc từ file `gkey` cạnh script, không bao giờ qua argv hay env, và không
-bao giờ commit vào repo.
+API key đọc từ file `gkey` trong thư mục ĐANG CHẠY, hoặc `--key-file <path>`, hoặc
+biến `GEMINI_KEY_FILE`. KHÔNG đọc từ thư mục chứa script, vì thư mục đó nằm trong repo
+và key tuyệt đối không được commit. Cách chạy quen thuộc: cd sang scratchpad (nơi có
+gkey) rồi gọi script bằng đường dẫn tuyệt đối.
 """
 import base64, io, json, os, sys, time, uuid
 import urllib.request, urllib.error
@@ -30,8 +32,19 @@ NEG = (" no extra fingers, no floating objects, no readable text on screen, "
 
 
 def key():
-    with open(os.path.join(HERE, "gkey")) as f:
-        return f.read().strip()
+    """Đọc key từ file NGOÀI repo. Thứ tự: --key-file, GEMINI_KEY_FILE, ./gkey trong cwd."""
+    cands = []
+    if "--key-file" in sys.argv:
+        cands.append(sys.argv[sys.argv.index("--key-file") + 1])
+    if os.environ.get("GEMINI_KEY_FILE"):
+        cands.append(os.environ["GEMINI_KEY_FILE"])
+    cands.append(os.path.join(os.getcwd(), "gkey"))
+    for path in cands:
+        if os.path.isfile(path):
+            with open(path) as f:
+                return f.read().strip()
+    raise SystemExit("Khong tim thay file key. Dat gkey trong thu muc dang chay, hoac truyen "
+                     "--key-file <path>, hoac set GEMINI_KEY_FILE. Dung de key trong repo.")
 
 
 def post_json(url, payload, timeout=180):
@@ -97,11 +110,11 @@ def main():
     for item in spec:
         print(f"[{item['name']}] generating ...", flush=True)
         img, size = gemini(item["prompt"] + NEG)
-        open(os.path.join(HERE, item["name"] + ".jpg"), "wb").write(img)
+        open(os.path.join(os.getcwd(), item["name"] + ".jpg"), "wb").write(img)
         url = upload_uguu(img)
         out[item["name"]] = {"url": url, "alt": item["alt"]}
         print(f"  {size[0]}x{size[1]}  {len(img)}B  {url}", flush=True)
-    json.dump(out, open(os.path.join(HERE, "urls7.json"), "w"), indent=2)
+    json.dump(out, open(os.path.join(os.getcwd(), "urls.json"), "w"), indent=2)
 
 
 if __name__ == "__main__":

@@ -212,6 +212,23 @@ hiện tại, không thêm bài.
 | Hỗ trợ (News) | [A New Study Found AI Got 1 in 4 Mortgage Document Checks Wrong](https://infina.ai/news/ai-chatbot-mortgage-document-errors-real-estate-agents/) | `ai chatbot mortgage document errors real estate agents` | Post-purchase/support | — |
 | Hỗ trợ (News) | [A CRMLS Test Shows How Easily an AI Chatbot Can Leak Your MLS Data](https://infina.ai/news/ai-chatbot-mls-data-security-risk-brokerages/) | `ai chatbot mls data security risk brokerages` | Post-purchase/support | — |
 
+**✅ BÀI NEWS MỚI 07/10: #1529** `ai-drafted-messages-agent-approval`, publish 18:23, category News,
+1.019 chữ, density 0,59%, 5 link nội bộ, 4 ảnh (1 HERO người 35mm + 3 infographic phẳng).
+FOCUS_KW `ai drafted messages agent approval`, PILLAR #214 `ai-crm-real-estate` (PILLAR_KW `ai crm`,
+khác FOCUS_KW ✓). Slug overlap cao nhất 0,512, dưới ngưỡng 0,6.
+
+Tin nguồn: Realtor.com ra mắt RealAssist ngày 06/10, verify first-hand qua Real Estate News (không
+lấy từ bản tóm tắt search). Góc viết: RealAssist **soạn tin nhưng bắt agent duyệt trước khi gửi**,
+và đó là ranh giới đang tách công cụ AI agent giữ lại khỏi công cụ họ tắt đi.
+
+Bước 6.5 đã làm ngay: #214 → #1529 (đặt trong thân bài section "How to Choose", không nhét vào
+Related Reading), #1529 → #214, cộng 4 link ngang (#475, #1232, #1223, #237). Verify 2 chiều qua REST,
+toàn bộ 5 link đích đều trả 200.
+
+⚠️ **Đã sửa lỗi trong `scripts/gen_article_images.py`**: script cũ tìm file `gkey` **cạnh chính nó**,
+tức trong repo, mà key thì tuyệt đối không được commit. Đã đổi sang đọc theo thứ tự `--key-file` →
+`GEMINI_KEY_FILE` → `./gkey` trong thư mục đang chạy, và ảnh cũng ghi ra cwd thay vì vào repo.
+
 **✅ SỬA 2 PILLAR CỤM 1 (2026-10-07)**: ban đầu plan ghi Cụm 1 hụt 269 chữ. **Con số đó sai**, do
 tính cả 13 cluster dồn lên 1 pillar trong khi cụm này có 2 pillar song song chia nhau. Theo công
 thức, mỗi pillar gánh ~6 cluster nên cần 1.500 chữ, và cả hai đều đã vượt từ trước (A 2.281, B
