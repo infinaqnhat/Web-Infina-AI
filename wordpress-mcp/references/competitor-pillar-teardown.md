@@ -364,6 +364,12 @@ Hai dòng in đậm là hai chỉ số phân biệt nhanh nhất giữa cụm c�
 Dùng bảng này để **so sánh giữa các đối thủ**, không phải để chấm đỗ/trượt. Một đối thủ có 4 cụm đạt
 chuẩn nguy hiểm hơn hẳn đối thủ có 12 cụm rời rạc.
 
+**Teardown đã chạy thật:** `teardown-followupboss.md` (07/10/2026, 691 trang). Đọc file đó trước khi
+chạy site mới, vì nó cho thấy cả trap #4 và #5 xuất hiện cùng lúc trên một site, và cho thấy một thứ
+guide này chưa nói: **phải phân loại nội dung blog trước khi so số lượng bài.** 17% blog của
+followupboss là changelog 2014-2019, 71% trong số đó mồ côi. So "367 bài" với site mình là sai, số
+cạnh tranh thật là 276.
+
 **Cũng dùng bảng này để tự soi site mình.** Đo ngày 07/10/2026 trên `infina.ai/news` theo đúng tỷ
 lệ: `best-crm-for-real-estate` lúc đó 1.832 chữ với 20 link ra 10,9/1.000 (nhiều),
 `crm-pipeline-management` 1.682 chữ với 5 link ra 3,0/1.000 (thiếu). Nhưng kết luận quan trọng hơn
