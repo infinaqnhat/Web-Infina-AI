@@ -1,0 +1,271 @@
+# Teardown cụm pillar của đối thủ: đọc cấu trúc content từ chính site họ
+
+**Ngày soạn: 2026-10-07.** File này trả lời đúng 1 câu hỏi: *cho 1 domain đối thủ, làm sao dựng lại
+bản đồ pillar + cluster của họ mà không cần tool trả phí.*
+
+Bổ sung cho `content-strategy-framework.md` (đi từ data keyword đến content plan cho site MÌNH).
+File này đi hướng ngược lại: đọc cấu trúc đã có sẵn của NGƯỜI KHÁC, rồi dùng nó để tìm gap.
+
+**Lưu ý về nguồn**: phần khung phương pháp (Bước 0-6) ổn định theo thời gian. Riêng các con số
+benchmark ở Bước 4 là tổng hợp ngành tại 10/2026, không phải ranking factor Google công bố, nên
+dùng để so sánh tương đối giữa các đối thủ chứ đừng coi là ngưỡng pass/fail. Xem mục Nguồn cuối file.
+
+---
+
+## Nguyên tắc cốt lõi
+
+**Đừng đọc menu, tiêu đề hay breadcrumb của đối thủ để đoán cụm. Đọc internal link graph của họ.**
+
+Navigation phản ánh cách phòng marketing muốn kể chuyện. Internal link phản ánh cách họ thật sự dồn
+link equity. Hai thứ này lệch nhau thường xuyên, và cái thứ hai mới là thứ Google đọc.
+
+Hệ quả thực tế: trang pillar thật của 1 site nhiều khi **không nằm trên menu**, và trang nằm chễm
+chệ trên menu nhiều khi chỉ là landing page không ai link tới.
+
+---
+
+## Bước 0: Chọn đúng đối thủ trước khi crawl
+
+Lọc còn 3-5 đối thủ tìm kiếm thật, theo công thức: 1 market leader + 2 ngang cơ + 1 mới nổi.
+
+**Loại khỏi danh sách**: Wikipedia, site tin tức tổng hợp, aggregator (Capterra, G2, Clutch...).
+Chúng rank bằng domain authority chứ không bằng cấu trúc cụm, nên teardown không học được gì.
+
+Dấu hiệu chọn đúng: đối thủ đó xuất hiện lặp lại ở top 10 của **nhiều** keyword trong cụm mình nhắm,
+không phải chỉ 1 keyword.
+
+---
+
+## Bước 1: Lấy toàn bộ bản đồ URL
+
+Thử theo thứ tự, dừng ở cái nào chạy được:
+
+```bash
+# 1. Sitemap index (hay gặp nhất)
+curl -sS https://<domain>/sitemap_index.xml
+curl -sS https://<domain>/post-sitemap.xml
+curl -sS https://<domain>/sitemap.xml
+
+# 2. Nếu robots.txt khai chỗ khác
+curl -sS https://<domain>/robots.txt | grep -i sitemap
+```
+
+Nếu đối thủ chạy WordPress, **ưu tiên REST API** vì nó trả về category và ngày đăng luôn, đỡ phải
+crawl từng trang để biết phân loại:
+
+```bash
+curl -sS "https://<domain>/wp-json/wp/v2/posts?per_page=100&page=1&_fields=id,slug,link,title,categories,date"
+curl -sS "https://<domain>/wp-json/wp/v2/categories?per_page=100&_fields=id,name,count"
+```
+
+**Tách theo folder trước khi làm gì khác.** `/blog/`, `/guides/`, `/resources/`, `/learn/` thường đã
+là ranh giới cụm do chính đối thủ tự vạch. Nếu site có folder rõ ràng, một nửa công việc gom cụm đã
+xong miễn phí.
+
+---
+
+## Bước 2: Dựng internal link graph và nhận diện pillar
+
+Đây là bước quan trọng nhất, và là bước không có tool miễn phí nào làm thay.
+
+**Pillar = trang có nhiều inbound internal link nhất, nằm nông trong cây URL, và link ra nhiều trang
+con nhất.** Ba tín hiệu này phải cùng xuất hiện. Chỉ 1 trong 3 thì chưa đủ kết luận.
+
+```python
+# teardown.py, chạy: python3 teardown.py <domain>
+import re, sys, time, urllib.request
+from collections import defaultdict
+
+DOMAIN = sys.argv[1]
+UA = {"User-Agent": "Mozilla/5.0"}
+
+def get(url):
+    return urllib.request.urlopen(
+        urllib.request.Request(url, headers=UA), timeout=30
+    ).read().decode("utf-8", "ignore")
+
+# 1. URL list từ sitemap
+xml = get(f"https://{DOMAIN}/post-sitemap.xml")
+urls = re.findall(r"<loc>([^<]+)</loc>", xml)
+print(f"{len(urls)} URL")
+
+# 2. Fetch từng trang, lấy internal link
+outbound = {}
+for i, u in enumerate(urls):
+    try:
+        html = get(u)
+    except Exception:
+        continue
+    body = re.split(r"<main|<article", html, 1)[-1]          # bỏ bớt header/nav
+    body = re.split(r"<footer", body, 1)[0]
+    links = set(re.findall(rf'href="(https?://{re.escape(DOMAIN)}/[^"#?]*)"', body))
+    outbound[u] = {l.rstrip("/") for l in links} - {u.rstrip("/")}
+    time.sleep(0.4)                                           # lịch sự, tránh bị chặn
+
+# 3. Đếm ngược
+inbound = defaultdict(set)
+for src, dsts in outbound.items():
+    for d in dsts:
+        inbound[d].add(src)
+
+rows = []
+for u in urls:
+    k = u.rstrip("/")
+    depth = k.replace(f"https://{DOMAIN}", "").strip("/").count("/")
+    rows.append((len(inbound[k]), len(outbound.get(u, [])), depth, k))
+
+print(f"\n{'IN':>4} {'OUT':>4} {'DEPTH':>5}  URL")
+for r in sorted(rows, reverse=True)[:40]:
+    print(f"{r[0]:>4} {r[1]:>4} {r[2]:>5}  {r[3]}")
+```
+
+**Đọc kết quả:**
+
+| Hình dạng | Nghĩa là gì |
+|---|---|
+| IN cao, OUT cao, DEPTH thấp | Pillar thật |
+| IN cao, OUT thấp | Trang rank tốt nhưng không phân phối link equity, cụm chưa khép |
+| IN thấp, OUT cao | Trang index/listing, không phải pillar |
+| IN = 0 | **Trang mồ côi.** Đây là điểm yếu lớn nhất của đối thủ, xem Bước 6 |
+
+### Ba cái bẫy khi đọc con số này
+
+**1. Phải cắt header/nav/footer trước khi đếm.** Nếu không, mọi trang trong menu sẽ có inbound bằng
+đúng tổng số trang và con số mất hết ý nghĩa. Đoạn `re.split` ở trên là bản tối giản, site nào không
+dùng `<main>`/`<article>` thì phải tự tìm selector khác.
+
+**2. Sitemap thường vẫn liệt kê URL đã 301.** Đây là bẫy nguy hiểm nhất vì nó tạo ra mồ côi giả.
+URL đã redirect sẽ cho `IN=0` (không ai link tới nó nữa, đúng) nhưng `OUT` lại **bằng đúng OUT của
+trang đích**, vì crawler đi theo redirect rồi đọc nội dung trang đích. Dấu hiệu nhận ra: một nhóm
+URL cùng có `IN=0` và `OUT` trùng khít với `OUT` của một trang pillar nào đó trong danh sách.
+Cách xử lý: so URL cuối sau redirect với URL gốc, lệch thì loại khỏi phân tích.
+
+```python
+req = urllib.request.Request(u, headers=UA)
+with urllib.request.urlopen(req, timeout=30) as r:
+    final = r.geturl()
+if final.rstrip("/") != u.rstrip("/"):
+    continue        # stub 301, bỏ qua
+```
+
+**3. Cột DEPTH chỉ có nghĩa khi site dùng folder.** Blog phẳng kiểu `/<slug>/` sẽ cho DEPTH = 0 ở
+mọi dòng, lúc đó chỉ đọc IN và OUT.
+
+---
+
+## Bước 3: Gom cụm theo hub
+
+Mỗi URL thuộc về pillar mà nó **link lên**. Gom xong sẽ ra 1 trong 3 hình:
+
+1. **Cụm khép kín**: pillar ↔ cluster link 2 chiều đầy đủ. Khó đánh trực diện.
+2. **Cụm 1 chiều**: cluster link lên pillar nhưng pillar không link xuống. Rất phổ biến. Nghĩa là
+   cụm được xây dần chứ không có kế hoạch, và link equity chảy 1 hướng.
+3. **Chùm rời rạc**: nhiều trang cùng chủ đề nhưng không trang nào link nhau. Đây không phải cụm,
+   chỉ là 1 đống bài. Đối thủ dạng này dễ vượt nhất.
+
+Nếu 2 trang cùng chủ đề mà cả hai đều có IN cao và không link nhau, khả năng cao **đối thủ đang tự
+cannibalize**. Ghi lại, đó là cơ hội.
+
+---
+
+## Bước 4: Chấm chất lượng cụm theo benchmark
+
+| Tín hiệu | Ngưỡng tham chiếu (10/2026) |
+|---|---|
+| Số cluster trên 1 pillar | 5–15, khởi động 5–7 |
+| Độ dài pillar | 3.000–5.000 từ |
+| Mỗi subtopic trong pillar | 100–200 từ tóm tắt rồi link ra bài sâu |
+| Anchor text cluster → pillar | chứa keyword mục tiêu của pillar |
+| Link 2 chiều | bắt buộc chiều cluster → pillar |
+| Ngưỡng AI citation | 5+ trang liên kết nhau trong cùng 1 chủ đề |
+
+Dùng bảng này để **so sánh giữa các đối thủ**, không phải để chấm đỗ/trượt. Một đối thủ có 4 cụm đạt
+chuẩn nguy hiểm hơn hẳn đối thủ có 12 cụm rời rạc.
+
+---
+
+## Bước 5: Phân loại đối thủ trước khi quyết đánh hay né
+
+Bước hay bị bỏ qua nhất, và là bước quyết định tốn bao nhiêu nguồn lực.
+
+**Loại A, rank nhờ 1 asset outlier**: traffic dồn vào 1-2 URL, phần còn lại im lặng. Thường là 1 bài
+cũ ăn backlink tốt. Cấu trúc cụm phía sau yếu hoặc không có.
+→ Đánh được bằng 1 cụm chuyên sâu hẹp, không cần xây cả hệ thống.
+
+**Loại B, rank nhờ mạng topical**: traffic trải đều trên 10-30 URL liên kết chặt.
+→ Không có đường tắt. Phải xây cụm đối ứng, hoặc chọn nhánh con mà họ bỏ trống.
+
+Cách phân biệt nhanh mà không cần tool traffic: nhìn phân bố IN ở Bước 2. Nếu 1 URL có IN gấp 5-10
+lần trung bình và phần còn lại gần như bằng nhau ở mức thấp, đó là loại A.
+
+---
+
+## Bước 6: Tìm gap ở mức structural node, không phải keyword lẻ
+
+Gap đáng khai thác **không phải** "thiếu từ khóa X" mà là "thiếu hẳn 1 nhánh subtopic".
+
+Ba nguồn gap theo thứ tự giá trị:
+
+1. **Nhánh vắng mặt hoàn toàn.** So cây cụm của họ với cây cụm của mình, tìm node không ai có. Giá
+   trị cao nhất, cạnh tranh gần bằng 0.
+2. **Pillar quá rộng.** Trang rank cho hàng trăm từ nhưng không trả lời sâu câu nào. Chen vào bằng
+   bài hẹp và sâu hơn hẳn phần tương ứng trong pillar của họ.
+3. **Trang mồ côi của họ** (IN = 0 ở Bước 2). Chủ đề họ đã xác nhận là đáng viết, nhưng chính họ
+   không chống lưng bằng internal link. Viết lại tử tế kèm cụm đầy đủ là vượt được.
+
+**Ưu tiên bằng ma trận volume × độ yếu đối thủ**, lấy high-value low-effort trước, nhắm intent hẹp
+mà đối thủ vắng mặt hoàn toàn. Đừng bắt đầu từ node có volume cao nhất nếu đó cũng là node họ mạnh nhất.
+
+---
+
+## Hai cạm bẫy
+
+**1. Đừng copy cấu trúc cụm của đối thủ 1:1.** Cụm của họ phục vụ ICP của họ. Bê nguyên về thường
+chồng lên nội dung sẵn có của mình rồi tự cannibalize. Dùng teardown để tìm *chỗ trống*, không phải
+để *sao chép bản đồ*.
+
+**2. Thin cluster hại hơn không viết.** Nếu bài cluster không sâu hơn chính đoạn tóm tắt 100-200 từ
+trong pillar, nó là cannibalization chứ không phải topical authority. Áp rule này cho cả việc đọc
+đối thủ: đối thủ có 15 bài cluster mỏng yếu hơn đối thủ có 6 bài dày.
+
+---
+
+## Case thật trên site này
+
+**Lần 1, audit 01/10/2026, Cụm 2 (CRM Software).** content-plan lúc đó ghi `#384` là pillar chính,
+thuần tuý vì tiêu đề nghe "pillar hơn". Link graph cho thấy ngược lại:
+
+- `#207` best-crm-for-real-estate: **15 inbound link sitewide**
+- `#384` best-crm-software-real-estate-agents: **2 inbound link**
+
+Đã đổi vai trò pillar sang `#207`, trỏ lại toàn bộ cluster, rồi merge `#384` vào `#207` kèm 301.
+
+**Lần 2, chạy chính script trong file này ngày 07/10/2026 trên 142 URL.** Kết quả xác nhận cấu trúc
+đã lành:
+
+| Trang | IN | OUT |
+|---|---|---|
+| best-crm-for-real-estate (#207) | 51 | 21 |
+| real-estate-website-builder (#546) | 27 | 15 |
+| ai-crm-real-estate | 20 | 5 |
+
+`#207` giờ có inbound gấp gần 2 lần pillar đứng thứ hai, đúng hình dạng pillar mong đợi.
+
+**Và bẫy số 2 ở Bước 2 lộ ra ngay trong lần chạy này.** Script báo 8 URL có `IN=0`. Soát lại thì 7
+trong số đó là **stub 301 đã merge** chứ không phải mồ côi thật, nhận ra được vì `OUT` của chúng
+trùng khít với `OUT` của trang đích (ví dụ `best-crm-software-real-estate-agents` có OUT=21, bằng
+đúng OUT của `#207`). Cái còn lại là trang index `/news` của blog. Tức là site hiện **không có mồ côi
+thật nào**, nhưng nếu đọc vội con số thì sẽ kết luận ngược.
+
+Bài học: **cùng 1 phương pháp dùng được cho cả site mình lẫn site đối thủ**, và chạy trên site mình
+trước là cách rẻ nhất để phát hiện script đang đếm sai ở đâu, vì mình biết đáp án đúng.
+
+---
+
+## Nguồn
+
+- [rankdots, 5-step framework to reverse-engineer competitor pages](https://rankdots.com/blog/competitor-reverse-engineering). Khung 5 bước, khái niệm Visibility Index và phân biệt outlier asset vs topical network
+- [rankdots, analyze competitor topic coverage to find content gaps](https://rankdots.com/blog/competitive-analysis). Gom URL theo hub page, gap matrix ở mức structural node
+- [digitalapplied, SEO content clusters 2026 topic authority guide](https://www.digitalapplied.com/blog/seo-content-clusters-2026-topic-authority-guide). Benchmark số cluster, độ dài pillar, ngưỡng AI citation
+- [HubSpot, topic clusters the next evolution of SEO](https://blog.hubspot.com/marketing/topic-clusters-seo). Mô hình pillar-cluster gốc, quy tắc anchor text và link 2 chiều
+- [Search Engine Land, Messy SEO Part 6: pillar pages and topic clusters](https://searchengineland.com/messy-seo-part-6-pillar-pages-and-topic-clusters-379169). Ghi chép triển khai thật, các lỗi hay gặp
