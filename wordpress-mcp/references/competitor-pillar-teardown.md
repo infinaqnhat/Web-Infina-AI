@@ -128,7 +128,7 @@ for r in sorted(rows, reverse=True)[:40]:
 | IN thấp, OUT cao | Trang index/listing, không phải pillar |
 | IN = 0 | **Trang mồ côi.** Đây là điểm yếu lớn nhất của đối thủ, xem Bước 6 |
 
-### Ba cái bẫy khi đọc con số này
+### Năm cái bẫy khi đọc con số này
 
 **1. Phải cắt header/nav/footer trước khi đếm.** Nếu không, mọi trang trong menu sẽ có inbound bằng
 đúng tổng số trang và con số mất hết ý nghĩa. Đoạn `re.split` ở trên là bản tối giản, site nào không
@@ -150,6 +150,23 @@ if final.rstrip("/") != u.rstrip("/"):
 
 **3. Cột DEPTH chỉ có nghĩa khi site dùng folder.** Blog phẳng kiểu `/<slug>/` sẽ cho DEPTH = 0 ở
 mọi dòng, lúc đó chỉ đọc IN và OUT.
+
+**5. Link template trong sidebar và CTA sẽ chiếm hết top bảng.** Cắt header/nav/footer là chưa đủ,
+vì nhiều theme nhét block CTA ngay trong vùng `<main>`. Chạy thật trên `tuscanaproperties.com`
+(1.466 trang), 6 vị trí dẫn đầu đều là loại này: `/contact` xuất hiện trên 97% số trang,
+`/sellers/our-books` và `/sellers/move-for-free` trên 61%.
+
+Cách nhận ra: tính **tỷ lệ số trang có link tới nó**. Trên 50% thì chắc chắn là sitewide. Nhưng
+**đừng dùng một ngưỡng cố định**, đã kiểm chứng là không có con số nào đúng cho mọi site:
+
+| Ngưỡng | Trên site 1.466 trang | Trên site 130 trang |
+|---|---|---|
+| 20% | Lọc đúng cả 6 CTA | **Loại nhầm pillar thật** (47/130 = 36%) |
+| 50% | **Để lọt** CTA ở mức 27% | Giữ đúng pillar |
+
+Site càng nhỏ thì pillar thật càng dễ vượt ngưỡng %. Cách làm đúng: tính tỷ lệ, sắp xếp giảm dần,
+rồi **nhìn 10 dòng đầu và tự loại bằng mắt** những trang rõ ràng là CTA, liên hệ, hoặc pháp lý
+(`/contact`, `/privacy-policy`, `/terms`, trang đăng ký, trang tải ebook). Mất 30 giây và không sai.
 
 **4. Trang category và tag archive sẽ leo lên đầu bảng.** Mọi bài đều link về category của nó, nên
 archive luôn có inbound cao nhất site mà không phải pillar nội dung. Đo thật trên `infina.ai/news`:
