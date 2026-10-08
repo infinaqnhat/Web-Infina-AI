@@ -154,6 +154,23 @@ trên `tr` "vô tác dụng". Thực tế `th` trong suốt (`backgroundColor: r
    bản đang chạy: đối chiếu 08/10 không một selector đặc trưng nào của nó có trên site thật.
 3. Viết lại quy tắc màu `tr`/`th` cho đúng chiều, kèm cách kiểm tra bằng `getComputedStyle`.
 
-⚠️ **Còn tồn đọng, chưa xử lý:** `#948` vẫn có `<figure class="wp-block-image aligncenter"></figure>`
-rỗng (thiếu hẳn `<img>`). Đo lại thấy **không gây tràn, cao 0px**, nên chỉ là thiếu 1 ảnh chứ không
-phải lỗi layout. Khôi phục ảnh cần Gemini key, hiện không có trong env.
+### Đã khôi phục ảnh thiếu ở #948
+
+Lúc đầu tôi báo "cần Gemini key, hiện không có trong env" rồi dừng. Sai quy trình: key **nằm trong
+Google Drive** (`Gemini Key Realstake.txt`), đã có cách lấy từ trước, chỉ là tôi quên bước đó.
+
+Quy trình đúng, lặp lại được:
+1. `search_files` trong Drive tìm `Gemini Key Realstake.txt`, lấy nội dung bằng `download_file_content`
+   (trả về base64).
+2. Giải mã và ghi thẳng ra `gkey` trong scratchpad bằng `python3 -I -c '...'`, mở file với
+   `os.open(..., 0o600)`. **Không bao giờ ghi vào repo.**
+3. `cd` sang scratchpad rồi gọi `gen_article_images.py` bằng đường dẫn tuyệt đối, vì script đọc
+   `gkey` từ thư mục đang chạy.
+
+Ảnh sinh ra là infographic so sánh độ dài form (5 ô so với 2 ô, kèm cột chiều cao khác nhau), đặt
+đúng sau đoạn nói form 2 bước chuyển đổi tốt hơn 20-30%. Không chữ, đúng quy tắc infographic
+text-free. Alt chứa FOCUS_KW.
+
+Verify: `#948` giờ có 3 figure, **0 figure rỗng**, **3/3 alt chứa FOCUS_KW**, ảnh mới trả HTTP 200
+(`image/jpeg`, 69.102 byte). Đã xác nhận key không lọt vào repo (`grep -rl "AIzaSy"` trong repo trả
+về rỗng).
