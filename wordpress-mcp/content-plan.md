@@ -124,12 +124,20 @@ vượt trần 2,5% nhưng đó là lỗi có sẵn từ trước, việc thêm 
 ⚠️ `crm-for-real-estate-agents` (#247, Cụm 2, publish 01/08) là **bài cluster thật chứ không phải
 News**, mồ côi từ đầu. Ưu tiên cao nhất trong batch này.
 
-#### Batch 2: 6 bài còn lại, KHÔNG route về bài News anh em
+#### Batch 2: 6 bài còn lại (chưa làm, **cần lên lại kế hoạch theo rule 08/10**)
 
-Thuật toán phủ tối thiểu gợi ý sửa 6 bài News khác, nhưng News trỏ News thì gần như không truyền
-authority. Route thẳng về pillar đúng chủ đề thay vì theo link có sẵn:
+⚠️ **Lý do cũ của batch này đã bị bác bỏ.** Nó ghi "News trỏ News thì gần như không truyền
+authority" nên route thẳng về pillar. Mueller nói ngược lại: *"We don't really differentiate
+there."* Trang nguồn và vị trí link **không** làm Google đánh giá link khác đi
+([SEJ 03/2022](https://www.searchenginejournal.com/are-internal-links-in-header-and-footer-treated-differently/441993/)).
+Dồn cả 6 bài về pillar còn đi ngược chính ràng buộc Google có nói: quá nhiều internal link làm
+loãng cấu trúc site.
 
-| Bài mồ côi | Pillar nên trỏ xuống |
+Theo rule 08/10 (Bước 6.5), nguồn ưu tiên là **một bài cluster cùng cụm có sẵn đoạn đang nói đúng
+chủ đề**, pillar chỉ là đường lui. Bảng dưới giữ lại làm **đường lui đã xác định sẵn** cho từng bài;
+trước khi dùng thì lục cụm tương ứng xem có sibling nào hợp không đã.
+
+| Bài mồ côi | Đường lui nếu không tìm được sibling |
 |---|---|
 | ai-contract-data-extraction-closing-automation-agents | #237 TCPA (Cụm 8) hoặc #207 |
 | mls-ai-conversational-search-broker-attribution-agents | pillar Cụm 1 Chatbot |
@@ -301,8 +309,12 @@ bài theo ngữ cảnh**, trước đó 16/21 link nằm trong danh sách "Relat
 link nào khi gỡ danh sách: cả 16 slug đều đã được hấp thụ vào đoạn văn có lý do để người đọc bấm.
 Không thêm em-dash mới (25 em-dash còn lại đều là nội dung cũ, chưa dọn).
 
-⏳ Còn thiếu: link xuống #1488 (lịch 08/10 10:00). Link xuống #1487 **đã thêm 07/10 18:15 sau khi bài live**. Đã có
-check-in hẹn giờ cho cả hai.
+✅ **Không còn việc gì với cặp CEP.** Link xuống #1487 đã thêm 07/10 18:15 sau khi bài live.
+Link xuống #1488 **không cần làm nữa**: theo rule 08/10, bài mới chỉ cần 1 inbound từ **bài
+cluster cùng cụm**, và #1488 đã có sẵn từ #1487 (anchor `real estate customer engagement tactics`,
+duy nhất trên toàn site). Pillar chỉ là đường lui khi không sibling nào đạt tiêu chí, xem Bước 6.5
+trong `news-to-cluster-article/SKILL.md`. Thêm nữa là đi ngược lý do của chính rule: #207 đã lên 22
+link nội bộ vì cách làm cũ.
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
@@ -314,7 +326,7 @@ check-in hẹn giờ cho cả hai.
 | Review/list (niche: broker) | [Real Estate Broker CRM: What Brokerages Need That Agent CRMs Miss](https://infina.ai/news/real-estate-broker-crm/) | `real estate broker crm` | Evaluation/MOF | ✅ Published 04/10 = #1462, 1.559 từ, density 0.83%. SERP check vs #419: 0 URL trùng. Có H2 riêng "Broker CRM vs Team CRM" phân tuyến. Link ngược đã verify live 06/10: #207 ✅, #419 ✅, #237 ✅ (link cross-cluster 2 chiều, bổ sung 06/10) |
 | Định nghĩa (niche RE) | [What Does CRM Mean in Real Estate? A Plain-English Guide for Agents](https://infina.ai/news/what-does-crm-mean-in-real-estate/) | `what does crm mean in real estate` | Discovery/TOF | ✅ Published 03/10 = #1458, 1.141 từ, density 0.61%. SERP check: 0 URL trùng với #230 nên không cannibalize. Link ngược đã verify live 06/10: #230 ✅, #207 ✅, #405 ✅, đủ cả 3 chiều |
 | So sánh (MOF) 🎯 RealSaleX | [Customer Engagement Platform vs CRM for Real Estate: Where Each One Stops](https://infina.ai/news/customer-engagement-platform-vs-crm/) | `customer engagement platform vs crm` | Evaluation/MOF | 🕐 Scheduled 07/10 10:00 = #1487, 1.341 từ, density 0,60%. SERP generic sạch real estate (leat, cxtoday, courier, flarelane, salesmanago). External link: NAR REALTORS Technology Report (52% agent dùng AI soạn email follow-up, verify first-hand). Ảnh: 3/3 đã gắn (1 HERO ảnh người 35mm + 2 infographic phẳng). ✅ **Live 07/10 10:00. Link ngược từ #207 và #1232 đã thêm + verify 2 chiều qua REST ngày 07/10 18:15** |
-| Listicle chiến lược (TOF) 🎯 RealSaleX | [Real Estate Customer Engagement: 7 Tactics That Earn a Reply](https://infina.ai/news/real-estate-customer-engagement-strategies/) | `real estate customer engagement` | Discovery/TOF | 🕐 Scheduled 08/10 10:00 = #1488, 1.184 từ, density 0,59%. Chốt FOCUS_KW trong nhóm đã duyệt 30/09 (`digital customer engagement` + `customer engagement examples`), chọn biến thể 4 từ vì cụm 5 từ không lặp tự nhiên đủ để đạt sàn density. SERP: easysend, brillio, twilio, MRI, Sierra glossary, 0 URL trùng với SERP #1487 và 0 URL trùng với SERP bài chatbot customer service. Ảnh: 3/3 đã gắn (1 HERO ảnh người 35mm + 2 infographic phẳng). ⏳ còn link ngược từ #207/#1232 (chờ bài live) |
+| Listicle chiến lược (TOF) 🎯 RealSaleX | [Real Estate Customer Engagement: 7 Tactics That Earn a Reply](https://infina.ai/news/real-estate-customer-engagement-strategies/) | `real estate customer engagement` | Discovery/TOF | 🕐 Scheduled 08/10 10:00 = #1488, 1.184 từ, density 0,59%. Chốt FOCUS_KW trong nhóm đã duyệt 30/09 (`digital customer engagement` + `customer engagement examples`), chọn biến thể 4 từ vì cụm 5 từ không lặp tự nhiên đủ để đạt sàn density. SERP: easysend, brillio, twilio, MRI, Sierra glossary, 0 URL trùng với SERP #1487 và 0 URL trùng với SERP bài chatbot customer service. Ảnh: 3/3 đã gắn (1 HERO ảnh người 35mm + 2 infographic phẳng). ✅ Inbound đã đủ: #1487 (cluster cùng cụm) trỏ sang, anchor `real estate customer engagement tactics`. Theo rule 08/10 **không cần link từ #207/#1232**, pillar chỉ là đường lui |
 | ~~🔎 Review/list (roundup)~~ | ~~Top CRM Tools for Real Estate Agents and Teams~~ | `crm tools for real estate` | Evaluation/MOF | ⚠️ ĐÃ MERGE (2026-10-01) vào #207, redirect 301 live |
 | Review/list (niche: teams) | [Best CRM for Real Estate Teams: Top Picks for 2026](https://infina.ai/news/best-crm-for-real-estate-teams-2026/) | `best crm for real estate teams` | Evaluation/MOF | ✅ ĐÃ AUDIT: niche "teams" thật, rank tốt nhất nhóm (pos 5.0) — giữ nguyên |
 | Buying guide (BOF) | [Best CRM for Real Estate Agents: A Buyer's Guide (2026)](https://infina.ai/news/best-crm-buying-guide-real-estate-agents/) | `best crm` | Decision/BOF | ✅ ĐÃ AUDIT: funnel stage khác thật (quy trình đánh giá 14 ngày, red flags) — giữ nguyên |
@@ -493,8 +505,14 @@ khi container được cấp lại ngày 05/10. Mỗi bài 1 HERO ảnh người
 navy/xanh, không chữ trong ảnh, alt của cả 6 ảnh đều chứa FOCUS_KW của bài tương ứng. Ảnh metrics
 của #1488 phải generate lại 1 lần vì viền thẻ ra không liền, có bậc thừa ở 2 cạnh bên.
 
-⏳ **Việc còn lại của nhóm này**: link ngược xuống #1488 (08/10). Phần #1487 **đã xong 07/10 18:15**, xem refresh-log. Nguyên tắc vẫn là chờ bài live
-thật thay vì trỏ vào URL còn 404. Đã hẹn self check-in 07/10 10:15 và 08/10 10:15 để làm.
+✅ **Nhóm này đã xong.** Cả 2 bài đều đủ inbound biên tập: #1487 nhận từ #207 và #1232 (thêm
+07/10 18:15 sau khi bài live), #1488 nhận từ **#1487**, tức một cluster cùng cụm, đúng nguồn ưu tiên
+của rule 08/10. **Không thêm link từ pillar xuống #1488 nữa**, vì pillar chỉ là đường lui khi không
+sibling nào đạt tiêu chí.
+
+Trong lúc #1488 chưa live, link từ #1487 sang nó đang trỏ vào URL 404 và **tự lành lúc 08/10 10:00**.
+Để nguyên là đúng: gỡ rồi phải khôi phục thì tốn hơn. Riêng chiều inbound thì quy tắc vẫn là **chờ bài
+live thật** rồi mới trỏ bài khác vào, không trỏ vào URL còn 404.
 
 ---
 
