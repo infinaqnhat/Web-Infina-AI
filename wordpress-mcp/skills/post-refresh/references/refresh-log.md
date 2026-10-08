@@ -101,3 +101,59 @@ nên ghi `content.rendered` ngược lại không làm mất cấu trúc gì.
 ⚠️ **Hai lỗi có sẵn, phát hiện trong lúc sửa, không thuộc phạm vi lần này:**
 - #948 có `<figure class="wp-block-image aligncenter"></figure>` rỗng, thiếu hẳn thẻ `<img>`.
 - #1462 có `<table>` không bọc `<div style="overflow-x:auto;">`, sẽ vỡ layout mobile ở 4 cột.
+
+---
+
+## 2026-10-08 — Bọc overflow cho 20 bảng trong 16 bài, và sửa lỗi gốc trong SKILL.md
+
+**Lỗi gốc không nằm ở nội dung mà ở chính skill.** Skill kê `<div style="overflow-x:auto;">`, nhưng
+WordPress lọc `style` qua `safecss_filter_attr()` và **`overflow-x` không nằm trong danh sách property
+được phép**, nên thuộc tính bị xoá sạch mỗi lần ghi. Cách sửa đó **chưa bao giờ chạy**: đo 08/10 thấy
+16 bài có `<table>` và 0 bài nào có wrapper còn hiệu lực.
+
+Kiểm chứng bằng cách ghi cả hai biến thể lên `#1415` rồi đọc lại qua REST:
+
+| Thuộc tính | Sau khi WordPress lọc |
+|---|---|
+| `overflow-x:auto` | **bị xoá** |
+| `overflow:auto` | sống |
+| `display:block`, `max-width:100%` | sống |
+
+**Mức độ tràn, đo bằng Chromium ở viewport 375px** (không suy từ CSS):
+
+| Bài | Cột | Trước | Sau |
+|---|---|---|---|
+| #546 | 6 | 565px (**+190px**) | 375px |
+| #89 | 4 | 468px | 375px |
+| #1462 | 4 | 438px | 375px |
+| #207 | 5 | 424px | 375px |
+
+**Đã sửa 16 bài, 20 bảng** (89, 123, 138, 172, 189, 207, 438, 546, 1056, 1071, 1078, 1415, 1449,
+1462, 1487, 1501). 16 bảng bọc mới, 4 bảng chỉ vá `style` vào `<div>` đã có sẵn. Verify: fetch lại
+cả 16, **16/16 giống hệt bản dự định** sau khi bỏ khác biệt khoảng trắng, mọi bài đều đạt
+`số wrapper == số bảng`, không còn `overflow-x`, độ sâu `<figure>` ≤ 1.
+
+⚠️ **Chỉ cần bọc div, KHÔNG đụng vào thẻ `<table>`.** Đã thử 3 biến thể, cả 3 đều chặn được tràn, nên
+chọn cái ít xâm lấn nhất.
+
+### Lỗi thứ hai phát hiện dọc đường: tiêu đề bảng #438 không đọc được
+
+`<tr style="background:#1a2b4c">` (xanh đậm) cộng `<th style="color:#001F5C">` (cũng xanh đậm) cho
+tương phản **1,11:1**, chuẩn WCAG AA là 4,5:1. Chữ gần như vô hình. Đã sửa `th` sang `color:#ffffff`,
+lên **14,06:1**, và chụp màn hình đối chiếu trước/sau để xác nhận.
+
+Nguyên nhân cũng là một khẳng định sai trong SKILL.md: nó ghi theme tự set nền cho `th` nên style
+trên `tr` "vô tác dụng". Thực tế `th` trong suốt (`backgroundColor: rgba(0, 0, 0, 0)`) nên nền của
+`tr` hiện xuyên qua.
+
+### Ba chỗ đã sửa trong SKILL.md
+
+1. `overflow-x:auto` → `overflow:auto`, kèm giải thích WordPress lọc gì.
+2. Bỏ khẳng định "theme đã tự style sẵn mọi `<table>`". **Theme đang chạy không có một rule CSS nào
+   cho `table/th/td`**, và theme trong repo (`wordpress-theme/infina-ai-news/style.css`) **không phải**
+   bản đang chạy: đối chiếu 08/10 không một selector đặc trưng nào của nó có trên site thật.
+3. Viết lại quy tắc màu `tr`/`th` cho đúng chiều, kèm cách kiểm tra bằng `getComputedStyle`.
+
+⚠️ **Còn tồn đọng, chưa xử lý:** `#948` vẫn có `<figure class="wp-block-image aligncenter"></figure>`
+rỗng (thiếu hẳn `<img>`). Đo lại thấy **không gây tràn, cao 0px**, nên chỉ là thiếu 1 ảnh chứ không
+phải lỗi layout. Khôi phục ảnh cần Gemini key, hiện không có trong env.
