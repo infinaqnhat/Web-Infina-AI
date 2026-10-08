@@ -219,3 +219,70 @@ text-free. Alt chứa FOCUS_KW.
 Verify: `#948` giờ có 3 figure, **0 figure rỗng**, **3/3 alt chứa FOCUS_KW**, ảnh mới trả HTTP 200
 (`image/jpeg`, 69.102 byte). Đã xác nhận key không lọt vào repo (`grep -rl "AIzaSy"` trong repo trả
 về rỗng).
+
+---
+
+## 2026-10-08 — Batch A: gỡ 26 link trỏ vào stub 301, 20 bài
+
+Mọi link nội bộ giờ trỏ thẳng tới URL trả 200. Trước đó có **26 link đi qua redirect 301**,
+trong đó 1 link đi qua **2 hầu** (`top-crm-tools-real-estate-teams` → `top-crm-tools-for-real-estate-teams`
+→ `best-crm-for-real-estate`). Link qua redirect vẫn chạy nhưng loãng tín hiệu và sẽ chết khi dọn redirect.
+
+| Stub (301) | Đích thật | Link |
+|---|---|---|
+| `best-ai-chatbot-for-real-estate-lead-capture` | `best-chatbot-customer-service-real-estate` | 13 |
+| `best-ai-chat-platform-real-estate` | `best-chatbot-customer-service-real-estate` | 7 |
+| `conversational-chat-real-estate` | `what-is-a-conversational-chatbot-real-estate` | 3 |
+| `top-crm-tools-for-real-estate-teams` | `best-crm-for-real-estate` | 2 |
+| `top-crm-tools-real-estate-teams` | `best-crm-for-real-estate` (2 hầu) | 1 |
+
+**Cách xử lý, 3 loại:**
+
+1. **20 link đổi href, giữ nguyên anchor.**
+2. **5 anchor là TÊN NGUYÊN VĂN của trang đã xoá** (`Best AI Chatbot for Real Estate Lead Capture`)
+   thì viết lại cho đúng đích mới, mỗi bài một biến thể khác nhau (#110, #117, #172, #207, #214).
+   Để nguyên là đang giới thiệu một trang không còn tồn tại.
+3. **5 chỗ sau khi đổi sẽ thành 2 link cùng trỏ 1 pillar** thì bỏ bớt 1.
+
+⚠️ **Chính sách bỏ bớt link trong cùng bài, đã phải đảo lại giữa chừng.** Ban đầu tôi giữ link
+thân bài và gỡ link cuối bài, theo đúng ưu tiên "link thân bài tốt hơn". Đọc lại 5 câu thì thấy hỏng:
+câu cuối bài luôn có dạng *"our guide to X"*, *"our roundup of X"*, bỏ link đi thành hứa một bài rồi
+không cho đường đi. Anchor thân bài ngược lại chỉ là cụm danh từ (*"a real estate AI chat platform
+built for team-wide use..."*), bỏ link vẫn đọc trôi. Nên **gỡ link thân bài, giữ link cuối bài**.
+Quy tắc rút ra: ưu tiên vị trí là chuyện lúc VIẾT; lúc GỠ thì chọn theo câu nào hỏng nếu mất link.
+
+Riêng `#521` có 2 câu cuối bài cùng trỏ về `#89`, không câu nào bỏ link được, nên xoá hẳn 1 câu.
+
+**20 bài đã sửa:** 110, 117, 172, 189, 207, 214, 286, 293, 513, 521, 528, 899, 1034, 1134, 1140,
+1158, 1191, 1209, 1266, 1308.
+
+**Verify sau khi sửa** (HTTP từng slug đích, không suy từ nội dung):
+
+| Chỉ số | Kết quả |
+|---|---|
+| Slug đích không trả 200 | **1/113**, là `real-estate-customer-engagement-strategies` (#1488, live 08/10 10:00) |
+| Link còn trỏ vào stub 301 | **0** |
+| Bài tôi sửa có >1 link cùng 1 pillar | **0** |
+
+Đa dạng anchor của 3 đích **tăng chứ không giảm**, dù chúng nhận thêm 26 link:
+
+| Đích | Trước | Sau |
+|---|---|---|
+| `best-chatbot-customer-service-real-estate` | 12 link / 6 anchor, 50% | 28 / 19, **68%** |
+| `what-is-a-conversational-chatbot-real-estate` | 9 / 8, 89% | 11 / 10, **91%** |
+| `best-crm-for-real-estate` | 53 / 42, 79% | 55 / 44, **80%** |
+
+Đổi hướng không dồn thêm tải lên pillar: Google đã gộp tín hiệu qua 301 từ trước, việc này chỉ bỏ
+cái hầu ở giữa.
+
+⚠️ **4 bài có sẵn 2 link cùng trỏ 1 pillar, có từ trước, không thuộc Batch A:** `#1449`,
+`#918` (cả hai → `#207`), `#481` (→ `#172`), `#390` (→ `#89`). Đã đối chiếu với bản chụp trước khi
+sửa để chắc không phải do lần này gây ra. Để lại cho đợt dọn anchor.
+
+⚠️ **Claim "78% of buyers choose the first agent to respond" còn ở `#521` và `#172`**, ngoài `#207`
+đã biết. Phát hiện dọc đường, không sửa vì ngoài phạm vi Batch A.
+
+⚠️ **Một lỗi phương pháp đã bắt được trước khi nó gây hậu quả.** Bản kê stub đầu tiên của tôi
+dựng bằng cách grep chữ "merge"/"301" trong `content-plan.md`, nên `what-is-a-conversational-chatbot-real-estate`
+lọt vào oan (nó là đích, không phải stub) và bản kê báo nhầm 10 link. Cách đúng là **HTTP từng
+slug đích** rồi xem mã trả về, không suy từ tài liệu. Làm lại cho ra 26 link chứ không phải 10.
