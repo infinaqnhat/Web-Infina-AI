@@ -658,6 +658,77 @@ Lấy giờ bài `status=publish` gần nhất trên WordPress (từ `posts` ở
 
 ⚠️ **Featured image = `IMG["STATS"]`, KHÔNG phải `IMG["HERO"]`.** Xem `THUMBNAIL_BEST_PRACTICES.md` (cùng thư mục skill) — ảnh HERO (photorealistic người ngồi laptop) lặp lại gần như y hệt qua các bài khiến trang chủ nhìn "toàn ảnh giống nhau", đây chính là vấn đề đợt audit toàn site trước đó đã sửa cho các bài cũ. Ảnh HERO vẫn tạo và chèn trong content như bình thường (đầu bài), chỉ riêng featured image/thumbnail dùng STATS.
 
+⚠️ **GATE trước khi publish: mọi link nội bộ phải trỏ tới URL trả 200.** Chạy trên `CONTENT`
+lúc nó còn là chuỗi, **trước** `create_post`. Fail ở đây không tốn gì vì chưa có gì lên site, khác hẳn
+một `assert` hậu publish.
+
+```python
+import re, urllib.request, urllib.error
+
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *a, **k): return None
+_opener = urllib.request.build_opener(_NoRedirect)
+
+def _probe(sl):
+    r = _opener.open(urllib.request.Request(
+        "https://infina.ai/news/%s/" % sl,
+        headers={"User-Agent": "Mozilla/5.0"}), timeout=40)
+    return r.status, ""
+
+def check_targets(html_str, allow=()):
+    """{slug: (ma_http, slug_dich_CUOI_CUNG)} cho moi link noi bo KHONG tra 200.
+
+    allow: cac slug duoc phep 404 vi bai do dang status=future, se tu lanh.
+    """
+    bad = {}
+    for sl in sorted(set(re.findall(
+            r'href="https://infina\.ai/news/([a-z0-9-]+)/?"', html_str))):
+        cur, code, first, hops = sl, None, None, 0
+        while hops < 5:
+            try:
+                code, _ = _probe(cur)
+                break
+            except urllib.error.HTTPError as e:
+                code = e.code
+                first = first if first is not None else e.code  # ma cua chang DAU
+                loc = e.headers.get("Location", "")
+                nxt = loc.replace("https://infina.ai/news/", "").strip("/")
+                # go het chuoi redirect de in ra DICH CUOI, khong phai hau dau tien
+                if e.code in (301, 302, 307, 308) and nxt and nxt != cur:
+                    cur, hops = nxt, hops + 1
+                    continue
+                break
+        if code == 200 and cur == sl:
+            continue
+        if code == 404 and sl in allow:
+            continue
+        bad[sl] = (first if first is not None else code, cur if cur != sl else "")
+    return bad
+
+# SCHEDULED_OK: slug cua bai da len lich ma ta co y link sang (xem ghi chu duoi)
+bad = check_targets(CONTENT, allow=SCHEDULED_OK)
+assert not bad, "link tro vao URL khong tra 200: %s" % bad
+```
+
+⚠️ **Phải đo bằng HTTP, đừng đối chiếu với danh sách bài đã merge trong `content-plan.md`.** Cách
+đọc tài liệu đã sai thật ngày 08/10: nó báo 10 link hỏng trong khi con số thật là **26**, và còn kê oan
+một trang đang sống thành stub. Tài liệu luôn trễ hơn site; mã HTTP trả về thì không.
+
+`check_targets` **gỡ hết chuỗi redirect rồi mới in đích**. Phải thế vì có stub 2 hầu thật trên site
+(`top-crm-tools-real-estate-teams` → `top-crm-tools-for-real-estate-teams` → `best-crm-for-real-estate`);
+bản đầu chỉ in hầu đầu tiên, sửa theo nó là rơi vào một stub khác.
+
+`SCHEDULED_OK` là danh sách slug được phép 404: bài đã `status=future` mà ta **cố ý** link sang, nó tự
+lành đúng giờ publish. Tiền lệ là cặp #1487/#1488: hai bài viết cùng lúc, lên lịch cách nhau 1 ngày,
+#1487 link sang #1488 ngay từ đầu. Để rỗng `SCHEDULED_OK = []` khi không có trường hợp đó, đừng
+dùng nó để làm ngơ một slug gõ sai. Chiều ngược lại (bài khác trỏ **vào** bài chưa live) vẫn phải
+chờ, xem Bước 6.5.
+
+Khi `check_targets` báo một slug `301`, sửa `href` sang slug đích mà nó in ra, **rồi đọc lại anchor**:
+nếu anchor là tên nguyên văn của trang cũ (kiểu `Best AI Chatbot for Real Estate Lead Capture`) thì
+phải viết lại cho mô tả đúng trang đích, vì trang mang tên đó không còn tồn tại. Đã phải sửa 5 anchor
+kiểu này ngày 08/10.
+
 ```python
 resp = call("create_post", {
     "title": TITLE,
@@ -848,10 +919,13 @@ link lại trỏ tới trang NAR về pre-marketing/coming-soon listings, chẳn
 tên nghiên cứu của ALTA. Khi rà, mở từng link ngoài và hỏi: trang này có thật sự nói điều mà câu văn
 đang gán cho nó không?
 
-⚠️ **Kiểm tra link có trỏ vào stub 301 không.** #237 đang link `conversational-chat-real-estate`,
-vốn là stub đã merge 01/10 và chỉ sống nhờ redirect. Link qua redirect vẫn chạy nhưng loãng tín hiệu
-và sẽ chết khi dọn redirect. Mỗi lần sửa bài, đối chiếu slug trong bài với danh sách bài đã merge
-trong `content-plan.md`.
+⚠️ **Kiểm tra link có trỏ vào stub 301 không, bằng `check_targets()` ở Bước 6.** Mỗi lần sửa bài
+cũ cũng chạy hàm đó trên nội dung mới trước khi ghi. Link qua redirect vẫn chạy nhưng loãng tín hiệu
+và sẽ chết khi dọn redirect.
+
+Đợt rà 08/10 tìm ra **26 link đi qua 301** trên 20 bài, trong đó 1 link đi qua **2 hầu**
+(`top-crm-tools-real-estate-teams` → `top-crm-tools-for-real-estate-teams` → `best-crm-for-real-estate`).
+Đã sửa hết, xem `post-refresh/references/refresh-log.md`.
 
 ⚠️ **Regex đếm heading phải cho phép attribute.** `<h2>(.*?)</h2>` bỏ sót `<h2 id="...">`, khiến
 lần đo đầu tiên của Pillar B báo nhầm "chỉ có 1 H2" trong khi thật sự có 8. Luôn dùng
@@ -1012,6 +1086,17 @@ if ma:
     dup = [x.lower() for x in anchors_to(PILLAR_SLUG)].count(mine) - 1
     if dup > 0:
         warnings.append(f"anchor '{mine}' da duoc {dup} bai khac dung, doi sang bien the khac")
+
+# anchor cua CA cac link ngang, khong chi pillar
+for sl in SIBLING_SLUGS:
+    mb = re.search(r'<a[^>]+href="https://infina\.ai/news/%s/?"[^>]*>(.*?)</a>' % sl,
+                   c, re.S | re.I)
+    if not mb:
+        continue
+    a = html.unescape(re.sub("<[^>]+>", "", mb.group(1))).strip().lower()
+    d = [x.lower() for x in anchors_to(sl)].count(a) - 1
+    if d > 0:
+        warnings.append(f"anchor '{a}' tro toi {sl} da duoc {d} bai khac dung")
 
 m = re.search(r"<h2[^>]*>\s*(Related Reading|Final Thoughts)", c, re.I)
 cut = m.start() if m else len(c)
