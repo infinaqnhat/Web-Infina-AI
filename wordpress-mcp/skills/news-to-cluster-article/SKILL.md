@@ -258,10 +258,25 @@ Mỗi bài cần **4 ảnh**: HERO, STATS/DATA, DEMO, COMPARISON. Ảnh HERO v�
 
 **Bảng so sánh/số liệu chi tiết nhiều hàng-cột (≥3 cột hoặc ≥4 hàng) — dùng `<table>` HTML thật trong thân bài, KHÔNG generate ảnh AI.** Lý do: ảnh AI dựng bảng hay bịa tên sản phẩm/số liệu không khớp nội dung bài (đã xảy ra thực tế ở bài `best-free-crm-for-real-estate-agents`, #438 — ảnh so sánh bịa 3 tên CRM giả, ảnh thống kê bịa % adoption kèm dòng disclaimer "hypothetical" nhỏ xíu không ai đọc được), và vi phạm luôn checklist thumbnail (`THUMBNAIL_BEST_PRACTICES.md`: "không dùng bảng dữ liệu nhiều hàng/cột làm ảnh"). Ảnh AI (STATS/COMPARISON Template A-E) chỉ dùng cho 1 con số/1 so sánh 2 phe đơn giản; bảng dữ liệu thật phải là markup, không phải ảnh.
 
-⚠️ **Đã kiểm chứng 08/10: theme đang chạy KHÔNG có rule CSS nào cho `table`.** Bản skill cũ ghi "theme đã tự style sẵn mọi `<table>`" là sai, chi tiết ở các cảnh báo dưới bảng. Bảng dùng style mặc định của trình duyệt. Markup chuẩn:
+Theme đang chạy (`infina-ai-news` v1.0.9) **đã tự style sẵn mọi `<table>` trong `.post-content`**:
+border, padding, nền và màu chữ của header, zebra-stripe hàng chẵn, **và đã tự lo luôn cuộn ngang
+trên mobile**. Rule thật, đọc từ `https://infina.ai/news/wp-content/themes/infina-ai-news/style.css`:
+
+```css
+.post-content .wp-block-table { margin: 1.8em 0; overflow-x: auto }
+.post-content table           { width: 100%; border-collapse: collapse; font-size: 15px }
+.post-content th,
+.post-content td              { border: 1px solid var(--border); padding: 12px 16px; text-align: left }
+.post-content thead th        { background: var(--blue-soft) /* #EEF3FF */;
+                                color: var(--navy) /* #001F5C */; font-weight: 700 }
+.post-content tbody tr:nth-child(even) { background: #fafbfc }
+```
+
+Nên markup chuẩn chỉ cần đúng một thứ: **bọc `<table>` trong `<figure class="wp-block-table">`**.
+Chính cái class đó kích hoạt `overflow-x: auto` của theme. Không cần style nội tuyến gì cả:
 
 ```html
-<figure class="wp-block-table"><div style="overflow:auto">
+<figure class="wp-block-table">
 <table>
 <thead><tr>
 <th>Cột 1</th><th>Cột 2</th><th>Cột 3</th>
@@ -271,38 +286,54 @@ Mỗi bài cần **4 ảnh**: HERO, STATS/DATA, DEMO, COMPARISON. Ảnh HERO v�
 <tr><td>...</td><td>...</td><td>...</td></tr>
 </tbody>
 </table>
-</div></figure>
+</figure>
 ```
 
-- Bọc `<div style="overflow:auto">` quanh `<table>` (không phải quanh `<figure>`) để bảng ≥4 cột không vỡ layout mobile.
+⚠️ **`<table>` trần, không bọc `<figure class="wp-block-table">`, là thứ gây vỡ layout mobile.** Rule
+của theme nhắm vào `.wp-block-table`, nên bảng trần không có container cuộn nào. Đo 08/10 ở viewport
+375px: `#546` (6 cột) cần 565px, tràn 190px; `#89` 468px; `#1462` 438px. Đã bọc lại 20 bảng ở 16 bài.
 
-⚠️ **Phải là `overflow:auto`, KHÔNG phải `overflow-x:auto`.** WordPress lọc thuộc tính `style` qua
-`safecss_filter_attr()`, và `overflow-x` không nằm trong danh sách property được phép nên **bị xoá
-sạch**, trong khi `overflow`, `display`, `max-width` thì sống. Bản skill trước ghi `overflow-x:auto`,
-nên cách sửa này **chưa bao giờ có tác dụng**: đo ngày 08/10 thấy 16 bài có `<table>` và **0 bài nào**
-có wrapper còn hiệu lực. Đã kiểm chứng bằng cách ghi thử cả hai lên `#1415` rồi đọc lại qua REST.
+⚠️ **KHÔNG set `style="background:...;color:...;"` lên `<tr>`/`<th>`/`<td>`.** Theme đã set nền
+`#EEF3FF` + chữ `#001F5C` thẳng trên `th`, nên nền đặt ở `tr` không bao giờ hiện ra, còn `color` đặt
+inline thì THẮNG theme. Đây là cái bẫy đã bắt hụt dự án **hai lần** ở `#438`:
 
-⚠️ **Không cần đụng vào thẻ `<table>`.** Đo bằng Chromium ở viewport 375px: chỉ cần div bọc là đủ,
-trang hết tràn ngang và bảng tự cuộn trong khung. Thêm `display:block` lên `<table>` cũng chạy nhưng
-làm đổi mô hình layout của bảng mà không được lợi gì thêm.
+| Lần | `tr` | `th` | Nền thật sự thấy | Tương phản |
+|---|---|---|---|---|
+| Ban đầu | `background:#1a2b4c` | `color:#001F5C` | `#EEF3FF` (của theme) | **1,11:1** |
+| Tôi "sửa" 08/10 | `background:#1a2b4c` | `color:#ffffff` | `#EEF3FF` (của theme) | **1,10:1**, tệ hơn |
+| Đúng | bỏ hết style | bỏ hết style | `#EEF3FF` | **13,99:1** |
 
-⚠️ **Theme đang chạy KHÔNG style `<table>`.** CSS live của site không có một rule nào cho
-`table/th/td` và cũng không có `overflow-x`. Bản skill cũ ghi "theme đã tự style sẵn mọi `<table>`"
-là sai: theme trong repo (`wordpress-theme/infina-ai-news/style.css`) **không phải** bản đang chạy,
-đối chiếu 08/10 thấy không một selector đặc trưng nào của nó xuất hiện trên site thật. Nên bảng chỉ
-có style mặc định của trình duyệt, và wrapper là thứ duy nhất chặn tràn.
-- **Mặc định KHÔNG set màu cho `<tr>`/`<th>`.** Để trình duyệt tự lo. Nếu đã lỡ set thì phải tự chịu trách nhiệm về tương phản, vì theme không bù cho bạn.
+Cách sửa đúng là **xoá sạch `style` trên `tr`/`th`/`td`**, để theme lo. Chuẩn WCAG AA là 4,5:1.
 
-⚠️ **Bản skill cũ ghi ngược ở mục này và nó gây lỗi thật.** Nó khẳng định theme tự set nền cho `th`
-nên "set trên `tr` sẽ vô tác dụng". Sai: theme không có rule nào cho `th`, nên `th` trong suốt và
-**nền của `tr` hiện xuyên qua**. Hệ quả đo được ngày 08/10 ở `#438`: `<tr style="background:#1a2b4c">`
-(xanh đậm) cộng `<th style="color:#001F5C">` (cũng xanh đậm) cho tương phản **1,11:1**, trong khi
-chuẩn WCAG AA tối thiểu là 4,5:1. Tiêu đề bảng gần như vô hình suốt nhiều tháng. Đã sửa `th` sang
-`color:#ffffff`, lên **14,06:1**.
+⚠️ **Nếu buộc phải dùng style nội tuyến cho overflow, viết `overflow:auto` chứ không phải
+`overflow-x:auto`.** WordPress lọc `style` qua `safecss_filter_attr()` và `overflow-x` không nằm
+trong danh sách property được phép nên bị xoá sạch; `overflow`, `display`, `max-width` thì sống. Đã
+kiểm chứng bằng cách ghi thử cả hai lên `#1415` rồi đọc lại qua REST. Nhưng trong hầu hết trường hợp
+bạn **không cần** nó: cứ bọc `<figure class="wp-block-table">` là theme lo rồi.
 
-⚠️ **Cách kiểm tra đúng, đừng suy từ CSS.** Render bằng Chromium rồi đọc `getComputedStyle` của
-chính ô `th`: nếu `backgroundColor` là `rgba(0, 0, 0, 0)` thì nền thật sự nhìn thấy là nền của `tr`,
-và phải tính tương phản với màu đó chứ không phải với màu nền giả định của theme.
+### ⚠️ Cách đọc CSS của site cho đúng, và một lỗi phương pháp đã xảy ra thật
+
+Ngày 08/10 tôi kết luận "theme không có rule nào cho table" và viết nhầm vào chính file này. Toàn bộ
+kết luận đó sai, và nó bắt nguồn từ **một regex thiếu**:
+
+```python
+re.findall(r'<link[^>]+href="([^"]+\.css[^"]*)"', html)          # SAI, chỉ bắt nháy kép
+re.findall(r"""<link[^>]+href=["']([^"']+\.css[^"']*)["']""", h)  # ĐÚNG, bắt cả nháy đơn
+```
+
+WordPress xuất `<link rel='stylesheet' href='...'>` bằng **nháy đơn**. Regex cũ trả về 0 stylesheet,
+từ đó tôi tưởng site chỉ có CSS inline, rồi render local thiếu hẳn CSS của theme, rồi đo ra những con
+số không có thật, rồi "sửa" `#438` thành chữ trắng trên nền sáng.
+
+Quy tắc rút ra: khi render local để đo, **phải nạp cả stylesheet ngoài vào snapshot**, và kiểm tra
+số stylesheet nạp được có khác 0 không trước khi tin bất cứ phép đo nào. Script
+`wordpress-mcp/skills/post-refresh/scripts/render_snapshot.py` làm đúng việc đó (nó ném lỗi nếu
+nạp được 0 stylesheet).
+
+⚠️ **Theme trong repo đã cũ, đừng dùng làm nguồn tra cứu.** `wordpress-theme/infina-ai-news/style.css`
+là **v1.0.5**, bản đang chạy là **v1.0.9**, lệch 64 dòng. Toàn bộ rule `.post-content thead th` và
+`.post-content .wp-block-table` **chỉ có ở bản live**, chưa có trong repo. Muốn biết theme style gì,
+tải thẳng file CSS từ site chứ đừng đọc file trong repo.
 - `<tbody>` không cần `style` cho hàng chẵn/lẻ — theme tự zebra-stripe hàng chẵn `#fafbfc`.
 
 ---

@@ -133,26 +133,71 @@ Kiểm chứng bằng cách ghi cả hai biến thể lên `#1415` rồi đọc 
 cả 16, **16/16 giống hệt bản dự định** sau khi bỏ khác biệt khoảng trắng, mọi bài đều đạt
 `số wrapper == số bảng`, không còn `overflow-x`, độ sâu `<figure>` ≤ 1.
 
-⚠️ **Chỉ cần bọc div, KHÔNG đụng vào thẻ `<table>`.** Đã thử 3 biến thể, cả 3 đều chặn được tràn, nên
-chọn cái ít xâm lấn nhất.
+⚠️ **Đính chính, viết lại 08/10 sau khi phát hiện phép đo của chính tôi sai.** Ba khẳng định ở bản ghi
+đầu tiên của mục này đều sai: "theme không có rule nào cho table", "chỉ cần bọc div", và "đã sửa `th` sang
+`color:#ffffff`, lên 14,06:1". Nguyên nhân ở cuối mục. Phần `overflow-x` bị `safecss_filter_attr()`
+lọc (bảng ở trên) là đúng và vẫn giữ nguyên.
 
-### Lỗi thứ hai phát hiện dọc đường: tiêu đề bảng #438 không đọc được
+### Đính chính 1: theme CÓ style table, và tự lo cuộn ngang
 
-`<tr style="background:#1a2b4c">` (xanh đậm) cộng `<th style="color:#001F5C">` (cũng xanh đậm) cho
-tương phản **1,11:1**, chuẩn WCAG AA là 4,5:1. Chữ gần như vô hình. Đã sửa `th` sang `color:#ffffff`,
-lên **14,06:1**, và chụp màn hình đối chiếu trước/sau để xác nhận.
+Theme đang chạy `infina-ai-news` **v1.0.9** có đủ rule cho bảng, đọc thẳng từ
+`https://infina.ai/news/wp-content/themes/infina-ai-news/style.css?ver=1.0.9`:
 
-Nguyên nhân cũng là một khẳng định sai trong SKILL.md: nó ghi theme tự set nền cho `th` nên style
-trên `tr` "vô tác dụng". Thực tế `th` trong suốt (`backgroundColor: rgba(0, 0, 0, 0)`) nên nền của
-`tr` hiện xuyên qua.
+```css
+.post-content .wp-block-table { margin: 1.8em 0; overflow-x: auto }
+.post-content table           { width: 100%; border-collapse: collapse; font-size: 15px }
+.post-content th,
+.post-content td              { border: 1px solid var(--border); padding: 12px 16px }
+.post-content thead th        { background: var(--blue-soft) /* #EEF3FF */;
+                                color: var(--navy) /* #001F5C */; font-weight: 700 }
+.post-content tbody tr:nth-child(even) { background: #fafbfc }
+```
+
+Nên thứ duy nhất cần làm là **bọc `<table>` trong `<figure class="wp-block-table">`**: chính class đó
+kích hoạt `overflow-x: auto` của theme, không cần style nội tuyến nào. 16 bài đã sửa hiện mang cả
+`<figure class="wp-block-table">` lẫn `<div style="overflow:auto">` bên trong; cái div là thừa chứ
+không hại nên để nguyên, nhưng bài mới chỉ cần figure.
+
+Theme trong repo (`wordpress-theme/infina-ai-news/style.css`) là **v1.0.5**, lệch 64 dòng so với bản
+live, và toàn bộ rule table ở trên **chỉ có ở bản live**. Muốn biết theme style gì thì tải thẳng file
+CSS từ site, đừng đọc file trong repo.
+
+### Đính chính 2: tiêu đề bảng #438, tôi sửa thành tệ hơn trước khi sửa đúng
+
+| Lần | `tr` | `th` | Nền thật sự thấy | Tương phản |
+|---|---|---|---|---|
+| Ban đầu | `background:#1a2b4c` | `color:#001F5C` | `#EEF3FF` (theme đặt trên `th`) | **1,11:1** |
+| Tôi "sửa" 08/10 | `background:#1a2b4c` | `color:#ffffff` | `#EEF3FF` | **1,10:1**, tệ hơn |
+| Đúng | xoá hết `style` | xoá hết `style` | `#EEF3FF` | **13,99:1** |
+
+Nền `#1a2b4c` đặt trên `tr` không bao giờ hiện ra vì theme set nền thẳng trên `th`; còn `color` đặt
+nội tuyến thì thắng theme. Cách sửa đúng là **xoá sạch `style` trên `tr`/`th`/`td`**, để theme lo.
+Đã xoá 57 thuộc tính `style` ở `#438`. Verify lại 4 bài đại diện (#546 6 cột, #89 4 cột, #207 5 cột,
+#438 5 cột): cả 4 đều nằm trong `figure.wp-block-table` với `overflow-x: auto`, tương phản header
+**13,99:1**, không tràn ở viewport 375px.
+
+### Nguyên nhân gốc: một regex thiếu nháy đơn
+
+```python
+re.findall(r'<link[^>]+href="([^"]+\.css[^"]*)"', html)           # SAI, chỉ bắt nháy kép
+re.findall(r"""<link[^>]+href=["']([^"']+\.css[^"']*)["']""", h)  # ĐÚNG, bắt cả nháy đơn
+```
+
+WordPress xuất `<link rel='stylesheet' href='...'>` bằng **nháy đơn**. Regex cũ trả về 0 stylesheet,
+từ đó tôi tưởng site chỉ có CSS inline, render local thiếu hẳn CSS của theme, đo ra những con số
+không có thật, rồi "sửa" `#438` thành chữ trắng trên nền sáng. Người dùng bắt được bằng ảnh chụp
+màn hình.
+
+Quy tắc rút ra: khi render local để đo, **phải nạp cả stylesheet ngoài vào snapshot**, và kiểm tra số
+stylesheet nạp được có khác 0 không trước khi tin bất cứ phép đo nào. Script
+`wordpress-mcp/skills/post-refresh/scripts/render_snapshot.py` làm đúng việc đó.
 
 ### Ba chỗ đã sửa trong SKILL.md
 
 1. `overflow-x:auto` → `overflow:auto`, kèm giải thích WordPress lọc gì.
-2. Bỏ khẳng định "theme đã tự style sẵn mọi `<table>`". **Theme đang chạy không có một rule CSS nào
-   cho `table/th/td`**, và theme trong repo (`wordpress-theme/infina-ai-news/style.css`) **không phải**
-   bản đang chạy: đối chiếu 08/10 không một selector đặc trưng nào của nó có trên site thật.
-3. Viết lại quy tắc màu `tr`/`th` cho đúng chiều, kèm cách kiểm tra bằng `getComputedStyle`.
+2. Ghi đúng rule table thật của theme v1.0.9, và markup chuẩn chỉ cần `<figure class="wp-block-table">`.
+   Kèm cảnh báo theme trong repo là bản cũ, không dùng làm nguồn tra cứu.
+3. Cấm set `style` màu trên `tr`/`th`/`td`, kèm bảng 3 dòng lịch sử `#438` và cách đo cho đúng.
 
 ### Đã khôi phục ảnh thiếu ở #948
 
