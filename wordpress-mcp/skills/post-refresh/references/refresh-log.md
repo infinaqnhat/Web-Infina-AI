@@ -56,3 +56,48 @@ không phải do lần sửa này gây ra).
   vì sẽ tốn 2 lần ghi đè full content trên bài 1.345 chữ. Check-in 08/10 sẽ verify lại.
 - Phần "generate 3 ảnh" trong nội dung trigger đã lạc hậu: #1487 có sẵn featured image (media 1493,
   alt chứa FOCUS_KW) cộng 2 ảnh trong bài. Không chạy lại Gemini.
+
+---
+
+## 2026-10-08 — Dọn anchor text trùng trỏ về #207 (29 bài)
+
+**Nguyên nhân gốc, không phải lỗi người viết.** SKILL.md bắt buộc anchor trỏ pillar phải chứa
+`PILLAR_KW` nguyên văn, lặp ở 4 chỗ (dòng 421, 448, 452, 513). `PILLAR_KW` cố định cho mỗi pillar
+nên làm đúng skill là tạo ra anchor trùng. Ràng buộc đó đã gỡ ở commit `7b01bcf`.
+
+**Hiện trạng trước khi sửa:** 53 link trỏ về `best-crm-for-real-estate`, chỉ 12 anchor khác nhau
+(23%), trong đó **35 link dùng y hệt** `best crm for real estate agents`.
+
+**Đã sửa 29 bài**, đổi 30 anchor (bài #918 có 2 occurrence):
+
+| Nhóm | Bài |
+|---|---|
+| IDX | 655, 643, 631, 622, 616, 610, 604, 598 |
+| Website / web design | 1011, 1005, 999, 993, 981, 975 |
+| Website builder | 561, 567, 573, 579, 585, 546 |
+| Landing page | 948, 942, 936, 930, 924, 918 |
+| CRM / tin tức | 1462, 1458, 1243 |
+
+**Giữ nguyên 5 anchor exact-match** ở #405, #419, #438, #444, #450. Lý do: nghiên cứu Zyppy
+(23 triệu internal link) cho thấy trang có **ít nhất 1** exact-match anchor có traffic cao hơn hẳn.
+Vấn đề là 35 cái giống nhau, không phải bản thân exact match. Năm bài giữ lại đều là thành viên cụm
+CRM, nơi anchor exact match là tự nhiên nhất.
+
+**Kết quả: 23% → 79% anchor khác nhau**, vượt mốc 70% trong SKILL.md.
+
+**Cách làm, để lần sau lặp lại được:** sinh toàn bộ nội dung mới ở local, assert mỗi chuỗi tìm kiếm
+xuất hiện đúng 1 lần, rồi mới gọi `update_post`. Sau đó fetch lại cả 29 bài và diff từng dòng với
+bản local: **28/29 khớp tuyệt đối**, bài còn lại (#598) chỉ khác do WordPress tự chuẩn hoá thuộc
+tính `style` (bỏ space sau dấu `;`). Không có lỗi truyền nội dung nào.
+
+⚠️ **Đã kiểm tra trước khi ghi đè:** các bài này dùng HTML thuần với class kiểu block
+(`<figure class="wp-block-image">`), do chính skill viết ra, **không phải block Gutenberg thật**,
+nên ghi `content.rendered` ngược lại không làm mất cấu trúc gì.
+
+⚠️ **Còn lại, chưa làm:** 6 pillar khác vẫn dưới mốc 70%, nặng nhất là
+`tcpa-compliance-for-real-estate-agents` (14 link / 2 anchor, 14%) và
+`real-estate-website-builder` (28 link / 6 anchor, 21%).
+
+⚠️ **Hai lỗi có sẵn, phát hiện trong lúc sửa, không thuộc phạm vi lần này:**
+- #948 có `<figure class="wp-block-image aligncenter"></figure>` rỗng, thiếu hẳn thẻ `<img>`.
+- #1462 có `<table>` không bọc `<div style="overflow-x:auto;">`, sẽ vỡ layout mobile ở 4 cột.
