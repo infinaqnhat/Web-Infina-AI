@@ -25,6 +25,8 @@ external-seo-toolkit/
 │   ├── content-planning-framework.md      # Best practice keyword research, độ dài bài, pillar-cluster
 │   ├── content-strategy-framework.md      # Khung 7 bước keyword→content plan + GEO/zero-click 2026
 │   │                                       # + Bước 1.5 check rủi ro bản quyền/nội dung cấm
+│   ├── internal-linking-guide.md          # Rule liên kết nội bộ: ai trỏ ai, anchor text,
+│   │                                       # GATE/WARN, script kiểm tra, danh sách nguồn cấm
 │   └── used-keywords-template.md          # Đổi tên thành used-keywords.md khi dùng
 └── skills/
     ├── seo-blog-writer/
@@ -124,6 +126,10 @@ hàng, file guideline on-page riêng nếu có, tên file content plan/log keywo
   có bài từ trước, seed lại bảng từ `post-sitemap.xml` hoặc tool `list_posts` (đọc title/slug
   các bài cũ, backfill focus keyword theo cách đoán từ title, ghi rõ nguồn `suy đoán`).
 - `skills/post-refresh/references/refresh-log.md` để trống là được, tự điền dần khi refresh bài.
+- Đọc `references/internal-linking-guide.md` **trước khi publish bài thứ hai**, vì từ bài thứ hai trở đi
+  mới có chuyện bài nào trỏ bài nào. Phần 10 của file đó là checklist thiết lập cho site mới. Khi
+  có khoảng 20 bài thì chạy script ở Phần 6 để lấy đường cơ sở, rồi thay các mốc ở Phần 4 bằng số
+  đo được trên chính site của bạn.
 
 ### 7. (Tùy chọn) Nếu cũng cần content pillar tin tức tự động
 
