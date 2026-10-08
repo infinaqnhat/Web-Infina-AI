@@ -418,7 +418,7 @@ Lấy 2 loại dữ liệu tách biệt từ Excel:
 **Quy tắc quan trọng — tránh cannibalization:** Bài cluster viết từ tin tức **không được dùng chính keyword của pillar page làm focus keyword của nó**. Pillar page đã (hoặc sẽ) target keyword đó rồi — nếu cluster article cũng target y hệt, 2 bài cùng site sẽ cạnh tranh nhau trên cùng 1 từ khóa. Thay vào đó:
 
 - Cluster article target một **long-tail keyword khác, hẹp hơn**, bám sát góc tin tức.
-- Bài chỉ **dẫn link nội bộ (internal link) về pillar page**, dùng anchor text tự nhiên có chứa pillar keyword.
+- Bài chỉ **dẫn link nội bộ (internal link) về pillar page**. Anchor text phải mô tả đúng trang đích và **khác với anchor các bài trước đã dùng cho cùng pillar đó** (xem mục Anchor text bên dưới).
 
 Với mỗi tin, đánh giá:
 
@@ -445,11 +445,87 @@ H2: Giải pháp — [FOCUS_KW] trong thực tế  ← MỘT H2 PHẢI CHỨA FO
 [DEMO image]
 H2: Top platforms/tools — external dofollow links tới tool websites
 [COMPARISON image]
-H2: Related reading — internal link về PILLAR_URL, anchor text tự nhiên chứa PILLAR_KW (không phải FOCUS_KW) + 1 bài liên quan khác
+H2: Related reading — internal link về PILLAR_URL, anchor mô tả trang đích và chưa bài nào dùng + 1 bài liên quan khác
 H2: Final Thoughts
 ```
 
-**Lưu ý khi viết đoạn "Related reading":** anchor text trỏ về pillar page nên đọc tự nhiên và chứa PILLAR_KW, vì đây chính là cách truyền tín hiệu từ khóa cho pillar page. FOCUS_KW mới là keyword bài này cần rank, PILLAR_KW chỉ xuất hiện trong anchor text/link.
+**Lưu ý khi viết đoạn "Related reading":** FOCUS_KW là keyword bài này cần rank, nên FOCUS_KW không được dùng làm anchor trỏ sang pillar. Anchor trỏ pillar phải mô tả đúng pillar, nhưng **không bắt buộc chứa PILLAR_KW nguyên văn**, xem mục ngay dưới đây.
+
+### Anchor text: mô tả được, và không trùng nhau
+
+⚠️ **Tới 2026-10-08 skill này bắt buộc anchor trỏ pillar phải chứa `PILLAR_KW`.** Vì `PILLAR_KW` cố
+định cho mỗi pillar, mọi bài đổ dồn về cùng một anchor. Đo ngày 08/10 trên 145 bài:
+
+| Pillar | Link trỏ tới | Anchor khác nhau | |
+|---|---|---|---|
+| `best-crm-for-real-estate` | 53 | 12 (23%) | **35 link dùng y hệt** `best crm for real estate agents` |
+| `tcpa-compliance-for-real-estate-agents` | 14 | 2 (14%) | 12 link trùng |
+| `real-estate-website-builder` | 28 | 6 (21%) | |
+| `ai-crm-real-estate` | 23 | 9 (39%) | |
+| `crm-pipeline-management` | 12 | 5 (42%) | |
+| `real-estate-lead-follow-up-automation-guide` | 15 | 6 (40%) | |
+| `real-estate-agent-crm-speed-to-lead` | 13 | 10 (77%) | đạt |
+| `best-ai-virtual-assistant-real-estate` | 9 | 7 (78%) | đạt |
+
+**Quy tắc:**
+
+1. 🟢 **Anchor phải hiểu được khi đọc tách khỏi câu.** Che câu đi, chỉ còn anchor, vẫn đoán được
+   trang đích nói gì. Google nêu đúng phép thử này trong tài liệu chính thức.
+2. 🟢 **Không dùng** `click here`, `read more`, `this post`, `here` làm anchor.
+3. 🟢 **Không nhồi keyword, không dài lê thê.** Khoảng 3-8 từ.
+4. ✏️ **`PILLAR_KW` KHÔNG bắt buộc xuất hiện nguyên văn.** Anchor chỉ cần mô tả đúng pillar. Đây là
+   thay đổi so với bản trước và là nguyên nhân gốc của bảng trên.
+5. ✏️ **Đọc anchor đã dùng trước khi viết**, chọn biến thể chưa ai dùng. Script ngay dưới.
+6. ✏️ **Mỗi bài chỉ 1 anchor trỏ pillar**, không lặp anchor đó trong cùng bài.
+7. 📊 **Mục tiêu: anchor khác nhau / tổng link tới 1 pillar >= 70%.** Con số lấy từ 2 pillar đã tự
+   nhiên đạt (77% và 78%), nên là mốc chạm được chứ không phải ngưỡng ngành đi mượn.
+
+**Đọc anchor đã dùng, chạy TRƯỚC khi viết đoạn Related reading:**
+
+```python
+import json, urllib.request, re, html, collections
+
+def anchors_to(slug):
+    """Moi anchor text dang tro toi slug nay, tu toan bo bai tren site."""
+    out, page = [], 1
+    while True:
+        b = json.load(urllib.request.urlopen(
+            "https://infina.ai/news/wp-json/wp/v2/posts"
+            "?per_page=100&page=%d&_fields=id,content" % page))
+        if not b:
+            break
+        for p in b:
+            for sl, t in re.findall(
+                    r'<a[^>]+href="https://infina\.ai/news/([a-z0-9-]+)/?"[^>]*>(.*?)</a>',
+                    p["content"]["rendered"], re.S | re.I):
+                if sl == slug:
+                    out.append(html.unescape(re.sub("<[^>]+>", "", t)).strip())
+        if len(b) < 100:
+            break
+        page += 1
+    return out
+
+a = anchors_to(PILLAR_SLUG)
+uniq = set(x.lower() for x in a)
+print("%d link, %d anchor khac nhau (%.0f%%)" % (len(a), len(uniq), len(uniq)/max(len(a),1)*100))
+for t, n in collections.Counter(x.lower() for x in a).most_common(10):
+    print("  %2dx  %s" % (n, t))
+# Chon anchor KHONG nam trong danh sach tren.
+```
+
+**Bốn hướng tạo biến thể**, để không phải nghĩ lại từ đầu mỗi lần. Ví dụ với pillar CRM:
+
+| Hướng | Ví dụ anchor |
+|---|---|
+| Theo vai trò người đọc | `CRM platforms built for brokerage teams` |
+| Theo vấn đề bài đích giải quyết | `how to pick a CRM when leads go cold` |
+| Theo định dạng bài đích | `our side-by-side CRM comparison` |
+| Theo đúng phần trong bài đích | `the automation scoring breakdown` |
+
+Cả bốn đều mô tả đúng trang đích mà không trùng nhau, và không cái nào cần chứa `PILLAR_KW` nguyên văn.
+
+**Nguồn:** [Google Search Central, Make your links crawlable](https://developers.google.com/search/docs/crawling-indexing/links-crawlable) cho quy tắc 1-3. [Zyppy, 23 Million Internal Links](https://zyppy.com/seo/internal-links-study/) cho việc đa dạng anchor tương quan mạnh với clicks, lưu ý đó là nghiên cứu tương quan. Mốc 70% là quyết định biên tập.
+
 
 **Rank Math SEO checklist — tự verify trước khi publish:** (đã sửa sau khi phát hiện thực tế Rank Math chấm 43/100 dù `check_seo()` cũ báo "ok" — hàm cũ THIẾU 2 check quan trọng: keyword trong SEO title, keyword trong subheading. Luôn dùng bản đầy đủ dưới đây, không dùng bản rút gọn của các skill cũ hơn):
 
@@ -510,7 +586,7 @@ if not seo["ok"]:
 **Cách viết SEO_TITLE và H2 chứa FOCUS_KW mà vẫn tự nhiên:** vì FOCUS_KW nhiều khi là cụm dài (vd `"tcpa compliance for real estate agents"`), khi diễn giải lại bằng từ đồng nghĩa hoặc chèn thêm từ ở giữa (vd viết thành `"tcpa compliance among real estate agents"`) sẽ làm mất match chính xác — Rank Math và hàm check ở trên đều tìm **substring y hệt**, không hiểu đồng nghĩa. Luôn giữ FOCUS_KW làm 1 cụm liền mạch trong ít nhất 1 câu của SEO_TITLE và 1 H2, phần diễn giải tự nhiên đặt trước/sau cụm đó chứ không chen vào giữa.
 
 **Nếu density thấp:** thêm các đoạn tự nhiên sử dụng FOCUS_KW (cụm liền mạch, không chèn từ ở giữa) vào body sections.
-**Nếu thiếu internal link:** thêm đoạn "Related reading" trước Final Thoughts với ≥2 link đến bài trong infina.ai/news, trong đó có 1 link chính xác trỏ về `PILLAR_URL` với anchor text chứa `PILLAR_KW`.
+**Nếu thiếu internal link:** thêm đoạn "Related reading" trước Final Thoughts với ≥2 link đến bài trong infina.ai/news, trong đó có 1 link chính xác trỏ về `PILLAR_URL`, anchor mô tả đúng pillar và chưa trùng anchor bài khác.
 **Nếu thiếu external link:** đảm bảo link tới URL nguồn tin và website các tool đề cập trong bài không có `rel="nofollow"` với nguồn tin (được phép nofollow với tool/vendor link).
 **Nếu FOCUS_KW trùng PILLAR_KW:** đây là lỗi cannibalization — quay lại Bước 4 chọn cluster keyword khác, không sửa bằng cách đổi PILLAR_KW.
 
@@ -868,6 +944,16 @@ per_k = links / words * 1000
 
 if c.count(f'href="https://infina.ai/news/{PILLAR_SLUG}/"') > 1:
     warnings.append("link len pillar lap lai, chi can 1 lan")
+
+# anchor tro pillar co trung voi bai khac khong (anchors_to() o Buoc 5)
+import html
+ma = re.search(r'<a[^>]+href="https://infina\.ai/news/%s/?"[^>]*>(.*?)</a>' % PILLAR_SLUG,
+               c, re.S | re.I)
+if ma:
+    mine = html.unescape(re.sub("<[^>]+>", "", ma.group(1))).strip().lower()
+    dup = [x.lower() for x in anchors_to(PILLAR_SLUG)].count(mine) - 1
+    if dup > 0:
+        warnings.append(f"anchor '{mine}' da duoc {dup} bai khac dung, doi sang bien the khac")
 
 m = re.search(r"<h2[^>]*>\s*(Related Reading|Final Thoughts)", c, re.I)
 cut = m.start() if m else len(c)
