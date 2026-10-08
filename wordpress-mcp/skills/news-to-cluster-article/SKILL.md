@@ -534,6 +534,9 @@ H2: Final Thoughts
 4. ✏️ **`PILLAR_KW` KHÔNG bắt buộc xuất hiện nguyên văn.** Anchor chỉ cần mô tả đúng pillar. Đây là
    thay đổi so với bản trước và là nguyên nhân gốc của bảng trên.
 5. ✏️ **Đọc anchor đã dùng trước khi viết**, chọn biến thể chưa ai dùng. Script ngay dưới.
+   Chạy `anchors_to()` cho **cả slug pillar lẫn 2-3 slug link ngang**, không chỉ pillar. Bài `#1488`
+   (08/10) pass hết GATE nhưng vẫn ăn **3 WARN anchor trùng, cả 3 đều ở link ngang**; nếu chạy
+   `anchors_to()` cho đủ trước lúc viết thì đã không tạo ra nợ nào.
 6. ✏️ **Mỗi bài chỉ 1 anchor trỏ pillar**, không lặp anchor đó trong cùng bài.
 7. 📊 **Mục tiêu: anchor khác nhau / tổng link tới 1 pillar >= 70%.** Con số lấy từ 2 pillar đã tự
    nhiên đạt (77% và 78%), nên là mốc chạm được chứ không phải ngưỡng ngành đi mượn.

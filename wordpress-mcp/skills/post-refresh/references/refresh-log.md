@@ -286,3 +286,55 @@ sửa để chắc không phải do lần này gây ra. Để lại cho đợt d
 dựng bằng cách grep chữ "merge"/"301" trong `content-plan.md`, nên `what-is-a-conversational-chatbot-real-estate`
 lọt vào oan (nó là đích, không phải stub) và bản kê báo nhầm 10 link. Cách đúng là **HTTP từng
 slug đích** rồi xem mã trả về, không suy từ tài liệu. Làm lại cho ra 26 link chứ không phải 10.
+
+---
+
+## 2026-10-08 10:16 — Verify #1488 sau khi live, lần đầu chạy Bước 6.5 bản mới
+
+`#1488` (`real-estate-customer-engagement-strategies`) publish đúng lịch 08/10 10:00. Đây là **bài đầu
+tiên chạy qua Bước 6.5 phiên bản Option B**, nên ghi lại đầy đủ để đối chiếu về sau.
+
+### Chiều về: không động tới pillar, đúng rule mới
+
+| Kiểm tra | Kết quả |
+|---|---|
+| URL `#1488` | HTTP **200**, hết 404 |
+| `#1487` vẫn link sang `#1488` | **có**, anchor `real estate customer engagement tactics` |
+| Số bài phải sửa thêm để có inbound | **0** |
+
+Inbound đến từ `#1487`, một **cluster cùng cụm**, đúng nguồn ưu tiên. **Không thêm link nào từ `#207`
+hay `#1232`.** Theo cách cũ thì đây là link thứ 54 đổ vào `#207`; theo rule mới pillar đứng yên.
+
+### Chạy khối GATE/WARN nguyên văn từ SKILL.md
+
+```
+1185 chu, 6 link, 5.1/1000 chu, than bai 6 / cuoi bai 0
+```
+
+**GATE pass cả 3:** link lên pillar đúng 1 lần, >= 2 link ngang cùng cụm, bài donor đã trỏ sang.
+
+Mật độ 5,1 link/1.000 chữ nằm trong mốc 4-6. **100% link nằm trong thân bài** (6 thân / 0 cuối), so
+với hiện trạng toàn site 41% thân bài. Ảnh 3/3 (1 featured + 2 trong bài), 0 figure rỗng, cả 3 alt
+đều chứa FOCUS_KW `real estate customer engagement`. Không cần generate thêm ảnh.
+
+### 3 WARN, do chính check mới thêm sáng nay bắt được
+
+```
+WARN: anchor 'ai intent layer for real estate crm'  -> ai-intent-layer-for-real-estate-crm   da duoc 9 bai khac dung
+WARN: anchor 'crm marketing for real estate'        -> crm-marketing-real-estate             da duoc 5 bai khac dung
+WARN: anchor 'customer engagement platform vs crm'  -> customer-engagement-platform-vs-crm   da duoc 2 bai khac dung
+```
+
+⚠️ **Cả 3 đều là anchor trỏ tới LINK NGANG, không phải pillar.** Check cũ chỉ soát `PILLAR_SLUG` nên
+sẽ báo **0 warning** cho đúng bài này. Đây là bằng chứng đầu tiên, trên một bài thật, rằng việc mở rộng
+WARN sang link ngang là đúng: nó bắt được lỗi ngay lần chạy đầu tiên.
+
+Cả 3 là WARN chứ không phải GATE nên **không sửa bài**, chỉ ghi nhận. Riêng
+`ai-intent-layer-for-real-estate-crm` đáng chú ý: nó đang ở 12 link / 3 anchor (25%), bài này làm thành
+13 link / 3 anchor, tức **tụt xuống 23%**. Thuộc đợt dọn anchor chưa chạy.
+
+### Rút ra cho lần sau
+
+Quy tắc 5 ở mục anchor (đọc anchor đã dùng **trước khi viết**) hiện chỉ được nhắc cho anchor trỏ
+pillar. Bài này cho thấy phải chạy `anchors_to()` cho **cả 2-3 slug link ngang** trước khi viết, không
+chỉ cho pillar. WARN bắt được là tốt, nhưng bắt trước khi viết thì không tạo ra nợ.
