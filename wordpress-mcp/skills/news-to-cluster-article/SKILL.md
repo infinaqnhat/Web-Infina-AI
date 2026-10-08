@@ -8,7 +8,7 @@ description: "Crawl tin tức mới theo 10 mảng, đối chiếu keyword trong
 ## Mô tả
 Crawl tin tức mới theo 10 mảng → đối chiếu Google Sheet tracker (nguồn pillar/dedup chính thức) + WordPress → đối chiếu keyword trong Excel → chọn tin phù hợp → viết và đăng cluster article lên WordPress đạt Rank Math ≥80/100. Toàn bộ chạy qua API, không cần browser.
 
-**Nguyên tắc cốt lõi:** bài viết từ tin tức (cluster/spoke) luôn target một keyword long-tail RIÊNG của nó (`FOCUS_KW`), khác với keyword của pillar page (`PILLAR_KW`) mà nó link về. Không bao giờ để 2 bài trong site cùng target 1 keyword — pillar page giữ vị trí rank cho keyword đầu (head term), cluster article chỉ mượn góc tin tức để nhắm long-tail và đẩy internal link/topical authority về pillar. Nguồn xác định keyword nào đã "có chủ" (Plan = pillar, News = cluster đã viết) là Google Sheet tracker ở Bước 2b — đọc lại sheet này mỗi lần chạy, và append 1 dòng mới vào đó sau khi publish (Bước 7). **Link phải khép 3 chiều**: cluster lên pillar, cluster sang 2-3 bài cùng cụm, và pillar xuống cluster. Bước 6.5 lo cả ba, bỏ nó là bài vừa publish gần như không nhận tín hiệu nội bộ nào.
+**Nguyên tắc cốt lõi:** bài viết từ tin tức (cluster/spoke) luôn target một keyword long-tail RIÊNG của nó (`FOCUS_KW`), khác với keyword của pillar page (`PILLAR_KW`) mà nó link về. Không bao giờ để 2 bài trong site cùng target 1 keyword — pillar page giữ vị trí rank cho keyword đầu (head term), cluster article chỉ mượn góc tin tức để nhắm long-tail và đẩy internal link/topical authority về pillar. Nguồn xác định keyword nào đã "có chủ" (Plan = pillar, News = cluster đã viết) là Google Sheet tracker ở Bước 2b — đọc lại sheet này mỗi lần chạy, và append 1 dòng mới vào đó sau khi publish (Bước 7). **Bài mới phải có ít nhất 1 inbound link biên tập**: Bước 5 lo chiều đi (cluster lên pillar, cluster sang 2-3 bài cùng cụm), Bước 6.5 lo chiều về bằng cách sửa 1 bài cluster cùng cụm trỏ sang bài mới. Bỏ Bước 6.5 là bài vừa publish không có trang nào trỏ tới.
 
 **Lịch sử:** skill này có 2 nhánh phát triển từng tồn tại song song trên account (một nhánh tập trung compliance/tracker/anti-cannibalization, một nhánh tập trung chất lượng ảnh/category/rate-limit) — bản này là merge của cả hai, giữ lại phần tốt của từng bên.
 
@@ -422,7 +422,7 @@ Lấy 2 loại dữ liệu tách biệt từ Excel:
 
 Với mỗi tin, đánh giá:
 
-1. **Pillar target:** Tin này liên quan đến pillar nào trong `plan_rows` (Bước 2b)? Ưu tiên chọn pillar đã có bài Plan **thật** trên tracker (có URL thật). Để đa dạng internal-link equity, ưu tiên pillar **chưa được dùng làm PILLAR_URL** trong các bài News gần đây (xem tracker) trước khi tái sử dụng cùng 1 pillar liên tục.
+1. **Pillar target:** Tin này liên quan đến pillar nào trong `plan_rows` (Bước 2b)? Ưu tiên chọn pillar đã có bài Plan **thật** trên tracker (có URL thật). Để không dồn mọi bài News lên cùng 1 pillar (xem ràng buộc cấu trúc site ở Bước 6.5), ưu tiên pillar **chưa được dùng làm PILLAR_URL** trong các bài News gần đây (xem tracker) trước khi tái sử dụng cùng 1 pillar liên tục.
 2. **Cluster keyword:** Chọn 1 keyword long-tail — **không được trùng bất kỳ giá trị nào trong `used_keywords`** (Bước 2b) và pass `is_duplicate()` ở Bước 2 (WordPress). Kiểm tra thêm slug-overlap thủ công (>0.6 là trùng) với các slug hiện có, kể cả slug của chính các bài News trước đó (không chỉ Plan) — dễ bị bỏ sót vì nhiều bài đều có đuôi `-real-estate-agents` khiến overlap dễ vượt ngưỡng.
 3. **Category:** CRM/sales automation topic → `"CRM Software"`, Chatbot/AI assistant/ISA/compliance topic → `"AI Chatbot"`.
 4. **Angle:** Tin cung cấp dữ liệu/case study/xu hướng gì để làm hook cho đúng cluster keyword đó?
@@ -559,31 +559,34 @@ resp = call("update_post", {"post_id": post_id, "seo_title": NEW_SEO_TITLE})
 
 ---
 
-## Bước 6.5: Khép internal link 3 chiều cho bài mới (BẮT BUỘC, không được bỏ)
+## Bước 6.5: Bảo đảm bài mới có inbound link biên tập (BẮT BUỘC, không được bỏ)
 
-Bước 5 mới chỉ cho bài mới link LÊN pillar. Hai chiều còn lại không tự xảy ra, và thiếu chúng thì
-bài vừa publish gần như không nhận tín hiệu nội bộ nào.
+Bước 5 đã cho bài mới link LÊN pillar và link ngang sang 2-3 bài cùng cụm. Chiều còn thiếu là **có
+trang nào đó trỏ TỚI bài mới**, và nó không tự xảy ra: mọi bài khác trên site đều viết trước nó.
 
 **Đây không phải lo xa.** Audit 2026-10-07 bằng `scripts/competitor_teardown.py` chạy trên chính
 `infina.ai/news`: 35/130 trang không có inbound biên tập nào, 23 trong đó là bài bất động sản thật.
-Nguyên nhân duy nhất là skill này trước đây kết thúc ở Bước 7 mà không có bước khép link.
+Nguyên nhân duy nhất là skill này trước đây kết thúc ở Bước 7 mà không có bước này.
 
-### Ngưỡng khuyến nghị: tính theo TỶ LỆ với độ dài, không phải con số tuyệt đối
+### Số link: không có ngưỡng nào đến từ Google
 
-**Quy tắc chính: 3-5 link nội bộ cho mỗi 1.000 chữ thân bài**, tức khoảng 1 link mỗi 200-300 chữ.
-Bài dài có thể nới tới 8/1.000. Đây là chỉ số dùng được cho mọi loại bài, pillar lẫn cluster.
+⚠️ **Mục này trước 2026-10-08 có bảng ngưỡng "3-5 link mỗi 1.000 chữ, nới tới 8" kèm bảng quy đổi
+theo độ dài. Đã gỡ.** Nguồn của nó là blog AirOps và Wellows, không phải Google. Đừng dựng lại.
 
-| Độ dài bài | 3/1.000 | 5/1.000 | 8/1.000 |
-|---|---|---|---|
-| 1.000 chữ | 3 | 5 | 8 |
-| 1.800 chữ | 5 | 9 | 14 |
-| 3.000 chữ | 9 | 15 | 24 |
-| 5.000 chữ | 15 | 25 | 40 |
+**Thứ Google thật sự nói:**
 
-⚠️ **Con số "20-40 link cho pillar" chỉ đúng khi pillar dài 3.000-5.000 chữ.** Nếu pillar của bạn
-chỉ 1.800 chữ thì 20 link là **nhiều**, không phải vừa. Lỗi này đã xảy ra thật trong dự án ngày
-2026-10-07: lấy con số tuyệt đối 20-40 áp lên pillar 1.832 chữ (lúc đó) rồi kết luận nhầm là "đang thiếu
-link". Luôn chia cho số chữ trước khi đánh giá.
+- Không có giới hạn số link trên 1 trang. Quy tắc "100 link mỗi trang" bỏ từ 2008, vốn là giới hạn
+  kỹ thuật thời Googlebot chỉ tải khoảng 100KB đầu trang.
+- Quá nhiều internal link làm loãng **cấu trúc site**, không làm yếu từng link. Mueller nói điều này
+  ở hangout 02/07/2021 và **không kèm con số nào**.
+
+Mốc vận hành của riêng site này nằm ở bảng "Mốc vận hành đi kèm" bên dưới. Đó là quyết định biên tập,
+sửa được, không phải thứ Google đo.
+
+⚠️ **Dù vậy, đừng áp con số tuyệt đối lên bài ngắn.** Lỗi này xảy ra thật ngày 2026-10-07: lấy
+"20-40 link cho pillar" áp lên pillar 1.832 chữ rồi kết luận nhầm là "đang thiếu link". Sai hai tầng:
+sai vì dùng số tuyệt đối thay vì chia cho độ dài, và sai vì bản thân con số đó không có cơ sở. Khi
+so sánh thì chia cho số chữ, và so với **chính các bài khác trên site**.
 
 **Độ dài pillar: suy ra từ SỐ CLUSTER, đừng đặt mục tiêu số chữ.**
 
@@ -615,13 +618,15 @@ trước khi kết luận bài quá ngắn hay quá dài.
 xa mức đó (ví dụ 40+) thì công thức sẽ đòi 6.000-7.000 chữ, lúc đó bài thành không đọc nổi. Giải
 pháp đúng là tách thành nhiều sub-hub, mỗi hub 10-15 cluster.
 
-**Ngưỡng khác đi kèm:**
+**Mốc vận hành đi kèm** (quyết định biên tập của site này, không phải ngưỡng Google):
 
-| Chỉ số | Khuyến nghị |
+| Chỉ số | Mốc |
 |---|---|
 | Độ dài bài cluster | 1.200-2.000 chữ |
 | Số bài cluster trên 1 pillar | 8-15, vượt 20 thì cân nhắc tách sub-hub |
-| Mỗi bài cluster link ra | pillar + 2-3 bài cluster khác |
+| Bài cluster link lên pillar | đúng 1 lần, không lặp |
+| Bài cluster link ngang cùng cụm | 2-3, chọn theo độ gần chủ đề |
+| Tổng link nội bộ, bài ~1.000 chữ | 4-6 |
 | Pillar link tới cluster | mỗi cluster đúng 1 lần, không lặp |
 | Link tới money page | 1-3 lần, đặt ở chỗ intent mua cao nhất (sau phần so sánh, đánh giá, kết luận) |
 | Money page nhận inbound | 10-20 link từ các trang liên quan |
@@ -738,41 +743,39 @@ links = len(set(re.findall(r'href="https://infina\.ai/news/([a-z0-9-]+)/"', c)))
 print(f"{words} chu, {links} link, {links/words*1000:.1f}/1000 chu")
 ```
 
-### Đặt link ở đâu quan trọng ngang số lượng link
+### Đặt link ở đâu: ưu tiên biên tập, không phải quy tắc SEO
 
-Không phải mọi link trên 1 trang truyền cùng lượng equity. Theo patent **reasonable surfer** của
-Google (US8117209B1), trọng số mỗi link tính theo **xác suất người đọc thật sự bấm vào**, dựa trên
-vị trí link trong tài liệu, **vị trí link trong một danh sách link**, anchor text, cỡ chữ, và mức
-liên quan tới nội dung trang. Patent nêu đích danh nhóm ít được bấm: Terms of Service, banner
-quảng cáo, link không liên quan.
+⚠️ **Mục này trước 2026-10-08 nói ngược.** Nó dựng bảng 3 mức giá trị theo vị trí link (thân bài >
+Related Reading > footer) và chống lưng bằng patent reasonable surfer. Mueller bác thẳng:
 
-Lưu ý đây là **patent**, không phải xác nhận Google đang chạy đúng như vậy hôm nay. Coi là bằng
-chứng mạnh về hướng, không phải sự thật tuyệt đối.
+> "We don't really differentiate there."
+>
+> John Mueller, [SEJ 03/2022](https://www.searchenginejournal.com/are-internal-links-in-header-and-footer-treated-differently/441993/), về link ở header, footer, sidebar so với thân bài.
 
-**Ba mức giá trị, không phải hai:**
+**Vậy còn lý do gì để ưu tiên link thân bài?** Hai lý do, đều là biên tập chứ không phải SEO:
 
-| Mức | Vị trí | Giá trị |
-|---|---|---|
-| 1 | Giữa đoạn văn, ngay chỗ nhắc tới chủ đề con | Cao nhất |
-| 2 | Box "Related Reading" cuối bài, anchor mô tả, do biên tập đặt | Trung bình |
-| 3 | Nav, sidebar, footer, boilerplate lặp trên mọi trang | Thấp nhất |
+1. **Anchor text bám ngữ cảnh.** Link giữa đoạn được viết thành câu có lý do, nên anchor mô tả đúng
+   thứ nằm ở đầu kia. Link trong danh sách cuối bài hay bị rút thành tiêu đề trần.
+2. **Người đọc đang ở đúng chỗ.** Link đặt ngay lúc nhắc tới chủ đề thì gặp người đang quan tâm chủ
+   đề đó, khác với một danh sách đọc thêm sau khi họ đã đọc xong.
 
-Đừng gộp mức 2 với mức 3. Related Reading vẫn nằm trong body, vẫn do người viết đặt, vẫn có anchor
-mô tả, nên nó khác hẳn footer. Nó yếu hơn link ngữ cảnh chứ không vô giá trị.
+Nên đây là **ưu tiên lúc viết**, không phải điều kiện pass/fail. Đừng dựng lại ngưỡng phần trăm
+quanh nó.
 
-**Ba quy tắc rút ra:**
+**Thứ Google có nói, và là ràng buộc thật:** quá nhiều internal link làm loãng **cấu trúc site**.
 
-1. **Ưu tiên đặt link vào thân bài**, đúng chỗ nội dung nhắc tới chủ đề đó. Related Reading chỉ
-   dùng cho phần đuôi dài không nhét vào ngữ cảnh được một cách tự nhiên.
-2. **Trong box Đọc thêm, xếp bài quan trọng nhất lên đầu.** Patent tính cả thứ tự trong danh sách,
-   nên link thứ nhất khác link thứ năm.
-3. **Mục lục (TOC) không thuộc nhóm này.** TOC thường là anchor nhảy trong cùng trang (`#heading`),
-   không truyền equity sang trang khác. Nó phục vụ UX và featured snippet, không phải internal
-   linking, trừ khi nó link thẳng sang các trang cluster.
+> "If every page links to every other page, then there's no real structure there."
+>
+> John Mueller, hangout 02/07/2021, [SEJ](https://www.searchenginejournal.com/google-cautions-against-using-too-many-internal-links/412553/).
 
-**Ngưỡng tham chiếu: tối thiểu 50% link nội bộ của 1 bài nằm trong thân bài.** Đo ngày 07/10/2026
-trên 113 bài của `infina.ai/news`: chỉ **41% link nằm trong thân bài**, 59% dồn vào Related Reading
-và Final Thoughts. Tức là site đang lệch về phía đặt link cuối bài, cần kéo ngược lại.
+Ông **không đưa ra con số nào**. Ràng buộc này nhắm vào **phân bố link trên toàn site**, không nhắm
+vào từng bài, và nó chính là lý do Bước 6.5 chọn sibling thay vì dồn mọi bài news vào pillar.
+
+**Số đo hiện trạng, giữ lại làm quan sát chứ không phải đích:** ngày 07/10/2026 trên 113 bài của
+`infina.ai/news`, 41% link nội bộ nằm trong thân bài, 59% dồn vào Related Reading và Final Thoughts.
+
+**TOC không thuộc nhóm này.** Mục lục thường là anchor nhảy trong cùng trang (`#heading`), phục vụ
+UX và featured snippet, không phải internal linking, trừ khi nó link thẳng sang các trang cluster.
 
 ### Ba việc bắt buộc, theo thứ tự rẻ tiền trước
 
@@ -783,60 +786,120 @@ liệt kê tiêu đề. Đây là việc quan trọng nhất trong cả Bước 
 
 **2. Link lên pillar.** Bước 5 đã làm, chỉ cần verify lại.
 
-**3. Link ngược từ pillar xuống bài mới.** Cần fetch full content vì `update_post` ghi đè toàn bộ
-field `content`, không patch được:
+**3. Cho bài mới một inbound link biên tập.** Đây là việc duy nhất ở Bước 6.5 mà bài mới không tự
+làm được, và là lý do bước này tồn tại: mọi bài khác trên site đều viết trước nó.
+
+⚠️ **Nguồn ưu tiên là một bài cluster cùng cụm, KHÔNG phải pillar.** Trước 2026-10-08 bước này luôn
+nối thêm một câu vào pillar. Cách đó sai ở hai chỗ:
+
+- Lý do cũ là "link từ pillar mạnh hơn vì pillar có authority". Mueller 03/2022 bác thẳng: vị trí và
+  trang nguồn không làm Google đánh giá link khác đi.
+- Nó cộng dồn vĩnh viễn. Mỗi bài news lại thêm 1 link vào cùng 1 pillar, nên `#207` lên tới 22 link
+  nội bộ. Đúng cái Mueller cảnh báo: site mà trang nào cũng link tới trang nào thì không còn cấu
+  trúc thật. Chọn sibling thì tải phân tán ra cả cụm và pillar đứng yên.
+
+**Tiêu chí chọn bài donor, theo thứ tự:**
+
+1. Cùng cụm theo `content-plan.md`. Không suy ra từ link graph, xem cảnh báo ở trên.
+2. **Có sẵn một đoạn đang nói đúng chủ đề của bài mới**, chèn vào đó thành câu có lý do để bấm.
+   Không có đoạn nào như vậy thì loại bài đó ra, đừng ép. Đây là tiêu chí quyết định.
+3. Chưa link sang bài mới.
+4. Ưu tiên bài đã có traffic (Bước 8), vì link ở đó có người đọc thật đi qua.
+
+**Đường lui:** không bài cluster nào trong cụm đạt tiêu chí 2 thì mới dùng pillar, theo đúng cách cũ.
+Hay gặp với cụm mới hoặc chủ đề lần đầu xuất hiện. Lui về pillar là hợp lệ, không phải thất bại.
+
+Dù chọn bài nào, `update_post` ghi đè toàn bộ field `content` nên phải fetch full content trước:
 
 ```python
 import urllib.request, json
-pid = PILLAR_POST_ID
+did = DONOR_POST_ID          # bai cluster cung cum, hoac PILLAR_POST_ID neu phai lui
 cur = json.load(urllib.request.urlopen(
-    f"https://infina.ai/news/wp-json/wp/v2/posts/{pid}?_fields=id,slug,content"
+    f"https://infina.ai/news/wp-json/wp/v2/posts/{did}?_fields=id,slug,content"
 ))["content"]["rendered"]
 
-OLD_TAIL = "</p>\n<h2>Final Thoughts</h2>"      # hoac doan ket that cua pillar do
-ADD = (f' Để xem góc tin mới nhất, đọc thêm bài <a href="https://infina.ai/news/{SLUG}/">'
-       f'{FOCUS_KW}</a>.')
-assert cur.count(OLD_TAIL) == 1, "khong tim thay diem noi, doc lai pillar"
-call("update_post", {"post_id": pid, "content": cur.replace(OLD_TAIL, ADD + OLD_TAIL)})
+# ANCHOR la nua cau cuoi cua doan muon chen vao, COPY NGUYEN VAN tu cur.
+ANCHOR = "...thay bang doan that trong bai donor..."
+ADD = (f' Goc tin moi nhat o <a href="https://infina.ai/news/{SLUG}/">{FOCUS_KW}</a>.')
+assert cur.count(ANCHOR) == 1, "ANCHOR khong duy nhat, chon doan cu the hon"
+call("update_post", {"post_id": did, "content": cur.replace(ANCHOR, ANCHOR + ADD)})
 ```
 
-Nếu pillar chưa có section "Related Reading" thì tạo mới ngay trước "Final Thoughts". Audit 07/10
-cho thấy 4 trên 5 pillar lớn vốn **không có section này**, và đó chính là lý do chúng không bao giờ
-link xuống bài con.
+⚠️ `ANCHOR` phải **duy nhất** trong bài donor. Đừng dùng `"</p>"` hay `"<h2>"`: chúng xuất hiện hàng
+chục lần và `replace` sẽ chèn link vào mọi đoạn. Copy nguyên văn nửa câu cuối của đoạn muốn chèn.
+
+Nếu phải lui về pillar mà pillar chưa có section "Related Reading" thì tạo mới ngay trước "Final
+Thoughts". Audit 07/10 cho thấy 4 trên 5 pillar lớn vốn **không có section này**, và đó là lý do
+chúng không bao giờ link xuống bài con.
 
 ### Verify bằng REST, không tin tool báo thành công
 
+Tách làm 2 làn. **GATE** là thứ hỏng thật và script tự sửa được, `assert` chặn. **WARN** là phán đoán
+biên tập, chỉ in ra rồi ghi kèm vào dòng tracker ở Bước 7.
+
+⚠️ **Sau khi đã publish, không `assert` nào được phép abort.** Bài đã lên mà script chết giữa chừng
+thì Bước 7 không chạy và lần sau không ai biết. Mọi check hậu publish gom vào `warnings`. Session
+2026-10-07 đã bị đúng lỗi này 2 lần: `assert` fail chặn script trước khi kịp ghi file.
+
 ```python
-def linked(from_id, to_slug):
-    c = json.load(urllib.request.urlopen(
-        f"https://infina.ai/news/wp-json/wp/v2/posts/{from_id}?_fields=content"
+import re, json, urllib.request
+
+def content(pid):
+    return json.load(urllib.request.urlopen(
+        f"https://infina.ai/news/wp-json/wp/v2/posts/{pid}?_fields=content"
     ))["content"]["rendered"]
-    return f"/{to_slug}/" in c
 
+def linked(from_id, to_slug):
+    return f"/{to_slug}/" in content(from_id)
+
+# --- GATE: fail la hong that, phai sua roi chay lai ---
 assert linked(new_post_id, PILLAR_SLUG), "bai moi chua link len pillar"
-assert linked(pid, SLUG),                "pillar chua link xuong bai moi"
 assert sum(linked(new_post_id, s) for s in SIBLING_SLUGS) >= 2, "thieu link ngang"
+assert linked(did, SLUG), "bai donor chua link sang bai moi, bai moi dang mo coi"
 
-# va kiem tra ty le link nam trong than bai, muc tieu >= 50%
-import re
-c = json.load(urllib.request.urlopen(
-    f"https://infina.ai/news/wp-json/wp/v2/posts/{new_post_id}?_fields=content"
-))["content"]["rendered"]
+# --- WARN: chi ghi nhan, khong chan ---
+warnings = []
+c = content(new_post_id)
+t = re.sub("&[a-z#0-9]+;", " ", re.sub("<[^>]+>", " ", c))
+words = len(re.findall(r"[A-Za-z0-9,.%$-]+", t))
+pat = r'href="https://infina\.ai/news/[a-z0-9-]+/"'
+links = len(set(re.findall(r'href="https://infina\.ai/news/([a-z0-9-]+)/"', c)))
+per_k = links / words * 1000
+
+if c.count(f'href="https://infina.ai/news/{PILLAR_SLUG}/"') > 1:
+    warnings.append("link len pillar lap lai, chi can 1 lan")
+
 m = re.search(r"<h2[^>]*>\s*(Related Reading|Final Thoughts)", c, re.I)
 cut = m.start() if m else len(c)
-pat = r'href="https://infina\.ai/news/[a-z0-9-]+/"'
 body, tail = len(re.findall(pat, c[:cut])), len(re.findall(pat, c[cut:]))
-print(f"link than bai {body} / cuoi bai {tail}")
-assert body >= tail, "qua nua link dang don o cuoi bai, keo bot vao than bai"
+print(f"{words} chu, {links} link, {per_k:.1f}/1000 chu, than bai {body} / cuoi bai {tail}")
+
+if body < tail:
+    warnings.append(f"qua nua link don o cuoi bai ({body} than / {tail} cuoi)")
+if per_k > 9:
+    warnings.append(f"mat do {per_k:.1f}/1000 chu, lech han so voi phan con lai cua site")
+
+for w in warnings:
+    print("WARN:", w)
 ```
+
+**Hai ngưỡng trong khối WARN, và vì sao chúng chỉ là WARN:**
+
+- `body < tail` là **sở thích biên tập**, không phải chuẩn SEO. Link thân bài có anchor bám ngữ cảnh
+  cụ thể hơn và nằm đúng chỗ người đọc đang quan tâm, nhưng Google **không** đánh giá nó cao hơn.
+  Tới 2026-10-08 đây còn là một `assert` chặn script, dựa trên bảng 3 mức giá trị đã bị gỡ ở trên.
+  Chính nó khiến `#214` (45% thân bài) từng bị gọi nhầm là lỗi SEO.
+- `9/1.000` **không phải ngưỡng SEO**, mà là mốc so với chính site này: 8 pillar đo ngày 07/10 nằm
+  trong khoảng 2,8-6,8/1.000. Vượt 9 nghĩa là bài lệch hẳn khỏi phần còn lại nên đáng nhìn lại, chứ
+  không đáng chặn. Đo lại phân bố site rồi chỉnh mốc này mỗi khi chạy teardown định kỳ.
 
 ### Ba lưu ý
 
-- **Bài đang `status: future` thì hoãn chiều pillar xuống.** Slug chưa live, trỏ pillar vào URL còn
+- **Bài đang `status: future` thì hoãn chiều inbound.** Slug chưa live, trỏ bài khác vào URL còn
   404 là hại. Đặt lịch quay lại sau giờ publish, và ghi `⏳ còn thiếu link ngược` vào
   `content-plan.md` để không quên. Riêng link ngang thì làm được ngay vì nó nằm trong bài mới.
-- **Density của pillar đổi sau khi nối thêm câu.** Tính lại, dưới 0,5% thì chèn thêm 1 lần
-  PILLAR_KW tự nhiên trong chính câu vừa thêm.
+- **Density của bài donor đổi sau khi nối thêm câu.** Tính lại focus keyword của chính bài donor,
+  dưới 0,5% thì chèn thêm 1 lần tự nhiên ngay trong đoạn vừa sửa.
 - **Mồ côi ở đây nghĩa là thiếu inbound BIÊN TẬP, không phải Google không thấy bài.** Mọi bài đều
   nằm trong category archive `/news/category/<slug>/`, và archive đó là `index, follow` nên vẫn tạo
   đường crawl. Vá link vẫn đáng làm vì nó là tín hiệu topical relevance và dòng PageRank thật,
@@ -854,13 +917,19 @@ Số trang `IN=0` phải đi ngang hoặc giảm. Nếu nó tăng theo số bài
 
 ### Nguồn
 
-- [Search Engine Roundtable, There Is No Limit To The Number Of Links Per Page For Google](https://www.seroundtable.com/google-link-unlimited-18468.html). Phát ngôn của John Mueller, và lịch sử quy tắc 100 link.
-- [LinkWhisper, how many internal links per page](https://linkwhisper.com/how-many-internal-links-per-page-the-answer/). Khoảng 20-40 cho pillar, với giả định pillar dài 3.000-5.000 chữ.
-- [Wellows, how many internal links per page SEO](https://wellows.com/blog/how-many-internal-links-per-page-seo/). Quy tắc 1 link mỗi 200-300 chữ.
-- [AirOps, how many internal links is too many](https://www.airops.com/blog/how-many-internal-links-is-too-many). Khoảng 3-5 link mỗi 1.000 chữ, nới tới 8 cho bài dài.
-- [Search Engine Roundtable, Google Says Word Count Is Not A Ranking Factor](https://www.seroundtable.com/google-word-count-is-not-a-ranking-factor-27994.html). Phát ngôn Mueller và Sullivan.
-- [Search Engine Journal, Content Length: Is It a Google Ranking Factor?](https://www.searchenginejournal.com/ranking-factors/content-length/). Tương quan không phải nhân quả.
-- [eesel, how many internal links per page for SEO](https://eesel.ai/blog/how-many-internal-links-per-page-seo). Mô hình hub and spoke, 2-3 link ngang mỗi cluster.
+**Đã xác minh, từ phát ngôn của Google:**
+
+- [SEJ, Are Internal Links In Header And Footer Treated Differently?](https://www.searchenginejournal.com/are-internal-links-in-header-and-footer-treated-differently/441993/) (03/2022). John Mueller: *"We don't really differentiate there."* Vị trí link trên trang (header, footer, sidebar, thân bài) **không** làm Google đánh giá link khác đi.
+- [SEJ, Google Cautions Against Using Too Many Internal Links](https://www.searchenginejournal.com/google-cautions-against-using-too-many-internal-links/412553/) (hangout 02/07/2021). Quá nhiều internal link làm loãng **cấu trúc site**, không làm yếu từng link. Mueller **không đưa ra con số nào**; con số "20 link" trong bài đó là của tác giả.
+- [Search Engine Roundtable, There Is No Limit To The Number Of Links Per Page](https://www.seroundtable.com/google-link-unlimited-18468.html). Quy tắc 100 link bỏ từ 2008.
+- [Search Engine Roundtable, Google Says Word Count Is Not A Ranking Factor](https://www.seroundtable.com/google-word-count-is-not-a-ranking-factor-27994.html). Mueller và Sullivan.
+- [SEJ, Content Length: Is It a Google Ranking Factor?](https://www.searchenginejournal.com/ranking-factors/content-length/). Tương quan không phải nhân quả.
+
+**KHÔNG được dùng làm căn cứ ngưỡng.** Liệt kê ở đây để lần sau không ai vô tình trích lại:
+
+- LinkWhisper "20-40 link cho pillar", Wellows "1 link mỗi 200-300 chữ", AirOps "3-5 link mỗi 1.000 chữ", eesel "2-3 link ngang mỗi cluster". Cả bốn là blog vendor, không có nguồn Google chống lưng, và cả bốn từng được dùng làm ngưỡng cứng trong chính file này cho tới 2026-10-08. Đây đúng loại nguồn mà quy trình vẫn gỡ khỏi bài publish, nên không được dùng để gác script.
+- [Reasonable surfer patent US8117209B1](https://patents.google.com/patent/US8117209B1/en). Nộp 2004, Google **chưa bao giờ xác nhận** đang chạy theo nó. Không dùng để biện minh cho việc xếp hạng giá trị link theo vị trí.
+- Headline SEJ 2020 "Links in Primary Content Hold More Value" là **suy diễn của tác giả**. Mueller chỉ nói Google tập trung vào primary content, không nhắc link, ranking hay PageRank.
 
 ---
 
