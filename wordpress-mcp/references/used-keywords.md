@@ -156,6 +156,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-10-08 (scheduled) | `real estate customer engagement` | [real-estate-customer-engagement-strategies](https://infina.ai/news/real-estate-customer-engagement-strategies/) | pillar-cluster-writer, pillar #207 Cụm 2, bài CEP 2/2 (ID 1488) |
 | 2026-10-06 | `private listing marketing rules` | [private-listing-marketing-rules](https://infina.ai/news/private-listing-marketing-rules/) | news-to-cluster-article, pillar #237 Cụm 8 (ID 1501) |
 | 2026-10-07 | `ai drafted messages agent approval` | [ai-drafted-messages-agent-approval](https://infina.ai/news/ai-drafted-messages-agent-approval/) = #1529, News, pillar #214 `ai crm`. Slug overlap cao nhất 0,512 với `ai-powered-follow-up-messages-real-estate-agents`, dưới ngưỡng 0,6 | daily pipeline 07/10 |
+| 2026-10-08 | `real estate ai pricing` | [real-estate-ai-pricing-per-task](https://infina.ai/news/real-estate-ai-pricing-per-task/) = #1609, News, pillar #1223 Cụm 7 `real estate lead follow up automation`. Slug overlap cao nhất 0,50 với `real-estate-ai-adoption-statistics-2026`, dưới ngưỡng 0,6 | daily pipeline 08/10 |
 
 ---
 
