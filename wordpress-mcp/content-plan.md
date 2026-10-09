@@ -520,7 +520,7 @@ live thật** rồi mới trỏ bài khác vào, không trỏ vào URL còn 404.
 
 ---
 
-### Cụm 3: Website Builder / IDX, 14 bài sống (15 gốc, 2 đã merge: case #546 cũ + case #553 2026-10-01, +1 bài News publish 03/10)
+### Cụm 3: Website Builder / IDX, 15 bài sống (15 gốc, 2 đã merge: case #546 cũ + case #553 2026-10-01, +2 bài News publish 03/10 và 09/10)
 
 **Internal link đã verify + fix (02/10/2026)**: check link thật qua WP REST API cho 12 bài live tìm
 thấy (chênh 1 so với "13 bài sống" ghi ở trên, không ảnh hưởng việc fix). Cluster→pillar chính #546
@@ -545,6 +545,7 @@ tiết refresh-log.md. 3 cụm còn lại (Website Design, Lead Generation, Comp
 | How-to (kỹ thuật) | [IDX Feed: What It Is and How to Set It Up](https://infina.ai/news/idx-feed-real-estate-setup/) | `idx feed` | Post-purchase/how-to | gần góc với dòng trên |
 | Buying guide | [Real Estate Agent Websites with IDX: What to Look For Before You Buy](https://infina.ai/news/real-estate-agent-websites-with-idx/) | `real estate agent websites with idx` | Decision/BOF | — |
 | Hỗ trợ (News) | [Compass Gave an MLS Until October 6, and Agent Search Sites Are Caught in the Middle](https://infina.ai/news/off-mls-listings-on-agent-idx-websites/) | `off mls listings on agent idx websites` | Post-purchase/support | ✅ Published 03/10 = #1473. Góc: listing ngoài MLS không vào được IDX feed. Category 153 "Real Estate Websites" (SKILL.md chưa liệt kê ID này) |
+| Hỗ trợ (News) | [Rechat Now Builds the Agent Website From the CRM, Not Next to It](https://infina.ai/news/real-estate-website-built-from-crm-data/) | `real estate website built from crm data` | Evaluation/MOF | ✅ Published 09/10 = #1732. Góc: Rechat Websites dựng site từ dữ liệu CRM, lead vào thẳng CRM. Category 153. Link ngang: #585, #1473, `real-estate-agent-websites-with-idx`. Inbound: #585 (link ngược đã gắn 09/10) |
 
 **3 bài đã merge trước đây**: [Real Estate Website Builder with IDX](https://infina.ai/news/real-estate-website-builder-with-idx/) → stub, redirect 301 sang Pillar #546 (case cũ). [Best IDX Website for Realtors: In-Depth Platform Reviews](https://infina.ai/news/best-idx-website-for-realtors/) → stub, redirect 301 sang `idx-website-for-realtors` (2026-10-01). [Best Real Estate Website Builder: Features, Pricing and IDX Compared](https://infina.ai/news/best-real-estate-website-builder/) → stub, redirect 301 sang Pillar `real-estate-website-builder` (2026-10-01). Xem refresh-log.md cho cả 3.
 
