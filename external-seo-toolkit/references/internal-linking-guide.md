@@ -64,6 +64,65 @@ SERP.
 
 Ô ✅ là bắt buộc, fail thì chặn. Ô ❌ là chỗ nhiều quy trình làm sai.
 
+### Một cluster trỏ lên được MẤY pillar?
+
+Được nhiều. **Không có luật nào của Google cấm**, và quy tắc "1 cluster chỉ trỏ 1 pillar" là quy ước
+của khung HubSpot chứ không phải chính sách của Google.
+
+Ba điều đã kiểm:
+
+| Điều | Nguồn |
+|---|---|
+| Tài liệu chính thức của Google về internal link **không có một chữ nào** về silo, về gom trang thành khu, hay về chuyện một trang được trỏ lên mấy hub | [Google Search Central, Make your links crawlable](https://developers.google.com/search/docs/crawling-indexing/links-crawlable) |
+| Mô hình pillar-cluster là khung của **HubSpot, 2017**, dựng từ một **tương quan** họ quan sát được giữa thứ hạng và cách gom internal link. Tương quan không phải ranking factor | [HubSpot](https://blog.hubspot.com/marketing/pillar-cluster-model-transform-blog) |
+| Google **chưa bao giờ** xác nhận mô hình này, cũng chưa bao giờ nói link chéo cụm là có hại | không tìm được phát biểu nào, xem cảnh báo bên dưới |
+
+⚠️ **Thứ KHÔNG kiểm được, đừng trích lại.** Có một câu "pyramid structure" gán cho Mueller được các
+blog SEO trích đi trích lại để biện minh cho silo. **Không truy được bản gốc.** Đúng loại nguồn mà
+Phần 8 đã liệt vào danh sách cấm, nên không dùng nó làm căn cứ theo chiều nào cả.
+
+**Ràng buộc thật duy nhất nhắm vào TOÀN SITE, không nhắm vào từng bài.** Đó là câu Mueller
+02/07/2021 ở Phần 1: *"If every page links to every other page, then there’s no real structure
+there."* Nó nói về phân bố link trên cả site. Một bài trỏ lên 2 pillar không chạm tới nó.
+
+Đo bằng **mật độ link**: số link nội bộ phân biệt chia cho `n*(n-1)`. Trên site gốc 489 link trên
+147 bài cho ra **2,3%**, cách rất xa tình huống Mueller cảnh báo. Dùng số này để tự trấn an khi
+phân vân có đang link nhiều quá không.
+
+### Nhưng phải đo tỉ lệ trỏ pillar nhà vs pillar cụm khác
+
+Đây là **quyết định biên tập, không có nguồn Google**. Link chéo không phạm luật, nhưng nếu một cụm
+trỏ ra ngoài nhiều hơn trỏ về pillar của chính mình thì cụm đó đang nuôi pillar của cụm khác.
+
+Đo trên site gốc, 8 cụm:
+
+| Cụm | Trỏ pillar nhà | Trỏ pillar cụm khác | % nhà |
+|---|---|---|---|
+| Compliance | 5 | 0 | 100% |
+| Chatbot | 17 | 3 | 85% |
+| Lead Gen | 7 | 2 | 78% |
+| CRM | 32 | 11 | 74% |
+| Website Builder / IDX | 12 | 11 | 52% |
+| AI Voice | 5 | 5 | 50% |
+| Landing Pages | 5 | 9 | **36%** |
+| Website Design | 5 | 10 | **33%** |
+| **Tổng** | **88** | **51** | **63%** |
+
+Hai cụm cuối trỏ ra ngoài nhiều hơn trỏ về nhà, và cả hai đều đổ vào cùng một pillar CRM. Đó là lý
+do pillar CRM nhận 56 inbound trong khi pillar Website Design chỉ có 6. Không ai làm sai luật,
+nhưng pillar của hai cụm đó sẽ không bao giờ khoẻ lên.
+
+**Mốc tự soi: % trỏ pillar nhà >= 50% cho mỗi cụm.** Giống mọi mốc ở Phần 4, con số này lấy từ phân
+bố thật của một site chứ không phải ngưỡng ngành, nên phải đo lại trên site của bạn.
+
+**Cách sửa khi một cụm tụt dưới mốc: thêm link về pillar nhà, đừng gỡ link chéo.** Link chéo tồn tại
+vì câu văn có lý do nhắc tới nó, gỡ đi là làm hỏng bài. Thiếu là thiếu chiều về nhà.
+
+### Vậy câu hỏi đúng là gì
+
+Không phải "bài này được trỏ mấy pillar" mà là **"câu chứa link này có lý do tồn tại không"**. Đó
+chính là tiêu chí 2 ở mục chọn bài donor ngay dưới đây, và nó áp cho cả link lên pillar.
+
 ### Vì sao pillar KHÔNG cần trỏ xuống bài mới
 
 Hai lý do, lý do thứ hai mới là lý do thật:
@@ -438,6 +497,40 @@ def density(c):
     return words, links, (links / words * 1000 if words else 0)
 
 
+def link_density(posts):
+    """Mat do link toan site so voi 'moi trang tro moi trang'. Nguong Mueller 2021.
+
+    Tra (so_link_phan_biet, toi_da, phan_tram). Vai phan tram la binh thuong.
+    """
+    n = len(posts)
+    tot = sum(len(set(LINK.findall(p["content"]["rendered"])) - {p["slug"]})
+              for p in posts)
+    mx = n * (n - 1)
+    return tot, mx, (tot / mx * 100 if mx else 0)
+
+
+def cluster_focus(posts, member, pillar_of):
+    """Moi cum tro ve pillar nha bao nhieu %, so voi tro sang pillar cum khac.
+
+    member    : {slug -> ten_cum} lay tu BANG PHAN CUM bien tap, khong suy tu link graph
+    pillar_of : {slug_pillar -> ten_cum}
+    Tra [(ten_cum, so_nha, so_khac, phan_tram_nha)], thap nhat truoc.
+    Moc tu soi: >= 50%. Duoi moc thi THEM link ve pillar nha, dung go link cheo.
+    """
+    agg = collections.defaultdict(lambda: [0, 0])
+    for p in posts:
+        cum = member.get(p["slug"])
+        if cum is None or p["slug"] in pillar_of:
+            continue                      # bo qua bai chua gan cum va chinh pillar
+        for t in set(LINK.findall(p["content"]["rendered"])):
+            if t not in pillar_of:
+                continue
+            agg[cum][0 if pillar_of[t] == cum else 1] += 1
+    out = [(c, a, b, (a / (a + b) * 100 if a + b else 0))
+           for c, (a, b) in agg.items()]
+    return sorted(out, key=lambda x: x[3])
+
+
 if __name__ == "__main__":
     posts = all_posts()
     idx = anchor_index(posts)
@@ -453,6 +546,18 @@ if __name__ == "__main__":
     print("\n=== bai mo coi (0 inbound bien tap, da tru %d stub) ===" % len(stubs))
     for p in orphans(posts, idx, exclude=stubs):
         print("  #%-6s %s" % (p["id"], p["slug"]))
+
+    tot, mx, pct = link_density(posts)
+    print("\n=== mat do link toan site ===")
+    print("  %d / %d = %.1f%%  (vai %% la binh thuong)" % (tot, mx, pct))
+
+    # Bo phan cum vao day de bat dau do; de trong thi bo qua buoc nay.
+    MEMBER, PILLAR_OF = {}, {}
+    if MEMBER and PILLAR_OF:
+        print("\n=== ti le tro pillar nha (moc tu soi >= 50%) ===")
+        for cum, a, b, pc in cluster_focus(posts, MEMBER, PILLAR_OF):
+            print("  %-40s nha %3d / khac %3d = %3.0f%% %s"
+                  % (cum, a, b, pc, "" if pc >= 50 else "<-- duoi moc"))
 
     print("\n=== link tro vao URL khong tra 200 ===")
     seen = {}
@@ -483,6 +588,8 @@ Mỗi 10-15 bài publish, chạy script ở Phần 6 và nhìn 3 con số:
 | Số bài **mồ côi** | Phải đi ngang hoặc giảm. Nếu nó tăng theo số bài publish thì bước inbound đang bị bỏ |
 | Số trang **dưới 70% đa dạng anchor** | Phải giảm dần |
 | Số **link trỏ vào URL không trả 200** | Phải bằng 0 |
+| **% trỏ pillar nhà** của cụm thấp nhất | Phải >= 50%. Dưới mốc nghĩa là cụm đó đang nuôi pillar của cụm khác |
+| **Mật độ link** toàn site | Vài phần trăm là bình thường. Chỉ đáng lo khi nó bò lên hai chữ số |
 
 Khi đếm mồ côi, **loại các stub 301 ra khỏi danh sách**. Chúng xuất hiện như mồ côi vì không ai link
 tới, nhưng đó là đúng ý đồ: không được link vào stub.
