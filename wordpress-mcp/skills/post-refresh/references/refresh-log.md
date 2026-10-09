@@ -500,3 +500,85 @@ link nằm trong 12 trang stub 301. Stub không phải trang thật nên không 
 - **9 anchor dài quá 9 từ** (quy tắc 3 đề 3-8 từ), tất cả đều có sẵn từ trước, không phải anchor
   mới viết: #492, #1217, #610, #622, #214, #1227, #1449, #390, #528.
 - **15 bài phạm quy tắc 6** liệt kê ở trên.
+
+## 2026-10-09 | Đợt C: đa dạng anchor cho 12 trang không phải pillar
+
+### Vấn đề
+
+Cùng mốc quy tắc 7 (anchor khác nhau / tổng link >= 70%) nhưng áp cho trang không phải pillar có
+từ 5 link trỏ vào. Đo trên bản live: **12 trang dưới mốc**. Ước lượng ban đầu là 11 trang / 30
+anchor, đo lại ra 12 trang / 38 anchor tối thiểu.
+
+| Trang đích | Trước | Sau |
+|---|---|---|
+| `ai-crm-real-estate` | 9/23 = 39% | 17/22 = 77% |
+| `crm-pipeline-management` | 5/12 = 42% | 9/12 = 75% |
+| `chatbot-vs-conversational-ai-real-estate` | 6/11 = 55% | 9/11 = 82% |
+| `broker-idx-guide` | 3/10 = 30% | 8/10 = 80% |
+| `crm-marketing-real-estate` | 3/9 = 33% | 7/9 = 78% |
+| `idx-website-for-realtors` | 4/8 = 50% | 6/8 = 75% |
+| `best-chatbot-builder-real-estate` | 4/8 = 50% | 6/7 = 86% |
+| `follow-up-boss-real-estate-crm` | 3/6 = 50% | 5/6 = 83% |
+| `what-does-crm-mean-in-real-estate` | 1/5 = 20% | 3/4 = 75% |
+| `best-crm-for-real-estate-teams-2026` | 1/5 = 20% | 4/5 = 80% |
+| `ai-outbound-calling-real-estate-lead-follow-up` | 3/5 = 60% | 4/5 = 80% |
+| `open-house-landing-page` | 1/5 = 20% | 4/5 = 80% |
+
+Tổng: **39 anchor viết lại, 3 link trùng bị gỡ, trên 34 bài** (đo bằng so link trước/sau, không
+phải ước lượng).
+
+### Cách làm
+
+Cùng cách đợt B: dựng toàn bộ patch trong bản làm việc cục bộ, mỗi patch `assert count == 1`,
+kiểm số em dash, rồi đẩy mỗi bài đúng 1 lần. Đặt mục tiêu **75%** thay vì 70% để có biên, và chỉ
+sửa **số anchor tối thiểu** cho mỗi trang đích, không viết lại hết. Anchor mới mô tả trang đích từ
+góc của bài nguồn, không ép chứa keyword (quy tắc 4). Ví dụ trang `ai-crm-real-estate` có 8 bài
+dẫn vào bằng 8 cách khác nhau: "what an AI-driven CRM actually automates", "the AI features worth
+paying for in a CRM", "AI that qualifies leads inside the CRM", "CRMs with AI at the core"...
+
+### Đọc lại bắt thêm 6 chỗ câu vướng
+
+Máy kiểm (assert, em dash, thẻ `<a>` cân bằng) qua hết, nhưng đọc lại từng câu thì còn 6 chỗ phải
+sửa: lặp "actually", câu "that is a useful question" nghe sáo, lặp "landing page", lặp
+"follow-up", lặp "marketing automation", lặp "top IDX" và "search quality". Đây là lần thứ ba bài
+học này lặp lại (đợt D 4 chỗ, đợt B 10 chỗ). Assert kiểm được chuỗi có tồn tại, không kiểm được
+câu có xuôi không.
+
+### Phát hiện thêm: quy tắc 6
+
+Ba bài trong phạm vi có 2 link cùng một đích, đã xử lý luôn:
+
+- **#230** trỏ 2 link tới `what-does-crm-mean-in-real-estate`. Giữ link đầu (đổi anchor), gỡ link
+  thứ hai.
+- **#461** trỏ 2 link tới `best-chatbot-builder-real-estate`. Gỡ link ở mục Related Reading, câu
+  được viết lại cho liền mạch.
+- **#498** trỏ 2 link tới `ai-crm-real-estate`. Gỡ link thứ hai, đổi câu thành "settle that before
+  adding a back office layer on top".
+
+**12 bài còn lại vẫn vi phạm quy tắc 6** và nằm ngoài phạm vi đợt C vì đích không thuộc 12 trang
+trên: #299, #419, #475, #481, #492, #504, #513, #528, #975, #1243, #1449, và #918 (với
+`best-crm-for-real-estate`).
+
+### Sự cố trong lúc đẩy
+
+Đẩy tay từng bài (không có chế độ patch) nên có 1 lỗi chép: lần đẩy đầu của **#461** tôi gõ lại
+anchor từ trí nhớ thay vì copy đúng từ `cout/461.html`. Phát hiện ngay khi đối chiếu lại, đã đẩy
+lại bản đúng trước khi verify. Bài học: khi đẩy hàng loạt phải copy nguyên văn từ file đã
+proofread, không gõ lại.
+
+### Verify
+
+Fetch lại toàn bộ 147 bài qua REST, so 34 bài với bản local: **34/34 khớp về chữ và link**. 3 bài
+(#461, #498, #504) lệch 8 ký tự so với byte-for-byte, và chỉ do WordPress chuẩn hóa thuộc tính
+`style` của thẻ `<img>` (`max-width: 100%; height: auto;` thành `max-width: 100%;height: auto`).
+Không liên quan nội dung.
+
+Chạy lại `c_audit.py` trên bản live: **0 trang non-pillar dưới 70%**. Chạy lại đo 10 pillar: tất cả
+vẫn >= 70% (thấp nhất `best-crm-for-real-estate` 80%), nên đợt C không làm tụt pillar nào.
+
+### Còn lại
+
+- **12 bài phạm quy tắc 6** liệt kê ở trên.
+- **9 anchor dài quá 9 từ** có sẵn từ trước, chưa động (xem đợt B).
+- **Đợt E**: 11 bài AI/tech mồ côi (#1, #14, #26, #31, #34, #37, #41, #44, #47, #50, #53), chờ quyết
+  định giữ nguyên, lập cluster riêng, hay noindex.
