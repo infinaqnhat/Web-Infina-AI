@@ -338,3 +338,71 @@ Cả 3 là WARN chứ không phải GATE nên **không sửa bài**, chỉ ghi n
 Quy tắc 5 ở mục anchor (đọc anchor đã dùng **trước khi viết**) hiện chỉ được nhắc cho anchor trỏ
 pillar. Bài này cho thấy phải chạy `anchors_to()` cho **cả 2-3 slug link ngang** trước khi viết, không
 chỉ cho pillar. WARN bắt được là tốt, nhưng bắt trước khi viết thì không tạo ra nợ.
+
+---
+
+## 2026-10-09 | Đợt D: gỡ mồ côi cho 10 bài real estate
+
+### Vấn đề
+
+Quét toàn site (147 bài publish) tìm bài không có **một link nội bộ nào trỏ vào**. Ra 21 bài, sau khi
+đã loại 12 slug là stub 301 (trang của chính nó không trả 200 nên không tính là bài). Trong 21 bài đó,
+10 bài thuộc chủ đề real estate, 11 bài còn lại là bài AI/tech không cùng cụm nào.
+
+Đợt D xử lý 10 bài real estate: mỗi bài được **đúng 1 link vào, từ một bài cùng cụm**, chèn trong
+thân bài chứ không phải mục cuối bài. Không dùng pillar làm nguồn dẫn, theo đúng luật: pillar là nơi
+nhận link, không phải nơi phát link cho từng bài news.
+
+### Phát hiện: 9/10 bài không có cụm được ghi ở đâu cả
+
+Chỉ #1467 có pillar/cụm ghi trong `references/used-keywords.md`. 9 bài còn lại là bài News hằng ngày,
+không nằm trong bảng cụm của `content-plan.md` và cũng không có dòng nào trong used-keywords.
+
+Vì vậy cụm của từng bài được xác định bằng tay, lấy **chính link pillar mà bài đó trỏ ra** làm căn cứ
+đối chiếu. Đây là lý do gốc khiến 10 bài này mồ côi: không có bảng nào ghi chúng thuộc cụm nào thì
+cũng không có bước nào bắt phải dẫn link vào chúng.
+
+### Bảng nguồn dẫn
+
+| Bài nguồn | Dẫn vào | Anchor |
+|---|---|---|
+| #223 | #1415 | what a real estate lead now costs |
+| #172 | #1341 | assistants that write the post-tour text themselves |
+| #1254 | #1209 | one brokerage has its AI read the contract and pay the commission |
+| #1213 | #1467 | the seller check-in calls nobody has hours for |
+| #1100 | #1335 | a room visualiser turning listing photos into showing requests |
+| #622 | #1197 | one MLS now runs its own AI search with no lead forms |
+| #1134 | #1191 | a mortgage broker finder now lives inside ChatGPT |
+| #1308 | #1158 | the chatbot sycophantic about home prices |
+| #1529 | #1128 | what brokerage leaders now say worries them most |
+| #1462 | #1034 | an AI hybrid brokerage charges a flat fee instead |
+
+Mỗi anchor là một cụm mô tả riêng, không lặp lại anchor nào đã dùng ở bài khác. Trước khi ghi, mỗi
+bài đều qua `assert c.count(anchor) == 1`, đếm em dash trước/sau không đổi, và độ dài chỉ tăng
+158-292 ký tự.
+
+### 4 lỗi câu chữ bị bắt khi đọc lại, không phải khi chạy máy
+
+Script chèn đúng vị trí anchor nhưng câu đọc lên thì hỏng. Cả 4 chỉ lộ ra khi đọc lại nguyên đoạn:
+
+- **#622**: câu chèn cắt ngang một mệnh đề, làm đứt câu gốc. Phải neo lại vào ranh giới câu.
+- **#1308**: chèn xong thành câu dài lê thê không ngắt.
+- **#1529**: thành ba vế "and ... and ... and" liên tiếp, đọc rối.
+- **#223**: câu chèn nằm chen giữa "không có độ trễ nào" và "Capture is automatic and immediate",
+  tách đôi ý đang liền mạch. Chuyển xuống cuối đoạn thì đọc trôi.
+
+Ngoài ra #1213 lần chạy đầu fail assert vì anchor trong script là "...route anything nuanced to a
+human." trong khi bản live là "...to a human quickly." Assert làm đúng việc của nó.
+
+### Kết quả
+
+Đếm lại trên bản live sau khi sửa: cả 10 bài đều nhận đúng 1 link vào từ đúng bài nguồn đã định.
+Số bài mồ côi **21 → 11**. 11 bài còn lại đúng bằng nhóm bài AI/tech (#1, #14, #26, #31, #34, #37,
+#41, #44, #47, #50, #53). Nhóm này không sửa được bằng link vì không thuộc cụm nào, cần quyết định
+hướng xử lý chứ không phải thêm link.
+
+### Rút ra cho lần sau
+
+Bài News mới viết xong mà không bài nào dẫn vào thì vài tháng sau không ai biết nó mồ côi, vì không
+có bảng nào ghi nó thuộc cụm nào để mà soát. Nên ghi cụm của bài News vào used-keywords ngay lúc
+đăng, để lần quét sau có căn cứ đối chiếu thay vì phải suy ra từ link pillar.
