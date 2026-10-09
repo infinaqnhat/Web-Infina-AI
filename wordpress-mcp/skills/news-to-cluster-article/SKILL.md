@@ -286,6 +286,91 @@ Chỉ dùng số **đã có trong bài và có nguồn**. Không bịa số cho 
 | STATS | Diagram/infographic | — |
 | COMPARISON | Diagram/infographic | — |
 
+### GATE: `check_image_specs()`, chạy TRƯỚC khi gen ảnh
+
+Hai lỗi ảnh ngày 08/10 đều là lỗi **spec**, không phải lỗi model, nên kiểm được bằng máy trước khi
+tốn một lượt generate. Viết spec theo đúng shape dưới đây rồi chạy hàm này; có `issues` thì sửa spec,
+đừng gen.
+
+```python
+import re
+
+def check_image_specs(specs, content, focus_kw):
+    """Gate cho spec anh. Chay TRUOC gen_article_images.py.
+
+    Moi spec: {name, role, kind, alt, prompt, datum?, headline?}
+      role : HERO | STATS | DEMO | COMPARISON
+      kind : "photo" | "infographic"
+      datum: chuoi du kien that cua bai ma anh nay mang (bat buoc cho infographic)
+      headline: chu in hoa tren anh (bat buoc cho STATS, <= 20 ky tu)
+    """
+    body = re.sub(r"<[^>]+>", " ", content).lower()
+    issues = []
+    if [s.get("role") for s in specs].count("STATS") != 1:
+        issues.append("phai co dung 1 spec role=STATS, vi Buoc 6 lay no lam featured image")
+    for s in specs:
+        n = s.get("name", "?")
+        role, kind = s.get("role"), s.get("kind")
+        prompt = s.get("prompt", "")
+        if role not in ("HERO", "STATS", "DEMO", "COMPARISON"):
+            issues.append("%s: role phai la HERO/STATS/DEMO/COMPARISON" % n)
+        if kind not in ("photo", "infographic"):
+            issues.append("%s: kind phai la photo hoac infographic" % n)
+        if focus_kw.lower() not in s.get("alt", "").lower():
+            issues.append("%s: alt khong chua FOCUS_KW" % n)
+        if kind == "photo":
+            if "no extra fingers" not in prompt:
+                issues.append("%s: anh nguoi thieu negative guard" % n)
+            continue
+        # --- tu day tro xuong chi ap cho infographic ---
+        d = (s.get("datum") or "").strip()
+        if not d:
+            issues.append("%s: thieu 'datum'. Anh infographic phai mang 1 du kien that cua bai" % n)
+        elif d.lower() not in body:
+            issues.append("%s: datum %r KHONG co trong bai. Khong duoc bia so cho dep anh" % (n, d))
+        for ban in ("no text", "no letters", "no numerals", "no numbers", "no labels"):
+            if ban in prompt.lower():
+                issues.append("%s: prompt dang cam chu (%r). Infographic PHAI co nhan/so" % (n, ban))
+        if role == "STATS":
+            h = (s.get("headline") or "").strip()
+            if not h:
+                issues.append("%s: STATS la thumbnail, bat buoc co 'headline'" % n)
+            elif len(h) > 20:
+                issues.append("%s: headline %d ky tu, thumbnail phai <= 20" % (n, len(h)))
+            elif h.upper() not in prompt.upper():
+                issues.append("%s: headline chua duoc nhac trong prompt" % n)
+            if "glossy gradient" not in prompt.lower():
+                issues.append("%s: STATS phai dung suffix glossy/gradient cua THUMBNAIL_BEST_PRACTICES.md" % n)
+    return issues
+
+issues = check_image_specs(SPECS, CONTENT, FOCUS_KW)
+assert not issues, issues      # sua spec roi chay lai, dung gen khi con issues
+```
+
+`gen_article_images.py` chỉ đọc `name`, `alt`, `prompt` và bỏ qua key thừa, nên **dùng thẳng `SPECS`
+này làm `spec.json`**, không cần chuyển đổi. Đã kiểm chứng 09/10.
+
+Hàm này đã test trên chính hai bộ spec hỏng của `#1609`: bộ lần 1 (flat, text-free) và bộ lần 2
+(glossy nhưng vẫn text-free) đều bị chặn, bộ cuối cùng đúng thì đi qua. Một spec bịa số không có trong
+bài cũng bị chặn.
+
+**Sau khi gen, TRƯỚC khi upload: mở từng ảnh ra nhìn.** Gate trên bắt được spec sai, không bắt được
+model vẽ sai. Ba thứ chỉ nhìn mới thấy, cả ba đã xảy ra thật:
+
+| Lỗi | Ca thật |
+|---|---|
+| Chữ vỡ thành ký tự rác | `$ΩΩ` thay cho giá tiền |
+| Model tự thêm chữ dù không yêu cầu | 2 panel tự mọc tiêu đề |
+| Số trên trục nhảy cóc | trục ghi 1,2,3,5,6,7,8,9,11,12, thiếu 4 và 10 |
+
+Riêng ảnh STATS còn phải qua **postage-stamp test**: thu về 120x68px, headline còn đọc được thì mới đạt.
+
+```python
+from PIL import Image
+Image.open("stats.jpg").resize((120, 68), Image.LANCZOS).resize((480, 272), Image.NEAREST).save("stamp.png")
+# mo stamp.png ra nhin. Khong doc duoc headline thi gen lai, dung upload.
+```
+
 **Bảng so sánh/số liệu chi tiết nhiều hàng-cột (≥3 cột hoặc ≥4 hàng) — dùng `<table>` HTML thật trong thân bài, KHÔNG generate ảnh AI.** Lý do: ảnh AI dựng bảng hay bịa tên sản phẩm/số liệu không khớp nội dung bài (đã xảy ra thực tế ở bài `best-free-crm-for-real-estate-agents`, #438 — ảnh so sánh bịa 3 tên CRM giả, ảnh thống kê bịa % adoption kèm dòng disclaimer "hypothetical" nhỏ xíu không ai đọc được), và vi phạm luôn checklist thumbnail (`THUMBNAIL_BEST_PRACTICES.md`: "không dùng bảng dữ liệu nhiều hàng/cột làm ảnh"). Ảnh AI (STATS/COMPARISON Template A-E) chỉ dùng cho 1 con số/1 so sánh 2 phe đơn giản; bảng dữ liệu thật phải là markup, không phải ảnh.
 
 Theme đang chạy (`infina-ai-news` v1.0.9) **đã tự style sẵn mọi `<table>` trong `.post-content`**:
