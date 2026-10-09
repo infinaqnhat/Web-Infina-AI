@@ -242,7 +242,23 @@ Mỗi bài cần **4 ảnh**: HERO, STATS/DATA, DEMO, COMPARISON. Ảnh HERO v�
 ❌ "screen showing text: Speed-to-Lead Report 2026"
 ```
 
-**Ảnh diagram/infographic (STATS, COMPARISON)** — style đơn giản hơn, không cần rule người:
+⚠️ **Ảnh STATS là FEATURED IMAGE, nên nó theo chuẩn THUMBNAIL chứ không theo rule infographic
+dưới đây.** Bước 6 gán `image_url = IMG["STATS"]`, tức ảnh này lên trang chủ dưới dạng thumbnail nhỏ.
+Đọc `THUMBNAIL_BEST_PRACTICES.md` và dùng **prompt suffix chuẩn** trong đó. Hai khác biệt quan trọng
+so với rule infographic thường:
+
+| | Ảnh trong thân bài | Ảnh STATS (= thumbnail) |
+|---|---|---|
+| Chữ trong ảnh | không cần, thường bỏ | **BẮT BUỘC** có headline in hoa dưới 20 ký tự |
+| Style | flat đơn giản được | **glossy/gradient (semi-flat 3D icon)**, đã chốt cho toàn site |
+| Bố cục | tự do | theo 1 trong **5 template A-E** |
+
+Phải qua **postage-stamp test**: thu về 120x68px mà vẫn đọc được thông điệp chính.
+
+Đã sai thật ngày 08/10 ở `#1609`: tôi áp rule "không chữ trong ảnh" lên ảnh STATS, ra một biểu đồ
+hai đường gạch chéo không nhãn, không nói lên điều gì khi thu nhỏ. Người dùng bắt được trên trang chủ.
+
+**Ảnh diagram/infographic trong THÂN BÀI (DEMO, COMPARISON)** — style đơn giản hơn, không cần rule người:
 ```
 "{chủ đề}, clean flat infographic style, blue and white color palette, professional design, clear labels, high contrast, no people, no photorealistic elements"
 ```
