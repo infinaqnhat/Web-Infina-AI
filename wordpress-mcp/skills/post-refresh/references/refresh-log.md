@@ -406,3 +406,97 @@ hướng xử lý chứ không phải thêm link.
 Bài News mới viết xong mà không bài nào dẫn vào thì vài tháng sau không ai biết nó mồ côi, vì không
 có bảng nào ghi nó thuộc cụm nào để mà soát. Nên ghi cụm của bài News vào used-keywords ngay lúc
 đăng, để lần quét sau có căn cứ đối chiếu thay vì phải suy ra từ link pillar.
+
+---
+
+## 2026-10-09 | Đợt B: đa dạng anchor cho 10 pillar
+
+### Vấn đề
+
+Quy tắc 7 trong `external-seo-toolkit/references/internal-linking-guide.md` đặt mốc **anchor khác
+nhau / tổng link tới 1 trang >= 70%**. Đo lại trên bản live: **9/10 pillar dưới mốc**, chỉ
+`best-crm-for-real-estate` đạt (81%).
+
+| Pillar | Trước | Sau |
+|---|---|---|
+| `tcpa-compliance-for-real-estate-agents` | 13% | 100% |
+| `real-estate-website-builder` | 19% | 100% |
+| `website-design-for-real-estate-agents` | 20% | 100% |
+| `ai-intent-layer-for-real-estate-crm` | 23% | 100% |
+| `real-estate-landing-page-guide` | 40% | 100% |
+| `real-estate-lead-follow-up-automation-guide` | 41% | 100% |
+| `best-conversational-ai-chatbot-for-real-estate` | 44% | 100% |
+| `best-ai-voice-assistants-for-real-estate` | 55% | 100% |
+| `best-chatbot-customer-service-real-estate` | 67% | 100% |
+| `best-crm-for-real-estate` | 81% | 81% (không động) |
+
+Tổng: **80 anchor viết lại trên 63 bài**, cộng 2 link trùng bị gỡ.
+
+### Cách làm: sửa vào bản làm việc cục bộ trước, đẩy sau
+
+63 bài nhưng 80 anchor, nghĩa là nhiều bài dính 2-3 pillar cùng lúc (#138 dính 3, #1488 dính 3).
+Nếu sửa pillar nào đẩy pillar đó thì lần đẩy sau sẽ đè mất sửa của lần trước, vì `update_post`
+luôn ghi đè toàn bộ nội dung.
+
+Cách làm: dựng một kho cục bộ `b_work.pkl`, mỗi patch là bộ ba `(post_id, chuỗi_cũ, chuỗi_mới)` và
+`assert` chuỗi cũ xuất hiện **đúng 1 lần** trước khi thay. Sửa hết 10 pillar vào kho đó, rồi mới
+đẩy mỗi bài đúng 1 lần. Đổi 80 lần ghi thành 63 lần, và không còn khả năng đè nhau.
+
+### Nguyên tắc viết anchor
+
+Theo quy tắc 4 của guide, anchor **không bắt buộc chứa keyword của trang đích**, chỉ cần mô tả
+đúng trang đích. Đó chính là nguyên nhân gốc: ép anchor phải chứa `PILLAR_KW` thì mọi bài đổ dồn
+về cùng một chuỗi.
+
+Nên 80 anchor mới đều mô tả trang đích từ góc riêng của bài nguồn. Ví dụ với pillar TCPA, 15 bài
+dẫn vào bằng 15 cách khác nhau: "where those FCC rules actually land", "which callbacks need
+consent on file", "who is liable when an agent leaves", "how a stop request has to propagate",
+"the rules on automated calls and texts". Không anchor nào chứa chữ TCPA, nhưng đọc tách khỏi câu
+vẫn đoán được trang đích nói gì, đúng phép thử của quy tắc 1.
+
+### Máy kiểm xong vẫn phải đọc lại: 10 câu bị lặp từ
+
+Toàn bộ 80 patch qua được assert, 0 em dash mới, thẻ `<a>` cân bằng. Nhưng đọc lại từng câu thì
+thấy **10 chỗ câu đọc lên bị vướng**, không chỗ nào máy bắt được:
+
+- **#528** "shared chat layer" lặp 2 lần trong cùng một câu
+- **#936** "platforms" lặp, cộng "behavioral" rồi "behavior" ngay sau
+- **#1219** "the 7 answering tools we rated" đặt làm đích của "our own comparison is in" nghe không xuôi
+- **#1225** "the system that works the leads" sai ngữ pháp, phải là "those leads"
+- **#1227** chữ "first" bị treo ở cuối câu sau khi đổi anchor
+- **#1234** "activity log" lặp lại chỉ sau 8 chữ
+- **#1462** "surfaces/surfacing ... that moved" lặp ý câu ngay trên
+- **#1473** "website builders" rồi "website side" trong cùng câu
+- **#1488** anchor có dấu phẩy ở giữa làm câu khó đọc
+- **#1529** "Inbound" rồi "inbound" liền nhau
+
+Đây là lần thứ hai trong tuần bài học này lặp lại (đợt D bắt 4 chỗ tương tự). **Assert kiểm được
+chuỗi có tồn tại không, không kiểm được câu đọc lên có xuôi không.** Phải đọc.
+
+### Phát hiện thêm: 17 bài phạm quy tắc 6
+
+Quét ra **17 bài có 2 link trỏ cùng một trang đích**, vi phạm quy tắc 6 (mỗi bài chỉ 1 link tới 1
+đích). Hai cái dính đúng pillar đang sửa nên xử lý luôn:
+
+- **#918** trỏ 2 link tới `real-estate-website-builder`. Giữ link giữa bài có ngữ cảnh, gỡ link
+  trong đoạn đọc thêm cuối bài.
+- **#390** trỏ 2 link tới `best-chatbot-customer-service-real-estate`. Giữ link đầu với anchor mô
+  tả, gỡ link thứ hai dùng anchor chung chung.
+
+**15 bài còn lại trỏ tới trang không phải pillar nên để lại**, nằm ngoài phạm vi đợt B:
+#230, #299, #419, #461, #475, #481, #492, #498, #504, #513, #528, #975, #1243, #1449, và #918
+(với `best-crm-for-real-estate`).
+
+### Verify
+
+Fetch lại toàn bộ 147 bài qua REST sau khi đẩy, so từng bài với bản local: **63/63 khớp
+byte-for-byte**. Đo lại đa dạng anchor trên bản live: cả 10 pillar đều >= 70%.
+
+Số trên bản live cao hơn bản local vài link (website-builder 27 thay vì 25) vì bản live đếm cả
+link nằm trong 12 trang stub 301. Stub không phải trang thật nên không tính khi đặt mục tiêu.
+
+### Còn lại
+
+- **9 anchor dài quá 9 từ** (quy tắc 3 đề 3-8 từ), tất cả đều có sẵn từ trước, không phải anchor
+  mới viết: #492, #1217, #610, #622, #214, #1227, #1449, #390, #528.
+- **15 bài phạm quy tắc 6** liệt kê ở trên.
