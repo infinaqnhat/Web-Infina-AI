@@ -258,6 +258,20 @@ Phải qua **postage-stamp test**: thu về 120x68px mà vẫn đọc được t
 Đã sai thật ngày 08/10 ở `#1609`: tôi áp rule "không chữ trong ảnh" lên ảnh STATS, ra một biểu đồ
 hai đường gạch chéo không nhãn, không nói lên điều gì khi thu nhỏ. Người dùng bắt được trên trang chủ.
 
+⚠️ **Mỗi ảnh infographic phải mang MỘT Dữ KIỆN THẬT của bài, không phải hình trang trí.**
+Trước khi viết prompt, hỏi: **ảnh này nói con số nào, hay so sánh cụ thể nào trong bài?** Không trả
+lời được thì đừng gen, vì sẽ ra một hình đẹp mà rỗng. Hệ quả là nhãn ngắn trong ảnh thường **cần
+thiết**, không phải thứ phải tránh.
+
+⚠️ **Đừng nhầm hai luật "không chữ" với nhau.** `no readable text on screen` trong negative guard là để
+chặn chữ vỡ **trên màn hình thiết bị trong ảnh chụp người**. Nó **không** cấm nhãn trong infographic.
+Cấm chữ trong infographic là lỗi tôi từng mắc 08/10 ở `#1609`: ba ảnh ra đúng style nhưng chỉ là
+mũi tên lên xuống, dấu tick và cột cao thấp, không nói lên gì. Người dùng hỏi thẳng "không thấy số
+và không thấy ý nghĩa gì". Phải gen lại lần hai với số thật lấy từ chính bài: `80% COST PER SITE`,
+`200 LEADS $60 + 100 LEADS $30`, `PER SEAT | PER TASK`.
+
+Chỉ dùng số **đã có trong bài và có nguồn**. Không bịa số cho đẹp ảnh.
+
 **Ảnh diagram/infographic trong THÂN BÀI (DEMO, COMPARISON)** — style đơn giản hơn, không cần rule người:
 ```
 "{chủ đề}, clean flat infographic style, blue and white color palette, professional design, clear labels, high contrast, no people, no photorealistic elements"
