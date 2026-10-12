@@ -7,7 +7,7 @@ Description: Newsroom-style block theme for the Infina AI blog. Matches the Infi
 Requires at least: 6.4
 Tested up to: 6.6
 Requires PHP: 7.4
-Version: 1.1.2
+Version: 1.1.3
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: infina-ai-news
@@ -164,7 +164,11 @@ img { max-width: 100%; height: auto; }
    accent on the key phrase, and a glass "paste your listing" panel. */
 .nr-promo {
   display: flex; flex-direction: column; gap: 10px; aspect-ratio: 1 / 1; margin-top: 20px;
-  padding: 26px; border-radius: var(--radius); color: #fff; overflow: hidden;
+  padding: 26px; border-radius: var(--radius); color: #fff;
+  /* No overflow: hidden here. It would zero the automatic minimum height, so the
+     1:1 box could not grow past a square and the CTA got clipped on narrow
+     side-by-side widths (901-1100px). Backgrounds are already clipped to the
+     rounded corners by border-radius. */
   background:
     linear-gradient(180deg, rgba(0,20,60,.62) 0%, rgba(0,20,60,.18) 42%, rgba(0,20,60,.5) 100%),
     url("assets/images/promo-property-expert.jpg") center / cover no-repeat,
@@ -191,9 +195,31 @@ img { max-width: 100%; height: auto; }
   transition: transform .2s, box-shadow .2s;
 }
 .nr-promo:hover .nr-promo-cta { transform: translateX(3px); box-shadow: 0 8px 18px rgba(0,20,60,.3); }
-/* Columns stack below 782px, which would stretch the 1:1 card to the full width */
-@media (max-width: 781px) {
+/* The theme stacks the News columns at 900px (see the 900px block below), which
+   would stretch the 1:1 card to the full content width, so drop the ratio there. */
+@media (max-width: 900px) {
   .nr-promo { aspect-ratio: auto; min-height: 380px; }
+}
+
+/* Keep the sidebar promo in view while the News list scrolls past (desktop).
+   Two things make sticky work here:
+   1. .nr-news is vertically aligned to the top, so each column is only as tall
+      as its own content. A sticky child in a column exactly its own height has
+      no room to travel, so the sidebar column is stretched to the row height.
+   2. The nav is sticky and 72px tall, so the card pins below it with a gap.
+   The 901px floor matches where the theme stops stacking the columns (below it
+   there is no side-by-side layout to stick against). The height guard stops it
+   sticking on short windows, where the card would be taller than the space left
+   under the nav and its CTA would be clipped. */
+@media (min-width: 901px) and (min-height: 640px) {
+  .nr-news > .wp-block-column:last-child { align-self: stretch; }
+  .nr-news .nr-promo { position: sticky; top: calc(72px + 24px); }
+}
+
+/* Narrow side-by-side band (901-1100px): the card is only ~260-330px wide, so
+   tighten the CTA slightly to keep "Create yours in a minute →" on one line. */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .nr-news .nr-promo-cta { padding: 11px 14px; font-size: 13px; white-space: nowrap; }
 }
 
 /* ----- Wide variant: end-of-article banner ---------------------------------
