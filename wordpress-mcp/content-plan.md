@@ -818,6 +818,8 @@ nội dung đã sửa, redirect đã verify).
    "reserved" sang bảng "đã publish").
 5. **Viết 2 bài CEP** (Cụm 2, góc Customer Engagement Platform) — plan đã duyệt 30/09, chưa viết
    bài thật. Theo đúng quy trình `skills/pillar-cluster-writer/SKILL.md` Bước 5 trở đi.
+6. **Cụm 9: Real Estate Marketing và Branding**, plan **đề xuất, chưa duyệt**, nằm ở
+   `references/plan-cum-9-marketing-branding.md`. Chưa đặt chỗ keyword nào.
 
 **Tất cả cặp nghi trùng phát hiện khi map 8 Cụm (01/10/2026) đã audit xong** — bao gồm 2 cặp cuối
 cùng (Chatbot Builders vs No-Code Chatbot Platform ở Cụm 1, Home Valuation vs Seller Landing Pages
