@@ -205,7 +205,9 @@ một chuỗi, bạn đang lặp đúng một câu mô tả 5 lần thay vì mô
 1. 🟢 **Đọc tách khỏi câu vẫn hiểu được.** Che câu đi, chỉ còn anchor, vẫn đoán được trang đích nói
    gì. Google nêu đúng phép thử này trong tài liệu chính thức.
 2. 🟢 **Không dùng** `click here`, `read more`, `this post`, `here`.
-3. 🟢 **Không nhồi keyword, không dài lê thê.** Khoảng 3-8 từ.
+3. 🟢 **Không nhồi keyword. Anchor tối đa 8 từ.** Đây là giới hạn cứng của Infina từ 2026-10-12, đếm
+   bằng `anchor.split()`. Link chỉ bao phần danh từ cốt lõi, phần còn lại của mệnh đề nằm ngoài thẻ `<a>`.
+   Con số 8 là quyết định biên tập, không phải ngưỡng Google.
 4. 🟢 **KHÔNG bắt buộc chứa keyword của trang đích nguyên văn.** Anchor chỉ cần mô tả đúng trang đích.
 5. 🟢 **Đọc anchor đã dùng trước khi viết anchor mới**, chọn biến thể chưa ai dùng. Script ở Phần 6.
 6. 🟢 **Mỗi bài chỉ 1 link tới cùng một trang**, không lặp anchor đó trong cùng bài.
@@ -322,12 +324,15 @@ ghi nhận.
 
 6. **Mọi link nội bộ phải trỏ tới URL trả 200.** Chạy `check_targets()` (Phần 6) trên nội dung lúc
    nó còn là chuỗi. Đặt **trước** publish chứ không phải sau: fail lúc đó không tốn gì.
+7. **Anchor nội bộ <= 8 từ.** Quét `<a href=".../news/slug/">` trên nội dung lúc còn là chuỗi, đếm từ
+   của anchor, fail nếu có cái dài hơn. Trang stub 301 dùng tên trang gộp làm anchor là ngoại lệ có chủ
+   đích, nên chỉ quét bài mới, không quét stub.
 
 ### GATE sau khi publish
 
-7. Bài mới có link lên pillar.
-8. Bài mới có >= 2 link ngang cùng cụm.
-9. Một bài donor cùng cụm đã trỏ sang bài mới.
+8. Bài mới có link lên pillar.
+9. Bài mới có >= 2 link ngang cùng cụm.
+10. Một bài donor cùng cụm đã trỏ sang bài mới.
 
 ### WARN sau khi publish, chỉ ghi nhận
 

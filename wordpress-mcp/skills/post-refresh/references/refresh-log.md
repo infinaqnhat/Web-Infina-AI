@@ -709,3 +709,48 @@ từ, trên 37 bài**, còn lại **38 trên 29 bài** sau đợt này. Trong 38
   này viết). Quy tắc 3 viết "khoảng 3-8 từ" nên đây là việc biên tập, chưa phải lỗi cứng.
 - Cụm 4, 5, 6 đang đúng mốc 50%, bài mới trong cụm phải link về pillar nhà và hạn chế link ra pillar
   khác, nếu không sẽ tụt dưới mốc ngay.
+
+## 2026-10-12 | Đợt H: rút ngắn toàn bộ anchor dài, skill chặn anchor quá 8 từ
+
+### Yêu cầu và phạm vi
+
+Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài để anchor không quá 8 chữ". Ngưỡng
+8 từ (không phải 9) nên phạm vi rộng hơn con số 31 đã báo trước đó, vì con số 31 đếm anchor dài hơn 9 từ.
+
+Đo lại bản live trước khi sửa, không kể 7 trang stub 301 (anchor là tên trang gộp, có chủ đích):
+**64 anchor dài hơn 8 từ, trên 41 bài** (33 anchor đúng 9 từ, 31 anchor từ 10 từ trở lên).
+
+### Việc đã làm
+
+- 41 bài, `update_post` toàn bài, mỗi bài đã so với bản live sau khi đẩy.
+- Mọi anchor rút về **3-8 từ**. Cách rút: để link chỉ bao phần danh từ cốt lõi, phần còn lại của mệnh
+  đề dời ra ngoài thẻ `<a>`, giữ nguyên ý câu. Ví dụ `how a real estate agent CRM closes the 15-hour
+  response gap` (11 từ) thành `how a CRM closes the 15-hour response gap` (8 từ).
+- Các anchor trỏ cùng một đích được viết lại thành biến thể khác nhau để không làm giảm đa dạng
+  (ví dụ 5 anchor trỏ `ai-chatbot-mls-data-security-risk-brokerages` giờ là 5 chuỗi khác nhau).
+- Bài News do skill này viết (#1732, #1739, #1746) cũng được sửa.
+- Apostrophe mới dùng cùng kiểu với bài chứa nó (entity `&#8217;` hay ký tự `’`).
+
+### Verify
+
+- **41/41 bài khớp** bản đã soát sau khi fetch lại từ REST (chuẩn hóa style `img`). Lần đẩy đầu của #1011
+  (đợt G) từng lệch một chữ do chép sai; cơ chế đối chiếu này tồn tại vì lỗi đó.
+- Anchor dài hơn 8 từ ngoài stub: **0**. Còn đúng 7 anchor trong trang stub 301.
+- Bài có hai link cùng đích: 0. Không target nào có tối thiểu 5 link mà đa dạng anchor dưới 70%:
+  `best-crm-for-real-estate` 78%, `ai-crm-real-estate` 78%, `real-estate-website-builder` 96%.
+- Tỉ lệ link về pillar nhà không đổi so với đợt G: Cụm 4, 5, 6 đều 50%.
+
+### Thay đổi trong skill
+
+- `SKILL.md`, quy tắc anchor số 3: từ "khoảng 3-8 từ" thành **tối đa 8 từ, giới hạn cứng**, kèm cách rút.
+- `SKILL.md`, Bước 6: thêm hàm `long_anchors()` và GATE `assert` trước `create_post`. Hàm đã chạy thử
+  trên 3 ca (đạt, quá dài, link ngoài).
+- `SKILL.md`, Bước 6.5: câu chèn vào bài donor cũng phải qua `long_anchors()`.
+- `internal-linking-guide.md`: quy tắc 3 thành tối đa 8 từ, thêm GATE trước publish số 7, đánh số lại
+  các GATE sau publish.
+
+### Còn lại
+
+- 7 anchor trong trang stub 301 giữ nguyên (tên trang gộp làm anchor là có chủ đích).
+- Check mới chỉ quét bài mới trước khi publish. Bài cũ viết sau này bị chỉnh tay vẫn có thể lọt, nên
+  vẫn nên chạy `long_anchors()` trong lần quét định kỳ toàn site.

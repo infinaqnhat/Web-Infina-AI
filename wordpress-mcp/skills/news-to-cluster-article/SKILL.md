@@ -646,7 +646,13 @@ H2: Final Thoughts
 1. 🟢 **Anchor phải hiểu được khi đọc tách khỏi câu.** Che câu đi, chỉ còn anchor, vẫn đoán được
    trang đích nói gì. Google nêu đúng phép thử này trong tài liệu chính thức.
 2. 🟢 **Không dùng** `click here`, `read more`, `this post`, `here` làm anchor.
-3. 🟢 **Không nhồi keyword, không dài lê thê.** Khoảng 3-8 từ.
+3. 🟢 **Không nhồi keyword. Anchor TỐI ĐA 8 từ, đây là giới hạn cứng, không còn là "khoảng".** Đếm bằng
+   `anchor.split()`, tính cả số và ký hiệu. Anchor dài thường là cả một mệnh đề bị bọc link; hãy để link
+   chỉ bao phần danh từ cốt lõi (3-6 từ) và để phần còn lại nằm ngoài thẻ `<a>`. Ví dụ: viết
+   `<a>how a CRM closes the speed-to-lead gap</a>` thay vì một anchor 14 từ kể hết nội dung bài đích.
+   Quy tắc này áp cho **mọi** link nội bộ: pillar, link ngang, và cả câu chèn ở bài donor (Bước 6.5).
+   Lý do: 2026-10-12 đo thấy 64 anchor dài hơn 8 từ trên 41 bài, phải sửa tay từng bài, trong khi
+   skill cũ chỉ ghi "khoảng 3-8 từ" và không có check nào chặn.
 4. ✏️ **`PILLAR_KW` KHÔNG bắt buộc xuất hiện nguyên văn.** Anchor chỉ cần mô tả đúng pillar. Đây là
    thay đổi so với bản trước và là nguyên nhân gốc của bảng trên.
 5. ✏️ **Đọc anchor đã dùng trước khi viết**, chọn biến thể chưa ai dùng. Script ngay dưới.
@@ -827,6 +833,21 @@ def check_targets(html_str, allow=()):
 # SCHEDULED_OK: slug cua bai da len lich ma ta co y link sang (xem ghi chu duoi)
 bad = check_targets(CONTENT, allow=SCHEDULED_OK)
 assert not bad, "link tro vao URL khong tra 200: %s" % bad
+
+# GATE: anchor noi bo toi da 8 tu (quy tac 3, Buoc 5). Tinh tren CONTENT, truoc create_post.
+import html as _html
+def long_anchors(html_str, limit=8):
+    """[(so_tu, anchor)] cho moi link noi bo infina.ai/news co anchor dai hon limit tu."""
+    out = []
+    for m in re.finditer(r'<a\s[^>]*href="https://infina\.ai/news/[a-z0-9-]+/?"[^>]*>(.*?)</a>',
+                         html_str, re.S | re.I):
+        t = _html.unescape(re.sub("<[^>]+>", "", m.group(1))).strip()
+        if len(t.split()) > limit:
+            out.append((len(t.split()), t))
+    return out
+
+too_long = long_anchors(CONTENT)
+assert not too_long, "anchor noi bo dai hon 8 tu, rut gon (chi boc phan danh tu cot loi): %s" % too_long
 ```
 
 ⚠️ **Phải đo bằng HTTP, đừng đối chiếu với danh sách bài đã merge trong `content-plan.md`.** Cách
@@ -1149,6 +1170,7 @@ cur = json.load(urllib.request.urlopen(
 ANCHOR = "...thay bang doan that trong bai donor..."
 ADD = (f' Goc tin moi nhat o <a href="https://infina.ai/news/{SLUG}/">{FOCUS_KW}</a>.')
 assert cur.count(ANCHOR) == 1, "ANCHOR khong duy nhat, chon doan cu the hon"
+assert not long_anchors(ADD), "anchor chen vao donor dai hon 8 tu, rut gon"   # ham dinh nghia o Buoc 6
 call("update_post", {"post_id": did, "content": cur.replace(ANCHOR, ANCHOR + ADD)})
 ```
 
