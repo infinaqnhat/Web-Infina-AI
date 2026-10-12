@@ -85,7 +85,7 @@ pillar. Nhưng nhóm News 40 bài thì có **19 bài không trỏ lên bất k�
 thì cả 11 bài đều vậy. Nghĩa là việc sửa link nội bộ từ trước tới giờ mới chỉ chạm tới phần nằm
 trong plan, còn gần nửa số bài News thì chưa.
 
-**Cột "Mồ côi" giờ chỉ còn đúng 11 bài AI/tech.** Toàn bộ 8 cụm và cả 40 bài News đều đã có ít nhất
+**Cột "Mồ côi" giờ chỉ còn đúng 11 bài AI/tech, và nhóm này đã được quyết định để nguyên (Đợt E, 12/10), nên không tính là việc tồn đọng.** Toàn bộ 8 cụm và cả 40 bài News đều đã có ít nhất
 1 link vào, sau đợt vá mồ côi ngày 09/10. 11 bài còn lại không sửa được bằng link vì chúng không
 thuộc chủ đề nào của site.
 

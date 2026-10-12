@@ -582,3 +582,31 @@ vẫn >= 70% (thấp nhất `best-crm-for-real-estate` 80%), nên đợt C khôn
 - **9 anchor dài quá 9 từ** có sẵn từ trước, chưa động (xem đợt B).
 - **Đợt E**: 11 bài AI/tech mồ côi (#1, #14, #26, #31, #34, #37, #41, #44, #47, #50, #53), chờ quyết
   định giữ nguyên, lập cluster riêng, hay noindex.
+
+## 2026-10-12 | Đợt E: 11 bài AI/tech lạc chủ đề, quyết định để nguyên
+
+### Quyết định
+
+11 bài (#1, #14, #26, #31, #34, #37, #41, #44, #47, #50, #53, tổng khoảng 2.780 chữ, đăng
+06-07/2026) là tin AI/tech chung, có trước khi site chuyển hẳn sang bất động sản. Ba lựa chọn đã
+nêu từ plan mồ côi 07/10: để nguyên, đưa về draft, hoặc redirect. Chủ site chọn **để nguyên, chỉ
+ghi quyết định**.
+
+**Không có thay đổi nào trên site trong đợt này.** Không `update_post`, không redirect, không gỡ
+bài. Chỉ cập nhật tài liệu: `content-plan.md` (Batch 3 đánh dấu đã quyết) và
+`references/teardown-infina-table.md` (ghi chú cột "Mồ côi").
+
+### Lý do và hệ quả
+
+- Vá link cho nhóm này sẽ làm loãng topical authority bất động sản mà không giúp gì, nên không vá.
+- 11 bài này **là ngoại lệ có chủ đích**, không tính vào số trang mồ côi khi đo ở các lần
+  teardown sau. Mốc mồ côi hợp lệ giờ là 0 trang thuộc 8 cụm và News real estate.
+- Công cụ WordPress hiện có không đặt được `noindex` (`update_post` chỉ có title, description,
+  focus keyword), nên `noindex` không phải lựa chọn khả thi nếu sau này đổi ý.
+
+### Còn lại
+
+- File `exports/teardown-infina-table.{docx,html}` được dựng từ bản md cũ, chưa dựng lại sau ghi
+  chú này. Bản md là nguồn đúng.
+- Nếu sau này muốn gỡ nhóm này, chưa có dữ liệu traffic/backlink của 11 URL (chưa có quyền GSC
+  trong môi trường). Nên kiểm tra GSC trước khi chuyển draft hoặc redirect.

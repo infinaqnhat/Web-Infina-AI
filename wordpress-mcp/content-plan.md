@@ -91,7 +91,7 @@ nên mồ côi tích tụ dần theo từng bài publish.
 | Nhóm | Số | Xử lý |
 |---|---|---|
 | A. Bài bất động sản mồ côi | 23 | Vá link, chia 2 batch dưới |
-| B. Bài AI/tech lạc chủ đề (06-07/2026, ID #14-#53) | 11 | Cần quyết định riêng, xem cuối |
+| B. Bài AI/tech lạc chủ đề (06-07/2026, ID #14-#53) | 11 | ✅ Đã quyết 12/10: để nguyên (Đợt E), xem cuối |
 | C. Trang index `/news` | 1 | Không phải mồ côi, bỏ qua |
 
 ---
@@ -146,7 +146,7 @@ trước khi dùng thì lục cụm tương ứng xem có sibling nào hợp kh�
 | agentic-ai-risk-concerns-real-estate-brokerage-leaders | #237 TCPA (Cụm 8) |
 | ai-flat-fee-brokerage-model-real-estate-agents | #207 CRM (Cụm 2) |
 
-#### Batch 3: 11 bài lạc chủ đề, cần bạn quyết
+#### Batch 3: 11 bài lạc chủ đề. ✅ ĐÃ QUYẾT 2026-10-12: để nguyên, không đổi gì trên site
 
 `ai-cannot-learn-while-it-works`, `claude-fable-5-is-back`, `is-openai-in-trouble`,
 `claude-code-just-shipped-artifacts`, `genai-economy-first-revenue-number`,
