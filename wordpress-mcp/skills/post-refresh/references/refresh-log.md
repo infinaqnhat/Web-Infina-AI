@@ -610,3 +610,51 @@ bài. Chỉ cập nhật tài liệu: `content-plan.md` (Batch 3 đánh dấu đ
   chú này. Bản md là nguồn đúng.
 - Nếu sau này muốn gỡ nhóm này, chưa có dữ liệu traffic/backlink của 11 URL (chưa có quyền GSC
   trong môi trường). Nên kiểm tra GSC trước khi chuyển draft hoặc redirect.
+
+## 2026-10-12 | Đợt F: 12 bài vi phạm quy tắc 6 (hai link cùng đích trong một bài)
+
+### Việc đã làm
+
+12 bài (#299, #419, #475, #481, #492, #504, #513, #528, #975, #1243, #1449, #918) có hai link
+trỏ cùng một URL đích trong cùng bài, vi phạm quy tắc 6 của guide. Mỗi bài sửa đúng **một** link:
+
+- Giữ link trong thân bài (có ngữ cảnh), bỏ hoặc viết lại link trùng ở mục Related Reading.
+- Khi câu Related Reading chỉ còn lại mỗi link trùng, viết lại câu để vẫn đọc được, không để câu
+  cụt hoặc bỏ cả mục.
+- Dùng `update_post` với toàn bộ nội dung (không có chế độ patch), mỗi bài đã đọc lại bản live trước
+  khi đẩy.
+
+### Kết quả đo lại trên bản live
+
+- 12/12 bài khớp bản đã soát (WordPress chuẩn hóa style của thẻ `img`, khác vài ký tự, vô hại).
+- Số bài có hai link cùng đích trên toàn site: **0**.
+- Toàn bộ pillar vẫn đạt tỉ lệ anchor khác nhau >= 70%.
+
+### Còn mở (không thuộc đợt này)
+
+- Tiêu đề #299 có dấu gạch dài (em dash).
+- 9 anchor dài hơn 9 từ (có từ trước).
+
+## 2026-10-12 | Chốt bộ vai trò bài trong cụm: 9 họ
+
+### Quyết định
+
+Cột "Vai trò" trong bảng cụm của `content-plan.md` từng có **67 giá trị khác nhau**, không máy nào
+phân loại được. Chủ site chốt gom về **9 họ**: `pillar`, `review`, `compare`, `buying-guide`,
+`explainer`, `how-to`, `niche`, `news-support`, `bridge`.
+
+### Thay đổi
+
+- Tạo `references/cluster-roles.md`: định nghĩa từng họ, cách link, số bài hiện có, bảng ánh xạ
+  nhãn cũ sang họ.
+- `content-plan.md`: **87/87** dòng có URL được gán họ. Mã đặt ở đầu ô, nhãn cũ giữ phía sau để
+  không mất thông tin (niche, brand, HUB...).
+- `skills/news-to-cluster-article/SKILL.md` Bước 4: thêm mục 5, bài News luôn là `news-support`, trỏ
+  về `references/cluster-roles.md`.
+- `external-seo-toolkit/references/internal-linking-guide.md` mục 5: thêm bước khai vai trò.
+
+### Lưu ý
+
+- Bộ 9 họ là do trợ lý gom từ dữ liệu có sẵn. Chủ site chốt con số 9 nhưng **chưa duyệt từng nhãn**.
+  Nhãn nào xếp sai họ thì sửa mã trong `content-plan.md` và bảng ánh xạ cuối `cluster-roles.md`.
+- Vai trò chỉ phục vụ biên tập và script đo, không phải tín hiệu SEO.

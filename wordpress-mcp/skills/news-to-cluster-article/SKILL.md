@@ -599,6 +599,7 @@ Với mỗi tin, đánh giá:
 2. **Cluster keyword:** Chọn 1 keyword long-tail — **không được trùng bất kỳ giá trị nào trong `used_keywords`** (Bước 2b) và pass `is_duplicate()` ở Bước 2 (WordPress). Kiểm tra thêm slug-overlap thủ công (>0.6 là trùng) với các slug hiện có, kể cả slug của chính các bài News trước đó (không chỉ Plan) — dễ bị bỏ sót vì nhiều bài đều có đuôi `-real-estate-agents` khiến overlap dễ vượt ngưỡng.
 3. **Category:** CRM/sales automation topic → `"CRM Software"`, Chatbot/AI assistant/ISA/compliance topic → `"AI Chatbot"`.
 4. **Angle:** Tin cung cấp dữ liệu/case study/xu hướng gì để làm hook cho đúng cluster keyword đó?
+5. **Vai trò (họ):** bài News luôn là `news-support`. Khi thêm dòng News vào bảng cụm trong `content-plan.md` sau khi publish, ghi `` `news-support` `` ở đầu ô "Vai trò". Bộ 9 họ và cách dùng nằm ở `references/cluster-roles.md`. Chỉ dùng họ khác nếu bài thực chất là review/compare/how-to... chứ không phải bài từ tin tức.
 
 Chọn **top 1 bộ** (tin + cluster keyword + pillar target + category) có relevance cao nhất và angle rõ ràng nhất để viết. Output rõ các giá trị: `FOCUS_KW`, `PILLAR_KW`/`PILLAR_URL`, `CATEGORY_NAME`.
 

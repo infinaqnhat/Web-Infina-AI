@@ -302,6 +302,9 @@ ghi nhận.
 2. Ưu tiên pillar **chưa bị dùng nhiều gần đây**, để tải phân tán.
 3. Chạy `anchors_to(slug)` xem anchor nào đã bị dùng. **Chạy trước khi viết**, không phải sau: viết
    xong rồi mới kiểm tra thì bạn đã có sẵn một câu hay và sẽ ngại sửa.
+4. Khai **vai trò** của bài (review, compare, how-to...) theo bộ vai trò của site, để biết bài này
+   link kiểu gì. Với Infina: 9 họ trong `wordpress-mcp/references/cluster-roles.md`, bài News luôn là
+   `news-support`. Vai trò chỉ phục vụ biên tập, không phải tín hiệu SEO.
 
 ### Lúc viết
 
