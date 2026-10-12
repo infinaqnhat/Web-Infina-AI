@@ -795,3 +795,17 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - **Lý do lên lịch thay vì đăng ngay (rule 1, tối đa 3 bài/ngày giờ site):** ngày 12/10 đã đăng 3 bài (#1825 04:06, #1832 04:16, #1843 08:12), đủ trần. Hệ quả cần biết: routine news 18:11 UTC ngày 12/10 sẽ đếm 3/3 và dừng, tức hôm nay không có bài news. Lỗi này do mình không đếm trần khi đăng liên tiếp 3 bài Cụm 9.
 - **Quy ước lịch cho các cluster Cụm 9 còn lại:** tối đa 2 bài evergreen mỗi ngày, đặt 10:00 giờ site (và 14:00 nếu cần bài thứ hai), chừa 1 slot cho routine news 18:xx UTC. Trước khi tạo luôn `list_posts` future+publish để đếm.
 - **Việc chờ sau 13/10 10:00:** (a) diff nội dung live với file; (b) thêm link vào pillar #1825 (không thêm trước vì đích chưa 200); (c) bài chưa có inbound nào cho tới (b).
+
+### Cụm 9 wave 1: `real estate advertising` (#1859)
+
+- Lên lịch #1859 `/real-estate-advertising/` ngày **13/10/2026 14:00** (giờ site = UTC): slot evergreen thứ hai của ngày, news 18:11 vẫn còn chỗ (ngày 13/10 = 2 evergreen + 1 news = 3). 1.724 chữ, density 0,64%, 11 H2, 3 bảng, 4 ảnh AI.
+- Số chi phí chỉ lấy từ trang Ylopo mở trực tiếp (bài đăng 18/12/2024: CPL trung bình 66,69 USD, Facebook 5 đến 30 USD, Google 50 đến 150 USD, tối thiểu khoảng 1.500 USD/tháng) và ghi rõ là ước tính của một vendor bán dịch vụ. Ví dụ cost per closing là minh họa có nêu giả định.
+- **Không dùng và không link số liệu của #1415** (xem cảnh báo bên dưới): bài đó ghi CPL 503 USD kèm 8.010 USD/năm và 2.850 USD/tháng, gán cho Ylopo, nhưng trang Ylopo đã mở không có các số đó.
+- Link tới #1853 (đang scheduled 10:00 cùng ngày, sớm hơn bài này 4 giờ) nên hợp lệ khi bài này lên. `check_targets` bỏ qua slug scheduled sớm hơn.
+
+### Cảnh báo chưa xử lý: số liệu của #1415 (`cost-per-lead-for-real-estate-agents`) không khớp nguồn đã gán
+
+- #1415 viết "theo breakdown 2026 của Ylopo": CPL trung bình 503 USD (năm trước 448 USD), paid 480 USD, organic 416 USD, agent chi khoảng 8.010 USD/năm và 2.850 USD/tháng cho digital, tỷ lệ chốt lead mua 2% đến 5%.
+- Trang Ylopo được gán (`ylopo.com/blog/how-much-do-real-estate-leads-cost`), mở ngày 12/10/2026, là bài đăng 18/12/2024 và ghi CPL trung bình 66,69 USD, Facebook 5 đến 30 USD, Google 50 đến 150 USD, không có các số 503/448/480/416/2.850.
+- Con số 8.010 USD trùng đúng với chi phí kinh doanh trung vị toàn bộ của NAR Member Profile 2025 (8.010 USD, không phải riêng marketing), nên có khả năng đã bị gán nhầm nguồn.
+- Chưa sửa #1415 vì chưa hỏi user. Đề xuất: viết lại các con số theo trang Ylopo thật hoặc gỡ phần số liệu, và kiểm tra các bài khác từng trích "503 USD". #1825 chỉ link tới #1415 với anchor "average cost per lead for agents" và không lặp các con số.
