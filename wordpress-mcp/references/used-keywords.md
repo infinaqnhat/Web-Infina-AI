@@ -185,6 +185,14 @@ chưa xuất hiện ở bảng trên. Xoá dòng khỏi mục này và chuyển 
 
 | Ngày đặt chỗ | Keyword | Slug dự kiến | Nguồn |
 |---|---|---|---|
+| 2026-10-12 | `google ads for realtors` (gom `ppc real estate`) | `google-ads-for-realtors` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `google business profile for realtors` (gom optimizing, posts) | `google-business-profile-for-realtors` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `flyer for real estate` (gom `flyers for real estate agents`) | `flyer-for-real-estate` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `listing presentation` (gom template, examples, sample) | `listing-presentation` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `closing gifts real estate` (gom client gifts, best closing gifts) | `closing-gifts-real-estate` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `real estate testimonials` (gom examples) | `real-estate-testimonials` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `realtor name ideas` (gom `realty company name ideas`, `llc name ideas`) | `realtor-name-ideas` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `real estate agent referral` (gom referral marketing, referral fees) | `real-estate-agent-referral` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
 
-Cụm 9 wave 1 (10 bài) đã duyệt và đặt chỗ ngày 12/10/2026. Wave 2 (8 bài) chưa duyệt nên **chưa đặt chỗ**; khi nào duyệt thì thêm vào
-bảng này. Danh sách dự kiến ở `references/plan-cum-9-marketing-branding.md`.
+Cụm 9: wave 1 (10 bài) và wave 2 (8 bài) đã duyệt và đặt chỗ ngày 12/10/2026. Wave 3 (backlog tùy chọn) chưa đặt chỗ. Danh sách dự kiến ở
+`references/plan-cum-9-marketing-branding.md`.

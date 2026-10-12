@@ -1,6 +1,6 @@
 # Plan đề xuất: Cụm 9, Real Estate Marketing và Branding
 
-**Trạng thái: pillar `real estate marketing` ĐÃ ĐĂNG 12/10/2026 (#1825, `/real-estate-marketing/`). Hub `real estate branding` ĐÃ ĐĂNG 12/10/2026 (#1832, `/real-estate-branding/`). 10 cluster WAVE 1 ĐÃ DUYỆT và đặt chỗ keyword 12/10/2026 (chưa viết). 8 cluster wave 2 vẫn là ĐỀ XUẤT, chưa duyệt.** Soạn 2026-10-12 theo
+**Trạng thái: pillar `real estate marketing` ĐÃ ĐĂNG 12/10/2026 (#1825, `/real-estate-marketing/`). Hub `real estate branding` ĐÃ ĐĂNG 12/10/2026 (#1832, `/real-estate-branding/`). 10 cluster WAVE 1 ĐÃ DUYỆT và đặt chỗ keyword 12/10/2026 (chưa viết). 8 cluster WAVE 2 ĐÃ DUYỆT và đặt chỗ keyword 12/10/2026 (chưa viết). Wave 3 là backlog tùy chọn.** Soạn 2026-10-12 theo
 `skills/pillar-cluster-writer/SKILL.md` Bước 1-4. Pillar và hub đã ghi vào `content-plan.md` (Cụm 9) và đặt chỗ keyword trong
 `used-keywords.md`. Cluster chưa đặt chỗ vì chưa duyệt.
 
@@ -102,7 +102,7 @@ họ trong `references/cluster-roles.md`. Volume là bucket.
 | `how-to` | Closing Gifts for Real Estate Clients | `closing gifts real estate` 500 H (+ client gifts, best closing gifts) |
 | `how-to` | Real Estate Testimonials: How to Ask and Examples | `real estate testimonials` 500 L (+ examples) |
 | `niche` | Real Estate Business Name Ideas | `realtor name ideas` 500 M (+ `realty company name ideas`, `llc name ideas`) |
-| `how-to` | Real Estate Referral Marketing | `real estate agent referral` 5k L, **xem rủi ro bên dưới** |
+| `how-to` | Real Estate Referral Marketing | `real estate agent referral` 5k L, **đã kiểm SERP 12/10: lẫn referral fee và cách nhận giới thiệu, viết cả hai** |
 
 ### Wave 3 và news-support (không cần plan trước)
 

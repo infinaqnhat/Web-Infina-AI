@@ -859,3 +859,10 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Ví dụ cost per closing (25 lead x 60 USD, 2% so với 4%) là minh họa có nêu giả định, trùng với bài #1859.
 - Đã quét 150 bài live ngày 12/10: chỉ #1415 chứa 503/8.010/2.850 do nguồn Ylopo. Con số 8.010 USD hợp lệ ở #1843 vì đó là chi phí kinh doanh trung vị của NAR Member Profile 2025, không phải chi phí marketing.
 - Chưa cập nhật: dòng tracker Google Sheet của #1415 (không truy cập được), tiêu đề cũ vẫn có thể còn ở đó.
+
+## 2026-10-12: duyệt wave 2 Cụm 9 và đặt chỗ 8 keyword
+
+- 8 keyword wave 2 đã ghi vào `used-keywords.md` (bảng reserved) và `content-plan.md`: `google ads for realtors`, `google business profile for realtors`, `flyer for real estate`, `listing presentation`, `closing gifts real estate`, `real estate testimonials`, `realtor name ideas`, `real estate agent referral`. Không keyword nào trùng bảng published hay plan hiện có.
+- Ranh giới cần giữ khi viết: Google Ads không viết lại tổng quan (#1859) và không viết Facebook (#1229); Google Business Profile đào sâu hơn checklist trong #1871; flyer khác postcard (#1877); testimonials, name ideas lên hub #1832.
+- `real estate agent referral`: kiểm SERP 12/10, kết quả lẫn hai ý định (phí giới thiệu giữa các agent và cách nhận thêm giới thiệu). Quyết định viết cả hai và đặt tiêu đề phản ánh điều đó. Mức phần trăm phí referral chỉ nêu khi mở được nguồn gốc.
+- Chưa viết bài nào của wave 2.

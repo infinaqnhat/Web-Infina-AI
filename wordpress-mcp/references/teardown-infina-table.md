@@ -248,14 +248,14 @@ Volume là bucket (50 / 500 / 5.000 / 50.000). Mức trong ngoặc là cạnh tr
 | `niche` Wave 1 (⏰ scheduled 16/10/2026 10:00 = #1889) | `/real-estate-agent-logo` | - | ~1,800 | - | `real estate agent logo` 5k C (+ `real estate logo` 5k TB, `logo ideas` 500 C). SERP toàn tool, khó nhất wave | ✅ `real-estate-branding` | Real Estate Logos: Ideas and How to Design One |
 | `niche` Wave 1 (⏰ scheduled 16/10/2026 14:00 = #1895) | `/real-estate-agent-bio` | - | ~2,000 | - | `real estate agent bio` 500 T (+ examples, broker bio, salesperson bio) | ✅ `real-estate-branding` | Real Estate Agent Bio: Examples and a Template |
 | `review` Wave 1 (⏰ scheduled 17/10/2026 10:00 = #1901) | `/real-estate-marketing-software` | - | ~1,800 | - | `real estate marketing software` 500 T (+ platform, tools). Link `#1225`, `#263` | ✅ `real-estate-marketing` | Best Real Estate Marketing Software in 2026 |
-| `how-to` Wave 2 | `/google-ads-for-realtors` | - | ~1,600 | - | `google ads for realtors` 500 T (+ `ppc real estate`) | ✅ `real-estate-marketing` | Google Ads for Real Estate Agents |
-| `how-to` Wave 2 | `/google-business-profile-for-realtors` | - | ~1,600 | - | `google business profile for realtors` 500 T | ✅ `real-estate-marketing` | Google Business Profile for Realtors |
-| `how-to` Wave 2 | `/flyer-for-real-estate` | - | ~1,500 | - | `flyer for real estate` 5k C (+ `flyers for real estate agents` 500 C) | ✅ `real-estate-marketing` | Real Estate Flyers: Examples and Templates |
-| `how-to` Wave 2 | `/listing-presentation` | - | ~1,800 | - | `listing presentation` 500 C (+ template, examples, sample) | ✅ `real-estate-marketing` | Listing Presentation: Template and Examples |
-| `how-to` Wave 2 | `/closing-gifts-real-estate` | - | ~1,500 | - | `closing gifts real estate` 500 C (+ client gifts, best closing gifts) | ✅ `real-estate-marketing` | Closing Gifts for Real Estate Clients |
-| `how-to` Wave 2 | `/real-estate-testimonials` | - | ~1,500 | - | `real estate testimonials` 500 T (+ examples) | ✅ `real-estate-branding` | Real Estate Testimonials: How to Ask and Examples |
-| `niche` Wave 2 | `/realtor-name-ideas` | - | ~1,500 | - | `realtor name ideas` 500 TB (+ `realty company name ideas`, `llc name ideas`) | ✅ `real-estate-branding` | Real Estate Business Name Ideas |
-| `how-to` Wave 2 | `/real-estate-referral-marketing` | - | ~1,600 | - | `real estate agent referral` 5k T, **chờ xác minh SERP** (có thể là referral fee) | ✅ `real-estate-marketing` | Real Estate Referral Marketing |
+| `how-to` Wave 2 (đã duyệt, đã đặt chỗ 12/10) | `/google-ads-for-realtors` | - | ~1,600 | - | `google ads for realtors` 500 T (+ `ppc real estate`) | ✅ `real-estate-marketing` | Google Ads for Real Estate Agents |
+| `how-to` Wave 2 (đã duyệt, đã đặt chỗ 12/10) | `/google-business-profile-for-realtors` | - | ~1,600 | - | `google business profile for realtors` 500 T | ✅ `real-estate-marketing` | Google Business Profile for Realtors |
+| `how-to` Wave 2 (đã duyệt, đã đặt chỗ 12/10) | `/flyer-for-real-estate` | - | ~1,500 | - | `flyer for real estate` 5k C (+ `flyers for real estate agents` 500 C) | ✅ `real-estate-marketing` | Real Estate Flyers: Examples and Templates |
+| `how-to` Wave 2 (đã duyệt, đã đặt chỗ 12/10) | `/listing-presentation` | - | ~1,800 | - | `listing presentation` 500 C (+ template, examples, sample) | ✅ `real-estate-marketing` | Listing Presentation: Template and Examples |
+| `how-to` Wave 2 (đã duyệt, đã đặt chỗ 12/10) | `/closing-gifts-real-estate` | - | ~1,500 | - | `closing gifts real estate` 500 C (+ client gifts, best closing gifts) | ✅ `real-estate-marketing` | Closing Gifts for Real Estate Clients |
+| `how-to` Wave 2 (đã duyệt, đã đặt chỗ 12/10) | `/real-estate-testimonials` | - | ~1,500 | - | `real estate testimonials` 500 T (+ examples) | ✅ `real-estate-branding` | Real Estate Testimonials: How to Ask and Examples |
+| `niche` Wave 2 (đã duyệt, đã đặt chỗ 12/10) | `/realtor-name-ideas` | - | ~1,500 | - | `realtor name ideas` 500 TB (+ `realty company name ideas`, `llc name ideas`) | ✅ `real-estate-branding` | Real Estate Business Name Ideas |
+| `how-to` Wave 2 (đã duyệt, đã đặt chỗ 12/10) | `/real-estate-referral-marketing` | - | ~1,600 | - | `real estate agent referral` 5k T, **chờ xác minh SERP** (có thể là referral fee) | ✅ `real-estate-marketing` | Real Estate Referral Marketing |
 
 **Luồng link dự kiến:** mỗi cluster 1 link lên pillar nhà (business card, logo, bio, names và
 testimonials lên hub branding; hub branding lên pillar marketing). Tối đa 1 link ra pillar cụm khác
