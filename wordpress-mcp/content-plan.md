@@ -768,12 +768,11 @@ Loại này không ai phát hiện khi đọc lướt vì câu văn nghe hợp l
 
 ---
 
-### Cụm 9: Marketing và Branding, ✅ pillar marketing (#1825) và hub branding (#1832) đã đăng 12/10/2026
+### Cụm 9: Marketing và Branding, ✅ pillar (#1825) và hub (#1832) đã đăng 12/10/2026, 📝 10 cluster wave 1 đã duyệt chưa viết
 
 Plan đầy đủ, dữ liệu keyword, SERP và ranh giới với các cụm khác ở
 `references/plan-cum-9-marketing-branding.md`. Bảng chi tiết cả cluster đề xuất ở
-`references/teardown-infina-table.md` mục Cụm 9. **Chỉ pillar marketing và hub branding đã duyệt và đã
-đặt chỗ keyword.** 18 cluster (wave 1 và 2) vẫn là đề xuất, chưa đặt chỗ.
+`references/teardown-infina-table.md` mục Cụm 9. **Pillar, hub và 10 cluster wave 1 đã duyệt và đặt chỗ keyword (12/10).** 8 cluster wave 2 vẫn là đề xuất, chưa đặt chỗ.
 
 Ranh giới: Cụm 9 là "được nhìn thấy và được nhớ", Cụm 7 là "bắt và chăm lead". Không có bài Facebook ads
 riêng (đã có #1229 ở Cụm 7). Không viết lại CRM marketing (#263, Cụm 2).
@@ -782,6 +781,16 @@ riêng (đã có #1229 ở Cụm 7). Không viết lại CRM marketing (#263, C�
 |---|---|---|---|---|
 | `pillar` **Pillar** | [Real Estate Marketing Guide: What to Do, Spend and Measure](https://infina.ai/news/real-estate-marketing/) | `real estate marketing` | Discovery/TOF | ✅ Published 12/10 = #1825, 2.305 từ, density 0.52%, 2 bảng, 4 ảnh AI, category Real Estate Marketing (392). Gom `marketing for real estate agents`, `marketing for realtors`, `real estate marketing strategies`. Link ra #1223, #975, #930, #1415, #1229, #263. Donor trỏ vào: #1152. Chưa có cluster nào, mục Related Reading thêm khi cluster lên |
 | `pillar` **Hub branding** | [Real Estate Branding: A Practical Guide for Agents and Teams](https://infina.ai/news/real-estate-branding/) | `real estate branding` | Discovery/TOF | ✅ Published 12/10 = #1832, 1.715 từ, density 0,70%, 1 bảng, 4 ảnh AI, category Real Estate Marketing (392). Gom `real estate agent branding`, slogan, USP, personal branding. Link lên pillar #1825, ra #975 và #1011. Inbound: #1825 |
+| `how-to` Wave 1 | Real Estate Marketing Plan: Template and Budget (slug dự kiến `/real-estate-marketing-plan/`) | `real estate marketing plan` | Consideration/MOF | 📝 Đã duyệt 12/10, chưa viết. Gom `marketing budget`. Lên pillar marketing #1825. SERP thưởng file template, cần làm file mẫu thật |
+| `review` Wave 1 | 30 Real Estate Marketing Ideas, With Cost and Effort (slug dự kiến `/real-estate-marketing-ideas/`) | `real estate marketing ideas` | Discovery/TOF | 📝 Đã duyệt 12/10, chưa viết. Gom `agent marketing ideas`, `unique real estate marketing ideas`, `marketing tips for realtors`. Lên pillar marketing #1825. Gom 4 biến thể vào 1 bài |
+| `explainer` Wave 1 | Real Estate Advertising: Channels, Costs and Examples (slug dự kiến `/real-estate-advertising/`) | `real estate advertising` | Discovery/TOF | 📝 Đã duyệt 12/10, chưa viết. Gom `advertise real estate`, `ads for real estate`. Lên pillar marketing #1825. Không thêm bài Facebook ads riêng, link #1229 |
+| `how-to` Wave 1 | Social Media for Realtors: A Weekly Routine That Fits a Production Schedule (slug dự kiến `/social-media-for-realtors/`) | `social media for realtors` | Consideration/MOF | 📝 Đã duyệt 12/10, chưa viết. Gom `social media marketing for realtors`, instagram, facebook. Lên pillar marketing #1825 |
+| `how-to` Wave 1 | Real Estate SEO for Agents: What Actually Moves Local Rankings (slug dự kiến `/real-estate-seo/`) | `real estate seo` | Consideration/MOF | 📝 Đã duyệt 12/10, chưa viết. Gom `realtor seo`. Lên pillar marketing #1825. Có thể dùng chính site này làm ví dụ |
+| `how-to` Wave 1 | Real Estate Postcards and Mailers That Get Opened (slug dự kiến `/real-estate-postcards/`) | `postcards real estate` | Consideration/MOF | 📝 Đã duyệt 12/10, chưa viết. Gom `realtor mailers`, `mailers for real estate agents`. Lên pillar marketing #1825 |
+| `niche` Wave 1 | Real Estate Business Cards: Ideas, Templates and What to Print (slug dự kiến `/real-estate-agent-business-card/`) | `real estate agent business card` | Consideration/MOF | 📝 Đã duyệt 12/10, chưa viết. Gom 8 biến thể. Lên hub branding #1832. Hub branding trỏ vào. Cụm branding: lên hub #1832 |
+| `niche` Wave 1 | Real Estate Logos: Ideas and How to Design One (slug dự kiến `/real-estate-agent-logo/`) | `real estate agent logo` | Consideration/MOF | 📝 Đã duyệt 12/10, chưa viết. Gom `real estate logo`, `logo ideas`. Lên hub branding #1832. SERP toàn tool, khó nhất wave. Lên hub #1832 |
+| `niche` Wave 1 | Real Estate Agent Bio: Examples and a Template (slug dự kiến `/real-estate-agent-bio/`) | `real estate agent bio` | Consideration/MOF | 📝 Đã duyệt 12/10, chưa viết. Gom examples, broker bio, salesperson bio. Lên hub branding #1832. Lên hub #1832 |
+| `review` Wave 1 | Best Real Estate Marketing Software in 2026 (slug dự kiến `/real-estate-marketing-software/`) | `real estate marketing software` | Decision/BOF | 📝 Đã duyệt 12/10, chưa viết. Gom platform, tools. Lên pillar marketing #1825. Góc: công cụ cho mọi kênh (email, social, ads, thiết kế), KHÔNG định nghĩa CRM marketing (đã có #450 `crm marketing software`). Link #1225, #263 |
 
 ---
 
@@ -835,7 +844,7 @@ nội dung đã sửa, redirect đã verify).
    "reserved" sang bảng "đã publish").
 5. **Viết 2 bài CEP** (Cụm 2, góc Customer Engagement Platform) — plan đã duyệt 30/09, chưa viết
    bài thật. Theo đúng quy trình `skills/pillar-cluster-writer/SKILL.md` Bước 5 trở đi.
-6. **Cụm 9: Real Estate Marketing và Branding**, pillar marketing **#1825** và hub branding **#1832** đã đăng 12/10, 18 cluster còn là đề xuất, nằm ở
+6. **Cụm 9: Real Estate Marketing và Branding**, pillar marketing **#1825** và hub branding **#1832** đã đăng 12/10. **10 cluster wave 1 đã duyệt và đặt chỗ keyword 12/10, chưa viết** (viết dần, 1 bài/lần theo `pillar-cluster-writer`); 8 cluster wave 2 còn là đề xuất, nằm ở
    `references/plan-cum-9-marketing-branding.md`.
 
 **Tất cả cặp nghi trùng phát hiện khi map 8 Cụm (01/10/2026) đã audit xong** — bao gồm 2 cặp cuối

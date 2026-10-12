@@ -175,6 +175,16 @@ chưa xuất hiện ở bảng trên. Xoá dòng khỏi mục này và chuyển 
 
 | Ngày đặt chỗ | Keyword | Slug dự kiến | Nguồn |
 |---|---|---|---|
+| 2026-10-12 | `real estate marketing plan` (gom `marketing budget`) | `real-estate-marketing-plan` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `real estate marketing ideas` (gom `agent marketing ideas`, `unique real estate marketing ideas`, `marketing tips for realtors`) | `real-estate-marketing-ideas` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `real estate advertising` (gom `advertise real estate`, `ads for real estate`) | `real-estate-advertising` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `social media for realtors` (gom `social media marketing for realtors`, instagram, facebook) | `social-media-for-realtors` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `real estate seo` (gom `realtor seo`) | `real-estate-seo` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `postcards real estate` (gom `realtor mailers`, `mailers for real estate agents`) | `real-estate-postcards` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `real estate agent business card` (gom 8 biến thể) | `real-estate-agent-business-card` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `real estate agent logo` (gom `real estate logo`, `logo ideas`) | `real-estate-agent-logo` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `real estate agent bio` (gom examples, broker bio, salesperson bio) | `real-estate-agent-bio` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
+| 2026-10-12 | `real estate marketing software` (gom platform, tools) | `real-estate-marketing-software` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
 
-Các cluster của Cụm 9 (wave 1 và 2) chưa được duyệt nên **chưa đặt chỗ**. Khi nào duyệt thì thêm vào
-bảng này. Danh sách keyword dự kiến của chúng ở `references/plan-cum-9-marketing-branding.md`.
+Cụm 9 wave 1 (10 bài) đã duyệt và đặt chỗ ngày 12/10/2026. Wave 2 (8 bài) chưa duyệt nên **chưa đặt chỗ**; khi nào duyệt thì thêm vào
+bảng này. Danh sách dự kiến ở `references/plan-cum-9-marketing-branding.md`.
