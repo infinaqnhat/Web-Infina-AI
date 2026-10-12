@@ -1,8 +1,8 @@
 # Plan đề xuất: Cụm 9, Real Estate Marketing và Branding
 
-**Trạng thái: ĐỀ XUẤT, CHƯA DUYỆT, chưa viết bài nào.** Soạn 2026-10-12 theo
-`skills/pillar-cluster-writer/SKILL.md` Bước 1-4. Chưa ghi vào `content-plan.md` và chưa đặt chỗ keyword
-trong `used-keywords.md`, vì plan chưa được duyệt.
+**Trạng thái: pillar `real estate marketing` và hub `real estate branding` ĐÃ DUYỆT 12/10/2026. 18 cluster wave 1 và 2 vẫn là ĐỀ XUẤT, chưa duyệt. Chưa viết bài nào.** Soạn 2026-10-12 theo
+`skills/pillar-cluster-writer/SKILL.md` Bước 1-4. Pillar và hub đã ghi vào `content-plan.md` (Cụm 9) và đặt chỗ keyword trong
+`used-keywords.md`. Cluster chưa đặt chỗ vì chưa duyệt.
 
 Nguồn: file keyword tổng (18.985 dòng, đã gộp export 2026-10-12), teardown `followupboss.com` (cụm
 "Marketing và thương hiệu", 48 trang), 4 truy vấn SERP thật, đối chiếu 150 bài live và `content-plan.md`.

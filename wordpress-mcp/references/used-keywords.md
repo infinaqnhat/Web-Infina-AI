@@ -171,5 +171,10 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 Từ `content-plan.md` — bắt các keyword đã "có chủ" trong plan nhưng chưa lên bài thật, nên
 chưa xuất hiện ở bảng trên. Xoá dòng khỏi mục này và chuyển lên bảng trên khi bài đã publish.
 
-*(Trống — toàn bộ keyword trong content-plan.md hiện tại đã có bài thật, xem bảng "Bài đã publish"
-ở trên, kể cả những bài đang ở trạng thái scheduled.)*
+| Ngày đặt chỗ | Keyword | Slug dự kiến | Nguồn |
+|---|---|---|---|
+| 2026-10-12 | `real estate marketing` (gom `marketing for real estate agents`, `marketing for realtors`, `real estate marketing strategies`) | `real-estate-marketing` | Cụm 9 pillar, đã duyệt, chưa viết |
+| 2026-10-12 | `real estate branding` (gom `real estate agent branding`) | `real-estate-branding` | Cụm 9 hub branding, đã duyệt, chưa viết |
+
+Các cluster của Cụm 9 (wave 1 và 2) chưa được duyệt nên **chưa đặt chỗ**. Khi nào duyệt thì thêm vào
+bảng này. Danh sách keyword dự kiến của chúng ở `references/plan-cum-9-marketing-branding.md`.
