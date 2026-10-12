@@ -20,6 +20,7 @@ Crawl tin tức mới theo 10 mảng → đối chiếu Google Sheet tracker (ng
 |----|-----|---------|
 | 19 | AI Chatbot | Bài về chatbot, AI assistant, conversational AI, ISA, AI voice |
 | 85 | CRM Software | Bài về CRM, sales automation, lead management |
+| 392 | Real Estate Marketing | Cụm 9: marketing, branding, quảng cáo, social, SEO local, mailer cho agent (tạo 12/10/2026) |
 | 153 | Real Estate Websites | Bài về website builder, IDX, MLS feed, landing page, web design |
 | 289 | Real Estate Chatbots | (đã tồn tại trên site, ít dùng — ưu tiên 19) |
 | 13 | Thought Leadership | (đã tồn tại trên site, ít dùng) |
@@ -27,14 +28,14 @@ Crawl tin tức mới theo 10 mảng → đối chiếu Google Sheet tracker (ng
 
 **Bảng trên đã bổ sung 03/10/2026** sau khi phát hiện bản cũ chỉ liệt kê 19/85/1 trong khi site thực tế có 6 category — bài IDX/website dùng **153**, không phải 19 hay 85 (verify bằng `GET /wp-json/wp/v2/posts?slug=idx-website-for-realtors&_fields=categories`). Luôn tra lại danh sách thật qua `GET https://infina.ai/news/wp-json/wp/v2/categories?per_page=100&_fields=id,name` nếu chủ đề bài không khớp 3 dòng đầu.
 
-Truyền category **bằng tên** vào param `categories` (WP MCP tự resolve tên category thành term qua `wp_set_post_terms`, tạo mới nếu tên chưa tồn tại):
+Truyền category **bằng tên** hoặc ID string vào param `categories` (snippet đã sửa 12/10 tự đổi tên thành ID và tạo term mới nếu chưa có):
 ```python
 "categories": ["CRM Software"]
 "categories": ["AI Chatbot"]
 ```
 Chọn category theo chủ đề bài: CRM/sales automation → "CRM Software", chatbot/AI assistant/ISA/compliance → "AI Chatbot".
 
-**Đã gặp thực tế (01/10/2026, bài #1415):** truyền `"categories": ["CRM Software"]` cả ở `create_post` lẫn `update_post` sau đó đều không gán được category (REST API trả về `"categories": []"` dù response báo thành công và `tags` bằng tên trong CÙNG lúc gán đúng bình thường) — không rõ nguyên nhân (không phải lỗi proxy/cache, đã kiểm tra nhiều lần). Workaround verify hoạt động: truyền **ID dạng string** thay vì tên, vd `"categories": ["85"]` cho "CRM Software" (tra ID qua `GET https://infina.ai/news/wp-json/wp/v2/categories?per_page=100&_fields=id,name` — "AI Chatbot"=19, "CRM Software"=85). **Nguyên nhân gốc (tìm ra 12/10/2026):** `category` là taxonomy có cấp bậc, `wp_set_post_terms` với taxonomy này coi chuỗi là ID nên tên bị bỏ qua và term mới cũng không được tạo. Đã sửa trong `infina-wp-mcp-server-snippet.php` (đổi tên thành ID, tạo mới nếu chưa có), nhưng **bản trên site chỉ có hiệu lực sau khi dán lại snippet**. Tới lúc đó vẫn phải truyền ID dạng string và không tạo được category mới qua MCP. Nếu gặp lại category rỗng sau khi publish, luôn `curl` REST API verify `categories` field rồi fix bằng ID ngay, đừng chỉ tin message "Da cap nhat" là đã thành công.
+**Đã gặp thực tế (01/10/2026, bài #1415):** truyền `"categories": ["CRM Software"]` cả ở `create_post` lẫn `update_post` sau đó đều không gán được category (REST API trả về `"categories": []"` dù response báo thành công và `tags` bằng tên trong CÙNG lúc gán đúng bình thường) — không rõ nguyên nhân (không phải lỗi proxy/cache, đã kiểm tra nhiều lần). Workaround verify hoạt động: truyền **ID dạng string** thay vì tên, vd `"categories": ["85"]` cho "CRM Software" (tra ID qua `GET https://infina.ai/news/wp-json/wp/v2/categories?per_page=100&_fields=id,name` — "AI Chatbot"=19, "CRM Software"=85). **Nguyên nhân gốc (tìm ra 12/10/2026):** `category` là taxonomy có cấp bậc, `wp_set_post_terms` với taxonomy này coi chuỗi là ID nên tên bị bỏ qua. Đã sửa trong `infina-wp-mcp-server-snippet.php` (đổi tên thành ID, tạo mới nếu chưa có), user dán lại snippet lên site cùng ngày, và đã kiểm chứng: `update_post` với `categories: ["Real Estate Marketing"]` tạo term mới (ID 392) và gán đúng cho #1825. Từ nay truyền tên hoặc ID đều được, nhưng vẫn verify bằng REST. Nếu gặp lại category rỗng sau khi publish, luôn `curl` REST API verify `categories` field rồi fix bằng ID ngay, đừng chỉ tin message "Da cap nhat" là đã thành công.
 
 ---
 

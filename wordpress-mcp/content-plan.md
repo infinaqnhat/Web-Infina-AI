@@ -780,7 +780,7 @@ riêng (đã có #1229 ở Cụm 7). Không viết lại CRM marketing (#263, C�
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
-| `pillar` **Pillar** | [Real Estate Marketing Guide: What to Do, Spend and Measure](https://infina.ai/news/real-estate-marketing/) | `real estate marketing` | Discovery/TOF | ✅ Published 12/10 = #1825, 2.305 từ, density 0.52%, 2 bảng, 4 ảnh AI, category CRM Software (85). Gom `marketing for real estate agents`, `marketing for realtors`, `real estate marketing strategies`. Link ra #1223, #975, #930, #1415, #1229, #263. Donor trỏ vào: #1152. Chưa có cluster nào, mục Related Reading thêm khi cluster lên |
+| `pillar` **Pillar** | [Real Estate Marketing Guide: What to Do, Spend and Measure](https://infina.ai/news/real-estate-marketing/) | `real estate marketing` | Discovery/TOF | ✅ Published 12/10 = #1825, 2.305 từ, density 0.52%, 2 bảng, 4 ảnh AI, category Real Estate Marketing (392). Gom `marketing for real estate agents`, `marketing for realtors`, `real estate marketing strategies`. Link ra #1223, #975, #930, #1415, #1229, #263. Donor trỏ vào: #1152. Chưa có cluster nào, mục Related Reading thêm khi cluster lên |
 | `pillar` **Hub branding** | Real Estate Branding: A Practical Guide for Agents and Teams (slug dự kiến `/real-estate-branding/`) | `real estate branding` | Discovery/TOF | 📝 Đã duyệt 12/10, chưa viết. Gom `real estate agent branding`, slogan, USP, personal branding |
 
 ---
