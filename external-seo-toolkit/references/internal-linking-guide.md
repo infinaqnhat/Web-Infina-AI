@@ -118,6 +118,13 @@ bố thật của một site chứ không phải ngưỡng ngành, nên phải �
 **Cách sửa khi một cụm tụt dưới mốc: thêm link về pillar nhà, đừng gỡ link chéo.** Link chéo tồn tại
 vì câu văn có lý do nhắc tới nó, gỡ đi là làm hỏng bài. Thiếu là thiếu chiều về nhà.
 
+⚠️ **Cách sửa này chỉ làm được khi còn bài chưa link về nhà.** Quy tắc 6 cho mỗi bài một link tới
+một đích, nên số link nhà tối đa của một cụm bằng số bài cluster của nó. Khi cả cụm đã link về nhà
+hết (đã xảy ra với hai cụm 5 bài cluster ở Infina), tỉ lệ chỉ tăng được bằng cách **giảm** link ra
+ngoài: với cụm N bài, muốn đạt 50% thì tổng link ra ngoài phải <= N. Khi đó bỏ câu có link chéo
+tới pillar ít liên quan nhất, giữ câu có lý do nhắc rõ nhất, và ghi quyết định vào log như một ngoại
+lệ có chủ đích.
+
 ### Vậy câu hỏi đúng là gì
 
 Không phải "bài này được trỏ mấy pillar" mà là **"câu chứa link này có lý do tồn tại không"**. Đó

@@ -658,3 +658,54 @@ phân loại được. Chủ site chốt gom về **9 họ**: `pillar`, `review`
 - Bộ 9 họ là do trợ lý gom từ dữ liệu có sẵn. Chủ site chốt con số 9 nhưng **chưa duyệt từng nhãn**.
   Nhãn nào xếp sai họ thì sửa mã trong `content-plan.md` và bảng ánh xạ cuối `cluster-roles.md`.
 - Vai trò chỉ phục vụ biên tập và script đo, không phải tín hiệu SEO.
+
+## 2026-10-12 | Đợt G: cụm 5 và 6 về mốc 50%, rút ngắn 8 anchor quá dài
+
+### Phát hiện trước khi sửa: cách sửa trong guide không làm được
+
+Đo lại trên bản live (150 bài, thành viên cụm lấy từ `content-plan.md`): Cụm 5 trỏ pillar nhà **5, ra
+ngoài 10 = 33%**. Cụm 6 trỏ pillar nhà **5, ra ngoài 9 = 36%**. Số 36% hôm nay làm tròn từ 35,7%
+(5/14), guide ghi cùng con số.
+
+Guide khuyên "thêm link về pillar nhà, đừng gỡ link chéo". Với hai cụm này **không thể làm vậy**:
+quy tắc 6 cho mỗi bài một link tới một đích, và cả 5 bài cluster của mỗi cụm đã link về pillar nhà
+rồi. Số link nhà đã chạm trần 5, chỉ còn cách giảm số link ra ngoài. Ba cụm khác cũng sát mốc: Cụm 4
+đang đúng 50% (5/10).
+
+### Việc đã làm (9 bài, mỗi bài bỏ đúng 1 câu có link chéo)
+
+- Cụm 5: bỏ câu trỏ `best-crm-for-real-estate` ở #981, #993, #999, #1005, #1011. Giữ link sang
+  `real-estate-website-builder` vì liên quan trực tiếp tới chủ đề website. Kết quả 5/10 = **50%**.
+- Cụm 6: bỏ câu trỏ `real-estate-website-builder` ở #948, #918, #936, #942. Giữ link sang
+  `best-crm-for-real-estate` vì landing page luôn nối tới khâu follow-up. Kết quả 5/10 = **50%**.
+- Mỗi câu bị bỏ là câu đóng của đoạn Related Reading hoặc một câu đứng riêng, không câu nào bị cắt
+  cụt. Ở #918 câu đó chiếm cả đoạn nên bỏ nguyên đoạn.
+- Đây là **ngoại lệ so với lời khuyên "đừng gỡ link chéo"**, có chủ đích và đã ghi vào guide.
+- Hệ quả: pillar CRM mất 5 link vào từ cụm 5, `real-estate-website-builder` mất 4 từ cụm 6.
+
+### Anchor quá dài (>9 từ)
+
+8 anchor viết lại về 3-8 từ, giữ nguyên câu, đổi thứ tự chữ quanh anchor khi cần: #492, #610, #622,
+#214, #1227, #1449, #390, #528. Danh sách cũ ghi 9 bài, nhưng **#1217 đã không còn anchor dài**
+(đang 5, 7 và 6 từ).
+
+**Số "9" trước đây chỉ đếm trong phạm vi đợt B.** Quét toàn site hôm nay thấy **46 anchor dài hơn 9
+từ, trên 37 bài**, còn lại **38 trên 29 bài** sau đợt này. Trong 38 có 7 anchor nằm trong trang stub
+301 mà tên trang gộp là anchor có chủ đích, nên thực sự còn **31** để quyết định có sửa tiếp không.
+
+### Verify
+
+- Fetch lại 17 bài từ bản live, so với file đã soát: **17/17 khớp** (sau khi chuẩn hóa style `img`).
+  Một bài (#1011) lệch lần đầu vì chép thừa chữ "investment" ở đoạn cuối, đã đẩy lại và khớp.
+- Số bài có hai link cùng đích: **0**.
+- Anchor đa dạng sau đợt: `best-crm-for-real-estate` 40/50 = 80%, `ai-crm-real-estate` 18/23 = 78%,
+  các pillar còn lại không đổi.
+- Chỉ số tỉ lệ nhà toàn site: Cụm 1 88%, Cụm 2 74%, Cụm 3 64%, Cụm 4 50%, Cụm 5 50%, Cụm 6 50%,
+  Cụm 7 70%, Cụm 8 83%.
+
+### Còn lại
+
+- 31 anchor dài ngoài phạm vi (nhiều bài News viết gần đây, trong đó có 2 anchor của #1732 do skill
+  này viết). Quy tắc 3 viết "khoảng 3-8 từ" nên đây là việc biên tập, chưa phải lỗi cứng.
+- Cụm 4, 5, 6 đang đúng mốc 50%, bài mới trong cụm phải link về pillar nhà và hạn chế link ra pillar
+  khác, nếu không sẽ tụt dưới mốc ngay.
