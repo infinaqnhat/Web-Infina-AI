@@ -838,3 +838,9 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Lên lịch #1889 `/real-estate-agent-logo/` ngày **16/10/2026 10:00**. 1.824 chữ, density 0,55%, 13 H2, 3 bảng, 4 ảnh AI. Link tới #1883 (15/10 14:00) sớm hơn nên hợp lệ khi bài này lên.
 - Nguồn ngoài đã mở: USPTO "What is a trademark" (logo là nhãn hiệu, đăng ký không bắt buộc nhưng bảo hộ rộng hơn, quyền chưa đăng ký giới hạn trong khu vực kinh doanh; trang không nói về việc tra cứu nên bài chỉ khuyên tra cứu như lời khuyên chứ không gán cho USPTO) và NAR logo use with firm name. Bài không nêu giá, không nêu số liệu thị trường logo.
 - Lần đầu ảnh STATS (5 loại logo) đặt nhầm dưới mục "Overused", đã chuyển lên sau bảng 5 loại trước khi tạo bài.
+
+### Cụm 9 wave 1: `real estate agent bio` (#1895)
+
+- Lên lịch #1895 `/real-estate-agent-bio/` ngày **16/10/2026 14:00**. 1.692 chữ, density 0,65%, 11 H2, 3 bảng, 6 ví dụ bio (tên và chi tiết hoàn toàn hư cấu, ghi rõ trong bài), 4 ảnh AI. Link tới #1883 và #1889 đều lên trước bài này.
+- Nguồn ngoài đã mở: FTC "Advertising FAQs: A Guide for Small Business" (quảng cáo phải trung thực, có bằng chứng trước khi chạy) và 24 CFR 100.75. Bài không đưa số liệu thật nào về agent; các con số trong ví dụ và bảng là minh họa, có ghi chú.
+- Đã sửa trong ví dụ "Relocation specialist" cụm "helps families" thành "helps people" để khỏi mô tả khách theo tình trạng gia đình, nhất quán với cảnh báo fair housing trong bài (bản sửa này đã có trong bản đăng).
