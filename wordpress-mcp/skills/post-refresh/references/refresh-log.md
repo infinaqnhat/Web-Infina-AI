@@ -780,3 +780,10 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Chiều về: #1825 thêm 1 câu trong mục "How to Build a Real Estate Marketing Plan in Five Steps" (anchor "real estate marketing plan template"), diff live khớp.
 - SERP thưởng file template tải về; bài này chỉ có template dạng bảng copy được. Nếu muốn file thật cần làm Google Sheet hoặc CSV và đưa lên site, chưa làm.
 - Ảnh DEMO sinh lần 1 bị nhãn LEARN lặp hai lần và gắn sai icon, đã sinh lại theo luồng thẳng, kiểm lại sạch.
+
+### Bổ sung Đợt K: file template tải về (12/10/2026)
+
+- Đã làm file `references/files/real-estate-marketing-plan-template.xlsx` (5 sheet: Start Here, Goal Backward, Budget, Plan, Quarterly Review; công thức kiểm bằng thư viện `formulas`, khớp số trong bài: 13 / 26 / 130 / 11, 6.000 USD = 500 USD/tháng). LibreOffice trong container không mở được file nào nên chưa mở thử bằng Excel hay Sheets thật.
+- User upload lên Media Library (`/wp-content/uploads/2026/10/real-estate-marketing-plan-template.xlsx`); tải về qua HTTP 200 và so sánh từng byte với bản trong repo, giống hệt. `upload_media` của MCP chỉ nhận ảnh nên việc upload file không phải ảnh phải làm tay.
+- Link tải đã gắn vào #1843 (đoạn "Prefer a spreadsheet?" ngay sau phần giới thiệu template) và nhắc trong #1825 (câu "includes a free Excel download"), diff live khớp.
+- Google Drive connector chỉ share theo email, không đặt được "anyone with the link", nên không dùng cách Google Sheet "Make a copy"; chưa tạo file nào trên Drive.
