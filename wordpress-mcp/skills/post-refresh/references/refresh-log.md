@@ -763,3 +763,11 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Donor: #1152 (Related Reading thêm 1 câu, anchor "real estate marketing guide for agents"), đã diff live khớp.
 - Độ dài 2.305 chữ gần mốc 2.400 của công thức wave 1; mục Related Reading chưa có vì chưa có cluster. Khi cluster lên, thêm mục này và tỉa bớt link chéo sang cụm khác để mốc "trỏ pillar nhà ≥50%" đạt.
 - Ảnh HERO sinh lần 1 lộ chữ DELL trên laptop, đã sinh lại với "unbranded laptop".
+
+## 2026-10-12, Đợt J: hub Cụm 9 `real estate branding` (#1832)
+
+- Đăng hub `/real-estate-branding/` (#1832): 1.715 chữ, density 0,70%, 12 H2, 1 bảng, 4 ảnh AI, category Real Estate Marketing (392). Nguồn ngoài dofollow: trang NAR "logo use with a firm name" (đã mở trang gốc: dấu REALTOR® đứng cạnh tên công ty nhưng không nằm trong tên công ty; hội viên dùng được trên name card; người có license không phải hội viên không dùng logo REALTOR® trên card). Bỏ câu về tên team vì không tìm được nguồn xác nhận.
+- Link nội bộ: lên pillar #1825 (1 lần), ra #975 và #1011 (đều Cụm 5), anchor ≤8 từ, 3/3 trả 200.
+- Chiều về: pillar #1825 thêm 1 câu trỏ sang hub trong mục "Direct Mail, Print, and Branding Basics" (anchor "practical real estate branding guide"), đã diff live khớp. Cần thêm: hub trỏ ngược pillar đã có sẵn nên hai bài link 2 chiều.
+- Title 0,60 và slug 0,67 trùng từ với vài bài khác, vì slug là keyword đầu cụm đã duyệt.
+- Ảnh STATS có nhãn tên icon (Target, Name Tag...) chỉ gần đúng 5 phần của brand, chấp nhận được.

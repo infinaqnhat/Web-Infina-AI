@@ -158,6 +158,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-10-07 | `ai drafted messages agent approval` | [ai-drafted-messages-agent-approval](https://infina.ai/news/ai-drafted-messages-agent-approval/) = #1529, News, pillar #214 `ai crm`. Slug overlap cao nhất 0,512 với `ai-powered-follow-up-messages-real-estate-agents`, dưới ngưỡng 0,6 | daily pipeline 07/10 |
 | 2026-10-08 | `real estate ai pricing` | [real-estate-ai-pricing-per-task](https://infina.ai/news/real-estate-ai-pricing-per-task/) = #1609, News, pillar #1223 Cụm 7 `real estate lead follow up automation`. Slug overlap cao nhất 0,50 với `real-estate-ai-adoption-statistics-2026`, dưới ngưỡng 0,6 | daily pipeline 08/10 |
 | 2026-10-12 | `real estate marketing` (gom `marketing for real estate agents`, `marketing for realtors`, `real estate marketing strategies`) | [real-estate-marketing](https://infina.ai/news/real-estate-marketing/) = #1825, pillar Cụm 9, publish 12/10, category Real Estate Marketing (392). Slug trùng từ với `crm-marketing-real-estate` (1,0) là hệ quả của keyword đầu cụm, đã duyệt trong plan | pillar-cluster-writer |
+| 2026-10-12 | `real estate branding` (gom `real estate agent branding`) | [real-estate-branding](https://infina.ai/news/real-estate-branding/) = #1832, hub branding Cụm 9, publish 12/10, category Real Estate Marketing (392). Slug trùng từ 0,67 với vài bài news, là hệ quả của keyword đầu cụm | pillar-cluster-writer |
 
 ---
 
@@ -174,7 +175,6 @@ chưa xuất hiện ở bảng trên. Xoá dòng khỏi mục này và chuyển 
 
 | Ngày đặt chỗ | Keyword | Slug dự kiến | Nguồn |
 |---|---|---|---|
-| 2026-10-12 | `real estate branding` (gom `real estate agent branding`) | `real-estate-branding` | Cụm 9 hub branding, đã duyệt, chưa viết |
 
 Các cluster của Cụm 9 (wave 1 và 2) chưa được duyệt nên **chưa đặt chỗ**. Khi nào duyệt thì thêm vào
 bảng này. Danh sách keyword dự kiến của chúng ở `references/plan-cum-9-marketing-branding.md`.
