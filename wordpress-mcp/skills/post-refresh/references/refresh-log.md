@@ -866,3 +866,14 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Ranh giới cần giữ khi viết: Google Ads không viết lại tổng quan (#1859) và không viết Facebook (#1229); Google Business Profile đào sâu hơn checklist trong #1871; flyer khác postcard (#1877); testimonials, name ideas lên hub #1832.
 - `real estate agent referral`: kiểm SERP 12/10, kết quả lẫn hai ý định (phí giới thiệu giữa các agent và cách nhận thêm giới thiệu). Quyết định viết cả hai và đặt tiêu đề phản ánh điều đó. Mức phần trăm phí referral chỉ nêu khi mở được nguồn gốc.
 - Chưa viết bài nào của wave 2.
+
+## 2026-10-12: tạm dừng routine news và xếp lại lịch 3 bài/ngày
+
+- Theo yêu cầu của user, **tạm dừng routine "Daily news-to-cluster-article"** (trigger `trig_011KKDV99Pa12bj8TJssRo9x`, `enabled=false`) để chừa slot cho đợt nội dung Cụm 9. **Phải bật lại khi muốn có bài tin hàng ngày.**
+- Xếp lại 7 bài đang `future` để đủ trần 3 bài/ngày (10:00, 14:00, 18:00 giờ site = UTC), thứ tự giữ nguyên để link giữa các cluster luôn trỏ tới bài lên trước:
+  - 13/10: #1853 ideas (10:00), #1859 advertising (14:00), #1865 social (18:00)
+  - 14/10: #1871 seo (10:00), #1877 postcards (14:00), #1883 business card (18:00)
+  - 15/10: #1889 logo (10:00), #1895 bio (14:00), #1901 software (18:00)
+- Ngày 12/10 đã đủ 3 bài (#1825, #1832, #1843). Bài mới 16/10 trở đi (wave 2) có thể xếp 3 bài/ngày.
+- Chưa xác minh được nội dung 7 bài vừa đổi ngày còn nguyên vì bài `future` không đọc được qua REST công khai; sẽ kiểm khi chúng lên.
+- Các lịch nhắc kiểm tra đã dời: 13/10 19:00, 14/10 19:00, 15/10 19:30 UTC (bước inbound link pillar/hub làm ở lần cuối).
