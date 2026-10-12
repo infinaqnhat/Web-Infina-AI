@@ -787,3 +787,11 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - User upload lên Media Library (`/wp-content/uploads/2026/10/real-estate-marketing-plan-template.xlsx`); tải về qua HTTP 200 và so sánh từng byte với bản trong repo, giống hệt. `upload_media` của MCP chỉ nhận ảnh nên việc upload file không phải ảnh phải làm tay.
 - Link tải đã gắn vào #1843 (đoạn "Prefer a spreadsheet?" ngay sau phần giới thiệu template) và nhắc trong #1825 (câu "includes a free Excel download"), diff live khớp.
 - Google Drive connector chỉ share theo email, không đặt được "anyone with the link", nên không dùng cách Google Sheet "Make a copy"; chưa tạo file nào trên Drive.
+
+## 2026-10-12, Đợt L: cluster Cụm 9 `real estate marketing ideas` (#1853), lên lịch
+
+- Tạo #1853 `/real-estate-marketing-ideas/` ở trạng thái **future, 13/10/2026 10:00** (giờ site = UTC). 1.877 chữ, density 0,58%, 13 H2, 30 ý tưởng đánh số mỗi ý có nhãn Cost/Effort, 1 bảng "Ten Quick Wins", 4 ảnh AI, category Real Estate Marketing (392).
+- Nguồn ngoài: 24 CFR 100.75 (quảng cáo nhà ở) và 12 CFR 1024.14 trên Cornell LII (RESPA Section 8, đã đọc điều khoản: cấm đưa/nhận thứ có giá trị theo thỏa thuận giới thiệu dịch vụ settlement, có ngoại lệ cho hoạt động quảng bá thông thường không gắn với giới thiệu). Link ra 1 bài cụm khác: `tcpa-compliance-for-real-estate-agents` (Cụm 8).
+- **Lý do lên lịch thay vì đăng ngay (rule 1, tối đa 3 bài/ngày giờ site):** ngày 12/10 đã đăng 3 bài (#1825 04:06, #1832 04:16, #1843 08:12), đủ trần. Hệ quả cần biết: routine news 18:11 UTC ngày 12/10 sẽ đếm 3/3 và dừng, tức hôm nay không có bài news. Lỗi này do mình không đếm trần khi đăng liên tiếp 3 bài Cụm 9.
+- **Quy ước lịch cho các cluster Cụm 9 còn lại:** tối đa 2 bài evergreen mỗi ngày, đặt 10:00 giờ site (và 14:00 nếu cần bài thứ hai), chừa 1 slot cho routine news 18:xx UTC. Trước khi tạo luôn `list_posts` future+publish để đếm.
+- **Việc chờ sau 13/10 10:00:** (a) diff nội dung live với file; (b) thêm link vào pillar #1825 (không thêm trước vì đích chưa 200); (c) bài chưa có inbound nào cho tới (b).
