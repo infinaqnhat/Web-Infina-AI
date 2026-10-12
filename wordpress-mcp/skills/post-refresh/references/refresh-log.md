@@ -844,3 +844,10 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Lên lịch #1895 `/real-estate-agent-bio/` ngày **16/10/2026 14:00**. 1.692 chữ, density 0,65%, 11 H2, 3 bảng, 6 ví dụ bio (tên và chi tiết hoàn toàn hư cấu, ghi rõ trong bài), 4 ảnh AI. Link tới #1883 và #1889 đều lên trước bài này.
 - Nguồn ngoài đã mở: FTC "Advertising FAQs: A Guide for Small Business" (quảng cáo phải trung thực, có bằng chứng trước khi chạy) và 24 CFR 100.75. Bài không đưa số liệu thật nào về agent; các con số trong ví dụ và bảng là minh họa, có ghi chú.
 - Đã sửa trong ví dụ "Relocation specialist" cụm "helps families" thành "helps people" để khỏi mô tả khách theo tình trạng gia đình, nhất quán với cảnh báo fair housing trong bài (bản sửa này đã có trong bản đăng).
+
+### Cụm 9 wave 1: `real estate marketing software` (#1901)
+
+- Lên lịch #1901 `/real-estate-marketing-software/` ngày **17/10/2026 10:00**. 1.729 chữ, density 0,69%, 12 H2, 3 bảng, 4 ảnh AI.
+- **Khác plan:** tiêu đề đổi từ "Best Real Estate Marketing Software in 2026" sang "Real Estate Marketing Software: What to Use for Each Job in 2026" vì bài không xếp hạng vendor (giá và tính năng đổi liên tục, không có nguồn độc lập để xếp hạng). Bài là hướng dẫn chọn công cụ theo công việc, kèm bảng, stack miễn phí, câu hỏi trước khi mua.
+- Chỉ nêu sự kiện đã xác minh: Mailchimp (trang pricing: gói free dưới 250 contact, tối đa 500 email/tháng, không có scheduling và branded template), Buffer (free: 3 tài khoản, 10 bài lên lịch mỗi tài khoản), FTC CAN-SPAM guide (opt-out trong 10 ngày làm việc, không thể giao khoán trách nhiệm). Follow Up Boss, Lofty, Rechat chỉ mô tả theo nội dung các bài đã có trên site (#1746, #1329, #1026). Canva trả 403 khi mở trang pricing nên bài không nêu gói hay giá của Canva, chỉ nói "design tool with templates".
+- Có 2 link cross-pillar (#450 Cụm 2 và #1225 Cụm 7) vì plan Cụm 9 yêu cầu bài này link #1225 và #263, trái với quy tắc thông thường tối đa 1; đã ghi nhận là ngoại lệ có chủ đích.
