@@ -814,3 +814,9 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 
 - Lên lịch #1865 `/social-media-for-realtors/` ngày **14/10/2026 10:00**. 1.680 chữ, density 0,60%, 13 H2, 3 bảng, 4 ảnh AI. Link tới #1859 (scheduled 13/10 14:00, sớm hơn) hợp lệ khi bài này lên.
 - Nguồn ngoài: FTC Endorsement Guides Q&A (đã mở trang: tiết lộ liên hệ vật chất, và lời chứng thực khách hàng nếu khách được báo trước có thể được trả/đăng) và 24 CFR 100.75. Không dùng số liệu người dùng nền tảng vì không có nguồn xác minh; bảng nền tảng chỉ mô tả mục đích. Không tìm được văn bản Article 12 Code of Ethics trên trang NAR nên không trích.
+
+### Cụm 9 wave 1: `real estate seo` (#1871)
+
+- Lên lịch #1871 `/real-estate-seo/` ngày **14/10/2026 14:00**. 1.790 chữ, density 0,62%, 13 H2, 4 bảng, 4 ảnh AI. Link tới #1859 (13/10 14:00) và #1865 (14/10 10:00) đều sớm hơn bài này.
+- Nguồn ngoài đã mở trang gốc: Google Business Profile help "Improve your local ranking" (relevance, distance, prominence; không thể trả tiền để lên hạng) và SEO Starter Guide của Google Search Central (tiêu đề duy nhất, thay đổi cần thời gian). Không đưa số liệu xếp hạng hay traffic của site này vì không có quyền GSC.
+- Lần soạn đầu quên link lên pillar (gate `no pillar link` bắt được), đã thêm câu link về #1825 trước khi tạo bài.
