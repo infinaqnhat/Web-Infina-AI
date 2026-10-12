@@ -166,6 +166,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-10-12 | `real estate seo` (gom `realtor seo`) | [real-estate-seo](https://infina.ai/news/real-estate-seo/) = #1871, cluster Cụm 9 wave 1, **scheduled 14/10/2026 14:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
 | 2026-10-12 | `postcards real estate` (gom `realtor mailers`, `mailers for real estate agents`) | [real-estate-postcards](https://infina.ai/news/real-estate-postcards/) = #1877, cluster Cụm 9 wave 1, **scheduled 15/10/2026 10:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
 | 2026-10-12 | `real estate agent business card` (gom `real estate business cards`, `realtor business card`, layout, ý tưởng mặt sau) | [real-estate-agent-business-card](https://infina.ai/news/real-estate-agent-business-card/) = #1883, cluster Cụm 9 wave 1, **scheduled 15/10/2026 14:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
+| 2026-10-12 | `real estate agent logo` (gom `real estate logo`, `logo ideas`) | [real-estate-agent-logo](https://infina.ai/news/real-estate-agent-logo/) = #1889, cluster Cụm 9 wave 1, **scheduled 16/10/2026 10:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
 
 ---
 
@@ -182,7 +183,6 @@ chưa xuất hiện ở bảng trên. Xoá dòng khỏi mục này và chuyển 
 
 | Ngày đặt chỗ | Keyword | Slug dự kiến | Nguồn |
 |---|---|---|---|
-| 2026-10-12 | `real estate agent logo` (gom `real estate logo`, `logo ideas`) | `real-estate-agent-logo` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
 | 2026-10-12 | `real estate agent bio` (gom examples, broker bio, salesperson bio) | `real-estate-agent-bio` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
 | 2026-10-12 | `real estate marketing software` (gom platform, tools) | `real-estate-marketing-software` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
 

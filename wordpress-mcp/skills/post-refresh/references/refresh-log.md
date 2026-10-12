@@ -832,3 +832,9 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Lên lịch #1883 `/real-estate-agent-business-card/` ngày **15/10/2026 14:00** (slot 2 của ngày; 15/10 = #1877 10:00 + #1883 14:00 + news 18:xx). 1.814 chữ, density 0,72%, 14 H2, 3 bảng, 4 ảnh AI. Cluster branding nên lên hub #1832, không link pillar #1825.
 - Nguồn ngoài đã mở: trang NAR về dùng dấu REALTOR® với tên công ty (thẻ hội viên dùng được; không đưa vào tên công ty; người có license không phải hội viên không dùng logo trên thẻ). Không bịa giá in; kích thước 3,5 x 2 inch là chuẩn phổ biến, bài nói rõ giá tùy nhà in. SEO title lần đầu 62 ký tự và description 160, đã rút xuống trước khi tạo bài.
 - Link tới #1853 (publish 13/10) và #1843 (đã live) đều hợp lệ khi bài lên.
+
+### Cụm 9 wave 1: `real estate agent logo` (#1889)
+
+- Lên lịch #1889 `/real-estate-agent-logo/` ngày **16/10/2026 10:00**. 1.824 chữ, density 0,55%, 13 H2, 3 bảng, 4 ảnh AI. Link tới #1883 (15/10 14:00) sớm hơn nên hợp lệ khi bài này lên.
+- Nguồn ngoài đã mở: USPTO "What is a trademark" (logo là nhãn hiệu, đăng ký không bắt buộc nhưng bảo hộ rộng hơn, quyền chưa đăng ký giới hạn trong khu vực kinh doanh; trang không nói về việc tra cứu nên bài chỉ khuyên tra cứu như lời khuyên chứ không gán cho USPTO) và NAR logo use with firm name. Bài không nêu giá, không nêu số liệu thị trường logo.
+- Lần đầu ảnh STATS (5 loại logo) đặt nhầm dưới mục "Overused", đã chuyển lên sau bảng 5 loại trước khi tạo bài.
