@@ -771,3 +771,12 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Chiều về: pillar #1825 thêm 1 câu trỏ sang hub trong mục "Direct Mail, Print, and Branding Basics" (anchor "practical real estate branding guide"), đã diff live khớp. Cần thêm: hub trỏ ngược pillar đã có sẵn nên hai bài link 2 chiều.
 - Title 0,60 và slug 0,67 trùng từ với vài bài khác, vì slug là keyword đầu cụm đã duyệt.
 - Ảnh STATS có nhãn tên icon (Target, Name Tag...) chỉ gần đúng 5 phần của brand, chấp nhận được.
+
+## 2026-10-12, Đợt K: cluster Cụm 9 `real estate marketing plan` (#1843)
+
+- Đăng cluster đầu tiên của Cụm 9, `/real-estate-marketing-plan/` (#1843): 1.784 chữ, density 0,56%, 11 H2, 4 bảng, 4 ảnh AI, category Real Estate Marketing (392).
+- Nguồn ngoài: NAR Member Profile 2025 (thu nhập gộp trung vị $58.100, chi phí kinh doanh trung vị $8.010 cho 2024, đã mở trang gốc; bài NAR không tách chi phí marketing nên bài nói rõ không có benchmark chính thức) và 24 CFR 100.75 trên Cornell LII (quảng cáo nhà ở, đã đọc điều khoản). Các con số chuyển đổi funnel, tỷ lệ 10% GCI và bảng chia ngân sách được ghi rõ là ví dụ minh họa, không phải benchmark.
+- Link: lên pillar #1825, sang hub #1832 (brand sheet), ra #1223 (Cụm 7, 1 link cross-pillar). 3/3 trả 200, anchor ≤8 từ.
+- Chiều về: #1825 thêm 1 câu trong mục "How to Build a Real Estate Marketing Plan in Five Steps" (anchor "real estate marketing plan template"), diff live khớp.
+- SERP thưởng file template tải về; bài này chỉ có template dạng bảng copy được. Nếu muốn file thật cần làm Google Sheet hoặc CSV và đưa lên site, chưa làm.
+- Ảnh DEMO sinh lần 1 bị nhãn LEARN lặp hai lần và gắn sai icon, đã sinh lại theo luồng thẳng, kiểm lại sạch.

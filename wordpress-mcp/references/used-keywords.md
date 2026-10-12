@@ -159,6 +159,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-10-08 | `real estate ai pricing` | [real-estate-ai-pricing-per-task](https://infina.ai/news/real-estate-ai-pricing-per-task/) = #1609, News, pillar #1223 Cụm 7 `real estate lead follow up automation`. Slug overlap cao nhất 0,50 với `real-estate-ai-adoption-statistics-2026`, dưới ngưỡng 0,6 | daily pipeline 08/10 |
 | 2026-10-12 | `real estate marketing` (gom `marketing for real estate agents`, `marketing for realtors`, `real estate marketing strategies`) | [real-estate-marketing](https://infina.ai/news/real-estate-marketing/) = #1825, pillar Cụm 9, publish 12/10, category Real Estate Marketing (392). Slug trùng từ với `crm-marketing-real-estate` (1,0) là hệ quả của keyword đầu cụm, đã duyệt trong plan | pillar-cluster-writer |
 | 2026-10-12 | `real estate branding` (gom `real estate agent branding`) | [real-estate-branding](https://infina.ai/news/real-estate-branding/) = #1832, hub branding Cụm 9, publish 12/10, category Real Estate Marketing (392). Slug trùng từ 0,67 với vài bài news, là hệ quả của keyword đầu cụm | pillar-cluster-writer |
+| 2026-10-12 | `real estate marketing plan` (gom `marketing budget`) | [real-estate-marketing-plan](https://infina.ai/news/real-estate-marketing-plan/) = #1843, cluster Cụm 9 wave 1, publish 12/10, category Real Estate Marketing (392) | pillar-cluster-writer |
 
 ---
 
@@ -175,7 +176,6 @@ chưa xuất hiện ở bảng trên. Xoá dòng khỏi mục này và chuyển 
 
 | Ngày đặt chỗ | Keyword | Slug dự kiến | Nguồn |
 |---|---|---|---|
-| 2026-10-12 | `real estate marketing plan` (gom `marketing budget`) | `real-estate-marketing-plan` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
 | 2026-10-12 | `real estate marketing ideas` (gom `agent marketing ideas`, `unique real estate marketing ideas`, `marketing tips for realtors`) | `real-estate-marketing-ideas` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
 | 2026-10-12 | `real estate advertising` (gom `advertise real estate`, `ads for real estate`) | `real-estate-advertising` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
 | 2026-10-12 | `social media for realtors` (gom `social media marketing for realtors`, instagram, facebook) | `social-media-for-realtors` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
