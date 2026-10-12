@@ -231,7 +231,26 @@ function infina_mcp_apply_post_meta( $post_id, $args, $on_create = true ) {
     };
 
     if ( $isset( 'categories' ) ) {
-        wp_set_post_terms( $post_id, $args['categories'], 'category' );
+        // 'category' la taxonomy co cap bac: wp_set_post_terms coi chuoi la ID, nen ten (vd "CRM Software")
+        // bi bo qua va bai ra categories=[]. Phai doi ten -> ID, tao moi neu chua co.
+        $cat_ids = [];
+        foreach ( (array) $args['categories'] as $c ) {
+            if ( is_numeric( $c ) ) {
+                $cat_ids[] = (int) $c;
+                continue;
+            }
+            $c    = trim( (string) $c );
+            $term = term_exists( $c, 'category' );
+            if ( ! $term ) {
+                $term = wp_insert_term( $c, 'category' );
+            }
+            if ( ! is_wp_error( $term ) ) {
+                $cat_ids[] = (int) ( is_array( $term ) ? $term['term_id'] : $term );
+            }
+        }
+        if ( $cat_ids ) {
+            wp_set_post_terms( $post_id, $cat_ids, 'category' );
+        }
     }
     if ( $isset( 'tags' ) ) {
         wp_set_post_terms( $post_id, $args['tags'], 'post_tag' );
