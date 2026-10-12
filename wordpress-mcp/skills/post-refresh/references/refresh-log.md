@@ -826,3 +826,9 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Lên lịch #1877 `/real-estate-postcards/` ngày **15/10/2026 10:00**. 1.854 chữ, density 0,54% (keyword `postcards real estate` là cụm khó viết tự nhiên nên dùng dạng "postcards real estate agents send/mail"), 13 H2, 3 bảng, 4 ảnh AI.
 - Số liệu USPS đã mở trang gốc: EDDM không cần tên/địa chỉ (gửi "Postal Customer"), tối thiểu 200 và tối đa 5.000 mảnh/ngày/ZIP, cước retail flats 0,26 USD/mảnh (trang nói giá có thể đổi); DMM 101 mục 6.2.2 giới hạn kích thước postcard First-Class (3,5 x 5 inch tối thiểu, 4,25 x 6 inch tối đa, dày 0,007 đến 0,016 inch, nặng tối đa 3,5 oz). Ví dụ chi phí 400 nhà/tháng là minh họa với giá in giả định 0,30 USD/thẻ.
 - Lần soạn đầu thiếu placeholder `{{STATS}}` (gate ảnh chỉ kiểm datum, không kiểm placeholder; `finalize` bắt được), đã thêm.
+
+### Cụm 9 wave 1: `real estate agent business card` (#1883)
+
+- Lên lịch #1883 `/real-estate-agent-business-card/` ngày **15/10/2026 14:00** (slot 2 của ngày; 15/10 = #1877 10:00 + #1883 14:00 + news 18:xx). 1.814 chữ, density 0,72%, 14 H2, 3 bảng, 4 ảnh AI. Cluster branding nên lên hub #1832, không link pillar #1825.
+- Nguồn ngoài đã mở: trang NAR về dùng dấu REALTOR® với tên công ty (thẻ hội viên dùng được; không đưa vào tên công ty; người có license không phải hội viên không dùng logo trên thẻ). Không bịa giá in; kích thước 3,5 x 2 inch là chuẩn phổ biến, bài nói rõ giá tùy nhà in. SEO title lần đầu 62 ký tự và description 160, đã rút xuống trước khi tạo bài.
+- Link tới #1853 (publish 13/10) và #1843 (đã live) đều hợp lệ khi bài lên.
