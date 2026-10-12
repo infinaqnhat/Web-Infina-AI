@@ -809,3 +809,8 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Trang Ylopo được gán (`ylopo.com/blog/how-much-do-real-estate-leads-cost`), mở ngày 12/10/2026, là bài đăng 18/12/2024 và ghi CPL trung bình 66,69 USD, Facebook 5 đến 30 USD, Google 50 đến 150 USD, không có các số 503/448/480/416/2.850.
 - Con số 8.010 USD trùng đúng với chi phí kinh doanh trung vị toàn bộ của NAR Member Profile 2025 (8.010 USD, không phải riêng marketing), nên có khả năng đã bị gán nhầm nguồn.
 - Chưa sửa #1415 vì chưa hỏi user. Đề xuất: viết lại các con số theo trang Ylopo thật hoặc gỡ phần số liệu, và kiểm tra các bài khác từng trích "503 USD". #1825 chỉ link tới #1415 với anchor "average cost per lead for agents" và không lặp các con số.
+
+### Cụm 9 wave 1: `social media for realtors` (#1865)
+
+- Lên lịch #1865 `/social-media-for-realtors/` ngày **14/10/2026 10:00**. 1.680 chữ, density 0,60%, 13 H2, 3 bảng, 4 ảnh AI. Link tới #1859 (scheduled 13/10 14:00, sớm hơn) hợp lệ khi bài này lên.
+- Nguồn ngoài: FTC Endorsement Guides Q&A (đã mở trang: tiết lộ liên hệ vật chất, và lời chứng thực khách hàng nếu khách được báo trước có thể được trả/đăng) và 24 CFR 100.75. Không dùng số liệu người dùng nền tảng vì không có nguồn xác minh; bảng nền tảng chỉ mô tả mục đích. Không tìm được văn bản Article 12 Code of Ethics trên trang NAR nên không trích.

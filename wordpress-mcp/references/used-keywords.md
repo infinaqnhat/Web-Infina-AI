@@ -162,6 +162,7 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-10-12 | `real estate marketing plan` (gom `marketing budget`) | [real-estate-marketing-plan](https://infina.ai/news/real-estate-marketing-plan/) = #1843, cluster Cụm 9 wave 1, publish 12/10, category Real Estate Marketing (392) | pillar-cluster-writer |
 | 2026-10-12 | `real estate marketing ideas` (gom `agent marketing ideas`, `unique real estate marketing ideas`, `marketing tips for realtors`) | [real-estate-marketing-ideas](https://infina.ai/news/real-estate-marketing-ideas/) = #1853, cluster Cụm 9 wave 1, **scheduled 13/10 10:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
 | 2026-10-12 | `real estate advertising` (gom `advertise real estate`, `ads for real estate`) | [real-estate-advertising](https://infina.ai/news/real-estate-advertising/) = #1859, cluster Cụm 9 wave 1, **scheduled 13/10/2026 14:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
+| 2026-10-12 | `social media for realtors` (gom `social media marketing for realtors`, instagram, facebook) | [social-media-for-realtors](https://infina.ai/news/social-media-for-realtors/) = #1865, cluster Cụm 9 wave 1, **scheduled 14/10/2026 10:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
 
 ---
 
@@ -178,7 +179,6 @@ chưa xuất hiện ở bảng trên. Xoá dòng khỏi mục này và chuyển 
 
 | Ngày đặt chỗ | Keyword | Slug dự kiến | Nguồn |
 |---|---|---|---|
-| 2026-10-12 | `social media for realtors` (gom `social media marketing for realtors`, instagram, facebook) | `social-media-for-realtors` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
 | 2026-10-12 | `real estate seo` (gom `realtor seo`) | `real-estate-seo` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
 | 2026-10-12 | `postcards real estate` (gom `realtor mailers`, `mailers for real estate agents`) | `real-estate-postcards` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
 | 2026-10-12 | `real estate agent business card` (gom 8 biến thể) | `real-estate-agent-business-card` | Cụm 9 wave 1, đã duyệt 12/10, chưa viết |
