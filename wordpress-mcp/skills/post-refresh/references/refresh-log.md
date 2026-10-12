@@ -820,3 +820,9 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Lên lịch #1871 `/real-estate-seo/` ngày **14/10/2026 14:00**. 1.790 chữ, density 0,62%, 13 H2, 4 bảng, 4 ảnh AI. Link tới #1859 (13/10 14:00) và #1865 (14/10 10:00) đều sớm hơn bài này.
 - Nguồn ngoài đã mở trang gốc: Google Business Profile help "Improve your local ranking" (relevance, distance, prominence; không thể trả tiền để lên hạng) và SEO Starter Guide của Google Search Central (tiêu đề duy nhất, thay đổi cần thời gian). Không đưa số liệu xếp hạng hay traffic của site này vì không có quyền GSC.
 - Lần soạn đầu quên link lên pillar (gate `no pillar link` bắt được), đã thêm câu link về #1825 trước khi tạo bài.
+
+### Cụm 9 wave 1: `postcards real estate` (#1877)
+
+- Lên lịch #1877 `/real-estate-postcards/` ngày **15/10/2026 10:00**. 1.854 chữ, density 0,54% (keyword `postcards real estate` là cụm khó viết tự nhiên nên dùng dạng "postcards real estate agents send/mail"), 13 H2, 3 bảng, 4 ảnh AI.
+- Số liệu USPS đã mở trang gốc: EDDM không cần tên/địa chỉ (gửi "Postal Customer"), tối thiểu 200 và tối đa 5.000 mảnh/ngày/ZIP, cước retail flats 0,26 USD/mảnh (trang nói giá có thể đổi); DMM 101 mục 6.2.2 giới hạn kích thước postcard First-Class (3,5 x 5 inch tối thiểu, 4,25 x 6 inch tối đa, dày 0,007 đến 0,016 inch, nặng tối đa 3,5 oz). Ví dụ chi phí 400 nhà/tháng là minh họa với giá in giả định 0,30 USD/thẻ.
+- Lần soạn đầu thiếu placeholder `{{STATS}}` (gate ảnh chỉ kiểm datum, không kiểm placeholder; `finalize` bắt được), đã thêm.
