@@ -7,7 +7,7 @@ Description: Newsroom-style block theme for the Infina AI blog. Matches the Infi
 Requires at least: 6.4
 Tested up to: 6.6
 Requires PHP: 7.4
-Version: 1.1.1
+Version: 1.1.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: infina-ai-news
@@ -194,6 +194,40 @@ img { max-width: 100%; height: auto; }
 /* Columns stack below 782px, which would stretch the 1:1 card to the full width */
 @media (max-width: 781px) {
   .nr-promo { aspect-ratio: auto; min-height: 380px; }
+}
+
+/* ----- Wide variant: end-of-article banner ---------------------------------
+   Desktop: copy on the left, glass panel + CTA on the right.
+   Mobile: stacks into the same order as the sidebar card (eyebrow, title,
+   panel, CTA) by flattening the two wrappers with display: contents. */
+.post-promo { margin-top: clamp(40px, 5vw, 56px) !important; }
+.post-promo .nr-promo { margin-top: 0; }
+.nr-promo--wide {
+  aspect-ratio: auto; min-height: 300px; flex-direction: row; align-items: center;
+  justify-content: space-between; gap: clamp(24px, 4vw, 48px); padding: clamp(28px, 4vw, 48px);
+  background:
+    linear-gradient(90deg, rgba(0,20,60,.88) 0%, rgba(0,20,60,.62) 50%, rgba(0,20,60,.22) 100%),
+    url("assets/images/promo-property-expert-wide.jpg") center / cover no-repeat,
+    linear-gradient(150deg, var(--blue) 0%, var(--navy) 100%);
+}
+.nr-promo--wide .nr-promo-copy { display: flex; flex: 1 1 50%; flex-direction: column; gap: 12px; min-width: 0; }
+.nr-promo--wide .nr-promo-title { font-size: clamp(26px, 3.4vw, 38px); }
+.nr-promo--wide .nr-promo-action { display: flex; flex: 0 1 380px; flex-direction: column; gap: 12px; min-width: 0; }
+.nr-promo--wide .nr-promo-box { margin-top: 0; }
+.nr-promo--wide .nr-promo-cta { align-self: stretch; margin-top: 0; text-align: center; }
+@media (max-width: 781px) {
+  .nr-promo--wide {
+    flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 10px; min-height: 380px;
+    background:
+      linear-gradient(180deg, rgba(0,20,60,.66) 0%, rgba(0,20,60,.2) 42%, rgba(0,20,60,.55) 100%),
+      url("assets/images/promo-property-expert.jpg") center / cover no-repeat,
+      linear-gradient(150deg, var(--blue) 0%, var(--navy) 100%);
+  }
+  .nr-promo--wide .nr-promo-copy,
+  .nr-promo--wide .nr-promo-action { display: contents; }
+  .nr-promo--wide .nr-promo-box { margin-top: auto; }
+  .nr-promo--wide .nr-promo-cta { align-self: flex-start; margin-top: 4px; text-align: left; }
+  .nr-promo--wide .nr-promo-title { font-size: 24px; }
 }
 
 /* ===== Single post ======================================================== */
