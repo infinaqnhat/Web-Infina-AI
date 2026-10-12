@@ -754,3 +754,12 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - 7 anchor trong trang stub 301 giữ nguyên (tên trang gộp làm anchor là có chủ đích).
 - Check mới chỉ quét bài mới trước khi publish. Bài cũ viết sau này bị chỉnh tay vẫn có thể lọt, nên
   vẫn nên chạy `long_anchors()` trong lần quét định kỳ toàn site.
+
+## 2026-10-12, Đợt I: pillar Cụm 9 `real estate marketing` (#1825)
+
+- Đăng pillar mới `/real-estate-marketing/` (#1825): 2.305 chữ, density 0,52%, 13 H2, 2 bảng, 4 ảnh AI (HERO ảnh thật, STATS làm featured, COMPARISON, DEMO), 1 nguồn ngoài dofollow (Virginia REALTORS tóm tắt NAR 2025 Profile: 43% người mua qua referral, 18% qua agent cũ, 66% người bán qua referral hoặc agent cũ), 6 link nội bộ ra #1223, #975, #930, #1415, #1229, #263 (anchor ≤8 từ, `check_targets` 200 hết).
+- Category: "CRM Software" (85), vì chưa có category marketing và tạo mới sẽ sinh archive mỏng 1 bài. Cần user quyết nếu muốn tách category.
+- Tiêu đề đổi từ bản plan ("The Complete Guide for Agents") sang "Real Estate Marketing Guide: What to Do, Spend and Measure" vì bản plan trùng 0,75 từ với title #598 (vượt ngưỡng 0,6). Slug giữ nguyên `real-estate-marketing`.
+- Donor: #1152 (Related Reading thêm 1 câu, anchor "real estate marketing guide for agents"), đã diff live khớp.
+- Độ dài 2.305 chữ gần mốc 2.400 của công thức wave 1; mục Related Reading chưa có vì chưa có cluster. Khi cluster lên, thêm mục này và tỉa bớt link chéo sang cụm khác để mốc "trỏ pillar nhà ≥50%" đạt.
+- Ảnh HERO sinh lần 1 lộ chữ DELL trên laptop, đã sinh lại với "unbranded laptop".

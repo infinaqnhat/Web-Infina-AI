@@ -75,7 +75,7 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 | Cụm 6: Landing Pages | 6 | `real-estate-landing-page-guide` (5 IN, 1,873 chữ) | 8,316 | 0 | 0 | 0 |
 | Cụm 7: Lead Generation / Follow-up Automation | 9 | `real-estate-lead-follow-up-automation-guide` (17 IN, 2,453 chữ) | 8,208 | 0 | 0 | 2 |
 | Cụm 8: Compliance / Legal / Risk | 6 | `tcpa-compliance-for-real-estate-agents` (15 IN, 1,904 chữ) | 6,017 | 0 | 0 | 1 |
-| Cụm 9: Marketing và Branding (**đề xuất, chưa viết**) | 0 | `real-estate-marketing` và `real-estate-branding` (dự kiến) | 0 | n/a | n/a | n/a |
+| Cụm 9: Marketing và Branding (pillar đã đăng 12/10, hub và cluster chưa viết) | 1 | `real-estate-marketing` (#1825, 2,305 chữ, 1 IN từ #1152) | n/a | n/a | n/a | n/a |
 | Bài News real estate chưa gắn cụm trong plan | 40 | không có | 29,224 | 0 | 19 | 12 |
 | Ngoài chủ đề real estate (AI/tech) | 11 | không có | 2,780 | 11 | 11 | 0 |
 
@@ -236,7 +236,7 @@ Volume là bucket (50 / 500 / 5.000 / 50.000). Mức trong ngoặc là cạnh tr
 
 | Vai trò | URL (dự kiến) | IN | Chữ (mục tiêu) | Sửa lần cuối | FOCUS_KW dự kiến | Pillar bài trỏ lên | Post title (dự kiến) |
 |---|---|---|---|---|---|---|---|
-| `pillar` **Pillar (đã duyệt)** | `/real-estate-marketing` | - | ~2,400 (wave 1) | - | `real estate marketing` 5k TB. Gom: `marketing for real estate agents` 5k, `marketing for realtors` 5k, `real estate marketing strategies` 500 | *(là pillar)* | Real Estate Marketing: The Complete Guide for Agents |
+| `pillar` **Pillar (✅ đã đăng 12/10 = #1825)** | `/real-estate-marketing` | - | 2,305 | - | `real estate marketing` 5k TB. Gom: `marketing for real estate agents` 5k, `marketing for realtors` 5k, `real estate marketing strategies` 500 | *(là pillar)* | Real Estate Marketing: The Complete Guide for Agents |
 | `pillar` **Hub branding (đã duyệt)** | `/real-estate-branding` | - | ~1,800 | - | `real estate branding` 500 TB. Gom: `real estate agent branding` 500, slogan, USP, personal branding (đều 50) | ✅ `real-estate-marketing` | Real Estate Branding: A Practical Guide for Agents and Teams |
 | `how-to` Wave 1 | `/real-estate-marketing-plan` | - | ~1,800 | - | `real estate marketing plan` 500 T (+ `marketing budget` 500) | ✅ `real-estate-marketing` | Real Estate Marketing Plan: Template and Budget |
 | `review` Wave 1 | `/real-estate-marketing-ideas` | - | ~2,000 | - | `real estate marketing ideas` 500 C (+ `agent marketing ideas`, `unique real estate marketing ideas`, `marketing tips for realtors`) | ✅ `real-estate-marketing` | 30 Real Estate Marketing Ideas, With Cost and Effort |

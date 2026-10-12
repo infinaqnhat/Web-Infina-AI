@@ -768,7 +768,7 @@ Loại này không ai phát hiện khi đọc lướt vì câu văn nghe hợp l
 
 ---
 
-### Cụm 9: Marketing và Branding, 📝 pillar và hub ĐÃ DUYỆT 12/10/2026, chưa viết bài nào
+### Cụm 9: Marketing và Branding, ✅ pillar marketing đã đăng 12/10/2026 (#1825), hub branding đã duyệt chưa viết
 
 Plan đầy đủ, dữ liệu keyword, SERP và ranh giới với các cụm khác ở
 `references/plan-cum-9-marketing-branding.md`. Bảng chi tiết cả cluster đề xuất ở
@@ -780,7 +780,7 @@ riêng (đã có #1229 ở Cụm 7). Không viết lại CRM marketing (#263, C�
 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
-| `pillar` **Pillar** | Real Estate Marketing: The Complete Guide for Agents (slug dự kiến `/real-estate-marketing/`) | `real estate marketing` | Discovery/TOF | 📝 Đã duyệt 12/10, chưa viết. Gom `marketing for real estate agents`, `marketing for realtors`, `real estate marketing strategies` |
+| `pillar` **Pillar** | [Real Estate Marketing Guide: What to Do, Spend and Measure](https://infina.ai/news/real-estate-marketing/) | `real estate marketing` | Discovery/TOF | ✅ Published 12/10 = #1825, 2.305 từ, density 0.52%, 2 bảng, 4 ảnh AI, category CRM Software (85). Gom `marketing for real estate agents`, `marketing for realtors`, `real estate marketing strategies`. Link ra #1223, #975, #930, #1415, #1229, #263. Donor trỏ vào: #1152. Chưa có cluster nào, mục Related Reading thêm khi cluster lên |
 | `pillar` **Hub branding** | Real Estate Branding: A Practical Guide for Agents and Teams (slug dự kiến `/real-estate-branding/`) | `real estate branding` | Discovery/TOF | 📝 Đã duyệt 12/10, chưa viết. Gom `real estate agent branding`, slogan, USP, personal branding |
 
 ---
@@ -835,8 +835,8 @@ nội dung đã sửa, redirect đã verify).
    "reserved" sang bảng "đã publish").
 5. **Viết 2 bài CEP** (Cụm 2, góc Customer Engagement Platform) — plan đã duyệt 30/09, chưa viết
    bài thật. Theo đúng quy trình `skills/pillar-cluster-writer/SKILL.md` Bước 5 trở đi.
-6. **Cụm 9: Real Estate Marketing và Branding**, pillar và hub branding **đã duyệt 12/10**, cluster còn là đề xuất, nằm ở
-   `references/plan-cum-9-marketing-branding.md`. Chưa đặt chỗ keyword nào.
+6. **Cụm 9: Real Estate Marketing và Branding**, pillar marketing **đã đăng 12/10 (#1825)**, hub branding đã duyệt chưa viết, 18 cluster còn là đề xuất, nằm ở
+   `references/plan-cum-9-marketing-branding.md`.
 
 **Tất cả cặp nghi trùng phát hiện khi map 8 Cụm (01/10/2026) đã audit xong** — bao gồm 2 cặp cuối
 cùng (Chatbot Builders vs No-Code Chatbot Platform ở Cụm 1, Home Valuation vs Seller Landing Pages
