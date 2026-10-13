@@ -22,3 +22,6 @@ Nhóm trung bình (13/10): #1937 GBP, #1979 Name Ideas, #1843 Marketing Plan đ�
 
 Nhóm thấp (13/10): #1825 pillar, #1832 hub (đã live, lấy bản live), #1961, #1977, #1943 (wave 2 future) đã cập nhật. #1853 chờ publish (trigger 13/10 10:30 UTC), #1901 (trigger 15/10 18:30 UTC).
 Bài #1825 giữ ảnh COMPARISON vì có câu "Notice the contrast in the image above".
+
+## Vòng thử mobile-first (13/10/2026)
+Làm lại 2 bài #1843 (real-estate-marketing-plan) và #1832 (real-estate-branding) với 6 ảnh canvas 1000px (`*_m.jpg`, media 2051–2056, scenes `s_m_plan.py`, `s_m_brand.py`). Chạy: `python3 apply_mockups.py <id> <in> <out> --mobile` (đọc `spec['mobile_round']`). Chữ/link bài giữ nguyên (đã kiểm). Chờ user xem trên điện thoại rồi quyết định làm lại cả 59 ảnh.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Chèn ảnh mockup vào nội dung bài.   python3 apply_mockups.py <spec.json> <post_id> <in.html> <out.html>
+"""Chèn ảnh mockup vào nội dung bài.   python3 apply_mockups.py <spec.json> <post_id> <in.html> <out.html> [--mobile]
 
 Đọc spec.json (đường dẫn truyền vào; mẫu: references/spec-example.json). Với mỗi bài: xóa figure có alt chứa chuỗi trong "remove", thay figure
 có alt chứa chuỗi trong "replace" bằng ảnh mới, chèn ảnh mới ngay TRƯỚC thẻ <h2> có tiêu đề trong
@@ -10,9 +10,10 @@ import json,os,re,sys
 HERE=os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0,HERE)
 from patch_imgs import fig,replace_fig,remove_fig,textonly,links,FIG
-specf,pid,fin,fout=sys.argv[1:5]
+args=[a for a in sys.argv[1:] if a!='--mobile']; MOBILE='--mobile' in sys.argv
+specf,pid,fin,fout=args[:4]
 spec=json.load(open(specf))
-p=spec['posts'][pid]; M=spec['media']
+p=spec['mobile_round'][pid] if MOBILE else spec['posts'][pid]; M=spec['media']
 s=open(fin).read(); o=s
 F=lambda k: fig(*M[k])
 for a in p.get('remove',[]): s=remove_fig(s,a)

@@ -11,8 +11,11 @@ HERE=os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0,os.path.join(HERE,'src'))
 from patch_imgs import fig,replace_fig,remove_fig,textonly,links,FIG
 spec=json.load(open(os.path.join(HERE,'spec.json')))
-pid,fin,fout=sys.argv[1:4]
-p=spec['posts'][pid]; M=spec['media']
+args=sys.argv[1:]
+MOBILE='--mobile' in args
+args=[x for x in args if x!='--mobile']
+pid,fin,fout=args[:3]
+p=spec['mobile_round'][pid] if MOBILE else spec['posts'][pid]; M=spec['media']
 s=open(fin).read(); o=s
 F=lambda k: fig(*M[k])
 for a in p.get('remove',[]): s=remove_fig(s,a)

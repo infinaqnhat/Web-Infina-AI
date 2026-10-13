@@ -235,6 +235,36 @@
   "soft_sprawl": [
    "https://infina.ai/news/wp-content/uploads/2026/10/GecBLugA.jpg",
    "real estate marketing software tool sprawl compared with a small stack, sample monthly costs"
+  ],
+  "plan_budget_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/DXeBbAOq.jpg",
+   "real estate marketing plan budget split by channel for a new agent at $500 a month and a growing agent at $1,500 a month",
+   "Shares from the budget table; dollar amounts follow the two example plans."
+  ],
+  "plan_template_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/TjvizpjH.jpg",
+   "real estate marketing plan Excel template plan sheet with goal, channels, monthly budget and a total that fits the budget",
+   "A simplified view of the Excel template's plan sheet, with its example values."
+  ],
+  "plan_tracker_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/eMxbScAo.jpg",
+   "real estate marketing plan spend per closing by lead source for one quarter, sample numbers",
+   "Sample numbers, not real results."
+  ],
+  "brand_sheet_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/xPEfVThT.jpg",
+   "real estate branding sample brand sheet with positioning, voice, logo, colors and fonts, headshot and bio, and required lines",
+   "Sample brand sheet. The name and details are made up."
+  ],
+  "brand_looks_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/BjjCcwDx.jpg",
+   "real estate branding one look on a business card, website, yard sign and social post",
+   "Sample brand. Made up."
+  ],
+  "brand_mixed_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/BfbDziTC.jpg",
+   "real estate branding mixed look compared with a consistent look across three pieces",
+   "Sample pieces. Made up."
   ]
  },
  "posts": {
@@ -597,6 +627,40 @@
     [
      "How to Trial Real Estate Marketing Software Before You Commit",
      "soft_connect"
+    ]
+   ]
+  }
+ },
+ "mobile_round": {
+  "1843": {
+   "replace": [
+    [
+     "budget split for a new agent at $500",
+     "plan_budget_m"
+    ],
+    [
+     "Excel template one-page plan sheet",
+     "plan_template_m"
+    ],
+    [
+     "quarterly review sheet with spend per closing",
+     "plan_tracker_m"
+    ]
+   ]
+  },
+  "1832": {
+   "replace": [
+    [
+     "sample one-page brand sheet",
+     "brand_sheet_m"
+    ],
+    [
+     "one look shown on a business card, website header",
+     "brand_looks_m"
+    ],
+    [
+     "mixed look with different names and colors",
+     "brand_mixed_m"
     ]
    ]
   }

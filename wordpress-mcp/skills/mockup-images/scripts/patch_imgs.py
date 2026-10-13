@@ -1,5 +1,7 @@
 import re,sys,json
-def fig(url,alt): return '<figure class="wp-block-image aligncenter"><img decoding="async" src="%s" alt="%s" /></figure>'%(url,alt)
+def fig(url,alt,caption=None):
+    cap='<figcaption class="wp-element-caption">%s</figcaption>'%caption if caption else ''
+    return '<figure class="wp-block-image aligncenter"><img decoding="async" src="%s" alt="%s" />%s</figure>'%(url,alt,cap)
 FIG=re.compile(r'<figure class="wp-block-image[^>]*>.*?</figure>',re.S)
 def remove_fig(s,alt_sub):
     ms=[m for m in FIG.finditer(s) if alt_sub in m.group(0)]

@@ -42,7 +42,7 @@ PHONE_W=float(os.environ.get('MOCKUP_PHONE_W','340'))  # chiều rộng ảnh hi
 MIN_PHONE_PX=float(os.environ.get('MOCKUP_MIN_PHONE_PX','12'))
 _JS_TEXT="""()=>{const out=[];const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;const seen=new Set();
 while(n=w.nextNode()){const t=n.textContent.trim();if(!t)continue;const e=n.parentElement;if(!e||seen.has(e))continue;seen.add(e);
-if(e.closest('.tag,.note'))continue;const cs=getComputedStyle(e);if(cs.visibility==='hidden'||cs.display==='none')continue;
+if(e.closest('.tag,.note,.deco'))continue;const cs=getComputedStyle(e);if(cs.visibility==='hidden'||cs.display==='none')continue;
 const r=e.getBoundingClientRect();if(r.width<2||r.height<2)continue;out.push([parseFloat(cs.fontSize),t.length])}return out}"""
 def mobile_report(pg,canvas_w=1600):
     """Cỡ chữ nhỏ nhất quy ra điện thoại. Ảnh 1600px hiển thị ở PHONE_W px => hệ số PHONE_W/1600."""

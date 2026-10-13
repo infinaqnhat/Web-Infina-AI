@@ -949,3 +949,5 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Đã cập nhật: #1825 pillar (live, +3 ảnh, giữ ảnh COMPARISON vì bài viện dẫn "image above"), #1832 hub (live, +3), #1961, #1977, #1943 (wave 2 future). Kiểm bản live: chữ và link không đổi, ảnh trả 200.
 - Chờ publish: #1853 (trigger 13/10 10:30 UTC), #1901 (trigger 15/10 18:30 UTC).
 - Bài học: luôn grep câu viện dẫn ảnh ("image above") trước khi xóa ảnh cũ.
+
+- 2026-10-13 — #1843, #1832: thay 6 ảnh mockup thế hệ 1 bằng bản mobile-first (canvas 1000px, chữ ≥12px trên điện thoại). Chữ và link không đổi.
