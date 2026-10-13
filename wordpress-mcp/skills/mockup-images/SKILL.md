@@ -39,7 +39,7 @@ hero và featured, thay 2 ảnh loại "3 icon" và "A vs B". Không đặt 2 �
    bảng "yếu và mạnh" thì mockup dùng đúng các câu đó. Không thêm số liệu mới không có trong bài.
 3. **Render.** `MOCKUP_OUT=<thư mục tạm> python3 scripts/scenes/s_<nhóm>.py [tên_cảnh]` ghi `m_<tên>.jpg` 1600x900. Đặt
    `MOCKUP_OUT` ra ngoài repo (scratchpad). Chạy KHÔNG kèm `-I` vì cần import `common.py` và `segno` (`pip install segno`).
-4. **Xem lại bằng mắt, bắt buộc.** `python3 scripts/sheet.py sheet.jpg <tên1> <tên2> ...` rồi đọc ảnh. Lỗi hay gặp: chú thích đè
+4. **Kiểm cỡ chữ trên điện thoại và xem bằng mắt, bắt buộc.** `render()` in `phone min ...px ... OK/TOO SMALL`; chỉ upload khi `OK`. Rồi `python3 scripts/phone_preview.py out.jpg m_<tên>.jpg` để xem ảnh trong khung điện thoại 360px. `python3 scripts/sheet.py sheet.jpg <tên1> <tên2> ...` rồi đọc ảnh. Lỗi hay gặp: chú thích đè
    lên ảnh, chấm chỉ dẫn lệch đối tượng, chữ bị cắt, khoảng trống lớn, chữ cũ trùng lặp. Sửa tọa độ rồi render lại.
 5. **Upload.** `python3 scripts/upload_staging.py <thư mục> <tên...>` lấy URL uguu, rồi `upload_media` (WordPress MCP) với alt dạng
    `<keyword chính> <mô tả ảnh>`. Ghi lại URL media mới vào một `spec.json` (mẫu `references/spec-example.json`).
@@ -65,8 +65,10 @@ hero và featured, thay 2 ảnh loại "3 icon" và "A vs B". Không đặt 2 �
   "Postage area", có dòng môi giới và "license number as your state requires". Không bịa số giấy phép.
 - **Chú thích số** (anatomy): chấm màu cam + đường kẻ (`callout()` + `leaders()`; không đặt thẻ `<b>` trong `callout`, dùng `<strong>`, vì CSS `.call b` là vòng tròn số); mỗi số khớp một mục trong danh sách của bài, theo cùng thứ tự.
 - **Phông**: Inter (UI) và Lora (tiêu đề serif) qua Google Fonts. Chromium cần tin CA của proxy (mục dưới).
-- **Bố cục**: nền #e4eaf4 gradient nhẹ, thẻ trắng đổ bóng, màu chủ đạo navy #1b2a4a, teal #14808a, cam #e0613a. Tag nhỏ chữ hoa ở góc
-  trên trái, ghi chú mẫu ở góc dưới phải. Một thông điệp mỗi ảnh. Chữ nhỏ nhất 15px ở canvas 1600.
+- **Bố cục**: nền #e4eaf4 gradient nhẹ, thẻ trắng đổ bóng, màu chủ đạo navy #1b2a4a, teal #14808a, cam #e0613a. Một thông điệp mỗi ảnh.
+- **Chữ phải đọc được trên điện thoại (bắt buộc).** Xem `references/mobile-text-rules.md`. Tóm tắt: canvas rộng 1000px (không 16:9, `page(..., size=(1000, h))`), nhãn ≥ 38px,
+  thân ≥ 44px, tiêu đề ≥ 60px, tối đa 6 mục chữ và 8 từ mỗi mục, bảng tối đa 3 cột x 5 hàng. Chữ "giả" trong vật mô phỏng được nhỏ nhưng không chứa thông tin cần đọc.
+  **Các cảnh dựng trước 13/10 ở canvas 1600x900 đều KHÔNG đạt** và cần dựng lại theo quy tắc này trước khi dùng cho bài mới.
 
 ## Gotcha môi trường
 
@@ -87,11 +89,13 @@ mockup-images/
     common.py            CSS chung, render(), qr2() (QR thật bằng segno), page(), browser(), callout(), leaders()
     scenes/s_*.py        19 nhóm cảnh (59 ảnh): flyer, testimonials, listing presentation, card, logo, postcard, bio, GBP, plan, SEO, name, social, ads, pillar, brand, ideas, referral, gift, google ads, software
     sheet.py             contact sheet để xem lại
+    phone_preview.py     mô phỏng ảnh trong bài trên điện thoại 360px (DPR 2) cạnh đoạn chữ 16px
     upload_staging.py    đưa ảnh lên uguu để upload_media
     apply_mockups.py     chèn/thay/xóa figure trong nội dung bài, có kiểm chữ và link
     patch_imgs.py        hàm dùng chung cho apply_mockups
   assets/photos/         5 ảnh nhà nền cho mockup
   references/
+    mobile-text-rules.md quy tắc cỡ chữ cho điện thoại + nguồn
     scene-catalog.md     bảng cảnh có sẵn, đặt ở bài nào, mục nào
     spec-example.json    spec thật của đợt Cụm 9 (media URL, alt, quy tắc chèn)
 ```

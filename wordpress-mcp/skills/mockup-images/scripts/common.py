@@ -33,10 +33,25 @@ def qr2(size=100,color='#111',data='https://example.com/sample'):
         for x,v in enumerate(row):
             if v: path.append('M%d %dh1v1h-1z'%(x,y))
     return '<svg width="%d" height="%d" viewBox="0 0 %d %d" shape-rendering="crispEdges"><path d="%s" fill="%s"/></svg>'%(size,size,n,n,''.join(path),color)
-def page(body,tag='',note='Sample layout. Names, numbers and details are made up.'):
+def page(body,tag='',note='Sample layout. Names, numbers and details are made up.',size=(1600,900)):
     t='<div class="tag">%s</div>'%tag if tag else ''
     n='<div class="note">%s</div>'%note if note else ''
-    return '<!doctype html><html><head><meta charset="utf-8">%s<style>%s</style></head><body>%s%s%s</body></html>'%(FONTS,CSS,t,body,n)
+    css=CSS.replace('body{width:1600px;height:900px;','body{width:%dpx;height:%dpx;'%size).replace('svg.lines{position:absolute;left:0;top:0;width:1600px;height:900px','svg.lines{position:absolute;left:0;top:0;width:%dpx;height:%dpx'%size)
+    return '<!doctype html><html data-w="%d" data-h="%d"><head><meta charset="utf-8">%s<style>%s</style></head><body>%s%s%s</body></html>'%(size[0],size[1],FONTS,css,t,body,n)
+PHONE_W=float(os.environ.get('MOCKUP_PHONE_W','340'))  # chiều rộng ảnh hiển thị trên điện thoại (CSS px), ví dụ 340 trong cột bài viết
+MIN_PHONE_PX=float(os.environ.get('MOCKUP_MIN_PHONE_PX','12'))
+_JS_TEXT="""()=>{const out=[];const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;const seen=new Set();
+while(n=w.nextNode()){const t=n.textContent.trim();if(!t)continue;const e=n.parentElement;if(!e||seen.has(e))continue;seen.add(e);
+if(e.closest('.tag,.note'))continue;const cs=getComputedStyle(e);if(cs.visibility==='hidden'||cs.display==='none')continue;
+const r=e.getBoundingClientRect();if(r.width<2||r.height<2)continue;out.push([parseFloat(cs.fontSize),t.length])}return out}"""
+def mobile_report(pg,canvas_w=1600):
+    """Cỡ chữ nhỏ nhất quy ra điện thoại. Ảnh 1600px hiển thị ở PHONE_W px => hệ số PHONE_W/1600."""
+    items=pg.evaluate(_JS_TEXT); k=PHONE_W/float(canvas_w)
+    if not items: return ''
+    mn=min(i[0] for i in items); tot=sum(i[1] for i in items)
+    small=sum(i[1] for i in items if i[0]*k<MIN_PHONE_PX)
+    flag='OK' if small==0 else 'TOO SMALL'
+    return '| phone min %.1fpx, %d%% of chars under %dpx on phone | %s'%(mn*k,round(100*small/max(tot,1)),MIN_PHONE_PX,flag)
 def render(scenes):
     """scenes: dict name->html. Ghi m_<name>.jpg (1600x900) vào OUT, kèm ảnh nền ph_*.jpg."""
     import shutil,glob
@@ -47,13 +62,16 @@ def render(scenes):
     with sync_playwright() as p:
         b=p.chromium.launch(executable_path='/opt/pw-browsers/chromium',args=['--no-sandbox'])
         pg=b.new_page(viewport={'width':1600,'height':900})
+        import re as _re
         for name,html in scenes.items():
             path=os.path.join(OUT,name+'.html'); open(path,'w').write(html)
+            m=_re.search(r'data-w="(\d+)" data-h="(\d+)"',html); cw,ch=(int(m.group(1)),int(m.group(2))) if m else (1600,900)
+            pg.set_viewport_size({'width':cw,'height':ch})
             pg.goto('file://'+path); pg.wait_for_timeout(1200)
             try: pg.evaluate('document.fonts.ready')
             except: pass
             pg.screenshot(path=os.path.join(OUT,'m_'+name+'.jpg'),type='jpeg',quality=90)
-            print('ok',name,flush=True)
+            print('ok',name,mobile_report(pg,cw),flush=True)
         b.close()
 def sel(argv,scenes):
     names=argv[1:] or list(scenes)
