@@ -1,5 +1,7 @@
 # Money page on-page SEO: numbered proposals with exact text (nothing applied)
 
+> Revision 3: the product name is **Infina AI**. "Real Sale X" is no longer used in any proposed text.
+
 - **Page:** https://infina.ai/ (design source `realsalex-v2.html`). `main` is unchanged: the earlier edits were reverted.
 - **Target keyword:** AI assistant for real estate agents
 - Priority: P0 = affects indexing, P1 = affects ranking or snippets, P2 = polish.
@@ -9,18 +11,18 @@
 
 | # | Where on the page | Current text | Proposed text | Priority | Note |
 |---|---|---|---|---|---|
-| 1 | `<title>` (59 chars) | Send a 24/7 Home Concierge | AI Assistant for Real Estate Agents \| Real Sale X by Infina | P1 | Keyword first, brand last |
-| 2 | Meta description (154 chars) | Don't send your client a link, send a 24/7 Home Concierge. Turn any property listing into a private AI Concierge that answers your buyer's questions around the clock, with you still at the center of the relationship. (about 215 chars, gets cut) | Real Sale X is an AI assistant for real estate agents. Turn any listing into a 24/7 expert that answers buyer questions and shows you who is ready to act. | P1 | Says who it is for, what it does and the benefit |
+| 1 | `<title>` (47 chars) | Send a 24/7 Home Concierge | AI Assistant for Real Estate Agents \| Infina AI | P1 | Keyword first, brand last |
+| 2 | Meta description (152 chars) | Don't send your client a link, send a 24/7 Home Concierge. Turn any property listing into a private AI Concierge that answers your buyer's questions around the clock, with you still at the center of the relationship. (about 215 chars, gets cut) | Infina AI is an AI assistant for real estate agents. Turn any listing into a 24/7 expert that answers buyer questions and shows you who is ready to act. | P1 | Says who it is for, what it does and the benefit |
 | 3 | H1 (the Listing Agent hero, which opens by default) | Turn every brochure and yard sign into a 24/7 Property Expert. | **Option A:** AI assistant for real estate agents: turn every brochure and yard sign into a 24/7 Property Expert.<br>**Option B:** keep the current headline, add this line above it: AI ASSISTANT FOR REAL ESTATE AGENTS (and make that line the H1 text)<br>**Option C:** The AI assistant for real estate agents. (sub-heading under it: Turn every brochure and yard sign into a 24/7 Property Expert.) | P0 | Needs one H1 with the keyword. A is longest (about 5 lines desktop), C is cleanest |
 | 4 | Buyer Agent hero heading (must stop being an H1) | Don't just send a listing. Send a Concierge. (H1) | Same words, tag changed from H1 to H2, same look | P0 | Text unchanged; only the tag changes, so the page has one H1 |
 | 5 | Listing hero sub-copy | Scan the QR Code to get an AI expert that knows everything about the property and help buyers instantly from details and disclosures to pricing and next steps at any time 24/7. | Scan the QR Code to get an AI assistant for your listing that knows everything about the property and helps buyers instantly, from details and disclosures to pricing and next steps, 24/7. | P1 | Also fixes the grammar ("help" to "helps") |
-| 6 | Buyer hero sub-copy | Give every buyer a 24/7 Personal Home Concierge that learns what matters to them, helps them evaluate every home, and takes actions for them, with you still at the center of the relationship. | Real Sale X is the AI assistant for real estate agents that gives every buyer a 24/7 Personal Home Concierge that learns what matters to them, helps them evaluate every home, and takes actions for them, with you still at the center of the relationship. | P1 | Introduces the brand and keyword once |
+| 6 | Buyer hero sub-copy | Give every buyer a 24/7 Personal Home Concierge that learns what matters to them, helps them evaluate every home, and takes actions for them, with you still at the center of the relationship. | Infina AI is the AI assistant for real estate agents that gives every buyer a 24/7 Personal Home Concierge that learns what matters to them, helps them evaluate every home, and takes actions for them, with you still at the center of the relationship. | P1 | Introduces the brand and keyword once |
 | 7 | Video section label | See how it works | See how the AI assistant works | P2 | |
 | 8 | Final CTA line (Buyer tab) | Give them an advisor they can talk to. | Give them an AI assistant they can talk to. | P2 | |
 | 9 | Final CTA line (Listing tab) | Property Expert doesn't replace you. It extends you. | Keep as is | - | Already says the key message; no change |
 | 10 | Image alt: Listing hero | A For Sale yard sign with a QR code sticker in front of a home | A For Sale yard sign with a QR code that opens an AI assistant for the listing | P2 | |
 | 11 | Image alt: Buyer hero | A happy couple holding keys in front of their new home | Buyers holding the keys in front of their new home | P2 | No keyword stuffing; plain description |
-| 12 | Image alt: video poster | Real Sale X, watch the film | Real Sale X, the AI assistant for real estate agents: watch the film | P2 | |
+| 12 | Image alt: video poster | Real Sale X, watch the film ("Real Sale X" is not the product name) | Infina AI, the AI assistant for real estate agents: watch the film | P2 | |
 | 13 | Image alt: results band | An agent sitting with two clients in a living room | Keep as is | - | Already a good description |
 
 ### New FAQ block (visible on the page, placed before the testimonials)
@@ -29,8 +31,8 @@ H2: **AI assistant for real estate agents: common questions**
 
 | # | Question | Answer (all facts already on the page) |
 |---|---|---|
-| 14.1 | What is an AI assistant for real estate agents? | It is software that answers buyers' questions about a listing at any hour, using the listing's own data such as the MLS record, seller disclosure, inspection report and public records. Real Sale X is built so the agent stays at the center of the relationship: it answers the routine questions and tells you when a buyer is ready for a conversation. |
-| 14.2 | How does Real Sale X work? | Paste a link to your listing and Real Sale X creates a private page with an AI Property Expert for that home. Buyers open it from a link or a QR code on a yard sign or brochure, ask questions, and get answers that show their sources. You see what they asked and where your attention can help. |
+| 14.1 | What is an AI assistant for real estate agents? | It is software that answers buyers' questions about a listing at any hour, using the listing's own data such as the MLS record, seller disclosure, inspection report and public records. Infina AI is built so the agent stays at the center of the relationship: it answers the routine questions and tells you when a buyer is ready for a conversation. |
+| 14.2 | How does Infina AI work? | Paste a link to your listing and Infina AI creates a private page with an AI Property Expert for that home. Buyers open it from a link or a QR code on a yard sign or brochure, ask questions, and get answers that show their sources. You see what they asked and where your attention can help. |
 | 14.3 | Does the AI assistant replace the agent? | No. Property Expert does not replace you, it extends you. The agent sees every question and can join the conversation at any point. |
 | 14.4 | Does it make up answers? | It is grounded in your listing data and shows the source for each answer. If the answer is not in the data, it says so. |
 | 14.5 | Do I need a CRM or a long setup? | No. There is no CRM connection and no complicated setup. You can start with one listing and create your first advisor in under a minute. |
@@ -68,7 +70,7 @@ Check before approving: every answer must be true for the real product. Pricing 
 |---|---|---|---|
 | 17.1 | Organization | name: Infina AI; url: https://infina.ai/; logo: https://infina.ai/landing-html/uploads/infina-ai-logo-web.webp. Needs: official company name and social profile URLs | P1 |
 | 17.2 | WebSite | name: Infina AI; url: https://infina.ai/; language: en-US | P1 |
-| 17.3 | SoftwareApplication | name: Real Sale X; description: same as #2; category: BusinessApplication; audience: Real estate agents. No price and no rating (none are on the page) | P1 |
+| 17.3 | SoftwareApplication | name: Infina AI; description: same as #2; category: BusinessApplication; audience: Real estate agents. No price and no rating (none are on the page) | P1 |
 | 17.4 | FAQPage | The six questions and answers in 14.1 to 14.6, word for word | P1 |
 
 ### Footer and testimonials (text decisions)
@@ -77,7 +79,7 @@ Check before approving: every answer must be true for the real product. Pricing 
 |---|---|---|---|---|
 | 18 | Footer links | None except the "(c) 2026 Infina" line | Add: Privacy Policy, Terms of Service, Contact (URLs to be given by you) | P2 |
 | 19 | Testimonials (Dana Whitfield, Marcus Ellery, Priya Raman) | Three named quotes with brokerage and "$31M / $18M / $44M closed" | No text from me. Replace with real approved quotes, or remove. The spec marks them "TBD, need real quote" | P1 |
-| 20 | Product name | "Home Concierge" (buttons, title) and "Property Expert" (body) | Decision: which one is the main name? Option: keep both, always called "AI assistant" first. Changing buttons means editing the JS and demo pages | P1 |
+| 20 | Product and feature names | The product name is **Infina AI** (confirmed). The page also uses "Home Concierge" (buttons, old title) and "Property Expert" (body). "Real Sale X" appears only in the video poster alt and in file names, and is no longer used in any proposed text | Decision: are "Home Concierge" and "Property Expert" feature names inside Infina AI? Proposed: yes. Always write "Infina AI" for the product and "AI assistant" as the category; keep the two feature names for the two agent tools. Changing buttons means editing the JS and demo pages | P1 |
 
 ## Part B. Technical items (no page text, for the React codebase or hosting)
 
