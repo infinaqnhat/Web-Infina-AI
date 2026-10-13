@@ -474,12 +474,6 @@
     .faq-item summary::after { content:"+"; font-size:22px; font-weight:600; color:var(--muted); flex-shrink:0; }
     .faq-item[open] summary::after { content:"\2212"; }
     .faq-item p { padding:0 22px 20px; font-size:16px; color:var(--fg-secondary); line-height:1.7; }
-    .guides-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-    @media (max-width:860px){ .guides-grid{ grid-template-columns:1fr; max-width:480px; margin:0 auto; } }
-    .guide-card { display:flex; flex-direction:column; gap:8px; padding:22px; border:1.5px solid var(--border); border-radius:var(--radius); transition:border-color .2s, transform .2s; }
-    .guide-card:hover { border-color:var(--accent); transform:translateY(-2px); }
-    .guide-card b { font-size:17px; font-weight:800; color:var(--accent); }
-    .guide-card span { font-size:14.5px; color:var(--muted); line-height:1.6; }
 
     /* ===== Testimonials ===== */
     .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:36px; }
@@ -1388,20 +1382,6 @@
           <summary>Do buyers need to log in?</summary>
           <p>No. Buyers get answers instantly with no login, and every buyer gets a private conversation.</p>
         </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Guides (internal links to the /news cluster) ===== -->
-  <section class="section guides-section">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Guides for agents</span>
-      </div>
-      <div class="guides-grid">
-        <a class="guide-card" href="https://infina.ai/news/real-estate-marketing/"><b>Real estate marketing guide</b><span>The channels, budget and routines that bring in clients.</span></a>
-        <a class="guide-card" href="https://infina.ai/news/real-estate-marketing-plan/"><b>One-page real estate marketing plan</b><span>Set a goal, split the budget and review it each quarter.</span></a>
-        <a class="guide-card" href="https://infina.ai/news/real-estate-lead-follow-up-automation-guide/"><b>Real estate lead follow-up automation</b><span>Set up fast replies so no lead goes cold.</span></a>
       </div>
     </div>
   </section>
