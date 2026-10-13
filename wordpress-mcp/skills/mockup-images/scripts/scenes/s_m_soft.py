@@ -11,11 +11,11 @@ c=title('Connect every tool<br>to your CRM',size=62)
 c+='<div class="abs sh" style="left:50px;top:210px;width:900px;height:160px;border-radius:16px;background:'+N+';color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:60px;font-weight:800;line-height:1.1">CRM</div><div style="font-size:40px;color:#c9d6ee;margin-top:4px">One record for each contact</div></div>'
 T=[('Website forms and pages','New leads arrive with a source','#14808a'),('Ad platforms','See which campaign closed','#c2410c'),('Email tool','List stays current','#7c5cc4'),('Direct mail tool','Addresses and responses','#e0613a'),('Review tool','New reviews reach your profile','#e0a21b')]
 y=410
-c+='<div class="abs" style="left:78px;top:370px;width:8px;height:%dpx;background:#9fb4d6"></div>'%(5*152-40+40)
+c+='<div class="abs" style="left:78px;top:370px;width:8px;height:%dpx;background:#9fb4d6"></div>'%720
 for name,sub,col in T:
     c+='<div class="abs" style="left:78px;top:%dpx;width:40px;height:8px;background:#9fb4d6"></div><div class="abs" style="left:110px;top:%dpx;width:840px;height:130px;background:#fff;border-radius:14px;border-left:14px solid %s;box-shadow:0 4px 12px rgba(20,35,70,.1)"><div style="position:absolute;left:28px;top:14px;font-size:44px;font-weight:800;color:%s;white-space:nowrap">%s</div><div style="position:absolute;left:28px;top:72px;font-size:38px;color:#475467;white-space:nowrap">%s</div></div>'%(y+60,y,col,N,name,sub)
     y+=152
-c+='<div class="abs" style="left:50px;top:%dpx;width:900px;background:#fff7e6;border-left:8px solid #e0a21b;border-radius:8px;padding:20px 26px;font-size:42px;font-weight:700;color:#1d2433;line-height:1.25">No CRM link and no export? A warning sign.</div>'%(y+10)
+c+='<div class="abs" style="left:50px;top:%dpx;width:900px;background:#fff7e6;border-left:8px solid #e0a21b;border-radius:8px;padding:20px 26px;font-size:42px;font-weight:700;color:#1d2433;line-height:1.25">No CRM link, no export: a warning.</div>'%(y+10)
 y+=170
 soft_connect_m=page(c,'',note='',size=(1000,y+30))
 # 2. trial in six steps
@@ -27,7 +27,7 @@ for i,(a,b) in enumerate(T):
     c+=dot(i+1,76,y+34,68,42)
     c+='<div class="abs" style="left:176px;top:%dpx;font-size:44px;font-weight:800;color:%s;white-space:nowrap">%s</div><div class="abs" style="left:176px;top:%dpx;font-size:38px;color:#475467;white-space:nowrap">%s</div>'%(y+18,N,a,y+78,b)
     y+=156
-c+='<div class="abs" style="left:50px;top:%dpx;width:900px;background:#fff7e6;border-left:8px solid #e0a21b;border-radius:8px;padding:20px 26px;font-size:42px;font-weight:700;color:#1d2433;line-height:1.25">Set a reminder the day before the trial ends.</div>'%(y+10)
+c+='<div class="abs" style="left:50px;top:%dpx;width:900px;background:#fff7e6;border-left:8px solid #e0a21b;border-radius:8px;padding:20px 26px;font-size:42px;font-weight:700;color:#1d2433;line-height:1.25;text-wrap:balance">Remind yourself the day before it ends.</div>'%(y+10)
 y+=170
 soft_trial_m=page(c,'',note='',size=(1000,y+30))
 # 3. sprawl vs small stack (bar length = monthly cost)

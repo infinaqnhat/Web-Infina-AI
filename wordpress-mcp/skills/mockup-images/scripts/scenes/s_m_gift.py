@@ -23,7 +23,7 @@ for i,(a,b,c) in enumerate(T):
     t+='<div class="abs" style="left:50px;top:%dpx;width:76px;height:76px;border-radius:50%%;background:%s;border:8px solid #e4eaf4"></div>'%(y,c)
     t+='<div class="abs" style="left:160px;top:%dpx;width:790px;height:190px;background:#fff;border-radius:16px;box-shadow:0 6px 16px rgba(20,35,70,.12);border-left:10px solid %s"><div style="position:absolute;left:30px;top:24px;right:20px;font-size:46px;font-weight:800;color:%s">%s</div><div style="position:absolute;left:30px;top:96px;right:20px;font-size:40px;color:#1d2433;line-height:1.25">%s</div></div>'%(y-56,c,c,a,b)
     y+=220
-y+=10
+y-=20
 t+=box(y,'<strong>Put all three dates in your CRM</strong> the day the deal closes.')
 y+=190
 t+='<div class="abs" style="left:50px;top:%dpx;width:900px;font-size:40px;color:#475467;line-height:1.3">Order gifts early: delays are common.</div>'%y
