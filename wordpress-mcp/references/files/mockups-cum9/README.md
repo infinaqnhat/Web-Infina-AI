@@ -31,3 +31,5 @@ Làm lại 2 bài #1843 (real-estate-marketing-plan) và #1832 (real-estate-bran
 - Đã áp dụng (thay ảnh gen-1): #1825 (live), #1853 (live, áp dụng trực tiếp ảnh `_m`), #1937 #1943 #1949 #1955 #1961 #1967 #1977 #1979 (future, nội dung gốc ở `bases/<id>.html`, đã là bản mới), #1843 #1832 (đợt thử).
 - `spec['posts']` của #1859 #1865 #1871 #1877 #1883 #1889 #1895 #1901 đã đổi sang khóa `_m`; các trigger chèn ảnh sau khi bài publish sẽ dùng bản mới.
 - `fig()` escape `"` trong alt thành `&quot;` (alt của gads_search_m có dấu nháy).
+
+- 13/10 19:45 UTC: trigger chèn ảnh `_m` vào #1859 (adv_examples_m, adv_metrics_m, adv_test_m) và #1865 (soc_week_m, soc_calendar_m, soc_caption_m): xong, 4 figure thành 5, chữ và link không đổi.

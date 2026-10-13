@@ -955,3 +955,5 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - 2026-10-13 — Skill `mockup-images` cập nhật theo bản mobile-first đã duyệt: canvas 1000px mặc định, công thức dựng cảnh, `apply_mockups.py --mobile`, caption trong spec, catalog 6 cảnh `_m`, spec-example có `mobile_round`.
 
 - 2026-10-13 — Làm lại toàn bộ ảnh mockup Cụm 9 theo mobile-first (59 ảnh, media 2051–2111). Đã thay ảnh gen-1 ở #1825, #1853, #1937, #1943, #1949, #1955, #1961, #1967, #1977, #1979, #1843, #1832; 8 bài còn lại (#1859 #1865 #1871 #1877 #1883 #1889 #1895 #1901) sẽ nhận ảnh `_m` khi publish qua trigger. Chữ và link không đổi (đã kiểm với bài live #1825, #1853).
+
+- 2026-10-13 — #1859, #1865: chèn 3 ảnh mockup mobile-first mỗi bài (đã publish 14:00 và 18:00 UTC), thay 3 ảnh icon cũ; chữ và link không đổi.
