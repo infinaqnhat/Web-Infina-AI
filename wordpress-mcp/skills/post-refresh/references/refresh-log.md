@@ -879,3 +879,51 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Ngày 12/10 đã đủ 3 bài (#1825, #1832, #1843). Bài mới 16/10 trở đi (wave 2) có thể xếp 3 bài/ngày.
 - Chưa xác minh được nội dung 7 bài vừa đổi ngày còn nguyên vì bài `future` không đọc được qua REST công khai; sẽ kiểm khi chúng lên.
 - Các lịch nhắc kiểm tra đã dời: 13/10 19:00, 14/10 19:00, 15/10 19:30 UTC (bước inbound link pillar/hub làm ở lần cuối).
+
+
+## 2026-10-13: Cụm 9 wave 2 viết xong và lên lịch (8 bài)
+
+- Lịch (giờ site = UTC, tối đa 3 bài/ngày, routine news vẫn đang tạm dừng): 16/10 10:00 #1937 Google Business Profile, 14:00 #1943 Google Ads, 18:00 #1949 testimonials; 17/10 10:00 #1955 listing presentation, 14:00 #1961 referral, 18:00 #1967 flyer; 18/10 10:00 #1977 closing gifts, 14:00 #1979 realtor name ideas. Tổng hợp theo thứ tự này để link giữa các bài chỉ trỏ tới bài lên trước.
+- Cả 8 bài đạt gate: check_seo (density >= 0,5%, >= 1 link ngoài, >= 2 link nội bộ, kw trong H2 và alt, link pillar hoặc hub), không anchor nội bộ dài hơn 8 từ, SEO title <= 60, description <= 155, không dấu gạch dài, kiểm HTTP 200 mọi link nội bộ không phải bài đã lên lịch, mỗi ảnh được xem trực tiếp. Hai ảnh cmp sinh lại vì nhãn bị in hai lần, một ảnh hero sinh lại vì cắt mất mặt.
+- Quy tắc link: mỗi bài 1 link lên pillar #1825 (marketing) hoặc hub #1832 (testimonials, name ideas), tối đa 1 link ra pillar cụm khác (#1223 ở Google Ads, #918 ở flyer, crm-marketing-real-estate ở referral và closing gifts).
+- **Chưa làm (đã hẹn qua trigger):** inbound cho 8 bài mới (pillar #1825 Related Reading thêm đủ wave 2, hub #1832 Related Reading cho testimonials và name ideas, và ít nhất 1 bài donor cùng cụm cho mỗi bài), vì không được link tới bài chưa lên.
+
+### Cụm 9 wave 2: `google business profile for realtors` (#1937)
+
+- Lên lịch #1937 `/google-business-profile-for-realtors/` ngày **16/10/2026 10:00**. 1.487 chữ, density 0,67%.
+- Chỉ nêu điều đã xác minh từ Google Business Profile Help: agent là practitioner được liệt kê tên, 1 profile mỗi practitioner, staff không có profile riêng, virtual office không đủ điều kiện, service-area business ẩn địa chỉ, tên không được thêm tagline hoặc mô tả dịch vụ (có thể bị suspend), xác minh khiến profile dễ hiện hơn. Review: chính sách Maps coi review có ưu đãi (tiền, giảm giá, hàng/dịch vụ miễn phí) là incentivized và không cho phép; FTC rule review hiệu lực 21/10/2024. Không nêu loại category cụ thể của Google vì chưa xác minh danh sách hiện tại.
+
+### Cụm 9 wave 2: `google ads for realtors` (#1943)
+
+- Lên lịch #1943 `/google-ads-for-realtors/` ngày **16/10/2026 14:00**. 1.272 chữ, density 0,79%.
+- Quy tắc nhà ở của Google Ads (US/Canada) lấy từ trang Housing in personalized advertising: không nhắm theo giới tính, tuổi, tình trạng cha mẹ, hôn nhân, ZIP code; cho phép bán kính tối thiểu 1 km và thành phố; chính sách xét cả landing page; trang không nêu tên agent nên bài viết "nên coi là bị áp dụng". Giá lead $50-150 chỉ dẫn từ Ylopo (đã gắn nhãn quan điểm một vendor). Không nêu CPC cụ thể.
+
+### Cụm 9 wave 2: `real estate testimonials` (#1949)
+
+- Lên lịch #1949 `/real-estate-testimonials/` ngày **16/10/2026 18:00**. 1.377 chữ, density 0,80%.
+- FTC rule hiệu lực 21/10/2024: cấm testimonial giả, mua review gắn cảm xúc, insider review không công khai, ngăn review bằng đe dọa hoặc cáo buộc sai; Q&A của FTC nói testimonial doanh nghiệp tự đăng trên website của mình cũng bị điều chỉnh. Không nêu mức phạt vì trang FTC không ghi số. NAR (qua Virginia REALTORS): 66% seller tìm agent qua referral hoặc agent cũ, 35% nói danh tiếng là yếu tố quyết định. Ví dụ testimonial trong bài là bịa và đã ghi rõ.
+
+### Cụm 9 wave 2: `listing presentation` (#1955)
+
+- Lên lịch #1955 `/listing-presentation/` ngày **17/10/2026 10:00**. 1.413 chữ, density 0,78%.
+- NAR settlement FAQs (trang chỉ hiện câu hỏi, không hiện câu trả lời đầy đủ): có hiệu lực 17/08/2024; cấm đăng offer of compensation trên MLS; buyer cần thỏa thuận bằng văn bản trước khi xem nhà; có disclosure "not set by law and is fully negotiable". Bài chỉ nêu những điểm này và dặn tuân theo chính sách brokerage và luật bang. Số liệu seller từ NAR qua Virginia REALTORS: ưu tiên marketing, định giá cạnh tranh, bán trong khung thời gian; 35% nhắc danh tiếng; 66% qua referral hoặc agent cũ.
+
+### Cụm 9 wave 2: `real estate agent referral` (#1961)
+
+- Lên lịch #1961 `/real-estate-agent-referral/` ngày **17/10/2026 14:00**. 1.289 chữ, density 0,78%.
+- Xác minh SERP 12/10 là lẫn hai ý (cách nhận referral và referral fee), bài viết cả hai. 12 CFR 1024.14: cấm đưa hoặc nhận fee/kickback/thing of value cho referral settlement-service; ngoại lệ cho cooperative brokerage và referral giữa agent và broker, chỉ khi mọi bên là real estate broker, không áp dụng với mortgage broker. 25-40% hoa hồng chỉ dẫn từ Ylopo và ghi rõ không phải quy tắc agent-to-agent. NAR: 43% buyer qua referral, 18% agent cũ, hơn 9/10 buyer dùng lại agent.
+
+### Cụm 9 wave 2: `flyer for real estate` (#1967)
+
+- Lên lịch #1967 `/flyer-for-real-estate/` ngày **17/10/2026 18:00**. 1.233 chữ, density 0,65%.
+- USPS: không đặt matter không dán tem vào, gắn lên, hay treo vào mail receptacle (DMM, FAQ của USPS về flyer trả lời không); bài khuyên tuân theo và kiểm tra luật địa phương về phát tận nhà. Không nêu số liệu hiệu quả của flyer vì không có nguồn độc lập.
+
+### Cụm 9 wave 2: `closing gifts real estate` (#1977)
+
+- Lên lịch #1977 `/closing-gifts-real-estate/` ngày **18/10/2026 10:00**. 1.310 chữ, density 0,69%.
+- IRS Publication 463: khấu trừ tối đa $25 cho mỗi người mỗi năm thuế với quà kinh doanh; chi phí phụ như gói quà, khắc chữ, vận chuyển thường không tính nếu không làm tăng đáng kể giá trị; cần lưu chi phí, ngày, mô tả. Edition 2025 là bản mới nhất tìm được. RESPA: không hứa quà để đổi lấy referral; bài dặn hỏi broker.
+
+### Cụm 9 wave 2: `realtor name ideas` (#1979)
+
+- Lên lịch #1979 `/realtor-name-ideas/` ngày **18/10/2026 14:00**. 1.346 chữ, density 0,67%.
+- NAR: REALTOR® không được là một phần của tên firm. SBA: hầu hết bang không cho đăng ký tên đã có người đăng ký; nên kiểm tra USPTO; đăng ký DBA khi dùng tên khác; domain không cần khớp tên. Tên ví dụ là bịa và đã ghi rõ. Không nêu quy tắc cụ thể từng bang (không xác minh), chỉ dặn hỏi broker và state commission.

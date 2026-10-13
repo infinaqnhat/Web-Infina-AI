@@ -1,6 +1,6 @@
 # Plan đề xuất: Cụm 9, Real Estate Marketing và Branding
 
-**Trạng thái: pillar `real estate marketing` ĐÃ ĐĂNG 12/10/2026 (#1825, `/real-estate-marketing/`). Hub `real estate branding` ĐÃ ĐĂNG 12/10/2026 (#1832, `/real-estate-branding/`). 10 cluster WAVE 1 ĐÃ DUYỆT và đặt chỗ keyword 12/10/2026 (chưa viết). 8 cluster WAVE 2 ĐÃ DUYỆT và đặt chỗ keyword 12/10/2026 (chưa viết). Wave 3 là backlog tùy chọn.** Soạn 2026-10-12 theo
+**Trạng thái: pillar `real estate marketing` ĐÃ ĐĂNG 12/10/2026 (#1825, `/real-estate-marketing/`). Hub `real estate branding` ĐÃ ĐĂNG 12/10/2026 (#1832, `/real-estate-branding/`). 10 cluster WAVE 1 ĐÃ VIẾT (#1843–#1901; 1 bài đăng 12/10, 9 bài lên lịch 13–15/10/2026). 8 cluster WAVE 2 ĐÃ VIẾT và LÊN LỊCH 16–18/10/2026 (#1937, #1943, #1949, #1955, #1961, #1967, #1977, #1979; tối đa 3 bài/ngày). Link ngược vào pillar/hub chờ bài publish. Wave 3 là backlog tùy chọn.** Soạn 2026-10-12 theo
 `skills/pillar-cluster-writer/SKILL.md` Bước 1-4. Pillar và hub đã ghi vào `content-plan.md` (Cụm 9) và đặt chỗ keyword trong
 `used-keywords.md`. Cluster chưa đặt chỗ vì chưa duyệt.
 

@@ -169,6 +169,14 @@ từ slug URL — **không chắc chắn 100%**, ưu tiên check lại nội dun
 | 2026-10-12 | `real estate agent logo` (gom `real estate logo`, `logo ideas`) | [real-estate-agent-logo](https://infina.ai/news/real-estate-agent-logo/) = #1889, cluster Cụm 9 wave 1, **scheduled 15/10/2026 10:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
 | 2026-10-12 | `real estate agent bio` (gom examples, `broker bio`, `salesperson bio`) | [real-estate-agent-bio](https://infina.ai/news/real-estate-agent-bio/) = #1895, cluster Cụm 9 wave 1, **scheduled 15/10/2026 14:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
 | 2026-10-12 | `real estate marketing software` (gom platform, tools) | [real-estate-marketing-software](https://infina.ai/news/real-estate-marketing-software/) = #1901, cluster Cụm 9 wave 1, **scheduled 15/10/2026 18:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
+| 2026-10-12 | `google business profile for realtors` (gom optimizing, posts) | [google-business-profile-for-realtors](https://infina.ai/news/google-business-profile-for-realtors/) = #1937, cluster Cụm 9 wave 2, **scheduled 16/10/2026 10:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
+| 2026-10-12 | `google ads for realtors` (gom `ppc real estate`) | [google-ads-for-realtors](https://infina.ai/news/google-ads-for-realtors/) = #1943, cluster Cụm 9 wave 2, **scheduled 16/10/2026 14:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
+| 2026-10-12 | `real estate testimonials` (gom examples) | [real-estate-testimonials](https://infina.ai/news/real-estate-testimonials/) = #1949, cluster Cụm 9 wave 2, **scheduled 16/10/2026 18:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
+| 2026-10-12 | `listing presentation` (gom template, examples, sample) | [listing-presentation](https://infina.ai/news/listing-presentation/) = #1955, cluster Cụm 9 wave 2, **scheduled 17/10/2026 10:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
+| 2026-10-12 | `real estate agent referral` (gom referral marketing, referral fees) | [real-estate-agent-referral](https://infina.ai/news/real-estate-agent-referral/) = #1961, cluster Cụm 9 wave 2, **scheduled 17/10/2026 14:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
+| 2026-10-12 | `flyer for real estate` (gom `flyers for real estate agents`) | [flyer-for-real-estate](https://infina.ai/news/flyer-for-real-estate/) = #1967, cluster Cụm 9 wave 2, **scheduled 17/10/2026 18:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
+| 2026-10-12 | `closing gifts real estate` (gom client gifts, best closing gifts) | [closing-gifts-real-estate](https://infina.ai/news/closing-gifts-real-estate/) = #1977, cluster Cụm 9 wave 2, **scheduled 18/10/2026 10:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
+| 2026-10-12 | `realtor name ideas` (gom `realty company name ideas`, `llc name ideas`) | [realtor-name-ideas](https://infina.ai/news/realtor-name-ideas/) = #1979, cluster Cụm 9 wave 2, **scheduled 18/10/2026 14:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
 
 ---
 
@@ -185,14 +193,6 @@ chưa xuất hiện ở bảng trên. Xoá dòng khỏi mục này và chuyển 
 
 | Ngày đặt chỗ | Keyword | Slug dự kiến | Nguồn |
 |---|---|---|---|
-| 2026-10-12 | `google ads for realtors` (gom `ppc real estate`) | `google-ads-for-realtors` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
-| 2026-10-12 | `google business profile for realtors` (gom optimizing, posts) | `google-business-profile-for-realtors` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
-| 2026-10-12 | `flyer for real estate` (gom `flyers for real estate agents`) | `flyer-for-real-estate` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
-| 2026-10-12 | `listing presentation` (gom template, examples, sample) | `listing-presentation` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
-| 2026-10-12 | `closing gifts real estate` (gom client gifts, best closing gifts) | `closing-gifts-real-estate` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
-| 2026-10-12 | `real estate testimonials` (gom examples) | `real-estate-testimonials` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
-| 2026-10-12 | `realtor name ideas` (gom `realty company name ideas`, `llc name ideas`) | `realtor-name-ideas` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
-| 2026-10-12 | `real estate agent referral` (gom referral marketing, referral fees) | `real-estate-agent-referral` | Cụm 9 wave 2, đã duyệt 12/10, chưa viết |
 
 Cụm 9: wave 1 (10 bài) và wave 2 (8 bài) đã duyệt và đặt chỗ ngày 12/10/2026. Wave 3 (backlog tùy chọn) chưa đặt chỗ. Danh sách dự kiến ở
 `references/plan-cum-9-marketing-branding.md`.
