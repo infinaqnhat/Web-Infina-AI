@@ -58,3 +58,21 @@ def render(scenes):
 def sel(argv,scenes):
     names=argv[1:] or list(scenes)
     return {n:scenes[n] for n in names}
+
+# ---- helper UI blocks (dùng chung cho các cảnh) ----
+def browser(x,y,w,h,url,inner,title_bar=True):
+    """Khung trình duyệt giả. inner là HTML đặt bên dưới thanh địa chỉ (cao 48px)."""
+    return ('<div class="abs sh" style="left:%dpx;top:%dpx;width:%dpx;height:%dpx;border-radius:14px;background:#fff;overflow:hidden">'%(x,y,w,h)
+      +'<div style="height:48px;background:#e9edf3;display:flex;align-items:center;gap:8px;padding:0 18px"><i style="width:12px;height:12px;border-radius:50%;background:#f87171"></i><i style="width:12px;height:12px;border-radius:50%;background:#fbbf24"></i><i style="width:12px;height:12px;border-radius:50%;background:#34d399"></i>'
+      +'<div style="margin-left:18px;background:#fff;border-radius:6px;padding:5px 16px;font-size:15px;color:#667085;width:520px">'+url+'</div></div>'
+      +inner+'</div>')
+def callout(n,txt,x,y,w=330):
+    return '<div class="call" style="left:%dpx;top:%dpx;width:%dpx"><b>%d</b><span>%s</span></div>'%(x,y,w,n,txt)
+def leaders(items):
+    """items: [(x1,y1,x2,y2)] đường kẻ cam, chấm ở đầu (x2,y2)."""
+    s='<svg class="lines">'
+    for x1,y1,x2,y2 in items: s+='<line x1="%d" y1="%d" x2="%d" y2="%d"/><circle cx="%d" cy="%d" r="6"/>'%(x1,y1,x2,y2,x2,y2)
+    return s+'</svg>'
+STARS='<span style="color:#e0a21b;letter-spacing:2px">&#9733;&#9733;&#9733;&#9733;&#9733;</span>'
+def photo(name,x,y,w,h,r=6):
+    return '<div class="photo abs" style="left:%dpx;top:%dpx;width:%dpx;height:%dpx;border-radius:%dpx;background-image:url(%s.jpg)"></div>'%(x,y,w,h,r,name)

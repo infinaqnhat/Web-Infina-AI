@@ -25,9 +25,27 @@ Mỗi cảnh là một hàm/biến trong `scripts/scenes/s_<nhóm>.py`, render r
 | `bio_profile` | s_bio | #1895 bio | thay ảnh DEMO sau template | trang hồ sơ, tô màu who, proof, next step |
 | `bio_beforeafter` | s_bio | #1895 | sau mục "Before and After" | 4 cặp dòng yếu, dòng mạnh |
 | `bio_gallery` | s_bio | #1895 | sau "Examples" | 3 thẻ hồ sơ theo đối tượng |
+| `gbp_fields` | s_gbp | #1937 Google Business Profile | sau bảng "What to Enter in Each Field" | hồ sơ doanh nghiệp mẫu có 7 chú thích số khớp bảng (không dùng logo Google) |
+| `gbp_review` | s_gbp | #1937 | thay ảnh COMPARISON cuối mục Reviews | 1 review + phản hồi của chủ, 3 quy tắc, ví dụ cấm tặng quà |
+| `gbp_name` | s_gbp | #1937 | trước "Measure" | tên thật vs tên nhồi từ khóa |
+| `plan_budget` | s_plan | #1843 Marketing Plan | cuối mục Budget | 2 thanh xếp chồng: agent mới $500, agent đang lớn $1,500, số % lấy từ bảng của bài |
+| `plan_template` | s_plan | #1843 | sau mục Template | sheet "3 Plan" của file xlsx thật (dựng lại bằng HTML từ dữ liệu file, vì LibreOffice không mở được ở môi trường này) |
+| `plan_tracker` | s_plan | #1843 | thay ảnh DEMO mục Review | sheet "4 Quarterly Review" với số mẫu, spend per closing tự tính |
+| `seo_results` | s_seo | #1871 SEO | trước "What Google Says Drives Local Rankings" | trang tìm kiếm mẫu (không dùng giao diện Google): local pack + organic, 2 chú thích |
+| `seo_profile` | s_seo | #1871 | thay ảnh DEMO mục Profile | checklist 6 mục của hồ sơ |
+| `seo_plan` | s_seo | #1871 | trước "Should You Hire Someone" | kế hoạch 90 ngày, 3 cột tháng, mỗi tháng 4 đến 6 giờ |
+| `name_uses` | s_name | #1979 Name Ideas | thay ảnh COMPARISON mục Online | một tên trên biển, thẻ, email, social, website |
+| `name_formulas` | s_name | #1979 | sau danh sách công thức | 5 công thức đặt tên + ví dụ lấy từ bài |
+| `name_test` | s_name | #1979 | thay ảnh DEMO mục Test | 5 bước kiểm tên |
+| `soc_calendar` | s_soc | #1865 Social | sau bảng lịch 4 tuần | lịch 4 tuần x 3 bài, gắn nhãn loại bài (màu) |
+| `soc_week` | s_soc | #1865 | thay ảnh DEMO sau bảng routine | routine thứ Hai đến thứ Sáu, tổng 140 phút |
+| `soc_caption` | s_soc | #1865 | trước "Batch Your Content" | một bài đăng với caption mẫu, 3 chú thích |
+| `adv_examples` | s_adv | #1859 Advertising | trước "Fair Housing Rules" | 4 quảng cáo mẫu (search, social x3) |
+| `adv_metrics` | s_adv | #1859 | trước "How to Test" | phễu mẫu $900, 30 lead, 6 hẹn, 2 khách, 1 closing |
+| `adv_test` | s_adv | #1859 | thay ảnh DEMO mục Test | 5 bước test 30 ngày + thanh tiến độ |
+
 
 ## Cảnh nên làm tiếp (chưa có)
 
-Google Business Profile (hồ sơ có chú thích trường), Marketing Plan (chụp template xlsx thật của repo), kết quả local pack cho SEO,
-tên trên biển/thẻ/email cho Name Ideas, lịch đăng tuần cho Social, mẫu quảng cáo cho Advertising. Với wave 3: hộp kịch bản door knocking
-và cold calling, checklist open house, bảng chọn farm, lịch 12 tháng.
+Wave 3: hộp kịch bản door knocking và cold calling, checklist open house, bảng chọn farm, lịch 12 tháng, khung video (kịch bản và thiết lập điện thoại).
+Nhóm ưu tiên thấp: #1825 pillar (bản đồ kênh), #1832 hub (bảng thương hiệu), #1853 ideas, #1961 referral, #1977 gifts (thiệp cảm ơn), #1943 Google Ads, #1901 software.

@@ -13,7 +13,7 @@ description: >
 
 # Mockup images: ảnh minh họa thực tế bằng HTML
 
-Đúc kết từ đợt nâng ảnh Cụm 9 ngày 13/10/2026 (21 ảnh cho 7 bài). Lý do ra đời: ảnh cũ là 1 ảnh hero
+Đúc kết từ đợt nâng ảnh Cụm 9 ngày 13/10/2026 (39 ảnh cho 13 bài). Lý do ra đời: ảnh cũ là 1 ảnh hero
 + 3 infographic icon chung chung, không cho thấy thứ bài đang nói (bài "Flyers: Examples, Templates"
 không có tờ flyer nào). Kiểm 12 bài top SERP và bài của Salesforce cho thấy đối thủ hoặc không có ảnh,
 hoặc dùng ảnh chụp ví dụ thật có chú thích nguồn. Bài đứng đầu SERP khó nhất (The Close, door knocking)
@@ -62,7 +62,7 @@ hero và featured, thay 2 ảnh loại "3 icon" và "A vs B". Không đặt 2 �
   `wordpress-mcp/scripts/gen_article_images.py` với prompt "no text, no people, no signs".
 - **Giấy tờ in** (flyer, card, postcard) mô phỏng thật: tỷ lệ đúng (thẻ 1.75:1, postcard 3:2, flyer 8.5x11), có khu vực bưu phí/ghi
   "Postage area", có dòng môi giới và "license number as your state requires". Không bịa số giấy phép.
-- **Chú thích số** (anatomy): chấm màu cam + đường kẻ; mỗi số khớp một mục trong danh sách của bài, theo cùng thứ tự.
+- **Chú thích số** (anatomy): chấm màu cam + đường kẻ (`callout()` + `leaders()`; không đặt thẻ `<b>` trong `callout`, dùng `<strong>`, vì CSS `.call b` là vòng tròn số); mỗi số khớp một mục trong danh sách của bài, theo cùng thứ tự.
 - **Phông**: Inter (UI) và Lora (tiêu đề serif) qua Google Fonts. Chromium cần tin CA của proxy (mục dưới).
 - **Bố cục**: nền #e4eaf4 gradient nhẹ, thẻ trắng đổ bóng, màu chủ đạo navy #1b2a4a, teal #14808a, cam #e0613a. Tag nhỏ chữ hoa ở góc
   trên trái, ghi chú mẫu ở góc dưới phải. Một thông điệp mỗi ảnh. Chữ nhỏ nhất 15px ở canvas 1600.
@@ -83,8 +83,8 @@ hero và featured, thay 2 ảnh loại "3 icon" và "A vs B". Không đặt 2 �
 mockup-images/
   SKILL.md
   scripts/
-    common.py            CSS chung, render(), qr2() (QR thật bằng segno), page()
-    scenes/s_*.py        7 nhóm cảnh (21 ảnh): flyer, testimonials, listing presentation, card, logo, postcard, bio
+    common.py            CSS chung, render(), qr2() (QR thật bằng segno), page(), browser(), callout(), leaders()
+    scenes/s_*.py        13 nhóm cảnh (39 ảnh): flyer, testimonials, listing presentation, card, logo, postcard, bio, GBP, plan, SEO, name, social, ads
     sheet.py             contact sheet để xem lại
     upload_staging.py    đưa ảnh lên uguu để upload_media
     apply_mockups.py     chèn/thay/xóa figure trong nội dung bài, có kiểm chữ và link

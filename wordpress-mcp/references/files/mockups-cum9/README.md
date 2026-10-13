@@ -1,6 +1,6 @@
 # Mockup ảnh minh họa cho Cụm 9 (13/10/2026)
 
-21 ảnh 1600x900 dựng bằng HTML + Playwright (không dùng AI vẽ chữ), chụp thành JPG. Gồm 7 bài: cards (#1883), logos (#1889),
+39 ảnh 1600x900 (21 nhóm ưu tiên cao + 18 nhóm trung bình) dựng bằng HTML + Playwright (không dùng AI vẽ chữ), chụp thành JPG. Gồm 7 bài: cards (#1883), logos (#1889),
 postcards (#1877), bio (#1895), testimonials (#1949), listing presentation (#1955), flyers (#1967).
 
 - `src/s_*.py`: mỗi file dựng một nhóm ảnh. Chạy trong thư mục `src` kèm `common.py` và ảnh nền `../photos/ph_*.jpg`
@@ -16,3 +16,6 @@ Quy ước: tên và số liệu trong mockup đều hư cấu và được ghi 
 
 Lưu ý: mã dựng ảnh và script chèn bản chuẩn, dùng lại cho bài khác, nằm ở skill `skills/mockup-images/`. Thư mục này chỉ giữ kết quả đợt Cụm 9
 và bản `apply_mockups.py` mà các trigger 14/10 và 15/10 đang gọi.
+
+Nhóm trung bình (13/10): #1937 GBP, #1979 Name Ideas, #1843 Marketing Plan đã cập nhật ngay (#1843 từ bản live). #1859 và #1865 chèn sau khi publish
+(trigger 13/10 19:45 UTC), #1871 (trigger 14/10 11:00 UTC). `spec.json` có đủ 13 bài.

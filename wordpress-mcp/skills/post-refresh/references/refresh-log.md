@@ -935,3 +935,10 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Đã áp dụng ngày 13/10: #1949 testimonials (cards, ask, site), #1955 listing presentation (pricing slide, marketing plan slide, 12-slide outline), #1967 flyers (4 layouts, anatomy, crowded vs clean). Bỏ 2 ảnh cũ mỗi bài (loại 3 icon và A vs B), giữ hero và ảnh featured. Chữ và link không đổi, status vẫn `future` đúng giờ.
 - Chờ publish rồi chèn (bài future không đọc được nội dung qua REST): #1877 postcards, #1883 business cards (trigger 14/10 19:30 UTC), #1889 logos, #1895 bio (trigger 15/10 15:30 UTC).
 - Còn lại, ưu tiên trung bình: #1937 Google Business Profile, #1843 Marketing Plan (chụp template xlsx thật), #1871 SEO, #1979 Name Ideas, #1865 Social, #1859 Advertising.
+
+## 2026-10-13: Cụm 9, mockup nhóm ưu tiên trung bình (18 ảnh, 6 bài)
+
+- Dựng 18 mockup mới (GBP, marketing plan, SEO, name ideas, social, ads) bằng skill `mockup-images`; `plan_template` dựng lại từ dữ liệu file xlsx thật.
+- Đã cập nhật: #1937 (future), #1979 (future), #1843 (đã live, lấy bản live làm gốc, kiểm chữ và link không đổi, 5 figure, ảnh 200).
+- Chờ publish rồi chèn: #1859, #1865 (trigger 13/10 19:45 UTC), #1871 (trigger 14/10 11:00 UTC).
+- Phát hiện: bản local `plan_content.html` của #1843 đã lệch bản live (live có thêm link tải xlsx), xác nhận lại quy tắc luôn lấy nội dung live làm gốc.
