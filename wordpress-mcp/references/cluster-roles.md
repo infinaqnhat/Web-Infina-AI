@@ -48,7 +48,7 @@ Tổng **87** dòng có URL trong `content-plan.md` đã được gán họ, kh�
 - Pillar A
 - Pillar B
 - Pillar chính (ĐÃ ĐỔI 01/10)
-- Pillar nhẹ  RealSaleX
+- Pillar nhẹ  Infina AI
 - Review/list (HUB)
 - Review/list (roundup, HUB)
 - Định nghĩa (HUB)
@@ -57,8 +57,8 @@ Tổng **87** dòng có URL trong `content-plan.md` đã được gán họ, kh�
 
 - Evaluation/MOF (cluster hợp lệ)
 - Examples/inspiration
-- Listicle chiến lược (TOF)  RealSaleX
-- Review (brand cụ thể)  RealSaleX
+- Listicle chiến lược (TOF)  Infina AI
+- Review (brand cụ thể)  Infina AI
 - Review (niche: broker)
 - Review (niche: free)
 - Review (niche: investor)
@@ -75,7 +75,7 @@ Tổng **87** dòng có URL trong `content-plan.md` đã được gán họ, kh�
 
 - Decision (build vs buy)
 - So sánh
-- So sánh (MOF)  RealSaleX
+- So sánh (MOF)  Infina AI
 - So sánh/thay thế
 
 ### `buying-guide`
@@ -119,5 +119,5 @@ Tổng **87** dòng có URL trong `content-plan.md` đã được gán họ, kh�
 ### `bridge`
 
 - Bridge → Cụm 3
-- Cross-link → Cụm 7  RealSaleX
+- Cross-link → Cụm 7  Infina AI
 

@@ -125,9 +125,9 @@ real estate email signature (500 L). Các bài tin AI/marketing (như #1152, #11
 
 ## 6. Rủi ro và điểm cần bạn quyết
 
-1. **Khoảng cách với sản phẩm.** Marketing và branding là TOF, xa RealSaleX (AI deal room, follow-up
+1. **Khoảng cách với sản phẩm.** Marketing và branding là TOF, xa Infina AI (AI deal room, follow-up
    tự động). Traffic có thể nhiều nhưng ít chuyển đổi. Cách giảm: bài #10 (software), #1 (plan) và câu nối
-   sang Cụm 7. Nếu mục tiêu là lead cho RealSaleX thì nên làm Wave 1 nhỏ trước.
+   sang Cụm 7. Nếu mục tiêu là lead cho Infina AI thì nên làm Wave 1 nhỏ trước.
 2. **Quy mô so với Follow Up Boss.** Họ có 47 bài trong cụm này, 37 inbound vào pillar. Mình đề xuất
    12-20 bài, tức không cố đuổi theo số lượng; thắng bằng bài có ví dụ và file mẫu thật.
 3. **Top SERP đầu cụm thuộc vendor lớn** (Placester, Lofty, Luxury Presence, Tom Ferry). Pillar

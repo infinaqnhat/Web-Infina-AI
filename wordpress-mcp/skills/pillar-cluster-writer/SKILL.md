@@ -27,30 +27,32 @@ site/brand thật. Xem `README.md` ở thư mục gốc toolkit này để biế
 
 ## Bối cảnh site (điền khi setup cho site mới)
 
-- Tên site/brand: Infina AI — sản phẩm/money page: **RealSaleX (AI Deal Room)**, SaaS bán cho
-  brokerage bất động sản Mỹ (xem `realsalex-landing-spec.md` ở gốc repo).
+- Tên site/brand và tên sản phẩm: **Infina AI** (từ 13/10/2026). "RealSaleX", "Real Sale X" và "AI Deal Room"
+  là tên cũ, **không dùng** trong bài, tiêu đề, anchor hay schema. Money page: **`https://infina.ai/`**
+  (đã live, bản React; nguồn thiết kế `realsalex-v2.html`). Tên tính năng trên trang: **Property Expert**
+  (cho listing agent, QR trên yard sign) và **Home Concierge** (cho buyer agent). Keyword chính của
+  money page: **AI assistant for real estate agents**.
 - Domain: `https://infina.ai/` (blog tin tức tại `https://infina.ai/news/`, theo
-  `news-to-cluster-article/SKILL.md`). **Trang RealSaleX CHƯA có URL chính thức trên `infina.ai`
-  tại thời điểm điền context này** — hiện chỉ tồn tại bản draft/mockup (`realsalex.html`,
-  `realsalex-mockups/`) trên nhánh `main`, chưa deploy. Nav dự kiến theo spec có mục `AI Work` —
-  khả năng cao path sẽ nằm dưới đó, nhưng **phải xác nhận lại URL thật với người dùng trước khi
-  tạo bất kỳ internal link nào trỏ tới money page** (đúng nguyên tắc "không tự chế internal link"
-  của skill `seo-blog-writer`), không tự đoán path.
-- Nền tảng bán hàng: **KHÔNG phải WooCommerce/Shopify/e-commerce.** RealSaleX là SaaS B2B, không
-  bán trực tiếp qua giỏ hàng hay affiliate — CTA chính là **"Book a 15-min demo"** (lead-gen
-  form), CTA phụ "See how it works" (demo form xem trước Deal Room). Hệ quả cho skill này:
+  `news-to-cluster-article/SKILL.md`). Internal link tới money page dùng **URL sạch
+  `https://infina.ai/`**, không `#fragment`, không UTM. Quy tắc: 1–3 link mỗi bài, đặt ở chỗ
+  intent cao nhất, anchor mô tả ≤8 từ và đa dạng (không lặp đúng một anchor). Ở bài so sánh tool, ghi
+  rõ khi nói về sản phẩm của mình ("Infina AI, our own…").
+- Nền tảng bán hàng: **KHÔNG phải WooCommerce/Shopify/e-commerce.** Infina AI là SaaS, không bán
+  trực tiếp qua giỏ hàng hay affiliate; CTA trên trang live hiện là "Create Property Expert →" /
+  "Create Home Concierge →" (spec cũ ghi "Book a 15-min demo": xác nhận lại CTA với người dùng
+  trước khi viết câu CTA cụ thể). Hệ quả cho skill này:
   - **Bỏ qua toàn bộ nhánh tool WooCommerce** nhắc ở "Điều kiện cần trước khi chạy" và ở Bước 6
     (`curl wp-json/wp/v2/product`), Bước 6.1 (cloak affiliate `/go/<slug>`), Bước 6.2 (FAQ schema
     qua `set_product_faq`) — các bước này viết cho model affiliate/WooCommerce, không khớp
-    RealSaleX. Không gọi các tool đó cho site này.
-  - Khi cần thêm "Xem thêm" trỏ về money page (Bước 6), sửa trực tiếp trang RealSaleX qua kênh
-    đang publish nó thật (file tĩnh trong repo hiện tại, hoặc trang WordPress tương ứng một khi
-    đã deploy), không qua product API.
-  - CTA trong bài cluster (nếu có, Bước 6.1) nên trỏ thẳng về money page RealSaleX / mục "Book a
-    demo" bằng internal link WordPress thường, không phải link cloak affiliate.
-- File guideline on-page riêng: `realsalex-landing-spec.md` (spec nội dung/copy/CTA/tông giọng
-  của trang RealSaleX — dùng để giữ nhất quán khi viết bài cluster liên quan, **không phải**
-  guideline kỹ thuật SEO on-page, chỉ là nguồn tham chiếu content/brand).
+    Infina AI. Không gọi các tool đó cho site này.
+  - Khi cần thêm "Xem thêm" trỏ về money page (Bước 6), sửa trực tiếp trang money page qua kênh
+    đang publish nó thật (repo React của `infina.ai`, nguồn thiết kế `realsalex-v2.html`), không qua
+    product API.
+  - CTA trong bài cluster (nếu có, Bước 6.1) nên trỏ thẳng về `https://infina.ai/` bằng internal link
+    WordPress thường, không phải link cloak affiliate.
+- File tham chiếu nội dung: `realsalex-landing-spec.md` (spec cũ, **vẫn dùng tên "Real Sale X" / "AI Deal Room"
+  và đã lệch với trang live**: dùng để tham khảo tông giọng, không chép tên sản phẩm từ đó). Tên file
+  `realsalex-*` giữ nguyên, chỉ là tên file.
 - File content plan chung: `wordpress-mcp/content-plan.md` — **chưa tồn tại**, sẽ tạo đúng lúc cụm
   pillar+cluster đầu tiên được duyệt (theo Bước 8.5), không tạo trước khi có nội dung thật.
 - File log keyword đã dùng: dùng chung **Google Sheet tracker** hiện tại của skill

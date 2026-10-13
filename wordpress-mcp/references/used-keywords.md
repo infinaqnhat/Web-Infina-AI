@@ -1,7 +1,7 @@
 # Used Keywords Log — Infina AI News
 
 File tra cứu nhanh keyword đã dùng, dùng để check trùng (cannibalize) trước khi chốt bất kỳ
-FOCUS_KW mới nào — cho cả skill `news-to-cluster-article` lẫn plan RealSaleX
+FOCUS_KW mới nào — cho cả skill `news-to-cluster-article` lẫn plan Infina AI
 (`pillar-cluster-writer`). Đây là **bản seed một lần** từ Google Sheet tracker + `list_posts`
 (2026-09-15), sau đó cần tự cập nhật tay mỗi khi có bài mới — không tự động đồng bộ lại với
 Sheet hay WordPress.
@@ -19,7 +19,7 @@ chỉ chặn trùng nội bộ site mình, không thay cho check SERP thật.
 
 ---
 
-## Bài đã publish (119 bài — 111 seed 2026-09-15 + 8 bài RealSaleX, 2 đang scheduled tính luôn)
+## Bài đã publish (119 bài — 111 seed 2026-09-15 + 8 bài Infina AI, 2 đang scheduled tính luôn)
 
 Nguồn `tracker #N` = lấy thẳng FOCUS_KW đã log trong Google Sheet tracker (đáng tin). Nguồn
 `suy đoán từ slug` = bài không có trong tracker (khác pipeline hoặc cũ hơn tracker), tự suy ra
