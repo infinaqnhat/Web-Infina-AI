@@ -927,3 +927,11 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 
 - Lên lịch #1979 `/realtor-name-ideas/` ngày **18/10/2026 14:00**. 1.346 chữ, density 0,67%.
 - NAR: REALTOR® không được là một phần của tên firm. SBA: hầu hết bang không cho đăng ký tên đã có người đăng ký; nên kiểm tra USPTO; đăng ký DBA khi dùng tên khác; domain không cần khớp tên. Tên ví dụ là bịa và đã ghi rõ. Không nêu quy tắc cụ thể từng bang (không xác minh), chỉ dặn hỏi broker và state commission.
+
+## 2026-10-13: Cụm 9, nâng ảnh minh họa thực tế cho 7 bài (mockup HTML)
+
+- Lý do: ảnh cũ của Cụm 9 là 1 ảnh hero + 3 infographic icon chung chung, không cho thấy đối tượng bài nói tới (tờ flyer, hồ sơ Google, slide). Tiêu đề hứa "examples, templates" nhưng không có ví dụ nào. Kiểm 12 bài top SERP (`references/serp-image-audit-wave3.md`) và bài Salesforce cho thấy ảnh ví dụ thật là hướng tốt hơn ảnh stock.
+- Cách làm: dựng 21 mockup 1600x900 bằng HTML + Playwright, chữ chính xác, nội dung hư cấu và ghi chú trên ảnh. Mã nguồn, ảnh và quy tắc chèn nằm ở `references/files/mockups-cum9/`.
+- Đã áp dụng ngày 13/10: #1949 testimonials (cards, ask, site), #1955 listing presentation (pricing slide, marketing plan slide, 12-slide outline), #1967 flyers (4 layouts, anatomy, crowded vs clean). Bỏ 2 ảnh cũ mỗi bài (loại 3 icon và A vs B), giữ hero và ảnh featured. Chữ và link không đổi, status vẫn `future` đúng giờ.
+- Chờ publish rồi chèn (bài future không đọc được nội dung qua REST): #1877 postcards, #1883 business cards (trigger 14/10 19:30 UTC), #1889 logos, #1895 bio (trigger 15/10 15:30 UTC).
+- Còn lại, ưu tiên trung bình: #1937 Google Business Profile, #1843 Marketing Plan (chụp template xlsx thật), #1871 SEO, #1979 Name Ideas, #1865 Social, #1859 Advertising.
