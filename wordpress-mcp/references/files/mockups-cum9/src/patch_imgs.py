@@ -1,5 +1,6 @@
 import re,sys,json
 def fig(url,alt,caption=None):
+    alt=alt.replace('"','&quot;')
     cap='<figcaption class="wp-element-caption">%s</figcaption>'%caption if caption else ''
     return '<figure class="wp-block-image aligncenter"><img decoding="async" src="%s" alt="%s" />%s</figure>'%(url,alt,cap)
 FIG=re.compile(r'<figure class="wp-block-image[^>]*>.*?</figure>',re.S)

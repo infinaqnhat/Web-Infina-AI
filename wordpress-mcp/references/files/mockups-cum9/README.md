@@ -25,3 +25,9 @@ Bài #1825 giữ ảnh COMPARISON vì có câu "Notice the contrast in the image
 
 ## Vòng thử mobile-first (13/10/2026)
 Làm lại 2 bài #1843 (real-estate-marketing-plan) và #1832 (real-estate-branding) với 6 ảnh canvas 1000px (`*_m.jpg`, media 2051–2056, scenes `s_m_plan.py`, `s_m_brand.py`). Chạy: `python3 apply_mockups.py <id> <in> <out> --mobile` (đọc `spec['mobile_round']`). Chữ/link bài giữ nguyên (đã kiểm). Chờ user xem trên điện thoại rồi quyết định làm lại cả 59 ảnh.
+
+## Làm lại toàn bộ 59 ảnh mobile-first (13/10/2026)
+- 53 cảnh `_m` còn lại do 5 agent dựng (`s_m_*.py`), media WordPress 2059–2111; `spec.json` có đủ 59 ảnh `_m`.
+- Đã áp dụng (thay ảnh gen-1): #1825 (live), #1853 (live, áp dụng trực tiếp ảnh `_m`), #1937 #1943 #1949 #1955 #1961 #1967 #1977 #1979 (future, nội dung gốc ở `bases/<id>.html`, đã là bản mới), #1843 #1832 (đợt thử).
+- `spec['posts']` của #1859 #1865 #1871 #1877 #1883 #1889 #1895 #1901 đã đổi sang khóa `_m`; các trigger chèn ảnh sau khi bài publish sẽ dùng bản mới.
+- `fig()` escape `"` trong alt thành `&quot;` (alt của gads_search_m có dấu nháy).
