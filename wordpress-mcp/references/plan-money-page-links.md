@@ -1,4 +1,4 @@
-# Plan: link blog posts to the money page https://infina.ai/ (chờ duyệt, chưa làm)
+# Plan: link blog posts to the money page https://infina.ai/ (ĐÃ LÀM 13/10/2026: 20/20 bài, đã verify qua REST)
 
 Cập nhật 13/10/2026. Link tới **`https://infina.ai/`** (URL sạch, không `#fragment`, không UTM). Mỗi bài đúng 1 link. Anchor ≤8 từ, đa dạng. Mọi câu đều ghi "Infina AI, our own product" để công khai đây là sản phẩm của mình. Chỉ dùng điều trang money page đã nói (trả lời câu hỏi về listing 24/7, hiện nguồn, cho agent thấy câu hỏi của buyer, QR/link).
 

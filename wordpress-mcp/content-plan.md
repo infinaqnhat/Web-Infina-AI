@@ -843,9 +843,9 @@ nội dung đã sửa, redirect đã verify).
 
 ## Việc còn lại (toàn plan)
 
-1. **Money page đã live (13/10/2026): `https://infina.ai/`** (tên sản phẩm: Infina AI). Còn việc: thêm
-   internal link từ các bài blog tới money page, theo danh sách đã đề xuất 13/10 (đang chờ duyệt) —
-   anchor mô tả, URL sạch không `#fragment`/UTM, 1 link mỗi bài, ghi rõ "our own" ở bài so sánh tool.
+1. **Money page đã live (13/10/2026): `https://infina.ai/`** (tên sản phẩm: Infina AI). ✅ Đã thêm internal link từ 20 bài
+   blog (13/10, danh sách trong `references/plan-money-page-links.md`; chưa link: #1213, #1217, #1219, #1225, #1229).
+   Còn việc: sau khi dev deploy bản có title/meta/JSON-LD trong HTML, verify lại và Request Indexing.
 2. **GSC/GA4 credentials**: đã có key thật, lưu session-only (repo public, không commit key) — cần
    check lại traffic/ranking định kỳ dùng skill `post-refresh`.
 3. **Mở rộng plan nếu cần thêm bài**: hạ ngưỡng volume CSV xuống dưới 500, hoặc dùng `post-refresh`
