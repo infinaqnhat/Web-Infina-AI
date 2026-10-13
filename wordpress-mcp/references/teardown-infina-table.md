@@ -75,7 +75,7 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 | Cụm 6: Landing Pages | 6 | `real-estate-landing-page-guide` (5 IN, 1,873 chữ) | 8,316 | 0 | 0 | 0 |
 | Cụm 7: Lead Generation / Follow-up Automation | 9 | `real-estate-lead-follow-up-automation-guide` (17 IN, 2,453 chữ) | 8,208 | 0 | 0 | 2 |
 | Cụm 8: Compliance / Legal / Risk | 6 | `tcpa-compliance-for-real-estate-agents` (15 IN, 1,904 chữ) | 6,017 | 0 | 0 | 1 |
-| Cụm 9: Marketing và Branding (pillar và hub đã đăng 12/10, cluster chưa viết) | 2 | `real-estate-marketing` (#1825, 2,305 chữ, 2 IN từ #1152 và #1832) | n/a | n/a | n/a | n/a |
+| Cụm 9: Marketing và Branding (20 bài: 2 đã đăng, 18 đã lên lịch 13–18/10) | 20 | `real-estate-marketing` (#1825, 2,305 chữ, 2 IN từ #1152 và #1832) | n/a (chưa crawl) | n/a | n/a | n/a |
 | Bài News real estate chưa gắn cụm trong plan | 40 | không có | 29,224 | 0 | 19 | 12 |
 | Ngoài chủ đề real estate (AI/tech) | 11 | không có | 2,780 | 11 | 11 | 0 |
 
@@ -222,48 +222,70 @@ H2 trên 10 đoạn văn, tức là gần như mỗi H2 chỉ có 1 đoạn. Đ�
 | Hỗ trợ (News) | [#1481 /how-agents-protect-clients-from-wire-fraud](https://infina.ai/news/how-agents-protect-clients-from-wire-fraud/) | 1 | 923 | 2026-10-07 | `how agents protect clients from wire fraud` | ✅ `tcpa-compliance-for-real-estate-agents` | Two Wire Fraud Companies Just Merged, and the Agent Is Still the Weak Link |
 | Hỗ trợ (News) | [#1501 /private-listing-marketing-rules](https://infina.ai/news/private-listing-marketing-rules/) | 1 | 871 | 2026-10-08 | `private listing marketing rules` | ✅ `tcpa-compliance-for-real-estate-agents` | Three States Now Force Private Listings Public the Moment You Market Them |
 
-## Cụm 9: Marketing và Branding  (ĐỀ XUẤT, 0 trang đã viết)
+## Cụm 9: Marketing và Branding  (20 bài: 2 đã đăng, 18 đã lên lịch, cập nhật 13/10/2026)
 
-**Đây là plan, không phải dữ liệu crawl.** Pillar marketing và hub branding **đã duyệt 12/10**. Các
-cluster bên dưới vẫn là đề xuất, chưa duyệt. Mọi URL là **slug dự kiến**, chưa tồn tại (cột IN, Chữ,
-Sửa lần cuối để `-`). Cột "Chữ" ghi **độ dài mục tiêu** theo công thức pillar `400 + 150 x cụm + 200`
-và 1.500-2.000 chữ cho cluster. Đối chiếu cùng cụm "Marketing và thương hiệu" của Follow Up Boss ở
-`teardown-followupboss-table.md` (pillar 3.337 chữ, 37 inbound, 47 trang). Chi tiết lý do, dữ liệu
-keyword và SERP ở `plan-cum-9-marketing-branding.md`.
+**Tiến độ:** pillar + hub branding đã đăng 12/10. Wave 1 (10 bài, #1843–#1901): 1 bài đăng 12/10, 9 bài lên lịch 13–15/10.
+Wave 2 (8 bài, #1937–#1979): đã viết và lên lịch 16–18/10, tối đa 3 bài/ngày. Tất cả đều đã qua gate SEO
+(density, ảnh, link pillar/hub, tối đa 1 link cross-pillar) và có ảnh featured. Số chữ và density lấy từ lúc viết, **chưa phải crawl**;
+cột Inbound "chờ" nghĩa là bài chưa live nên chưa thêm link ngược được. Plan gốc, SERP và lý do chọn keyword ở
+`plan-cum-9-marketing-branding.md`.
 
-Volume là bucket (50 / 500 / 5.000 / 50.000). Mức trong ngoặc là cạnh tranh **quảng cáo trả tiền**
-(T thấp, TB trung bình, C cao), không phải độ khó SEO. Vai trò dùng nhãn trong `cluster-roles.md`.
+| # | Vai trò | Trạng thái | URL | ID | Chữ | Density % | Pillar bài trỏ lên | Inbound | Post title |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | `pillar` | ✅ Đã đăng 12/10 | `/real-estate-marketing` | #1825 | 2,305 | - | *(là pillar)* | 2 (#1152, #1832) | Real Estate Marketing: The Complete Guide for Agents |
+| 2 | `pillar` hub branding | ✅ Đã đăng 12/10 | `/real-estate-branding` | #1832 | 1,715 | - | ✅ marketing | chưa verify | Real Estate Branding: A Practical Guide for Agents and Teams |
+| 3 | `how-to` W1 | ✅ Đã đăng 12/10 | `/real-estate-marketing-plan` | #1843 | 1,784 | 0,56 | ✅ marketing | chờ | Real Estate Marketing Plan: Template and Budget |
+| 4 | `review` W1 | ⏰ 13/10 10:00 | `/real-estate-marketing-ideas` | #1853 | 1,877 | 0,58 | ✅ marketing | chờ | 30 Real Estate Marketing Ideas, With Cost and Effort |
+| 5 | `explainer` W1 | ⏰ 13/10 14:00 | `/real-estate-advertising` | #1859 | 1,724 | 0,64 | ✅ marketing | chờ | Real Estate Advertising: Channels, Costs and Examples |
+| 6 | `how-to` W1 | ⏰ 13/10 18:00 | `/social-media-for-realtors` | #1865 | 1,680 | 0,60 | ✅ marketing | chờ | Social Media for Realtors: A Weekly Routine That Fits a Production Schedule |
+| 7 | `how-to` W1 | ⏰ 14/10 10:00 | `/real-estate-seo` | #1871 | 1,790 | 0,62 | ✅ marketing | chờ | Real Estate SEO for Agents: What Actually Moves Local Rankings |
+| 8 | `how-to` W1 | ⏰ 14/10 14:00 | `/real-estate-postcards` | #1877 | 1,854 | 0,54 | ✅ marketing | chờ | Real Estate Postcards and Mailers That Get Opened |
+| 9 | `niche` W1 | ⏰ 14/10 18:00 | `/real-estate-agent-business-card` | #1883 | 1,814 | 0,72 | ✅ branding | chờ | Real Estate Business Cards: Ideas, Templates and What to Print |
+| 10 | `niche` W1 | ⏰ 15/10 10:00 | `/real-estate-agent-logo` | #1889 | 1,824 | 0,55 | ✅ branding | chờ | Real Estate Logos: Ideas and How to Design One |
+| 11 | `niche` W1 | ⏰ 15/10 14:00 | `/real-estate-agent-bio` | #1895 | 1,692 | 0,65 | ✅ branding | chờ | Real Estate Agent Bio: Examples and a Template |
+| 12 | `review` W1 | ⏰ 15/10 18:00 | `/real-estate-marketing-software` | #1901 | 1,729 | 0,69 | ✅ marketing | chờ | Real Estate Marketing Software: What to Use for Each Job in 2026 |
+| 13 | `how-to` W2 | ⏰ 16/10 10:00 | `/google-business-profile-for-realtors` | #1937 | 1,487 | 0,67 | ✅ marketing | chờ | Google Business Profile for Realtors: Setup, Fields and Reviews |
+| 14 | `how-to` W2 | ⏰ 16/10 14:00 | `/google-ads-for-realtors` | #1943 | 1,272 | 0,79 | ✅ marketing | chờ | Google Ads for Realtors: Setup, Targeting Rules and Budget |
+| 15 | `how-to` W2 | ⏰ 16/10 18:00 | `/real-estate-testimonials` | #1949 | 1,377 | 0,80 | ✅ branding | chờ | Real Estate Testimonials: How to Ask, Examples and Rules |
+| 16 | `how-to` W2 | ⏰ 17/10 10:00 | `/listing-presentation` | #1955 | 1,413 | 0,78 | ✅ marketing | chờ | Listing Presentation: Template, Sample Script and Examples |
+| 17 | `how-to` W2 | ⏰ 17/10 14:00 | `/real-estate-agent-referral` | #1961 | 1,289 | 0,78 | ✅ marketing | chờ | Real Estate Agent Referral: Get More and Pay Fees Correctly |
+| 18 | `how-to` W2 | ⏰ 17/10 18:00 | `/flyer-for-real-estate` | #1967 | 1,233 | 0,65 | ✅ marketing | chờ | Real Estate Flyers: Examples, Templates and What to Include |
+| 19 | `how-to` W2 | ⏰ 18/10 10:00 | `/closing-gifts-real-estate` | #1977 | 1,310 | 0,69 | ✅ marketing | chờ | Closing Gifts for Real Estate Clients: Ideas, Budget and Rules |
+| 20 | `niche` W2 | ⏰ 18/10 14:00 | `/realtor-name-ideas` | #1979 | 1,346 | 0,67 | ✅ branding | chờ | Realtor Name Ideas: Formulas, Examples and Rules to Check |
 
-| Vai trò | URL (dự kiến) | IN | Chữ (mục tiêu) | Sửa lần cuối | FOCUS_KW dự kiến | Pillar bài trỏ lên | Post title (dự kiến) |
-|---|---|---|---|---|---|---|---|
-| `pillar` **Pillar (✅ đã đăng 12/10 = #1825)** | `/real-estate-marketing` | - | 2,305 | - | `real estate marketing` 5k TB. Gom: `marketing for real estate agents` 5k, `marketing for realtors` 5k, `real estate marketing strategies` 500 | *(là pillar)* | Real Estate Marketing: The Complete Guide for Agents |
-| `pillar` **Hub branding (✅ đã đăng 12/10 = #1832)** | `/real-estate-branding` | - | 1,715 | - | `real estate branding` 500 TB. Gom: `real estate agent branding` 500, slogan, USP, personal branding (đều 50) | ✅ `real-estate-marketing` | Real Estate Branding: A Practical Guide for Agents and Teams |
-| `how-to` Wave 1 (✅ đã đăng 12/10 = #1843) | `/real-estate-marketing-plan` | - | ~1,800 | - | `real estate marketing plan` 500 T (+ `marketing budget` 500) | ✅ `real-estate-marketing` | Real Estate Marketing Plan: Template and Budget |
-| `review` Wave 1 (⏰ scheduled 13/10 = #1853) | `/real-estate-marketing-ideas` | - | ~2,000 | - | `real estate marketing ideas` 500 C (+ `agent marketing ideas`, `unique real estate marketing ideas`, `marketing tips for realtors`) | ✅ `real-estate-marketing` | 30 Real Estate Marketing Ideas, With Cost and Effort |
-| `explainer` Wave 1 (⏰ scheduled 13/10/2026 14:00 = #1859) | `/real-estate-advertising` | - | ~1,800 | - | `real estate advertising` 5k T (+ `advertise real estate` 5k, `ads for real estate` 5k). **Không** thêm bài Facebook ads, link `#1229` | ✅ `real-estate-marketing` | Real Estate Advertising: Channels, Costs and Examples |
-| `how-to` Wave 1 (⏰ scheduled 13/10/2026 18:00 = #1865) | `/social-media-for-realtors` | - | ~1,800 | - | `social media for realtors` 500 TB (+ `social media marketing for realtors`, instagram, facebook) | ✅ `real-estate-marketing` | Social Media for Realtors: A Weekly Routine That Fits a Production Schedule |
-| `how-to` Wave 1 (⏰ scheduled 14/10/2026 10:00 = #1871) | `/real-estate-seo` | - | ~2,000 | - | `real estate seo` 5k T (+ `realtor seo` 5k) | ✅ `real-estate-marketing` | Real Estate SEO for Agents: What Actually Moves Local Rankings |
-| `how-to` Wave 1 (⏰ scheduled 14/10/2026 14:00 = #1877) | `/real-estate-postcards` | - | ~1,600 | - | `postcards real estate` 5k C (+ `realtor mailers`, `mailers for real estate agents` 500 C) | ✅ `real-estate-marketing` | Real Estate Postcards and Mailers That Get Opened |
-| `niche` Wave 1 (⏰ scheduled 14/10/2026 18:00 = #1883) | `/real-estate-agent-business-card` | - | ~1,800 | - | `real estate agent business card` 5k C (+ 8 biến thể 500 C) | ✅ `real-estate-branding` | Real Estate Business Cards: Ideas, Templates and What to Print |
-| `niche` Wave 1 (⏰ scheduled 15/10/2026 10:00 = #1889) | `/real-estate-agent-logo` | - | ~1,800 | - | `real estate agent logo` 5k C (+ `real estate logo` 5k TB, `logo ideas` 500 C). SERP toàn tool, khó nhất wave | ✅ `real-estate-branding` | Real Estate Logos: Ideas and How to Design One |
-| `niche` Wave 1 (⏰ scheduled 15/10/2026 14:00 = #1895) | `/real-estate-agent-bio` | - | ~2,000 | - | `real estate agent bio` 500 T (+ examples, broker bio, salesperson bio) | ✅ `real-estate-branding` | Real Estate Agent Bio: Examples and a Template |
-| `review` Wave 1 (⏰ scheduled 15/10/2026 18:00 = #1901) | `/real-estate-marketing-software` | - | ~1,800 | - | `real estate marketing software` 500 T (+ platform, tools). Link `#1225`, `#263` | ✅ `real-estate-marketing` | Best Real Estate Marketing Software in 2026 |
-| `how-to` Wave 2 (⏰ scheduled 16/10/2026 14:00 = #1943) | `/google-ads-for-realtors` | - | ~1,600 | - | `google ads for realtors` 500 T (+ `ppc real estate`) | ✅ `real-estate-marketing` | Google Ads for Real Estate Agents |
-| `how-to` Wave 2 (⏰ scheduled 16/10/2026 10:00 = #1937) | `/google-business-profile-for-realtors` | - | ~1,600 | - | `google business profile for realtors` 500 T | ✅ `real-estate-marketing` | Google Business Profile for Realtors |
-| `how-to` Wave 2 (⏰ scheduled 17/10/2026 18:00 = #1967) | `/flyer-for-real-estate` | - | ~1,500 | - | `flyer for real estate` 5k C (+ `flyers for real estate agents` 500 C) | ✅ `real-estate-marketing` | Real Estate Flyers: Examples and Templates |
-| `how-to` Wave 2 (⏰ scheduled 17/10/2026 10:00 = #1955) | `/listing-presentation` | - | ~1,800 | - | `listing presentation` 500 C (+ template, examples, sample) | ✅ `real-estate-marketing` | Listing Presentation: Template and Examples |
-| `how-to` Wave 2 (⏰ scheduled 18/10/2026 10:00 = #1977) | `/closing-gifts-real-estate` | - | ~1,500 | - | `closing gifts real estate` 500 C (+ client gifts, best closing gifts) | ✅ `real-estate-marketing` | Closing Gifts for Real Estate Clients |
-| `how-to` Wave 2 (⏰ scheduled 16/10/2026 18:00 = #1949) | `/real-estate-testimonials` | - | ~1,500 | - | `real estate testimonials` 500 T (+ examples) | ✅ `real-estate-branding` | Real Estate Testimonials: How to Ask and Examples |
-| `niche` Wave 2 (⏰ scheduled 18/10/2026 14:00 = #1979) | `/realtor-name-ideas` | - | ~1,500 | - | `realtor name ideas` 500 TB (+ `realty company name ideas`, `llc name ideas`) | ✅ `real-estate-branding` | Real Estate Business Name Ideas |
-| `how-to` Wave 2 (⏰ scheduled 17/10/2026 14:00 = #1961) | `/real-estate-referral-marketing` | - | ~1,600 | - | `real estate agent referral` 5k T, **chờ xác minh SERP** (có thể là referral fee) | ✅ `real-estate-marketing` | Real Estate Referral Marketing |
+### Còn lại cho Cụm 9
 
-**Luồng link dự kiến:** mỗi cluster 1 link lên pillar nhà (business card, logo, bio, names và
-testimonials lên hub branding; hub branding lên pillar marketing). Tối đa 1 link ra pillar cụm khác
-mỗi bài, nằm trong thân bài. Pillar link xuống mọi cluster đúng 1 lần.
+| # | Việc | Khi nào | Ai |
+|---|---|---|---|
+| 1 | Kiểm tra wave 1 publish đúng giờ, nội dung nguyên vẹn | 15/10 19:30 UTC (đã đặt trigger) | Claude |
+| 2 | Kiểm tra wave 2 publish đúng giờ | 16/10 19:00 và 18/10 19:30 UTC (đã đặt trigger) | Claude |
+| 3 | **Đợt link ngược**: pillar #1825 Related Reading thêm 17 cluster, hub #1832 thêm testimonials + name ideas, mỗi bài mới có ít nhất 1 link từ bài cùng cụm | Sau khi bài live, trigger 18/10 19:30 UTC | Claude |
+| 4 | Dán rows tracker vào sheet "Published article": wave 1 (137–148) và wave 2 (149–156), file `files/tracker-rows-cum9.tsv` | Bất cứ lúc nào | **Bạn** |
+| 5 | Sửa title bài #1415 trong tracker | Bất cứ lúc nào | **Bạn** |
+| 6 | Request Indexing trong GSC cho 20 URL mới (ưu tiên pillar, hub, bài 5k volume: advertising, SEO, postcards, business card, logo, flyer) | Sau khi live | **Bạn** |
+| 7 | Crawl lại bảng này bằng dữ liệu thật (IN, Chữ, Sửa lần cuối) | Sau 18/10 và đợt link ngược | Claude |
+| 8 | Wave 3 (tùy chọn, chưa duyệt): `real estate farming`, luxury marketing và branding, open house ideas (link #918), video marketing, letters to homeowners, `real estate email signature` | Khi bạn yêu cầu | Bạn duyệt |
+| 9 | Bật lại news routine hằng ngày (đang pause) | Khi bạn yêu cầu | Bạn |
+| 10 | Đo sau 4–8 tuần bằng `post-refresh` (GSC), tìm striking-distance keyword | Cuối 11/2026 | Claude |
 
-**Backlog chưa vào bảng** (wave 3): `real estate farming` 500 T, luxury marketing và branding 500,
-open house ideas 500 C (link `#918`), video marketing cho agent 500 T, letters to homeowners (4 biến thể
-500 C), `real estate email signature` 500 T.
+**Luồng link đã chốt:** mỗi cluster 1 link lên pillar nhà (business card, logo, bio, name ideas và testimonials lên hub branding;
+hub branding lên pillar marketing). Tối đa 1 link ra pillar cụm khác mỗi bài, nằm trong thân bài. Pillar link xuống mọi cluster đúng 1 lần.
+
+### Việc tồn đọng ngoài Cụm 9
+
+| Việc | Ghi chú |
+|---|---|
+| Money page `https://infina.ai/` (Infina AI) | Đã link từ 20 bài blog. Chưa link: #1213, #1217, #1219, #1225, #1229. Dev còn làm prerender/SSR, title/meta/JSON-LD trong HTML, soft 404, redirect, sitemap, ảnh nặng, JS bundle (xem `realsalex-seo-dev-handoff.md`). Sau khi dev deploy: verify lại và Request Indexing |
+| Footer "© 2026 Infina" và khối testimonials trên money page | Chưa chỉnh (mục #18, #19 trong bảng đề xuất SEO) |
+| 2 bài CEP (Cụm 2, Customer Engagement Platform) | Plan đã duyệt 30/09, chưa viết |
+| `realsalex-landing-spec.md` trên `main` | Vẫn dùng tên cũ Real Sale X / AI Deal Room, chưa đổi sang Infina AI |
+| Nhóm News: 19 bài không trỏ pillar nào, 11 bài AI/tech mồ côi | 11 bài AI/tech đã quyết định để nguyên (Đợt E). 19 bài News chưa xử lý |
+
+**Backlog wave 3 chưa vào bảng:** `real estate farming` 500 T, luxury marketing và branding 500, open house ideas 500 C (link `#918`),
+video marketing cho agent 500 T, letters to homeowners (4 biến thể 500 C), `real estate email signature` 500 T.
+
+---
+
 
 ## Bài News real estate chưa gắn cụm trong plan  (40 trang, 29,224 chữ)
 
