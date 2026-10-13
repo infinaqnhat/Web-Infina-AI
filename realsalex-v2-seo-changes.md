@@ -1,4 +1,6 @@
-# Money page on-page SEO: numbered proposals with exact text (nothing applied)
+# Money page on-page SEO: numbered proposals with exact text (APPLIED to realsalex-v2.html on main, commit b712411)
+
+> Status: items 1-17 and 20 applied (H1 = option A). Not applied: #18 footer (needs URLs), #19 testimonials (needs real quotes), Part B (React/infra/WordPress).
 
 > Revision 3: the product name is **Infina AI**. "Real Sale X" is no longer used in any proposed text.
 
