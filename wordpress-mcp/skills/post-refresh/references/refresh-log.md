@@ -951,3 +951,5 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Bài học: luôn grep câu viện dẫn ảnh ("image above") trước khi xóa ảnh cũ.
 
 - 2026-10-13 — #1843, #1832: thay 6 ảnh mockup thế hệ 1 bằng bản mobile-first (canvas 1000px, chữ ≥12px trên điện thoại). Chữ và link không đổi.
+
+- 2026-10-13 — Skill `mockup-images` cập nhật theo bản mobile-first đã duyệt: canvas 1000px mặc định, công thức dựng cảnh, `apply_mockups.py --mobile`, caption trong spec, catalog 6 cảnh `_m`, spec-example có `mobile_round`.

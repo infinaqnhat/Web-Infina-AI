@@ -275,8 +275,8 @@ nguồn gốc lẫn web search mà vẫn không ra ảnh phù hợp mới giữ 
 Khi bài có tiêu đề hứa "examples / templates / layouts" hoặc nói về vật phẩm/tài liệu nhìn thấy được (flyer, postcard, danh thiếp,
 logo, slide, bio, tin nhắn, trang web, hồ sơ), ảnh icon chung chung ở Bước 5.2 không cho người đọc thấy thứ bài đang nói. Dùng skill
 **`mockup-images`** (`skills/mockup-images/SKILL.md`): dựng mockup bằng HTML, chữ chính xác, nội dung hư cấu có ghi chú trên ảnh. Mỗi bài
-2 đến 3 ảnh mockup, thay 2 ảnh loại "3 icon" và "A vs B", giữ HERO và ảnh featured STATS. Đã có 21 cảnh dùng được ngay
-(`skills/mockup-images/references/scene-catalog.md`). Làm bước này **sau** khi bài đã viết xong để chữ trong mockup khớp với bài.
+2 đến 3 ảnh mockup, thay 2 ảnh loại "3 icon" và "A vs B", giữ HERO và ảnh featured STATS. Ảnh PHẢI mobile-first (canvas 1000px rộng, chữ đọc được trên điện thoại; công thức trong skill). Danh mục cảnh ở
+`skills/mockup-images/references/scene-catalog.md`; cảnh 1600x900 cũ không dùng lại. Làm bước này **sau** khi bài đã viết xong để chữ trong mockup khớp với bài.
 
 ### Bước 5.3: Convert HTML trước khi gọi tool đăng bài (bắt buộc, không được bỏ qua)
 

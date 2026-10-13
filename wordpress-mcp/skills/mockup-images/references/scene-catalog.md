@@ -1,6 +1,6 @@
 # Danh mục cảnh mockup có sẵn
 
-Mỗi cảnh là một hàm/biến trong `scripts/scenes/s_<nhóm>.py`, render ra `m_<tên>.jpg` 1600x900. Chạy `python3 s_<nhóm>.py <tên>`.
+Mỗi cảnh là một hàm/biến trong `scripts/scenes/s_<nhóm>.py`, render ra `m_<tên>.jpg`. Các cảnh trong bảng gen-1 dưới đây là canvas 1600x900 và **không đạt chuẩn điện thoại**; cảnh mới dựng bản `_m` (1000px) theo SKILL.md. Chạy `python3 s_<nhóm>.py <tên>`.
 
 | Cảnh | File | Bài đã dùng | Chèn ở mục | Nội dung |
 |---|---|---|---|---|
@@ -64,6 +64,19 @@ Mỗi cảnh là một hàm/biến trong `scripts/scenes/s_<nhóm>.py`, render r
 | `soft_trial` | s_soft | #1901 | trước "Questions to Ask Before You Buy" | 6 bước dùng thử |
 | `soft_sprawl` | s_soft | #1901 | trước "Common Mistakes" | nhiều thuê bao chồng chéo vs bộ công cụ gọn, giá mẫu |
 
+
+## Cảnh mobile-first (canvas 1000px, đạt chuẩn, user duyệt 13/10/2026)
+
+| Cảnh | File | Kích thước | Bài | Nội dung |
+|---|---|---|---|---|
+| `plan_budget_m` | s_m_plan | 1000x1431 | #1843 | thanh ngân sách theo kênh, new agent $500 và growing agent $1.500 |
+| `plan_template_m` | s_m_plan | 1000x1080 | #1843 | "Your one-page plan": mục tiêu, 3 kênh, tổng $300 vừa ngân sách $500 |
+| `plan_tracker_m` | s_m_plan | 1000x1305 | #1843 | "Spend per closing" theo nguồn lead, số mẫu |
+| `brand_sheet_m` | s_m_brand | 1000x1108 | #1832 | brand sheet mẫu: positioning, voice, logo, màu và phông, headshot và bio |
+| `brand_looks_m` | s_m_brand | 1000x1200 | #1832 | một bộ nhận diện trên card, web, bảng sale, post |
+| `brand_mixed_m` | s_m_brand | 1000x1130 | #1832 | bộ lẫn lộn so với bộ nhất quán |
+
+Các cảnh gen-1 còn lại (53 ảnh trong bảng trên) vẫn cần dựng bản `_m` khi user duyệt làm lại hàng loạt (thứ tự: ưu tiên cao, trung bình, thấp).
 
 ## Cảnh nên làm tiếp (chưa có)
 

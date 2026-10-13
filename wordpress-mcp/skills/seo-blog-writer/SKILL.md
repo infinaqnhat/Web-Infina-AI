@@ -43,7 +43,7 @@ site/brand thật, đặc biệt phần "Bối cảnh site" và tông giọng vi
   internal link trong bài, hoặc ghi chú bằng chữ thường dạng gợi ý chủ đề liên quan (không phải
   link bấm được) để người dùng tự thêm link thật sau.
 - **Ảnh minh họa thực tế.** Nếu bài nói về vật phẩm/tài liệu nhìn thấy được và tiêu đề hứa "examples" hoặc "templates", dùng skill
-  `mockup-images` để dựng 2 đến 3 ảnh mockup đúng chủ đề (chữ chính xác, nội dung hư cấu có ghi chú) thay vì ảnh stock hoặc icon chung chung.
+  `mockup-images` để dựng 2 đến 3 ảnh mockup đúng chủ đề (chữ chính xác, nội dung hư cấu có ghi chú, mobile-first: chữ phải đọc được ở 340px rộng) thay vì ảnh stock hoặc icon chung chung.
 - **Canh ảnh cân đối trong bài, không dồn cục.** Nhiều theme WordPress tự hiển thị ảnh đại diện
   (featured image) ngay đầu bài, phía trên toàn bộ nội dung. Vì vậy:
   - Không chèn ảnh đầu tiên trong nội dung ngay sau đoạn mở bài, vì sẽ nằm sát ngay dưới ảnh đại

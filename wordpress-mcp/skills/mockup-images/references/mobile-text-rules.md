@@ -30,3 +30,6 @@ Phát hiện ngày 13/10/2026: 59 mockup đầu tiên dựng ở canvas 1600x900
 9. **Kiểm bắt buộc trước khi upload:** `render()` in dòng `phone min ...px ... OK/TOO SMALL`. Không đạt thì sửa. Rồi chạy `phone_preview.py` và nhìn ảnh bằng mắt.
 
 Prototype đạt chuẩn: `scenes/s_mobile_demo.py` (`mobile_budget` canvas 1000x1400: chữ nhỏ nhất 12,9px trên điện thoại; `mobile_flyer`: nhãn 16px, chỉ phần chữ giả của tờ flyer nhỏ hơn).
+
+## Kết quả thử thực tế (13/10/2026)
+6 ảnh mobile-first của #1843 và #1832 (`s_m_plan.py`, `s_m_brand.py`) có `phone min` 12,2px trở lên; user xem trên điện thoại và duyệt ("ảnh ok"). Công thức dựng ở SKILL.md, mục "Dựng cảnh mobile-first".
