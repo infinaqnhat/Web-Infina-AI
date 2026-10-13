@@ -13,7 +13,7 @@ description: >
 
 # Mockup images: ảnh minh họa thực tế bằng HTML
 
-Đúc kết từ đợt nâng ảnh Cụm 9 ngày 13/10/2026 (39 ảnh cho 13 bài). Lý do ra đời: ảnh cũ là 1 ảnh hero
+Đúc kết từ đợt nâng ảnh Cụm 9 ngày 13/10/2026 (59 ảnh cho 20 bài). Lý do ra đời: ảnh cũ là 1 ảnh hero
 + 3 infographic icon chung chung, không cho thấy thứ bài đang nói (bài "Flyers: Examples, Templates"
 không có tờ flyer nào). Kiểm 12 bài top SERP và bài của Salesforce cho thấy đối thủ hoặc không có ảnh,
 hoặc dùng ảnh chụp ví dụ thật có chú thích nguồn. Bài đứng đầu SERP khó nhất (The Close, door knocking)
@@ -46,6 +46,7 @@ hero và featured, thay 2 ảnh loại "3 icon" và "A vs B". Không đặt 2 �
 6. **Chèn vào bài.** `python3 scripts/apply_mockups.py spec.json <post_id> in.html out.html`: xóa figure có alt chứa chuỗi trong
    `remove`, thay figure trong `replace`, chèn trước `<h2>` trong `before_h2`. Script kiểm **chữ (bỏ figure) và danh sách href không đổi**.
    Rồi `update_post(content=...)`.
+   - **Đọc câu chữ quanh ảnh định xóa.** Nếu bài có câu như "Notice the contrast in the image above" thì **giữ** ảnh đó (ghi vào `remove` là sai); grep `image above|the image|chart|infographic` trước khi chốt `remove`.
    - **Nội dung gốc phải là bản live.** Bài `future` không đọc được qua REST công khai. Chờ publish rồi lấy
      `content.rendered`, hoặc dùng bản local chỉ khi chắc chắn nó vừa được đăng và chưa sửa. Đừng ghi đè bằng file local cũ.
    - Lưu ý trạng thái bài không đổi (vẫn `future` đúng giờ) sau `update_post`, kiểm bằng `list_posts`.
@@ -84,7 +85,7 @@ mockup-images/
   SKILL.md
   scripts/
     common.py            CSS chung, render(), qr2() (QR thật bằng segno), page(), browser(), callout(), leaders()
-    scenes/s_*.py        13 nhóm cảnh (39 ảnh): flyer, testimonials, listing presentation, card, logo, postcard, bio, GBP, plan, SEO, name, social, ads
+    scenes/s_*.py        19 nhóm cảnh (59 ảnh): flyer, testimonials, listing presentation, card, logo, postcard, bio, GBP, plan, SEO, name, social, ads, pillar, brand, ideas, referral, gift, google ads, software
     sheet.py             contact sheet để xem lại
     upload_staging.py    đưa ảnh lên uguu để upload_media
     apply_mockups.py     chèn/thay/xóa figure trong nội dung bài, có kiểm chữ và link

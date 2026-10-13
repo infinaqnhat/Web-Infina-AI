@@ -942,3 +942,10 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - Đã cập nhật: #1937 (future), #1979 (future), #1843 (đã live, lấy bản live làm gốc, kiểm chữ và link không đổi, 5 figure, ảnh 200).
 - Chờ publish rồi chèn: #1859, #1865 (trigger 13/10 19:45 UTC), #1871 (trigger 14/10 11:00 UTC).
 - Phát hiện: bản local `plan_content.html` của #1843 đã lệch bản live (live có thêm link tải xlsx), xác nhận lại quy tắc luôn lấy nội dung live làm gốc.
+
+## 2026-10-13: Cụm 9, mockup nhóm ưu tiên thấp (20 ảnh, 7 bài)
+
+- Dựng 20 mockup (pillar, brand, ideas, referral, gift, google ads, software) bằng skill `mockup-images`.
+- Đã cập nhật: #1825 pillar (live, +3 ảnh, giữ ảnh COMPARISON vì bài viện dẫn "image above"), #1832 hub (live, +3), #1961, #1977, #1943 (wave 2 future). Kiểm bản live: chữ và link không đổi, ảnh trả 200.
+- Chờ publish: #1853 (trigger 13/10 10:30 UTC), #1901 (trigger 15/10 18:30 UTC).
+- Bài học: luôn grep câu viện dẫn ảnh ("image above") trước khi xóa ảnh cũ.

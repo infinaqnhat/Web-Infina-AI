@@ -155,6 +155,86 @@
   "adv_test": [
    "https://infina.ai/news/wp-content/uploads/2026/10/EdOhijKR.jpg",
    "real estate advertising 30-day test in five steps: one offer, small budget, success goal, source tracking and review"
+  ],
+  "pillar_channels": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/tSriDNqe.jpg",
+   "real estate marketing channels placed by cost and time to results: print, paid ads, referrals, social media, direct mail and SEO"
+  ],
+  "pillar_stage": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/SCScfdim.jpg",
+   "real estate marketing priorities for a new agent, a growing agent and an established agent or team"
+  ],
+  "pillar_leadsource": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/VBrGRrRJ.jpg",
+   "real estate marketing sample new contact form with a required lead source field and three questions to ask later"
+  ],
+  "brand_sheet": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/KrRQEYMz.jpg",
+   "real estate branding sample one-page brand sheet with positioning, voice, logo, colors, headshot and required lines"
+  ],
+  "brand_looks": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/YMZYWaic.jpg",
+   "real estate branding one look shown on a business card, website header, yard sign, social post and email signature"
+  ],
+  "brand_mixed": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/xtLwZdjv.jpg",
+   "real estate branding mixed look with different names and colors compared with a consistent look"
+  ],
+  "ideas_matrix": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/ZSVxAUTR.jpg",
+   "real estate marketing ideas ten quick wins placed by cost and effort"
+  ],
+  "ideas_notes": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/ywDlDLvo.jpg",
+   "real estate marketing ideas a home anniversary note and a quarterly market update written out"
+  ],
+  "referral_ask": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/cTNULGKn.jpg",
+   "real estate agent referral text message asking a past client for introductions, with the five-step referral system"
+  ],
+  "referral_agreement": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/jbaohnxl.jpg",
+   "real estate agent referral fee sample written agreement outline between two brokerages"
+  ],
+  "referral_tracker": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/ySzQZSVy.jpg",
+   "real estate agent referral tracking table with referrer, who was introduced, status and thank-you"
+  ],
+  "gift_note": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/WyUmYDcw.jpg",
+   "closing gifts real estate generic printed card compared with a personal handwritten note"
+  ],
+  "gift_timeline": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/BAaWAdmN.jpg",
+   "closing gifts real estate three touches: closing day, a week after move-in and the home anniversary"
+  ],
+  "gift_log": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/BAiblVfR.jpg",
+   "closing gifts real estate sample gift log with date, gift, cost and client response"
+  ],
+  "gads_targeting": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/RRMPmCgM.jpg",
+   "google ads for realtors radius or city targeting allowed and ZIP code targeting not allowed"
+  ],
+  "gads_search": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/svOktwRO.jpg",
+   "google ads for realtors a seller search, a matching ad and a home valuation landing page"
+  ],
+  "gads_weeks": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/DkpAXxBi.jpg",
+   "google ads for realtors four-week test, week one to week four"
+  ],
+  "soft_connect": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/xfQlrgys.jpg",
+   "real estate marketing software integrations: website forms, ad platforms, email, direct mail and reviews connected to the CRM"
+  ],
+  "soft_trial": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/KpurZsxJ.jpg",
+   "real estate marketing software six-step trial: write the job, set a period, use real data, time it, test support and test the exit"
+  ],
+  "soft_sprawl": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/GecBLugA.jpg",
+   "real estate marketing software tool sprawl compared with a small stack, sample monthly costs"
   ]
  },
  "posts": {
@@ -374,6 +454,149 @@
     [
      "How to Test Real Estate Advertising Without Wasting a Month",
      "adv_metrics"
+    ]
+   ]
+  },
+  "1825": {
+   "slug": "real-estate-marketing",
+   "remove": [],
+   "replace": [
+    [
+     "lead source tracking flow",
+     "pillar_leadsource"
+    ]
+   ],
+   "before_h2": [
+    [
+     "Marketing for Real Estate Agents by Career Stage",
+     "pillar_channels"
+    ],
+    [
+     "How to Build a Real Estate Marketing Plan in Five Steps",
+     "pillar_stage"
+    ]
+   ],
+   "_note": "Giữ ảnh COMPARISON: bài có câu \"Notice the contrast in the image above\" nói về ảnh đó."
+  },
+  "1832": {
+   "slug": "real-estate-branding",
+   "remove": [],
+   "replace": [
+    [
+     "one look across card website and sign",
+     "brand_looks"
+    ],
+    [
+     "consistent versus mixed look comparison",
+     "brand_mixed"
+    ]
+   ],
+   "before_h2": [
+    [
+     "A 20-Minute Brand Audit",
+     "brand_sheet"
+    ]
+   ]
+  },
+  "1853": {
+   "slug": "real-estate-marketing-ideas",
+   "remove": [
+    "quick wins versus long game comparison",
+    "choose by cost and effort"
+   ],
+   "replace": [],
+   "before_h2": [
+    [
+     "Real Estate Marketing Ideas for Your Sphere and Referrals",
+     "ideas_matrix"
+    ],
+    [
+     "Social Media Real Estate Marketing Ideas for Agents",
+     "ideas_notes"
+    ]
+   ]
+  },
+  "1961": {
+   "slug": "real-estate-agent-referral",
+   "remove": [
+    "direct ask versus waiting comparison"
+   ],
+   "replace": [
+    [
+     "list ask and thank steps",
+     "referral_ask"
+    ]
+   ],
+   "before_h2": [
+    [
+     "The Federal Rule on Paying for Referrals",
+     "referral_agreement"
+    ],
+    [
+     "Common Real Estate Agent Referral Mistakes",
+     "referral_tracker"
+    ]
+   ]
+  },
+  "1977": {
+   "slug": "closing-gifts-real-estate",
+   "remove": [],
+   "replace": [
+    [
+     "generic gift versus personal gift comparison",
+     "gift_note"
+    ],
+    [
+     "note gift and anniversary reminder steps",
+     "gift_timeline"
+    ]
+   ],
+   "before_h2": [
+    [
+     "Final Thoughts",
+     "gift_log"
+    ]
+   ]
+  },
+  "1943": {
+   "slug": "google-ads-for-realtors",
+   "remove": [],
+   "replace": [
+    [
+     "radius targeting versus zip code targeting comparison",
+     "gads_targeting"
+    ],
+    [
+     "click lead and closing tracking steps",
+     "gads_weeks"
+    ]
+   ],
+   "before_h2": [
+    [
+     "What Google Ads for Realtors Costs",
+     "gads_search"
+    ]
+   ]
+  },
+  "1901": {
+   "slug": "real-estate-marketing-software",
+   "remove": [
+    "check the job export and cost before buying",
+    "tool sprawl versus a small stack comparison"
+   ],
+   "replace": [],
+   "before_h2": [
+    [
+     "Questions to Ask Before You Buy Real Estate Marketing Software",
+     "soft_trial"
+    ],
+    [
+     "Common Mistakes When Buying Real Estate Marketing Software",
+     "soft_sprawl"
+    ],
+    [
+     "How to Trial Real Estate Marketing Software Before You Commit",
+     "soft_connect"
     ]
    ]
   }
