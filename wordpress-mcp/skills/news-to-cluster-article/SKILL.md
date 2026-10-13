@@ -220,6 +220,8 @@ guards, crop 16:9, upload uguu, in ra URL cho từng ảnh. Key đọc từ file
 
 Mỗi bài cần **4 ảnh**: HERO, STATS/DATA, DEMO, COMPARISON. Ảnh HERO vẫn tạo và chèn vào content như bình thường; riêng **featured image/thumbnail dùng STATS** (xem Bước 6 — lý do: tránh lặp lại HERO photo giống nhau trên trang chủ).
 
+**Khi bài về một thứ nhìn thấy được (flyer, thẻ, logo, slide, bio, tin nhắn, trang web...)**, hai ảnh DEMO và COMPARISON nên là **mockup thực tế** thay vì infographic icon: dùng skill `mockup-images` (`skills/mockup-images/SKILL.md`). Giữ HERO và STATS (featured) như quy trình hiện tại. Bài tin tức thuần thì không cần.
+
 ---
 
 ## Image Prompt System: viết prompt sao cho ảnh không bị lỗi

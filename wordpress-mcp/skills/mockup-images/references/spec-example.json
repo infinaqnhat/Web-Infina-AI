@@ -1,0 +1,43 @@
+{
+ "media": {
+  "testi_cards": ["https://infina.ai/news/wp-content/uploads/2026/10/oTFaDLld.jpg", "real estate testimonials weak versus strong testimonial card showing situation, result and person"],
+  "testi_ask": ["https://infina.ai/news/wp-content/uploads/2026/10/OMqNxrae.jpg", "real estate testimonials sample text message asking a client for a testimonial in three steps"],
+  "testi_site": ["https://infina.ai/news/wp-content/uploads/2026/10/jTnrVFYz.jpg", "real estate testimonials sample agent web page with three client quotes beside the contact form"],
+  "lp_price": ["https://infina.ai/news/wp-content/uploads/2026/10/RrjSUjaq.jpg", "listing presentation sample pricing slide with three comparable sales and a recommended price range"],
+  "lp_plan": ["https://infina.ai/news/wp-content/uploads/2026/10/HlBpRsxt.jpg", "listing presentation sample marketing plan slide with steps before launch, on launch day and in the first two weeks"],
+  "lp_outline": ["https://infina.ai/news/wp-content/uploads/2026/10/OoouYmOE.jpg", "listing presentation template twelve slide outline from welcome and agenda to next steps"],
+  "fly_layouts": ["https://infina.ai/news/wp-content/uploads/2026/10/zDWcUwyd.jpg", "flyer for real estate four layouts: photo on top, photo left, big headline and four-photo grid"],
+  "fly_anno": ["https://infina.ai/news/wp-content/uploads/2026/10/iGSDXDTa.jpg", "flyer for real estate sample listing flyer with numbered parts: headline, photo, facts, call to action, details and headshot"],
+  "fly_vs": ["https://infina.ai/news/wp-content/uploads/2026/10/SUcOPOii.jpg", "flyer for real estate crowded flyer compared with a clean flyer with one photo and one action"],
+  "card_layouts": ["https://infina.ai/news/wp-content/uploads/2026/10/ZVtLyutz.jpg", "real estate agent business card four layouts: headshot and details, clean text, local photo and referral card"],
+  "card_back": ["https://infina.ai/news/wp-content/uploads/2026/10/StPXJxTK.jpg", "real estate agent business card front with details and two backs: a QR code card and a referral line card"],
+  "card_proof": ["https://infina.ai/news/wp-content/uploads/2026/10/yYgezajH.jpg", "real estate agent business card proofread checklist with numbered name, phone, email, QR code and license line"],
+  "logo_types": ["https://infina.ai/news/wp-content/uploads/2026/10/fqAdxiKo.jpg", "real estate agent logo five types: wordmark, monogram, symbol with wordmark, emblem and headshot-based"],
+  "logo_small": ["https://infina.ai/news/wp-content/uploads/2026/10/ZcdWopRG.jpg", "real estate agent logo tested at four sizes, in one color and reversed on a dark background"],
+  "logo_cliche": ["https://infina.ai/news/wp-content/uploads/2026/10/XyWKgyjS.jpg", "real estate agent logo overused roof and key marks compared with a distinct place-based mark"],
+  "post_just_sold": ["https://infina.ai/news/wp-content/uploads/2026/10/CtUMNExU.jpg", "postcards real estate just sold postcard front with photo and headline, back with offer, QR code and postage area"],
+  "post_anno": ["https://infina.ai/news/wp-content/uploads/2026/10/HzQtTeCu.jpg", "postcards real estate sample just sold postcard with numbered parts: headline, photo, offer, QR code and brokerage line"],
+  "post_qr": ["https://infina.ai/news/wp-content/uploads/2026/10/VrlyOjqf.jpg", "postcards real estate market update postcard with a QR code beside a table tracking scans for each mailing"],
+  "bio_profile": ["https://infina.ai/news/wp-content/uploads/2026/10/mDqUzfkQ.jpg", "real estate agent bio sample profile page with the who you help, proof and next step parts highlighted"],
+  "bio_beforeafter": ["https://infina.ai/news/wp-content/uploads/2026/10/kYadntwP.jpg", "real estate agent bio vague lines rewritten as specific lines, four before and after pairs"],
+  "bio_gallery": ["https://infina.ai/news/wp-content/uploads/2026/10/PRFqYdEZ.jpg", "real estate agent bio three sample profile cards for a new agent, a downsizing specialist and a relocation specialist"]
+ },
+ "posts": {
+  "1883": {"slug": "real-estate-agent-business-card", "scene_prefix": "card",
+    "remove": ["printed card versus digital card comparison"],
+    "replace": [["proofread phone spelling and qr code before printing", "card_proof"]],
+    "before_h2": [["Real Estate Agent Business Card Ideas That Get Kept", "card_layouts"], ["Business Cards for New Agents and Teams", "card_back"]]},
+  "1889": {"slug": "real-estate-agent-logo",
+    "remove": ["overused versus distinct logo comparison"],
+    "replace": [["tested at small size and one color", "logo_small"]],
+    "before_h2": [["Color and Type Basics for a Real Estate Agent Logo", "logo_cliche"], ["Write a Short Brief Before You Hire Anyone", "logo_types"]]},
+  "1877": {"slug": "real-estate-postcards",
+    "remove": ["one mailing versus monthly mailing comparison"],
+    "replace": [["track every card with a qr code", "post_qr"]],
+    "before_h2": [["Postcards, Letters, and Newsletters: Choosing Realtor Mailers", "post_just_sold"], ["Sample Copy for Mailers for Real Estate Agents", "post_anno"]]},
+  "1895": {"slug": "real-estate-agent-bio",
+    "remove": ["vague versus specific bio comparison"],
+    "replace": [["who proof next step bio formula", "bio_profile"]],
+    "before_h2": [["Before and After: Rewriting Weak Bio Lines", "bio_gallery"], ["Broker Bio and Salesperson Bio: What Changes", "bio_beforeafter"]]}
+ }
+}

@@ -13,3 +13,6 @@ Tình trạng: #1949, #1955, #1967 đã cập nhật ngày 13/10. #1877, #1883, 
 (bài future không đọc được nội dung qua REST, tránh ghi đè bằng bản local cũ).
 
 Quy ước: tên và số liệu trong mockup đều hư cấu và được ghi chú ngay trên ảnh. Cần `pip install segno` để vẽ QR (trỏ về example.com).
+
+Lưu ý: mã dựng ảnh và script chèn bản chuẩn, dùng lại cho bài khác, nằm ở skill `skills/mockup-images/`. Thư mục này chỉ giữ kết quả đợt Cụm 9
+và bản `apply_mockups.py` mà các trigger 14/10 và 15/10 đang gọi.
