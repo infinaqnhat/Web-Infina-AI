@@ -1,6 +1,6 @@
 # Plan đề xuất: Cụm 9, Real Estate Marketing và Branding
 
-**Trạng thái: pillar `real estate marketing` ĐÃ ĐĂNG 12/10/2026 (#1825, `/real-estate-marketing/`). Hub `real estate branding` ĐÃ ĐĂNG 12/10/2026 (#1832, `/real-estate-branding/`). 10 cluster WAVE 1 ĐÃ VIẾT (#1843–#1901; 1 bài đăng 12/10, 9 bài lên lịch 13–15/10/2026). 8 cluster WAVE 2 ĐÃ VIẾT và LÊN LỊCH 16–18/10/2026 (#1937, #1943, #1949, #1955, #1961, #1967, #1977, #1979; tối đa 3 bài/ngày). Link ngược vào pillar/hub chờ bài publish. Wave 3 là backlog tùy chọn.** Soạn 2026-10-12 theo
+**Trạng thái: pillar `real estate marketing` ĐÃ ĐĂNG 12/10/2026 (#1825, `/real-estate-marketing/`). Hub `real estate branding` ĐÃ ĐĂNG 12/10/2026 (#1832, `/real-estate-branding/`). 10 cluster WAVE 1 ĐÃ VIẾT (#1843–#1901; 1 bài đăng 12/10, 9 bài lên lịch 13–15/10/2026). 8 cluster WAVE 2 ĐÃ VIẾT và LÊN LỊCH 16–18/10/2026 (#1937, #1943, #1949, #1955, #1961, #1967, #1977, #1979; tối đa 3 bài/ngày). Link ngược vào pillar/hub chờ bài publish. Wave 3 (8 bài) ĐÃ ĐỀ XUẤT 13/10/2026, chờ duyệt.** Soạn 2026-10-12 theo
 `skills/pillar-cluster-writer/SKILL.md` Bước 1-4. Pillar và hub đã ghi vào `content-plan.md` (Cụm 9) và đặt chỗ keyword trong
 `used-keywords.md`. Cluster chưa đặt chỗ vì chưa duyệt.
 
@@ -104,12 +104,50 @@ họ trong `references/cluster-roles.md`. Volume là bucket.
 | `niche` | Real Estate Business Name Ideas | `realtor name ideas` 500 M (+ `realty company name ideas`, `llc name ideas`) |
 | `how-to` | Real Estate Referral Marketing | `real estate agent referral` 5k L, **đã kiểm SERP 12/10: lẫn referral fee và cách nhận giới thiệu, viết cả hai** |
 
-### Wave 3 và news-support (không cần plan trước)
+### Wave 3: 8 bài ĐỀ XUẤT (soạn 13/10/2026, chờ duyệt, chưa đặt chỗ keyword)
 
-Backlog tùy chọn: `real estate farming` (500 L), luxury marketing/branding (500), open house ideas
-(500 H, nhớ link #918), video marketing cho agent (500 L), letters to homeowners (4 biến thể 500 H),
-real estate email signature (500 L). Các bài tin AI/marketing (như #1152, #1100) thuộc cụm này và dùng vai
-`news-support`, một bài mỗi ngày theo routine hiện tại.
+Nguồn: 6 chủ đề backlog cũ + 2 chủ đề prospecting tìm thêm trong file keyword. Đã kiểm SERP thật 12 truy vấn ngày 13/10 (kiểm nhanh, chưa mở từng trang). Volume là bucket, "L/TB/C" là cạnh tranh **ads**, không phải độ khó SEO.
+Đề xuất lịch: sau khi wave 2 xong (18/10), tức **19/10 (3 bài), 20/10 (3 bài), 21/10 (2 bài)**, 10:00/14:00/18:00 UTC.
+
+| # | Vai trò | Bài dự kiến | Focus keyword (volume, ads) | SERP thật: ai đứng top | Góc viết để thắng | Link |
+|---|---|---|---|---|---|---|
+| 1 | `how-to` | Real Estate Farming: How to Pick a Farm and Work It for a Year | `real estate farming` 500 L (+ `real estate farming ideas` 50, `farming for real estate agents` 50) | Market Leader, HousingWire, LTGC, Wise Pelican, Easy Agent Pro, The Real Estate Trainer. Phần lớn là bài định nghĩa, ai cũng nói "mất cả năm mới có ROI" | Cách **chọn** farm (số nhà, tỷ lệ bán lại, quy mô) + ngân sách + lịch 12 tháng + cách đo. Không lặp định nghĩa | Pillar #1825; sang #1877 (postcards), #1967 (flyer), #1961 (referral), #1843 (plan); cross-pillar: #263 CRM |
+| 2 | `how-to` | Open House Ideas for Realtors: Before, During and After | `open house ideas for realtors` 500 C (+ `real estate open house` 500 L, `open house realtor` 500 L) | Stuccco, Paperless Post, HubSpot, ResiMpli, RentSpree, Virtual Staging AI. Dạng listicle của vendor | Chia theo **thời điểm** (trước, trong, sau) + sign-in và follow-up + lưu ý fair housing. Không bán phần mềm | Pillar #1825; cross-pillar #918 (open house landing page, Cụm 6); sang #1967, #1937 |
+| 3 | `how-to` | Real Estate Video Marketing: Video Ideas, Scripts and a Simple Setup | `video for real estate` 500 TB (+ `real estate videos for marketing` 500 L, `realtor videos` 500 TB, `real estate video ideas` 50) | Real Estate Trainer, Transactly, Fit Small Business, AgentFire (60 ý tưởng), Luxury Presence, RealTrends, HomeASAP. Đông, ai cũng làm danh sách ý tưởng | Ít định dạng nhưng có **kịch bản ngắn + thiết lập bằng điện thoại + nhịp đăng hằng tuần**. **Không** dùng số "403% more inquiries" (không có nguồn gốc rõ) | Pillar #1825; sang #1865 (social), #1937 (Google profile), #1843; sang #1152 (cùng cụm, bài tin AI video); không cần cross-pillar |
+| 4 | `niche` | Luxury Real Estate Marketing and Branding: What Changes at the High End | `luxury real estate marketing` 500 L + `luxury real estate branding` 500 C (+ ideas, advertising, materials 50) | Fit Small Business, Tom Ferry, Mediaboom, Virtuance, Callin, OKC Home Sellers, Maverick Frame. Phần lớn là agency và blog vendor | Gộp marketing + branding vào 1 bài: kín đáo, hình ảnh, quan hệ, tài liệu in, và những gì **không** nên làm. Không hứa kết quả | **Hub #1832** (branding); sang #1883 (business card), #1889 (logo); cross-pillar #1011 (luxury website, Cụm 5) |
+| 5 | `niche` | Real Estate Email Signature: What to Include, Examples and Required Disclosures | `real estate email signature` 500 L (+ `realtor email signature` 500 L, `real estate agent email signature` 500 L, `email signature realtor` 500 L, examples 50) | Creative Market, TemplateMonster, WiseStamp, NewOldStamp, vài blog nhỏ. **SERP yếu nhất trong wave**, toàn template bán và trang vendor | Thành phần + ví dụ + **thông tin bắt buộc** (giấy phép, tên môi giới, Equal Housing; kiểm theo bang và brokerage) + kiểm tra trên điện thoại | **Hub #1832**; sang #1883, #1895 (bio), #1889 (logo); không cần cross-pillar |
+| 6 | `how-to` | Real Estate Prospecting Letters: Templates for Sellers, Expired Listings and Just Sold | `real estate letters` 500 TB (+ `real estate letter to seller template` 50, họ `letters to homeowners` ~8 biến thể 50, `expired listings` 500 TB làm phụ) | HousingWire, Copper, Wise Pelican. Truy vấn "sample letter asking to sell" ra kết quả rác và lệch hướng, nghĩa là chưa ai chiếm rõ | 5 loại thư (giới thiệu, just sold, expired, FSBO, chủ cũ) + mẫu ngắn + quy tắc gửi (USPS, brokerage) + cách đo. Chưa làm 50 biến thể thành bài riêng | Pillar #1825; sang #1877 (postcards), #1961 (referral), farming (bài 1); cross-pillar #1223 (Cụm 7) |
+| 7 | `how-to` | Door Knocking for Real Estate Agents: Script, Etiquette and a Safe Routine | `real estate door knocking` 500 L (+ `realtor door knocking` 500 L, `real estate agent door knocking` 500 L, scripts 50) | Ylopo, Openn, AgentFire, NowBam, Real Estate Trainer, **The Close**, **Tom Ferry**, Listing Leads. **Khó nhất wave** vì The Close và Tom Ferry có thẩm quyền | Góc an toàn + **quy định địa phương** (xin phép, biển cấm chào hàng, hộp thư USPS) + 3 kịch bản ngắn + vật để lại (door hanger). Không hứa tỷ lệ chuyển đổi | Pillar #1825; sang bài 1 (farming), #1967 (flyer), bài 6; cross-pillar #237 (TCPA, Cụm 8) |
+| 8 | `how-to` | Real Estate Cold Calling Scripts and the Do Not Call Rules | `real estate cold calling scripts` 500 L (+ `realtor cold calling script` 500 L, `real estate agent cold calling scripts` 500 L, `real estate cold call` 500 TB, `real estate scripts` 500 L, `prospecting script` 500 L) | JustCall, HousingWire, Ampliz, Pipedrive, Close, Luxury Presence, Callin, Freshworks, Deskera. Gần như toàn vendor phần mềm gọi điện | Kịch bản theo tình huống (chủ nhà, FSBO, expired, referral) + **pháp lý**: National Do Not Call Registry, TCPA, giờ gọi. Số liệu vendor phải ghi rõ là của vendor | Pillar #1825; cross-pillar #237 (TCPA, Cụm 8); sang #1213 (AI outbound calling, Cụm 7, **chỉ link, không lặp nội dung**), bài 7 |
+
+**Loại ra khỏi wave 3 và lý do**
+
+| Keyword | Vì sao loại |
+|---|---|
+| `real estate signature` 5k | SERP toàn **chữ ký điện tử** (SignNow, Zoho Sign), sai ý định. Dùng `real estate email signature` thay |
+| `instagram for real estate agents` 500 L, `realtors on instagram` 500 L | Đã gom vào #1865 social media. Viết riêng là cannibalize |
+| `realtor email templates` 500 C | Chồng với Cụm 2 (#263 email drip) và Cụm 7 |
+| `luxury realtor` 5k, `luxury real estate agency/brokerage/websites` 5k | Người tìm là **người mua nhà** đi tìm agent, không phải agent làm marketing |
+| `thank you letter for realtor` 500 | Người viết là khách gửi cho agent, sai đối tượng. Bài closing gifts (#1977) đã bao phần cảm ơn khách |
+| `expired listings`, `fsbo` | Gom làm phụ vào bài 6. Nếu SERP sau này cho thấy đáng, tách thành wave 4 |
+
+**Rủi ro riêng của wave 3**
+1. **Quy mô:** cụm sẽ thành **28 bài**, lớn hơn mọi cụm khác và lớn hơn mức 12-20 bài mình đề xuất ban đầu. Pillar công thức `400 + 150 x cụm + 200` ra khoảng 4.500 chữ nếu thêm hết, cần mở rộng pillar theo từng wave thay vì viết lại.
+2. **Bài 7 và 8 nằm sát ranh giới Cụm 7/8** (lead gen, TCPA). Bài 8 cần độ chính xác pháp lý cao: chỉ dùng nguồn FTC/FCC, ghi rõ "không phải tư vấn pháp lý". Bài 7 phụ thuộc quy định từng địa phương nên chỉ nêu cách kiểm tra, không nêu quy định cụ thể.
+3. **Khoảng cách với sản phẩm** vẫn như rủi ro 1 ở dưới: các bài này là TOF. Bài 8 và bài 6 là hai bài gần Infina AI nhất (follow-up sau khi gọi, thư).
+4. **SERP kiểm nhanh:** mới xem danh sách kết quả, chưa mở từng trang. Trước khi viết mỗi bài vẫn kiểm lại SERP theo Bước 3 của skill.
+
+**Sau khi duyệt:** đặt chỗ 8 keyword trong `used-keywords.md`, thêm 8 dòng vào `content-plan.md` và `teardown-infina-table.md`, viết theo `pillar-cluster-writer` và lên lịch như wave 2.
+
+### News-support (không cần plan trước)
+
+Các bài tin AI/marketing (như #1152, #1100) thuộc cụm này và dùng vai `news-support`, một bài mỗi ngày theo routine
+hiện tại (đang pause).
+
+### Backlog wave 4 (chưa kiểm SERP)
+
+`expired listings` 500 TB và `fsbo` 500 TB (nếu tách khỏi bài 6), `sphere of influence real estate script` 50, `open house app` 500 L (hướng so sánh
+phần mềm, cân nhắc với #918), `real estate email templates`.
 
 ## 5. Luồng link nội bộ (tuân thủ các quy tắc đã chốt)
 
