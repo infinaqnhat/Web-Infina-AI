@@ -959,3 +959,5 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - 2026-10-13 — #1859, #1865: chèn 3 ảnh mockup mobile-first mỗi bài (đã publish 14:00 và 18:00 UTC), thay 3 ảnh icon cũ; chữ và link không đổi.
 
 - 2026-10-14 — Image refresh theo rule mobile-first cho 6 bài có traffic SEO: #981 best-real-estate-website-design, #1011 luxury-real-estate-website-design, #207 best-crm-for-real-estate, #546 real-estate-website-builder, #610 idx-website-for-realtors, #616 idx-real-estate-websites-examples. Thay 10 infographic Gemini chữ nhỏ (có số bịa, rating, dấu tích, tên hãng) bằng mockup theo tiêu chí lấy từ chính bài, không số liệu mới. Chữ và link không đổi. Chưa đổi: #1056 (ảnh chụp màn hình hãng, user bảo giữ). Số liệu GSC trước khi sửa: #981 27 click/641 impr/vị trí 11,2; #1056 5/1.845/15,8; #207 2/712/10,5; #610 1/1.139/36,1; #546 1/613/8,0; #1011 4/175/7,1; #616 2/411/42,7.
+
+- 2026-10-14 — Rút alt ảnh mockup về ≤ 110 ký tự trong 20 bài (#1825, #1832, #1843, #1853, #1859, #1865, #981, #1011, #207, #546, #610, #616 và 8 bài wave 2 đang lên lịch). Chữ và link không đổi; alt thư viện media chưa đổi (không có công cụ).

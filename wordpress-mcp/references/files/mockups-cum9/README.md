@@ -36,3 +36,6 @@ Làm lại 2 bài #1843 (real-estate-marketing-plan) và #1832 (real-estate-bran
 
 ## Thay ảnh cho bài đang có traffic SEO (14/10/2026)
 GSC 28 ngày (14/09 đến 12/10) cho thấy các bài cũ Cụm CRM/website/IDX có ảnh Gemini chữ nhỏ, có số bịa và tên hãng. 10 ảnh `_m` mới (media 2125–2134, scenes `s_m_webdesign.py`, `s_m_crm_builder.py`, `s_m_idx.py`) đã thay tại chỗ: #981 (1), #1011 (1), #207 (2), #546 (2), #610 (2), #616 (2). Bỏ #1056 theo ý user (ảnh chụp màn hình trang hãng, giữ nguyên). `spec.json` có mục `traffic_round`.
+
+## Rút alt về khoảng 125 ký tự (14/10/2026)
+69 ảnh `_m` được rút alt (tối đa 110 ký tự, bắt đầu bằng từ khóa chính; chi tiết vẫn nằm trong figcaption và nội dung bài). Bản rút ở `short_alts.json`, đã ghi vào `spec.json` (mục `media`) nên các bài chưa đăng (#1871, #1877, #1883, #1889, #1895, #1901) sẽ dùng alt ngắn khi trigger chèn ảnh. Đã cập nhật 20 bài đang có ảnh `_m` (12 bài live, 8 bài future). `bases/*.html` là bản hiện tại của 8 bài future. Alt trong thư viện media WordPress vẫn là bản dài vì công cụ không sửa được alt của media đã upload.
