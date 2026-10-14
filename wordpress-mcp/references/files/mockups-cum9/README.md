@@ -34,6 +34,7 @@ Làm lại 2 bài #1843 (real-estate-marketing-plan) và #1832 (real-estate-bran
 
 - 13/10 19:45 UTC: trigger chèn ảnh `_m` vào #1859 (adv_examples_m, adv_metrics_m, adv_test_m) và #1865 (soc_week_m, soc_calendar_m, soc_caption_m): xong, 4 figure thành 5, chữ và link không đổi.
 - 14/10 11:00 UTC: trigger chèn ảnh `_m` vào #1871 (seo_results_m, seo_profile_m thay ảnh gen-1, seo_plan_m): xong, 4 figure thành 5, chữ và link không đổi, 5 ảnh đều 200.
+- 14/10 19:30 UTC: trigger chèn ảnh `_m` vào #1877 (postcards) và #1883 (business cards): xong, cả hai 4 figure thành 5, chữ và link không đổi, nội dung live khớp bản đã tính, mọi ảnh trả 200.
 
 ## Thay ảnh cho bài đang có traffic SEO (14/10/2026)
 GSC 28 ngày (14/09 đến 12/10) cho thấy các bài cũ Cụm CRM/website/IDX có ảnh Gemini chữ nhỏ, có số bịa và tên hãng. 10 ảnh `_m` mới (media 2125–2134, scenes `s_m_webdesign.py`, `s_m_crm_builder.py`, `s_m_idx.py`) đã thay tại chỗ: #981 (1), #1011 (1), #207 (2), #546 (2), #610 (2), #616 (2). Bỏ #1056 theo ý user (ảnh chụp màn hình trang hãng, giữ nguyên). `spec.json` có mục `traffic_round`.
