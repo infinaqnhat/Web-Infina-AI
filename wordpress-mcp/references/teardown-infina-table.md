@@ -75,7 +75,7 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 | Cụm 6: Landing Pages | 6 | `real-estate-landing-page-guide` (5 IN, 1,873 chữ) | 8,316 | 0 | 0 | 0 |
 | Cụm 7: Lead Generation / Follow-up Automation | 9 | `real-estate-lead-follow-up-automation-guide` (17 IN, 2,453 chữ) | 8,208 | 0 | 0 | 2 |
 | Cụm 8: Compliance / Legal / Risk | 6 | `tcpa-compliance-for-real-estate-agents` (15 IN, 1,904 chữ) | 6,017 | 0 | 0 | 1 |
-| Cụm 9: Marketing và Branding (20 bài: 2 đã đăng, 18 đã lên lịch 13–18/10) | 20 | `real-estate-marketing` (#1825, 2,305 chữ, 2 IN từ #1152 và #1832) | n/a (chưa crawl) | n/a | n/a | n/a |
+| Cụm 9: Marketing và Branding (28 bài: 3 đã đăng, 25 đã lên lịch 13–21/10) | 28 | `real-estate-marketing` (#1825, 2,305 chữ, 2 IN từ #1152 và #1832) | n/a (chưa crawl) | n/a | n/a | n/a |
 | Bài News real estate chưa gắn cụm trong plan | 40 | không có | 29,224 | 0 | 19 | 12 |
 | Ngoài chủ đề real estate (AI/tech) | 11 | không có | 2,780 | 11 | 11 | 0 |
 
@@ -222,10 +222,11 @@ H2 trên 10 đoạn văn, tức là gần như mỗi H2 chỉ có 1 đoạn. Đ�
 | Hỗ trợ (News) | [#1481 /how-agents-protect-clients-from-wire-fraud](https://infina.ai/news/how-agents-protect-clients-from-wire-fraud/) | 1 | 923 | 2026-10-07 | `how agents protect clients from wire fraud` | ✅ `tcpa-compliance-for-real-estate-agents` | Two Wire Fraud Companies Just Merged, and the Agent Is Still the Weak Link |
 | Hỗ trợ (News) | [#1501 /private-listing-marketing-rules](https://infina.ai/news/private-listing-marketing-rules/) | 1 | 871 | 2026-10-08 | `private listing marketing rules` | ✅ `tcpa-compliance-for-real-estate-agents` | Three States Now Force Private Listings Public the Moment You Market Them |
 
-## Cụm 9: Marketing và Branding  (20 bài: 2 đã đăng, 18 đã lên lịch, cập nhật 13/10/2026)
+## Cụm 9: Marketing và Branding  (28 bài: 3 đã đăng, 25 đã lên lịch, cập nhật 14/10/2026)
 
 **Tiến độ:** pillar + hub branding đã đăng 12/10. Wave 1 (10 bài, #1843–#1901): 1 bài đăng 12/10, 9 bài lên lịch 13–15/10.
-Wave 2 (8 bài, #1937–#1979): đã viết và lên lịch 16–18/10, tối đa 3 bài/ngày. Tất cả đều đã qua gate SEO
+Wave 2 (8 bài, #1937–#1979): đã viết và lên lịch 16–18/10, tối đa 3 bài/ngày.
+Wave 3 (8 bài, #2165–#2207): đã viết và lên lịch 19–21/10 (14/10/2026), mỗi bài có hero, 3 mockup mobile-first và ảnh featured. Tất cả đều đã qua gate SEO
 (density, ảnh, link pillar/hub, tối đa 1 link cross-pillar) và có ảnh featured. Số chữ và density lấy từ lúc viết, **chưa phải crawl**;
 cột Inbound "chờ" nghĩa là bài chưa live nên chưa thêm link ngược được. Plan gốc, SERP và lý do chọn keyword ở
 `plan-cum-9-marketing-branding.md`.
@@ -252,6 +253,14 @@ cột Inbound "chờ" nghĩa là bài chưa live nên chưa thêm link ngược 
 | 18 | `how-to` W2 | ⏰ 17/10 18:00 | `/flyer-for-real-estate` | #1967 | 1,233 | 0,65 | ✅ marketing | chờ | Real Estate Flyers: Examples, Templates and What to Include |
 | 19 | `how-to` W2 | ⏰ 18/10 10:00 | `/closing-gifts-real-estate` | #1977 | 1,310 | 0,69 | ✅ marketing | chờ | Closing Gifts for Real Estate Clients: Ideas, Budget and Rules |
 | 20 | `niche` W2 | ⏰ 18/10 14:00 | `/realtor-name-ideas` | #1979 | 1,346 | 0,67 | ✅ branding | chờ | Realtor Name Ideas: Formulas, Examples and Rules to Check |
+| 21 | `how-to` W3 | ⏰ 19/10 10:00 | `/real-estate-farming` | #2165 | 1,699 | 0,77 | ✅ marketing | chờ | Real Estate Farming: How to Pick a Farm and Work It for a Year |
+| 22 | `how-to` W3 | ⏰ 19/10 14:00 | `/open-house-ideas-for-realtors` | #2171 | 1,452 | 0,62 | ✅ marketing | chờ | Open House Ideas for Realtors: Before, During and After |
+| 23 | `how-to` W3 | ⏰ 19/10 18:00 | `/real-estate-video-marketing` | #2177 | 1,325 | 0,68 | ✅ marketing | chờ | Real Estate Video Marketing: Video Ideas, Scripts and a Simple Setup |
+| 24 | `niche` W3 | ⏰ 20/10 10:00 | `/luxury-real-estate-marketing` | #2183 | 1,283 | 0,70 | ✅ branding | chờ | Luxury Real Estate Marketing and Branding: What Changes at the High End |
+| 25 | `niche` W3 | ⏰ 20/10 14:00 | `/real-estate-email-signature` | #2189 | 1,170 | 0,77 | ✅ branding | chờ | Real Estate Email Signature: What to Include, Examples and Required Disclosures |
+| 26 | `how-to` W3 | ⏰ 20/10 18:00 | `/real-estate-prospecting-letters` | #2195 | 1,299 | 0,77 | ✅ marketing | chờ | Real Estate Prospecting Letters: Templates for Sellers, Expired Listings and Just Sold |
+| 27 | `how-to` W3 | ⏰ 21/10 10:00 | `/door-knocking-for-real-estate-agents` | #2201 | 1,271 | 0,71 | ✅ marketing | chờ | Door Knocking for Real Estate Agents: Script, Etiquette and a Safe Routine |
+| 28 | `how-to` W3 | ⏰ 21/10 14:00 | `/real-estate-cold-calling-scripts` | #2207 | 1,250 | 0,72 | ✅ marketing | chờ | Real Estate Cold Calling Scripts and the Do Not Call Rules |
 
 ### Còn lại cho Cụm 9
 
@@ -259,12 +268,13 @@ cột Inbound "chờ" nghĩa là bài chưa live nên chưa thêm link ngược 
 |---|---|---|---|
 | 1 | Kiểm tra wave 1 publish đúng giờ, nội dung nguyên vẹn | 15/10 19:30 UTC (đã đặt trigger) | Claude |
 | 2 | Kiểm tra wave 2 publish đúng giờ | 16/10 19:00 và 18/10 19:30 UTC (đã đặt trigger) | Claude |
-| 3 | **Đợt link ngược**: pillar #1825 Related Reading thêm 17 cluster, hub #1832 thêm testimonials + name ideas, mỗi bài mới có ít nhất 1 link từ bài cùng cụm | Sau khi bài live, trigger 18/10 19:30 UTC | Claude |
-| 4 | Dán rows tracker vào sheet "Published article": wave 1 (137–148) và wave 2 (149–156), file `files/tracker-rows-cum9.tsv` | Bất cứ lúc nào | **Bạn** |
+| 2b | Kiểm tra wave 3 publish đúng giờ, ảnh và link nội bộ 200 | 21/10 19:30 UTC (đã đặt trigger) | Claude |
+| 3 | **Đợt link ngược**: pillar #1825 Related Reading thêm 17 cluster wave 1-2 và 6 bài wave 3 (farming, open house, video, door knocking, cold calling, letters), hub #1832 thêm testimonials, name ideas, luxury (#2183) và email signature (#2189), mỗi bài mới có ít nhất 1 link từ bài cùng cụm | Wave 1-2: trigger 18/10 19:30 UTC; wave 3: trigger 21/10 19:30 UTC | Claude |
+| 4 | Dán rows tracker vào sheet "Published article": wave 1 (137–148), wave 2 (149–156) và wave 3 (157–164), file `files/tracker-rows-cum9.tsv` | Bất cứ lúc nào | **Bạn** |
 | 5 | Sửa title bài #1415 trong tracker | Bất cứ lúc nào | **Bạn** |
-| 6 | Request Indexing trong GSC cho 20 URL mới (ưu tiên pillar, hub, bài 5k volume: advertising, SEO, postcards, business card, logo, flyer) | Sau khi live | **Bạn** |
+| 6 | Request Indexing trong GSC cho 28 URL mới (ưu tiên pillar, hub, bài 5k volume: advertising, SEO, postcards, business card, logo, flyer) | Sau khi live | **Bạn** |
 | 7 | Crawl lại bảng này bằng dữ liệu thật (IN, Chữ, Sửa lần cuối) | Sau 18/10 và đợt link ngược | Claude |
-| 8 | Wave 3 (tùy chọn, chưa duyệt): `real estate farming`, luxury marketing và branding, open house ideas (link #918), video marketing, letters to homeowners, `real estate email signature` | Khi bạn yêu cầu | Bạn duyệt |
+| 8 | Wave 3 đã viết xong 14/10 (8 bài). Còn lại: chờ publish 19–21/10 và đợt link ngược | Xem mục 2b và 3 | Claude |
 | 9 | Bật lại news routine hằng ngày (đang pause) | Khi bạn yêu cầu | Bạn |
 | 10 | Đo sau 4–8 tuần bằng `post-refresh` (GSC), tìm striking-distance keyword | Cuối 11/2026 | Claude |
 
@@ -275,7 +285,7 @@ hub branding lên pillar marketing). Tối đa 1 link ra pillar cụm khác mỗ
 
 | Việc | Ghi chú |
 |---|---|
-| Money page `https://infina.ai/` (Infina AI) | Đã link từ 20 bài blog. Chưa link: #1213, #1217, #1219, #1225, #1229. Dev còn làm prerender/SSR, title/meta/JSON-LD trong HTML, soft 404, redirect, sitemap, ảnh nặng, JS bundle (xem `realsalex-seo-dev-handoff.md`). Sau khi dev deploy: verify lại và Request Indexing |
+| Money page `https://infina.ai/` (Infina AI) | Đã link từ 28 bài blog (gồm 8 bài wave 3 lên lịch 19–21/10). Chưa link: #1213, #1217, #1219, #1225, #1229. Dev còn làm prerender/SSR, title/meta/JSON-LD trong HTML, soft 404, redirect, sitemap, ảnh nặng, JS bundle (xem `realsalex-seo-dev-handoff.md`). Sau khi dev deploy: verify lại và Request Indexing |
 | Footer "© 2026 Infina" và khối testimonials trên money page | Chưa chỉnh (mục #18, #19 trong bảng đề xuất SEO) |
 | 2 bài CEP (Cụm 2, Customer Engagement Platform) | Plan đã duyệt 30/09, chưa viết |
 | `realsalex-landing-spec.md` trên `main` | Vẫn dùng tên cũ Real Sale X / AI Deal Room, chưa đổi sang Infina AI |
