@@ -258,6 +258,28 @@
       .m-suggest-row:hover { border-color:var(--blue); background:var(--blue-light); }
     }
 
+    /* ===== Claim bar: slides down from the top of the page ===== */
+    .claim-bar { display:grid; grid-template-rows:0fr; opacity:0; transition:grid-template-rows .38s cubic-bezier(.22,1,.36,1), opacity .3s ease; flex-shrink:0; }
+    .claim-bar[hidden] { display:none; }
+    .claim-bar.is-open { grid-template-rows:1fr; opacity:1; }
+    .claim-clip { overflow:hidden; min-height:0; }
+    .claim-inner { position:relative; display:flex; align-items:center; gap:14px; margin-bottom:14px; padding:8px 10px 8px 20px; border-radius:14px; color:#fff; background:linear-gradient(120deg, var(--blue) 0%, var(--accent) 100%); box-shadow:0 8px 22px -10px rgba(0,31,92,.55); }
+    .claim-text { flex:1; min-width:0; font-size:14px; font-weight:600; line-height:1.4; }
+    .claim-cta { flex-shrink:0; padding:8px 16px; border-radius:999px; background:#fff; color:var(--accent); font-size:13px; font-weight:800; white-space:nowrap; transition:transform .2s, box-shadow .2s; }
+    .claim-cta:hover { transform:translateY(-1px); box-shadow:0 6px 14px rgba(0,20,60,.3); }
+    .claim-close { flex-shrink:0; width:30px; height:30px; border:0; border-radius:50%; background:rgba(255,255,255,.16); color:#fff; display:flex; align-items:center; justify-content:center; }
+    .claim-close:hover { background:rgba(255,255,255,.28); }
+    @media (max-width:1100px){
+      /* The page column has no side padding here, so the bar runs edge to edge */
+      .claim-inner { margin-bottom:0; border-radius:0; padding:12px 14px; box-shadow:none; flex-wrap:wrap; row-gap:10px; }
+      /* basis 100% + the margin overflows the line, so the CTA wraps to its own row,
+         while shrink pulls the text back so it ends before the close button */
+      .claim-text { flex:1 1 100%; min-width:0; margin-right:40px; font-size:13px; }
+      .claim-close { position:absolute; top:10px; right:12px; }
+      .claim-cta { margin-left:0; }
+    }
+    @media (prefers-reduced-motion:reduce){ .claim-bar { transition:none; } }
+
     /* ===== Bottom sheets ===== */
     .sheet-backdrop { position:fixed; inset:0; z-index:60; background:rgba(15,23,42,.45); display:flex; align-items:flex-end; justify-content:center; animation:fade-in .2s ease; }
     .sheet-backdrop[hidden] { display:none; }
@@ -332,6 +354,18 @@
   </header>
 
   <div class="page">
+    <aside class="claim-bar" id="claim-bar" role="region" aria-label="Free Property Expert offer" hidden>
+      <div class="claim-clip">
+        <div class="claim-inner">
+          <p class="claim-text">This AI Assistant can be yours, free for your first 3 months.</p>
+          <a class="claim-cta" id="claim-cta" href="https://infina-us-agent.up.railway.app/dashboard" target="_blank" rel="noopener">Claim it here &rarr;</a>
+          <button class="claim-close" type="button" id="claim-close" aria-label="Dismiss this message">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
     <div class="app">
       <!-- ===== Left sidebar ===== -->
       <div class="card app-left">
@@ -629,6 +663,36 @@
   </div>
 
   <script>
+    // ===== Claim bar =====
+    // Slides in shortly after load so the page paints first, and stays dismissed
+    // for the rest of the session. Storage is wrapped because sandboxed embeds
+    // (and some private modes) throw on access; without it the bar simply
+    // reappears on the next visit, which is acceptable.
+    (function(){
+      var bar = document.getElementById('claim-bar');
+      var closeBtn = document.getElementById('claim-close');
+      var KEY = 'pe-demo-claim-dismissed';
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function wasDismissed(){ try { return sessionStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+      function remember(){ try { sessionStorage.setItem(KEY, '1'); } catch (e) {} }
+
+      if (wasDismissed()) return;
+
+      setTimeout(function(){
+        bar.hidden = false;
+        // Two frames so the browser commits the collapsed state before it animates open
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){ bar.classList.add('is-open'); }); });
+      }, 1500);
+
+      closeBtn.addEventListener('click', function(){
+        bar.classList.remove('is-open');
+        remember();
+        // Wait out the collapse transition; reduced-motion has none, so hide immediately
+        setTimeout(function(){ bar.hidden = true; }, reduceMotion ? 0 : 400);
+      });
+    })();
+
     // ===== Gallery =====
     var galleryPhotos = [
       { src: 'uploads/property-123-main.jpg', alt: '123 Main Street exterior' },
