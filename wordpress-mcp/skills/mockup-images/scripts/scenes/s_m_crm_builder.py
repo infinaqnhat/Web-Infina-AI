@@ -23,12 +23,12 @@ for i,(a,c) in enumerate(steps):
     b+='<div class="abs" style="left:166px;top:%dpx;width:760px;font-size:46px;font-weight:800;color:%s;line-height:1.15">%s</div><div class="abs" style="left:166px;top:%dpx;width:760px;font-size:38px;font-weight:500;color:#475467;line-height:1.15">%s</div>'%(y+18,N,a,y+80,c)
 yy=y0+5*step+10
 b+='<div class="abs" style="left:50px;top:%dpx;width:900px;font-size:42px;font-weight:700;color:%s;line-height:1.25;text-wrap:balance">Stop at step 1 and it is an address book.</div>'%(yy,TEAL)
-crm_flow_m=page(b,'',note='',size=(1000,yy+150))
+crm_flow_m=page(b,"",note="",size=(1000,yy+100))
 
 # 2. six criteria checklist (replaces CrYfGUB)
 crit=[('Lead capture and IDX','Leads flow in, no manual import'),('Automated follow-up','Replies by SMS, email or AI chat'),('Long-term nurture','Covers leads 6 to 18 months out'),('Pipeline view','Every lead, first contact to closing'),('Mobile app','Log notes right after a showing'),('Deep integrations','Portals, MLS and IDX, texting, calendar')]
 b=title('Six checks for a CRM')
-y=235
+y=185
 b+='<div class="abs" style="left:50px;top:%dpx;width:900px;height:%dpx;background:#fff;border-radius:20px;box-shadow:0 8px 22px rgba(20,35,70,.14)"></div>'%(y-20,6*150+20)
 b+='<div class="abs deco" style="left:360px;top:%dpx;width:280px;height:30px;background:#c9d3e6;border-radius:15px"></div>'%(y-36)
 for i,(a,c) in enumerate(crit):

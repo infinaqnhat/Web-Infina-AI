@@ -530,6 +530,56 @@
    "https://infina.ai/news/wp-content/uploads/2026/10/dBEggGJH.jpg",
    "Postcards real estate one QR code per mailing: market update postcard with QR code and a table of scans for each mailing, 12, 31 and 9",
    "Sample postcard and counts. Links and scan numbers are made up, not real results."
+  ],
+  "web_goal_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/iQtplkrQ.jpg",
+   "Best real estate website design: pick a site by your goal. Luxury agents: premium, polished design. Lead generation: fast site with IDX sign-ups. Custom branding: custom WordPress look. Content and SEO: built to rank in search. When you must choose, function wins.",
+   "Illustrative diagram of site design choices by goal. Not a ranking or rating."
+  ],
+  "web_luxury_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/YcKMjSTs.jpg",
+   "Luxury real estate website design: what makes a site luxury. Standard versus luxury: stock photos vs editorial photography, template layout vs custom design, every listing in a grid vs curated featured listings, default typography vs serif headlines.",
+   "Illustrative comparison of standard and luxury site design. Sample layout, not a real site."
+  ],
+  "crm_flow_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/WqYwlelZ.jpg",
+   "best crm for real estate five-step path from lead to closed deal: Lead captured, Reply in minutes, Pipeline stage, Long-term nurture, Closed deal",
+   "Illustrative diagram of the steps a CRM handles after a lead arrives."
+  ],
+  "crm_criteria_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/BEnCfpAX.jpg",
+   "best crm for real estate checklist of six checks: lead capture and IDX, automated follow-up, long-term nurture, pipeline view, mobile app, deep integrations",
+   "Illustrative checklist of criteria for choosing a real estate CRM."
+  ],
+  "builder_checks_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/wRJnFWgE.jpg",
+   "real estate website builder sample site with six numbered checks: live IDX feed, lead capture on search, CRM built in or linked, fast on mobile, control of SEO fields, easy to maintain",
+   "Sample site layout. Illustrative diagram; the address and listings are made up."
+  ],
+  "builder_match_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/sukeQotp.jpg",
+   "real estate website builder choice by agent type: new or solo agent, producing agent or small team, high-volume team or brokerage, and design over IDX",
+   "Illustrative guide to matching a builder to the agent, based on the article's recommendations."
+  ],
+  "idx_pick_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/vVogxdKg.jpg",
+   "IDX website for realtors: pick your IDX site by goal. Real Geeks best all-in-one, AgentFire best for local SEO, Showcase IDX best for SEO listing pages, Sierra Interactive best for high lead volume",
+   "Illustrative diagram. Summary of the platform picks in this article; check each provider for current details."
+  ],
+  "idx_test_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/FgFgybSW.jpg",
+   "IDX website for realtors: test before you commit. Search your MLS zip codes on a phone, time the page load, check the approved vendor list, set the registration prompt, send a dummy lead to the CRM",
+   "Illustrative checklist based on the evaluation steps in this article."
+  ],
+  "idx_strengths_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/fNdLxxhh.jpg",
+   "IDX real estate websites: three sites, three strengths. Fast search and lead capture, design and neighborhood pages, built for high-volume teams, shown as simple wireframes",
+   "Illustrative wireframes, not screenshots of the platforms. Strengths as described in this article."
+  ],
+  "idx_prompt_m": [
+   "https://infina.ai/news/wp-content/uploads/2026/10/yxJuvRWo.jpg",
+   "IDX real estate websites: when to ask for registration. Visitor browses listings with no sign-up, then saves a listing, requests a showing or sets a price drop alert, then the registration prompt appears, not on arrival",
+   "Illustrative diagram of behavioral lead capture, as described in this article."
   ]
  },
  "posts": {
@@ -1070,6 +1120,72 @@
     [
      "flyer for real estate crowded flyer compared wit",
      "fly_vs_m"
+    ]
+   ]
+  }
+ },
+ "traffic_round": {
+  "981": {
+   "replace": [
+    [
+     "CQZKeHP.jpg",
+     "web_goal_m"
+    ]
+   ]
+  },
+  "1011": {
+   "replace": [
+    [
+     "CQZ7LdX.jpg",
+     "web_luxury_m"
+    ]
+   ]
+  },
+  "207": {
+   "replace": [
+    [
+     "CrYfiWG.jpg",
+     "crm_flow_m"
+    ],
+    [
+     "CrYfGUB.jpg",
+     "crm_criteria_m"
+    ]
+   ]
+  },
+  "546": {
+   "replace": [
+    [
+     "CQfb7Nn.jpg",
+     "builder_checks_m"
+    ],
+    [
+     "CQfDl3B.jpg",
+     "builder_match_m"
+    ]
+   ]
+  },
+  "610": {
+   "replace": [
+    [
+     "CQBNhRS.jpg",
+     "idx_pick_m"
+    ],
+    [
+     "CQBeS9V.jpg",
+     "idx_test_m"
+    ]
+   ]
+  },
+  "616": {
+   "replace": [
+    [
+     "CQBvy4s.jpg",
+     "idx_strengths_m"
+    ],
+    [
+     "CQBU7rg.jpg",
+     "idx_prompt_m"
     ]
    ]
   }
