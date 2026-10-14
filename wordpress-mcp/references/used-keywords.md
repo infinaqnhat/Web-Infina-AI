@@ -193,6 +193,7 @@ chưa xuất hiện ở bảng trên. Xoá dòng khỏi mục này và chuyển 
 
 | Ngày đặt chỗ | Keyword | Slug dự kiến | Nguồn |
 |---|---|---|---|
+| 2026-10-14 | `real estate farming` (gom `real estate farming ideas`, `farming for real estate agents`) | [real-estate-farming](https://infina.ai/news/real-estate-farming/) = #2165, cluster Cụm 9 wave 3, **scheduled 19/10/2026 10:00**, category Real Estate Marketing (392) | pillar-cluster-writer |
 
-Cụm 9: wave 1 (10 bài) và wave 2 (8 bài) đã duyệt và đặt chỗ ngày 12/10/2026. Wave 3 (backlog tùy chọn) chưa đặt chỗ. Danh sách dự kiến ở
+Cụm 9: wave 1 (10 bài) và wave 2 (8 bài) đã duyệt và đặt chỗ ngày 12/10/2026. Wave 3 (8 bài) bắt đầu đặt chỗ từng bài từ 14/10/2026 (đã có: `real estate farming`). Danh sách dự kiến ở
 `references/plan-cum-9-marketing-branding.md`.

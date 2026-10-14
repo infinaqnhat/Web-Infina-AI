@@ -104,7 +104,7 @@ họ trong `references/cluster-roles.md`. Volume là bucket.
 | `niche` | Real Estate Business Name Ideas | `realtor name ideas` 500 M (+ `realty company name ideas`, `llc name ideas`) |
 | `how-to` | Real Estate Referral Marketing | `real estate agent referral` 5k L, **đã kiểm SERP 12/10: lẫn referral fee và cách nhận giới thiệu, viết cả hai** |
 
-### Wave 3: 8 bài ĐỀ XUẤT (soạn 13/10/2026, chờ duyệt, chưa đặt chỗ keyword)
+### Wave 3: 8 bài (user duyệt viết từng bài 14/10/2026; bài 1 `real estate farming` = #2165 scheduled 19/10 10:00)
 
 Nguồn: 6 chủ đề backlog cũ + 2 chủ đề prospecting tìm thêm trong file keyword. Đã kiểm SERP thật 12 truy vấn ngày 13/10 (kiểm nhanh, chưa mở từng trang). Volume là bucket, "L/TB/C" là cạnh tranh **ads**, không phải độ khó SEO.
 Đề xuất lịch: sau khi wave 2 xong (18/10), tức **19/10 (3 bài), 20/10 (3 bài), 21/10 (2 bài)**, 10:00/14:00/18:00 UTC.
