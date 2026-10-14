@@ -963,3 +963,5 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - 2026-10-14 — Rút alt ảnh mockup về ≤ 110 ký tự trong 20 bài (#1825, #1832, #1843, #1853, #1859, #1865, #981, #1011, #207, #546, #610, #616 và 8 bài wave 2 đang lên lịch). Chữ và link không đổi; alt thư viện media chưa đổi (không có công cụ).
 
 - 2026-10-14 — Chèn ảnh mockup mobile-first vào #1871 real-estate-seo ngay sau khi publish (seo_results_m, seo_profile_m thay ảnh gen-1, seo_plan_m). 4 figure thành 5; chữ và link không đổi (đã verify bằng REST), 5 ảnh trả 200.
+
+- 2026-10-14 — Verify 3 bài Cụm 9 wave 1 đã publish đúng giờ: #1871 (10:00), #1877 (14:00), #1883 (18:00). Status publish, category 392, featured set, URL 200, đúng 3 bài trong ngày 14/10. Chữ live khớp file local sau khi bỏ figure; link nội bộ và ngoài đều 200 (support.google.com chỉ 404 với HEAD, GET 200). #1871 đã có mockup mobile-first; #1877 và #1883 chờ trigger chèn ảnh.
