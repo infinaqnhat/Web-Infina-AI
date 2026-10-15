@@ -181,3 +181,10 @@ chọn `301 Permanent Move` → nhập Destination URL), đây là cách user t�
 Admin sau khi mình đã gộp nội dung + thu gọn bài yếu thành stub qua `update_post`. Verify redirect
 đã live bằng `curl -s -o /dev/null -w "%{http_code} %{redirect_url}" <url cũ>`, phải ra `301` +
 đúng URL đích.
+
+
+## Case: impressions cao, vị trí 1-2, 0 click thường là AI Overview (15/10/2026)
+
+Trang #438 `best-free-crm-for-real-estate-agents` có 5.340 impressions, vị trí TB 3,7, CTR 0,11%. Chẩn đoán đầu tiên là "title/meta kém" rồi sau đó là "xếp hạng thử", cả hai đều sai. User search thật `free crm for realtors` và thấy **AI Overview trích Infina AI làm nguồn** kèm một thẻ riêng ở cột phải. GSC tính các lần đó là impressions ở vị trí rất cao, và người dùng không click vì đã đọc câu trả lời ngay trên SERP.
+
+Quy tắc: trước khi kết luận CTR thấp ở trang có vị trí 1-3, **tự search query top trên Google thật (hoặc nhờ user gửi screenshot) và kiểm có AI Overview không**. Nếu có, bỏ benchmark CTR theo vị trí, đừng sửa title/meta để "tăng CTR". Việc đáng làm là giữ nội dung chính xác và có nguồn (vì AI Overview trích lại), và bổ sung các mục AI Overview đang liệt kê mà bài còn thiếu. Snippet ở thẻ trích dẫn lấy từ thân bài, không phải meta description. WebSearch của môi trường không hiển thị AI Overview nên không thay được bước này.
