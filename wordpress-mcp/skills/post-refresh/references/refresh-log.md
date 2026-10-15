@@ -970,3 +970,5 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 - 2026-10-14 — Chèn ảnh mockup mobile-first vào #1877 real-estate-postcards và #1883 real-estate-agent-business-card ngay sau khi publish. Cả hai 4 figure thành 5; chữ và link không đổi (verify bằng REST), ảnh trả 200.
 
 - 2026-10-15 — Chèn ảnh mockup mobile-first vào #1889 real-estate-agent-logo và #1895 real-estate-agent-bio ngay sau khi publish. Cả hai 4 figure thành 5; chữ và link không đổi (verify bằng REST), ảnh trả 200.
+
+- 2026-10-15 — Chèn ảnh mockup mobile-first vào #1901 real-estate-marketing-software ngay sau khi publish. 4 figure thành 5; chữ và link không đổi (verify bằng REST), ảnh trả 200. Hoàn tất toàn bộ wave 1 Cụm 9.
