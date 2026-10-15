@@ -75,7 +75,7 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 | Cụm 6: Landing Pages | 6 | `real-estate-landing-page-guide` (5 IN, 1,873 chữ) | 8,316 | 0 | 0 | 0 |
 | Cụm 7: Lead Generation / Follow-up Automation | 9 | `real-estate-lead-follow-up-automation-guide` (17 IN, 2,453 chữ) | 8,208 | 0 | 0 | 2 |
 | Cụm 8: Compliance / Legal / Risk | 6 | `tcpa-compliance-for-real-estate-agents` (15 IN, 1,904 chữ) | 6,017 | 0 | 0 | 1 |
-| Cụm 9: Marketing và Branding (28 bài: 3 đã đăng, 25 đã lên lịch 13–21/10) | 28 | `real-estate-marketing` (#1825, 2,305 chữ, 2 IN từ #1152 và #1832) | n/a (chưa crawl) | n/a | n/a | n/a |
+| Cụm 9: Marketing và Branding (28 bài: 12 đã đăng, 16 đã lên lịch 16–21/10) | 28 | `real-estate-marketing` (#1825, 2,305 chữ, 2 IN từ #1152 và #1832) | n/a (chưa crawl) | n/a | n/a | n/a |
 | Bài News real estate chưa gắn cụm trong plan | 40 | không có | 29,224 | 0 | 19 | 12 |
 | Ngoài chủ đề real estate (AI/tech) | 11 | không có | 2,780 | 11 | 11 | 0 |
 
@@ -222,7 +222,7 @@ H2 trên 10 đoạn văn, tức là gần như mỗi H2 chỉ có 1 đoạn. Đ�
 | Hỗ trợ (News) | [#1481 /how-agents-protect-clients-from-wire-fraud](https://infina.ai/news/how-agents-protect-clients-from-wire-fraud/) | 1 | 923 | 2026-10-07 | `how agents protect clients from wire fraud` | ✅ `tcpa-compliance-for-real-estate-agents` | Two Wire Fraud Companies Just Merged, and the Agent Is Still the Weak Link |
 | Hỗ trợ (News) | [#1501 /private-listing-marketing-rules](https://infina.ai/news/private-listing-marketing-rules/) | 1 | 871 | 2026-10-08 | `private listing marketing rules` | ✅ `tcpa-compliance-for-real-estate-agents` | Three States Now Force Private Listings Public the Moment You Market Them |
 
-## Cụm 9: Marketing và Branding  (28 bài: 3 đã đăng, 25 đã lên lịch, cập nhật 14/10/2026)
+## Cụm 9: Marketing và Branding  (28 bài: 12 đã đăng, 16 đã lên lịch, cập nhật 15/10/2026)
 
 **Tiến độ:** pillar + hub branding đã đăng 12/10. Wave 1 (10 bài, #1843–#1901): 1 bài đăng 12/10, 9 bài lên lịch 13–15/10.
 Wave 2 (8 bài, #1937–#1979): đã viết và lên lịch 16–18/10, tối đa 3 bài/ngày.
@@ -233,18 +233,18 @@ cột Inbound "chờ" nghĩa là bài chưa live nên chưa thêm link ngược 
 
 | # | Vai trò | Trạng thái | URL | ID | Chữ | Density % | Pillar bài trỏ lên | Inbound | Post title |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | `pillar` | ✅ Đã đăng 12/10 | `/real-estate-marketing` | #1825 | 2,305 | - | *(là pillar)* | 2 (#1152, #1832) | Real Estate Marketing: The Complete Guide for Agents |
-| 2 | `pillar` hub branding | ✅ Đã đăng 12/10 | `/real-estate-branding` | #1832 | 1,715 | - | ✅ marketing | chưa verify | Real Estate Branding: A Practical Guide for Agents and Teams |
-| 3 | `how-to` W1 | ✅ Đã đăng 12/10 | `/real-estate-marketing-plan` | #1843 | 1,784 | 0,56 | ✅ marketing | chờ | Real Estate Marketing Plan: Template and Budget |
-| 4 | `review` W1 | ⏰ 13/10 10:00 | `/real-estate-marketing-ideas` | #1853 | 1,877 | 0,58 | ✅ marketing | chờ | 30 Real Estate Marketing Ideas, With Cost and Effort |
-| 5 | `explainer` W1 | ⏰ 13/10 14:00 | `/real-estate-advertising` | #1859 | 1,724 | 0,64 | ✅ marketing | chờ | Real Estate Advertising: Channels, Costs and Examples |
-| 6 | `how-to` W1 | ⏰ 13/10 18:00 | `/social-media-for-realtors` | #1865 | 1,680 | 0,60 | ✅ marketing | chờ | Social Media for Realtors: A Weekly Routine That Fits a Production Schedule |
-| 7 | `how-to` W1 | ⏰ 14/10 10:00 | `/real-estate-seo` | #1871 | 1,790 | 0,62 | ✅ marketing | chờ | Real Estate SEO for Agents: What Actually Moves Local Rankings |
-| 8 | `how-to` W1 | ⏰ 14/10 14:00 | `/real-estate-postcards` | #1877 | 1,854 | 0,54 | ✅ marketing | chờ | Real Estate Postcards and Mailers That Get Opened |
-| 9 | `niche` W1 | ⏰ 14/10 18:00 | `/real-estate-agent-business-card` | #1883 | 1,814 | 0,72 | ✅ branding | chờ | Real Estate Business Cards: Ideas, Templates and What to Print |
-| 10 | `niche` W1 | ⏰ 15/10 10:00 | `/real-estate-agent-logo` | #1889 | 1,824 | 0,55 | ✅ branding | chờ | Real Estate Logos: Ideas and How to Design One |
-| 11 | `niche` W1 | ⏰ 15/10 14:00 | `/real-estate-agent-bio` | #1895 | 1,692 | 0,65 | ✅ branding | chờ | Real Estate Agent Bio: Examples and a Template |
-| 12 | `review` W1 | ⏰ 15/10 18:00 | `/real-estate-marketing-software` | #1901 | 1,729 | 0,69 | ✅ marketing | chờ | Real Estate Marketing Software: What to Use for Each Job in 2026 |
+| 1 | `pillar` | ✅ Đã đăng 12/10 | `/real-estate-marketing` | #1825 | 2,305 | - | *(là pillar)* | 9 (#1152 và 8 bài Cụm 9) | Real Estate Marketing: The Complete Guide for Agents |
+| 2 | `pillar` hub branding | ✅ Đã đăng 12/10 | `/real-estate-branding` | #1832 | 1,715 | - | ✅ marketing | 7 bài Cụm 9 | Real Estate Branding: A Practical Guide for Agents and Teams |
+| 3 | `how-to` W1 | ✅ Đã đăng 12/10 | `/real-estate-marketing-plan` | #1843 | 1,784 | 0,56 | ✅ marketing | 8 | Real Estate Marketing Plan: Template and Budget |
+| 4 | `review` W1 | ✅ Đã đăng 13/10 10:00 | `/real-estate-marketing-ideas` | #1853 | 1,877 | 0,58 | ✅ marketing | 3 | 30 Real Estate Marketing Ideas, With Cost and Effort |
+| 5 | `explainer` W1 | ✅ Đã đăng 13/10 14:00 | `/real-estate-advertising` | #1859 | 1,724 | 0,64 | ✅ marketing | 3 | Real Estate Advertising: Channels, Costs and Examples |
+| 6 | `how-to` W1 | ✅ Đã đăng 13/10 18:00 | `/social-media-for-realtors` | #1865 | 1,680 | 0,60 | ✅ marketing | 2 | Social Media for Realtors: A Weekly Routine That Fits a Production Schedule |
+| 7 | `how-to` W1 | ✅ Đã đăng 14/10 10:00 | `/real-estate-seo` | #1871 | 1,790 | 0,62 | ✅ marketing | 1 | Real Estate SEO for Agents: What Actually Moves Local Rankings |
+| 8 | `how-to` W1 | ✅ Đã đăng 14/10 14:00 | `/real-estate-postcards` | #1877 | 1,854 | 0,54 | ✅ marketing | 1 | Real Estate Postcards and Mailers That Get Opened |
+| 9 | `niche` W1 | ✅ Đã đăng 14/10 18:00 | `/real-estate-agent-business-card` | #1883 | 1,814 | 0,72 | ✅ branding | 3 | Real Estate Business Cards: Ideas, Templates and What to Print |
+| 10 | `niche` W1 | ✅ Đã đăng 15/10 10:00 | `/real-estate-agent-logo` | #1889 | 1,824 | 0,55 | ✅ branding | 2 | Real Estate Logos: Ideas and How to Design One |
+| 11 | `niche` W1 | ✅ Đã đăng 15/10 14:00 | `/real-estate-agent-bio` | #1895 | 1,692 | 0,65 | ✅ branding | 1 | Real Estate Agent Bio: Examples and a Template |
+| 12 | `review` W1 | ✅ Đã đăng 15/10 18:00 | `/real-estate-marketing-software` | #1901 | 1,729 | 0,69 | ✅ marketing | 1 | Real Estate Marketing Software: What to Use for Each Job in 2026 |
 | 13 | `how-to` W2 | ⏰ 16/10 10:00 | `/google-business-profile-for-realtors` | #1937 | 1,487 | 0,67 | ✅ marketing | chờ | Google Business Profile for Realtors: Setup, Fields and Reviews |
 | 14 | `how-to` W2 | ⏰ 16/10 14:00 | `/google-ads-for-realtors` | #1943 | 1,272 | 0,79 | ✅ marketing | chờ | Google Ads for Realtors: Setup, Targeting Rules and Budget |
 | 15 | `how-to` W2 | ⏰ 16/10 18:00 | `/real-estate-testimonials` | #1949 | 1,377 | 0,80 | ✅ branding | chờ | Real Estate Testimonials: How to Ask, Examples and Rules |
@@ -266,7 +266,7 @@ cột Inbound "chờ" nghĩa là bài chưa live nên chưa thêm link ngược 
 
 | # | Việc | Khi nào | Ai |
 |---|---|---|---|
-| 1 | Kiểm tra wave 1 publish đúng giờ, nội dung nguyên vẹn | 15/10 19:30 UTC (đã đặt trigger) | Claude |
+| 1 | ✅ Kiểm tra wave 1 publish đúng giờ, nội dung nguyên vẹn (xong 15/10: 10/10 bài live, 200, category 392, có featured) | đã xong | Claude |
 | 2 | Kiểm tra wave 2 publish đúng giờ | 16/10 19:00 và 18/10 19:30 UTC (đã đặt trigger) | Claude |
 | 2b | Kiểm tra wave 3 publish đúng giờ, ảnh và link nội bộ 200 | 21/10 19:30 UTC (đã đặt trigger) | Claude |
 | 3 | **Đợt link ngược**: pillar #1825 Related Reading thêm 17 cluster wave 1-2 và 6 bài wave 3 (farming, open house, video, door knocking, cold calling, letters), hub #1832 thêm testimonials, name ideas, luxury (#2183) và email signature (#2189), mỗi bài mới có ít nhất 1 link từ bài cùng cụm | Wave 1-2: trigger 18/10 19:30 UTC; wave 3: trigger 21/10 19:30 UTC | Claude |
