@@ -75,7 +75,7 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 | Cụm 6: Landing Pages | 6 | `real-estate-landing-page-guide` (5 IN, 1,873 chữ) | 8,316 | 0 | 0 | 0 |
 | Cụm 7: Lead Generation / Follow-up Automation | 9 | `real-estate-lead-follow-up-automation-guide` (17 IN, 2,453 chữ) | 8,208 | 0 | 0 | 2 |
 | Cụm 8: Compliance / Legal / Risk | 6 | `tcpa-compliance-for-real-estate-agents` (15 IN, 1,904 chữ) | 6,017 | 0 | 0 | 1 |
-| Cụm 9: Marketing và Branding (28 bài: 12 đã đăng, 16 đã lên lịch 16–21/10) | 28 | `real-estate-marketing` (#1825, 2,305 chữ, 2 IN từ #1152 và #1832) | n/a (chưa crawl) | n/a | n/a | n/a |
+| Cụm 9: Marketing và Branding (28 bài: 20 đã đăng, 8 đã lên lịch 19–21/10) | 28 | `real-estate-marketing` (#1825, 2,305 chữ, 2 IN từ #1152 và #1832) | n/a (chưa crawl) | n/a | n/a | n/a |
 | Bài News real estate chưa gắn cụm trong plan | 40 | không có | 29,224 | 0 | 19 | 12 |
 | Ngoài chủ đề real estate (AI/tech) | 11 | không có | 2,780 | 11 | 11 | 0 |
 
@@ -222,10 +222,10 @@ H2 trên 10 đoạn văn, tức là gần như mỗi H2 chỉ có 1 đoạn. Đ�
 | Hỗ trợ (News) | [#1481 /how-agents-protect-clients-from-wire-fraud](https://infina.ai/news/how-agents-protect-clients-from-wire-fraud/) | 1 | 923 | 2026-10-07 | `how agents protect clients from wire fraud` | ✅ `tcpa-compliance-for-real-estate-agents` | Two Wire Fraud Companies Just Merged, and the Agent Is Still the Weak Link |
 | Hỗ trợ (News) | [#1501 /private-listing-marketing-rules](https://infina.ai/news/private-listing-marketing-rules/) | 1 | 871 | 2026-10-08 | `private listing marketing rules` | ✅ `tcpa-compliance-for-real-estate-agents` | Three States Now Force Private Listings Public the Moment You Market Them |
 
-## Cụm 9: Marketing và Branding  (28 bài: 12 đã đăng, 16 đã lên lịch, cập nhật 15/10/2026)
+## Cụm 9: Marketing và Branding  (28 bài: 20 đã đăng, 8 đã lên lịch, cập nhật 18/10/2026)
 
 **Tiến độ:** pillar + hub branding đã đăng 12/10. Wave 1 (10 bài, #1843–#1901): 1 bài đăng 12/10, 9 bài lên lịch 13–15/10.
-Wave 2 (8 bài, #1937–#1979): đã viết và lên lịch 16–18/10, tối đa 3 bài/ngày.
+Wave 2 (8 bài, #1937–#1979): đã đăng 16–18/10, đã có link ngược từ pillar/hub (18/10).
 Wave 3 (8 bài, #2165–#2207): đã viết và lên lịch 19–21/10 (14/10/2026), mỗi bài có hero, 3 mockup mobile-first và ảnh featured. Tất cả đều đã qua gate SEO
 (density, ảnh, link pillar/hub, tối đa 1 link cross-pillar) và có ảnh featured. Số chữ và density lấy từ lúc viết, **chưa phải crawl**;
 cột Inbound "chờ" nghĩa là bài chưa live nên chưa thêm link ngược được. Plan gốc, SERP và lý do chọn keyword ở
@@ -245,14 +245,14 @@ cột Inbound "chờ" nghĩa là bài chưa live nên chưa thêm link ngược 
 | 10 | `niche` W1 | ✅ Đã đăng 15/10 10:00 | `/real-estate-agent-logo` | #1889 | 1,824 | 0,55 | ✅ branding | 2 | Real Estate Logos: Ideas and How to Design One |
 | 11 | `niche` W1 | ✅ Đã đăng 15/10 14:00 | `/real-estate-agent-bio` | #1895 | 1,692 | 0,65 | ✅ branding | 1 | Real Estate Agent Bio: Examples and a Template |
 | 12 | `review` W1 | ✅ Đã đăng 15/10 18:00 | `/real-estate-marketing-software` | #1901 | 1,729 | 0,69 | ✅ marketing | 1 | Real Estate Marketing Software: What to Use for Each Job in 2026 |
-| 13 | `how-to` W2 | ⏰ 16/10 10:00 | `/google-business-profile-for-realtors` | #1937 | 1,487 | 0,67 | ✅ marketing | chờ | Google Business Profile for Realtors: Setup, Fields and Reviews |
-| 14 | `how-to` W2 | ⏰ 16/10 14:00 | `/google-ads-for-realtors` | #1943 | 1,272 | 0,79 | ✅ marketing | chờ | Google Ads for Realtors: Setup, Targeting Rules and Budget |
-| 15 | `how-to` W2 | ⏰ 16/10 18:00 | `/real-estate-testimonials` | #1949 | 1,377 | 0,80 | ✅ branding | chờ | Real Estate Testimonials: How to Ask, Examples and Rules |
-| 16 | `how-to` W2 | ⏰ 17/10 10:00 | `/listing-presentation` | #1955 | 1,413 | 0,78 | ✅ marketing | chờ | Listing Presentation: Template, Sample Script and Examples |
-| 17 | `how-to` W2 | ⏰ 17/10 14:00 | `/real-estate-agent-referral` | #1961 | 1,289 | 0,78 | ✅ marketing | chờ | Real Estate Agent Referral: Get More and Pay Fees Correctly |
-| 18 | `how-to` W2 | ⏰ 17/10 18:00 | `/flyer-for-real-estate` | #1967 | 1,233 | 0,65 | ✅ marketing | chờ | Real Estate Flyers: Examples, Templates and What to Include |
-| 19 | `how-to` W2 | ⏰ 18/10 10:00 | `/closing-gifts-real-estate` | #1977 | 1,310 | 0,69 | ✅ marketing | chờ | Closing Gifts for Real Estate Clients: Ideas, Budget and Rules |
-| 20 | `niche` W2 | ⏰ 18/10 14:00 | `/realtor-name-ideas` | #1979 | 1,346 | 0,67 | ✅ branding | chờ | Realtor Name Ideas: Formulas, Examples and Rules to Check |
+| 13 | `how-to` W2 | ✅ Đã đăng 16/10 10:00 | `/google-business-profile-for-realtors` | #1937 | 1,487 | 0,67 | ✅ marketing | 1 | Google Business Profile for Realtors: Setup, Fields and Reviews |
+| 14 | `how-to` W2 | ✅ Đã đăng 16/10 14:00 | `/google-ads-for-realtors` | #1943 | 1,272 | 0,79 | ✅ marketing | 1 | Google Ads for Realtors: Setup, Targeting Rules and Budget |
+| 15 | `how-to` W2 | ✅ Đã đăng 16/10 18:00 | `/real-estate-testimonials` | #1949 | 1,377 | 0,80 | ✅ branding | 2 | Real Estate Testimonials: How to Ask, Examples and Rules |
+| 16 | `how-to` W2 | ✅ Đã đăng 17/10 10:00 | `/listing-presentation` | #1955 | 1,413 | 0,78 | ✅ marketing | 1 | Listing Presentation: Template, Sample Script and Examples |
+| 17 | `how-to` W2 | ✅ Đã đăng 17/10 14:00 | `/real-estate-agent-referral` | #1961 | 1,289 | 0,78 | ✅ marketing | 1 | Real Estate Agent Referral: Get More and Pay Fees Correctly |
+| 18 | `how-to` W2 | ✅ Đã đăng 17/10 18:00 | `/flyer-for-real-estate` | #1967 | 1,233 | 0,65 | ✅ marketing | 1 | Real Estate Flyers: Examples, Templates and What to Include |
+| 19 | `how-to` W2 | ✅ Đã đăng 18/10 10:00 | `/closing-gifts-real-estate` | #1977 | 1,310 | 0,69 | ✅ marketing | 1 | Closing Gifts for Real Estate Clients: Ideas, Budget and Rules |
+| 20 | `niche` W2 | ✅ Đã đăng 18/10 14:00 | `/realtor-name-ideas` | #1979 | 1,346 | 0,67 | ✅ branding | 2 | Realtor Name Ideas: Formulas, Examples and Rules to Check |
 | 21 | `how-to` W3 | ⏰ 19/10 10:00 | `/real-estate-farming` | #2165 | 1,699 | 0,77 | ✅ marketing | chờ | Real Estate Farming: How to Pick a Farm and Work It for a Year |
 | 22 | `how-to` W3 | ⏰ 19/10 14:00 | `/open-house-ideas-for-realtors` | #2171 | 1,452 | 0,62 | ✅ marketing | chờ | Open House Ideas for Realtors: Before, During and After |
 | 23 | `how-to` W3 | ⏰ 19/10 18:00 | `/real-estate-video-marketing` | #2177 | 1,325 | 0,68 | ✅ marketing | chờ | Real Estate Video Marketing: Video Ideas, Scripts and a Simple Setup |
