@@ -227,6 +227,27 @@ function seo_mcp_sideload_image( $url, $alt_text = '', $post_id = 0 ) {
  *   voi ngay qua khu bi WP tu chuyen ve publish ngay lap tuc, gay dang som ngoai y muon).
  * Tra ve status cuoi cung (string) hoac WP_Error.
  */
+// Doi ten danh muc -> ID (tao moi neu chua co). 'category' la taxonomy co cap bac: wp_set_post_terms coi
+// chuoi la ID nen ten (vd "CRM Software") bi bo qua va bai ra categories=[]. Nhan ca ID so lan ten.
+function seo_mcp_resolve_category_ids( $cats ) {
+    $ids = [];
+    foreach ( (array) $cats as $c ) {
+        if ( is_numeric( $c ) ) {
+            $ids[] = (int) $c;
+            continue;
+        }
+        $c    = trim( (string) $c );
+        $term = term_exists( $c, 'category' );
+        if ( ! $term ) {
+            $term = wp_insert_term( $c, 'category' );
+        }
+        if ( ! is_wp_error( $term ) ) {
+            $ids[] = (int) ( is_array( $term ) ? $term['term_id'] : $term );
+        }
+    }
+    return $ids;
+}
+
 function seo_mcp_apply_publish_status( $post_id, $requested_status, $publish_date ) {
     $now = current_time( 'timestamp' );
 
@@ -917,7 +938,7 @@ function seo_mcp_call_tool( $name, $args ) {
         }
 
         if ( ! empty( $args['categories'] ) ) {
-            wp_set_post_terms( $post_id, $args['categories'], 'category' );
+            wp_set_post_terms( $post_id, seo_mcp_resolve_category_ids( $args['categories'] ), 'category' );
         }
         if ( ! empty( $args['tags'] ) ) {
             wp_set_post_terms( $post_id, $args['tags'], 'post_tag' );
@@ -1002,7 +1023,7 @@ function seo_mcp_call_tool( $name, $args ) {
         }
 
         if ( isset( $args['categories'] ) ) {
-            wp_set_post_terms( $post_id, $args['categories'], 'category' );
+            wp_set_post_terms( $post_id, seo_mcp_resolve_category_ids( $args['categories'] ), 'category' );
         }
         if ( isset( $args['tags'] ) ) {
             wp_set_post_terms( $post_id, $args['tags'], 'post_tag' );

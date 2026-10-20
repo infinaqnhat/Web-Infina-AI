@@ -161,3 +161,33 @@ Thêm vào đây các case thật đã gặp khi refresh bài trên site cụ th
 ban đầu, chẩn đoán đúng sau khi kiểm tra kỹ, kết quả sau khi sửa), để tránh lặp lại nhận định sai
 đã từng mắc, tương tự cách file gốc của site production trước từng ghi lại 2 case thật giúp phát hiện
 lỗi "CTR trông thấp nhưng thực ra đúng benchmark" và lỗi "heading giả dạng `<strong>`".
+
+### Case mẫu: cannibalization nội dung thật (không chỉ title) giữa nhiều bài cùng review một bộ sản phẩm
+
+Dấu hiệu: nhiều bài "best X" độc lập nhưng review đúng cùng một bộ sản phẩm với đúng cùng kết luận "best
+for persona Y" (chỉ viết lại câu chữ). Đây là cannibalization ở mức nội dung chứ không chỉ trùng
+title/keyword. Google không phân biệt được nên rank bị chia nhỏ, cả ba bài nằm ở vị trí tầm trung, không
+bài nào vào top 10 dù riêng lẻ không yếu.
+
+Cách phát hiện: khi một trang striking-distance có vị trí gộp (GSC `pages`) tốt hơn hẳn vị trí thật của
+từng query riêng (GSC `queries --page`), nghi cannibalization ngay. So nội dung (danh sách sản phẩm và
+kết luận "best for") của các bài cùng chủ đề trước khi kết luận là lỗi title/meta.
+
+Xử lý khi gộp một bài yếu vào bài mạnh hơn: gộp nội dung, thu bài yếu thành stub qua `update_post`, rồi
+đặt 301 từ stub sang bài mạnh (Rank Math có sẵn field Redirect ở meta box Advanced, hoặc dùng tham số
+`redirect_to` nếu snippet WP MCP của bạn có). Verify bằng
+`curl -s -o /dev/null -w "%{http_code} %{redirect_url}" <url cũ>`: phải ra `301` và đúng URL đích.
+
+### Case mẫu: impressions cao, vị trí 1-3, gần như 0 click thường là AI Overview
+
+Ví dụ thật (10/2026): một trang có 5.340 impressions, vị trí trung bình 3,7, CTR 0,11%. Chẩn đoán đầu
+tiên "title/meta kém", rồi "xếp hạng thử", cả hai sai. Người làm search thật query top và thấy AI
+Overview trích chính site làm nguồn. GSC tính những lần đó là impressions ở vị trí rất cao, còn người dùng
+không click vì đã đọc câu trả lời ngay trên SERP.
+
+Quy tắc: trước khi kết luận CTR thấp ở trang có vị trí 1-3, **tự search query top trên Google thật (hoặc
+nhờ người dùng gửi screenshot) và kiểm có AI Overview không.** Nếu có, bỏ benchmark CTR theo vị trí, đừng
+sửa title/meta để "tăng CTR". Việc đáng làm: giữ nội dung chính xác và có nguồn (AI Overview trích lại),
+và bổ sung các mục AI Overview đang liệt kê mà bài còn thiếu. Snippet ở thẻ trích dẫn lấy từ thân bài,
+không phải meta description. Công cụ web search của môi trường làm việc thường không hiển thị AI Overview
+nên không thay được bước tự search.

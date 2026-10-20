@@ -20,6 +20,12 @@ trợ, mọi đề xuất phải bắt nguồn từ số liệu thật, không s
 
 ## Điều kiện cần trước khi chạy
 
+- **Lưu key ở nơi đọc được ở mọi session mà không đụng git.** Biến môi trường chỉ áp dụng cho session
+  mới, không nạp vào session đang chạy liên tục nhiều tuần; lưu key thật vào repo git thì bị auto-mode
+  classifier chặn khi commit/push dù repo private. Cách đã dùng ở site gốc: để file key trong một folder
+  Google Drive riêng, đọc qua connector Drive ở đầu session, truyền thẳng vào `GSCClient(sa_json=...)`
+  trong script Python, **không** `export` biến, không in ra, không ghi xuống đĩa. Nếu bị chặn thì dừng và
+  hỏi người dùng, đừng tự tìm đường vòng. Phương án dự phòng là biến môi trường dưới đây.
 - Biến môi trường `SEO_GSC_SA_JSON`: chứa nguyên văn nội dung JSON của Google service
   account key có quyền đọc Search Console cho site (permission `Full` hoặc `Restricted` đều đọc
   được performance data). Nếu thiếu biến này trong session hiện tại, đọc trực tiếp file key đã

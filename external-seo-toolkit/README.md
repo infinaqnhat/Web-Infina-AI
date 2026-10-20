@@ -5,6 +5,11 @@ Clarity tùy chọn), refresh bài cũ dựa trên data thật. Được tách r
 để tái dùng cho site/repo mới. **Không bao gồm** phần mạng xã hội (Facebook/TikTok),
 chỉ tập trung blog + Search Console monitor + đăng bài qua WordPress.
 
+## Phiên bản
+
+**v1.1, 2026-10-20.** Lần đầu tách ra: v1.0 (2026-09-15). Lịch sử thay đổi nằm cuối file này, mục "Lịch sử phiên bản".
+Nếu bạn nhận toolkit này từ một repo khác, so số phiên bản với bản bạn đang có để biết cần cập nhật gì.
+
 ## Đọc file này trước khi làm bất cứ điều gì
 
 Nếu bạn là Claude và vừa được kết nối vào 1 repo mới có chứa thư mục `external-seo-toolkit/`
@@ -26,9 +31,21 @@ external-seo-toolkit/
 │   ├── content-strategy-framework.md      # Khung 7 bước keyword→content plan + GEO/zero-click 2026
 │   │                                       # + Bước 1.5 check rủi ro bản quyền/nội dung cấm
 │   ├── internal-linking-guide.md          # Rule liên kết nội bộ: ai trỏ ai, anchor text,
-│   │                                       # GATE/WARN, script kiểm tra, danh sách nguồn cấm
+│   │                                       # GATE/WARN, script kiểm tra, danh sách nguồn cấm,
+│   │                                       # 10 lỗi đã gặp thật (gồm lỗi anchor trùng khi viết cả đợt)
+│   ├── cluster-roles.md                   # 9 họ vai trò bài trong cụm (cách link theo từng họ)
+│   ├── competitor-pillar-teardown.md      # Dựng bản đồ pillar+cluster của đối thủ từ internal link graph
+│   ├── examples/
+│   │   └── teardown-followupboss.md       # Teardown mẫu đã chạy thật (691 trang)
 │   └── used-keywords-template.md          # Đổi tên thành used-keywords.md khi dùng
+├── scripts/
+│   └── competitor_teardown.py             # Crawl sitemap + dựng link graph + xếp hạng pillar (chỉ stdlib)
 └── skills/
+    ├── mockup-images/
+    │   ├── SKILL.md                       # Ảnh minh họa thực tế bằng mockup HTML, mobile-first
+    │   ├── references/                    # scene-catalog, mobile-text-rules, spec-example.json
+    │   ├── scripts/                       # render, kiểm cỡ chữ trên điện thoại, chèn vào bài (+ scenes mẫu)
+    │   └── assets/photos/                 # ảnh nhà nền cho mockup
     ├── seo-blog-writer/
     │   ├── SKILL.md                       # Quy trình viết bài chuẩn Rank Math SEO
     │   └── references/content-planning-framework.md
@@ -161,7 +178,14 @@ rulebook (nguồn tin cụ thể, tiêu chí chọn) phải viết lại hoàn t
   bài, không cần chạy tay 2 skill riêng.
 - **Check/refresh bài cũ**: dùng skill `post-refresh` (đọc `skills/post-refresh/SKILL.md`), kéo
   data GSC/GA4/Clarity thật rồi chẩn đoán theo `post-refresh-playbook.md` trước khi đề xuất sửa.
-- Cả 3 skill đều tự đối chiếu `references/used-keywords.md` để tránh viết trùng chủ đề đã có.
+- **Ảnh minh họa thực tế** (flyer, postcard, danh thiếp, logo, bio, tin nhắn, trang web...): dùng skill
+  `mockup-images` sau khi bài đã viết xong, để chữ trong ảnh khớp bài. Cần `pip install segno` và Chromium
+  (Playwright). `pillar-cluster-writer` gọi tới nó ở Bước 5.2b.
+- **Phân tích đối thủ** trước khi lên plan cụm: đọc `references/competitor-pillar-teardown.md`, chạy
+  `python3 scripts/competitor_teardown.py <domain>`, xem mẫu ở `references/examples/`.
+- **Liên kết nội bộ**: bài thứ hai trở đi chạy gate anchor (Phần 5 và 6 của `internal-linking-guide.md`);
+  viết cả đợt thì lập bảng anchor trước.
+- Cả 3 skill viết/refresh đều tự đối chiếu `references/used-keywords.md` để tránh viết trùng chủ đề đã có.
 - `references/content-strategy-framework.md` là lý thuyết nền chung cho cả `seo-blog-writer` lẫn
   `pillar-cluster-writer` — đọc lại khi lên plan 1 cụm nội dung mới hoặc khi cần đánh giá lại
   hướng đang làm, không phải quy trình thực thi từng bước.
@@ -172,3 +196,15 @@ Bộ toolkit này được rút ra và tổng quát hóa từ skill thật đã 
 mại điện tử ngách đồ chơi retro khác, qua nhiều vòng chỉnh sửa dựa trên case thật (lỗi
 CTR benchmark, lỗi heading giả, lỗi ảnh trùng, giới hạn thật của Clarity API...). Phần case cụ
 thể của site gốc đã được lược bỏ khi tách ra đây, chỉ giữ lại khung phương pháp chung.
+
+## Lịch sử phiên bản
+
+| Phiên bản | Ngày | Thay đổi |
+|---|---|---|
+| v1.1 | 2026-10-20 | Đồng bộ với site gốc sau 5 tuần dùng thật. Thêm: skill `mockup-images`; guide `competitor-pillar-teardown.md` + `scripts/competitor_teardown.py` + teardown mẫu; `cluster-roles.md`. `internal-linking-guide.md`: ngoại lệ pillar kiêm hub (Related Reading) với 3 điều kiện, gate anchor rút gọn `anchors_to()`/`long_anchors()` (Phần 6), lỗi số 10 (anchor trùng khi viết cả đợt), bảng anchor theo đợt trước khi viết. `pillar-cluster-writer`: gán họ vai trò, bảng anchor, gate anchor, Bước 5.2b mockup, inbound pass sau mỗi đợt publish. `seo-blog-writer`: dòng về mockup. `post-refresh`: cách lưu key không đụng git, 2 case mẫu (cannibalization nội dung, AI Overview zero-click). Snippet WP MCP: danh mục truyền bằng tên giờ được đổi sang ID (trước đó bài ra `categories=[]`). |
+| v1.0 | 2026-09-15 | Bản đầu, tách từ site thương mại điện tử ngách khác. |
+
+**Chưa port sang snippet của toolkit:** tham số `redirect_to`/`redirect_type` của `update_post` (tạo 301 qua
+Rank Math Redirections) mà snippet của site gốc đang có. Nó dựa vào API nội bộ không chính thức của Rank
+Math và cần hook `template_redirect` tự viết, chưa kiểm trên site khác. Cần thì lấy từ
+`infina-wp-mcp-server-snippet.php` của repo gốc, hoặc đặt redirect thủ công trong Rank Math (Advanced > Redirect).

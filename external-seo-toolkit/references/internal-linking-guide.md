@@ -120,7 +120,7 @@ vì câu văn có lý do nhắc tới nó, gỡ đi là làm hỏng bài. Thiế
 
 ⚠️ **Cách sửa này chỉ làm được khi còn bài chưa link về nhà.** Quy tắc 6 cho mỗi bài một link tới
 một đích, nên số link nhà tối đa của một cụm bằng số bài cluster của nó. Khi cả cụm đã link về nhà
-hết (đã xảy ra với hai cụm 5 bài cluster ở Infina), tỉ lệ chỉ tăng được bằng cách **giảm** link ra
+hết (đã xảy ra với hai cụm 5 bài cluster ở site gốc), tỉ lệ chỉ tăng được bằng cách **giảm** link ra
 ngoài: với cụm N bài, muốn đạt 50% thì tổng link ra ngoài phải <= N. Khi đó bỏ câu có link chéo
 tới pillar ít liên quan nhất, giữ câu có lý do nhắc rõ nhất, và ghi quyết định vào log như một ngoại
 lệ có chủ đích.
@@ -138,6 +138,15 @@ Hai lý do, lý do thứ hai mới là lý do thật:
 2. **Nó cộng dồn vĩnh viễn.** Mỗi bài mới lại thêm 1 link vào cùng một pillar. Trên site gốc, pillar
    CRM lên tới 22 link nội bộ và nhận 53 inbound trước khi ai đó để ý. Đúng cái Mueller cảnh báo.
    Chọn sibling thì tải phân tán ra cả cụm và pillar đứng yên.
+
+**Ngoại lệ có chủ đích: pillar/hub dạng "Related Reading".** Với một cụm có pillar rộng và 15-30 cluster
+mỏng, site gốc (Cụm 9, 10/2026) chọn làm pillar kiêm hub: cuối pillar có một mục Related Reading liệt kê
+**mọi** cluster, mỗi cluster một bullet. Lý do: mỗi cluster mới chắc chắn có >= 1 inbound ngay, không cần
+tìm donor bài tay. Đánh đổi là đúng điều cảnh báo ở trên: số link ra của pillar tăng theo cụm (Cụm 9 đạt 15
+link Related Reading ở 18/10/2026). Chỉ chọn cách này khi **cả ba** điều kiện đúng: (1) mỗi bullet có anchor
+riêng, khác nhau và <= 8 từ; (2) pillar vẫn có thân bài đủ dài để link nằm trong ngữ cảnh chứ không chỉ là
+danh sách; (3) bạn đo lại mật độ link của pillar sau mỗi đợt (Phần 7). Nếu một điều sai, quay về cách donor.
+Hub phụ (ví dụ hub branding trong cụm marketing) chỉ liệt kê cluster **thuộc hub đó**, không liệt kê cả cụm.
 
 ### Chọn bài donor (bài sẽ trỏ sang bài mới), theo thứ tự
 
@@ -205,7 +214,7 @@ một chuỗi, bạn đang lặp đúng một câu mô tả 5 lần thay vì mô
 1. 🟢 **Đọc tách khỏi câu vẫn hiểu được.** Che câu đi, chỉ còn anchor, vẫn đoán được trang đích nói
    gì. Google nêu đúng phép thử này trong tài liệu chính thức.
 2. 🟢 **Không dùng** `click here`, `read more`, `this post`, `here`.
-3. 🟢 **Không nhồi keyword. Anchor tối đa 8 từ.** Đây là giới hạn cứng của Infina từ 2026-10-12, đếm
+3. 🟢 **Không nhồi keyword. Anchor tối đa 8 từ.** Đây là giới hạn cứng của site gốc từ 2026-10-12, đếm
    bằng `anchor.split()`. Link chỉ bao phần danh từ cốt lõi, phần còn lại của mệnh đề nằm ngoài thẻ `<a>`.
    Con số 8 là quyết định biên tập, không phải ngưỡng Google.
 4. 🟢 **KHÔNG bắt buộc chứa keyword của trang đích nguyên văn.** Anchor chỉ cần mô tả đúng trang đích.
@@ -312,27 +321,29 @@ ghi nhận.
 3. Chạy `anchors_to(slug)` xem anchor nào đã bị dùng. **Chạy trước khi viết**, không phải sau: viết
    xong rồi mới kiểm tra thì bạn đã có sẵn một câu hay và sẽ ngại sửa.
 4. Khai **vai trò** của bài (review, compare, how-to...) theo bộ vai trò của site, để biết bài này
-   link kiểu gì. Với Infina: 9 họ trong `wordpress-mcp/references/cluster-roles.md`, bài News luôn là
-   `news-support`. Vai trò chỉ phục vụ biên tập, không phải tín hiệu SEO.
+   link kiểu gì. Bộ 9 họ mẫu ở `cluster-roles.md`, bài lấy từ tin tức luôn là `news-support`. Vai trò
+   chỉ phục vụ biên tập, không phải tín hiệu SEO.
+5. **Khi viết cả một đợt (6-10 bài cùng cụm), lập bảng anchor trước khi viết bài đầu tiên.** Mỗi dòng:
+   bài nguồn, bài đích, anchor đã chọn. Mọi anchor trong bảng khác nhau và <= 8 từ. Xem mục 9, lỗi số 10.
 
 ### Lúc viết
 
-4. Chèn 2-3 link ngang sang bài cùng cụm, **trong thân bài**, viết thành câu có lý do để bấm.
-5. Link lên pillar, đúng 1 lần, anchor mô tả đúng pillar và chưa ai dùng.
+6. Chèn 2-3 link ngang sang bài cùng cụm, **trong thân bài**, viết thành câu có lý do để bấm.
+7. Link lên pillar, đúng 1 lần, anchor mô tả đúng pillar và chưa ai dùng.
 
 ### GATE trước khi publish
 
-6. **Mọi link nội bộ phải trỏ tới URL trả 200.** Chạy `check_targets()` (Phần 6) trên nội dung lúc
+8. **Mọi link nội bộ phải trỏ tới URL trả 200.** Chạy `check_targets()` (Phần 6) trên nội dung lúc
    nó còn là chuỗi. Đặt **trước** publish chứ không phải sau: fail lúc đó không tốn gì.
-7. **Anchor nội bộ <= 8 từ.** Quét `<a href=".../news/slug/">` trên nội dung lúc còn là chuỗi, đếm từ
+9. **Anchor nội bộ <= 8 từ.** Quét `<a href=".../news/slug/">` trên nội dung lúc còn là chuỗi, đếm từ
    của anchor, fail nếu có cái dài hơn. Trang stub 301 dùng tên trang gộp làm anchor là ngoại lệ có chủ
    đích, nên chỉ quét bài mới, không quét stub.
 
 ### GATE sau khi publish
 
-8. Bài mới có link lên pillar.
-9. Bài mới có >= 2 link ngang cùng cụm.
-10. Một bài donor cùng cụm đã trỏ sang bài mới.
+10. Bài mới có link lên pillar.
+11. Bài mới có >= 2 link ngang cùng cụm.
+12. Một bài donor cùng cụm đã trỏ sang bài mới.
 
 ### WARN sau khi publish, chỉ ghi nhận
 
@@ -350,6 +361,9 @@ một danh sách `warnings` rồi in ra cuối. Lỗi này đã xảy ra 2 lần
 
 Slug chưa tồn tại nên trỏ bài khác vào URL còn 404 là hại. Hoãn chiều inbound lại, ghi chú để quay
 lại sau giờ publish. Riêng chiều bài mới trỏ đi thì làm được ngay.
+
+Với một đợt nhiều bài lên lịch trải nhiều ngày (Cụm 9: 8 bài mỗi đợt, 3 bài/ngày), đặt **một lần "inbound pass" sau bài cuối của đợt**, không phải sau từng bài: một lượt sửa pillar và hub cho cả đợt, rồi đo
+lại số link trên pillar. Ghi lần chạy này vào lịch cùng lúc với lên lịch bài, vì đây là việc dễ bị quên nhất.
 
 Ngoại lệ hợp lệ: hai bài viết cùng lúc, lên lịch cách nhau, bài A cố ý link sang bài B sắp live. Link
 đó tự lành đúng giờ publish. Khai báo tường minh (tham số `allow` của `check_targets`), đừng dùng nó
@@ -592,6 +606,52 @@ khi vượt quá số trang, không trả mảng rỗng. Quên chỗ này thì s
 
 ⚠️ **`check_targets()` phải đo bằng HTTP, đừng đối chiếu với tài liệu nội bộ.** Xem Phần 9, lỗi số 3.
 
+### Gate anchor nhanh trước khi tạo bài (bản rút gọn của script trên)
+
+Hai hàm này đủ để gắn vào bước tạo bài. `BASE` là gốc blog của bạn, ví dụ `https://example.com/blog`.
+
+```python
+import json, re, html, urllib.request, collections
+BASE = "https://example.com/blog"
+
+def anchors_to(slug):
+    """Moi anchor text dang tro toi slug nay, tu toan bo bai da publish."""
+    out, page = [], 1
+    while True:
+        u = f"{BASE}/wp-json/wp/v2/posts?per_page=100&page={page}&_fields=id,content"
+        b = json.load(urllib.request.urlopen(u))
+        for p in b:
+            for sl, t in re.findall(r'<a[^>]+href=["\']%s/([a-z0-9-]+)/?["\'][^>]*>(.*?)</a>' % re.escape(BASE),
+                                     p["content"]["rendered"], re.S | re.I):
+                if sl == slug:
+                    out.append(html.unescape(re.sub("<[^>]+>", "", t)).strip())
+        if len(b) < 100:
+            return out
+        page += 1
+
+def long_anchors(html_str, limit=8):
+    """[(so_tu, anchor)] cho moi link noi bo co anchor dai hon limit tu."""
+    res = []
+    for m in re.finditer(r'<a\s[^>]*href=["\']%s/[a-z0-9-]+/?["\'][^>]*>(.*?)</a>' % re.escape(BASE),
+                         html_str, re.S | re.I):
+        t = html.unescape(re.sub("<[^>]+>", "", m.group(1))).strip()
+        if len(t.split()) > limit:
+            res.append((len(t.split()), t))
+    return res
+
+# Truoc khi viet: xem anchor da dung cho MOI dich cua bai (pillar + 2-3 link ngang)
+for slug in [PILLAR_SLUG] + SIBLING_SLUGS:
+    a = anchors_to(slug)
+    print(slug, len(a), "link,", len({x.lower() for x in a}), "anchor khac nhau")
+    for t, n in collections.Counter(x.lower() for x in a).most_common(5):
+        print("  %2dx  %s" % (n, t))
+
+# Truoc create_post:
+assert not long_anchors(CONTENT), long_anchors(CONTENT)
+```
+
+Chú ý regex dùng `["\']` (cả nháy đơn và nháy kép), đúng như lỗi số 5 ở mục 9.
+
 ---
 
 ## 7. Kiểm tra định kỳ toàn site
@@ -668,6 +728,13 @@ tracker, lần sau không ai biết nó tồn tại. Mọi check hậu publish p
 2 em dash". Khi đếm, dùng công cụ đếm đúng thứ mình muốn đếm.
 
 **9. Suy ra thành viên cụm từ link graph.** Xem cảnh báo ở Phần 2.
+
+**10. Viết cả đợt bài mà không chia trước anchor.** Cụm 9 (28 bài, viết theo 3 đợt, 10/2026): cùng một anchor
+"one-page marketing plan template" xuất hiện **6 lần** trỏ về một bài kế hoạch, "real estate marketing guide
+for agents" 3 lần trỏ về pillar, và hub branding chỉ có **2/10 anchor khác nhau** (20%, dưới mốc 70%). Mỗi bài
+riêng lẻ đều pass mọi GATE, vì GATE chỉ nhìn một bài. Khi viết liền nhiều bài, người viết (hay mô hình) tự
+nhiên quay về cụm từ đã nghĩ ra ở bài trước. Cách chặn: bảng anchor theo đợt ở Phần 5 (bước 5), và chạy
+`anchors_to()` cho **mọi đích** của bài, không chỉ pillar, ngay trước khi viết bài kế tiếp.
 
 **Mẫu số chung của 3, 5, 6:** tin vào một lớp trung gian (tài liệu, regex tự viết, thông báo của API)
 thay vì đo thứ thật. Trước khi tin một con số, hỏi: con số này đến từ đâu, và nếu công cụ đo của tôi

@@ -116,6 +116,13 @@ Thiết kế theo khung chuẩn:
   - Support/how-to, ví dụ hướng dẫn kết nối/sử dụng (Discovery/Post-purchase) — loại bài này
     thường có nhiều long-tail volume nhỏ gộp lại, đáng làm 1 bài riêng thay vì bỏ qua
 - Mỗi bài: vai trò, tiêu đề dự kiến, keyword chính + volume/YoY, funnel stage.
+- **Gán mỗi bài đúng một họ vai trò** (`pillar`, `review`, `compare`, `how-to`, `niche`, `explainer`,
+  `buying-guide`, `news-support`, `bridge`) theo `../../references/cluster-roles.md`. Họ quyết định cách
+  link của bài (link lên pillar mấy lần, ngang mấy bài, có đặt link money page không).
+- **Với cụm từ 6 bài trở lên, thêm vào plan một bảng anchor**: mỗi dòng gồm bài nguồn, bài đích và
+  anchor dự kiến (<= 8 từ, mô tả đúng trang đích, không dòng nào trùng). Làm trước khi viết, vì viết
+  liền nhiều bài thì anchor tự quay về cụm từ đã nghĩ ở bài trước (xem
+  `../../references/internal-linking-guide.md` mục 9, lỗi số 10).
 - Vẽ rõ luồng internal link dự kiến (pillar ↔ từng cluster, cluster ↔ money page, money page →
   pillar/cluster liên quan nhất).
 
@@ -140,6 +147,11 @@ link chéo nhau.
 
 Thứ tự viết: pillar trước (nội dung link tới cluster có thể để placeholder rồi bổ sung ở Bước 6),
 rồi từng cluster (link về pillar ngay vì pillar đã tồn tại).
+
+**Gate anchor trước khi tạo bài (bắt buộc, từ bài cluster thứ hai trở đi):** chạy `anchors_to(slug)` cho
+pillar và cho mỗi bài sẽ link ngang để chọn anchor chưa ai dùng, rồi `long_anchors(CONTENT)` phải trả về
+rỗng (anchor nội bộ tối đa 8 từ, giới hạn cứng). Mỗi bài chỉ 1 link lên pillar. Mã nguồn hai hàm, các
+quy tắc anchor và danh sách lỗi đã gặp ở `../../references/internal-linking-guide.md` (Phần 3, 5 và 6).
 
 ### Bước 5.1: Chèn video YouTube minh họa — đánh giá từng đoạn nội dung, không chèn tràn lan
 
@@ -244,6 +256,14 @@ nguồn gốc lẫn web search mà vẫn không ra ảnh phù hợp mới giữ 
   reference (trường hợp 1 ở trên) thay vì generate chay, để ảnh minh họa vẫn đúng đúng model đang
   bán dù là ảnh dàn dựng.
 
+### Bước 5.2b: Ảnh minh họa THỰC TẾ bằng mockup (khi bài nói về thứ nhìn thấy được)
+
+Khi bài có tiêu đề hứa "examples / templates / layouts" hoặc nói về vật phẩm/tài liệu nhìn thấy được (flyer, postcard, danh thiếp,
+logo, slide, bio, tin nhắn, trang web, hồ sơ), ảnh icon chung chung ở Bước 5.2 không cho người đọc thấy thứ bài đang nói. Dùng skill
+**`mockup-images`** (`../mockup-images/SKILL.md`): dựng mockup bằng HTML, chữ chính xác, nội dung hư cấu có ghi chú trên ảnh. Mỗi bài
+2 đến 3 ảnh mockup, thay 2 ảnh loại "3 icon" và "A vs B", giữ HERO và ảnh featured STATS. Ảnh PHẢI mobile-first (canvas 1000px rộng, chữ đọc được trên điện thoại; công thức trong skill). Danh mục cảnh ở
+`../mockup-images/references/scene-catalog.md`; cảnh 1600x900 cũ không dùng lại. Làm bước này **sau** khi bài đã viết xong để chữ trong mockup khớp với bài.
+
 ### Bước 5.3: Convert HTML trước khi gọi tool đăng bài (bắt buộc, không được bỏ qua)
 
 `create_draft_post`/`update_post` nhận nội dung ở field `content` dưới dạng HTML thô, không tự
@@ -285,6 +305,11 @@ content có đúng số heading dự kiến không, trước khi gọi tool.
    dụ bài so sánh), rồi gọi tool update sản phẩm với field mô tả = nội dung cũ + đoạn mới (không
    được chỉ gửi đoạn mới, nếu tool ghi đè toàn bộ mô tả chứ không tự append).
 4. Verify lại bằng `curl` trang live tìm đúng đoạn "Xem thêm" và các link mới.
+5. **Inbound pass sau mỗi đợt publish.** Mỗi cluster phải có >= 1 inbound từ bài cùng cụm khi đã live.
+   Bài lên lịch chưa có slug live nên chưa link ngược được: đặt một lần "inbound pass" sau bài cuối của
+   đợt (xem `../../references/internal-linking-guide.md` Phần 5, mục "bài đã lên lịch"), sửa pillar/hub một
+   lượt, verify bằng REST, rồi đo lại số link ra của pillar. Nếu site chọn pillar kiêm hub với mục Related
+   Reading, đọc điều kiện ở Phần 2 của guide trước khi làm.
 
 ### Bước 6.1: CTA mua hàng trong bài cluster (nếu có) nên dùng link cloak, không link affiliate trực tiếp
 
