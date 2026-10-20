@@ -1,41 +1,96 @@
 ---
 name: "news-to-cluster-article"
-description: "Crawl tin tức mới theo 10 mảng, đối chiếu keyword trong Excel và Google Sheet tracker, check bài đã có trên WordPress (published/scheduled/draft), chọn tin phù hợp và viết cluster article đạt Rank Math ≥80/100. Dùng khi muốn viết bài cluster từ tin tức mới nhất."
+description: "TEMPLATE. Crawl tin tức mới theo các mảng của ngách [ĐIỀN: ngách], đối chiếu keyword trong file keyword và Google Sheet tracker, check bài đã có trên WordPress (published/scheduled/draft), chọn tin phù hợp và viết cluster article đạt Rank Math ≥80/100. Dùng khi muốn viết bài cluster từ tin tức mới nhất. Phải điền mục 'Cấu hình site' trước khi chạy lần đầu."
 ---
 
-# SKILL: Daily News → Cluster Article (Rank Math SEO)
+# SKILL: Daily News → Cluster Article (Rank Math SEO) — TEMPLATE
+
+> **Đây là bản template.** Mọi chỗ ghi `[ĐIỀN: ...]` phải thay bằng giá trị của site bạn. Mỗi chỗ có kèm
+> **"Ví dụ (Infina AI)"** là giá trị thật của site gốc, để bạn thấy mức chi tiết cần điền. Điền mục
+> **"Cấu hình site"** ngay dưới đây trước, rồi đọc tiếp: phần còn lại của file dùng các biến đó.
+> Những bảng số liệu và slug mang nhãn **"Ví dụ số liệu"** là kết quả đo trên site gốc, giữ làm minh họa
+> và thay bằng số đo của bạn sau khi có khoảng 20 bài.
 
 ## Mô tả
-Crawl tin tức mới theo 10 mảng → đối chiếu Google Sheet tracker (nguồn pillar/dedup chính thức) + WordPress → đối chiếu keyword trong Excel → chọn tin phù hợp → viết và đăng cluster article lên WordPress đạt Rank Math ≥80/100. Toàn bộ chạy qua API, không cần browser.
+Crawl tin tức mới theo `[ĐIỀN: số mảng, ví dụ 10]` mảng → đối chiếu Google Sheet tracker (nguồn pillar/dedup chính thức) + WordPress → đối chiếu keyword trong file keyword → chọn tin phù hợp → viết và đăng cluster article lên WordPress đạt Rank Math ≥80/100. Toàn bộ chạy qua API, không cần browser.
 
 **Nguyên tắc cốt lõi:** bài viết từ tin tức (cluster/spoke) luôn target một keyword long-tail RIÊNG của nó (`FOCUS_KW`), khác với keyword của pillar page (`PILLAR_KW`) mà nó link về. Không bao giờ để 2 bài trong site cùng target 1 keyword — pillar page giữ vị trí rank cho keyword đầu (head term), cluster article chỉ mượn góc tin tức để nhắm long-tail và đẩy internal link/topical authority về pillar. Nguồn xác định keyword nào đã "có chủ" (Plan = pillar, News = cluster đã viết) là Google Sheet tracker ở Bước 2b — đọc lại sheet này mỗi lần chạy, và append 1 dòng mới vào đó sau khi publish (Bước 7). **Bài mới phải có ít nhất 1 inbound link biên tập**: Bước 5 lo chiều đi (cluster lên pillar, cluster sang 2-3 bài cùng cụm), Bước 6.5 lo chiều về bằng cách sửa 1 bài cluster cùng cụm trỏ sang bài mới. Bỏ Bước 6.5 là bài vừa publish không có trang nào trỏ tới.
 
-**Lịch sử:** skill này có 2 nhánh phát triển từng tồn tại song song trên account (một nhánh tập trung compliance/tracker/anti-cannibalization, một nhánh tập trung chất lượng ảnh/category/rate-limit) — bản này là merge của cả hai, giữ lại phần tốt của từng bên.
+---
+
+## Cấu hình site (điền trước khi chạy lần đầu)
+
+### A. Hằng số dùng trong mọi script của skill
+
+Dán khối này vào đầu mỗi script `article_cluster{N}_{slug}.py` (hoặc một file `site_config.py` import chung). Không điền key bí mật ở đây.
+
+```python
+import os, re
+from urllib.parse import urlparse
+
+SITE_ORIGIN = "[ĐIỀN: gốc domain, có https, KHÔNG có / cuối]"   # Ví dụ (Infina AI): "https://infina.ai"
+BASE        = "[ĐIỀN: gốc blog, KHÔNG có / cuối]"                # Ví dụ: "https://infina.ai/news"  (blog nằm ở subfolder /news)
+MONEY_PAGE  = "[ĐIỀN: URL trang sản phẩm/money page]"            # Ví dụ: "https://infina.ai/"  (URL sạch, không #fragment, không UTM)
+WP_ENDPOINT = BASE + "[ĐIỀN: đường dẫn endpoint MCP]"            # Ví dụ: "/wp-json/infina-mcp/v1/blog"  (toolkit mặc định: "/wp-json/seo-mcp/v1/blog")
+GSC_SITE_URL= "[ĐIỀN: property Search Console của blog]"         # Ví dụ: "https://infina.ai/news/"
+GA4_PROPERTY_ID = "[ĐIỀN: số property GA4, hoặc None]"           # Ví dụ: "505677884"
+TRACKER_FILE_ID = "[ĐIỀN: fileId Google Sheet tracker]"          # Ví dụ: "1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs"
+
+SITE_HOST = urlparse(SITE_ORIGIN).netloc      # "infina.ai"
+BASE_RE   = re.escape(BASE)                    # dùng trong regex bắt link nội bộ
+```
+
+### B. Những thứ phải quyết định, kèm ví dụ
+
+| Mục | Điền gì | Ví dụ (Infina AI) |
+|---|---|---|
+| Tên site, ngách | 1 câu mô tả ai đọc blog và site bán gì | Blog của Infina AI, trợ lý AI cho agent bất động sản Mỹ; tiếng Anh |
+| Ngôn ngữ bài | Ngôn ngữ viết bài và ngôn ngữ báo cáo cho bạn | Bài tiếng Anh, báo cáo tiếng Việt |
+| Money page và quy tắc link | URL, số link mỗi bài (thường 1-3), anchor mô tả ≤8 từ | `https://infina.ai/`, 1-3 link/bài, đặt ở chỗ intent cao nhất |
+| Danh mục WordPress | Bảng ở mục "Category" dưới | 6 category, bảng đầy đủ ở ví dụ |
+| Các mảng tin | Bảng ở Bước 1 | 10 mảng (market, mortgage, proptech, AI, CRM, lead gen...) |
+| Tracker sheet | Tên sheet, fileId, 6 cột `#, Date, Title, URL, Focus Keyword, Type` | "Infina News — Published Articles Tracker" |
+| File keyword | Nguồn FOCUS_KW ứng viên và volume | `keywords/*.csv`, `keywords/*.xlsx` (xem `keywords/README.md`) |
+| File content plan | Bảng cụm: pillar nào, cluster nào, họ vai trò | `content-plan.md` ở gốc repo (mẫu: `content-plan-template.md`) |
+| CSS theme live | URL file CSS của theme để tra cách `<table>` hiển thị | `https://infina.ai/news/wp-content/themes/infina-ai-news/style.css` |
+| Search Console, GA4, Clarity | Property và cách lưu key (xem `post-refresh/SKILL.md`) | GSC `https://infina.ai/news/`, GA4 `505677884`, key lưu ở Drive |
+| Giờ đăng, trần bài/ngày | Số bài tối đa mỗi ngày và khung giờ | Tối đa 3 bài/ngày; 10:00, 14:00, 18:00 giờ site |
+
+### C. Biến môi trường cần có
+
+`WP_MCP_KEY` (secret của snippet WP MCP), `GEMINI_API_KEY` (ảnh), tuỳ chọn `GROK_API_KEY`, `FREEIMAGE_API_KEY`. Không commit.
 
 ---
 
-## Category IDs
+## Category (danh mục WordPress)
+
+Điền bảng danh mục thật của site. Lấy danh sách bằng `GET {BASE}/wp-json/wp/v2/categories?per_page=100&_fields=id,name`
+(đừng đoán ID). Mỗi bài thuộc đúng 1 danh mục chính; bảng này quyết định `CATEGORY_NAME` ở Bước 4.
+
+| ID | Tên | Dùng cho |
+|----|-----|---------|
+| `[ĐIỀN]` | `[ĐIỀN: tên danh mục]` | `[ĐIỀN: loại chủ đề thuộc danh mục này]` |
+
+**Ví dụ (Infina AI):**
 
 | ID | Tên | Dùng cho |
 |----|-----|---------|
 | 19 | AI Chatbot | Bài về chatbot, AI assistant, conversational AI, ISA, AI voice |
 | 85 | CRM Software | Bài về CRM, sales automation, lead management |
-| 392 | Real Estate Marketing | Cụm 9: marketing, branding, quảng cáo, social, SEO local, mailer cho agent (tạo 12/10/2026) |
-| 153 | Real Estate Websites | Bài về website builder, IDX, MLS feed, landing page, web design |
-| 289 | Real Estate Chatbots | (đã tồn tại trên site, ít dùng — ưu tiên 19) |
-| 13 | Thought Leadership | (đã tồn tại trên site, ít dùng) |
-| 1  | News | Bài tin tức thời sự chung (không phải cluster real estate) |
+| 392 | Real Estate Marketing | Marketing, branding, quảng cáo, social, SEO local, mailer cho agent |
+| 153 | Real Estate Websites | Website builder, IDX, MLS feed, landing page, web design |
+| 1  | News | Tin tức thời sự chung (không phải cluster) |
 
-**Bảng trên đã bổ sung 03/10/2026** sau khi phát hiện bản cũ chỉ liệt kê 19/85/1 trong khi site thực tế có 6 category — bài IDX/website dùng **153**, không phải 19 hay 85 (verify bằng `GET /wp-json/wp/v2/posts?slug=idx-website-for-realtors&_fields=categories`). Luôn tra lại danh sách thật qua `GET https://infina.ai/news/wp-json/wp/v2/categories?per_page=100&_fields=id,name` nếu chủ đề bài không khớp 3 dòng đầu.
-
-Truyền category **bằng tên** hoặc ID string vào param `categories` (snippet đã sửa 12/10 tự đổi tên thành ID và tạo term mới nếu chưa có):
+Truyền category **bằng tên** hoặc ID dạng string vào param `categories`. Snippet WP MCP của toolkit tự đổi tên thành ID
+và tạo term mới nếu chưa có:
 ```python
-"categories": ["CRM Software"]
-"categories": ["AI Chatbot"]
+"categories": ["[ĐIỀN: tên danh mục]"]     # ví dụ: ["CRM Software"]
 ```
-Chọn category theo chủ đề bài: CRM/sales automation → "CRM Software", chatbot/AI assistant/ISA/compliance → "AI Chatbot".
 
-**Đã gặp thực tế (01/10/2026, bài #1415):** truyền `"categories": ["CRM Software"]` cả ở `create_post` lẫn `update_post` sau đó đều không gán được category (REST API trả về `"categories": []"` dù response báo thành công và `tags` bằng tên trong CÙNG lúc gán đúng bình thường) — không rõ nguyên nhân (không phải lỗi proxy/cache, đã kiểm tra nhiều lần). Workaround verify hoạt động: truyền **ID dạng string** thay vì tên, vd `"categories": ["85"]` cho "CRM Software" (tra ID qua `GET https://infina.ai/news/wp-json/wp/v2/categories?per_page=100&_fields=id,name` — "AI Chatbot"=19, "CRM Software"=85). **Nguyên nhân gốc (tìm ra 12/10/2026):** `category` là taxonomy có cấp bậc, `wp_set_post_terms` với taxonomy này coi chuỗi là ID nên tên bị bỏ qua. Đã sửa trong `infina-wp-mcp-server-snippet.php` (đổi tên thành ID, tạo mới nếu chưa có), user dán lại snippet lên site cùng ngày, và đã kiểm chứng: `update_post` với `categories: ["Real Estate Marketing"]` tạo term mới (ID 392) và gán đúng cho #1825. Từ nay truyền tên hoặc ID đều được, nhưng vẫn verify bằng REST. Nếu gặp lại category rỗng sau khi publish, luôn `curl` REST API verify `categories` field rồi fix bằng ID ngay, đừng chỉ tin message "Da cap nhat" là đã thành công.
+**Bài học (site gốc, 10/2026):** `category` là taxonomy có cấp bậc, và `wp_set_post_terms` coi một chuỗi là **ID** nên tên bị bỏ qua:
+`create_post` báo thành công nhưng REST trả `"categories": []`. Bản snippet cũ dính lỗi này; bản trong toolkit v1.1 trở đi đã sửa.
+Dù vậy, **luôn đọc lại qua REST** (`GET {BASE}/wp-json/wp/v2/posts/<id>?_fields=categories`) sau khi publish, và nếu rỗng thì sửa
+ngay bằng ID dạng string (vd `"categories": ["85"]`). Đừng tin thông báo "Da cap nhat" là đã gán đúng.
 
 ---
 
@@ -63,16 +118,16 @@ Xem Slug rules cuối file.
 
 ## WordPress Connection
 
-**Endpoint:** `https://infina.ai/news/wp-json/infina-mcp/v1/blog?key=<WP_MCP_KEY>` (key thật lưu ở account-level skill / secret store, KHÔNG commit vào repo)
+**Endpoint:** `WP_ENDPOINT?key=<WP_MCP_KEY>` (xem mục Cấu hình site; key thật lưu ở secret store, KHÔNG commit vào repo)
 
 **Protocol:** JSON-RPC 2.0 qua HTTPS POST
 
-**Cần set trước khi chạy** (không hard-code key vào file này để tránh lộ secret khi commit): `WP_MCP_KEY`, `GROK_API_KEY`, `FREEIMAGE_API_KEY`, `GEMINI_API_KEY` (tuỳ chọn, xem Image Pipeline). Bản skill cài trong account Claude giữ giá trị thật.
+**Cần set trước khi chạy** (không hard-code key vào file này để tránh lộ secret khi commit): `WP_MCP_KEY`, `GROK_API_KEY`, `FREEIMAGE_API_KEY`, `GEMINI_API_KEY` (tuỳ chọn, xem Image Pipeline). 
 
 ```python
 import os, requests, base64, re, json
 
-WP_URL = f"https://infina.ai/news/wp-json/infina-mcp/v1/blog?key={os.environ['WP_MCP_KEY']}"
+WP_URL = f"{WP_ENDPOINT}?key={os.environ['WP_MCP_KEY']}"   # WP_ENDPOINT, BASE... định nghĩa ở mục Cấu hình site
 GROK_KEY = os.environ.get("GROK_API_KEY")
 FREEIMAGE_KEY = os.environ.get("FREEIMAGE_API_KEY")
 GEMINI_KEY = os.environ.get("GEMINI_API_KEY")  # optional, xem Image Pipeline phương án B
@@ -92,7 +147,7 @@ def call(method, params):
     return text
 ```
 
-**Các method dùng được — đối chiếu trực tiếp với source code server tại `wp-mcp-server-snippet.php` của toolkit (bản Infina là `infina-wp-mcp-server-snippet.php` trong repo gốc, có thêm `redirect_to`, repo `infinaqnhat/web-infina-ai`) (ground truth, ưu tiên hơn cả test API vì đọc thẳng code PHP xử lý request — các bảng tham số ở các bản skill cũ như `edit_date`, `filename`/`alt_text` là SAI, không tồn tại trên server thật):**
+**Các method dùng được — đối chiếu trực tiếp với source code server tại `wp-mcp-server-snippet.php` của toolkit (ground truth, ưu tiên hơn cả test API vì đọc thẳng code PHP xử lý request — các bảng tham số ở các bản skill cũ như `edit_date`, `filename`/`alt_text` là SAI, không tồn tại trên server thật):**
 
 | Method | Params chính | Ghi chú |
 |--------|-------------|---------|
@@ -374,11 +429,11 @@ Image.open("stats.jpg").resize((120, 68), Image.LANCZOS).resize((480, 272), Imag
 # mo stamp.png ra nhin. Khong doc duoc headline thi gen lai, dung upload.
 ```
 
-**Bảng so sánh/số liệu chi tiết nhiều hàng-cột (≥3 cột hoặc ≥4 hàng) — dùng `<table>` HTML thật trong thân bài, KHÔNG generate ảnh AI.** Lý do: ảnh AI dựng bảng hay bịa tên sản phẩm/số liệu không khớp nội dung bài (đã xảy ra thực tế ở bài `best-free-crm-for-real-estate-agents`, #438 — ảnh so sánh bịa 3 tên CRM giả, ảnh thống kê bịa % adoption kèm dòng disclaimer "hypothetical" nhỏ xíu không ai đọc được), và vi phạm luôn checklist thumbnail (`THUMBNAIL_BEST_PRACTICES.md`: "không dùng bảng dữ liệu nhiều hàng/cột làm ảnh"). Ảnh AI (STATS/COMPARISON Template A-E) chỉ dùng cho 1 con số/1 so sánh 2 phe đơn giản; bảng dữ liệu thật phải là markup, không phải ảnh.
+**Bảng so sánh/số liệu chi tiết nhiều hàng-cột (≥3 cột hoặc ≥4 hàng) — dùng `<table>` HTML thật trong thân bài, KHÔNG generate ảnh AI.** Lý do: ảnh AI dựng bảng hay bịa tên sản phẩm/số liệu không khớp nội dung bài (đã xảy ra thực tế ở site gốc, bài `best-free-crm-for-real-estate-agents`, #438 — ảnh so sánh bịa 3 tên CRM giả, ảnh thống kê bịa % adoption kèm dòng disclaimer "hypothetical" nhỏ xíu không ai đọc được), và vi phạm luôn checklist thumbnail (`THUMBNAIL_BEST_PRACTICES.md`: "không dùng bảng dữ liệu nhiều hàng/cột làm ảnh"). Ảnh AI (STATS/COMPARISON Template A-E) chỉ dùng cho 1 con số/1 so sánh 2 phe đơn giản; bảng dữ liệu thật phải là markup, không phải ảnh.
 
-Theme đang chạy (`infina-ai-news` v1.0.9) **đã tự style sẵn mọi `<table>` trong `.post-content`**:
+**Kiểm tra theme của bạn trước:** tải file CSS live (`[ĐIỀN: URL CSS theme]`, ví dụ Infina: `https://infina.ai/news/wp-content/themes/infina-ai-news/style.css`) và tìm rule `table`. Nếu theme đã style sẵn thì chỉ cần bọc `<figure class="wp-block-table">`. Nếu chưa, phải thêm style inline hoặc sửa theme. Ví dụ (Infina AI): theme `infina-ai-news` v1.0.9 **đã tự style sẵn mọi `<table>` trong `.post-content`**:
 border, padding, nền và màu chữ của header, zebra-stripe hàng chẵn, **và đã tự lo luôn cuộn ngang
-trên mobile**. Rule thật, đọc từ `https://infina.ai/news/wp-content/themes/infina-ai-news/style.css`:
+trên mobile**. Rule thật của site gốc, đọc từ file CSS ở trên (màu và biến CSS là của Infina, thay theo theme bạn):
 
 ```css
 .post-content .wp-block-table { margin: 1.8em 0; overflow-x: auto }
@@ -448,17 +503,25 @@ số stylesheet nạp được có khác 0 không trước khi tin bất cứ ph
 `skills/post-refresh/scripts/render_snapshot.py` làm đúng việc đó (nó ném lỗi nếu
 nạp được 0 stylesheet).
 
-⚠️ **Theme trong repo đã cũ, đừng dùng làm nguồn tra cứu.** `wordpress-theme/infina-ai-news/style.css`
-là **v1.0.5**, bản đang chạy là **v1.0.9**, lệch 64 dòng. Toàn bộ rule `.post-content thead th` và
-`.post-content .wp-block-table` **chỉ có ở bản live**, chưa có trong repo. Muốn biết theme style gì,
+⚠️ **Theme trong repo có thể đã cũ, đừng dùng làm nguồn tra cứu.** Ví dụ ở site gốc: file theme trong repo là **v1.0.5**, bản live là **v1.0.9**,
+lệch 64 dòng, và toàn bộ rule `.post-content thead th` và `.post-content .wp-block-table` **chỉ có ở bản live**. Muốn biết theme style gì,
 tải thẳng file CSS từ site chứ đừng đọc file trong repo.
-- `<tbody>` không cần `style` cho hàng chẵn/lẻ — theme tự zebra-stripe hàng chẵn `#fafbfc`.
+- `<tbody>` không cần `style` cho hàng chẵn/lẻ nếu theme đã tự zebra-stripe (ví dụ Infina: hàng chẵn `#fafbfc`).
 
 ---
 
 ## Bước 1: Crawl tin tức 7 ngày gần nhất
 
 Dùng `WebSearch` tool để tìm tin mới cho từng mảng. Thay `YYYY-MM-DD` bằng ngày 7 ngày trước ngày chạy.
+
+**Điền bảng mảng tin của site bạn** (5-10 mảng là hợp lý; mỗi mảng phải gắn được với ít nhất một pillar của bạn, nếu không thì bài từ mảng đó sẽ không có chỗ để link về):
+
+| # | Mảng | Search query |
+|---|------|-------------|
+| 1 | `[ĐIỀN: tên mảng]` | `[ĐIỀN: từ khóa tìm tin] 2026 after:YYYY-MM-DD` |
+| 2 | `[ĐIỀN]` | `[ĐIỀN] 2026 after:YYYY-MM-DD` |
+
+**Ví dụ (Infina AI, ngách bất động sản + AI):**
 
 | # | Mảng | Search query |
 |---|------|-------------|
@@ -534,7 +597,7 @@ def is_duplicate(candidate_slug, candidate_title, existing_posts):
 
 ## Bước 2b: Đọc Tracker Sheet (nguồn PILLAR_KW chính thức, ưu tiên hơn Excel)
 
-Google Sheet **"Infina News — Published Articles Tracker"** (`fileId: 1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs`) là **nguồn sự thật sống** (live source of truth) về việc keyword nào đã "có chủ" — ưu tiên hơn Excel `Content Pillars (AIDA)` vì Excel chỉ là kế hoạch tĩnh, còn sheet này phản ánh đúng những gì đã thực sự publish.
+Google Sheet tracker của bạn (`TRACKER_FILE_ID`; tên và fileId điền ở mục Cấu hình site. Ví dụ Infina: "Infina News — Published Articles Tracker", `1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs`) là **nguồn sự thật sống** (live source of truth) về việc keyword nào đã "có chủ" — ưu tiên hơn file keyword/pillar (Bước 3) vì file đó chỉ là kế hoạch tĩnh, còn sheet này phản ánh đúng những gì đã thực sự publish.
 
 ⚠️ **Dùng `mcp__Google_Drive__download_file_content` với `exportMimeType: "text/csv"`, KHÔNG dùng `read_file_content`** (đã gặp thực tế 02/10/2026): `read_file_content` trả về bản tóm tắt dạng "Table Sample Data" chỉ gồm header + **đúng 1 dòng mẫu**, không phải toàn bộ 120+ dòng — nếu dedup dựa vào đó sẽ bỏ sót gần như toàn bộ keyword đã dùng mà không có cảnh báo nào. `download_file_content` trả base64 của CSV đầy đủ (chỉ sheet đầu tiên "Published article", đúng sheet cần), decode rồi parse bằng `csv.reader`.
 
@@ -548,14 +611,14 @@ plan_rows = [r for r in rows if r["Type"].strip().lower() == "plan"]
 
 Cấu trúc cột: `#, Date, Title, URL, Focus Keyword, Type` — `Type` chỉ có 2 giá trị:
 
-- **`Plan`** = bài pillar/cornerstone (thường là dạng "Best X for Real Estate", "What Is X?"...). Focus Keyword của các bài này là **PILLAR_KW đã bị chiếm** — tuyệt đối không dùng lại làm FOCUS_KW cho bài mới.
+- **`Plan`** = bài pillar/cornerstone (thường là dạng "Best X for [ngách]", "What Is X?"...). Focus Keyword của các bài này là **PILLAR_KW đã bị chiếm** — tuyệt đối không dùng lại làm FOCUS_KW cho bài mới.
 - **`News`** = bài cluster viết từ tin tức (chính là loại bài skill này tạo ra). Các bài News trước đó cũng đã dùng FOCUS_KW riêng của chúng rồi — cũng phải tránh trùng, y hệt như Plan.
 
-**Lưu ý quan trọng:** tracker sheet có thể bị trễ so với thực tế trên WordPress nếu có automation khác cũng publish bài không log vào đây (đã từng xảy ra với các bài category "CRM Software" từ nhánh skill khác). Luôn coi Bước 2 (list_posts trực tiếp trên WP) là lớp dedup bắt buộc song song, KHÔNG chỉ dựa vào tracker sheet.
+**Lưu ý quan trọng:** tracker sheet có thể bị trễ so với thực tế trên WordPress nếu có automation khác cũng publish bài không log vào đây (đã từng xảy ra ở site gốc với các bài từ một nhánh skill khác). Luôn coi Bước 2 (list_posts trực tiếp trên WP) là lớp dedup bắt buộc song song, KHÔNG chỉ dựa vào tracker sheet.
 
 ```python
 def get_tracker_rows():
-    text = read_file_content("1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs")  # mcp__Google_Drive__read_file_content
+    text = read_file_content(TRACKER_FILE_ID)  # mcp__Google_Drive__read_file_content
     rows = []
     for line in text.split("\n"):
         cells = [c.strip() for c in line.strip("| \n").split("|")]
@@ -574,14 +637,16 @@ plan_rows = [r for r in tracker if r["type"].lower() == "plan"]  # nguồn PILLA
 
 ---
 
-## Bước 3: Đọc keyword groups từ Excel
+## Bước 3: Đọc keyword groups từ file keyword
 
-Đọc file `AI_SalesX_Customer_Segments_Content_Pillars - Copy.xlsx` (trong repo: `skills/news-to-cluster-article/keywords/AI_SalesX_Customer_Segments_Content_Pillars.xlsx`), dùng làm **nguồn tham khảo ý tưởng/chiến lược pillar** (7 Content Pillar theo AIDA), KHÔNG còn là nguồn PILLAR_KW độc quyền — Bước 2b (tracker sheet) mới là nguồn quyết định pillar nào thực sự đã tồn tại + URL thật của nó. Excel hữu ích khi tin tức khớp với 1 pillar theo kế hoạch AIDA nhưng pillar đó **chưa có bài Plan nào trên tracker** — lúc đó coi target keyword trong Excel như một PILLAR_KW "dự kiến" (chưa có URL thật để link, cân nhắc chọn pillar khác đã có bài Plan thật để link thay vào).
+**[ĐIỀN: tên và đường dẫn file keyword của site]**. Ví dụ (Infina AI): `keywords/AI_SalesX_Customer_Segments_Content_Pillars.xlsx` (sheet `Content Pillars (AIDA)`) và `keywords/Infina_AI_RealSale_Keyword_Stats_2026-09-15.csv`. Toolkit không kèm dữ liệu keyword của Infina; mẫu cột nằm ở `keywords/README.md`, `keywords/content-pillars-template.csv` và `keywords/keyword-stats-template.csv`.
 
-Lấy 2 loại dữ liệu tách biệt từ Excel:
+File này dùng làm **nguồn tham khảo ý tưởng/chiến lược pillar**, KHÔNG phải nguồn PILLAR_KW độc quyền — Bước 2b (tracker sheet) mới là nguồn quyết định pillar nào thực sự đã tồn tại + URL thật của nó. File keyword hữu ích khi tin tức khớp với 1 chủ đề chưa có bài Plan.
 
-1. **Pillar keyword dự kiến** (sheet `Content Pillars (AIDA)`) — mỗi Content Pillar có 1 "Target keyword" gắn với 1 trang pillar tương lai. Đối chiếu với `plan_rows` ở Bước 2b: nếu đã có bài Plan dùng đúng keyword này → dùng URL bài đó làm PILLAR_URL; nếu chưa có → không có PILLAR_URL thật.
-2. **Cluster keyword candidates** (sheet `✅ Customer Response AI Chatbot` và các sheet main keyword khác) — hàng trăm sub-keyword long-tail nằm dưới mỗi Main Keyword group. Đây là nguồn keyword thật sự để bài viết từ tin tức nhắm tới (FOCUS_KW).
+Lấy 2 loại dữ liệu tách biệt từ file keyword:
+
+1. **Pillar keyword dự kiến** (bảng pillar, mẫu `content-pillars-template.csv`) — mỗi Content Pillar có 1 "Target keyword" gắn với 1 trang pillar tương lai. Đối chiếu với `plan_rows` ở Bước 2b: nếu đã có bài Plan dùng đúng keyword này → dùng URL bài đó làm PILLAR_URL; nếu chưa có → không có PILLAR_URL thật.
+2. **Cluster keyword candidates** (bảng volume, mẫu `keyword-stats-template.csv`) — hàng trăm sub-keyword long-tail nằm dưới mỗi Main Keyword group. Đây là nguồn keyword thật sự để bài viết từ tin tức nhắm tới (FOCUS_KW).
 
 **Chưa bị loại ở Bước 2 (WordPress) và không nằm trong `used_keywords` ở Bước 2b (Tracker Sheet)** áp dụng cho cluster keyword candidates trước khi chọn làm FOCUS_KW.
 
@@ -600,7 +665,7 @@ Với mỗi tin, đánh giá:
 
 1. **Pillar target:** Tin này liên quan đến pillar nào trong `plan_rows` (Bước 2b)? Ưu tiên chọn pillar đã có bài Plan **thật** trên tracker (có URL thật). Để không dồn mọi bài News lên cùng 1 pillar (xem ràng buộc cấu trúc site ở Bước 6.5), ưu tiên pillar **chưa được dùng làm PILLAR_URL** trong các bài News gần đây (xem tracker) trước khi tái sử dụng cùng 1 pillar liên tục.
 2. **Cluster keyword:** Chọn 1 keyword long-tail — **không được trùng bất kỳ giá trị nào trong `used_keywords`** (Bước 2b) và pass `is_duplicate()` ở Bước 2 (WordPress). Kiểm tra thêm slug-overlap thủ công (>0.6 là trùng) với các slug hiện có, kể cả slug của chính các bài News trước đó (không chỉ Plan) — dễ bị bỏ sót vì nhiều bài đều có đuôi `-real-estate-agents` khiến overlap dễ vượt ngưỡng.
-3. **Category:** CRM/sales automation topic → `"CRM Software"`, Chatbot/AI assistant/ISA/compliance topic → `"AI Chatbot"`.
+3. **Category:** chọn theo bảng Category ở đầu file (chủ đề nào → danh mục nào). Ví dụ Infina: CRM/sales automation → `"CRM Software"`, chatbot/AI assistant/compliance → `"AI Chatbot"`.
 4. **Angle:** Tin cung cấp dữ liệu/case study/xu hướng gì để làm hook cho đúng cluster keyword đó?
 5. **Vai trò (họ):** bài News luôn là `news-support`. Khi thêm dòng News vào bảng cụm trong `content-plan.md` sau khi publish, ghi `` `news-support` `` ở đầu ô "Vai trò". Bộ 9 họ và cách dùng nằm ở `references/cluster-roles.md`. Chỉ dùng họ khác nếu bài thực chất là review/compare/how-to... chứ không phải bài từ tin tức.
 
@@ -631,7 +696,7 @@ H2: Final Thoughts
 ### Anchor text: mô tả được, và không trùng nhau
 
 ⚠️ **Tới 2026-10-08 skill này bắt buộc anchor trỏ pillar phải chứa `PILLAR_KW`.** Vì `PILLAR_KW` cố
-định cho mỗi pillar, mọi bài đổ dồn về cùng một anchor. Đo ngày 08/10 trên 145 bài:
+định cho mỗi pillar, mọi bài đổ dồn về cùng một anchor. Đo ngày 08/10 trên 145 bài **(ví dụ số liệu từ site gốc, thay bằng số đo của bạn)**:
 
 | Pillar | Link trỏ tới | Anchor khác nhau | |
 |---|---|---|---|
@@ -676,13 +741,13 @@ def anchors_to(slug):
     out, page = [], 1
     while True:
         b = json.load(urllib.request.urlopen(
-            "https://infina.ai/news/wp-json/wp/v2/posts"
+            BASE + "/wp-json/wp/v2/posts"
             "?per_page=100&page=%d&_fields=id,content" % page))
         if not b:
             break
         for p in b:
             for sl, t in re.findall(
-                    r'<a[^>]+href="https://infina\.ai/news/([a-z0-9-]+)/?"[^>]*>(.*?)</a>',
+                    r'<a[^>]+href="' + BASE_RE + r'/([a-z0-9-]+)/?"[^>]*>(.*?)</a>',
                     p["content"]["rendered"], re.S | re.I):
                 if sl == slug:
                     out.append(html.unescape(re.sub("<[^>]+>", "", t)).strip())
@@ -699,7 +764,7 @@ for t, n in collections.Counter(x.lower() for x in a).most_common(10):
 # Chon anchor KHONG nam trong danh sach tren.
 ```
 
-**Bốn hướng tạo biến thể**, để không phải nghĩ lại từ đầu mỗi lần. Ví dụ với pillar CRM:
+**Bốn hướng tạo biến thể**, để không phải nghĩ lại từ đầu mỗi lần. Ví dụ (Infina AI) với pillar CRM, thay bằng pillar của bạn:
 
 | Hướng | Ví dụ anchor |
 |---|---|
@@ -721,8 +786,8 @@ def check_seo(content, keyword, seo_title=None, pillar_keyword=None, pillar_url=
     words = raw.split()
     kw_count = len(re.findall(re.escape(keyword), raw.lower()))
     density = (kw_count / len(words)) * 100
-    ext_links = len(re.findall(r'href="https?://(?!infina\.ai)[^"]*"', content))
-    int_links = len(re.findall(r'href="https?://infina\.ai[^"]*"', content))
+    ext_links = len(re.findall(r'href="https?://(?!' + re.escape(SITE_HOST) + r')[^"]*"', content))
+    int_links = len(re.findall(r'href="' + re.escape(SITE_ORIGIN) + r'[^"]*"', content))
     img_alts_with_kw = len([m for m in re.findall(r'alt="[^"]*"', content.lower())
                              if keyword in m])
     h2_texts = re.findall(r'<h2>(.*?)</h2>', content, re.IGNORECASE)
@@ -772,7 +837,7 @@ if not seo["ok"]:
 **Cách viết SEO_TITLE và H2 chứa FOCUS_KW mà vẫn tự nhiên:** vì FOCUS_KW nhiều khi là cụm dài (vd `"tcpa compliance for real estate agents"`), khi diễn giải lại bằng từ đồng nghĩa hoặc chèn thêm từ ở giữa (vd viết thành `"tcpa compliance among real estate agents"`) sẽ làm mất match chính xác — Rank Math và hàm check ở trên đều tìm **substring y hệt**, không hiểu đồng nghĩa. Luôn giữ FOCUS_KW làm 1 cụm liền mạch trong ít nhất 1 câu của SEO_TITLE và 1 H2, phần diễn giải tự nhiên đặt trước/sau cụm đó chứ không chen vào giữa.
 
 **Nếu density thấp:** thêm các đoạn tự nhiên sử dụng FOCUS_KW (cụm liền mạch, không chèn từ ở giữa) vào body sections.
-**Nếu thiếu internal link:** thêm đoạn "Related reading" trước Final Thoughts với ≥2 link đến bài trong infina.ai/news, trong đó có 1 link chính xác trỏ về `PILLAR_URL`, anchor mô tả đúng pillar và chưa trùng anchor bài khác.
+**Nếu thiếu internal link:** thêm đoạn "Related reading" trước Final Thoughts với ≥2 link đến bài trong blog của bạn (`BASE`), trong đó có 1 link chính xác trỏ về `PILLAR_URL`, anchor mô tả đúng pillar và chưa trùng anchor bài khác.
 **Nếu thiếu external link:** đảm bảo link tới URL nguồn tin và website các tool đề cập trong bài không có `rel="nofollow"` với nguồn tin (được phép nofollow với tool/vendor link).
 **Nếu FOCUS_KW trùng PILLAR_KW:** đây là lỗi cannibalization — quay lại Bước 4 chọn cluster keyword khác, không sửa bằng cách đổi PILLAR_KW.
 
@@ -799,7 +864,7 @@ _opener = urllib.request.build_opener(_NoRedirect)
 
 def _probe(sl):
     r = _opener.open(urllib.request.Request(
-        "https://infina.ai/news/%s/" % sl,
+        "%s/%s/" % (BASE, sl),
         headers={"User-Agent": "Mozilla/5.0"}), timeout=40)
     return r.status, ""
 
@@ -810,7 +875,7 @@ def check_targets(html_str, allow=()):
     """
     bad = {}
     for sl in sorted(set(re.findall(
-            r'href="https://infina\.ai/news/([a-z0-9-]+)/?"', html_str))):
+            r'href="' + BASE_RE + r'/([a-z0-9-]+)/?"', html_str))):
         cur, code, first, hops = sl, None, None, 0
         while hops < 5:
             try:
@@ -820,7 +885,7 @@ def check_targets(html_str, allow=()):
                 code = e.code
                 first = first if first is not None else e.code  # ma cua chang DAU
                 loc = e.headers.get("Location", "")
-                nxt = loc.replace("https://infina.ai/news/", "").strip("/")
+                nxt = loc.replace(BASE + "/", "").strip("/")
                 # go het chuoi redirect de in ra DICH CUOI, khong phai hau dau tien
                 if e.code in (301, 302, 307, 308) and nxt and nxt != cur:
                     cur, hops = nxt, hops + 1
@@ -840,9 +905,9 @@ assert not bad, "link tro vao URL khong tra 200: %s" % bad
 # GATE: anchor noi bo toi da 8 tu (quy tac 3, Buoc 5). Tinh tren CONTENT, truoc create_post.
 import html as _html
 def long_anchors(html_str, limit=8):
-    """[(so_tu, anchor)] cho moi link noi bo infina.ai/news co anchor dai hon limit tu."""
+    """[(so_tu, anchor)] cho moi link noi bo trong BASE co anchor dai hon limit tu."""
     out = []
-    for m in re.finditer(r'<a\s[^>]*href="https://infina\.ai/news/[a-z0-9-]+/?"[^>]*>(.*?)</a>',
+    for m in re.finditer(r'<a\s[^>]*href="' + BASE_RE + r'/[a-z0-9-]+/?"[^>]*>(.*?)</a>',
                          html_str, re.S | re.I):
         t = _html.unescape(re.sub("<[^>]+>", "", m.group(1))).strip()
         if len(t.split()) > limit:
@@ -882,7 +947,7 @@ resp = call("create_post", {
     "seo_title": SEO_TITLE,
     "seo_description": SEO_DESC,
     "seo_focus_keyword": FOCUS_KW,
-    "categories": [CATEGORY_NAME],  # "AI Chatbot" hoặc "CRM Software" — tên string, KHÔNG phải ID số
+    "categories": [CATEGORY_NAME],  # tên danh mục dạng string, lấy từ bảng Category (ví dụ "CRM Software")
     "tags": TAGS,
     "image_url": IMG["STATS"],  # KHÔNG dùng IMG["HERO"] — xem lý do bên dưới
     "image_alt": f"{FOCUS_KW} statistics infographic",
@@ -892,7 +957,7 @@ post_id_match = re.search(r'ID (\d+)', resp)  # khớp "Da tao bai ID {id} [stat
 if post_id_match:
     post_id = post_id_match.group(1)
     print(f"Post ID {post_id} — status {STATUS}")
-    print(f"URL: https://infina.ai/news/{SLUG}/")
+    print(f"URL: {BASE}/{SLUG}/")
 if "that bai" in resp:  # image_note báo lỗi gắn ảnh đại diện dù post vẫn tạo thành công
     print("CANH BAO:", resp)
 ```
@@ -913,7 +978,7 @@ Bước 5 đã cho bài mới link LÊN pillar và link ngang sang 2-3 bài cùn
 trang nào đó trỏ TỚI bài mới**, và nó không tự xảy ra: mọi bài khác trên site đều viết trước nó.
 
 **Đây không phải lo xa.** Audit 2026-10-07 bằng `scripts/competitor_teardown.py` chạy trên chính
-`infina.ai/news`: 35/130 trang không có inbound biên tập nào, 23 trong đó là bài bất động sản thật.
+trên blog gốc (Infina): 35/130 trang không có inbound biên tập nào, 23 trong đó là bài bất động sản thật.
 Nguyên nhân duy nhất là skill này trước đây kết thúc ở Bước 7 mà không có bước này.
 
 ### Số link: không có ngưỡng nào đến từ Google
@@ -983,7 +1048,7 @@ pháp đúng là tách thành nhiều sub-hub, mỗi hub 10-15 cluster.
 là giới hạn kỹ thuật thời Googlebot chỉ tải khoảng 100KB đầu trang. John Mueller khẳng định nhiều
 lần không có con số cứng. Mọi ngưỡng trên là mốc tham chiếu để tự soi, không phải luật.
 
-**Hiện trạng site tại 2026-10-07**, đo bằng link nội bộ unique chia cho số chữ thân bài:
+**Ví dụ số liệu (site gốc, 2026-10-07)**, đo bằng link nội bộ unique chia cho số chữ thân bài:
 
 | Pillar | Chữ | Link | /1.000 chữ | |
 |---|---|---|---|---|
@@ -1009,7 +1074,7 @@ page, web design tham chiếu sang CRM), không phải thành viên Cụm 2. Đ�
 phân cụm trong `content-plan.md`, nơi mỗi bài được gán cụm bằng quyết định biên tập. Link graph
 dùng để đo sức khoẻ link (inbound, outbound, mồ côi), không dùng để định nghĩa cụm.
 
-Số liệu đúng lấy từ `content-plan.md` ngày 07/10/2026:
+Số liệu đúng lấy từ `content-plan.md` ngày 07/10/2026 (ví dụ số liệu của site gốc):
 
 | Cụm | Cluster (KHÔNG tính pillar) | Pillar | Chữ pillar | Cần có | Chênh |
 |---|---|---|---|---|---|
@@ -1086,11 +1151,11 @@ Cách tự đo nhanh:
 ```python
 import re, json, urllib.request
 c = json.load(urllib.request.urlopen(
-    f"https://infina.ai/news/wp-json/wp/v2/posts/{POST_ID}?_fields=content"
+    f"{BASE}/wp-json/wp/v2/posts/{POST_ID}?_fields=content"
 ))["content"]["rendered"]
 t = re.sub("&[a-z#0-9]+;", " ", re.sub("<[^>]+>", " ", c))
 words = len(re.findall(r"[A-Za-z0-9,.%$-]+", t))
-links = len(set(re.findall(r'href="https://infina\.ai/news/([a-z0-9-]+)/"', c)))
+links = len(set(re.findall(r'href="' + BASE_RE + r'/([a-z0-9-]+)/"', c)))
 print(f"{words} chu, {links} link, {links/words*1000:.1f}/1000 chu")
 ```
 
@@ -1123,7 +1188,7 @@ quanh nó.
 vào từng bài, và nó chính là lý do Bước 6.5 chọn sibling thay vì dồn mọi bài news vào pillar.
 
 **Số đo hiện trạng, giữ lại làm quan sát chứ không phải đích:** ngày 07/10/2026 trên 113 bài của
-`infina.ai/news`, 41% link nội bộ nằm trong thân bài, 59% dồn vào Related Reading và Final Thoughts.
+blog gốc (Infina), 41% link nội bộ nằm trong thân bài, 59% dồn vào Related Reading và Final Thoughts.
 
 **TOC không thuộc nhóm này.** Mục lục thường là anchor nhảy trong cùng trang (`#heading`), phục vụ
 UX và featured snippet, không phải internal linking, trừ khi nó link thẳng sang các trang cluster.
@@ -1166,12 +1231,12 @@ Dù chọn bài nào, `update_post` ghi đè toàn bộ field `content` nên ph�
 import urllib.request, json
 did = DONOR_POST_ID          # bai cluster cung cum, hoac PILLAR_POST_ID neu phai lui
 cur = json.load(urllib.request.urlopen(
-    f"https://infina.ai/news/wp-json/wp/v2/posts/{did}?_fields=id,slug,content"
+    f"{BASE}/wp-json/wp/v2/posts/{did}?_fields=id,slug,content"
 ))["content"]["rendered"]
 
 # ANCHOR la nua cau cuoi cua doan muon chen vao, COPY NGUYEN VAN tu cur.
 ANCHOR = "...thay bang doan that trong bai donor..."
-ADD = (f' Goc tin moi nhat o <a href="https://infina.ai/news/{SLUG}/">{FOCUS_KW}</a>.')
+ADD = (f' Goc tin moi nhat o <a href="{BASE}/{SLUG}/">{FOCUS_KW}</a>.')
 assert cur.count(ANCHOR) == 1, "ANCHOR khong duy nhat, chon doan cu the hon"
 assert not long_anchors(ADD), "anchor chen vao donor dai hon 8 tu, rut gon"   # ham dinh nghia o Buoc 6
 call("update_post", {"post_id": did, "content": cur.replace(ANCHOR, ANCHOR + ADD)})
@@ -1198,7 +1263,7 @@ import re, json, urllib.request
 
 def content(pid):
     return json.load(urllib.request.urlopen(
-        f"https://infina.ai/news/wp-json/wp/v2/posts/{pid}?_fields=content"
+        f"{BASE}/wp-json/wp/v2/posts/{pid}?_fields=content"
     ))["content"]["rendered"]
 
 def linked(from_id, to_slug):
@@ -1214,16 +1279,16 @@ warnings = []
 c = content(new_post_id)
 t = re.sub("&[a-z#0-9]+;", " ", re.sub("<[^>]+>", " ", c))
 words = len(re.findall(r"[A-Za-z0-9,.%$-]+", t))
-pat = r'href="https://infina\.ai/news/[a-z0-9-]+/"'
-links = len(set(re.findall(r'href="https://infina\.ai/news/([a-z0-9-]+)/"', c)))
+pat = r'href="' + BASE_RE + r'/[a-z0-9-]+/"'
+links = len(set(re.findall(r'href="' + BASE_RE + r'/([a-z0-9-]+)/"', c)))
 per_k = links / words * 1000
 
-if c.count(f'href="https://infina.ai/news/{PILLAR_SLUG}/"') > 1:
+if c.count(f'href="{BASE}/{PILLAR_SLUG}/"') > 1:
     warnings.append("link len pillar lap lai, chi can 1 lan")
 
 # anchor tro pillar co trung voi bai khac khong (anchors_to() o Buoc 5)
 import html
-ma = re.search(r'<a[^>]+href="https://infina\.ai/news/%s/?"[^>]*>(.*?)</a>' % PILLAR_SLUG,
+ma = re.search(r'<a[^>]+href="' + BASE_RE + r'/%s/?"[^>]*>(.*?)</a>' % PILLAR_SLUG,
                c, re.S | re.I)
 if ma:
     mine = html.unescape(re.sub("<[^>]+>", "", ma.group(1))).strip().lower()
@@ -1233,7 +1298,7 @@ if ma:
 
 # anchor cua CA cac link ngang, khong chi pillar
 for sl in SIBLING_SLUGS:
-    mb = re.search(r'<a[^>]+href="https://infina\.ai/news/%s/?"[^>]*>(.*?)</a>' % sl,
+    mb = re.search(r'<a[^>]+href="' + BASE_RE + r'/%s/?"[^>]*>(.*?)</a>' % sl,
                    c, re.S | re.I)
     if not mb:
         continue
@@ -1283,7 +1348,7 @@ for w in warnings:
 Mỗi 10-15 bài publish, chạy lại script teardown trên chính site mình:
 
 ```bash
-python3 scripts/competitor_teardown.py infina.ai --path /news/
+python3 scripts/competitor_teardown.py <domain-cua-ban> --path <duong-dan-blog>/   # ví dụ Infina: infina.ai --path /news/
 ```
 
 Số trang `IN=0` phải đi ngang hoặc giảm. Nếu nó tăng theo số bài publish thì Bước 6.5 đang bị bỏ.
@@ -1308,9 +1373,9 @@ Số trang `IN=0` phải đi ngang hoặc giảm. Nếu nó tăng theo số bài
 
 ## Bước 7: Log kết quả vào Tracker Sheet
 
-Sau khi publish thành công, phải **append 1 dòng mới** vào chính Google Sheet tracker ở Bước 2b (`1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs`).
+Sau khi publish thành công, phải **append 1 dòng mới** vào chính Google Sheet tracker ở Bước 2b (`TRACKER_FILE_ID`).
 
-**QUAN TRỌNG — đưa dòng dưới dạng tab-separated, KHÔNG dùng bảng markdown `| ... |`:** nếu đưa format `| 16 | 07/08/2026 | ... |` cho người dùng copy-paste, Google Sheets sẽ dán nguyên chuỗi đó vào 1 ô duy nhất thay vì tự tách cột (Sheets chỉ tự tách cột khi dán dữ liệu có ký tự **tab** giữa các trường, không nhận diện dấu `|`). Luôn in dòng cần thêm bằng tab thật giữa 6 trường, ví dụ (mỗi khoảng trắng dưới đây là 1 tab, không phải dấu `|`):
+**QUAN TRỌNG — đưa dòng dưới dạng tab-separated, KHÔNG dùng bảng markdown `| ... |`:** nếu đưa format `| 16 | 07/08/2026 | ... |` cho người dùng copy-paste, Google Sheets sẽ dán nguyên chuỗi đó vào 1 ô duy nhất thay vì tự tách cột (Sheets chỉ tự tách cột khi dán dữ liệu có ký tự **tab** giữa các trường, không nhận diện dấu `|`). Luôn in dòng cần thêm bằng tab thật giữa 6 trường, ví dụ (mỗi khoảng trắng dưới đây là 1 tab, không phải dấu `|`; dòng ví dụ lấy từ site gốc, thay bằng bài của bạn):
 
 ```
 16	07/08/2026	Compliance-First AI: What Every Brokerage Should Demand	https://infina.ai/news/compliance-first-ai-brokerage/	tcpa compliance ai texting real estate	News
@@ -1331,11 +1396,13 @@ Thứ tự cột đúng bằng thứ tự header hiện có: `#, Date, Title, UR
 
 Không chạy mỗi ngày trong pipeline chính — chỉ dùng khi user hỏi về traffic/ranking/impressions/users của site hoặc các bài đã đăng.
 
-**Credential:** dùng chung 1 service account cho cả 2 API — key thật **không nằm trong repo này** (tránh commit secret vào git history). Key thật lưu ở account-level skill copy tại `credentials/gsc_service_account.json` (cùng thư mục skill, ngoài GitHub). Service account email: `search-console-api@tidy-set-492904-b1.iam.gserviceaccount.com`.
+**Credential:** dùng chung 1 service account cho cả 2 API. Key thật **không nằm trong repo** (tránh commit secret vào git history). Cách lưu key bền vững, không đụng git: xem phần "Lưu key" trong `skills/post-refresh/SKILL.md`. Điền:
 
-- **Search Console:** đã cấp quyền `Full` trên 2 property: `https://infina.ai/` và `https://infina.ai/news/`.
-- **Google Analytics (GA4):** đã được add vào GA4 với quyền đọc, property cần dùng là **"Infina AI" — `properties/505677884`** (thuộc account GA "RealStake", account ID `140795077`). Xác nhận truy cập được ngày 2026-08-24 — timeZone của property là `Asia/Saigon`, currencyCode `VND`.
-- **Lưu ý dựng lại từ đầu (container mới không còn `credentials/gsc_service_account.json`):** nếu file key không tồn tại ở đường dẫn trên, tìm bản gốc đã upload trong `/root/.claude/uploads/{session_id}/*infina_ai_search_console_api*.json` hoặc hỏi user upload lại. Nếu Admin API/Data API của GA trả lỗi `SERVICE_DISABLED`, đó là do 2 API `analyticsadmin.googleapis.com` và `analyticsdata.googleapis.com` chưa được bật trên GCP project `tidy-set-492904-b1` — báo user vào link `activationUrl` trong response lỗi để bấm Enable (không tự làm được qua API).
+- **Service account email:** `[ĐIỀN: ...@...iam.gserviceaccount.com]`. Ví dụ: `search-console-api@<project>.iam.gserviceaccount.com`.
+- **Search Console:** cấp quyền `Restricted` (đọc) hoặc `Full` cho email trên ở property của blog (`GSC_SITE_URL`) và, nếu cần, property gốc domain. Ví dụ Infina: cả `https://infina.ai/` và `https://infina.ai/news/`.
+- **Google Analytics (GA4):** add email trên vào GA4 với quyền đọc, dùng **property ID số** (`GA4_PROPERTY_ID`), không phải Measurement ID `G-...`. Ví dụ Infina: `properties/505677884`.
+- **Nếu Admin API/Data API của GA trả lỗi `SERVICE_DISABLED`:** bật 2 API `analyticsadmin.googleapis.com` và `analyticsdata.googleapis.com` trên GCP project của service account (link `activationUrl` có trong response lỗi).
+- **Dựng lại từ đầu trong container mới:** nếu file key không còn ở đường dẫn dự kiến, đọc lại từ nơi bạn lưu (Drive/secret store) hoặc hỏi người dùng upload lại, không tự bịa.
 
 Không có sẵn `google-auth`/`google-api-python-client` trong môi trường — tự build JWT bằng `pyjwt` + `cryptography` rồi đổi lấy access token qua `token_uri`. Nếu `cryptography`/`cffi` bị lỗi native binding (`ModuleNotFoundError: cffi` hoặc rust panic), chạy `pip3 install --user --force-reinstall cffi cryptography` trước. Access token GA và GSC dùng chung code JWT, chỉ khác `SCOPE`.
 
@@ -1368,10 +1435,10 @@ def query_search_analytics(site_url, start_date, end_date, dimensions=None, row_
     return requests.post(url, headers=headers, json=body, timeout=30).json()
 
 # Vi du: top pages theo impressions trong 28 ngay gan nhat
-# query_search_analytics("https://infina.ai/news/", "2026-07-22", "2026-08-19", dimensions=["page"], row_limit=30)
+# query_search_analytics(GSC_SITE_URL, "2026-07-22", "2026-08-19", dimensions=["page"], row_limit=30)
 
 # --- Google Analytics (GA4) ---
-GA_PROPERTY_ID = "505677884"  # "Infina AI" property
+GA_PROPERTY_ID = GA4_PROPERTY_ID   # điền ở mục Cấu hình site
 
 def query_ga4_report(metrics, dimensions=None, start_date="7daysAgo", end_date="today", property_id=GA_PROPERTY_ID):
     token = get_access_token("https://www.googleapis.com/auth/analytics.readonly")
@@ -1432,10 +1499,10 @@ def query_clarity(num_of_days=1, dimension1=None, dimension2=None, dimension3=No
 
 - Slug bám theo `FOCUS_KW` (cluster keyword của chính bài này), KHÔNG bám theo `PILLAR_KW`
 - Mỗi từ trong FOCUS_KW phải xuất hiện trong slug
-- Ví dụ: keyword `crm for real estate agents` → slug `crm-for-real-estate-agents` (phải có `for`)
+- Ví dụ: keyword `[từ khóa của bạn có giới từ, vd "crm for real estate agents"]` → slug `crm-for-real-estate-agents` (phải giữ `for`)
 - Singular ≠ plural: `agent` ≠ `agents`
 - Tách keyword ra từng từ, check từng từ có trong slug không trước khi publish
-- Trước khi chốt slug, so overlap thủ công với TOÀN BỘ slug hiện có trên site (không chỉ pillar) — nhiều slug trong niche này đều có đuôi `-real-estate-agents` nên dễ vượt ngưỡng overlap >60% nếu không cẩn thận chọn phần đầu slug đủ khác biệt
+- Trước khi chốt slug, so overlap thủ công với TOÀN BỘ slug hiện có trên site (không chỉ pillar) — nếu nhiều slug trong ngách đều có chung một đuôi (ví dụ Infina: `-real-estate-agents`) nên dễ vượt ngưỡng overlap >60% nếu không cẩn thận chọn phần đầu slug đủ khác biệt
 
 ---
 
@@ -1449,7 +1516,7 @@ Mỗi lần chạy tạo file: `article_cluster{N}_{slug}.py` lưu vào cùng fo
 
 | Input | Bắt buộc | Ghi chú |
 |-------|----------|---------|
-| Excel keyword file | Có | Đường dẫn tuyệt đối đến file xlsx |
-| Tracker Sheet (Google Sheets) | Có | `fileId: 1uVI1tPQxhTUk4qj8NWZSi-EReEwe2ZKIyIt_eQGeFOs` — cần quyền đọc qua Google Drive connector (`mcp__Google_Drive__read_file_content`). Đây là nguồn PILLAR_KW/dedup chính thức, đọc lại mỗi lần chạy vì nó thay đổi liên tục |
-| Category | Có | `"AI Chatbot"` hoặc `"CRM Software"` tuỳ chủ đề bài (xem Bước 4) |
+| File keyword | Có | Đường dẫn file keyword/pillar (xlsx/csv), mẫu ở `keywords/` |
+| Tracker Sheet (Google Sheets) | Có | `TRACKER_FILE_ID` — cần quyền đọc qua Google Drive connector (`mcp__Google_Drive__read_file_content`). Đây là nguồn PILLAR_KW/dedup chính thức, đọc lại mỗi lần chạy vì nó thay đổi liên tục |
+| Category | Có | Tên danh mục theo bảng Category, tuỳ chủ đề bài (xem Bước 4) |
 

@@ -11,7 +11,7 @@ Tổng hợp từ research (Snappa, ThumbnailCreator, Visme, vidIQ, DreamHost �
 - [ ] **Chữ trong ảnh ít hơn ~12 ký tự** cho phần headline/số liệu chính (không tính label phụ nhỏ)
 - [ ] **Tương phản cao** giữa chữ và nền (tối thiểu tỷ lệ 4.5:1)
 - [ ] **Không nhồi nhét** — còn khoảng trắng (white space) cho mắt nghỉ, không fill kín canvas
-- [ ] **Tỉ lệ khung hình nhất quán** giữa các bài (site này đang dùng 16:9) để layout trang chủ không bị lệch
+- [ ] **Tỉ lệ khung hình nhất quán** giữa các bài (mặc định 16:9, đổi theo theme của bạn) để layout trang chủ không bị lệch
 - [ ] Nếu là **ảnh người**: mặt rõ, không bị che, ánh sáng tốt, tương phản cao với nền — công thức CTR đã kiểm chứng
 - [ ] Nếu là **infographic/data**: chỉ lấy 1 "snippet" (1 con số/1 so sánh nổi bật nhất), KHÔNG chụp nguyên bảng so sánh chi tiết nhiều platform/nhiều tiêu chí — loại đó để dành cho ảnh trong thân bài, không dùng làm thumbnail
 - [ ] Font **đậm, rõ, không dùng font trang trí mảnh** — dễ vỡ nét khi thu nhỏ
@@ -28,7 +28,7 @@ Tổng hợp từ research (Snappa, ThumbnailCreator, Visme, vidIQ, DreamHost �
 | Ảnh automation khác | Bảng so sánh 5 platform × 6 cột, sao đánh giá | ❌ Fail nặng | Chữ quá nhỏ, quá nhiều hàng/cột, không đọc được khi thu nhỏ |
 | Ảnh automation khác | Checklist 6 mục, mỗi mục 1-2 câu văn đầy đủ | ❌ Fail nặng | Là văn bản dài, không phải hình ảnh — hoàn toàn không hoạt động như thumbnail |
 
-**Kết luận rút ra:** ảnh dạng "1 con số lớn + so sánh 2 phe" (STATS/COMPARISON style hiện dùng cho bài của mình) đã đúng hướng. Vấn đề chỉ nằm ở nhóm ảnh bảng-dữ-liệu-chi-tiết/checklist-văn-bản của 1 automation khác đang publish song song — nhóm đó cần xử lý riêng.
+**Kết luận rút ra:** ảnh dạng "1 con số lớn + so sánh 2 phe" (STATS/COMPARISON style hiện dùng ở site gốc) đã đúng hướng. Vấn đề chỉ nằm ở nhóm ảnh bảng-dữ-liệu-chi-tiết/checklist-văn-bản của 1 automation khác đang publish song song — nhóm đó cần xử lý riêng.
 
 ---
 
@@ -49,25 +49,28 @@ Research thêm về việc chọn STYLE (không chỉ độ dễ đọc) cho thu
 ### Brand consistency — chọn cố định 2-3 màu
 
 - Chọn **2-3 màu thương hiệu cố định** và dùng xuyên suốt mọi thumbnail (không đổi bảng màu tuỳ hứng mỗi bài) — đây là yếu tố tạo "nhận diện tức thời" khi lướt feed, được ghi nhận giúp CTR tăng tới ~38% ở kênh nhất quán màu sắc.
-- Có thể **mã hoá màu theo category** để người đọc phân biệt nhanh loại nội dung ngay từ thumbnail:
-  - AI Chatbot → xanh dương/indigo
-  - CRM Software → xanh lá/teal
-  - Real Estate Websites/IDX → navy/vàng gold
-  (đây là gợi ý dựa trên palette đã dùng tự nhiên trong các ảnh vừa tạo — có thể điều chỉnh theo brand guideline thật của Infina AI nếu có)
+- Có thể **mã hoá màu theo category** để người đọc phân biệt nhanh loại nội dung ngay từ thumbnail. Điền bảng palette của bạn:
+
+| Category | Màu chủ đạo |
+|---|---|
+| `[ĐIỀN: category 1]` | `[ĐIỀN: màu + mã hex]` |
+| `[ĐIỀN: category 2]` | `[ĐIỀN]` |
+
+  Ví dụ (Infina AI, gợi ý rút từ palette đã dùng tự nhiên, thay bằng brand guideline thật nếu có): AI Chatbot → xanh dương/indigo; CRM Software → xanh lá/teal; Real Estate Websites/IDX → navy/vàng gold.
 
 ### Template hoá thay vì tạo prompt tuỳ hứng mỗi bài
 
-Best practice khuyên dùng **3-5 template cố định layout**, chỉ thay nội dung/con số bên trong, thay vì nghĩ prompt mới hoàn toàn mỗi lần — giúp nhất quán mà vẫn đủ linh hoạt theo nội dung. Đề xuất áp dụng cho site này:
+Best practice khuyên dùng **3-5 template cố định layout**, chỉ thay nội dung/con số bên trong, thay vì nghĩ prompt mới hoàn toàn mỗi lần — giúp nhất quán mà vẫn đủ linh hoạt theo nội dung. Đề xuất áp dụng cho site của bạn (ví dụ ở cột cuối lấy từ site gốc, thay bằng chủ đề của bạn):
 
 | Template | Bố cục cố định | Dùng cho loại bài |
 |---|---|---|
-| **A — Single Stat** | 1 con số lớn + 1 icon nhỏ + label ngắn | Bài news có 1 con số/thống kê nổi bật (kiểu bài của mình) |
+| **A — Single Stat** | 1 con số lớn + 1 icon nhỏ + label ngắn | Bài news có 1 con số/thống kê nổi bật (kiểu bài tin tức có số liệu) |
 | **B — Two-Way Compare** | 2 icon đối xứng trái-phải + 1 mũi tên/dấu vs ở giữa | Bài "X vs Y", "Standalone vs Embedded", "before/after" |
 | **C — Badge/Top Pick** | 1 icon trung tâm (cúp/sao) + headline ngắn phía trên | Bài listicle "Best X", "Top Picks" |
-| **D — Flow/Pipeline** | 2-3 icon nối bằng mũi tên theo 1 hướng | Bài giải thích quy trình/tích hợp (vd IDX feed, CRM integration) |
+| **D — Flow/Pipeline** | 2-3 icon nối bằng mũi tên theo 1 hướng | Bài giải thích quy trình/tích hợp (vd tích hợp hệ thống, quy trình nhiều bước) |
 | **E — Checklist ngắn** | 3 icon dấu check xếp NGANG (không xếp dọc — dễ bị crop khi ép 16:9) + headline | Bài buyer's guide/checklist |
 
-Đây gần đúng những gì đã áp dụng thực tế cho 8 bài vừa sửa hôm nay — nên xem như đã hình thành sẵn 5 template ở trên, từ giờ có thể tái sử dụng thay vì generate ngẫu nhiên mỗi lần.
+5 template trên là bộ đã áp dụng thực tế ở site gốc. Dùng lại thay vì generate ngẫu nhiên mỗi lần, và đổi tên/bố cục nếu ngách của bạn cần khác.
 
 ### Prompt suffix chuẩn (copy-paste khi generate ảnh thumbnail mới)
 
@@ -88,7 +91,7 @@ no multi-column grid, no small print, no people, no brand names, professional de
 ### Nhất quán vs đa dạng — điểm cân bằng
 
 Research chỉ ra không nên chọn cực đoan 1 trong 2:
-- **Không nên** dùng đúng 1 ảnh y hệt lặp lại (nhàm, không phân biệt được bài nào với bài nào — đúng vấn đề ban đầu của site này).
+- **Không nên** dùng đúng 1 ảnh y hệt lặp lại (nhàm, không phân biệt được bài nào với bài nào — đúng vấn đề ban đầu của site gốc).
 - **Không nên** mỗi bài 1 style hoàn toàn khác biệt (mất nhận diện thương hiệu).
 - **Nên**: giữ cố định "hệ thống nền" — palette màu, tỉ lệ khung, mức độ chi tiết, bộ template ở trên — nhưng để nội dung cụ thể (icon nào, con số nào) thay đổi theo từng bài.
 

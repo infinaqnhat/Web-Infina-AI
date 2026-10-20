@@ -1,5 +1,7 @@
 # Guideline: Update & Optimize Existing SEO Article (Content Refresh)
 
+> Tài liệu **dùng chung cho mọi site**, không cần điền gì. Với việc refresh dựa trên dữ liệu GSC/GA4/Clarity thật, skill `skills/post-refresh/` là quy trình đầy đủ hơn; file này là checklist nhanh theo từng bước cho 1 bài.
+
 Quy trình tham khảo khi cần audit và refresh lại 1 bài đã publish (khác với viết bài mới ở `SKILL.md`). Dựa trên best practice 2026 từ Ahrefs, Animalz, SEOptimer, Semrush, và các nguồn liệt kê ở cuối file.
 
 ---

@@ -7,7 +7,7 @@ chỉ tập trung blog + Search Console monitor + đăng bài qua WordPress.
 
 ## Phiên bản
 
-**v1.2, 2026-10-20.** Lần đầu tách ra: v1.0 (2026-09-15). Lịch sử thay đổi nằm cuối file này, mục "Lịch sử phiên bản".
+**v1.3, 2026-10-20.** Lần đầu tách ra: v1.0 (2026-09-15). Lịch sử thay đổi nằm cuối file này, mục "Lịch sử phiên bản".
 Nếu bạn nhận toolkit này từ một repo khác, so số phiên bản với bản bạn đang có để biết cần cập nhật gì.
 
 ## Đọc file này trước khi làm bất cứ điều gì
@@ -43,9 +43,13 @@ external-seo-toolkit/
 │   └── gen_article_images.py              # Gemini hero + STATS cho bài (key đọc từ file gkey ngoài repo)
 └── skills/
     ├── news-to-cluster-article/
-    │   ├── SKILL.md                       # Rà tin 10 mảng -> chọn tin -> viết cluster article, đăng, link ngược
-    │   ├── CONTENT_REFRESH_GUIDELINE.md, SEO_UPDATE_CHANGELOG.md, THUMBNAIL_BEST_PRACTICES.md
-    │   └── keywords/                      # Excel pillar + CSV volume keyword của Infina (dữ liệu riêng, thay bằng của site bạn)
+    │   ├── SKILL.md                       # TEMPLATE: mục "Cấu hình site" cần điền, mỗi chỗ có ví dụ Infina
+    │   ├── content-plan-template.md       # Mẫu content-plan.md (bảng cụm, vai trò, trạng thái, cannibalization)
+    │   ├── tracker-template.tsv + .README.md  # Mẫu Google Sheet tracker 6 cột
+    │   ├── CONTENT_REFRESH_GUIDELINE.md   # Checklist refresh 1 bài (dùng chung, không cần điền)
+    │   ├── SEO_UPDATE_CHANGELOG.md        # Log sửa bài cũ (mẫu, 3 dòng ví dụ)
+    │   ├── THUMBNAIL_BEST_PRACTICES.md    # Quy tắc ảnh thumbnail, bảng palette cần điền
+    │   └── keywords/                      # README + 2 CSV mẫu (pillar, volume); dữ liệu Infina đã bỏ
     ├── mockup-images/
     │   ├── SKILL.md                       # Ảnh minh họa thực tế bằng mockup HTML, mobile-first
     │   ├── references/                    # scene-catalog, mobile-text-rules, spec-example.json
@@ -155,14 +159,20 @@ hàng, file guideline on-page riêng nếu có, tên file content plan/log keywo
 
 ### 7. (Tùy chọn) Content pillar tin tức tự động: skill `news-to-cluster-article`
 
-Skill này (rà tin theo 10 mảng, đối chiếu keyword và tracker, chọn tin, viết cluster article đạt Rank
-Math >= 80, đăng, thêm link ngược) **đặc thù cho Infina AI**: tên sản phẩm, money page `https://infina.ai/`,
-endpoint WordPress `infina.ai/news`, 10 mảng tin, Google Sheet tracker (fileId trong skill), thư mục Drive chứa
-key, và thư mục `keywords/` chứa dữ liệu keyword riêng. Dùng nguyên cho Infina. Cho site khác phải thay:
-domain và endpoint, tên sản phẩm, danh sách mảng và nguồn tin, fileId sheet, `keywords/`, và file
-`content-plan.md` ở gốc repo (skill đọc và ghi file này, toolkit không kèm bản của Infina; tạo mới theo
-mẫu `references/used-keywords-template.md` rồi thêm bảng cụm). Phần anchor/gate link và Related Reading của
-skill này là nguồn của `references/internal-linking-guide.md`, nên hai chỗ phải giữ khớp nhau.
+Skill này (rà tin theo các mảng, đối chiếu keyword và tracker, chọn tin, viết cluster article đạt Rank Math >= 80,
+đăng, thêm link ngược) là **template cần điền**. Làm theo thứ tự:
+
+1. Mở `skills/news-to-cluster-article/SKILL.md`, điền mục **"Cấu hình site"** (khối Python hằng số và bảng quyết định).
+   Mỗi dòng có "Ví dụ (Infina AI)" ngay bên cạnh.
+2. Điền bảng **Category** và bảng **mảng tin** (Bước 1) cho ngách của bạn.
+3. Tạo **tracker sheet** theo `tracker-template.tsv` và điền `TRACKER_FILE_ID`.
+4. Tạo **`content-plan.md`** ở gốc repo từ `content-plan-template.md`.
+5. Tạo 2 file trong `keywords/` theo `keywords/README.md` (không có dữ liệu thì chạy `pillar-cluster-writer` Bước 2 để lập volume trước).
+6. Thay bảng palette trong `THUMBNAIL_BEST_PRACTICES.md` bằng màu thương hiệu của bạn.
+
+Các bảng số liệu mang nhãn "Ví dụ số liệu" trong SKILL.md là kết quả đo trên site gốc; giữ làm minh họa rồi thay bằng số đo của bạn
+sau khoảng 20 bài. Phần anchor/gate link và Related Reading của skill này là nguồn của `references/internal-linking-guide.md`,
+nên hai chỗ phải giữ khớp nhau.
 
 ## Biến môi trường cần thiết (tổng hợp)
 
@@ -209,6 +219,7 @@ thể của site gốc đã được lược bỏ khi tách ra đây, chỉ gi�
 
 | Phiên bản | Ngày | Thay đổi |
 |---|---|---|
+| v1.3 | 2026-10-20 | `news-to-cluster-article` chuyển thành template: mục "Cấu hình site" với hằng số `BASE`, `SITE_ORIGIN`, `WP_ENDPOINT`, `TRACKER_FILE_ID`... thay mọi URL/ID cứng trong code; bảng Category, mảng tin, tracker có chỗ điền kèm ví dụ Infina; thêm `content-plan-template.md`, `tracker-template.tsv`, `keywords/` mẫu (bỏ dữ liệu Infina 5MB); `SEO_UPDATE_CHANGELOG.md` và `THUMBNAIL_BEST_PRACTICES.md` thành mẫu. |
 | v1.2 | 2026-10-20 | Thêm skill `news-to-cluster-article` (nguyên bản Infina, kèm `keywords/`), `scripts/gen_article_images.py` và `post-refresh/scripts/render_snapshot.py` mà skill này cần; đổi đường dẫn về cấu trúc toolkit. Xem mục 7 của checklist về những gì phải thay cho site khác. |
 | v1.1 | 2026-10-20 | Đồng bộ với site gốc sau 5 tuần dùng thật. Thêm: skill `mockup-images`; guide `competitor-pillar-teardown.md` + `scripts/competitor_teardown.py` + teardown mẫu; `cluster-roles.md`. `internal-linking-guide.md`: ngoại lệ pillar kiêm hub (Related Reading) với 3 điều kiện, gate anchor rút gọn `anchors_to()`/`long_anchors()` (Phần 6), lỗi số 10 (anchor trùng khi viết cả đợt), bảng anchor theo đợt trước khi viết. `pillar-cluster-writer`: gán họ vai trò, bảng anchor, gate anchor, Bước 5.2b mockup, inbound pass sau mỗi đợt publish. `seo-blog-writer`: dòng về mockup. `post-refresh`: cách lưu key không đụng git, 2 case mẫu (cannibalization nội dung, AI Overview zero-click). Snippet WP MCP: danh mục truyền bằng tên giờ được đổi sang ID (trước đó bài ra `categories=[]`). |
 | v1.0 | 2026-09-15 | Bản đầu, tách từ site thương mại điện tử ngách khác. |
