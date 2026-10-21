@@ -104,7 +104,7 @@ họ trong `references/cluster-roles.md`. Volume là bucket.
 | `niche` | Real Estate Business Name Ideas | `realtor name ideas` 500 M (+ `realty company name ideas`, `llc name ideas`) |
 | `how-to` | Real Estate Referral Marketing | `real estate agent referral` 5k L, **đã kiểm SERP 12/10: lẫn referral fee và cách nhận giới thiệu, viết cả hai** |
 
-### Wave 3: 8 bài ĐÃ VIẾT + LÊN LỊCH 14/10/2026 (user: "tự viết tiếp các bài còn lại")
+### Wave 3: 8 bài ĐÃ VIẾT 14/10/2026, ĐÃ ĐĂNG 19–21/10 (inbound pass 21/10) (user: "tự viết tiếp các bài còn lại")
 
 Lịch thực tế: 19/10 10:00 farming #2165, 14:00 open house #2171, 18:00 video #2177; 20/10 10:00 luxury #2183, 14:00 email signature #2189, 18:00 prospecting letters #2195; 21/10 10:00 door knocking #2201, 14:00 cold calling #2207. Lưu ý: focus keyword bài 3, 5, 6, 7 đổi sang cụm nằm trong title (`real estate video marketing`, `real estate prospecting letters`, `door knocking for real estate agents`), cụm trong plan gốc gom làm phụ. Việc còn lại: thêm link ngược từ pillar #1825, hub #1832 và các bài liên quan sau khi publish.
 
