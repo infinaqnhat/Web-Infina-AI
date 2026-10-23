@@ -332,3 +332,11 @@ Hôm nay 23/10 là thứ Sáu; 26/10 là thứ Hai.
 **Việc của bạn:** (1) Request Indexing trong GSC cho 13 URL sau khi live (ưu tiên bài 1, 2, 10); (2) dán rows tracker cho Cụm 10 (tôi chuẩn bị `files/tracker-rows-cum10.tsv` sau khi viết xong); (3) báo nếu muốn category riêng.
 
 **Rủi ro lịch:** nếu SERP bài 11 vẫn lệch nhà đầu tư thì dời hoặc đổi focus, không đẩy lịch cả cụm. Bài 9 chờ bài 3 live.
+
+## 10. Nhật ký thực hiện
+
+| Ngày | Việc |
+|---|---|
+| 23/10 | Viết và lên lịch **pillar #2260** (`real-estate-lead-generation`, 2.167 từ, scheduled 26/10 10:00) và **sub-hub #2262** (`listing-leads`, 1.722 từ, scheduled 26/10 14:00). 8 ảnh (2 hero + 6 mockup) dựng bằng `skills/mockup-images/scripts/scenes/s_m_leadgen.py` (hero dùng ảnh nhà có sẵn vì môi trường chưa có `GEMINI_API_KEY`), upload media #2252-#2259. Nguồn đã mở và đọc: NAR Member Profile 2026 (28% repeat, 22% referral), NAR 2025 member trends, Virginia REALTORS tóm tắt NAR 2025 (66% seller theo referral, 5% FSBO), FTC DNC Q&A, USPS EDDM ($0,26), 12 CFR 1024.14, 24 CFR 100.75. |
+| 23/10 | Ghi chú: trang Zillow Preferred/Flex trả 403 khi đọc tự động, và kết quả tìm kiếm cho thấy **Flex đã được thay bằng Zillow Preferred** (mời, không phí trước, phí thành công khi closing, bắt buộc có Follow Up Boss). Bài 10 (Zillow) phải dựa vào trang chính thức, cần kiểm lại bằng trình duyệt hoặc nhờ bạn dán nội dung trang. |
+| Còn lại | Pillar và hub chỉ link tới bài đã live; link xuống 11 cluster thêm ở inbound pass 29/10 và 1/11. |
