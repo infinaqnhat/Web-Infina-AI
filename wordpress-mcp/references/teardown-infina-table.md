@@ -270,7 +270,7 @@ cụm có ít nhất 2 link ngang cùng cụm và anchor tới 3 đích chính (
 | 1 | Dán rows tracker vào sheet "Published article": wave 3 (#157–164), file `files/tracker-rows-cum9.tsv` (wave 1 và 2 đã dán) | Bất cứ lúc nào | **Bạn** |
 | 2 | Sửa title bài #1415 trong tracker | Bất cứ lúc nào | **Bạn** |
 | 3 | Request Indexing trong GSC cho 28 URL mới (ưu tiên pillar, hub, bài 5k volume: advertising, SEO, postcards, business card, logo, flyer) | Sau khi live | **Bạn** |
-| 4 | Bật lại news routine hằng ngày (đang pause) | Khi bạn yêu cầu | Bạn |
+| 4 | ~~Bật lại news routine hằng ngày~~ **Đã bật lại 23/10**, chạy 18:06 UTC mỗi ngày, prompt đã cập nhật (Bước 6.5, ≥2 link ngang, inbound donor, tránh keyword Cụm 9 và 10) | Xong | Claude |
 | 5 | Link money page `infina.ai/`: Cụm 9 hiện có 9/28 bài link, 19 bài chưa. Đề xuất chỉ thêm ở khoảng 6–8 bài hợp ngữ cảnh (software, referral, listing presentation, GBP, social) | Chờ bạn duyệt | Bạn quyết, Claude làm |
 | 6 | Đo sau 4–8 tuần bằng `post-refresh` (GSC), tìm striking-distance keyword | Cuối 11/2026 | Claude |
 
