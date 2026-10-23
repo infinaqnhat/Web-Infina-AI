@@ -1,6 +1,6 @@
 # Plan đề xuất: Cụm 11, Lead Management (quản lý lead sau khi lead tới)
 
-**Trạng thái: ĐỀ XUẤT, CHƯA DUYỆT (23/10/2026).** Chưa đặt chỗ keyword trong `used-keywords.md`, chưa ghi vào `content-plan.md`, chưa viết bài nào.
+**Trạng thái: KHÔNG LÀM CỤM 11 (quyết định 23/10/2026).** Theo yêu cầu, chủ đề lead management được **gộp vào pillar Cụm 7 (#1223) và làm mới #277, #405**; không tạo pillar hay cluster mới. Xem mục 9 cuối file và dòng đầu của `skills/post-refresh/references/refresh-log.md`. Phần còn lại của file này giữ làm tài liệu tham khảo (dữ liệu keyword, SERP, ranh giới).
 
 Theo `skills/pillar-cluster-writer/SKILL.md` Bước 1-4. Nguồn: file keyword tổng (23.040 dòng, đã gộp export US `Keyword_Stats_2026-10-23 at 16_13_09`), 6 truy vấn SERP thật ngày 23/10, đối chiếu 178 bài live (và 13 bài Cụm 10 đã lên lịch) cùng `content-plan.md`.
 
@@ -109,3 +109,17 @@ Viết xong trước ngày đăng, kiểm SERP riêng cho từng bài (bài 4 v�
 2. Nếu làm: **6 bài** (không funnel) hay 7 bài?
 3. Bài 6 (software hay CRM) có làm không, hay chờ SERP kiểm?
 4. Ngày bắt đầu (đề xuất 29/10).
+
+## 9. Quyết định và việc đã làm (23/10/2026)
+
+Chọn phương án làm mới thay vì viết cụm mới, vì volume nhỏ (500/50) và chủ đề đã bị Cụm 2 và Cụm 7 che một phần. Đã làm:
+
+| Bài | Việc | Ghi chú |
+|---|---|---|
+| #1223 `real-estate-lead-follow-up-automation-guide` (pillar Cụm 7) | Thêm H2 "Real Estate Lead Management: Where Follow-Up Fits" với 3 H3 (chia lead cho team, spreadsheet hay CRM, cách tính lead conversion rate), 2 ảnh mockup, link tới #2260, #277, #405, #207, #1415, #1278 | Từ 2.483 lên khoảng 3.000 chữ. Keyword phụ gom được: `lead management system for real estate`, `real estate lead management`, `lead routing`, `lead conversion rate` |
+| #277 `crm-pipeline-management` | Thêm H2 "Lead Management vs Pipeline: What to Track for Every Lead" với bảng 6 trường | Link #1223 và #405 |
+| #405 `crm-management-real-estate-agents-beginners-guide` | Thêm H2 "Is CRM Management the Same as Lead Management?" và "Spreadsheet or CRM: Have You Outgrown a Sheet?" | Link #1223 và #277 |
+
+**Chưa làm và vì sao:** không nêu benchmark tỷ lệ chuyển đổi (0,4 đến 1,2%) vì FUB không dẫn báo cáo NAR gốc, trang nguồn Inman trả 403; chỉ dạy cách tính. Không có bài riêng cho texting, routing, tracking. Nếu sau này muốn tách, bài texting (`real estate texting` 500) là ứng viên tốt nhất vì gắn TCPA #237.
+
+**Việc tiếp theo nên làm khi có dữ liệu:** chờ 4 đến 8 tuần rồi xem GSC cho #1223, #277, #405 (query `lead management`, `lead routing`, `lead conversion rate`) để quyết định có tách bài hay không.
