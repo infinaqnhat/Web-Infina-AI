@@ -1,6 +1,6 @@
 # Plan đề xuất: Cụm 10, Lead Generation (nguồn lead cho agent)
 
-**Trạng thái: ĐỀ XUẤT, CHƯA DUYỆT (23/10/2026).** Chưa đặt chỗ keyword trong `used-keywords.md`, chưa ghi vào `content-plan.md`, chưa viết bài nào.
+**Trạng thái: ĐÃ DUYỆT cả 13 bài (23/10/2026), bắt đầu đăng từ 26/10/2026.** Keyword đã đặt chỗ trong `used-keywords.md`, đã ghi vào `content-plan.md` (mục Cụm 10). Chưa viết bài nào. Kế hoạch từng bài và lịch ở mục 8 và 9 cuối file.
 
 Theo `skills/pillar-cluster-writer/SKILL.md` Bước 1-4. Nguồn: file keyword tổng (22.381 dòng, đã gộp export **US** 2026-10-23), teardown `followupboss.com` (hub lead gen) và gap analysis `gap-analysis-vs-followupboss-2026-10-23.md`, 11 truy vấn SERP thật ngày 23/10, đối chiếu 178 bài live (166 bài thật + 12 stub) và `content-plan.md`.
 
@@ -180,9 +180,155 @@ Hai hub tách vì `real estate lead generation` (cả buyer lẫn seller, mọi 
 
 Trước khi viết mỗi bài vẫn chạy lại SERP (Bước 3) và kiểm nguồn chính thức cho mọi đoạn luật hoặc số liệu.
 
-## 7. Cần bạn quyết định
+## 7. Quyết định đã chốt (23/10/2026)
 
-1. **Có làm cả 13 bài hay cắt?** (đề xuất cắt FSBO và motivated seller trước nếu muốn gọn)
-2. **Một pillar + một sub-hub** như trên, hay chỉ pillar `real estate lead generation` rồi gom `listing leads` vào đó?
-3. **Zillow (bài 8):** làm hay bỏ? Thẩm quyền Zillow cao và số liệu chi phí rối, nhưng `zillow leads` là keyword 5k duy nhất trong nhóm trả tiền.
-4. Ngày bắt đầu (đề xuất 26/10).
+1. Làm cả **13 bài** (không cắt FSBO và motivated seller).
+2. Giữ **1 pillar + 1 sub-hub** `listing leads`.
+3. **Có làm bài Zillow** (bài 10). Bắt buộc dựa vào trang chính thức của Zillow cho mọi con số chi phí.
+4. Bắt đầu đăng **26/10/2026**.
+
+Phần dưới đây là kế hoạch thực hiện, đánh số **1 đến 13 theo thứ tự đăng** (pillar = 1, sub-hub = 2, wave 1 = 3 đến 8, wave 2 = 9 đến 13). **Mục 4 và mục 6 dùng số cũ theo từng wave** (wave 1 là 1 đến 6, wave 2 là 7 đến 11); từ mục 8 trở đi chỉ dùng số mới. Bảng đổi số:
+
+| Số cũ (mục 4, 6) | Số mới (mục 8, 9) |
+|---|---|
+| Pillar, sub-hub | 1, 2 |
+| Wave 1: 1 expired, 2 circle, 3 SOI, 4 buyer, 5 free, 6 companies | 3, 4, 5, 6, 7, 8 |
+| Wave 2: 7 expired scripts, 8 Zillow, 9 motivated, 10 FSBO, 11 sign-in | 9, 10, 11, 12, 13 |
+
+## 8. Kế hoạch từng bài
+
+**Chuẩn chung cho cả 13 bài** (theo cách đã làm ở Cụm 9, `seo-blog-writer` + `pillar-cluster-writer`):
+- Category **Real Estate Marketing (392)**, cùng category với Cụm 9, vì cụm này về nguồn lead chứ không phải CRM (85). Nếu bạn muốn category riêng "Lead Generation" thì báo, tôi tạo trước khi đăng.
+- H1 chứa focus keyword đầu câu; 6 đến 8 H2 rải biến thể; đoạn dưới 120 từ; density 0,5 đến 0,8%; ít nhất 1 external link dofollow tới **nguồn chính đã mở và đọc** (FTC, FCC, CFPB, NAR, Zillow, USPS, Cornell LII). Không dùng con số từ blog vendor trừ khi lần ra gốc.
+- 4 ảnh mỗi bài (1 ảnh đầu bài, 3 mockup/infographic trong thân bài), cùng quy trình mockup HTML mobile-first của Cụm 9 (`skills/mockup-images`). Ảnh mockup dùng dữ liệu **bịa có ghi chú "Sample"**.
+- Anchor ≤ 8 từ, không lặp một anchor cho cùng đích, 1 link lên pillar nhà đúng 1 lần, ≥ 2 link ngang trong cụm, ≥ 1 link vào từ bài khác. Mỗi bài kết bằng đoạn nối sang Cụm 7 (chăm lead) và, nếu có tên trong cột "Money page", một câu giới thiệu Infina AI link `https://infina.ai/`.
+- Bài viết **theo thứ tự đăng** để mỗi bài link ngược được sang bài đã live. Link tới bài cùng wave đăng trong vòng 1 ngày thì đặt luôn; link tới wave sau chỉ thêm ở inbound pass.
+- Mọi đoạn luật ghi "không phải tư vấn pháp lý" và không nêu luật từng bang cụ thể.
+
+| # | Slug | H1 dự kiến | Độ dài | Money page |
+|---|---|---|---|---|
+| 1 | `real-estate-lead-generation` | Real Estate Lead Generation: Where Agents Get Leads, What Each Source Costs | 2.400 từ | Có |
+| 2 | `listing-leads` | Listing Leads: How to Find Seller Leads and Win More Listings | 2.000 từ | Không |
+| 3 | `expired-listings` | Expired Listings: How to Find Them, Which Ones You May Call and What to Say First | 1.800 từ | Không |
+| 4 | `circle-prospecting` | Circle Prospecting: Radius, Triggers and a Weekly Routine | 1.600 từ | Không |
+| 5 | `sphere-of-influence-real-estate` | Sphere of Influence in Real Estate: How to Build and Work Your SOI | 1.700 từ | Có |
+| 6 | `buyer-leads-for-real-estate-agents` | Buyer Leads for Real Estate Agents: Where They Come From and How to Qualify Them | 1.700 từ | Có |
+| 7 | `free-real-estate-leads` | Free Real Estate Leads: A Zero-Budget Weekly Plan for New Agents | 1.600 từ | Có |
+| 8 | `real-estate-lead-generation-companies` | Real Estate Lead Generation Companies: What You Pay, What You Sign and What Converts | 1.800 từ | Có |
+| 9 | `expired-listing-scripts` | Expired Listing Scripts: What to Say, Objections and Follow-Up | 1.500 từ | Không |
+| 10 | `zillow-leads-for-real-estate-agents` | Zillow Leads for Real Estate Agents: Premier Agent, Flex and What They Cost | 1.700 từ | Có |
+| 11 | `motivated-seller-leads` | Motivated Seller and Probate Leads: How Agents Find Life-Event Sellers | 1.500 từ | Không |
+| 12 | `fsbo-leads` | FSBO Leads: How Agents Find and Convert For-Sale-By-Owner Sellers | 1.400 từ | Không |
+| 13 | `real-estate-open-house-sign-in-sheet` | Open House Sign-In Sheet: A Free Template and Consent Wording | 1.300 từ + file template | Có |
+
+Slug đã đối chiếu 178 bài live, không trùng. Bài nào đổi title ở lúc viết thì giữ slug.
+
+### Bài 1. Pillar: `real-estate-lead-generation`
+- **Góc:** bảng so sánh nguồn lead theo chi phí, thời gian ra lead, công sức và hợp với ai; không chạy theo "24 chiến lược".
+- **H2:** What Counts as Real Estate Lead Generation (định nghĩa buyer/seller/referral, 1 đoạn) · Where Agents Actually Get Leads (số liệu NAR về nguồn agent, **mở bản gốc để lấy**) · Lead Sources Compared (bảng ~10 nguồn: referral, SOI, farming, open house, expired, FSBO, online/SEO, quảng cáo, Zillow/lead vendor, free) · Choose by Situation (agent mới, đã có database, có ngân sách; link sub-hub) · What a Lead Costs and How to Track It (link #1415, theo dõi theo nguồn) · Compliance Before You Contact Anyone (DNC, TCPA, fair housing, RESPA một đoạn mỗi ý) · After the Lead Arrives (link pillar Cụm 7 #1223, #223) · Common Mistakes · Final Thoughts.
+- **Nguồn chính phải mở:** NAR Profile of Home Buyers and Sellers 2025 (hoặc bản tóm tắt Virginia REALTORS đã dùng ở #1977), FTC Do Not Call Q&A và TSR guide (đã dùng ở #2207), 24 CFR 100.75, 12 CFR 1024.14.
+- **Link ra lúc đăng (26/10):** chỉ bài đã live: #1825, #1415, #1223, #223, #2165, #2171, #2195, #2201, #2207, #1961, #1229, #1225, #942. Thêm 11 bài Cụm 10 ở inbound pass.
+- **Bảng "ai nên đọc gì":** pillar kết thúc bằng mục "Related Reading" (ngoại lệ pillar) khi đủ bài, theo quy tắc 3 điều kiện.
+
+### Bài 2. Sub-hub: `listing-leads`
+- **Góc:** chọn nguồn **theo tình huống** (agent mới, đã có database, có ngân sách) cho riêng seller leads.
+- **H2:** What Are Listing Leads · Listing Leads From People You Know (SOI, past client, referral: link #1961) · Listing Leads From a Neighborhood (farming, circle prospecting, door knocking, open house: link #2165, #2201, #2171) · Listing Leads From Sellers Who Need an Agent Now (expired, FSBO, probate/motivated) · Paid and Online Listing Leads (home valuation, seller landing page: link #942, #936, #1308) · Pick Your Mix by Situation (bảng) · Turning a Lead Into a Listing Appointment (link #1955 listing presentation) · Mistakes · Final Thoughts.
+- **Nguồn chính:** như bài 1 cộng NAR Code of Ethics (về hợp đồng độc quyền, đã dùng ở #2207).
+- **Link lên pillar:** 1 lần. Link ra đủ cluster listing ở inbound pass.
+
+### Bài 3. `expired-listings` (how-to)
+- **H2:** What Is an Expired Listing and Why Do They Relist · How to Find Expired Listings (lọc MLS theo ngày hết hạn, hồ sơ công khai, mạng lưới; không bán số điện thoại) · Which Expired Owners You May Call (tóm tắt DNC, link #2207; bảng "gọi được / không") · Mail First: Letters and Cards (link #2195) · What to Say First (3 câu mở, không viết script đầy đủ, link bài 9) · Expired Listing Follow-Up Calendar (tuần 1, 2, 4, tháng 3) · Track Results in Your CRM · Mistakes · Final Thoughts.
+- **Nguồn chính:** FTC DNC Q&A, TSR guide, NC Realtors DNC (đã dùng ở #2207), quy tắc MLS địa phương (nêu cách kiểm, không nêu quy tắc cụ thể).
+- **Cẩn thận:** không dùng số "65% expired listing bán lại" của vendor. Tránh góc "cướp khách của agent khác": nhắc NAR Code of Ethics.
+- **Link ra:** pillar (#1), hub (#2), bài 4, 5, #2207, #2195, #2201, #942, #1955.
+
+### Bài 4. `circle-prospecting` (how-to)
+- **H2:** What Circle Prospecting Is (sự kiện vừa listing/vừa bán, khác farming #2165) · How to Pick the Circle (bán kính, số nhà; **chỉ nêu con số nếu kiểm lại được nguồn**) · Triggers That Make It Worth Doing (just listed, just sold, pending, price change) · What to Send, Say or Leave (thư, thiệp, door hanger, link #1877; quy tắc DNC) · A Weekly Routine (bảng 5 ngày) · Measure It (liên hệ, cuộc hẹn, giá vốn) · Mistakes · Final Thoughts.
+- **Nguồn chính:** FTC DNC, USPS (nếu nhắc EDDM, đã dùng ở #2165), 24 CFR 100.75 (không mô tả cư dân).
+- **Link ra:** #1, #2, bài 3, 5, #2165, #2201, #2207, #1877.
+
+### Bài 5. `sphere-of-influence-real-estate` (how-to, gần Infina nhất)
+- **H2:** What Is a Sphere of Influence · Build the List (nhóm người, cột dữ liệu tối thiểu) · Tag and Rank Contacts (A/B/C, mức quan tâm) · How Often to Contact Each Group (bảng, "đề xuất của chúng tôi, không phải công thức") · What to Say Beyond "Do You Know Anyone" (link #1961) · Keep It in a CRM, Not a Spreadsheet (link #263 CRM marketing; Infina AI một đoạn) · Measure the Sphere (số liệu NAR về referral/repeat, đã có ở #1977) · Mistakes · Final Thoughts.
+- **Nguồn chính:** NAR Profile 2025 (43% referral, 18% quay lại agent cũ, qua Virginia REALTORS), RESPA 12 CFR 1024.14 (không hứa thưởng giới thiệu).
+- **Link ra:** #1, #2, bài 4, 7, #1961, #263, #1977.
+
+### Bài 6. `buyer-leads-for-real-estate-agents` (how-to)
+- **H2:** Where Buyer Leads Come From (bảng nguồn) · Online Buyer Leads: Search, Portals, Landing Pages (link #918, #975 hoặc #930) · Offline: Open Houses, Sphere, Partners (link #2171, bài 5, bài 13) · How to Qualify a Buyer Lead (pre-approval, thời gian, khu vực; câu hỏi mẫu) · Follow-Up Speed (link #223, #1272, #1317) · Buyer Today, Seller Tomorrow · Mistakes · Final Thoughts.
+- **Nguồn chính:** CFPB về pre-approval/pre-qualification (mở bản gốc), NAR Profile. **Không** trích số "5 lần" của Zillow qua blog vendor.
+- **Link ra:** #1, bài 5, 7, 8, 13, #1272, #1317, #223.
+
+### Bài 7. `free-real-estate-leads` (how-to)
+- **H2:** Free Leads Cost Time, Not Cash (nói thẳng) · A Zero-Budget Week (bảng giờ mỗi tuần) · Free Source 1: Your Sphere (link bài 5) · Free Source 2: Google Business Profile and Reviews (link #1937) · Free Source 3: Social Media and Local Content (link #1865) · Free Source 4: Open Houses and Neighbor Contact (link #2171, bài 4) · Pay-at-Closing Programs (Zillow Flex, referral networks: nêu đúng điều khoản từ trang chính thức, link bài 10) · When to Start Paying · Mistakes · Final Thoughts.
+- **Nguồn chính:** trang chính thức Zillow Flex và Google Business Profile help.
+- **Link ra:** #1, bài 4, 5, 6, 10, #1937, #1865, #2171.
+
+### Bài 8. `real-estate-lead-generation-companies` (review)
+- **H2:** What Lead Generation Companies Sell (lead độc quyền vs chia sẻ, thuê bao vs phí khi chốt) · Compare on Five Things (bảng: chi phí, hợp đồng, độc quyền, tốc độ giao lead, ai chăm lead) · Questions to Ask Before You Sign · Referral Fees and RESPA (12 CFR 1024.14, chia phí tại closing; không phải tư vấn pháp lý) · What the Numbers Mean for Cost Per Closing (link #1415) · Software vs Companies (link #1225) · Mistakes · Final Thoughts.
+- **Nguồn chính:** 12 CFR 1024.14, FTC, trang chính thức nếu nêu tên chương trình. **Không** xếp hạng vendor bằng số vendor tự công bố.
+- **Link ra:** #1, bài 6, 7, 10, #1415, #1225, #1223.
+
+### Bài 9. `expired-listing-scripts` (how-to, wave 2)
+- **H2:** Before You Dial: List and Compliance Check (tóm tắt, link bài 3 và #2207) · An Opening That Respects the Owner · Script 1: Listing Expired Yesterday · Script 2: Listing Expired Weeks Ago · Objections and Replies (bảng) · Voicemail, Text and Letter Follow-Up (link #2195; TCPA #237) · Log the Call · Mistakes · Final Thoughts.
+- **Điều kiện bắt đầu:** bài 3 đã đăng và #2207 đã link sang bài 3. Chạy lại SERP trước khi viết để tránh chồng phần objections của #2207.
+- **Link ra:** #1, #2, bài 3, 4, #2207, #2195, #237.
+
+### Bài 10. `zillow-leads-for-real-estate-agents` (review, wave 2)
+- **H2:** How Zillow Sells Leads to Agents (Premier Agent và Flex, **từ trang chính thức**) · What It Costs (khoảng và cách tính, ghi rõ nguồn và ngày kiểm; dẫn #1415) · Zillow Flex vs Pay-Per-Lead (bảng) · What Converts and What Does Not (không bịa tỷ lệ) · Follow-Up Speed Decides It (link #223, #1223) · Alternatives (link bài 7, 8) · Questions to Ask Before You Commit · Mistakes · Final Thoughts.
+- **Nguồn chính:** trang chính thức Zillow Premier Agent/Flex, HousingWire (chỉ làm nguồn phụ). Số chi phí SERP mâu thuẫn ($20-60 đến $450-500), chỉ dùng khi có nguồn gốc.
+- **Link ra:** #1, bài 6, 7, 8, #1415, #223, #1223.
+
+### Bài 11. `motivated-seller-leads` (niche, wave 2)
+- **Góc:** agent đi lấy listing, không phải nhà đầu tư mua giá rẻ. Chạy lại SERP trước khi viết; nếu vẫn lệch nhà đầu tư thì đổi focus sang `probate real estate leads`.
+- **H2:** Who Is a Motivated Seller (life event, không dùng ngôn từ khai thác hoàn cảnh) · Where Agents Hear About Them (luật sư probate, planner, relocation, referral partner) · Probate Leads: Handle With Care · Divorce and Relocation Leads · What to Say and What Not to Say · Rules and Ethics (24 CFR 100.75, NAR Code, quy tắc tiếp cận từng bang: chỉ hướng dẫn cách kiểm) · Follow-Up Cadence · Mistakes · Final Thoughts.
+- **Link ra:** #1, #2, bài 3, 12, #1961, #1122 (database reactivation, News).
+
+### Bài 12. `fsbo-leads` (niche, wave 2)
+- **H2:** Why FSBO Sellers Are Listing Leads · Where to Find FSBO Listings (cổng rao vặt, bảng yard sign; không bán danh sách) · What Sellers Want to Hear (tiết kiệm hoa hồng, nêu số hoa hồng chỉ từ NAR) · First Contact: Letter, Visit, Call (DNC, link #2195, #2207) · Follow-Up Over 90 Days · When to Walk Away · Mistakes · Final Thoughts.
+- **Nguồn chính:** NAR Profile (tỷ lệ FSBO, **mở bản gốc**), FTC DNC.
+- **Link ra:** #1, #2, bài 3, 11, 9, #2195, #2207, #942.
+
+### Bài 13. `real-estate-open-house-sign-in-sheet` (niche, wave 2, có file)
+- **Góc:** có file template thật (PDF/DOCX tải về) và câu đồng ý nhận tin nhắn.
+- **H2:** What a Sign-In Sheet Should Collect (bảng cột) · Free Template (bảng copy được + file; làm file thật như template marketing plan của Cụm 9) · Consent Wording for Calls and Texts (TCPA, link #237 pillar Cụm 8; không viết thành tư vấn pháp lý) · Digital vs Paper · Follow-Up Within 24 Hours (link #223, #1272) · What Not to Ask (24 CFR 100.75, fair housing) · Mistakes · Final Thoughts.
+- **Nguồn chính:** FCC/FTC về đồng ý nhận tin nhắn, 24 CFR 100.75.
+- **Link ra:** #1, bài 6, 4, #2171, #918, #237, #223.
+
+### Ma trận link ngang trong cụm (outbound từ bài ở cột trái)
+
+| Bài | Link ngang cùng cụm lúc đăng (≥ 2) | Thêm ở inbound pass |
+|---|---|---|
+| 3 expired | 4, 5 | 9, 11, 12 |
+| 4 circle | 3, 5 | 9, 13 |
+| 5 SOI | 4, 7 | 6, 13 |
+| 6 buyer | 5, 7, 8 | 10, 13 |
+| 7 free | 5, 6, 4 | 10, 13 |
+| 8 companies | 6, 7 | 10 |
+| 9 expired scripts | 3, 4 | (wave 2: 11, 12) |
+| 10 Zillow | 8, 6, 7 | n/a |
+| 11 motivated | 3, 9 | 12 |
+| 12 FSBO | 3, 11, 9 | n/a |
+| 13 sign-in | 6, 4, 5 | n/a |
+
+Link lên sub-hub (bài 2): bài 3, 4, 5, 9, 11, 12 mỗi bài 1 lần. Link lên pillar (bài 1): mọi bài còn lại, đúng 1 lần.
+
+## 9. Lịch đăng (giờ UTC như các wave trước)
+
+Hôm nay 23/10 là thứ Sáu; 26/10 là thứ Hai.
+
+| Ngày | 10:00 | 14:00 | 18:00 |
+|---|---|---|---|
+| T-3 đến T-1 (23-25/10) | Viết và lên lịch bài 1 và 2 trong WordPress; viết wave 1 | | |
+| Thứ Hai 26/10 | **Bài 1 pillar** | **Bài 2 sub-hub** | (trống, kiểm tra bài đã live) |
+| Thứ Ba 27/10 | Bài 3 expired | Bài 4 circle | Bài 5 SOI |
+| Thứ Tư 28/10 | Bài 6 buyer | Bài 7 free | Bài 8 companies |
+| Thứ Năm 29/10 | **Inbound pass wave 1** + verify (thêm link vào pillar/hub, nhận link từ #2207, #2195, #2165, #2201, #1961, #1415, #1225, #1272, #1317, #1223, #1825) | | |
+| Thứ Sáu 30/10 | Bài 9 expired scripts | Bài 10 Zillow | Bài 13 sign-in sheet |
+| Thứ Bảy 31/10 | Bài 11 motivated seller | Bài 12 FSBO | (trống) |
+| Chủ Nhật 1/11 | **Inbound pass wave 2** + verify (nối bài 9, 11, 12, 13, 10 vào pillar, hub, bài wave 1; #2171 và #918 link sang bài 13) | | |
+| Thứ Hai 2/11 | **Audit link toàn cụm** (sibling ≥ 2, pillar link, anchor ≥ 70% khác nhau, money page), cập nhật `refresh-log.md`, `teardown-infina-table.md`, `content-plan.md` | | |
+
+**Thứ tự viết:** 1, 2, 3, 4, 5, 6, 7, 8 trước 26/10 (viết xong mới lên lịch); bài 9 đến 13 viết sau khi pillar và hub đã live để khớp với SERP lúc đó. Bài 13 cần file template (làm cùng ngày viết).
+
+**Việc của bạn:** (1) Request Indexing trong GSC cho 13 URL sau khi live (ưu tiên bài 1, 2, 10); (2) dán rows tracker cho Cụm 10 (tôi chuẩn bị `files/tracker-rows-cum10.tsv` sau khi viết xong); (3) báo nếu muốn category riêng.
+
+**Rủi ro lịch:** nếu SERP bài 11 vẫn lệch nhà đầu tư thì dời hoặc đổi focus, không đẩy lịch cả cụm. Bài 9 chờ bài 3 live.

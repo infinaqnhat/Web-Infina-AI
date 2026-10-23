@@ -811,6 +811,30 @@ riêng (đã có #1229 ở Cụm 7). Không viết lại CRM marketing (#263, C�
 
 ---
 
+### Cụm 10: Lead Generation (nguồn lead cho agent), 📝 13 bài đã duyệt 23/10/2026, chưa viết, đăng 26/10 đến 31/10
+
+Plan đầy đủ (dữ liệu keyword, SERP, ranh giới, brief từng bài, lịch) ở `references/plan-cum-10-lead-generation.md`. Bảng theo dõi ở `references/teardown-infina-table.md` mục Cụm 10. Keyword đã đặt chỗ trong `used-keywords.md` (23/10).
+
+Ranh giới: Cụm 9 là "được nhìn thấy", **Cụm 10 là "lead đến từ đâu"**, Cụm 7 là "chăm lead sau khi tới". Keyword `lead generation for realestate` vẫn thuộc pillar Cụm 7 (#1223); Cụm 10 lấy `real estate lead generation` theo nghĩa nguồn lead. Không viết lại: cold calling và DNC (#2207), thư prospecting (#2195), door knocking (#2201), farming (#2165), Facebook lead gen (#1229), lead gen software (#1225), cost per lead (#1415).
+
+| Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
+|---|---|---|---|---|
+| `pillar` **Pillar** | Real Estate Lead Generation: Where Agents Get Leads, What Each Source Costs (`real-estate-lead-generation`) | `real estate lead generation` | Discovery/TOF | 📝 Đã duyệt, chưa viết. Dự kiến đăng 26/10 10:00 UTC |
+| `pillar` **Sub-hub** | Listing Leads: How to Find Seller Leads and Win More Listings (`listing-leads`) | `listing leads` | Discovery/TOF | 📝 Đã duyệt, chưa viết. Dự kiến đăng 26/10 14:00 UTC |
+| `how-to` Wave 1 | Expired Listings: How to Find Them, Which Ones You May Call and What to Say First (`expired-listings`) | `expired listings` | Consideration/MOF | 📝 Đã duyệt, chưa viết. Dự kiến đăng 27/10 10:00 UTC |
+| `how-to` Wave 1 | Circle Prospecting: Radius, Triggers and a Weekly Routine (`circle-prospecting`) | `circle prospecting` | Consideration/MOF | 📝 Đã duyệt, chưa viết. Dự kiến đăng 27/10 14:00 UTC |
+| `how-to` Wave 1 | Sphere of Influence in Real Estate: How to Build and Work Your SOI (`sphere-of-influence-real-estate`) | `sphere real estate` | Consideration/MOF | 📝 Đã duyệt, chưa viết. Dự kiến đăng 27/10 18:00 UTC |
+| `how-to` Wave 1 | Buyer Leads for Real Estate Agents: Where They Come From and How to Qualify Them (`buyer-leads-for-real-estate-agents`) | `buyer leads for real estate agents` | Consideration/MOF | 📝 Đã duyệt, chưa viết. Dự kiến đăng 28/10 10:00 UTC |
+| `how-to` Wave 1 | Free Real Estate Leads: A Zero-Budget Weekly Plan for New Agents (`free-real-estate-leads`) | `free real estate leads` | Consideration/MOF | 📝 Đã duyệt, chưa viết. Dự kiến đăng 28/10 14:00 UTC |
+| `review` Wave 1 | Real Estate Lead Generation Companies: What You Pay, What You Sign and What Converts (`real-estate-lead-generation-companies`) | `real estate lead generation companies` | Evaluation/MOF | 📝 Đã duyệt, chưa viết. Dự kiến đăng 28/10 18:00 UTC |
+| `how-to` Wave 2 | Expired Listing Scripts: What to Say, Objections and Follow-Up (`expired-listing-scripts`) | `expired listing script` | Consideration/MOF | 📝 Đã duyệt, chưa viết. Dự kiến đăng 30/10 10:00 UTC |
+| `review` Wave 2 | Zillow Leads for Real Estate Agents: Premier Agent, Flex and What They Cost (`zillow-leads-for-real-estate-agents`) | `zillow leads` | Evaluation/MOF | 📝 Đã duyệt, chưa viết. Dự kiến đăng 30/10 14:00 UTC |
+| `niche` Wave 2 | Motivated Seller and Probate Leads: How Agents Find Life-Event Sellers (`motivated-seller-leads`) | `motivated seller leads` | Consideration/MOF | 📝 Đã duyệt, chưa viết. Dự kiến đăng 31/10 10:00 UTC |
+| `niche` Wave 2 | FSBO Leads: How Agents Find and Convert For-Sale-By-Owner Sellers (`fsbo-leads`) | `fsbo leads` | Consideration/MOF | 📝 Đã duyệt, chưa viết. Dự kiến đăng 31/10 14:00 UTC |
+| `niche` Wave 2 | Open House Sign-In Sheet: A Free Template and Consent Wording (`real-estate-open-house-sign-in-sheet`) | `real estate open house sign in sheet` | Consideration/MOF | 📝 Đã duyệt, chưa viết. Dự kiến đăng 30/10 18:00 UTC |
+
+Inbound pass: 29/10 (sau wave 1) và 1/11 (sau wave 2); audit link toàn cụm 2/11. Bảng donor ở mục 6 của file plan.
+
 ## Cannibalization — lịch sử audit (01/10/2026, tất cả 12 cặp đã xử lý)
 
 Phát hiện khi map lại 8 cụm lần đầu (01/10/2026). Quy trình: đọc full nội dung từng cặp, so sánh

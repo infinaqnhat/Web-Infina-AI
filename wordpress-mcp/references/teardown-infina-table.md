@@ -2,7 +2,7 @@
 
 Crawl 2026-10-23 qua WP REST API (bản đầu 2026-10-09, làm mới hoàn toàn lần này). **178 bài publish, 166 bài thật** (12 stub 301
 tách riêng ở cuối file). Không có bài draft/scheduled/pending nào tại thời điểm crawl: cả 28 bài Cụm 9 đã đăng.
-Cụm 10 (lead generation) mới ở mức **đề xuất**, xem mục riêng sau Cụm 9; không nằm trong số 178 bài.
+Cụm 10 (lead generation) mới ở mức **đã duyệt, chưa viết**, xem mục riêng sau Cụm 9; không nằm trong số 178 bài.
 
 Cùng format với `teardown-followupboss-table.md` để đặt cạnh nhau mà so. Kết luận chiến lược của
 đối thủ ở `teardown-followupboss.md`, phương pháp ở `competitor-pillar-teardown.md`. File này là dữ
@@ -63,7 +63,7 @@ chính file này thì được, đừng dùng để cãi nhau với số trong f
 là `#299`. Quy tắc không dùng dash áp cho bài mình viết mới, không áp cho việc trích lại tiêu đề đang
 có. Dòng này là để biết mà đi sửa, không phải để sửa trong bảng.
 
-## Tóm tắt 11 nhóm (cộng 1 cụm đề xuất)
+## Tóm tắt 11 nhóm (cộng Cụm 10 đã duyệt, chưa viết)
 
 | Cụm | Trang | Pillar | Tổng chữ | Mồ côi | Không trỏ pillar nào | Thiếu FOCUS_KW |
 |---|---|---|---|---|---|---|
@@ -76,7 +76,7 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 | Cụm 7: Lead Generation / Follow-up Automation | 9 | `real-estate-lead-follow-up-automation-guide` (20 IN, 2,483 chữ) | 8,338 | 0 | 0 | 2 |
 | Cụm 8: Compliance / Legal / Risk | 6 | `tcpa-compliance-for-real-estate-agents` (22 IN, 1,909 chữ) | 6,005 | 0 | 0 | 1 |
 | Cụm 9: Marketing và Branding | 28 | `real-estate-marketing` (22 IN, 2,624 chữ); `real-estate-branding` (12 IN, 1,829 chữ) | 44,661 | 0 | 0 | 0 |
-| Cụm 10: Lead Generation, nguồn lead (ĐỀ XUẤT, chưa viết) | 0 live / 13 dự kiến | `real estate lead generation` và `listing leads` (dự kiến, chưa có URL) | n/a | n/a | n/a | n/a |
+| Cụm 10: Lead Generation, nguồn lead (đã duyệt, chưa viết) | 0 live / 13 dự kiến | `real estate lead generation` và `listing leads` (dự kiến, chưa có URL) | n/a | n/a | n/a | n/a |
 | Bài News real estate chưa gắn cụm trong plan | 40 | không có | 29,506 | 0 | 18 | 12 |
 | Ngoài chủ đề real estate (AI/tech) | 11 | không có | 2,784 | 11 | 11 | 0 |
 
@@ -292,10 +292,10 @@ trong mục Related Reading (pillar #1825 hiện có 20 bullet, hub #1832 có 7)
 
 ---
 
-## Cụm 10: Lead Generation, nguồn lead cho agent  (ĐỀ XUẤT, 13 bài, chưa duyệt, chưa viết, chưa có URL)
+## Cụm 10: Lead Generation, nguồn lead cho agent  (ĐÃ DUYỆT 23/10, 13 bài, chưa viết, chưa có URL, đăng 26-31/10)
 
-**Trạng thái (23/10/2026):** plan đã lên ở `plan-cum-10-lead-generation.md`, **chờ bạn duyệt**. Chưa đặt chỗ keyword trong `used-keywords.md`,
-chưa ghi vào `content-plan.md`. Hiện **0 bài live** về expired, FSBO, circle prospecting, listing leads, buyer leads, SOI, free leads, Zillow leads
+**Trạng thái (23/10/2026):** plan ở `plan-cum-10-lead-generation.md`, **đã duyệt cả 13 bài**, keyword đã đặt chỗ trong `used-keywords.md`
+và ghi vào `content-plan.md`. Lịch đăng 26/10 đến 31/10, inbound pass 29/10 và 1/11, audit 2/11. Hiện **0 bài live** về expired, FSBO, circle prospecting, listing leads, buyer leads, SOI, free leads, Zillow leads
 (đã đối chiếu 178 slug live). Bảng này là kế hoạch, nên không có cột IN, chữ hay ngày sửa như các cụm khác. Sau khi bài lên, chạy lại crawl để thay
 bằng số đo thật. Volume là bucket US (50 / 500 / 5k), "L/TB/C" là cạnh tranh ads.
 
@@ -304,19 +304,19 @@ Cụm 7 (#1223) từ 15/09; Cụm 10 nhận `real estate lead generation` theo n
 
 | # | Vai trò | Bài dự kiến | Focus keyword (bucket, ads) | Wave | Trạng thái |
 |---|---|---|---|---|---|
-| 1 | **Pillar** | Real Estate Lead Generation: Where Agents Get Leads, What Each Source Costs | `real estate lead generation` 5k TB (gom `real estate leads`, `real estate lead gen`, `real estate agent leads`, `leads in real estate`, `agent lead generation`, `online lead generation real estate`, đều 5k) | Hub, đăng trước | Đề xuất |
-| 2 | **Pillar** (sub-hub) | Listing Leads: How to Find Seller Leads and Win More Listings | `listing leads` 5k TB (gom `listing leads for realtors`, `real estate listing leads`, `seller leads real estate`, `seller leads for realtors`) | Hub, đăng trước | Đề xuất |
-| 3 | how-to | Expired Listings: How to Find Them, Which Ones You May Call and What to Say First | `expired listings` 500 TB (+ `expired mls listings`, `expired real estate listings`) | Wave 1 | Đề xuất |
-| 4 | how-to | Circle Prospecting: Radius, Triggers and a Weekly Routine | `circle prospecting` 500 TB | Wave 1 | Đề xuất |
-| 5 | how-to | Sphere of Influence in Real Estate: How to Build and Work Your SOI | `sphere real estate` 500 L (+ `soi in real estate`, `real estate soi`) | Wave 1 | Đề xuất |
-| 6 | how-to | Buyer Leads for Real Estate Agents: Where They Come From and How to Qualify Them | `buyer leads for real estate agents` 500 C | Wave 1 | Đề xuất |
-| 7 | how-to | Free Real Estate Leads: A Zero-Budget Weekly Plan for New Agents | `free real estate leads` 500 TB | Wave 1 | Đề xuất |
-| 8 | review | Real Estate Lead Generation Companies: What You Pay, What You Sign and What Converts | `real estate lead generation companies` 500 TB | Wave 1 | Đề xuất |
-| 9 | how-to | Expired Listing Scripts: What to Say, Objections and Follow-Up | `expired listing script` 500 TB | Wave 2 | Đề xuất, chỉ làm sau bài 3 và khi #2207 đã link sang |
-| 10 | review | Zillow Leads for Real Estate Agents: Premier Agent, Flex and What They Cost | `zillow leads` 5k C | Wave 2 | Đề xuất, cần nguồn chính thức của Zillow |
-| 11 | niche | Motivated Seller and Probate Leads: How Agents Find Life-Event Sellers | `motivated seller leads` 500 C (cân nhắc `probate real estate leads` 500 L) | Wave 2 | Đề xuất, SERP lệch nhà đầu tư, kiểm lại trước khi viết |
-| 12 | niche | FSBO Leads: How Agents Find and Convert For-Sale-By-Owner Sellers | `fsbo leads` 50 C | Wave 2 | Đề xuất, ưu tiên cắt đầu tiên |
-| 13 | niche | Open House Sign-In Sheet: A Free Template and Consent Wording | `real estate open house sign in sheet` 500 C | Wave 2 | Đề xuất, cần làm file template thật |
+| 1 | **Pillar** | Real Estate Lead Generation: Where Agents Get Leads, What Each Source Costs | `real estate lead generation` 5k TB (gom `real estate leads`, `real estate lead gen`, `real estate agent leads`, `leads in real estate`, `agent lead generation`, `online lead generation real estate`, đều 5k) | Hub, đăng trước | Đã duyệt, đăng 26/10 10:00 UTC |
+| 2 | **Pillar** (sub-hub) | Listing Leads: How to Find Seller Leads and Win More Listings | `listing leads` 5k TB (gom `listing leads for realtors`, `real estate listing leads`, `seller leads real estate`, `seller leads for realtors`) | Hub, đăng trước | Đã duyệt, đăng 26/10 14:00 UTC |
+| 3 | how-to | Expired Listings: How to Find Them, Which Ones You May Call and What to Say First | `expired listings` 500 TB (+ `expired mls listings`, `expired real estate listings`) | Wave 1 | Đã duyệt, đăng 27/10 10:00 UTC |
+| 4 | how-to | Circle Prospecting: Radius, Triggers and a Weekly Routine | `circle prospecting` 500 TB | Wave 1 | Đã duyệt, đăng 27/10 14:00 UTC |
+| 5 | how-to | Sphere of Influence in Real Estate: How to Build and Work Your SOI | `sphere real estate` 500 L (+ `soi in real estate`, `real estate soi`) | Wave 1 | Đã duyệt, đăng 27/10 18:00 UTC |
+| 6 | how-to | Buyer Leads for Real Estate Agents: Where They Come From and How to Qualify Them | `buyer leads for real estate agents` 500 C | Wave 1 | Đã duyệt, đăng 28/10 10:00 UTC |
+| 7 | how-to | Free Real Estate Leads: A Zero-Budget Weekly Plan for New Agents | `free real estate leads` 500 TB | Wave 1 | Đã duyệt, đăng 28/10 14:00 UTC |
+| 8 | review | Real Estate Lead Generation Companies: What You Pay, What You Sign and What Converts | `real estate lead generation companies` 500 TB | Wave 1 | Đã duyệt, đăng 28/10 18:00 UTC |
+| 9 | how-to | Expired Listing Scripts: What to Say, Objections and Follow-Up | `expired listing script` 500 TB | Wave 2 | Đã duyệt, đăng 30/10 10:00 UTC |
+| 10 | review | Zillow Leads for Real Estate Agents: Premier Agent, Flex and What They Cost | `zillow leads` 5k C | Wave 2 | Đã duyệt, đăng 30/10 14:00 UTC |
+| 11 | niche | Motivated Seller and Probate Leads: How Agents Find Life-Event Sellers | `motivated seller leads` 500 C (cân nhắc `probate real estate leads` 500 L) | Wave 2 | Đã duyệt, đăng 31/10 10:00 UTC |
+| 12 | niche | FSBO Leads: How Agents Find and Convert For-Sale-By-Owner Sellers | `fsbo leads` 50 C | Wave 2 | Đã duyệt, đăng 31/10 14:00 UTC |
+| 13 | niche | Open House Sign-In Sheet: A Free Template and Consent Wording | `real estate open house sign in sheet` 500 C | Wave 2 | Đã duyệt, đăng 30/10 18:00 UTC |
 
 ### Inbound dự kiến từ bài đã có (làm sau mỗi wave)
 
