@@ -68,12 +68,12 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 | Cụm | Trang | Pillar | Tổng chữ | Mồ côi | Không trỏ pillar nào | Thiếu FOCUS_KW |
 |---|---|---|---|---|---|---|
 | Cụm 1: Chatbot / Conversational AI | 13 | `best-conversational-ai-chatbot-for-real-estate` (9 IN, 3,038 chữ); `best-chatbot-customer-service-real-estate` (26 IN, 3,932 chữ) | 21,263 | 0 | 0 | 0 |
-| Cụm 2: CRM Software | 27 | `best-crm-for-real-estate` (49 IN, 4,354 chữ); `ai-intent-layer-for-real-estate-crm` (13 IN, 772 chữ) | 34,498 | 0 | 0 | 4 |
+| Cụm 2: CRM Software | 27 | `best-crm-for-real-estate` (49 IN, 4,354 chữ); `ai-intent-layer-for-real-estate-crm` (13 IN, 772 chữ) | 34,846 | 0 | 0 | 4 |
 | Cụm 3: Website Builder / IDX | 14 | `real-estate-website-builder` (22 IN, 3,037 chữ) | 16,643 | 0 | 0 | 1 |
 | Cụm 4: AI Voice / Virtual Assistant / Receptionist | 6 | `best-ai-voice-assistants-for-real-estate` (11 IN, 2,287 chữ) | 7,320 | 0 | 0 | 0 |
 | Cụm 5: Website / Web Design | 6 | `website-design-for-real-estate-agents` (10 IN, 1,805 chữ) | 6,777 | 0 | 0 | 0 |
 | Cụm 6: Landing Pages | 6 | `real-estate-landing-page-guide` (7 IN, 1,897 chữ) | 8,316 | 0 | 0 | 0 |
-| Cụm 7: Lead Generation / Follow-up Automation | 9 | `real-estate-lead-follow-up-automation-guide` (20 IN, 2,483 chữ) | 8,338 | 0 | 0 | 2 |
+| Cụm 7: Lead Generation / Follow-up Automation | 9 | `real-estate-lead-follow-up-automation-guide` (22 IN, 3,000 chữ) | 8,855 | 0 | 0 | 2 |
 | Cụm 8: Compliance / Legal / Risk | 6 | `tcpa-compliance-for-real-estate-agents` (22 IN, 1,909 chữ) | 6,005 | 0 | 0 | 1 |
 | Cụm 9: Marketing và Branding | 28 | `real-estate-marketing` (22 IN, 2,624 chữ); `real-estate-branding` (12 IN, 1,829 chữ) | 44,661 | 0 | 0 | 0 |
 | Cụm 10: Lead Generation, nguồn lead (đã viết, lên lịch 23-27/10) | 13 bài (0 live lúc crawl) | `real-estate-lead-generation` #2260 (2,167 chữ) và sub-hub `listing-leads` #2262 (1,722 chữ) | 19,927 (số bản thảo) | 0 | 0 | 0 |
@@ -116,7 +116,9 @@ nhận nhiều link hơn 5 trong 11 pillar còn lại. So để thấy: pillar C
 | So sánh | [#1078 /chatbot-vs-live-agent-real-estate](https://infina.ai/news/chatbot-vs-live-agent-real-estate/) | 2 | 1,371 | 2026-10-13 | `chatbot vs live agent real estate` | ✅ `best-chatbot-customer-service-real-estate` | Chatbot vs Live Agent for Real Estate: Response Time and Conversion Compared |
 | Hỗ trợ (News) | [#1100 /real-estate-chatbot-that-reads-listing-photos](https://infina.ai/news/real-estate-chatbot-that-reads-listing-photos/) | 2 | 790 | 2026-10-13 | `real estate chatbot that reads listing photos` | ✅ `best-conversational-ai-chatbot-for-real-estate`, `best-chatbot-customer-service-real-estate` | This Chatbot Reads Your Listing Photos to Stop 47 Calls a Week |
 
-## Cụm 2: CRM Software  (27 trang, 34,498 chữ)
+## Cụm 2: CRM Software  (27 trang, 34,846 chữ, làm mới #277 và #405 ngày 23/10)
+
+**Cập nhật 23/10:** #277 (pipeline) và #405 (CRM management) được thêm mục lead management và spreadsheet hay CRM, link ngang với #1223 và với nhau. Số IN, chữ và ngày sửa của ba bài (#277, #405, #1223) đo lại ngày 23/10, các dòng khác của cụm giữ số đo 23/10 sáng.
 
 | Vai trò | URL | IN | Chữ | Sửa lần cuối | FOCUS_KW đã log | Pillar bài trỏ lên | Post title |
 |---|---|---|---|---|---|---|---|
@@ -124,9 +126,9 @@ nhận nhiều link hơn 5 trong 11 pillar còn lại. So để thấy: pillar C
 | Định nghĩa (khác góc) | [#214 /ai-crm-real-estate](https://infina.ai/news/ai-crm-real-estate/) | 23 | 1,755 | 2026-10-13 | `ai crm` | ✅ `best-crm-for-real-estate`, `ai-intent-layer-for-real-estate-crm`; ↗ `best-chatbot-customer-service-real-estate` | AI CRM for Real Estate: How Agents Use AI to Convert More Leads (2026) |
 | Sub-topic: marketing (strategy) | [#263 /crm-marketing-real-estate](https://infina.ai/news/crm-marketing-real-estate/) | 15 | 1,384 | 2026-10-12 | `crm marketing` | ✅ `best-crm-for-real-estate` | CRM Marketing for Real Estate: How to Turn Your Database into a Deal Machine |
 | **Pillar nhẹ 🎯 Infina AI** | [#1232 /ai-intent-layer-for-real-estate-crm](https://infina.ai/news/ai-intent-layer-for-real-estate-crm/) | 13 | 772 | 2026-10-13 | `ai intent layer for real estate crm` | *(là pillar)* | AI Intent Layer for Real Estate CRM: What It Adds |
-| Sub-topic: pipeline | [#277 /crm-pipeline-management](https://infina.ai/news/crm-pipeline-management/) | 12 | 1,703 | 2026-10-12 | `crm pipeline` | ✅ `best-crm-for-real-estate` | CRM Pipeline Management: Build a Sales Pipeline That Actually Closes |
+| Sub-topic: pipeline | [#277 /crm-pipeline-management](https://infina.ai/news/crm-pipeline-management/) | 13 | 1,875 | 2026-10-23 | `crm pipeline` | ✅ `best-crm-for-real-estate` | CRM Pipeline Management: Build a Sales Pipeline That Actually Closes |
 | Hỗ trợ (News) | [#1026 /ai-agent-integration-for-real-estate-crm-platforms](https://infina.ai/news/ai-agent-integration-for-real-estate-crm-platforms/) | 6 | 871 | 2026-10-09 | `ai agent integration for real estate crm platforms` | ✅ `best-crm-for-real-estate`, `ai-intent-layer-for-real-estate-crm` | Rechat Just Let Claude and ChatGPT Run Real Estate CRM Workflows Directly |
-| Định nghĩa (beginner) | [#405 /crm-management-real-estate-agents-beginners-guide](https://infina.ai/news/crm-management-real-estate-agents-beginners-guide/) | 6 | 1,166 | 2026-10-12 | `crm management` | ✅ `best-crm-for-real-estate` | CRM Software 101: A Beginner’s Guide for Real Estate Agents |
+| Định nghĩa (beginner) | [#405 /crm-management-real-estate-agents-beginners-guide](https://infina.ai/news/crm-management-real-estate-agents-beginners-guide/) | 8 | 1,342 | 2026-10-23 | `crm management` | ✅ `best-crm-for-real-estate` | CRM Software 101: A Beginner’s Guide for Real Estate Agents |
 | Review (brand cụ thể) 🎯 Infina AI | [#1449 /follow-up-boss-real-estate-crm](https://infina.ai/news/follow-up-boss-real-estate-crm/) | 6 | 1,546 | 2026-10-13 | `follow up boss real estate crm` | ✅ `best-crm-for-real-estate`, `ai-intent-layer-for-real-estate-crm`; ↗ `real-estate-lead-follow-up-automation-guide` | Follow Up Boss Real Estate CRM Review: Pricing, Features, and the Follow-Up Gap |
 | Review/list (niche: teams) | [#419 /best-crm-for-real-estate-teams-2026](https://infina.ai/news/best-crm-for-real-estate-teams-2026/) | 5 | 1,177 | 2026-10-12 | `best crm for real estate teams 2026` ⚠️ | ✅ `best-crm-for-real-estate` | Best CRM for Real Estate Teams: Top Picks for 2026 |
 | Buying guide (BOF) | [#444 /best-crm-buying-guide-real-estate-agents](https://infina.ai/news/best-crm-buying-guide-real-estate-agents/) | 4 | 1,135 | 2026-10-09 | `best crm` | ✅ `best-crm-for-real-estate` | Best CRM for Real Estate Agents: A Buyer’s Guide (2026) |
@@ -200,11 +202,13 @@ nhận nhiều link hơn 5 trong 11 pillar còn lại. So để thấy: pillar C
 | ✅ Evaluation/MOF (cluster hợp lệ) | [#948 /high-converting-real-estate-landing-pages](https://infina.ai/news/high-converting-real-estate-landing-pages/) | 1 | 1,289 | 2026-10-12 | `high converting real estate landing pages` | ✅ `real-estate-landing-page-guide`; ↗ `best-crm-for-real-estate` | High Converting Real Estate Landing Pages: What Makes Them Work in 2026 |
 | Niche: agent chung | [#924 /real-estate-agent-landing-page](https://infina.ai/news/real-estate-agent-landing-page/) | 1 | 1,236 | 2026-10-09 | `real estate agent landing page` | ✅ `real-estate-landing-page-guide`; ↗ `best-crm-for-real-estate` | Real Estate Agent Landing Page: What to Include and How to Convert Visitors |
 
-## Cụm 7: Lead Generation / Follow-up Automation  (9 trang, 8,338 chữ)
+## Cụm 7: Lead Generation / Follow-up Automation  (9 trang, 8,855 chữ, làm mới #1223 ngày 23/10)
+
+**Cập nhật 23/10:** pillar #1223 được mở rộng thêm mục lead management (định nghĩa 5 việc, cách chia lead cho team, spreadsheet hay CRM, cách tính lead conversion rate, 2 ảnh), thay cho việc tạo Cụm 11 riêng (plan ở `plan-cum-11-lead-management.md`, không làm vì volume chỉ 500 và 50). #1223 giờ link tới pillar Cụm 10 (#2260), #277, #405, #207, #1415, #1278.
 
 | Vai trò | URL | IN | Chữ | Sửa lần cuối | FOCUS_KW đã log | Pillar bài trỏ lên | Post title |
 |---|---|---|---|---|---|---|---|
-| **Pillar** | [#1223 /real-estate-lead-follow-up-automation-guide](https://infina.ai/news/real-estate-lead-follow-up-automation-guide/) | 20 | 2,483 | 2026-10-13 | `real estate lead follow-up automation` | *(là pillar)* | Real Estate Lead Follow-Up Automation: The Complete 2026 Guide |
+| **Pillar** | [#1223 /real-estate-lead-follow-up-automation-guide](https://infina.ai/news/real-estate-lead-follow-up-automation-guide/) | 22 | 3,000 | 2026-10-23 | `real estate lead follow-up automation` | *(là pillar)* | Real Estate Lead Follow-Up Automation: The Complete 2026 Guide |
 | Giải thích/pain-point = refresh #223 | [#223 /real-estate-agent-crm-speed-to-lead](https://infina.ai/news/real-estate-agent-crm-speed-to-lead/) | 13 | 1,560 | 2026-10-13 | `real estate agent crm` | ✅ `real-estate-lead-follow-up-automation-guide`; ↗ `best-crm-for-real-estate` | Speed-to-Lead 2026: How Real Estate Agent CRM Closes the 15-Hour Gap |
 | Review/list | [#1225 /best-lead-generation-software-for-realtors](https://infina.ai/news/best-lead-generation-software-for-realtors/) | 4 | 602 | 2026-10-09 | `lead generation software for realtors` | ✅ `real-estate-lead-follow-up-automation-guide` | Best Lead Generation Software for Realtors in 2026 |
 | Buying guide/how-to | [#1227 /how-to-set-up-automated-lead-follow-up-real-estate](https://infina.ai/news/how-to-set-up-automated-lead-follow-up-real-estate/) | 4 | 577 | 2026-10-13 | `automated lead follow-up for real estate` | ✅ `real-estate-lead-follow-up-automation-guide` | Automated Lead Follow-Up for Real Estate: A 5-Step Setup Guide |
@@ -305,7 +309,7 @@ Cụm 7 (#1223) từ 15/09; Cụm 10 nhận `real estate lead generation` theo n
 
 | # | Vai trò | Bài dự kiến | Focus keyword (bucket, ads) | Wave | Trạng thái |
 |---|---|---|---|---|---|
-| 1 | **Pillar** | [#2260 /real-estate-lead-generation](https://infina.ai/news/real-estate-lead-generation/) Real Estate Lead Generation: 10 Lead Sources Compared | `real estate lead generation` 5k TB (gom `real estate leads`, `real estate lead gen`, `real estate agent leads`, `leads in real estate`, `agent lead generation`, `online lead generation real estate`, đều 5k) | Hub, đăng trước | Đã viết, scheduled 23/10 10:00 UTC, 2,167 chữ, 11 lần keyword, 1 bảng 10 nguồn, 4 ảnh, link ra 21 bài khác nhau \|
+| 1 | **Pillar** | [#2260 /real-estate-lead-generation](https://infina.ai/news/real-estate-lead-generation/) Real Estate Lead Generation: 10 Lead Sources Compared | `real estate lead generation` 5k TB (gom `real estate leads`, `real estate lead gen`, `real estate agent leads`, `leads in real estate`, `agent lead generation`, `online lead generation real estate`, đều 5k) | Hub, đăng trước | Đã viết, scheduled 23/10 10:00 UTC, 2,167 chữ, 11 lần keyword, 1 bảng 10 nguồn, 4 ảnh, 1 link vào (từ #1223, đo 23/10), link ra 21 bài khác nhau \|
 | 2 | **Pillar** (sub-hub) | [#2262 /listing-leads](https://infina.ai/news/listing-leads/) Listing Leads: How to Find Sellers and Win More Listings | `listing leads` 5k TB (gom `listing leads for realtors`, `real estate listing leads`, `seller leads real estate`, `seller leads for realtors`) | Hub, đăng trước | Đã viết, scheduled 23/10 14:00 UTC, 1,722 chữ, 20 lần keyword, 2 bảng, 4 ảnh \|
 | 3 | how-to | [#2322 /expired-listings](https://infina.ai/news/expired-listings/) Expired Listings: How to Find Them and Reach the Owners | `expired listings` 500 TB (+ `expired mls listings`, `expired real estate listings`) | Wave 1 | Đã viết, scheduled 24/10 10:00 UTC, 1457 từ |
 | 4 | how-to | [#2326 /circle-prospecting](https://infina.ai/news/circle-prospecting/) Circle Prospecting: Radius, Triggers and a Weekly Routine | `circle prospecting` 500 TB | Wave 1 | Đã viết, scheduled 24/10 14:00 UTC, 1281 từ |
