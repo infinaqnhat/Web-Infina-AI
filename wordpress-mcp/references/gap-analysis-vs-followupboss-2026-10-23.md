@@ -65,3 +65,26 @@ Kế hoạch này **không thay** hướng "AI for real estate agents" đã đ�
 - Cột từ khóa của FUB suy từ title, không phải dữ liệu từ họ.
 - "Refresh 2026" lấy từ `lastmod` trong sitemap của FUB, có thể bị cập nhật vì lý do kỹ thuật chứ không phải sửa nội dung.
 - Chưa kiểm SERP cho bất kỳ keyword nào ở trên. Trước khi duyệt cụm nào cần SERP check theo Bước 1.5 của `pillar-cluster-writer`.
+
+## 7. Cập nhật volume Mỹ (23/10, sau khi merge export lead gen geo Hoa Kỳ)
+
+File keyword tổng nay có 22.381 dòng. Đếm theo nhóm chủ đề (bucket Keyword Planner, chỉ để xếp hạng thô; số keyword từ 500 lên):
+
+| Nhóm | Keyword từ 500 trở lên | Head term và volume | Nhận xét |
+|---|---|---|---|
+| **AI for real estate agents** (hướng đề xuất ngày 23/10) | 14 | `ai for real estate` 5.000, `real estate ai` 5.000 (đã dùng), `ai for real estate agents`, `ai tools for real estate`, `best ai for real estate`, `real estate ai tools`, `real estate ai software` mỗi cái 500 | Nhiều keyword 500 nhất, cạnh tranh quảng cáo thấp, FUB gần như bỏ trống |
+| **1. Listing leads và seller prospecting** | 16 | `listing leads` 5.000; `expired listings`, `fsbo how to sell your house`, `listing leads for realtors`, `real estate listing leads`, `motivated seller leads`, `seller leads for realtors`, `real estate prospecting` (đã dùng), `real estate farming` (đã dùng) mỗi cái 500 | Có 1 head term 5.000 và một dải 500 đủ dày cho pillar + 5 cluster. Ứng viên số 1 trong nhóm lead gen |
+| **2. Bổ sung Cụm 7** (lead management, texting, client database) | 17 | `lead management system`, `lead management software`, `crm lead management`, `client database software`, `crm with texting` mỗi cái 500; `link texting` 5.000 nhưng không liên quan | Đủ cho 3–4 cluster, nhưng các từ này đa số nghiêng về tìm phần mềm, nên viết theo kiểu hướng dẫn chọn công cụ |
+| **3. Email và nurture** | 8 | `drip campaign` 5.000 (lẫn marketing mọi ngành), `realtor email templates` 500 (cạnh tranh Cao), `drip email templates` 500 | Chỉ 1 keyword thuần real estate. Yếu hơn dự đoán, nên hạ ưu tiên |
+| **4. SOI và nuôi khách cũ** | 3 | `real estate soi`, `soi in real estate`, `thank you note for real estate agent` mỗi cái 500 | Rất mỏng. Không đủ cho một pillar riêng, chỉ nên làm 1–2 bài lẻ trong Cụm 9 |
+| **5. Scripts và objections** | 3 | `real estate scripts` 500, `expired listing script` 500 | Giữ kết luận cũ: gộp vào Cụm 10 và Cụm 7, không làm cụm riêng |
+| **Wave 4 Cụm 9 lẻ** (sign, slogan, USP, CMA) | 2 | `cma template` 500 (cạnh tranh Cao) | Mỏng, làm khi rảnh |
+
+**Thứ tự đề xuất sau khi có volume Mỹ:**
+1. **AI for real estate agents** (pillar 5.000 + dải 500 dày nhất, FUB bỏ trống, khớp sản phẩm).
+2. **Cụm 10 Listing leads** (head 5.000, 15 keyword 500, khớp listing agent).
+3. **Bổ sung Cụm 7** (rẻ nhất, hướng bài "chọn công cụ").
+4. Email và nurture, hạ xuống vì thiếu keyword thuần real estate.
+5. SOI, scripts, wave 4 lẻ: chỉ làm bài lẻ, không tạo cụm.
+
+Lưu ý: volume bucket vẫn là xếp hạng thô, cột Currency vẫn là VND, chưa có SERP check. Các từ khóa ở bảng chưa kiểm cannibalization với bài hiện có ngoài hai dòng `đã dùng`.
