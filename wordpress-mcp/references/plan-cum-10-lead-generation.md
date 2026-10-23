@@ -343,3 +343,33 @@ Hôm nay 23/10 là thứ Sáu; 26/10 là thứ Hai.
 | 23/10 | News routine `trig_011KKDV99Pa12bj8TJssRo9x` bật lại (cron 18:06 UTC hằng ngày), prompt cập nhật: tránh keyword đã đặt chỗ của Cụm 9 và 10, map tin theo `content-plan.md` (gồm Cụm 9 và 10), Bước 6.5 (≥2 link ngang, 1 inbound donor cùng cụm, anchor ≤8 từ), tránh khung 10:00/14:00/18:00 của bài đã lên lịch. |
 | 23/10 | Thay ảnh đại diện của #2260 và #2262 bằng ảnh Gemini kiểu Cụm 9 (agent làm việc tại bàn, agent nói chuyện với chủ nhà ở hiên), tạo bằng `scripts/gen_article_images.py` với key lấy từ Drive "Gemini Key Realstake.txt". Hero mockup cũ (media #2252, #2256) không còn dùng làm ảnh đại diện, chưa xóa khỏi Media Library. |
 | 23/10 | **Revert theo yêu cầu**: ảnh đại diện của #2260 và #2262 trở lại hero mockup ban đầu (LCJttBft.jpg, PxLgRqrV.jpg). Hai ảnh Gemini chỉ còn là file tạm trên host uguu, chưa upload vào Media Library. |
+
+## 11. Lịch đã kéo sớm và trạng thái 11 cluster (23/10)
+
+Theo yêu cầu "kéo sớm hơn", lịch mục 9 được thay bằng lịch dưới đây. Cả 13 bài đã viết, đã lên lịch (`future`), `list_posts` xác nhận đúng giờ. Giờ site = UTC.
+
+| Ngày | 10:00 | 14:00 | 18:00 |
+|---|---|---|---|
+| 23/10 | #2260 pillar | #2262 sub-hub | |
+| 24/10 | #2322 expired-listings | #2326 circle-prospecting | #2330 sphere-of-influence-real-estate |
+| 25/10 | #2302 buyer-leads | #2320 free-real-estate-leads | #2332 lead-generation-companies |
+| 26/10 | #2315 expired-listing-scripts | #2328 open-house-sign-in-sheet | #2334 probate-real-estate-leads |
+| 27/10 | #2304 fsbo-leads | #2324 zillow-leads | |
+
+**Inbound pass wave 1** (donor trỏ sang bài 3 đến 8, pillar và hub trỏ xuống cluster): 26/10, sau khi bài 8 lên lúc 25/10 18:00. **Inbound pass wave 2** (bài 9 đến 13) và **audit link toàn cụm**: 28/10, sau khi bài Zillow lên lúc 27/10 14:00. Routine news hằng ngày chạy 18:06 UTC và tự tránh khung 10:00, 14:00, 18:00.
+
+| # | Bài | ID | Số từ | Ghi chú từ lúc viết |
+|---|---|---|---|---|
+| 3 | expired-listings | #2322 | 1.457 | Bỏ số "% expired bán lại" vì không có nguồn gốc; "ký hợp đồng với agent khác" chỉ nói hỏi broker |
+| 4 | circle-prospecting | #2326 | 1.281 | Không nêu bán kính (không nguồn nào cho số); ví dụ 80 nhà là số bịa, có ghi rõ |
+| 5 | sphere-of-influence-real-estate | #2330 | 1.365 | Focus đổi thành `sphere of influence` (`sphere real estate` không viết tự nhiên được); mật độ 0,6%. Link sang bài 7 (đăng 25/10) nên 404 khoảng 20 giờ |
+| 6 | buyer-leads-for-real-estate-agents | #2302 | 1.682 | CFPB chỉ nêu điều trang ghi; không trích số của Zillow qua blog vendor |
+| 7 | free-real-estate-leads | #2320 | ~1.650 | Kế hoạch 11 giờ mỗi tuần; không nêu chương trình Zillow |
+| 8 | real-estate-lead-generation-companies | #2332 | 1.697 | Không xếp hạng vendor, không dùng số vendor; RESPA 12 CFR 1024.14 trích đúng |
+| 9 | expired-listing-scripts | #2315 | 1.411 | NAR Code of Ethics (SOP 16-4, 16-8), 47 CFR 64.1200 thay cho FCC guide (403) |
+| 13 | real-estate-open-house-sign-in-sheet | #2328 | 1.216 | Template copy được trong bài; file `references/files/open-house-sign-in-sheet-template.xlsx` cho bạn tải (không link được trong bài vì WP MCP chỉ upload ảnh) |
+| 11 | probate-real-estate-leads | #2334 | 1.382 | **Focus đổi sang `probate real estate leads`** sau khi kiểm SERP 23/10 (SERP motivated seller lệch nhà đầu tư); **slug đổi từ `motivated-seller-leads` sang `probate-real-estate-leads`**, đã sửa link trong #2304 |
+| 12 | fsbo-leads | #2304 | 1.394 | Không nêu số hoa hồng (không mở được báo cáo gốc NAR) |
+| 10 | zillow-leads-for-real-estate-agents | #2324 | 1.502 | Trang Zillow trả 403; chỉ nêu điều đọc được nguyên văn từ báo cáo FY2025 của Zillow Group (SEC) và HousingWire (nguồn phụ, ngày 21/01/2026); "tối đa 40% hoa hồng" chỉ là thông tin thứ cấp trong vụ kiện, ghi rõ nguồn và phản hồi của Zillow. Ví dụ $9.000 / 30% / $6.300 là số bịa, ghi "Not Zillow's terms" |
+
+Tracker rows #165 đến #177 (Type = Plan, cùng quy ước Cụm 9): `references/files/tracker-rows-cum10.tsv`. Cảnh mockup: `skills/mockup-images/scripts/scenes/s_m_leadgen.py` (pillar, hub) và `s_m_lg_a.py` đến `s_m_lg_d.py` (cluster).

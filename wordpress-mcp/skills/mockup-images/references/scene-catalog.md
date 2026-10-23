@@ -68,3 +68,7 @@ Mỗi cảnh là một biến trong `scripts/scenes/s_m_<nhóm>.py`, render ra `
 
 Wave 3 (dựng ngay theo mobile-first): hộp kịch bản door knocking và cold calling, checklist open house, bảng chọn farm, lịch 12 tháng, khung video (kịch bản và thiết lập điện thoại).
 Các bài còn lại của Cụm 9 chưa có mockup: #1859 và #1865 (đã dựng, chờ publish), #1871 (đã dựng, chờ publish).
+
+## Cụm 10 (Lead Generation, 23/10/2026)
+
+Cảnh nằm trong `scripts/scenes/s_m_leadgen.py` (pillar #2260, sub-hub #2262: hero, chọn nguồn theo tình huống, nguồn theo buyer hay seller, chi phí mỗi closing, nơi listing đến từ đâu, từ lead đến listing, tracker theo nguồn) và `s_m_lg_a.py` đến `s_m_lg_d.py` (11 cluster, mỗi bài 1 hero và 3 cảnh trong thân). Hero dùng hàm `hero(photo, h1, h2)` (ảnh nhà phủ nền navy, canvas 1000x560).

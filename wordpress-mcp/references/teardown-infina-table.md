@@ -306,17 +306,17 @@ Cụm 7 (#1223) từ 15/09; Cụm 10 nhận `real estate lead generation` theo n
 |---|---|---|---|---|---|
 | 1 | **Pillar** | [#2260 /real-estate-lead-generation](https://infina.ai/news/real-estate-lead-generation/) Real Estate Lead Generation: 10 Lead Sources Compared | `real estate lead generation` 5k TB (gom `real estate leads`, `real estate lead gen`, `real estate agent leads`, `leads in real estate`, `agent lead generation`, `online lead generation real estate`, đều 5k) | Hub, đăng trước | Đã viết, scheduled 23/10 10:00 UTC |
 | 2 | **Pillar** (sub-hub) | [#2262 /listing-leads](https://infina.ai/news/listing-leads/) Listing Leads: How to Find Sellers and Win More Listings | `listing leads` 5k TB (gom `listing leads for realtors`, `real estate listing leads`, `seller leads real estate`, `seller leads for realtors`) | Hub, đăng trước | Đã viết, scheduled 23/10 14:00 UTC |
-| 3 | how-to | Expired Listings: How to Find Them, Which Ones You May Call and What to Say First | `expired listings` 500 TB (+ `expired mls listings`, `expired real estate listings`) | Wave 1 | Đã duyệt, đăng 27/10 10:00 UTC |
-| 4 | how-to | Circle Prospecting: Radius, Triggers and a Weekly Routine | `circle prospecting` 500 TB | Wave 1 | Đã duyệt, đăng 27/10 14:00 UTC |
-| 5 | how-to | Sphere of Influence in Real Estate: How to Build and Work Your SOI | `sphere real estate` 500 L (+ `soi in real estate`, `real estate soi`) | Wave 1 | Đã duyệt, đăng 27/10 18:00 UTC |
-| 6 | how-to | Buyer Leads for Real Estate Agents: Where They Come From and How to Qualify Them | `buyer leads for real estate agents` 500 C | Wave 1 | Đã duyệt, đăng 28/10 10:00 UTC |
-| 7 | how-to | Free Real Estate Leads: A Zero-Budget Weekly Plan for New Agents | `free real estate leads` 500 TB | Wave 1 | Đã duyệt, đăng 28/10 14:00 UTC |
-| 8 | review | Real Estate Lead Generation Companies: What You Pay, What You Sign and What Converts | `real estate lead generation companies` 500 TB | Wave 1 | Đã duyệt, đăng 28/10 18:00 UTC |
-| 9 | how-to | Expired Listing Scripts: What to Say, Objections and Follow-Up | `expired listing script` 500 TB | Wave 2 | Đã duyệt, đăng 30/10 10:00 UTC |
-| 10 | review | Zillow Leads for Real Estate Agents: Premier Agent, Flex and What They Cost | `zillow leads` 5k C | Wave 2 | Đã duyệt, đăng 30/10 14:00 UTC |
-| 11 | niche | Motivated Seller and Probate Leads: How Agents Find Life-Event Sellers | `motivated seller leads` 500 C (cân nhắc `probate real estate leads` 500 L) | Wave 2 | Đã duyệt, đăng 31/10 10:00 UTC |
-| 12 | niche | FSBO Leads: How Agents Find and Convert For-Sale-By-Owner Sellers | `fsbo leads` 50 C | Wave 2 | Đã duyệt, đăng 31/10 14:00 UTC |
-| 13 | niche | Open House Sign-In Sheet: A Free Template and Consent Wording | `real estate open house sign in sheet` 500 C | Wave 2 | Đã duyệt, đăng 30/10 18:00 UTC |
+| 3 | how-to | [#2322 /expired-listings](https://infina.ai/news/expired-listings/) Expired Listings: How to Find Them and Reach the Owners | `expired listings` 500 TB (+ `expired mls listings`, `expired real estate listings`) | Wave 1 | Đã viết, scheduled 24/10 10:00 UTC, 1457 từ |
+| 4 | how-to | [#2326 /circle-prospecting](https://infina.ai/news/circle-prospecting/) Circle Prospecting: Radius, Triggers and a Weekly Routine | `circle prospecting` 500 TB | Wave 1 | Đã viết, scheduled 24/10 14:00 UTC, 1281 từ |
+| 5 | how-to | [#2330 /sphere-of-influence-real-estate](https://infina.ai/news/sphere-of-influence-real-estate/) Sphere of Influence in Real Estate: How to Build and Work It | `sphere of influence` | Wave 1 | Đã viết, scheduled 24/10 18:00 UTC, 1365 từ |
+| 6 | how-to | [#2302 /buyer-leads-for-real-estate-agents](https://infina.ai/news/buyer-leads-for-real-estate-agents/) Buyer Leads for Real Estate Agents: Sources and Follow-Up | `buyer leads for real estate agents` 500 C | Wave 1 | Đã viết, scheduled 25/10 10:00 UTC, 1682 từ |
+| 7 | how-to | [#2320 /free-real-estate-leads](https://infina.ai/news/free-real-estate-leads/) Free Real Estate Leads: A Zero-Budget Weekly Plan | `free real estate leads` 500 TB | Wave 1 | Đã viết, scheduled 25/10 14:00 UTC, 1651 từ |
+| 8 | review | [#2332 /real-estate-lead-generation-companies](https://infina.ai/news/real-estate-lead-generation-companies/) Real Estate Lead Generation Companies: What to Compare | `real estate lead generation companies` 500 TB | Wave 1 | Đã viết, scheduled 25/10 18:00 UTC, 1697 từ |
+| 9 | how-to | [#2315 /expired-listing-scripts](https://infina.ai/news/expired-listing-scripts/) Expired Listing Scripts: What to Say and How to Follow Up | `expired listing script` 500 TB | Wave 2 | Đã viết, scheduled 26/10 10:00 UTC, 1411 từ |
+| 10 | review | [#2324 /zillow-leads-for-real-estate-agents](https://infina.ai/news/zillow-leads-for-real-estate-agents/) Zillow Leads for Real Estate Agents: How They Work | `zillow leads` 5k C | Wave 2 | Đã viết, scheduled 27/10 14:00 UTC, 1502 từ |
+| 11 | niche | [#2334 /probate-real-estate-leads](https://infina.ai/news/probate-real-estate-leads/) Probate Real Estate Leads: How Agents Find and Serve Them | `probate real estate leads` 500 L | Wave 2 | Đã viết, scheduled 26/10 18:00 UTC, 1382 từ |
+| 12 | niche | [#2304 /fsbo-leads](https://infina.ai/news/fsbo-leads/) FSBO Leads: How Agents Find and Convert Owner Sellers | `fsbo leads` 50 C | Wave 2 | Đã viết, scheduled 27/10 10:00 UTC, 1394 từ |
+| 13 | niche | [#2328 /real-estate-open-house-sign-in-sheet](https://infina.ai/news/real-estate-open-house-sign-in-sheet/) Real Estate Open House Sign In Sheet: Free Template | `real estate open house sign in sheet` 500 C | Wave 2 | Đã viết, scheduled 26/10 14:00 UTC, 1216 từ |
 
 ### Inbound dự kiến từ bài đã có (làm sau mỗi wave)
 
