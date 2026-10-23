@@ -2,7 +2,7 @@
 
 Crawl 2026-10-23 qua WP REST API (bản đầu 2026-10-09, làm mới hoàn toàn lần này). **178 bài publish, 166 bài thật** (12 stub 301
 tách riêng ở cuối file). Không có bài draft/scheduled/pending nào tại thời điểm crawl: cả 28 bài Cụm 9 đã đăng.
-Cụm 10 (lead generation) mới ở mức **đã duyệt, chưa viết**, xem mục riêng sau Cụm 9; không nằm trong số 178 bài.
+Cụm 10 (lead generation) **đã viết đủ 13 bài và đã lên lịch 23 đến 27/10** (pillar #2260 và hub #2262 đăng 23/10), xem mục riêng sau Cụm 9; chưa nằm trong số 178 bài vì chưa đăng lúc crawl.
 
 Cùng format với `teardown-followupboss-table.md` để đặt cạnh nhau mà so. Kết luận chiến lược của
 đối thủ ở `teardown-followupboss.md`, phương pháp ở `competitor-pillar-teardown.md`. File này là dữ
@@ -63,7 +63,7 @@ chính file này thì được, đừng dùng để cãi nhau với số trong f
 là `#299`. Quy tắc không dùng dash áp cho bài mình viết mới, không áp cho việc trích lại tiêu đề đang
 có. Dòng này là để biết mà đi sửa, không phải để sửa trong bảng.
 
-## Tóm tắt 11 nhóm (cộng Cụm 10 đã duyệt, chưa viết)
+## Tóm tắt 11 nhóm (cộng Cụm 10 đã viết, đang lên lịch)
 
 | Cụm | Trang | Pillar | Tổng chữ | Mồ côi | Không trỏ pillar nào | Thiếu FOCUS_KW |
 |---|---|---|---|---|---|---|
@@ -76,7 +76,7 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 | Cụm 7: Lead Generation / Follow-up Automation | 9 | `real-estate-lead-follow-up-automation-guide` (20 IN, 2,483 chữ) | 8,338 | 0 | 0 | 2 |
 | Cụm 8: Compliance / Legal / Risk | 6 | `tcpa-compliance-for-real-estate-agents` (22 IN, 1,909 chữ) | 6,005 | 0 | 0 | 1 |
 | Cụm 9: Marketing và Branding | 28 | `real-estate-marketing` (22 IN, 2,624 chữ); `real-estate-branding` (12 IN, 1,829 chữ) | 44,661 | 0 | 0 | 0 |
-| Cụm 10: Lead Generation, nguồn lead (đã duyệt, chưa viết) | 0 live / 13 dự kiến | `real estate lead generation` và `listing leads` (dự kiến, chưa có URL) | n/a | n/a | n/a | n/a |
+| Cụm 10: Lead Generation, nguồn lead (đã viết, lên lịch 23-27/10) | 13 bài (0 live lúc crawl) | `real-estate-lead-generation` #2260 (2,167 chữ) và sub-hub `listing-leads` #2262 (1,722 chữ) | 19,927 (số bản thảo) | 0 | 0 | 0 |
 | Bài News real estate chưa gắn cụm trong plan | 40 | không có | 29,506 | 0 | 18 | 12 |
 | Ngoài chủ đề real estate (AI/tech) | 11 | không có | 2,784 | 11 | 11 | 0 |
 
@@ -292,20 +292,21 @@ trong mục Related Reading (pillar #1825 hiện có 20 bullet, hub #1832 có 7)
 
 ---
 
-## Cụm 10: Lead Generation, nguồn lead cho agent  (ĐÃ DUYỆT 23/10, 13 bài, chưa viết, chưa có URL, đăng 26-31/10)
+## Cụm 10: Lead Generation, nguồn lead cho agent  (13 bài, đã viết 23/10, scheduled 23-27/10, 19,927 chữ bản thảo)
 
-**Trạng thái (23/10/2026):** plan ở `plan-cum-10-lead-generation.md`, **đã duyệt cả 13 bài**, keyword đã đặt chỗ trong `used-keywords.md`
-và ghi vào `content-plan.md`. Lịch đăng 26/10 đến 31/10, inbound pass 29/10 và 1/11, audit 2/11. Hiện **0 bài live** về expired, FSBO, circle prospecting, listing leads, buyer leads, SOI, free leads, Zillow leads
-(đã đối chiếu 178 slug live). Bảng này là kế hoạch, nên không có cột IN, chữ hay ngày sửa như các cụm khác. Sau khi bài lên, chạy lại crawl để thay
-bằng số đo thật. Volume là bucket US (50 / 500 / 5k), "L/TB/C" là cạnh tranh ads.
+**Trạng thái (23/10/2026):** plan ở `plan-cum-10-lead-generation.md`. **Cả 13 bài đã viết và lên lịch** (`future`, `list_posts` xác nhận đúng giờ), keyword đã đặt chỗ trong `used-keywords.md`, đã ghi vào `content-plan.md`, tracker rows #165 đến #177 ở `references/files/tracker-rows-cum10.tsv`. Pillar #2260 (10:00) và sub-hub #2262 (14:00) đăng 23/10; 11 cluster đăng 24 đến 27/10. Chưa có bài nào được crawl nên bảng không có cột IN và ngày sửa; số chữ là số bản thảo lúc viết, kể cả bảng, và sẽ được thay bằng số đo thật sau inbound pass. Volume là bucket US (50 / 500 / 5k), "L/TB/C" là cạnh tranh ads.
+
+**Lịch:** inbound pass wave 1 ngày 26/10 (sau bài 3 đến 8), inbound pass wave 2 và audit link toàn cụm ngày 28/10 (sau bài 9 đến 13). Hai lần pass và một lần verify 23/10 15:00 đã đặt lịch tự động.
+
+**Thay đổi so với plan lúc duyệt:** bài 11 đổi focus sang `probate real estate leads` và slug sang `probate-real-estate-leads` (SERP motivated seller lệch nhà đầu tư); bài 5 dùng focus `sphere of influence`. Bài Zillow chỉ nêu điều đọc được từ báo cáo FY2025 của Zillow Group, chưa có mức phí chính thức. Hero mockup dùng làm ảnh đại diện (không dùng Gemini).
 
 **Ranh giới:** Cụm 9 = được nhìn thấy. **Cụm 10 = lead đến từ đâu.** Cụm 7 = chăm lead sau khi tới. Keyword `lead generation for realestate` đã gán cho pillar
 Cụm 7 (#1223) từ 15/09; Cụm 10 nhận `real estate lead generation` theo nghĩa nguồn lead, hai pillar link ngang cho nhau.
 
 | # | Vai trò | Bài dự kiến | Focus keyword (bucket, ads) | Wave | Trạng thái |
 |---|---|---|---|---|---|
-| 1 | **Pillar** | [#2260 /real-estate-lead-generation](https://infina.ai/news/real-estate-lead-generation/) Real Estate Lead Generation: 10 Lead Sources Compared | `real estate lead generation` 5k TB (gom `real estate leads`, `real estate lead gen`, `real estate agent leads`, `leads in real estate`, `agent lead generation`, `online lead generation real estate`, đều 5k) | Hub, đăng trước | Đã viết, scheduled 23/10 10:00 UTC |
-| 2 | **Pillar** (sub-hub) | [#2262 /listing-leads](https://infina.ai/news/listing-leads/) Listing Leads: How to Find Sellers and Win More Listings | `listing leads` 5k TB (gom `listing leads for realtors`, `real estate listing leads`, `seller leads real estate`, `seller leads for realtors`) | Hub, đăng trước | Đã viết, scheduled 23/10 14:00 UTC |
+| 1 | **Pillar** | [#2260 /real-estate-lead-generation](https://infina.ai/news/real-estate-lead-generation/) Real Estate Lead Generation: 10 Lead Sources Compared | `real estate lead generation` 5k TB (gom `real estate leads`, `real estate lead gen`, `real estate agent leads`, `leads in real estate`, `agent lead generation`, `online lead generation real estate`, đều 5k) | Hub, đăng trước | Đã viết, scheduled 23/10 10:00 UTC, 2,167 chữ, 11 lần keyword, 1 bảng 10 nguồn, 4 ảnh, link ra 21 bài khác nhau \|
+| 2 | **Pillar** (sub-hub) | [#2262 /listing-leads](https://infina.ai/news/listing-leads/) Listing Leads: How to Find Sellers and Win More Listings | `listing leads` 5k TB (gom `listing leads for realtors`, `real estate listing leads`, `seller leads real estate`, `seller leads for realtors`) | Hub, đăng trước | Đã viết, scheduled 23/10 14:00 UTC, 1,722 chữ, 20 lần keyword, 2 bảng, 4 ảnh \|
 | 3 | how-to | [#2322 /expired-listings](https://infina.ai/news/expired-listings/) Expired Listings: How to Find Them and Reach the Owners | `expired listings` 500 TB (+ `expired mls listings`, `expired real estate listings`) | Wave 1 | Đã viết, scheduled 24/10 10:00 UTC, 1457 từ |
 | 4 | how-to | [#2326 /circle-prospecting](https://infina.ai/news/circle-prospecting/) Circle Prospecting: Radius, Triggers and a Weekly Routine | `circle prospecting` 500 TB | Wave 1 | Đã viết, scheduled 24/10 14:00 UTC, 1281 từ |
 | 5 | how-to | [#2330 /sphere-of-influence-real-estate](https://infina.ai/news/sphere-of-influence-real-estate/) Sphere of Influence in Real Estate: How to Build and Work It | `sphere of influence` | Wave 1 | Đã viết, scheduled 24/10 18:00 UTC, 1365 từ |
