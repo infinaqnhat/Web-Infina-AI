@@ -209,7 +209,31 @@ Giữ trần 3 bài/ngày: routine news 18:06 UTC chiếm 1 slot.
 
 **Donor (bài cũ → cluster mới, làm ở inbound pass):** #1223 và #1227 → pillar; #1272 → drip templates; #2189 → pillar và bài 3; #1178, #1955, #936, #2262 → CMA; #2171 → follow-up email; #2177 và #2195 → video email; #2330 → newsletter; #2400 và #2413 → pillar. Gắn #1178 vào Cụm 13.
 
-**Log:** chưa có bài nào được viết (cập nhật khi từng bài xong).
+**Log (26/10/2026):** cả 10 bài đã viết và lên lịch (`future`, `list_posts` xác nhận đúng giờ); tracker rows #189 đến #198 ở `references/files/tracker-rows-cum13.tsv`.
+
+| # | Post ID | Slug | Lịch (UTC) | Từ | Keyword (mật độ) |
+|---|---|---|---|---|---|
+| P | #2486 | `real-estate-drip-email` | 02/11 10:00 | 2626 | 0,61% |
+| 1 | #2494 | `real-estate-drip-campaign-templates` | 02/11 14:00 | 1680 | 0,66% |
+| 2 | #2482 | `real-estate-follow-up-email` | 03/11 10:00 | 1480 | 0,61% |
+| 3 | #2492 | `realtor-email-templates` | 03/11 14:00 | 1560 | 0,70% |
+| 4 | #2498 | `comparative-market-analysis-real-estate` | 04/11 10:00 | 1991 | 0,55% |
+| 5 | #2500 | `cma-template` | 04/11 14:00 | 1358 | 1,10% |
+| 6 | #2488 | `real-estate-newsletter` | 05/11 10:00 | 1510 | 0,60% |
+| 7 | #2496 | `real-estate-email-subject-lines` | 05/11 14:00 | 1390 | 0,86% |
+| 8 | #2484 | `bad-drip-campaign-real-estate` | 06/11 10:00 | 1521 | 0,79% |
+| 9 | #2490 | `video-email-for-real-estate` | 06/11 14:00 | 1253 | 0,64% |
+
+**Ghi nhận khi viết:**
+- Pillar 2.626 chữ (thấp hơn mức 2.600 đến 3.000 một chút); Related Reading của pillar mới có 4 bullet, các cluster khác thêm ở inbound pass.
+- H1 bài 2 đổi thành "Real Estate Follow Up Email Templates for Leads, Showings and Open Houses" và H1 bài 6 thành "Real Estate Newsletter Templates: A Monthly Plan for Agents" để chứa đúng focus keyword. Slug giữ nguyên.
+- Bài 4 (CMA how-to): nguồn CFPB nói appraisal do thẩm định viên có giấy phép làm và BPO là ước tính của người bán nhà; CFPB không dùng từ "CMA", nên câu "CMA gần BPO nhất" ghi là cách đọc của mình. Mật độ 0,55% (đếm đúng cụm).
+- Bài 5 (CMA template): mật độ 1,10%. File `references/files/cma-template.xlsx` (3 sheet Comps, Adjustments, Summary; công thức SUMIF; số mẫu A 396.000, B 401.500, C 390.000, khoảng 390.000 đến 401.500 đã kiểm tay). **Chưa link trong bài**, chờ user host rồi thêm 1 câu vào mục "What Does the One-Page CMA Format Look Like?".
+- Bài 6 chỉ chỉ chỗ lấy số thị trường (NAR existing-home sales), không nêu số thật.
+- Bài 8: keyword không đứng đầu H1 nhưng đứng đầu câu mở đoạn đầu. Bài 9: 1.253 chữ (thấp hơn 1.300 một chút).
+- **Cần đối chiếu slug thật** khi các bài lên (bài `future` không đọc được qua REST, các nhóm link theo slug trong brief): kiểm lúc check-in 02/11 và các inbound pass.
+- Không dùng số liệu vendor; mọi nhịp gửi, số email, thời lượng video là gợi ý của ta, đã ghi trong bài.
+
 
 ## 12. Quyết định của user (26/10)
 

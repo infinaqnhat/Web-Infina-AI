@@ -78,7 +78,7 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 | Cụm 9: Marketing và Branding | 28 | `real-estate-marketing` (22 IN, 2,624 chữ); `real-estate-branding` (12 IN, 1,829 chữ) | 44,661 | 0 | 0 | 0 |
 | Cụm 10: Lead Generation, nguồn lead (đã viết, lên lịch 23-27/10) | 13 bài (0 live lúc crawl) | `real-estate-lead-generation` #2260 (2,167 chữ) và sub-hub `listing-leads` #2262 (1,722 chữ) | 19,927 (số bản thảo) | 0 | 0 | 0 |
 | Cụm 12: Sphere of influence và nuôi khách cũ (**đã duyệt 26/10**, đăng 28/10 đến 01/11) | 1 pillar nâng cấp (#2330) + 10 bài (đã viết, lên lịch 28/10 đến 01/11) | `sphere-of-influence-real-estate` #2330 (1,365 chữ, 7 IN, sẽ làm mới lên khoảng 3,000 chữ) | 0 | 0 | 0 | 0 |
-| Cụm 13: Email, drip campaign và nuôi lead (**đã duyệt 26/10**, đăng 02/11 đến 06/11) | 1 pillar mới + 9 bài dự kiến | chưa có (pillar mới `real estate drip email`) | 0 (chưa viết) | 0 | 0 | 0 |
+| Cụm 13: Email, drip campaign và nuôi lead (**đã duyệt 26/10**, đăng 02/11 đến 06/11) | 1 pillar mới + 9 bài (đã viết, lên lịch 02/11 đến 06/11) | `real-estate-drip-email` #2486 (2,626 chữ) | 0 | 0 | 0 | 0 |
 | Bài News real estate chưa gắn cụm trong plan | 40 | không có | 29,506 | 0 | 18 | 12 |
 | Ngoài chủ đề real estate (AI/tech) | 11 | không có | 2,784 | 11 | 11 | 0 |
 
@@ -403,7 +403,7 @@ Hiện #2330 chỉ có **7 inbound**, toàn từ Cụm 10 và #1961. Bài giữ 
 
 ## Cụm 13: Email, drip campaign và nuôi lead  (ĐÃ DUYỆT 26/10, 1 pillar mới + 9 bài, đăng 02/11 đến 06/11)
 
-**Trạng thái (26/10/2026): ĐÃ DUYỆT HẾT.** Plan ở `plan-cum-13-email-nurture.md` (brief từng bài ở mục 10). Keyword đã đặt chỗ trong `used-keywords.md`, đã ghi `content-plan.md`. Chưa viết bài nào lúc ghi dòng này; cột Trạng thái cập nhật khi từng bài xong.
+**Trạng thái (26/10/2026): ĐÃ DUYỆT HẾT.** Plan ở `plan-cum-13-email-nurture.md` (brief từng bài ở mục 10). Keyword đã đặt chỗ trong `used-keywords.md`, đã ghi `content-plan.md`. **10 bài đã viết và lên lịch ngày 26/10** (`future`, `list_posts` xác nhận đúng giờ).
 
 **Nguồn ý tưởng:** 11 chủ đề user gửi (ảnh sheet 26/10) là các bài trong hub "Email và nurture" của Follow Up Boss (pillar `real-estate-drip-email`, 39 IN, 3,196 chữ cộng 8 bài, tổng 18,726 chữ). Mỗi chủ đề được viết lại theo góc riêng của Infina, không nhắm đúng chữ trong sheet. Dữ liệu keyword đã gộp vào file tổng ngày 26/10 (export US 15:05).
 
@@ -413,16 +413,16 @@ Hiện #2330 chỉ có **7 inbound**, toàn từ Cụm 10 và #1961. Bài giữ 
 
 | # | Vai trò | Bài dự kiến | Focus keyword (đề xuất, bucket) | Chủ đề FUB tương ứng | Lịch đề xuất | Trạng thái |
 |---|---|---|---|---|---|---|
-| P | **Pillar** (mới) | Real Estate Drip Email: How to Build a Campaign in 5 Steps | `real estate drip email` 500 (gom `real estate email drip campaigns` 500) | Pillar `real-estate-drip-email` | 02/11 10:00 | Chưa viết. 5 bước, dừng khi khách trả lời, đo bằng reply rate, CAN-SPAM |
-| 1 | how-to | Real Estate Drip Campaign Templates: 4 Sequences to Copy | `real estate drip campaign templates` 50 (Cao) | Drip sequence | 02/11 14:00 | Chưa viết. Người mua, người bán, sau open house, khách cũ |
-| 2 | how-to | Real Estate Follow-Up Email: Templates for Leads, Showings and Open Houses | `real estate follow up email templates` 50 | Email to follow up | 03/11 10:00 | Chưa viết. Link #1223, #2171 |
-| 3 | template | Realtor Email Templates: 20 Emails for Every Client Situation | `realtor email templates` 500 (Cao) | Email to client | 03/11 14:00 | Chưa viết. Email cho khách đang trong giao dịch |
-| 4 | how-to | Comparative Market Analysis Real Estate: How to Do a CMA Step by Step | `comparative market analysis real estate` 5.000 | CMA + client relationship | 04/11 10:00 | Chưa viết. **Bài kéo traffic chính**; dùng CMA để giữ liên lạc khách cũ |
-| 5 | template | CMA Template: A Free Comparative Market Analysis Format | `cma template` 500 (Cao) | CMA | 04/11 14:00 | Chưa viết. Khung 1 trang; file tải về chờ chọn nơi lưu |
-| 6 | template | Real Estate Newsletter: Templates and a Monthly Plan | `real estate newsletter templates` 500 (Cao) | Newsletter | 05/11 10:00 | Chưa viết. Module xoay vòng, lịch 12 tháng cho SOI |
-| 7 | list | Real Estate Email Subject Lines: 60 Examples and What to Test | `real estate email subject lines` 50 | Email subject line | 05/11 14:00 | Chưa viết. **Có thể bỏ** (volume thấp). Không dùng open rate vendor (Apple MPP) |
-| 8 | how-to | Why a Bad Drip Campaign Is Worse Than None (and How to Audit Yours) | `real estate drip campaign` 50 | Bad drip sequence | 06/11 10:00 | Chưa viết. **Có thể bỏ** (volume thấp). Bảng 8 lỗi + checklist 10 phút |
-| 9 | how-to | Video Email for Real Estate: How to Send One Prospects Will Watch | `video email for real estate` (không có volume) | Video email + prospect | 06/11 14:00 | Chưa viết. **Có thể gộp vào #2177** (video marketing) |
+| P | **Pillar** (mới) | [#2486 /real-estate-drip-email](https://infina.ai/news/real-estate-drip-email/) Real Estate Drip Email: How to Build a Campaign in 5 Steps | `real estate drip email` 500 (gom `real estate email drip campaigns` 500) | Pillar `real-estate-drip-email` | 02/11 10:00 | Đã viết 26/10 = #2486 `/real-estate-drip-email`, 2626 từ (0,61%), scheduled 02/11 10:00 UTC. 5 bước, dừng khi khách trả lời, đo bằng reply rate, CAN-SPAM |
+| 1 | how-to | [#2494 /real-estate-drip-campaign-templates](https://infina.ai/news/real-estate-drip-campaign-templates/) Real Estate Drip Campaign Templates: 4 Sequences to Copy | `real estate drip campaign templates` 50 (Cao) | Drip sequence | 02/11 14:00 | Đã viết 26/10 = #2494 `/real-estate-drip-campaign-templates`, 1680 từ (0,66%), scheduled 02/11 14:00 UTC. Người mua, người bán, sau open house, khách cũ |
+| 2 | how-to | [#2482 /real-estate-follow-up-email](https://infina.ai/news/real-estate-follow-up-email/) Real Estate Follow-Up Email: Templates for Leads, Showings and Open Houses | `real estate follow up email templates` 50 | Email to follow up | 03/11 10:00 | Đã viết 26/10 = #2482 `/real-estate-follow-up-email`, 1480 từ (0,61%), scheduled 03/11 10:00 UTC. Link #1223, #2171 |
+| 3 | template | [#2492 /realtor-email-templates](https://infina.ai/news/realtor-email-templates/) Realtor Email Templates: 20 Emails for Every Client Situation | `realtor email templates` 500 (Cao) | Email to client | 03/11 14:00 | Đã viết 26/10 = #2492 `/realtor-email-templates`, 1560 từ (0,70%), scheduled 03/11 14:00 UTC. Email cho khách đang trong giao dịch |
+| 4 | how-to | [#2498 /comparative-market-analysis-real-estate](https://infina.ai/news/comparative-market-analysis-real-estate/) Comparative Market Analysis Real Estate: How to Do a CMA Step by Step | `comparative market analysis real estate` 5.000 | CMA + client relationship | 04/11 10:00 | Đã viết 26/10 = #2498 `/comparative-market-analysis-real-estate`, 1991 từ (0,55%), scheduled 04/11 10:00 UTC. **Bài kéo traffic chính**; dùng CMA để giữ liên lạc khách cũ |
+| 5 | template | [#2500 /cma-template](https://infina.ai/news/cma-template/) CMA Template: A Free Comparative Market Analysis Format | `cma template` 500 (Cao) | CMA | 04/11 14:00 | Đã viết 26/10 = #2500 `/cma-template`, 1358 từ (1,10%), scheduled 04/11 14:00 UTC. Khung 1 trang; file tải về chờ chọn nơi lưu |
+| 6 | template | [#2488 /real-estate-newsletter](https://infina.ai/news/real-estate-newsletter/) Real Estate Newsletter: Templates and a Monthly Plan | `real estate newsletter templates` 500 (Cao) | Newsletter | 05/11 10:00 | Đã viết 26/10 = #2488 `/real-estate-newsletter`, 1510 từ (0,60%), scheduled 05/11 10:00 UTC. Module xoay vòng, lịch 12 tháng cho SOI |
+| 7 | list | [#2496 /real-estate-email-subject-lines](https://infina.ai/news/real-estate-email-subject-lines/) Real Estate Email Subject Lines: 60 Examples and What to Test | `real estate email subject lines` 50 | Email subject line | 05/11 14:00 | Đã viết 26/10 = #2496 `/real-estate-email-subject-lines`, 1390 từ (0,86%), scheduled 05/11 14:00 UTC. **Có thể bỏ** (volume thấp). Không dùng open rate vendor (Apple MPP) |
+| 8 | how-to | [#2484 /bad-drip-campaign-real-estate](https://infina.ai/news/bad-drip-campaign-real-estate/) Why a Bad Drip Campaign Is Worse Than None (and How to Audit Yours) | `real estate drip campaign` 50 | Bad drip sequence | 06/11 10:00 | Đã viết 26/10 = #2484 `/bad-drip-campaign-real-estate`, 1521 từ (0,79%), scheduled 06/11 10:00 UTC. **Có thể bỏ** (volume thấp). Bảng 8 lỗi + checklist 10 phút |
+| 9 | how-to | [#2490 /video-email-for-real-estate](https://infina.ai/news/video-email-for-real-estate/) Video Email for Real Estate: How to Send One Prospects Will Watch | `video email for real estate` (không có volume) | Video email + prospect | 06/11 14:00 | Đã viết 26/10 = #2490 `/video-email-for-real-estate`, 1253 từ (0,64%), scheduled 06/11 14:00 UTC. **Có thể gộp vào #2177** (video marketing) |
 
 ### Bài đã có: map lại và việc cần làm (REST 26/10)
 
