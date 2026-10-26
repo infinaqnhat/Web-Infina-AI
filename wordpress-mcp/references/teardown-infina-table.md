@@ -77,7 +77,7 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 | Cụm 8: Compliance / Legal / Risk | 6 | `tcpa-compliance-for-real-estate-agents` (22 IN, 1,909 chữ) | 6,005 | 0 | 0 | 1 |
 | Cụm 9: Marketing và Branding | 28 | `real-estate-marketing` (22 IN, 2,624 chữ); `real-estate-branding` (12 IN, 1,829 chữ) | 44,661 | 0 | 0 | 0 |
 | Cụm 10: Lead Generation, nguồn lead (đã viết, lên lịch 23-27/10) | 13 bài (0 live lúc crawl) | `real-estate-lead-generation` #2260 (2,167 chữ) và sub-hub `listing-leads` #2262 (1,722 chữ) | 19,927 (số bản thảo) | 0 | 0 | 0 |
-| Cụm 12: Sphere of influence và nuôi khách cũ (**plan chờ duyệt 26/10**, chưa viết) | 1 pillar nâng cấp (#2330) + 10 bài dự kiến | `sphere-of-influence-real-estate` #2330 (1,365 chữ, 7 IN, sẽ làm mới lên khoảng 3,000 chữ) | 0 (chưa viết) | 0 | 0 | 0 |
+| Cụm 12: Sphere of influence và nuôi khách cũ (**đã duyệt 26/10**, đăng 28/10 đến 01/11) | 1 pillar nâng cấp (#2330) + 10 bài dự kiến | `sphere-of-influence-real-estate` #2330 (1,365 chữ, 7 IN, sẽ làm mới lên khoảng 3,000 chữ) | 0 (chưa viết) | 0 | 0 | 0 |
 | Bài News real estate chưa gắn cụm trong plan | 40 | không có | 29,506 | 0 | 18 | 12 |
 | Ngoài chủ đề real estate (AI/tech) | 11 | không có | 2,784 | 11 | 11 | 0 |
 
@@ -347,9 +347,9 @@ Cụm 7 (#1223) từ 15/09; Cụm 10 nhận `real estate lead generation` theo n
 
 ---
 
-## Cụm 12: Sphere of influence và nuôi khách cũ  (plan chờ duyệt 26/10, 1 pillar nâng cấp + 10 bài dự kiến)
+## Cụm 12: Sphere of influence và nuôi khách cũ  (ĐÃ DUYỆT 26/10, 1 pillar nâng cấp + 10 bài, đăng 28/10 đến 01/11)
 
-**Trạng thái (26/10/2026): CHỜ DUYỆT.** Plan đầy đủ ở `plan-cum-12-sphere-past-client.md` (bản 2, theo chủ đề). Chưa đặt chỗ keyword trong `used-keywords.md`, chưa ghi `content-plan.md`, chưa viết bài nào. Số cụm là 12 vì `plan-cum-11-lead-management.md` đã ghi "không làm cụm 11".
+**Trạng thái (26/10/2026): ĐÃ DUYỆT HẾT.** Plan ở `plan-cum-12-sphere-past-client.md` (bản 2, theo chủ đề; brief từng bài ở mục 10). Keyword đã đặt chỗ trong `used-keywords.md`, đã ghi `content-plan.md`. Chưa viết bài nào lúc ghi dòng này; cột Trạng thái cập nhật khi từng bài xong. Số cụm là 12 vì `plan-cum-11-lead-management.md` đã ghi "không làm cụm 11".
 
 **Nguồn ý tưởng:** 9 chủ đề user gửi (ảnh sheet 26/10) là các bài trong hub SOI của Follow Up Boss (pillar `spheres-influence`, 66 IN, 3,869 chữ cộng 11 bài, đa số đăng 12/2023 và ít được link). Mỗi chủ đề được viết lại theo góc riêng của Infina, **không** nhắm đúng chữ trong sheet. Volume gần như chỉ ở bucket 50, nên keyword chính chỉ là nhãn đặt tên bài; `real estate referral fee` (500, 7 biến thể) là khối volume thật duy nhất, là đề xuất thêm.
 
@@ -396,7 +396,7 @@ Hiện #2330 chỉ có **7 inbound**, toàn từ Cụm 10 và #1961. Bài giữ 
 
 **Không đụng:** #405, #1225, #1732, #1449, #1832, #2189, #2195 và các bài Cụm 10.
 
-**Cần bạn chốt:** nâng #2330 làm pillar hay làm pillar mới; duyệt cả 10 bài hay theo đợt (4, 4, 2); bài 7 và 9 tự gộp khi viết nếu kết quả tìm kiếm yếu; làm bài 10 (referral fee) hay mở rộng #1961; làm 6 bài cũ cần thêm link ngay hay chờ inbound pass.
+**Đã chốt 26/10:** nâng #2330 làm pillar; duyệt cả 10 bài (kể cả referral fee riêng); bài 7 và 9 viết riêng; thêm link cho 6 bài cũ ngay.
 
 ---
 

@@ -1,6 +1,6 @@
 # Plan đề xuất (bản 2, theo chủ đề): Cụm 12, Sphere of influence và nuôi khách cũ
 
-**Trạng thái: CHỜ DUYỆT (26/10/2026). Chưa đặt chỗ keyword, chưa viết bài nào.**
+**Trạng thái: ĐÃ DUYỆT HẾT (26/10/2026), bắt đầu đăng từ 28/10/2026.** Gồm nâng #2330 làm pillar, cả 10 cluster (kể cả bài referral fee riêng), và thêm link cho 6 bài cũ ngay. Keyword đã đặt chỗ trong `used-keywords.md`, đã ghi `content-plan.md`. Kế hoạch từng bài ở mục 10, lịch và việc tự động ở mục 11. Bài 7 (funnel) và bài 9 (warm leads) **vẫn viết riêng**, không gộp, trừ khi lúc viết thấy trùng thật với #277 hoặc bài database.
 
 **Bản 2 đổi cách tiếp cận theo yêu cầu 26/10:** 9 "từ khóa" user gửi là **chủ đề nội dung** của hub SOI bên Follow Up Boss (FUB), không phải keyword để nhắm đúng chữ. Bản 1 (map từng từ sang keyword rồi bỏ nhiều từ vì volume 50) bị thay. Bản này đi theo từng **chủ đề**, mỗi chủ đề được viết lại theo góc riêng của Infina, và keyword chính chọn sau cho tự nhiên với bài.
 
@@ -147,7 +147,116 @@ Sau khi các bài Cụm 12 đăng, chạy inbound pass theo mục 6. Ước tín
 
 #405, #1225, #1732, #1449, #1832, #2189, #2195 và các bài Cụm 10 khác: chủ đề khác hoặc đã link đủ. #1122 không cần viết lại, chỉ cần donor.
 
-## 9. Việc user cần quyết
+## 10. Kế hoạch từng bài (đã duyệt 26/10)
+
+**Chuẩn chung (giống Cụm 10, theo `seo-blog-writer` và `pillar-cluster-writer`):**
+- Category **Real Estate Marketing (392)**. Slug đã đối chiếu 187 bài live, không trùng. Giờ site là UTC.
+- H1 chứa focus keyword đầu câu; 6 đến 8 H2 dạng câu hỏi; đoạn dưới 120 từ; mật độ keyword 0,5 đến 2,5% (số lần xuất hiện chia số từ); không em dash; ít nhất 1 link ngoài dofollow tới **nguồn chính đã mở và đọc** (FTC, FCC, CFPB, NAR, Cornell LII, eCFR). **Không dùng con số của blog vendor** trừ khi lần ra gốc; nguồn mở không được thì ghi "chưa xác minh" hoặc bỏ.
+- 4 ảnh mỗi bài: hero mockup (`hero()` của `scenes/s_m_leadgen.py`, ảnh đại diện) và 3 mockup mobile-first trong thân (`skills/mockup-images`). Dữ liệu trong ảnh là **mẫu bịa, ghi rõ "Sample"**.
+- Link: đúng 1 link lên pillar `https://infina.ai/news/sphere-of-influence-real-estate/` trong thân; ≥2 link ngang; anchor ≤8 từ, đa dạng, mô tả đúng bài đích; 1 đến 2 link money page `https://infina.ai/` (ghi "Infina AI, our own" khi nói sản phẩm; bài có `Money page = Có`); mỗi bài kết bằng đoạn nối sang bài khác của cụm. Mỗi bài phải có một mục "Related Reading" 3 đến 5 bullet.
+- **Chỉ link tới bài đã live hoặc đã nằm trong lịch có ngày giờ sớm hơn hoặc cùng ngày.** Link tới bài đăng sau chỉ thêm ở inbound pass.
+- Mọi đoạn luật ghi "không phải tư vấn pháp lý", không nêu luật từng bang cụ thể.
+- Không bịa phỏng vấn, tên agent, số liệu. Ví dụ tính toán ghi là minh họa.
+
+| # | Slug | H1 dự kiến | Focus keyword | Lịch (UTC) | Độ dài | Money page |
+|---|---|---|---|---|---|---|
+| 1 | `real-estate-customer-service` | Real Estate Customer Service: How to Earn Repeat Clients and Referrals | `real estate customer service` | 28/10 10:00 | 1.500 | Có |
+| 2 | `real-estate-past-client-follow-up` | Real Estate Past Client Follow-Up: A Plan That Still Works When You Are Busy | `real estate past client follow up` | 28/10 14:00 | 1.600 | Có |
+| 3 | `real-estate-client-database` | Real Estate Client Database: How to Tier, Clean and Shrink It | `real estate client database` | 29/10 10:00 | 1.600 | Có |
+| 4 | `real-estate-thank-you-notes` | Real Estate Thank You Notes: 8 Templates by Moment | `real estate thank you notes` | 29/10 14:00 | 1.400 | Không |
+| 5 | `real-estate-lead-nurturing` | Real Estate Lead Nurturing: A Simple Program for Slow Leads | `real estate lead nurturing` | 30/10 10:00 | 1.600 | Có |
+| 6 | `how-to-get-seller-leads-in-real-estate` | How to Get Seller Leads in Real Estate From Past Clients and Your Sphere | `how to get seller leads in real estate` | 30/10 14:00 | 1.500 | Có |
+| 7 | `real-estate-sales-funnel` | Real Estate Sales Funnel: The Stages and Where Leads Drop Off | `real estate sales funnel` | 31/10 10:00 | 1.500 | Có |
+| 8 | `ai-lead-nurture-real-estate` | AI Lead Nurture for Real Estate: What a Chatbot Can and Cannot Do | `ai lead nurture` | 31/10 14:00 | 1.500 | Có (mạnh) |
+| 9 | `warm-leads-real-estate` | Warm Leads in Real Estate: 7 Signals in Your Database | `warm leads real estate` | 01/11 10:00 | 1.400 | Có |
+| 10 | `real-estate-referral-fee` | Real Estate Referral Fee: How Much It Is and How to Write the Agreement | `real estate referral fee` | 01/11 14:00 | 1.600 + file mẫu | Không |
+
+### Bài 1. `real-estate-customer-service`
+- **Góc:** dịch vụ **sau giao dịch** (khác #1488 là engagement trước bán): lịch 12 tháng đầu (tuần 1, 30 ngày, 90 ngày, 6 tháng, 12 tháng), lúc nào và cách xin referral, team chia việc "ai giữ khách nào", xử lý sự cố sau closing.
+- **H2 gợi ý:** What Does Real Estate Customer Service Mean After the Closing? · Why Service After the Sale Drives Repeat Business and Referrals (số NAR **mở bản gốc**, ví dụ 66% người bán chọn agent qua referral hoặc agent từng làm) · What Should You Do in the First Year After Closing? (bảng mốc) · When and How Do You Ask for a Referral? · How Do You Handle a Problem After Closing? · How Does a Team Decide Who Keeps Each Client? · What to Track · Common Mistakes.
+- **Nguồn chính:** NAR Profile of Home Buyers and Sellers 2025 (hoặc bản tóm tắt Virginia REALTORS đã dùng ở #2262), FTC CAN-SPAM Act compliance guide (email nhắc khách).
+- **Link:** pillar #2330 (1 lần); ngang #1961, #1977, #1949, #1488, bài 2 (cùng ngày). Money page: Infina AI nhắc việc follow-up theo mốc.
+
+### Bài 2. `real-estate-past-client-follow-up`
+- **Góc:** từ **năm thứ 2 trở đi**: 1 touch mỗi quý, ngày kỷ niệm mua nhà, rà soát hằng năm; kế hoạch 6 bước; **khách "mồ côi"** khi agent đổi brokerage (chỉ nêu nếu mở được Inman hoặc nguồn tương đương; không thì nói chung và ghi chưa xác minh).
+- **H2 gợi ý:** Why Do Past Clients Go Quiet? · What Is the Simplest Past Client Plan That Works? (1 touch/quý) · A Six-Step Follow-Up Plan · What Should Each Touch Say? (ví dụ ngắn) · How Do You Use Home Anniversaries? · What About Clients Whose Agent Left? · How Often Is Too Often? (CAN-SPAM, DNC) · How to Track · Common Mistakes.
+- **Nguồn chính:** FTC CAN-SPAM guide; FTC Do Not Call Q&A (quan hệ kinh doanh có sẵn); NAR (nếu mở được).
+- **Link:** #2330; ngang bài 1, #1977, #1122, #1272, #1223. Money page: Infina AI.
+
+### Bài 3. `real-estate-client-database`
+- **Góc:** thay cho bài phỏng vấn "thu nhỏ database": chia **A/B/C theo mức quan hệ**, dọn trùng/sai, trường bắt buộc (nguồn, ngày chốt, nhóm, lần liên lạc cuối, đồng ý nhận tin), "đừng chăm 2.000 người nửa vời". Có bảng mẫu (mockup). Khác #263 (phần mềm CRM marketing).
+- **H2 gợi ý:** What Is a Real Estate Client Database? · Why a Smaller Database Often Works Better · How Do You Tier Your Database (A, B, C)? (bảng) · What Fields Does Every Contact Need? · How Do You Clean a Database? · How Do You Handle Consent and Opt-Outs? (CAN-SPAM, DNC, TCPA) · Spreadsheet or CRM? · Common Mistakes.
+- **Nguồn chính:** FTC CAN-SPAM guide; FTC DNC Q&A (đồng bộ danh sách ít nhất mỗi 31 ngày, đã dùng ở #2262).
+- **Link:** #2330; ngang #263, #1122, #1225, #1223, bài 1, bài 2. Money page: Infina AI.
+
+### Bài 4. `real-estate-thank-you-notes`
+- **Góc:** 8 mẫu cho **agent gửi khách** (sau offer, sau closing, sau referral, sau open house, khách mới liên hệ, ngày kỷ niệm nhà, cảm ơn đối tác, sau khi khách đánh giá). Khi nào gửi, độ dài, viết tay hay email. **Không** dùng keyword khách cảm ơn agent.
+- **H2 gợi ý:** Why Send Thank You Notes in Real Estate? · When Should You Send Them? (bảng) · 8 Thank You Note Templates (từng mẫu 2 đến 4 dòng) · Handwritten or Email? · What to Avoid (hứa hẹn, quà vượt giới hạn: link #1977) · Track Who You Thanked.
+- **Nguồn chính:** FTC CAN-SPAM guide (nếu gửi email); USPS (nếu nêu tem) hoặc bỏ. Không cần số liệu.
+- **Link:** #2330; ngang #1977, #1949, #1961, bài 1, bài 2.
+
+### Bài 5. `real-estate-lead-nurturing`
+- **Góc:** chương trình nuôi lead **chưa sẵn sàng** (3 đến 24 tháng): 3 luồng (mới, ấm, dài hạn), nội dung nào cho luồng nào, khi nào dừng. Khác #1272 (chiến dịch người mua theo tin) và #1223 (tự động hóa).
+- **H2 gợi ý:** What Is Real Estate Lead Nurturing? · Why Do Most Leads Need Months, Not Days? (không dùng số vendor) · The Three Tracks (bảng) · What Content Fits Each Track? · How Often to Contact Each Track · When to Stop · Compliance (TCPA, CAN-SPAM) · Common Mistakes.
+- **Nguồn chính:** FCC TCPA consent rules (trang gốc) và FTC CAN-SPAM; NAR (nếu cần).
+- **Link:** #2330; ngang #1272, #1223, #1317, #1227, #1488, bài 2. Money page: Infina AI.
+
+### Bài 6. `how-to-get-seller-leads-in-real-estate`
+- **Góc:** chiến dịch **4 touch** tới danh sách của chính mình (khách cũ, sphere, lead cũ), không mua lead; mẫu tin ngắn, đo kết quả. **Quy tắc gọi**: quan hệ kinh doanh có sẵn (FTC: 18 tháng sau giao dịch, 3 tháng sau liên hệ hỏi thông tin; **mở trang FTC kiểm đúng**). #2262 giữ `seller leads real estate`; bài này là nhánh "từ danh sách của mình".
+- **H2 gợi ý:** Where Do Seller Leads Come From? · Why Your Own List Is the Cheapest Source · The Four-Touch Seller Campaign (bảng) · What Should Each Message Say? · Which Past Clients May You Call? · How to Measure · Common Mistakes.
+- **Nguồn chính:** FTC Do Not Call Q&A và TSR guide; FTC CAN-SPAM.
+- **Link:** #2330; ngang #2262, #1122, #1278, #2195, bài 2, bài 3, bài 5. Money page: Infina AI.
+
+### Bài 7. `real-estate-sales-funnel`
+- **Góc:** một mô hình **5 tầng từ lead đến khách cũ** (lead, liên hệ, hẹn, hợp đồng, khách cũ), chỉ số từng tầng, cách tìm chỗ rơi; tầng cuối nối SOI. SERP không thống nhất số tầng nên nói rõ đây là cách đặt của mình. Khác #277 (giai đoạn trong CRM) và #263 (CRM marketing).
+- **H2 gợi ý:** What Is a Real Estate Sales Funnel? · The Five Stages (bảng) · What Should You Measure at Each Stage? · How Do You Find Where Leads Drop Off? · Why the Funnel Does Not End at Closing · Funnel vs Pipeline (link #277) · Common Mistakes.
+- **Nguồn chính:** không cần thống kê. Nếu cần, NAR hoặc nguồn mở được; **không dùng số vendor**.
+- **Link:** #2330; ngang #277, #263, #1223, #2260, bài 3, bài 5. Money page: Infina AI. **Nếu viết thấy trùng thật với #277**, ghi vào báo cáo.
+
+### Bài 8. `ai-lead-nurture-real-estate`
+- **Góc:** chatbot **ở giai đoạn nuôi**, làm được gì và giới hạn (nói đầu phễu, cần chuyển cho người), ranh giới TCPA và công khai AI. Không dùng số liệu vendor (12 tháng, 25 touch, "80% agent dừng lần 3", $6 triệu). Không bàn chọn công cụ (Cụm 1) hay so SMS (#1071).
+- **H2 gợi ý:** What Does AI Lead Nurture Mean? · What Can a Chatbot Do for a Slow Lead? · What Can It Not Do? · When Should a Human Take Over? · What Do the Rules Say About AI Messages? (FCC AI voice ruling nếu **mở bản gốc**; link tcpa guide và #1050) · How to Start Small · Common Mistakes.
+- **Nguồn chính:** FCC (khai báo giọng nói AI theo TCPA) hoặc FCC consumer guide; FTC CAN-SPAM. Đây là bài gần sản phẩm nhất: đoạn Infina AI mạnh hơn, nêu rõ "our own".
+- **Link:** #2330; ngang #1284, #1341, #1223, #1071, tcpa guide `tcpa-compliance-for-real-estate-agents`, #1050, bài 5. **Kiểm `used-keywords.md` lại** trước khi chốt.
+
+### Bài 9. `warm-leads-real-estate`
+- **Góc:** 7 dấu hiệu "giơ tay" trong database, **làm tay** (mở mail, bấm link, quay lại website, hỏi giá, trả lời tin, đổi thông tin, mở lại sau thời gian dài) và việc làm khi thấy. Không dựa AI để tránh đè #1122 và #1296.
+- **H2 gợi ý:** What Is a Warm Lead in Real Estate? · Seven Signals (bảng) · What to Do When You See One · How to Tell Warm From Curious · How Often to Check · Compliance · Common Mistakes.
+- **Nguồn chính:** FTC CAN-SPAM; FTC DNC Q&A. Không số liệu vendor.
+- **Link:** #2330; ngang #1296, #1278, #1122, bài 3, bài 5, bài 7.
+
+### Bài 10. `real-estate-referral-fee`
+- **Góc:** mức phí giữa các agent, **cách viết thỏa thuận**, quy tắc. #1961 giữ tổng quan, bài này đi sâu. Mức phí chỉ nêu dạng "các nguồn thường nêu khoảng 25%, thương lượng được" và ghi rõ nguồn đã mở (The Close, HousingWire, hoặc nguồn tương đương), **không coi là quy định**. Quy tắc: **RESPA 12 CFR 1024.14** (đã dùng ở #1961, #2324), NAR Code of Ethics Article 6 (công khai lợi ích tài chính, **mở bản gốc**); ghi "một số bang chỉ cho trả phí cho người có giấy phép" ở mức chung.
+- **H2 gợi ý:** What Is a Real Estate Referral Fee? · How Much Is a Referral Fee? (bảng theo tình huống, ví dụ tính minh họa) · How Do You Write a Referral Agreement? (điều khoản cần có) · Who Can Pay and Receive a Fee? · What Must You Disclose? · When Is the Fee Paid? · Common Mistakes.
+- **File mẫu tải về:** "Referral agreement term sheet" dạng `.docx` (hoặc `.xlsx`/`.pdf` nếu không tạo được docx), ghi rõ **không phải hợp đồng pháp lý**, chỉ là danh sách điều khoản để trao đổi với broker và luật sư. Upload qua `upload_media`, link trong thân.
+- **Link:** #2330; ngang #1961 (parent), bài 4, bài 1, #2262, tcpa không cần.
+
+## 11. Lịch, việc tự động và log
+
+Giữ trần 3 bài/ngày: routine news 18:06 UTC chiếm 1 slot, cluster đăng 10:00 và 14:00.
+
+| Ngày | 10:00 | 14:00 |
+|---|---|---|
+| 28/10 | Bài 1 customer service | Bài 2 past client follow-up |
+| 29/10 | Bài 3 client database | Bài 4 thank you notes |
+| 30/10 | Bài 5 lead nurturing | Bài 6 seller leads từ khách cũ |
+| 31/10 | Bài 7 sales funnel | Bài 8 AI lead nurture |
+| 01/11 | Bài 9 warm leads | Bài 10 referral fee |
+
+**Làm ngay 26/10 (không chờ lịch):** thêm link tới #2330 cho 6 bài cũ (#1825, #1853, #1977, #1949, #1223, #263), vì #2330 đã live.
+
+**Việc tự động đã hẹn:**
+- 30/10 07:00 UTC: inbound pass wave 1 (bài 1 đến 4 đã live) và pillar #2330 làm mới.
+- 01/11 07:00 UTC: inbound pass wave 2 (bài 5 đến 8).
+- 03/11 07:00 UTC: inbound pass wave 3 (bài 9, 10) và audit cả cụm, cập nhật teardown với IN, chữ và ngày thật.
+
+**Log:** chưa có bài nào được viết (cập nhật khi từng bài xong).
+
+## 12. Quyết định của user (26/10)
+
+User duyệt hết: nâng #2330 làm pillar, cả 10 cluster (kể cả bài referral fee riêng), thêm link cho 6 bài cũ ngay, bắt đầu đăng từ 28/10. Bài 7 và 9 viết riêng. Các câu hỏi ở mục 13 là bản gốc để tham khảo.
+
+## 13. Câu hỏi gốc (đã chốt ở mục 12)
 
 1. **Nâng #2330 làm pillar** (đề xuất) hay làm pillar mới với keyword khác.
 2. Duyệt theo wave (4 bài đầu, rồi 4, rồi 2), hay duyệt cả 10 một lần.
