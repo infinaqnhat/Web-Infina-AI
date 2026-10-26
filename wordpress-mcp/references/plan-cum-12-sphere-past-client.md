@@ -250,7 +250,30 @@ Giữ trần 3 bài/ngày: routine news 18:06 UTC chiếm 1 slot, cluster đăng
 - 01/11 07:00 UTC: inbound pass wave 2 (bài 5 đến 8).
 - 03/11 07:00 UTC: inbound pass wave 3 (bài 9, 10) và audit cả cụm, cập nhật teardown với IN, chữ và ngày thật.
 
-**Log:** chưa có bài nào được viết (cập nhật khi từng bài xong).
+**Log (26/10/2026):** cả 10 bài đã viết và lên lịch (`future`, `list_posts` xác nhận đúng giờ), tracker rows #179 đến #188 ở `references/files/tracker-rows-cum12.tsv`. 6 bài cũ (#1825, #1853, #1977, #1949, #1223, #263) đã thêm 1 link tới #2330 (REST diff đạt, ghi `refresh-log.md`).
+
+| # | Post ID | Slug | Lịch (UTC) | Từ | Keyword (lần, mật độ) |
+|---|---|---|---|---|---|
+| 1 | #2404 | `real-estate-customer-service` | 28/10 10:00 | 1390 | 9, 0,65% |
+| 2 | #2413 | `real-estate-past-client-follow-up` | 28/10 14:00 | 1371 | 9, 0,66% |
+| 3 | #2408 | `real-estate-client-database` | 29/10 10:00 | 1461 | 11, 0,75% |
+| 4 | #2418 | `real-estate-thank-you-notes` | 29/10 14:00 | 1344 | 8, 0,6% |
+| 5 | #2400 | `real-estate-lead-nurturing` | 30/10 10:00 | 1501 | 12, 0,80% |
+| 6 | #2420 | `how-to-get-seller-leads-in-real-estate` | 30/10 14:00 | 1477 | 8, 0,54% |
+| 7 | #2422 | `real-estate-sales-funnel` | 31/10 10:00 | 1494 | 12, 0,80% |
+| 8 | #2424 | `ai-lead-nurture-real-estate` | 31/10 14:00 | 1407 | 11, 0,78% |
+| 9 | #2434 | `warm-leads-real-estate` | 01/11 10:00 | 1314 | 8, 0,61% |
+| 10 | #2436 | `real-estate-referral-fee` | 01/11 14:00 | 1408 | 12, 0,85% |
+
+**Ghi nhận khi viết:**
+- Bài 1 và 2 ngắn hơn brief (khoảng 1.390 và 1.370 chữ); số NAR qua bản tóm tắt Virginia REALTORS, không phải bản gốc; mục khách "mồ côi" viết chung vì chưa mở được Inman.
+- Bài 3 đề xuất mức chạm A/B/C là 12, 4, 2 lần mỗi năm (gợi ý của mình, đã ghi trong bài). **Pillar #2330 khi làm mới (30/10) phải dùng cùng số này** và khớp bài 2 (1 touch mỗi quý).
+- Bài 6 mật độ 0,54% vì keyword 8 từ; bài nói rõ giao dịch đã closing có tính là "purchase" theo quy tắc FTC hay không là câu hỏi cho broker.
+- Bài 8 dùng FCC 24-17 (giọng nói AI thuộc "artificial voice" của TCPA, nói về cuộc gọi, không nói về text); không dùng số liệu vendor.
+- Bài 9 đổi H1 thành "Warm Leads Real Estate Agents Already Have: 7 Signals in Your Database" để chứa đúng focus keyword; slug giữ nguyên.
+- Bài 10: **NAR Article 6 không bắt buộc công khai phí giới thiệu giữa agent** (Article 6 ghi "other than real estate referral fees"); bài viết đúng điều đọc được, thêm Article 7, "công khai cho khách" là gợi ý. Mức phí (khoảng 25%, 20 đến 35%) theo The Close và HousingWire, ghi rõ không phải quy định. **File mẫu `.docx` không tải lên site được** (`upload_media` chỉ nhận ảnh): bài dùng checklist 6 mục và ảnh xem trước; file ở `references/files/referral-agreement-term-sheet-template.docx`, chờ user chọn nơi đăng.
+- Link tới bài cùng cụm đăng sau sẽ 404 tới giờ đăng (theo thiết kế).
+
 
 ## 12. Quyết định của user (26/10)
 

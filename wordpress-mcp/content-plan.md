@@ -811,7 +811,7 @@ riêng (đã có #1229 ở Cụm 7). Không viết lại CRM marketing (#263, C�
 
 ---
 
-### Cụm 12: Sphere of influence và nuôi khách cũ, 📝 10 bài + làm mới pillar #2330, đã duyệt 26/10/2026, chưa viết, đăng 28/10 đến 01/11
+### Cụm 12: Sphere of influence và nuôi khách cũ, ✅ 10 bài đã viết và lên lịch 26/10/2026 (đăng 28/10 đến 01/11), làm mới pillar #2330 hẹn 30/10
 
 Plan đầy đủ ở `references/plan-cum-12-sphere-past-client.md`. Bảng theo dõi ở `references/teardown-infina-table.md` mục Cụm 12. Keyword đã đặt chỗ trong `used-keywords.md` (26/10). Pillar là **#2330** `sphere-of-influence-real-estate` (đã live 24/10, nâng cấp lên khoảng 3.000 chữ ngày 30/10).
 
@@ -820,16 +820,16 @@ Ranh giới: Cụm 10 là "lead đến từ đâu", Cụm 7 là "chăm lead sau 
 | Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
 |---|---|---|---|---|
 | `pillar` **Pillar** (làm mới) | Sphere of Influence in Real Estate (`sphere-of-influence-real-estate`) = #2330 | `sphere of influence` | Consideration/MOF | ✅ Live 24/10, làm mới dự kiến 30/10 |
-| `how-to` Wave 1 | Real Estate Customer Service: How to Earn Repeat Clients and Referrals (`real-estate-customer-service`) | `real estate customer service` | Post-purchase | 📝 Đặt chỗ, dự kiến 28/10 10:00 |
-| `how-to` Wave 1 | Real Estate Past Client Follow-Up: A Plan That Still Works When You Are Busy (`real-estate-past-client-follow-up`) | `real estate past client follow up` | Post-purchase | 📝 Đặt chỗ, dự kiến 28/10 14:00 |
-| `how-to` Wave 1 | Real Estate Client Database: How to Tier, Clean and Shrink It (`real-estate-client-database`) | `real estate client database` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 29/10 10:00 |
-| `template` Wave 1 | Real Estate Thank You Notes: 8 Templates by Moment (`real-estate-thank-you-notes`) | `real estate thank you notes` | Post-purchase | 📝 Đặt chỗ, dự kiến 29/10 14:00 |
-| `how-to` Wave 2 | Real Estate Lead Nurturing: A Simple Program for Slow Leads (`real-estate-lead-nurturing`) | `real estate lead nurturing` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 30/10 10:00 |
-| `how-to` Wave 2 | How to Get Seller Leads in Real Estate From Past Clients and Your Sphere (`how-to-get-seller-leads-in-real-estate`) | `how to get seller leads in real estate` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 30/10 14:00 |
-| `how-to` Wave 2 | Real Estate Sales Funnel: The Stages and Where Leads Drop Off (`real-estate-sales-funnel`) | `real estate sales funnel` | Discovery/TOF | 📝 Đặt chỗ, dự kiến 31/10 10:00 |
-| `explainer` Wave 2 | AI Lead Nurture for Real Estate: What a Chatbot Can and Cannot Do (`ai-lead-nurture-real-estate`) | `ai lead nurture` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 31/10 14:00 |
-| `how-to` Wave 3 | Warm Leads in Real Estate: 7 Signals in Your Database (`warm-leads-real-estate`) | `warm leads real estate` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 01/11 10:00 |
-| `how-to` Wave 3 | Real Estate Referral Fee: How Much It Is and How to Write the Agreement (`real-estate-referral-fee`) | `real estate referral fee` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 01/11 14:00, kèm file mẫu tải về |
+| `how-to` Wave 1 | Real Estate Customer Service: How to Earn Repeat Clients and Referrals (`real-estate-customer-service`) | `real estate customer service` | Post-purchase | ✅ Đã viết 26/10 = #2404, 1390 từ (0,65%), **scheduled 28/10/2026 10:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân |
+| `how-to` Wave 1 | Real Estate Past Client Follow-Up: A Plan That Still Works When You Are Busy (`real-estate-past-client-follow-up`) | `real estate past client follow up` | Post-purchase | ✅ Đã viết 26/10 = #2413, 1371 từ (0,66%), **scheduled 28/10/2026 14:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân |
+| `how-to` Wave 1 | Real Estate Client Database: How to Tier, Clean and Shrink It (`real-estate-client-database`) | `real estate client database` | Consideration/MOF | ✅ Đã viết 26/10 = #2408, 1461 từ (0,75%), **scheduled 29/10/2026 10:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân |
+| `template` Wave 1 | Real Estate Thank You Notes: 8 Templates by Moment (`real-estate-thank-you-notes`) | `real estate thank you notes` | Post-purchase | ✅ Đã viết 26/10 = #2418, 1344 từ (0,6%), **scheduled 29/10/2026 14:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân |
+| `how-to` Wave 2 | Real Estate Lead Nurturing: A Simple Program for Slow Leads (`real-estate-lead-nurturing`) | `real estate lead nurturing` | Consideration/MOF | ✅ Đã viết 26/10 = #2400, 1501 từ (0,80%), **scheduled 30/10/2026 10:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân |
+| `how-to` Wave 2 | How to Get Seller Leads in Real Estate From Past Clients and Your Sphere (`how-to-get-seller-leads-in-real-estate`) | `how to get seller leads in real estate` | Consideration/MOF | ✅ Đã viết 26/10 = #2420, 1477 từ (0,54%), **scheduled 30/10/2026 14:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân |
+| `how-to` Wave 2 | Real Estate Sales Funnel: The Stages and Where Leads Drop Off (`real-estate-sales-funnel`) | `real estate sales funnel` | Discovery/TOF | ✅ Đã viết 26/10 = #2422, 1494 từ (0,80%), **scheduled 31/10/2026 10:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân |
+| `explainer` Wave 2 | AI Lead Nurture for Real Estate: What a Chatbot Can and Cannot Do (`ai-lead-nurture-real-estate`) | `ai lead nurture` | Consideration/MOF | ✅ Đã viết 26/10 = #2424, 1407 từ (0,78%), **scheduled 31/10/2026 14:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân |
+| `how-to` Wave 3 | Warm Leads in Real Estate: 7 Signals in Your Database (`warm-leads-real-estate`) | `warm leads real estate` | Consideration/MOF | ✅ Đã viết 26/10 = #2434, 1314 từ (0,61%), **scheduled 01/11/2026 10:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân |
+| `how-to` Wave 3 | Real Estate Referral Fee: How Much It Is and How to Write the Agreement (`real-estate-referral-fee`) | `real estate referral fee` | Consideration/MOF | ✅ Đã viết 26/10 = #2436, 1408 từ (0,85%), **scheduled 01/11/2026 14:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân, kèm file mẫu term sheet (chưa tải lên được site) |
 
 ### Cụm 10: Lead Generation (nguồn lead cho agent), 📝 13 bài đã duyệt 23/10/2026, chưa viết, đăng 26/10 đến 31/10
 
