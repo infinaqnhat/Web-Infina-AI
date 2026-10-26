@@ -104,9 +104,53 @@ Trần 3 bài/ngày; routine news chiếm 1 slot lúc 18:06 UTC nên cluster đ�
 
 Wave 1 là 4 bài đầu (ngày 28 và 29), wave 2 là 4 bài tiếp, wave 3 là 2 bài cuối. Tổng 10 cluster mới (9 theo chủ đề hub FUB, 1 đề xuất thêm) cộng 1 làm mới pillar.
 
-## 8. Việc user cần quyết
+## 8. Đối chiếu bài cũ: cần update hay map lại (REST 26/10, 187 bài publish)
+
+Đã quét 187 bài live theo tiêu đề, H2 và link nội bộ. Hiện #2330 chỉ có **7 inbound**, toàn từ Cụm 10 và #1961; chưa có bài nào từ Cụm 9 (marketing), Cụm 7 (follow-up) hay Cụm 2 (CRM) trỏ vào, dù các cụm đó có mục nói đúng chủ đề này.
+
+Quy tắc áp dụng (`internal-linking-guide.md`): bài giữ nguyên **pillar nhà**, được phép link thêm sang pillar cụm khác khi câu có lý do tồn tại; mốc tự soi là ≥50% link pillar là pillar nhà. Vì vậy phần lớn bài cũ **không đổi cụm**, chỉ thêm link và gắn vai trò anh em trong Cụm 12.
+
+### 8.1 Map lại cụm (đổi hoặc thêm vai trò)
+
+| Bài | Cụm hiện tại | Đề xuất | Lý do |
+|---|---|---|---|
+| #1284 `ai-relationship-manager-for-real-estate-leads` (569 chữ, 1 IN), #1296 `ai-likely-to-sell-alerts` (531 chữ, 1 IN, **không link pillar nào**), #1341 `ai-post-tour-follow-up-assistant` (677 chữ, 1 IN) | "News chưa gắn cụm" | **Gắn vào Cụm 12** làm bài hỗ trợ (news-support): #1284 và #1341 cho bài AI lead nurture, #1296 cho bài warm leads | Đang mồ côi, đúng chủ đề nuôi lead và tín hiệu bán nhà |
+| #1961 referral, #1977 closing gifts, #1949 testimonials | Cụm 9 | **Giữ pillar nhà Cụm 9, thêm làm anh em của #2330** (Cụm 12 liệt kê trong Related Reading của pillar) | Cùng chủ đề "sau bán"; đổi hẳn cụm sẽ phá link về #1825 |
+| #1122 `database-reactivation...` (756 chữ), #1272 `buyer-lead-nurture-campaign`, #1278 `seller-lead-prioritization` | Cụm 7 | Giữ Cụm 7. **Làm donor** cho bài seller leads từ khách cũ, past client follow-up, warm leads | Đã có link về #1223, thêm link ngang sang Cụm 12 |
+| #1488 `real-estate-customer-engagement-strategies` | Cụm 2 | Giữ Cụm 2. Làm donor cho bài customer service | Trước bán vs sau bán, không lặp |
+
+### 8.2 Cần update ngay (thêm link, không đổi nội dung chính)
+
+Làm được **trước** khi viết bài mới vì chỉ cần link tới #2330 (đã live):
+
+| Bài | Việc | Chỗ chèn |
+|---|---|---|
+| #1825 `real-estate-marketing` (pillar Cụm 9) | Thêm 1 link tới #2330 | Mục "Build a Sphere and Referral System First" đang chỉ link #1961. **Ưu tiên cao nhất** (24 IN, bài trụ) |
+| #1853 `real-estate-marketing-ideas` | Thêm 1 link | Mục "Real Estate Marketing Ideas for Your Sphere and Referrals" (hiện link #1961) |
+| #1977 `closing-gifts-real-estate`, #1949 `real-estate-testimonials` | Thêm 1 link mỗi bài | Mục nói về khách cũ và referral; #2330 đã link #1977, thiếu chiều ngược và thiếu #1949 |
+| #1223 `real-estate-lead-follow-up-automation-guide` (pillar Cụm 7, 27 IN) | Thêm 1 link | Đoạn nói follow-up không chỉ cho lead mới mà cho khách cũ. Hiện #1223 chỉ link #2260 |
+| #263 `crm-marketing-real-estate` (Cụm 2, 18 IN, 1.384 chữ) | Thêm 1 đến 2 link | Tiêu đề "Turn Your Database into a Deal Machine" và có H2 "CRM Marketing Funnel". Hiện **không link bài nào trong các cụm liên quan**. Là bài gần nhất với database và funnel; nếu không link thì hai bài mới sẽ cạnh tranh ngầm |
+
+Sau khi các bài Cụm 12 đăng, chạy inbound pass theo mục 6. Ước tính inbound của #2330 từ 7 lên khoảng 15 đến 18.
+
+### 8.3 Điểm trùng cần canh (không sửa bây giờ)
+
+| Bài cũ | Trùng với bài mới | Cách tránh |
+|---|---|---|
+| #263 (`crm marketing`, funnel H2) | Bài sales funnel và client database | Bài mới nhắm `real estate sales funnel` và `real estate client database`, góc quy trình agent làm tay; #263 giữ góc phần mềm. Cả hai link qua lại |
+| #277 `crm-pipeline-management` | Bài sales funnel | Funnel là tầng khách hàng, #277 là giai đoạn trong CRM. Nếu SERP cho thấy cùng ý, **gộp vào #277** như đã ghi ở mục 2 |
+| #1961 | Bài referral fee, thank you notes | #1961 giữ tổng quan, bài mới đi sâu, link 1 chiều từ #1961 |
+| #1488 | Bài customer service | Chỉ nói **sau giao dịch** |
+| #1071 `ai-chat-vs-sms`, #1056, #1063 (Cụm 1 chatbot) | Bài AI lead nurture | Không bàn chọn công cụ hay so SMS; chỉ nói chatbot làm gì ở giai đoạn nuôi |
+
+### 8.4 Không cần đụng
+
+#405, #1225, #1732, #1449, #1832, #2189, #2195 và các bài Cụm 10 khác: chủ đề khác hoặc đã link đủ. #1122 không cần viết lại, chỉ cần donor.
+
+## 9. Việc user cần quyết
 
 1. **Nâng #2330 làm pillar** (đề xuất) hay làm pillar mới với keyword khác.
 2. Duyệt theo wave (4 bài đầu, rồi 4, rồi 2), hay duyệt cả 10 một lần.
 3. Hai bài **có thể bỏ nếu SERP yếu**: warm leads (gộp vào database) và sales funnel (gộp vào #277). Bạn muốn mình tự quyết khi viết, hay hỏi lại?
 4. Làm bài **referral fee** (kèm file mẫu thỏa thuận tải về, ghi rõ không phải tư vấn pháp lý) hay chỉ mở rộng #1961.
+5. Có làm **8.2** (6 bài cũ, chỉ thêm link tới #2330) ngay bây giờ, hay chờ đăng bài mới rồi làm cùng inbound pass.
