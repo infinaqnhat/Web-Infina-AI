@@ -63,7 +63,7 @@ chính file này thì được, đừng dùng để cãi nhau với số trong f
 là `#299`. Quy tắc không dùng dash áp cho bài mình viết mới, không áp cho việc trích lại tiêu đề đang
 có. Dòng này là để biết mà đi sửa, không phải để sửa trong bảng.
 
-## Tóm tắt 11 nhóm (cộng Cụm 10 đã viết, đang lên lịch)
+## Tóm tắt 11 nhóm (cộng Cụm 10 đã viết, đang lên lịch, và Cụm 12 đang chờ duyệt)
 
 | Cụm | Trang | Pillar | Tổng chữ | Mồ côi | Không trỏ pillar nào | Thiếu FOCUS_KW |
 |---|---|---|---|---|---|---|
@@ -77,6 +77,7 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 | Cụm 8: Compliance / Legal / Risk | 6 | `tcpa-compliance-for-real-estate-agents` (22 IN, 1,909 chữ) | 6,005 | 0 | 0 | 1 |
 | Cụm 9: Marketing và Branding | 28 | `real-estate-marketing` (22 IN, 2,624 chữ); `real-estate-branding` (12 IN, 1,829 chữ) | 44,661 | 0 | 0 | 0 |
 | Cụm 10: Lead Generation, nguồn lead (đã viết, lên lịch 23-27/10) | 13 bài (0 live lúc crawl) | `real-estate-lead-generation` #2260 (2,167 chữ) và sub-hub `listing-leads` #2262 (1,722 chữ) | 19,927 (số bản thảo) | 0 | 0 | 0 |
+| Cụm 12: Sphere of influence và nuôi khách cũ (**plan chờ duyệt 26/10**, chưa viết) | 1 pillar nâng cấp (#2330) + 10 bài dự kiến | `sphere-of-influence-real-estate` #2330 (1,365 chữ, 7 IN, sẽ làm mới lên khoảng 3,000 chữ) | 0 (chưa viết) | 0 | 0 | 0 |
 | Bài News real estate chưa gắn cụm trong plan | 40 | không có | 29,506 | 0 | 18 | 12 |
 | Ngoài chủ đề real estate (AI/tech) | 11 | không có | 2,784 | 11 | 11 | 0 |
 
@@ -343,6 +344,59 @@ Cụm 7 (#1223) từ 15/09; Cụm 10 nhận `real estate lead generation` theo n
 `lead management system` (Cụm 2), landing page seller và home valuation (#942, #936, #1308).
 
 **Cần bạn chốt:** làm cả 13 bài hay cắt (FSBO, motivated seller trước)? Một pillar + một sub-hub hay chỉ một pillar? Có làm bài Zillow không? Ngày bắt đầu (đề xuất 26/10).
+
+---
+
+## Cụm 12: Sphere of influence và nuôi khách cũ  (plan chờ duyệt 26/10, 1 pillar nâng cấp + 10 bài dự kiến)
+
+**Trạng thái (26/10/2026): CHỜ DUYỆT.** Plan đầy đủ ở `plan-cum-12-sphere-past-client.md` (bản 2, theo chủ đề). Chưa đặt chỗ keyword trong `used-keywords.md`, chưa ghi `content-plan.md`, chưa viết bài nào. Số cụm là 12 vì `plan-cum-11-lead-management.md` đã ghi "không làm cụm 11".
+
+**Nguồn ý tưởng:** 9 chủ đề user gửi (ảnh sheet 26/10) là các bài trong hub SOI của Follow Up Boss (pillar `spheres-influence`, 66 IN, 3,869 chữ cộng 11 bài, đa số đăng 12/2023 và ít được link). Mỗi chủ đề được viết lại theo góc riêng của Infina, **không** nhắm đúng chữ trong sheet. Volume gần như chỉ ở bucket 50, nên keyword chính chỉ là nhãn đặt tên bài; `real estate referral fee` (500, 7 biến thể) là khối volume thật duy nhất, là đề xuất thêm.
+
+**Ranh giới:** Cụm 9 = được nhìn thấy. Cụm 10 = lead đến từ đâu (SOI là 1 nguồn, #2330 hiện là cluster của #2260). Cụm 7 = chăm lead sau khi tới. **Cụm 12 = giữ khách và để khách giới thiệu**, từ sau giao dịch trở đi. Pillar #2330 vừa là cluster của #2260 vừa là pillar của Cụm 12; hai bên đã link nhau.
+
+### Pillar và bài dự kiến
+
+| # | Vai trò | Bài dự kiến | Focus keyword (đề xuất, bucket) | Chủ đề FUB tương ứng | Wave | Lịch đề xuất | Trạng thái |
+|---|---|---|---|---|---|---|---|
+| P | **Pillar** (nâng cấp, không viết mới) | [#2330 /sphere-of-influence-real-estate](https://infina.ai/news/sphere-of-influence-real-estate/) Sphere of Influence in Real Estate: How to Build and Work It | `sphere of influence` (gom `real estate soi`, `soi in real estate`, `sphere real estate` 500) | Pillar `spheres-influence` | Làm mới | 30/10 (không tốn slot bài) | Live từ 24/10, 1,365 chữ, 7 IN. Mở rộng lên khoảng 3,000 chữ: nhóm theo số touch mỗi năm, mục seller lead từ khách cũ, mục CRM/AI, bảng "bài nào cho tình huống nào" |
+| 1 | how-to | Real Estate Customer Service: How to Earn Repeat Clients and Referrals | `real estate customer service` 50 | Customer service + phỏng vấn team khách quay lại giới thiệu (gộp 2 bài) | Wave 1 | 28/10 10:00 | Chưa viết. Lịch 12 tháng đầu sau giao dịch, lúc xin referral, team chia việc "ai giữ khách nào". Khác #1488 |
+| 2 | how-to | Real Estate Past Client Follow-Up: A Plan That Still Works When You Are Busy | `real estate past client follow up` 50 | Chiến lược nuôi khách cũ đơn giản + kế hoạch 6 bước (gộp 2 bài) | Wave 1 | 28/10 14:00 | Chưa viết. Từ năm thứ 2: 1 touch mỗi quý, kỷ niệm mua nhà, rà soát hằng năm, khách "mồ côi" khi agent đổi brokerage |
+| 3 | how-to | Real Estate Client Database: How to Tier, Clean and Shrink It | `real estate client database` 50 (ads Cao) | Phỏng vấn thu nhỏ database (lấy chủ đề, không phỏng vấn) | Wave 1 | 29/10 10:00 | Chưa viết. Chia A/B/C, dọn trùng, trường bắt buộc, bảng mẫu. Link #263, #1225 |
+| 4 | template | Real Estate Thank You Notes: 8 Templates by Moment | `real estate thank you notes` 50 | 8 thank you notes | Wave 1 | 29/10 14:00 | Chưa viết. Viết cho **agent gửi khách**; tránh biến thể khách cảm ơn agent. Link #1977, #1949, #1961 |
+| 5 | how-to | Real Estate Lead Nurturing: A Simple Program for Slow Leads | `real estate lead nurturing` 50 | Nuôi lead để thành công ty được chọn | Wave 2 | 30/10 10:00 | Chưa viết. 3 luồng (mới, ấm, dài hạn). Khác #1272 và #1223 |
+| 6 | how-to | How to Get Seller Leads From Your Past Clients and Sphere | `how to get seller leads in real estate` 50 (ads Cao) | Seller lead qua chiến dịch touch | Wave 2 | 30/10 14:00 | Chưa viết. Chiến dịch 4 touch tới danh sách của mình. #2262 giữ `seller leads real estate` |
+| 7 | how-to | Real Estate Sales Funnel: The Stages and Where Leads Drop Off | `real estate sales funnel` 50 | Real estate funnel | Wave 2 | 31/10 10:00 | Chưa viết. **Có thể bỏ và gộp vào #277** nếu kết quả tìm kiếm cho thấy cùng ý |
+| 8 | explainer | AI Lead Nurture for Real Estate: What a Chatbot Can and Cannot Do | `ai lead nurture` 50 | Chatbot nuôi lead nguội thành nóng | Wave 2 | 31/10 14:00 | Chưa viết. Gần sản phẩm nhất; không dùng số liệu vendor; kiểm `used-keywords.md` trước. Không lặp Cụm 1 |
+| 9 | how-to | Warm Leads in Real Estate: 7 Signals in Your Database | `warm leads real estate` 50 (ads Cao) | 7 cách tìm người "giơ tay" trong database | Wave 3 | 01/11 10:00 | Chưa viết. **Có thể gộp vào bài 3** nếu kết quả tìm kiếm yếu |
+| 10 | how-to | Real Estate Referral Fee: How Much It Is and How to Write the Agreement (đề xuất thêm) | `real estate referral fee` 500 (+6 biến thể 500) | Không có trong hub FUB | Wave 3 | 01/11 14:00 | Chưa duyệt. #1961 đã gom "referral fees" và có sẵn 1 mục; chọn bài riêng (kèm file mẫu thỏa thuận tải về) hoặc mở rộng #1961 |
+
+Lịch giữ trần 3 bài/ngày (news 18:06 UTC chiếm 1 slot), bắt đầu 28/10 sau inbound pass wave 2 của Cụm 10 (28/10 07:00 UTC).
+
+### Bài đã có: map lại và việc cần làm (REST 26/10)
+
+Hiện #2330 chỉ có **7 inbound**, toàn từ Cụm 10 và #1961. Bài giữ pillar nhà, chỉ thêm link và vai trò anh em.
+
+| Bài | Cụm hiện tại | IN | Chữ | Đề xuất |
+|---|---|---|---|---|
+| [#1284 /ai-relationship-manager-for-real-estate-leads](https://infina.ai/news/ai-relationship-manager-for-real-estate-leads/) | News chưa gắn cụm | 1 | 569 | **Gắn vào Cụm 12** (hỗ trợ bài 8) |
+| [#1341 /ai-post-tour-follow-up-assistant-real-estate-crm](https://infina.ai/news/ai-post-tour-follow-up-assistant-real-estate-crm/) | News chưa gắn cụm | 1 | 677 | **Gắn vào Cụm 12** (hỗ trợ bài 8) |
+| [#1296 /ai-likely-to-sell-alerts-real-estate-agents](https://infina.ai/news/ai-likely-to-sell-alerts-real-estate-agents/) | News chưa gắn cụm (không trỏ pillar nào) | 1 | 531 | **Gắn vào Cụm 12** (hỗ trợ bài 9) |
+| [#1961 /real-estate-agent-referral](https://infina.ai/news/real-estate-agent-referral/) | Cụm 9 | 11 | 1,375 | Giữ Cụm 9, thêm làm anh em của #2330; donor cho bài 4 và 10 |
+| [#1977 /closing-gifts-real-estate](https://infina.ai/news/closing-gifts-real-estate/) | Cụm 9 | 3 | 1,326 | Giữ Cụm 9. **Cần thêm link tới #2330**; donor cho bài 4 |
+| [#1949 /real-estate-testimonials](https://infina.ai/news/real-estate-testimonials/) | Cụm 9 | 5 | 1,416 | Giữ Cụm 9. **Cần thêm link tới #2330**; donor cho bài 4 |
+| [#1122 /database-reactivation-ai-seller-leads-real-estate-agents](https://infina.ai/news/database-reactivation-ai-seller-leads-real-estate-agents/) | Cụm 7 | 3 | 756 | Giữ. Donor cho bài 6 và 9 |
+| [#1272 /buyer-lead-nurture-campaign-real-estate-agents](https://infina.ai/news/buyer-lead-nurture-campaign-real-estate-agents/) | Cụm 7 | 2 | 584 | Giữ. Donor cho bài 2 và 5 |
+| [#1488 /real-estate-customer-engagement-strategies](https://infina.ai/news/real-estate-customer-engagement-strategies/) | Cụm 2 | 1 | 1,182 | Giữ. Donor cho bài 1 (trước bán vs sau bán) |
+| [#263 /crm-marketing-real-estate](https://infina.ai/news/crm-marketing-real-estate/) | Cụm 2 | 18 | 1,384 | Giữ. **Cần thêm link** (tiêu đề "Turn Your Database into a Deal Machine", có H2 "CRM Marketing Funnel", hiện không link cụm liên quan). Canh trùng với bài 3 và 7 |
+
+**Cần update ngay, chỉ thêm link tới #2330 (chờ user chốt):** #1825 (pillar Cụm 9, mục "Build a Sphere and Referral System First" chỉ link #1961; ưu tiên cao nhất), #1853 (mục sphere và referrals), #1977, #1949, #1223 (pillar Cụm 7, hiện chỉ link #2260), #263.
+
+**Điểm trùng cần canh:** #263 và #277 với bài 3 và 7 (góc phần mềm và giai đoạn CRM so với quy trình agent làm tay); #1488 với bài 1; Cụm 1 (#1056, #1063, #1071) với bài 8; #1961 với bài 4 và 10.
+
+**Không đụng:** #405, #1225, #1732, #1449, #1832, #2189, #2195 và các bài Cụm 10.
+
+**Cần bạn chốt:** nâng #2330 làm pillar hay làm pillar mới; duyệt cả 10 bài hay theo đợt (4, 4, 2); bài 7 và 9 tự gộp khi viết nếu kết quả tìm kiếm yếu; làm bài 10 (referral fee) hay mở rộng #1961; làm 6 bài cũ cần thêm link ngay hay chờ inbound pass.
 
 ---
 
