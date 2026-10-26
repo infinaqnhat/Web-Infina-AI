@@ -63,7 +63,7 @@ chính file này thì được, đừng dùng để cãi nhau với số trong f
 là `#299`. Quy tắc không dùng dash áp cho bài mình viết mới, không áp cho việc trích lại tiêu đề đang
 có. Dòng này là để biết mà đi sửa, không phải để sửa trong bảng.
 
-## Tóm tắt 11 nhóm (cộng Cụm 10 đã viết, đang lên lịch, và Cụm 12 đang chờ duyệt)
+## Tóm tắt 11 nhóm (cộng Cụm 10 đã viết, đang lên lịch, Cụm 12 đã duyệt, và Cụm 13 đang chờ duyệt)
 
 | Cụm | Trang | Pillar | Tổng chữ | Mồ côi | Không trỏ pillar nào | Thiếu FOCUS_KW |
 |---|---|---|---|---|---|---|
@@ -78,6 +78,7 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 | Cụm 9: Marketing và Branding | 28 | `real-estate-marketing` (22 IN, 2,624 chữ); `real-estate-branding` (12 IN, 1,829 chữ) | 44,661 | 0 | 0 | 0 |
 | Cụm 10: Lead Generation, nguồn lead (đã viết, lên lịch 23-27/10) | 13 bài (0 live lúc crawl) | `real-estate-lead-generation` #2260 (2,167 chữ) và sub-hub `listing-leads` #2262 (1,722 chữ) | 19,927 (số bản thảo) | 0 | 0 | 0 |
 | Cụm 12: Sphere of influence và nuôi khách cũ (**đã duyệt 26/10**, đăng 28/10 đến 01/11) | 1 pillar nâng cấp (#2330) + 10 bài (đã viết, lên lịch 28/10 đến 01/11) | `sphere-of-influence-real-estate` #2330 (1,365 chữ, 7 IN, sẽ làm mới lên khoảng 3,000 chữ) | 0 | 0 | 0 | 0 |
+| Cụm 13: Email, drip campaign và nuôi lead (**plan chờ duyệt 26/10**, chưa viết) | 1 pillar mới + 9 bài dự kiến | chưa có (pillar mới `real estate drip email`) | 0 (chưa viết) | 0 | 0 | 0 |
 | Bài News real estate chưa gắn cụm trong plan | 40 | không có | 29,506 | 0 | 18 | 12 |
 | Ngoài chủ đề real estate (AI/tech) | 11 | không có | 2,784 | 11 | 11 | 0 |
 
@@ -397,6 +398,52 @@ Hiện #2330 chỉ có **7 inbound**, toàn từ Cụm 10 và #1961. Bài giữ 
 **Không đụng:** #405, #1225, #1732, #1449, #1832, #2189, #2195 và các bài Cụm 10.
 
 **Đã chốt 26/10:** nâng #2330 làm pillar; duyệt cả 10 bài (kể cả referral fee riêng); bài 7 và 9 viết riêng; thêm link cho 6 bài cũ ngay.
+
+---
+
+## Cụm 13: Email, drip campaign và nuôi lead  (plan chờ duyệt 26/10, 1 pillar mới + 9 bài dự kiến)
+
+**Trạng thái (26/10/2026): CHỜ DUYỆT.** Plan đầy đủ ở `plan-cum-13-email-nurture.md`. Chưa đặt chỗ keyword trong `used-keywords.md`, chưa ghi `content-plan.md`, chưa viết bài nào.
+
+**Nguồn ý tưởng:** 11 chủ đề user gửi (ảnh sheet 26/10) là các bài trong hub "Email và nurture" của Follow Up Boss (pillar `real-estate-drip-email`, 39 IN, 3,196 chữ cộng 8 bài, tổng 18,726 chữ). Mỗi chủ đề được viết lại theo góc riêng của Infina, không nhắm đúng chữ trong sheet. Dữ liệu keyword đã gộp vào file tổng ngày 26/10 (export US 15:05).
+
+**Điểm khác với kết luận cũ:** gap analysis 23/10 coi cụm email là yếu. Dữ liệu mới thêm nhóm **CMA ở bucket 5,000** (`comparative market analysis`, `...real estate`, `what is a comparative market analysis`) và `cma template` 500, nên cụm có 2 bài kéo traffic. Phần email thuần (drip, newsletter, subject line, follow-up) chỉ 500 trở xuống, đa số 50.
+
+**Ranh giới:** Cụm 7 = hệ thống follow-up tự động (tốc độ, tác vụ, AI). Cụm 12 = giữ khách và để khách giới thiệu. **Cụm 13 = nội dung email: gửi cái gì, theo chuỗi nào.** Site hiện **chưa có** bài nào về drip email, newsletter, subject line hay CMA hướng dẫn (chỉ #1178 là tin về AI cắt thời gian CMA).
+
+| # | Vai trò | Bài dự kiến | Focus keyword (đề xuất, bucket) | Chủ đề FUB tương ứng | Lịch đề xuất | Trạng thái |
+|---|---|---|---|---|---|---|
+| P | **Pillar** (mới) | Real Estate Drip Email: How to Build a Campaign in 5 Steps | `real estate drip email` 500 (gom `real estate email drip campaigns` 500) | Pillar `real-estate-drip-email` | 02/11 10:00 | Chưa viết. 5 bước, dừng khi khách trả lời, đo bằng reply rate, CAN-SPAM |
+| 1 | how-to | Real Estate Drip Campaign Templates: 4 Sequences to Copy | `real estate drip campaign templates` 50 (Cao) | Drip sequence | 02/11 14:00 | Chưa viết. Người mua, người bán, sau open house, khách cũ |
+| 2 | how-to | Real Estate Follow-Up Email: Templates for Leads, Showings and Open Houses | `real estate follow up email templates` 50 | Email to follow up | 03/11 10:00 | Chưa viết. Link #1223, #2171 |
+| 3 | template | Realtor Email Templates: 20 Emails for Every Client Situation | `realtor email templates` 500 (Cao) | Email to client | 03/11 14:00 | Chưa viết. Email cho khách đang trong giao dịch |
+| 4 | how-to | Comparative Market Analysis Real Estate: How to Do a CMA Step by Step | `comparative market analysis real estate` 5.000 | CMA + client relationship | 04/11 10:00 | Chưa viết. **Bài kéo traffic chính**; dùng CMA để giữ liên lạc khách cũ |
+| 5 | template | CMA Template: A Free Comparative Market Analysis Format | `cma template` 500 (Cao) | CMA | 04/11 14:00 | Chưa viết. Khung 1 trang; file tải về chờ chọn nơi lưu |
+| 6 | template | Real Estate Newsletter: Templates and a Monthly Plan | `real estate newsletter templates` 500 (Cao) | Newsletter | 05/11 10:00 | Chưa viết. Module xoay vòng, lịch 12 tháng cho SOI |
+| 7 | list | Real Estate Email Subject Lines: 60 Examples and What to Test | `real estate email subject lines` 50 | Email subject line | 05/11 14:00 | Chưa viết. **Có thể bỏ** (volume thấp). Không dùng open rate vendor (Apple MPP) |
+| 8 | how-to | Why a Bad Drip Campaign Is Worse Than None (and How to Audit Yours) | `real estate drip campaign` 50 | Bad drip sequence | 06/11 10:00 | Chưa viết. **Có thể bỏ** (volume thấp). Bảng 8 lỗi + checklist 10 phút |
+| 9 | how-to | Video Email for Real Estate: How to Send One Prospects Will Watch | `video email for real estate` (không có volume) | Video email + prospect | 06/11 14:00 | Chưa viết. **Có thể gộp vào #2177** (video marketing) |
+
+### Bài đã có: map lại và việc cần làm (REST 26/10)
+
+| Bài | Cụm hiện tại | IN | Chữ | Đề xuất |
+|---|---|---|---|---|
+| [#1178 /ai-comparative-market-analysis-minutes-real-estate-agents](https://infina.ai/news/ai-comparative-market-analysis-minutes-real-estate-agents/) | News chưa gắn cụm | 1 | 806 | **Gắn vào Cụm 13** (hỗ trợ bài 4); donor |
+| [#1223 /real-estate-lead-follow-up-automation-guide](https://infina.ai/news/real-estate-lead-follow-up-automation-guide/) | Cụm 7 (pillar) | 27 | 3,000 | Giữ. Canh: drip nói "gửi cái gì", #1223 nói "hệ thống". Link 2 chiều |
+| [#1227 /how-to-set-up-automated-lead-follow-up-real-estate](https://infina.ai/news/how-to-set-up-automated-lead-follow-up-real-estate/) | Cụm 7 | 4 | 577 | Giữ. Bước 3 "Segmented Drip Sequences" là donor cho pillar |
+| [#1272 /buyer-lead-nurture-campaign-real-estate-agents](https://infina.ai/news/buyer-lead-nurture-campaign-real-estate-agents/) | Cụm 7 | 2 | 584 | Giữ. Donor cho bài 1 |
+| [#2189 /real-estate-email-signature](https://infina.ai/news/real-estate-email-signature/) | Cụm 9 | 2 | 1,216 | Giữ. Donor cho pillar |
+| [#2177 /real-estate-video-marketing](https://infina.ai/news/real-estate-video-marketing/) | Cụm 9 | — | — | Giữ. Donor cho bài 9 (hoặc nhận mục video email nếu gộp) |
+| #2400, #2413, #2418, #2408, #2434 (Cụm 12) | Cụm 12 | mới | 1.3 đến 1.5k | Giữ. Drip là kênh email của các chương trình này; link ngang |
+| #1955, #936, #2262 | Cụm 9, Cụm 6, Cụm 10 | — | — | Giữ. Donor cho bài CMA (bước trình bày cho chủ nhà) |
+| #2171 `open-house-ideas-for-realtors`, #2195 `real-estate-prospecting-letters` | Cụm 9 | — | — | Giữ. Donor cho bài 2 và bài 9 |
+| #263, #450, #1901 (CRM marketing, marketing software) | Cụm 2, Cụm 9 | — | — | Giữ. Canh mục "email marketing automation": bài ta nói nội dung, #263 nói phần mềm |
+
+**Không làm bài riêng:** email signature (#2189), thư bưu điện (#2195), postcard (#1877), lead nurturing tổng quát (#2400), past client follow-up (#2413), thank you notes (#2418), database (#2408), warm leads (#2434), automation hệ thống (#1223, #1227).
+
+**Rủi ro:** file CMA template tải về cần chỗ lưu (`upload_media` chỉ nhận ảnh); CMA có người đọc là chủ nhà nên mở bài bằng định nghĩa đơn giản; mọi bài về email phải nêu CAN-SPAM; không dùng số liệu vendor về open rate hay nhịp gửi.
+
+**Cần bạn chốt:** pillar mới hay gộp vào #1223; duyệt cả 10 bài hay theo đợt (pillar, drip templates, 2 CMA trước); video email viết riêng hay gộp #2177; file CMA tải về hay chỉ bảng trong bài; viết hay bỏ 2 bài mỏng (subject lines, bad drip).
 
 ---
 
