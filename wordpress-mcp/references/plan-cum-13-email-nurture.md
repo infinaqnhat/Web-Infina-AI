@@ -1,6 +1,6 @@
 # Plan đề xuất: Cụm 13, Email, drip campaign và nuôi lead
 
-**Trạng thái: CHỜ DUYỆT (26/10/2026). Chưa đặt chỗ keyword, chưa viết bài nào.**
+**Trạng thái: ĐÃ DUYỆT HẾT (26/10/2026), bắt đầu đăng từ 02/11/2026.** Pillar mới (không gộp #1223), cả 10 bài, video email viết riêng, subject lines và bad drip đều viết, làm file CMA template (user host lại sau). Keyword đã đặt chỗ trong `used-keywords.md`, đã ghi `content-plan.md`. Brief từng bài ở mục 10, việc tự động và log ở mục 11.
 
 Làm theo cách của Cụm 12: lấy **chủ đề** (không nhắm đúng chữ) từ hub "Email và nurture" của Follow Up Boss (FUB), viết lại theo góc riêng của Infina. 11 chủ đề user gửi (cột "Pillar" trong sheet, ảnh 26/10) là các bài trong hub FUB `real-estate-drip-email`.
 
@@ -112,7 +112,110 @@ Giữ trần 3 bài/ngày (news 18:06 UTC chiếm 1 slot), 2 bài mỗi ngày l�
 
 Việc tự động sẽ hẹn sau khi duyệt: kiểm tra bài đã lên, inbound pass sau mỗi đợt, audit cuối cụm, cập nhật teardown.
 
-## 9. Việc user cần quyết
+
+## 10. Kế hoạch từng bài (đã duyệt 26/10)
+
+**Chuẩn chung (như Cụm 10 và Cụm 12, theo `seo-blog-writer` và `pillar-cluster-writer`):**
+- Category **Real Estate Marketing (392)**. Slug đã đối chiếu 187 bài live, không trùng. Giờ site là UTC.
+- H1 chứa focus keyword đầu câu; 6 đến 10 H2 dạng câu hỏi; đoạn dưới 120 từ; mật độ keyword 0,5 đến 2,5%; không em dash; ít nhất 1 link ngoài dofollow tới **nguồn chính đã mở và đọc**. Mọi bài về email nêu **CAN-SPAM** (FTC compliance guide: địa chỉ bưu điện hợp lệ, cách opt-out, xử lý trong 10 ngày làm việc); bài nhắc gọi hay nhắn tin nêu DNC và TCPA. **Không dùng con số vendor** (tỉ lệ mở, nhịp gửi, "10 email trong 60 ngày") trừ khi lần ra gốc. Ví dụ tính toán ghi là minh họa.
+- 4 ảnh mỗi bài: hero mockup (`hero()` của `scenes/s_m_leadgen.py`) làm ảnh đại diện và 3 mockup mobile-first trong thân (`skills/mockup-images`). Dữ liệu trong ảnh là mẫu bịa, ghi rõ "Sample".
+- Link: đúng 1 link lên pillar `https://infina.ai/news/real-estate-drip-email/` trong thân; ≥2 link ngang; anchor ≤8 từ, đa dạng; 1 đến 2 link money page `https://infina.ai/` ở bài có `Money page = Có` (ghi "Infina AI, our own"); mục Related Reading 3 đến 5 bullet; kết bằng đoạn nối sang bài khác của cụm. **Chỉ link bài đã live, hoặc bài có lịch cùng ngày hoặc sớm hơn.** Link tới bài đăng sau chỉ thêm ở inbound pass. Cross-cluster được phép nếu câu có lý do.
+- Mọi đoạn luật ghi "không phải tư vấn pháp lý".
+- Không bịa phỏng vấn, tên agent, số liệu thị trường thật.
+
+| # | Slug | H1 dự kiến | Focus keyword | Lịch (UTC) | Độ dài | Money page |
+|---|---|---|---|---|---|---|
+| P | `real-estate-drip-email` | Real Estate Drip Email: How to Build a Campaign in 5 Steps | `real estate drip email` | 02/11 10:00 | 2.600 đến 3.000 | Có |
+| 1 | `real-estate-drip-campaign-templates` | Real Estate Drip Campaign Templates: 4 Sequences to Copy | `real estate drip campaign templates` | 02/11 14:00 | 1.700 | Có |
+| 2 | `real-estate-follow-up-email` | Real Estate Follow-Up Email: Templates for Leads, Showings and Open Houses | `real estate follow up email templates` | 03/11 10:00 | 1.600 | Có |
+| 3 | `realtor-email-templates` | Realtor Email Templates: 20 Emails for Every Client Situation | `realtor email templates` | 03/11 14:00 | 1.700 | Không |
+| 4 | `comparative-market-analysis-real-estate` | Comparative Market Analysis Real Estate: How to Do a CMA Step by Step | `comparative market analysis real estate` | 04/11 10:00 | 2.000 | Có |
+| 5 | `cma-template` | CMA Template: A Free Comparative Market Analysis Format | `cma template` | 04/11 14:00 | 1.400 + file xlsx | Không |
+| 6 | `real-estate-newsletter` | Real Estate Newsletter: Templates and a Monthly Plan | `real estate newsletter templates` | 05/11 10:00 | 1.600 | Có |
+| 7 | `real-estate-email-subject-lines` | Real Estate Email Subject Lines: 60 Examples and What to Test | `real estate email subject lines` | 05/11 14:00 | 1.400 | Không |
+| 8 | `bad-drip-campaign-real-estate` | Why a Bad Drip Campaign Is Worse Than None (and How to Audit Yours) | `bad drip campaign` | 06/11 10:00 | 1.400 | Có (mạnh) |
+| 9 | `video-email-for-real-estate` | Video Email for Real Estate: How to Send One Prospects Will Watch | `video email for real estate` | 06/11 14:00 | 1.300 | Có |
+
+### Pillar `real-estate-drip-email`
+- **Góc:** nói "gửi cái gì và theo chuỗi nào", khác Cụm 7 (hệ thống). 5 bước: phân nhóm danh sách, chọn mục tiêu mỗi email, soạn và xếp chuỗi, **dừng khi khách trả lời**, đo bằng reply rate.
+- **H2:** What Is a Real Estate Drip Email? · Why Drip Email Works for Slow Leads (không số vendor) · Step 1 Segment Your List · Step 2 Choose One Goal per Email · Step 3 Write and Sequence the Emails (bảng ví dụ khung 6 email) · Step 4 Stop the Sequence When a Lead Replies · Step 5 Measure Replies, Not Opens (Apple Mail Privacy Protection, **mở nguồn Apple**) · What Do CAN-SPAM and Consent Require? · Common Mistakes.
+- **Nguồn chính:** FTC CAN-SPAM guide; Apple newsroom (Mail Privacy Protection, 06/2021); FCC/TCPA nếu nhắc text.
+- **Link:** ngang #1223, #1227, #1272, #2400, #2413, #2189, bài 1 (cùng ngày); không link bài đăng sau. Pillar kết bằng mục Related Reading chỉ liệt bài có lịch trước hoặc cùng giờ; các bài sau thêm ở inbound pass.
+
+### Bài 1. `real-estate-drip-campaign-templates`
+- **Góc:** 4 chuỗi mẫu: người mua mới, người bán, sau open house, khách cũ. Mỗi chuỗi: số email, khoảng cách, chủ đề và mục tiêu từng email; bảng.
+- **H2:** What Is a Drip Campaign Template? · Buyer Sequence · Seller Sequence · After-Open-House Sequence · Past-Client Sequence · How to Adapt a Template to Your Market · How Often to Send · Common Mistakes.
+- **Nguồn:** FTC CAN-SPAM; không dùng nhịp gửi của vendor, nhịp là gợi ý của ta ghi rõ.
+- **Link:** pillar (1 lần), #1272, #1223, #2400, #2413, #2171, `real-estate-drip-email` đã tính; money page Infina AI.
+
+### Bài 2. `real-estate-follow-up-email`
+- **Góc:** mẫu theo tình huống lead (form mới, sau showing, sau open house, lead im lặng); thời điểm gửi; khác bài 3 (khách đang giao dịch) và #1223 (hệ thống).
+- **H2:** When Should You Send a Follow-Up Email? · Template for a New Web Lead · After a Showing · After an Open House · A Quiet Lead · How Short Should It Be? · CAN-SPAM and Opt-Outs · Common Mistakes.
+- **Link:** pillar, bài 1 (02/11), #1223, #1227, #2171, #2302, #1341; money page Infina AI.
+
+### Bài 3. `realtor-email-templates`
+- **Góc:** 20 email cho **khách đang trong giao dịch** (offer chấp nhận, inspection, appraisal, tiến độ vay, ngày closing, sau closing, kỷ niệm...), mỗi mẫu 3 đến 6 dòng và khi nào gửi.
+- **H2:** Which Emails Do Clients Expect From You? · Offer and Contract Emails · Inspection and Appraisal Emails · Closing Emails · After-Closing Emails · How to Keep a Consistent Voice · Compliance (không hứa kết quả, thông tin cá nhân) · Common Mistakes.
+- **Link:** pillar, bài 2 (cùng ngày), #2189, #2404, #2418, #2413, #1977.
+
+### Bài 4. `comparative-market-analysis-real-estate`
+- **Góc:** bài kéo traffic chính (5.000). Định nghĩa đơn giản, 5 bước (chủ thể, chọn comp, điều chỉnh, khoảng giá, trình bày), **khác appraisal và BPO**, ví dụ tính minh họa có điều chỉnh, giải thích số cho chủ nhà, **dùng CMA để giữ liên lạc khách cũ** (gửi cập nhật giá trị nhà 1 lần mỗi năm; link #2413). Người đọc phụ là chủ nhà: mở bằng định nghĩa rõ.
+- **H2:** What Is a Comparative Market Analysis? · How Is a CMA Different From an Appraisal? · How Do You Do a CMA in Five Steps? · How Do You Choose Comparable Sales? · How Do You Adjust Comps? (bảng minh họa) · How Do You Explain the Number to a Seller? · How Can a CMA Keep Past Clients Close? · What Rules Apply to MLS Data? (chung) · Common Mistakes.
+- **Nguồn chính:** CFPB (appraisal vs giá thị trường, bản gốc consumerfinance.gov) hoặc nguồn chính tương đương; không số liệu giá nhà thật.
+- **Link:** pillar (drip, vì CMA gửi qua email; 1 lần), bài 5 (cùng ngày), #1178, #1955, #936, #2262, #2413, bài 2; money page Infina AI.
+
+### Bài 5. `cma-template`
+- **Góc:** khung CMA 1 trang (bảng comp, bảng điều chỉnh, kết luận, câu giải thích cho chủ nhà), copy được; **tạo file xlsx** `references/files/cma-template.xlsx` (3 sheet: Comps, Adjustments, Summary; ghi "not an appraisal"), chưa link vì chờ user host.
+- **H2:** What Goes on a CMA Template? · The One-Page CMA Format · The Comps Table · The Adjustments Table · The Summary and Price Range · How to Present It to a Seller · What a CMA Template Cannot Do · Common Mistakes.
+- **Link:** pillar, bài 4 (cùng ngày), #1955, #936, #2262.
+
+### Bài 6. `real-estate-newsletter`
+- **Góc:** khung module xoay vòng (số liệu thị trường địa phương, tin khu vực, listing vừa bán, một mẹo, lời mời hỏi), lịch 12 tháng cho SOI; dùng **nguồn dữ liệu chính** (NAR existing-home sales, MLS địa phương) cho mô-đun số liệu, không bịa số.
+- **H2:** What Goes in a Real Estate Newsletter? · The Modules (bảng) · A 12-Month Plan · How Often to Send · Who to Send It To (SOI, link #2330) · Compliance (CAN-SPAM, quảng cáo nhà) · Common Mistakes.
+- **Nguồn:** FTC CAN-SPAM; NAR research stats page nếu mở được.
+- **Link:** pillar, #2330, #2413, #2189, bài 2, bài 3; money page Infina AI.
+
+### Bài 7. `real-estate-email-subject-lines`
+- **Góc:** 60 câu theo loại email (lead mới, showing, newsletter, past client, referral...), độ dài, A/B test bằng **reply rate**, vì Apple Mail Privacy Protection làm số mở sai (mở nguồn Apple). Không dùng open rate vendor.
+- **H2:** What Makes a Good Real Estate Email Subject Line? · Subject Lines for New Leads · After a Showing or Open House · Newsletters · Past Clients and Referrals · What to Avoid (spam, không gây hiểu lầm: CAN-SPAM cấm subject lừa dối) · How to Test · Common Mistakes.
+- **Nguồn:** FTC CAN-SPAM (subject lines must not mislead); Apple newsroom.
+- **Link:** pillar, bài 6 (cùng ngày), bài 1, bài 2, bài 3.
+
+### Bài 8. `bad-drip-campaign-real-estate`
+- **Góc:** vì sao drip tệ còn hơn không có (khách nhận tin chung chung, dồn dập, không dừng khi trả lời, không opt-out) và kiểm tra trong 10 phút (bảng 8 lỗi + checklist). Gần sản phẩm: follow-up đúng lúc, dừng khi trả lời.
+- **H2:** What Makes a Drip Campaign "Bad"? · Eight Common Problems (bảng) · The Ten-Minute Audit · How to Fix the Biggest Ones First · When to Pause a Campaign · What the Rules Require · Common Mistakes.
+- **Nguồn:** FTC CAN-SPAM; FTC DNC Q&A và TCPA nếu nhắc text.
+- **Link:** pillar, bài 1, bài 2, #1223, #1227, `tcpa-compliance-for-real-estate-agents`, #2400; money page mạnh.
+
+### Bài 9. `video-email-for-real-estate`
+- **Góc:** video 30 đến 60 giây gửi cho prospect: mở bằng câu nào, quay gì, gửi thế nào (nhúng ảnh thumbnail có link, không đính kèm file lớn), đo xem; kết nối #2177 và #2195. Không số vendor về tỉ lệ xem.
+- **H2:** What Is a Video Email? · When Does a Video Email Beat Text? · What to Say in the First 10 Seconds · How Long Should It Be? · How Do You Send It? · How Do You Follow Up After? · Rules (đồng ý, quyền riêng tư, khung hình có người khác) · Common Mistakes.
+- **Nguồn:** FTC CAN-SPAM; nếu nhắc ghi hình ở nhà khách thì nêu chung chung.
+- **Link:** pillar, #2177, #2195, bài 2, bài 3; money page Infina AI.
+
+## 11. Lịch, việc tự động và log
+
+Giữ trần 3 bài/ngày: routine news 18:06 UTC chiếm 1 slot.
+
+| Ngày | 10:00 | 14:00 |
+|---|---|---|
+| 02/11 | **Pillar** drip email | Bài 1 drip templates |
+| 03/11 | Bài 2 follow-up email | Bài 3 realtor email templates |
+| 04/11 | Bài 4 CMA how-to | Bài 5 CMA template |
+| 05/11 | Bài 6 newsletter | Bài 7 subject lines |
+| 06/11 | Bài 8 bad drip | Bài 9 video email |
+
+**Việc tự động đã hẹn:** kiểm tra pillar và bài 1 đã live (02/11 15:00 UTC); inbound pass đợt 1 (04/11 07:00, sau 4 bài đầu); đợt 2 (06/11 07:00); đợt 3 và audit cả cụm (09/11 07:00). Pillar cuối cùng thêm toàn bộ cluster vào Related Reading ở inbound pass.
+
+**Donor (bài cũ → cluster mới, làm ở inbound pass):** #1223 và #1227 → pillar; #1272 → drip templates; #2189 → pillar và bài 3; #1178, #1955, #936, #2262 → CMA; #2171 → follow-up email; #2177 và #2195 → video email; #2330 → newsletter; #2400 và #2413 → pillar. Gắn #1178 vào Cụm 13.
+
+**Log:** chưa có bài nào được viết (cập nhật khi từng bài xong).
+
+## 12. Quyết định của user (26/10)
+
+Duyệt hết: pillar mới, cả 10 bài (kể cả video email và 2 bài mỏng volume), làm file CMA template, đăng từ 02/11. Câu hỏi gốc ở mục 9.
+
+## 9. Việc user cần quyết (bản gốc, đã chốt ở mục 12)
 
 1. **Pillar mới `real estate drip email`** (đề xuất) hay gộp vào #1223.
 2. Duyệt cả 10 bài một lần, hay theo đợt: pillar + drip templates + 2 CMA trước (4 bài), rồi 6 bài còn lại.

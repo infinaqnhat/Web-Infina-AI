@@ -811,6 +811,25 @@ riêng (đã có #1229 ở Cụm 7). Không viết lại CRM marketing (#263, C�
 
 ---
 
+### Cụm 13: Email, drip campaign và nuôi lead, 📝 pillar + 9 bài đã duyệt 26/10/2026, chưa viết, đăng 02/11 đến 06/11
+
+Plan đầy đủ ở `references/plan-cum-13-email-nurture.md`. Bảng theo dõi ở `references/teardown-infina-table.md` mục Cụm 13. Keyword đã đặt chỗ trong `used-keywords.md` (26/10). Pillar mới `real-estate-drip-email`; chưa có bài nào về drip, newsletter, subject line hay CMA hướng dẫn trên site (chỉ #1178 là tin CMA bằng AI, sẽ gắn vào cụm).
+
+Ranh giới: Cụm 7 là hệ thống follow-up tự động, Cụm 12 là giữ khách và referral, **Cụm 13 là nội dung email (gửi gì, theo chuỗi nào)**. Không viết lại: email signature (#2189), thư bưu điện (#2195), postcard (#1877), lead nurturing (#2400), past client follow-up (#2413), thank you notes (#2418), database (#2408), warm leads (#2434), automation (#1223, #1227).
+
+| Vai trò | Bài | Focus keyword | Funnel | Trạng thái |
+|---|---|---|---|---|
+| `pillar` **Pillar** | Real Estate Drip Email: How to Build a Campaign in 5 Steps (`real-estate-drip-email`) | `real estate drip email` | Discovery/TOF | 📝 Đặt chỗ, dự kiến 02/11 10:00 |
+| `how-to` Wave 1 | Real Estate Drip Campaign Templates: 4 Sequences to Copy (`real-estate-drip-campaign-templates`) | `real estate drip campaign templates` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 02/11 14:00 |
+| `how-to` Wave 1 | Real Estate Follow-Up Email: Templates for Leads, Showings and Open Houses (`real-estate-follow-up-email`) | `real estate follow up email templates` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 03/11 10:00 |
+| `template` Wave 1 | Realtor Email Templates: 20 Emails for Every Client Situation (`realtor-email-templates`) | `realtor email templates` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 03/11 14:00 |
+| `how-to` Wave 2 | Comparative Market Analysis Real Estate: How to Do a CMA Step by Step (`comparative-market-analysis-real-estate`) | `comparative market analysis real estate` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 04/11 10:00 |
+| `template` Wave 2 | CMA Template: A Free Comparative Market Analysis Format (`cma-template`) | `cma template` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 04/11 14:00 |
+| `template` Wave 3 | Real Estate Newsletter: Templates and a Monthly Plan (`real-estate-newsletter`) | `real estate newsletter templates` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 05/11 10:00 |
+| `list` Wave 3 | Real Estate Email Subject Lines: 60 Examples and What to Test (`real-estate-email-subject-lines`) | `real estate email subject lines` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 05/11 14:00 |
+| `how-to` Wave 4 | Why a Bad Drip Campaign Is Worse Than None (and How to Audit Yours) (`bad-drip-campaign-real-estate`) | `bad drip campaign` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 06/11 10:00 |
+| `how-to` Wave 4 | Video Email for Real Estate: How to Send One Prospects Will Watch (`video-email-for-real-estate`) | `video email for real estate` | Consideration/MOF | 📝 Đặt chỗ, dự kiến 06/11 14:00 |
+
 ### Cụm 12: Sphere of influence và nuôi khách cũ, ✅ 10 bài đã viết và lên lịch 26/10/2026 (đăng 28/10 đến 01/11), làm mới pillar #2330 hẹn 30/10
 
 Plan đầy đủ ở `references/plan-cum-12-sphere-past-client.md`. Bảng theo dõi ở `references/teardown-infina-table.md` mục Cụm 12. Keyword đã đặt chỗ trong `used-keywords.md` (26/10). Pillar là **#2330** `sphere-of-influence-real-estate` (đã live 24/10, nâng cấp lên khoảng 3.000 chữ ngày 30/10).
