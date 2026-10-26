@@ -84,8 +84,8 @@ for who,t,h in [('bot','Hi Maria, this is the assistant for the agent you spoke 
                 ('lead','Yes please',110)]:
     c+=bub(y,who,t,h); y+=h+24
 c+='<div class="abs" style="left:50px;top:%dpx;width:900px;padding:22px 26px;background:#fff3ee;border-left:12px solid %s;border-radius:12px;font-size:40px;font-weight:700;color:%s;line-height:1.2">Handoff: agent notified to send the market note</div>'%(y+6,OR,N)
-c+=sample(y+170,'Sample conversation. Names and messages are made up.')
-ain_chat_m=page(c,'',note='',size=(1000,y+245))
+c+=sample(y+170,'Sample conversation. Made up.')
+ain_chat_m=page(c,'',note='',size=(1000,y+260))
 
 SC=dict(sf_hero_m=sf_hero_m,sf_stages_m=sf_stages_m,sf_sample_m=sf_sample_m,sf_metrics_m=sf_metrics_m,ain_hero_m=ain_hero_m,ain_split_m=ain_split_m,ain_handoff_m=ain_handoff_m,ain_chat_m=ain_chat_m)
 if __name__=='__main__': render(sel(sys.argv,SC))
