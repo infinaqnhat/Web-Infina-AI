@@ -28,23 +28,6 @@
     input { font-family:inherit; }
     [hidden] { display:none !important; }
 
-    /* ===== Claim bar: the step-6 nudge, slides down once the agent has had a look ===== */
-    .claim-bar { display:grid; grid-template-rows:0fr; opacity:0; transition:grid-template-rows .38s cubic-bezier(.22,1,.36,1), opacity .3s ease; flex-shrink:0; }
-    .claim-bar.is-open { grid-template-rows:1fr; opacity:1; }
-    .claim-clip { overflow:hidden; min-height:0; }
-    .claim-inner { position:relative; display:flex; align-items:center; justify-content:center; gap:14px; padding:9px 56px 9px 20px; color:#fff; background:linear-gradient(120deg, var(--blue) 0%, var(--accent) 100%); }
-    .claim-text { font-size:14px; font-weight:600; line-height:1.4; }
-    .claim-cta { flex-shrink:0; padding:8px 16px; border-radius:999px; background:#fff; color:var(--accent); font-size:13px; font-weight:800; white-space:nowrap; }
-    .claim-cta:hover { box-shadow:0 6px 14px rgba(0,20,60,.3); }
-    .claim-close { position:absolute; right:14px; top:50%; transform:translateY(-50%); width:28px; height:28px; border:0; border-radius:50%; background:rgba(255,255,255,.16); color:#fff; display:flex; align-items:center; justify-content:center; }
-    .claim-close:hover { background:rgba(255,255,255,.28); }
-    @media (max-width:760px){
-      .claim-inner { flex-wrap:wrap; justify-content:flex-start; row-gap:8px; padding:11px 14px; }
-      .claim-text { flex:1 1 100%; margin-right:40px; font-size:13px; }
-      .claim-close { top:10px; transform:none; }
-    }
-    @media (prefers-reduced-motion:reduce){ .claim-bar { transition:none; } }
-
     /* ===== Shell ===== */
     .shell { flex:1; min-height:0; display:flex; }
 
@@ -195,7 +178,7 @@
     .hob-btn:hover { transform:translateY(-2px); }
     .hob-btn.is-nudge::before { content:''; position:absolute; inset:-5px; border-radius:50%; border:2px solid var(--blue); animation:ping 1.8s ease-out infinite; }
     @keyframes ping { 0% { transform:scale(.9); opacity:.9; } 100% { transform:scale(1.35); opacity:0; } }
-    .hob-tip { position:fixed; right:96px; bottom:34px; z-index:70; padding:9px 14px; border-radius:12px; background:var(--accent); color:#fff; font-size:13px; font-weight:700; box-shadow:0 10px 24px -8px rgba(0,20,60,.5); }
+    .hob-tip { position:fixed; right:96px; bottom:34px; z-index:70; padding:9px 14px; border:0; border-radius:12px; background:var(--accent); color:#fff; font-size:13px; font-weight:700; box-shadow:0 10px 24px -8px rgba(0,20,60,.5); }
     .hob-tip::after { content:''; position:absolute; right:-6px; top:50%; width:12px; height:12px; background:var(--accent); transform:translateY(-50%) rotate(45deg); border-radius:2px; }
     .hob-panel { position:fixed; right:24px; bottom:96px; z-index:75; width:min(380px, calc(100vw - 24px)); height:min(520px, calc(100vh - 130px)); display:flex; flex-direction:column; background:#fff; border-radius:20px; box-shadow:0 24px 60px -14px rgba(0,20,60,.5), 0 0 0 1px var(--border-light); overflow:hidden; }
     .hob-head { display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border-light); flex-shrink:0; }
@@ -212,6 +195,7 @@
     .hb a { display:inline-block; margin-top:8px; padding:7px 13px; border-radius:999px; background:var(--accent); color:#fff; font-size:12.5px; font-weight:800; }
     .hob-chips { display:flex; flex-wrap:wrap; gap:7px; padding:0 14px 10px; flex-shrink:0; }
     .hob-chips button { padding:7px 12px; border-radius:999px; border:1px solid var(--border); background:#fff; font-size:12.5px; font-weight:700; color:var(--blue); text-align:left; }
+    .hob-chips button.is-tour { background:var(--blue-light); border-color:transparent; }
     .hob-chips button:hover { border-color:var(--blue); background:var(--blue-light); }
     .hob-input { display:flex; gap:8px; padding:10px 12px; border-top:1px solid var(--border-light); flex-shrink:0; }
     .hob-input input { flex:1; min-width:0; border:1px solid var(--border); border-radius:999px; padding:9px 14px; font-size:13.5px; outline:none; }
@@ -251,21 +235,48 @@
       .info { top:auto; left:0; right:0; bottom:0; width:100%; height:82vh; border-radius:20px 20px 0 0; transform:translateY(100%); box-shadow:0 -18px 40px -18px rgba(0,20,60,.4); padding-top:14px; }
       body.info-open .info { transform:none; }
     }
+
+    /* ===== Hob tour (same block in both demo pages) ===== */
+    .tour-spot { position:fixed; z-index:90; left:50%; top:50%; width:0; height:0; border-radius:16px; box-shadow:0 0 0 100vmax rgba(8,18,46,.58); pointer-events:none; opacity:0; }
+    .tour-spot.is-on { opacity:1; }
+    .tour-spot.is-anim { transition:left .32s cubic-bezier(.22,1,.36,1), top .32s cubic-bezier(.22,1,.36,1), width .32s cubic-bezier(.22,1,.36,1), height .32s cubic-bezier(.22,1,.36,1), opacity .25s ease; }
+    .tour-spot.has-ring::after { content:''; position:absolute; inset:-3px; border-radius:inherit; border:2px solid #fff; opacity:.9; }
+    .tour-block { position:fixed; inset:0; z-index:92; background:transparent; }
+    .tour-block[hidden], .tour-bubble[hidden], .tour-spot[hidden] { display:none; }
+    .tour-bubble { position:fixed; z-index:95; width:min(330px, calc(100vw - 24px)); padding:16px 16px 14px; border-radius:18px; background:#fff; color:var(--fg, #1a1f2e); box-shadow:0 24px 60px -14px rgba(0,20,60,.55), 0 0 0 1px rgba(0,20,60,.06); opacity:0; transform:translateY(8px); transition:opacity .22s ease, transform .3s cubic-bezier(.22,1,.36,1); }
+    .tour-bubble.is-on { opacity:1; transform:none; }
+    .tour-head { display:flex; align-items:center; gap:9px; margin-bottom:10px; }
+    .tour-head > svg { width:30px; height:30px; flex-shrink:0; }
+    .tour-head b { font-size:13.5px; font-weight:800; color:var(--accent, #001F5C); }
+    .tour-count { margin-left:auto; font-size:11.5px; font-weight:700; color:var(--muted, #64748b); }
+    .tour-x { flex-shrink:0; width:26px; height:26px; border:0; border-radius:50%; background:rgba(0,20,60,.06); color:var(--fg-secondary, #334155); display:flex; align-items:center; justify-content:center; }
+    .tour-x:hover { background:rgba(0,20,60,.12); }
+    .tour-title { font-size:16px; font-weight:800; line-height:1.3; color:var(--accent, #001F5C); }
+    .tour-text { margin-top:6px; font-size:13.5px; line-height:1.55; color:var(--fg-secondary, #334155); }
+    .tour-text b { color:var(--fg, #1a1f2e); }
+    .tour-dots { display:flex; gap:5px; margin-top:12px; }
+    .tour-dots i { width:6px; height:6px; border-radius:50%; background:rgba(0,31,92,.16); }
+    .tour-dots i.is-done { background:rgba(24,99,220,.5); }
+    .tour-dots i.is-now { width:18px; border-radius:999px; background:var(--blue, #1863dc); }
+    .tour-actions { display:flex; align-items:center; gap:10px; margin-top:12px; }
+    .tour-skip { border:0; background:none; padding:6px 2px; font-size:12.5px; font-weight:700; color:var(--muted, #64748b); text-decoration:underline; text-underline-offset:2px; }
+    .tour-skip:hover { color:var(--fg, #1a1f2e); }
+    .tour-spacer { flex:1; }
+    .tour-btn { display:inline-flex; align-items:center; justify-content:center; padding:10px 18px; border:0; border-radius:999px; background:var(--accent, #001F5C); color:#fff; font-size:13.5px; font-weight:800; white-space:nowrap; text-decoration:none; }
+    .tour-btn:hover { background:var(--accent-dark, #001340); }
+    .tour-btn.is-ghost { background:var(--blue-light, rgba(24,99,220,.08)); color:var(--blue, #1863dc); }
+    .tour-btn.is-ghost:hover { background:rgba(24,99,220,.16); }
+    .tour-btn.is-claim { background:linear-gradient(120deg, var(--blue, #1863dc) 0%, var(--accent, #001F5C) 100%); }
+    .tour-btn[hidden] { display:none; }
+    .tour-arrow { position:absolute; width:12px; height:12px; background:#fff; border-radius:2px; transform:rotate(45deg); }
+    .tour-bubble.is-docked .tour-arrow { display:none; }
+    .tour-bubble.is-docked { left:12px; right:12px; width:auto; }
+    @media (max-width:1100px){ .tour-bubble { padding:14px 14px 12px; } }
+    @media (prefers-reduced-motion:reduce){ .tour-spot.is-anim, .tour-bubble { transition:none; transform:none; } }
   </style>
 </head>
 <body>
 
-  <aside class="claim-bar" id="claim-bar" role="region" aria-label="Free Property Expert offer" hidden>
-    <div class="claim-clip">
-      <div class="claim-inner">
-        <p class="claim-text">This AI Assistant can be yours, free for your first 3 months.</p>
-        <a class="claim-cta" data-claim href="#" target="_blank" rel="noopener">Claim it here &rarr;</a>
-        <button class="claim-close" type="button" id="claim-close" aria-label="Dismiss this message">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-    </div>
-  </aside>
 
   <div class="shell">
 
@@ -398,7 +409,7 @@
   </div>
 
   <!-- ===== Hob ===== -->
-  <div class="hob-tip" id="hob-tip" hidden>New here? Ask Hob</div>
+  <button class="hob-tip" type="button" id="hob-tip" hidden>Want a 30s tour of this page?</button>
   <button class="hob-btn" type="button" id="hob-btn" aria-label="Ask Hob, your assistant" aria-expanded="false" aria-controls="hob-panel">
     <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>
   </button>
@@ -417,10 +428,255 @@
   </section>
 
   <script>
+    var PETOUR_DOCK_MAX = 1099;
+    // ===== Hob tour (same block in both demo pages) =====
+    // Steps: { target, title, text, kind: 'info' | 'action', on, before, cta, nextLabel }
+    //  target   selector, list of selectors (first visible wins), or a function; none = centred card
+    //  kind     'info' waits for the button; 'action' leaves the page usable and waits for `on`
+    //  on       name of the event (PETour.emit) that completes an action step
+    //  skipIf   optional function; true means this step is passed over
+    //  cta      optional function returning { label, href, claim, onClick } for the primary button
+    var PETour = (function(){
+      var HOB_SVG = '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>';
+      var dockMQ = window.matchMedia('(max-width:' + (window.PETOUR_DOCK_MAX || 1100) + 'px)');   // the page's phone layout breakpoint
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var spot, block, bubble, elCount, elTitle, elText, elDots, btnNext, btnSkip, btnLink, arrow;
+      var st = null;           // { steps, i, opts }
+      var raf = 0, advanceTimer = 0;
+
+      function make(tag, cls){ var n = document.createElement(tag); if (cls) n.className = cls; return n; }
+      function build(){
+        if (bubble) return;
+        spot = make('div', 'tour-spot'); spot.hidden = true;
+        block = make('div', 'tour-block'); block.hidden = true;
+        bubble = make('div', 'tour-bubble'); bubble.hidden = true;
+        bubble.setAttribute('role', 'dialog');
+        bubble.setAttribute('aria-label', 'Tour with Hob');
+        var head = make('div', 'tour-head');
+        head.innerHTML = HOB_SVG + '<b>Hob</b>';
+        elCount = make('span', 'tour-count');
+        var x = make('button', 'tour-x'); x.type = 'button'; x.setAttribute('aria-label', 'Close the tour');
+        x.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+        x.addEventListener('click', function(){ end('skip'); });
+        head.appendChild(elCount); head.appendChild(x);
+        elTitle = make('div', 'tour-title');
+        elText = make('p', 'tour-text'); elText.setAttribute('aria-live', 'polite');
+        elDots = make('div', 'tour-dots');
+        var actions = make('div', 'tour-actions');
+        btnSkip = make('button', 'tour-skip'); btnSkip.type = 'button'; btnSkip.textContent = 'Skip tour';
+        btnSkip.addEventListener('click', function(){ end('skip'); });
+        btnNext = make('button', 'tour-btn'); btnNext.type = 'button';
+        btnNext.addEventListener('click', function(){
+          var s = st && st.steps[st.i]; var c = s && s.cta && s.cta();
+          if (c && c.onClick) { c.onClick(); return; }
+          next();
+        });
+        btnLink = make('a', 'tour-btn'); btnLink.target = '_blank'; btnLink.rel = 'noopener'; btnLink.hidden = true;
+        btnLink.addEventListener('click', function(){
+          var s = st && st.steps[st.i]; var c = s && s.cta && s.cta();
+          if (c && c.href) btnLink.href = c.href;   // carry the latest state into the new tab
+          if (c && c.onClick) c.onClick(btnLink);
+          // the link opens in a new tab; the tour on this page is finished
+          setTimeout(function(){ end('done'); }, 120);
+        });
+        actions.appendChild(btnSkip); actions.appendChild(make('span', 'tour-spacer')); actions.appendChild(btnNext); actions.appendChild(btnLink);
+        arrow = make('i', 'tour-arrow');
+        bubble.appendChild(head); bubble.appendChild(elTitle); bubble.appendChild(elText); bubble.appendChild(elDots); bubble.appendChild(actions); bubble.appendChild(arrow);
+        document.body.appendChild(spot); document.body.appendChild(block); document.body.appendChild(bubble);
+        window.addEventListener('resize', schedule);
+        window.addEventListener('scroll', schedule, true);
+        document.addEventListener('keydown', function(e){ if (st && e.key === 'Escape') end('skip'); });
+      }
+
+      function visible(e){
+        if (!e) return false;
+        var r = e.getBoundingClientRect();
+        return r.width > 0 && r.height > 0 && getComputedStyle(e).visibility !== 'hidden';
+      }
+      function resolve(t){
+        if (!t) return null;
+        if (typeof t === 'function') return t();
+        var list = Array.isArray(t) ? t : [t];
+        for (var i = 0; i < list.length; i++) { var e = document.querySelector(list[i]); if (visible(e)) return e; }
+        return null;
+      }
+      function schedule(){ if (!st || raf) return; raf = requestAnimationFrame(function(){ raf = 0; place(); }); }
+
+      function overlaps(a, b){ return !(a.right <= b.left || b.right <= a.left || a.bottom <= b.top || b.bottom <= a.top); }
+      function clamp(v, lo, hi){ return Math.max(lo, Math.min(hi, v)); }
+
+      function place(){
+        if (!st) return;
+        var vw = window.innerWidth, vh = window.innerHeight, M = 12, GAP = 16, PAD = 8;
+        var target = resolve(st.steps[st.i].target);
+        var docked = dockMQ.matches && !!target;
+        bubble.classList.toggle('is-docked', docked);
+        bubble.style.right = ''; bubble.style.bottom = '';
+        var bw = bubble.offsetWidth, bh = bubble.offsetHeight;
+        var tr = null;
+        if (target) {
+          var r = target.getBoundingClientRect();
+          tr = { left: r.left - PAD, top: r.top - PAD, right: r.right + PAD, bottom: r.bottom + PAD };
+          if (docked) {
+            // On a phone a tall target must leave room for the card: spotlight only the part clear of it
+            tr.top = Math.max(tr.top, 6); tr.bottom = Math.min(tr.bottom, tr.top + vh * 0.42);
+            if ((tr.top + tr.bottom) / 2 > vh / 2) tr.top = Math.max(tr.top, 10 + bh + 8);
+            else tr.bottom = Math.min(tr.bottom, vh - 12 - bh - 8);
+            if (tr.bottom - tr.top < 48) tr.bottom = tr.top + 48;
+          }
+          tr.width = tr.right - tr.left; tr.height = tr.bottom - tr.top;
+          spot.style.left = tr.left + 'px'; spot.style.top = tr.top + 'px';
+          spot.style.width = tr.width + 'px'; spot.style.height = tr.height + 'px';
+          spot.classList.add('has-ring');
+        } else {
+          spot.style.left = '50%'; spot.style.top = '50%'; spot.style.width = '0px'; spot.style.height = '0px';
+          spot.classList.remove('has-ring');
+        }
+        if (!tr) {
+          bubble.style.left = clamp((vw - bw) / 2, M, vw - bw - M) + 'px';
+          bubble.style.top = clamp((vh - bh) / 2, M, vh - bh - M) + 'px';
+          arrow.style.display = 'none';
+          return;
+        }
+        arrow.style.display = '';
+        if (docked) {
+          var safeTop = 10;
+          var topRect = { left: 12, right: vw - 12, top: safeTop, bottom: safeTop + bh };
+          var botRect = { left: 12, right: vw - 12, top: vh - 12 - bh, bottom: vh - 12 };
+          var preferTop = (tr.top + tr.bottom) / 2 > vh / 2;
+          var first = preferTop ? topRect : botRect, second = preferTop ? botRect : topRect;
+          var pick = !overlaps(first, tr) ? first : (!overlaps(second, tr) ? second : first);
+          bubble.style.left = '12px';
+          bubble.style.top = pick.top + 'px';
+          return;
+        }
+        // Desktop: beside the target when there is room, else above or below
+        var cx = (tr.left + tr.right) / 2, cy = (tr.top + tr.bottom) / 2;
+        var cands = [
+          { side: 'right',  left: tr.right + GAP,        top: cy - bh / 2 },
+          { side: 'left',   left: tr.left - GAP - bw,    top: cy - bh / 2 },
+          { side: 'bottom', left: cx - bw / 2,           top: tr.bottom + GAP },
+          { side: 'top',    left: cx - bw / 2,           top: tr.top - GAP - bh }
+        ];
+        var chosen = null;
+        for (var i = 0; i < cands.length; i++) {
+          var c = cands[i];
+          if (c.left >= M && c.left + bw <= vw - M && c.top >= M && c.top + bh <= vh - M) { chosen = c; break; }
+        }
+        if (!chosen) {
+          // Target is large: sit inside its nearest free corner, no arrow
+          chosen = { side: null, left: vw - bw - M - 8, top: vh - bh - M - 8 };
+          if (overlaps({ left: chosen.left, top: chosen.top, right: chosen.left + bw, bottom: chosen.top + bh }, tr)) chosen.left = M + 8;
+        }
+        var L = clamp(chosen.left, M, vw - bw - M), T = clamp(chosen.top, M, vh - bh - M);
+        bubble.style.left = L + 'px'; bubble.style.top = T + 'px';
+        if (!chosen.side) { arrow.style.display = 'none'; return; }
+        var a = 6;
+        if (chosen.side === 'right' || chosen.side === 'left') {
+          arrow.style.top = clamp(cy - T - a, 16, bh - 28) + 'px'; arrow.style.bottom = '';
+          arrow.style.left = chosen.side === 'right' ? (-a) + 'px' : ''; arrow.style.right = chosen.side === 'left' ? (-a) + 'px' : '';
+        } else {
+          arrow.style.left = clamp(cx - L - a, 20, bw - 32) + 'px'; arrow.style.right = '';
+          arrow.style.top = chosen.side === 'bottom' ? (-a) + 'px' : ''; arrow.style.bottom = chosen.side === 'top' ? (-a) + 'px' : '';
+        }
+      }
+
+      function render(){
+        var s = st.steps[st.i];
+        var total = st.steps.length;
+        var text = typeof s.text === 'function' ? s.text(dockMQ.matches) : s.text;
+        elCount.textContent = (st.i + 1) + ' of ' + total;
+        elTitle.textContent = typeof s.title === 'function' ? s.title(dockMQ.matches) : s.title;
+        elText.innerHTML = text;
+        elDots.textContent = '';
+        for (var k = 0; k < total; k++) { var d = make('i', k < st.i ? 'is-done' : (k === st.i ? 'is-now' : '')); elDots.appendChild(d); }
+        var last = st.i === total - 1;
+        var c = s.cta ? s.cta() : null;
+        btnLink.hidden = true; btnNext.hidden = false;
+        btnNext.className = 'tour-btn'; btnNext.disabled = false;
+        if (c && c.href) {
+          btnNext.hidden = true; btnLink.hidden = false;
+          btnLink.textContent = c.label; btnLink.href = c.href;
+          btnLink.className = 'tour-btn' + (c.claim ? ' is-claim' : '');
+        } else if (c) {
+          btnNext.textContent = c.label;
+        } else if (s.kind === 'action') {
+          btnNext.textContent = 'Skip this step'; btnNext.className = 'tour-btn is-ghost';
+        } else {
+          btnNext.textContent = s.nextLabel || (last ? 'Done' : 'Next');
+        }
+        btnSkip.textContent = last ? (s.closeLabel || 'Close') : 'Skip tour';
+        block.hidden = s.kind === 'action';
+      }
+
+      function show(i, instant){
+        clearTimeout(advanceTimer);
+        st.i = i;
+        var s = st.steps[i];
+        if (s.before) s.before();
+        render();
+        spot.hidden = false; bubble.hidden = false;
+        var t = resolve(s.target);
+        if (t && !instant) {
+          var r = t.getBoundingClientRect(), vh = window.innerHeight;
+          var behavior = reduce ? 'auto' : 'smooth';
+          t.style.scrollMarginTop = '76px';   // clear any sticky bar at the top
+          try {
+            if (dockMQ.matches && r.height >= vh * 0.42) {
+              // tall target on a phone: show its beginning, which is what the card talks about
+              if (r.top < 70 || r.top > vh * 0.5) t.scrollIntoView({ block: 'start', behavior: behavior });
+            } else if (r.height < vh * 0.8 && (r.top < 60 || r.bottom > vh - 60)) {
+              t.scrollIntoView({ block: 'center', behavior: behavior });
+            }
+          } catch (e) {}
+        }
+        if (!reduce) { spot.classList.add('is-anim'); }
+        place();
+        requestAnimationFrame(function(){ spot.classList.add('is-on'); bubble.classList.add('is-on'); place(); });
+        if (!reduce) setTimeout(function(){ if (spot) spot.classList.remove('is-anim'); }, 380);
+        // keep following a target that is still moving (smooth scroll, layout settling)
+        setTimeout(schedule, 120); setTimeout(schedule, 400);
+        if (s.kind !== 'action') { try { btnLink.hidden ? btnNext.focus({ preventScroll: true }) : btnLink.focus({ preventScroll: true }); } catch (e) {} }
+      }
+
+      function next(){
+        if (!st) return;
+        if (st.i >= st.steps.length - 1) { end('done'); return; }
+        var j = st.i + 1;
+        while (j < st.steps.length - 1 && st.steps[j].skipIf && st.steps[j].skipIf()) j++;
+        show(j);
+      }
+      function start(steps, opts){
+        build();
+        if (st) end('replaced');
+        st = { steps: steps, i: 0, opts: opts || {} };
+        show(0);
+      }
+      function end(reason){
+        if (!st) return;
+        var o = st.opts; st = null;
+        clearTimeout(advanceTimer);
+        spot.classList.remove('is-on', 'is-anim'); bubble.classList.remove('is-on');
+        spot.hidden = true; block.hidden = true; bubble.hidden = true;
+        if (o.onEnd) o.onEnd(reason);
+      }
+      // Host pages report what happened ('answered'); an action step waiting for it moves on
+      function emit(name){
+        if (!st) return;
+        var s = st.steps[st.i];
+        if (s.on === name) {
+          clearTimeout(advanceTimer);
+          advanceTimer = setTimeout(function(){ if (st && st.steps[st.i] === s) next(); }, 650);
+        } else if (s.refreshOn === name) {
+          render(); schedule();
+        }
+      }
+      return { start: start, end: end, emit: emit, active: function(){ return !!st; }, refresh: function(){ if (st) { render(); schedule(); } } };
+    })();
+
     // ===== Config =====
     var CLAIM_URL = 'https://infina-us-agent.up.railway.app/dashboard';
     var LEAD_KEY = 'pe-demo-lead';
-    var CLAIM_BAR_DELAY_MS = 4000;
     var SAMPLE_LEAD = {
       v: 1, sample: true, intent: 'tour', persona: null,
       property: { name: '123 Main Street', city: 'Austin, TX 78703', photo: 'uploads/property-123-main.jpg' },
@@ -683,25 +939,6 @@
       closeGate();
     });
 
-    // ===== Claim bar: the nudge, once the agent has had a look around =====
-    (function(){
-      var bar = document.getElementById('claim-bar');
-      var KEY = 'pe-demo-claim-dismissed';
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      function dismissed(){ try { return sessionStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
-      function remember(){ try { sessionStorage.setItem(KEY, '1'); } catch (e) {} }
-      if (dismissed()) return;
-      setTimeout(function(){
-        bar.hidden = false;
-        requestAnimationFrame(function(){ requestAnimationFrame(function(){ bar.classList.add('is-open'); }); });
-      }, CLAIM_BAR_DELAY_MS);
-      document.getElementById('claim-close').addEventListener('click', function(){
-        bar.classList.remove('is-open');
-        remember();
-        setTimeout(function(){ bar.hidden = true; }, reduce ? 0 : 400);
-      });
-    })();
-
     // ===== Hob =====
     var hobBtn = document.getElementById('hob-btn');
     var hobPanel = document.getElementById('hob-panel');
@@ -747,12 +984,71 @@
       if (inp.value.trim()) hobAsk(inp.value);
       inp.value = '';
     });
-    // A gentle nudge so the agent notices Hob, then it gets out of the way
-    setTimeout(function(){
-      if (!hobPanel.hidden) return;
-      hobBtn.classList.add('is-nudge'); hobTip.hidden = false;
-      setTimeout(function(){ hobBtn.classList.remove('is-nudge'); hobTip.hidden = true; }, 12000);
-    }, 2500);
+
+    // ===== Hob and the tour =====
+    var TOUR2_KEY = 'pe-tour2-done';
+    function tourSeen(){ try { return localStorage.getItem(TOUR2_KEY) === '1'; } catch (e) { return false; } }
+    function markTourSeen(){ try { localStorage.setItem(TOUR2_KEY, '1'); } catch (e) {} }
+    var phoneLayout = window.matchMedia('(max-width:1099px)');
+    function lastAssistantRow(){
+      var rows = document.querySelectorAll('#d-body .m-ai');
+      return rows.length ? rows[rows.length - 1] : null;
+    }
+    function tourSteps(){
+      var steps = [
+        { kind: 'info', target: '#list-rows .row.is-selected',
+          before: function(){ if (phoneLayout.matches) document.body.classList.add('view-list'); },
+          title: 'Every buyer chat lands here',
+          text: lead.sample
+            ? 'Each buyer who talks to your Property Expert shows up in <b>Chats</b>. This one is a sample. Chat on the demo and your own will appear here.'
+            : 'Each buyer who talks to your Property Expert shows up in <b>Chats</b>. The top one is the chat you just had.' },
+        { kind: 'info', target: lastAssistantRow,
+          before: function(){ document.body.classList.remove('view-list'); },
+          title: 'Read every answer',
+          text: 'Everything your assistant says is here, marked <b>AI</b>. Use the thumbs to tell it what was a good answer and what was not.' },
+        { kind: 'info', target: '#d-pill',
+          title: 'It tells you who is serious',
+          text: needsYou
+            ? 'Your assistant reads the chat and marks this buyer <b>' + C.pill + '</b>. It also lists the chat under <b>Needs you</b>, so you know who to follow up with first.'
+            : 'Your assistant marks how close each buyer is. This one is still <b>Exploring</b>, so nothing needs you yet. When a buyer asks for a tour, the chat moves to <b>Needs you</b>.' },
+        { kind: 'info', target: '#d-banner',
+          title: 'Take over any time',
+          text: 'The assistant answers on its own. <b>Turn off</b> pauses it in one chat, and <b>Join</b> lets you write to the buyer yourself.' }
+      ];
+      if (wide.matches) steps.push({ kind: 'info', target: '#info',
+        title: 'A quick read on the buyer',
+        text: 'The next step, how close they are and what they told you, written from the chat so you can act fast.' });
+      steps.push({ kind: 'info', target: null,
+        title: 'This can be yours',
+        text: 'This AI assistant can be yours, <b>free for your first 3 months</b>. Tap me any time if you want something on this page explained.',
+        cta: function(){ return { label: 'Claim it here →', href: CLAIM_URL, claim: true }; },
+        closeLabel: 'Keep exploring' });
+      return steps;
+    }
+    function startTour2(){
+      if (PETour.active()) return;
+      closeHob(); closeGate();
+      if (!wide.matches && document.body.classList.contains('info-open')) setInfo(false);
+      hobTip.hidden = true; hobBtn.classList.remove('is-nudge');
+      PETour.start(tourSteps(), { onEnd: function(){
+        markTourSeen();
+        document.body.classList.remove('view-list');
+      } });
+    }
+    hobTip.addEventListener('click', startTour2);
+    var replay = el('button', 'is-tour', 'Replay the tour'); replay.type = 'button';
+    replay.addEventListener('click', startTour2);
+    hobChips.insertBefore(replay, hobChips.firstChild);
+    if (/[#&]tour=2\b/.test(location.hash)) {
+      // arrived from the end of the demo tour: carry on straight away
+      setTimeout(startTour2, 900);
+    } else if (!tourSeen()) {
+      setTimeout(function(){
+        if (PETour.active() || !hobPanel.hidden) return;
+        hobBtn.classList.add('is-nudge'); hobTip.hidden = false;
+        setTimeout(function(){ hobBtn.classList.remove('is-nudge'); hobTip.hidden = true; }, 20000);
+      }, 1500);
+    }
   </script>
 </body>
 </html>
