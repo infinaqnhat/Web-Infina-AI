@@ -985,3 +985,5 @@ Chủ site yêu cầu "sửa nốt 31 anchor dài" và "update skill viết bài
 
 - 2026-10-26 — #2328 `real-estate-open-house-sign-in-sheet` (Cụm 10 bài 13): thêm link tải file xlsx đã host ("download the sign-in sheet (xlsx)") vào đoạn mở mục "Free Real Estate Open House Sign In Sheet Template", sau khi bài đăng 14:00 UTC. Verify bằng REST: chỉ thêm 1 câu, số ảnh không đổi (3), không em dash, publish, file 200.
 - 2026-10-26 — #2436 `real-estate-referral-fee` (Cụm 12) và #2500 `cma-template` (Cụm 13): thêm link tải file docx và xlsx đã host khi bài còn `future` (giữ nguyên giờ đăng 01/11 14:00 và 04/11 14:00); sẽ verify bằng REST khi bài đăng.
+
+- 2026-10-27 — Donor link cho bài news #2512 `open-real-estate-listing-platform-agents`: #1501 `private-listing-marketing-rules` thêm 1 câu cuối mục "What Agents Outside These Three States Should Do Now" (anchor "a shared listing platform for agents"). Verify bằng REST: chỉ 1 đoạn đổi, số ảnh không đổi (3), publish.
