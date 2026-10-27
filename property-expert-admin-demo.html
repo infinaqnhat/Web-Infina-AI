@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infina AI inbox, demo</title>
+  <meta name="description" content="A demo of the Infina AI agent inbox: see how a buyer's chat with your Property Expert shows up, and where you step in.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#ffffff; --surface:#fafafa; --fg:#1a1f2e; --fg-secondary:#334155; --muted:#64748b;
+      --border:#e5e7eb; --border-light:#f2f2f2;
+      --accent:#001F5C; --accent-dark:#001340; --accent-light:rgba(0,31,92,.08);
+      --blue:#1863dc; --blue-light:rgba(24,99,220,.08);
+      --amber:#d98a1a; --amber-light:rgba(217,146,26,.16);
+      --bubble-buyer:#f1f3fa; --bubble-ai:#e8eefc;
+      --font-body:'Be Vietnam Pro',-apple-system,system-ui,sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; overflow:hidden; }
+    body { font-family:var(--font-body); background:#fff; color:var(--fg); line-height:1.5; -webkit-font-smoothing:antialiased; display:flex; flex-direction:column; }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
+    button { font-family:inherit; cursor:pointer; }
+    input { font-family:inherit; }
+    [hidden] { display:none !important; }
+
+    /* ===== Claim bar: the step-6 nudge, slides down once the agent has had a look ===== */
+    .claim-bar { display:grid; grid-template-rows:0fr; opacity:0; transition:grid-template-rows .38s cubic-bezier(.22,1,.36,1), opacity .3s ease; flex-shrink:0; }
+    .claim-bar.is-open { grid-template-rows:1fr; opacity:1; }
+    .claim-clip { overflow:hidden; min-height:0; }
+    .claim-inner { position:relative; display:flex; align-items:center; justify-content:center; gap:14px; padding:9px 56px 9px 20px; color:#fff; background:linear-gradient(120deg, var(--blue) 0%, var(--accent) 100%); }
+    .claim-text { font-size:14px; font-weight:600; line-height:1.4; }
+    .claim-cta { flex-shrink:0; padding:8px 16px; border-radius:999px; background:#fff; color:var(--accent); font-size:13px; font-weight:800; white-space:nowrap; }
+    .claim-cta:hover { box-shadow:0 6px 14px rgba(0,20,60,.3); }
+    .claim-close { position:absolute; right:14px; top:50%; transform:translateY(-50%); width:28px; height:28px; border:0; border-radius:50%; background:rgba(255,255,255,.16); color:#fff; display:flex; align-items:center; justify-content:center; }
+    .claim-close:hover { background:rgba(255,255,255,.28); }
+    @media (max-width:760px){
+      .claim-inner { flex-wrap:wrap; justify-content:flex-start; row-gap:8px; padding:11px 14px; }
+      .claim-text { flex:1 1 100%; margin-right:40px; font-size:13px; }
+      .claim-close { top:10px; transform:none; }
+    }
+    @media (prefers-reduced-motion:reduce){ .claim-bar { transition:none; } }
+
+    /* ===== Shell ===== */
+    .shell { flex:1; min-height:0; display:flex; }
+
+    /* ----- Left nav ----- */
+    .nav { width:230px; flex-shrink:0; display:flex; flex-direction:column; padding:18px 12px 14px; border-right:1px solid var(--border-light); background:#fff; }
+    .nav-top { display:flex; align-items:center; justify-content:space-between; padding:0 6px 16px; }
+    .logo { font-size:21px; font-weight:800; color:var(--accent); letter-spacing:-.02em; }
+    .logo span { font-weight:500; color:var(--blue); }
+    .nav-collapse { width:28px; height:28px; border:0; background:none; border-radius:8px; color:var(--muted); display:flex; align-items:center; justify-content:center; }
+    .nav-collapse:hover { background:var(--surface); }
+    .nav-search { display:flex; align-items:center; gap:9px; width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:12px; background:var(--surface); color:var(--muted); font-size:13.5px; margin-bottom:16px; text-align:left; }
+    .nav-search kbd { margin-left:auto; font-family:inherit; font-size:11.5px; color:var(--muted); }
+    .nav-list { display:flex; flex-direction:column; gap:3px; }
+    .nav-item { display:flex; align-items:center; gap:12px; width:100%; padding:11px 12px; border:0; background:none; border-radius:11px; font-size:14px; font-weight:600; color:var(--fg-secondary); text-align:left; }
+    .nav-item svg { flex-shrink:0; color:var(--muted); }
+    .nav-item:hover { background:var(--surface); }
+    .nav-item.is-active { background:var(--accent); color:#fff; }
+    .nav-item.is-active svg { color:#fff; }
+    .nav-badge { margin-left:auto; min-width:22px; height:22px; padding:0 6px; border-radius:999px; background:#f5a623; color:#3a2600; font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+    .nav-spacer { flex:1; }
+    .nav-user { display:flex; align-items:center; gap:10px; padding:10px 8px; border-top:1px solid var(--border-light); }
+    .nav-avatar { width:34px; height:34px; border-radius:50%; background:var(--accent-light); color:var(--accent); font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .nav-user b { display:block; font-size:13.5px; color:var(--fg); }
+    .nav-user span { font-size:12px; color:var(--muted); }
+    .nav-foot { display:flex; align-items:center; gap:12px; width:100%; padding:10px 12px; border:0; background:none; border-radius:11px; font-size:13.5px; font-weight:600; color:var(--fg-secondary); text-align:left; }
+    .nav-foot svg { color:var(--muted); }
+    .nav-foot:hover { background:var(--surface); }
+    .toggle { margin-left:auto; width:38px; height:22px; border-radius:999px; background:var(--border); position:relative; }
+    .toggle::after { content:''; position:absolute; top:3px; left:3px; width:16px; height:16px; border-radius:50%; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.2); }
+
+    /* ----- Chat list ----- */
+    .list { width:340px; flex-shrink:0; display:flex; flex-direction:column; border-right:1px solid var(--border-light); background:#fff; min-height:0; }
+    .list-head { padding:22px 20px 0; }
+    .list-head h1 { font-size:24px; font-weight:800; color:var(--accent); letter-spacing:-.01em; margin-bottom:14px; }
+    .list-search { display:flex; align-items:center; gap:10px; width:100%; padding:11px 14px; border:0; border-radius:999px; background:var(--surface); color:var(--muted); font-size:14px; text-align:left; margin-bottom:12px; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; padding-bottom:14px; }
+    .chip { display:inline-flex; align-items:center; gap:7px; padding:7px 14px; border-radius:999px; border:1px solid var(--border); background:#fff; font-size:13px; font-weight:700; color:var(--fg); }
+    .chip:hover { border-color:var(--accent); }
+    .chip.is-active { background:var(--accent); border-color:var(--accent); color:#fff; }
+    .chip .dot { width:7px; height:7px; border-radius:50%; background:#f5a623; }
+    .list-rows { flex:1; overflow-y:auto; padding:2px 10px 16px; }
+    .row { display:flex; gap:12px; width:100%; padding:11px 10px; border:0; background:none; border-radius:14px; text-align:left; align-items:flex-start; }
+    .row:hover { background:var(--surface); }
+    .row.is-selected { background:var(--bubble-buyer); }
+    .row-thumb { position:relative; width:48px; height:48px; border-radius:11px; flex-shrink:0; }
+    .row-thumb img { width:100%; height:100%; object-fit:cover; border-radius:11px; }
+    .row-thumb i { position:absolute; right:-6px; bottom:-6px; width:24px; height:24px; border-radius:50%; background:#fff; border:1px solid var(--border); color:var(--fg-secondary); display:flex; align-items:center; justify-content:center; }
+    .row-main { flex:1; min-width:0; }
+    .row-top { display:flex; align-items:baseline; gap:8px; }
+    .row-top b { flex:1; min-width:0; font-size:14.5px; color:var(--fg); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .row-top span { font-size:12px; color:var(--muted); flex-shrink:0; }
+    .row-addr { font-size:12.5px; color:var(--muted); }
+    .row-prev { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--fg-secondary); }
+    .row-prev span { flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .row.needs .row-prev span { font-weight:700; color:var(--fg); }
+    .row-prev .dot { width:8px; height:8px; border-radius:50%; background:#d98a1a; flex-shrink:0; }
+    .tag-sample { font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:1px 5px; flex-shrink:0; }
+    .list-empty { padding:36px 20px; text-align:center; font-size:13.5px; color:var(--muted); }
+
+    /* ----- Chat detail ----- */
+    .detail { flex:1; min-width:0; display:flex; flex-direction:column; min-height:0; background:#fff; }
+    .d-head { display:flex; align-items:center; gap:12px; padding:14px 22px; border-bottom:1px solid var(--border-light); flex-shrink:0; }
+    .d-back { display:none; width:34px; height:34px; border:0; border-radius:50%; background:none; color:var(--fg); align-items:center; justify-content:center; flex-shrink:0; margin-left:-6px; }
+    .d-avatar { width:40px; height:40px; border-radius:50%; border:1.5px solid var(--border); color:var(--fg-secondary); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .d-title { flex:1; min-width:0; }
+    .d-title-top { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .d-title-top b { font-size:16px; color:var(--accent); font-weight:800; }
+    .pill { display:inline-block; padding:3px 10px; border-radius:999px; font-size:12px; font-weight:800; color:#fff; background:var(--accent); }
+    .pill.is-talk { background:#7c4dff; }
+    .pill.is-info { background:var(--muted); }
+    .d-sub { font-size:13px; color:var(--muted); }
+    .d-info { width:40px; height:40px; border:0; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .d-info:hover { background:var(--accent-dark); }
+    .d-banner { display:flex; align-items:center; gap:10px; padding:10px 22px; background:var(--surface); border-bottom:1px solid var(--border-light); font-size:13.5px; color:var(--fg-secondary); font-weight:600; flex-shrink:0; }
+    .d-banner svg { flex-shrink:0; color:var(--fg-secondary); }
+    .d-banner .btn-outline { margin-left:auto; }
+    .btn-outline { padding:8px 16px; border-radius:999px; border:1px solid var(--border); background:#fff; font-size:13px; font-weight:700; white-space:nowrap; flex-shrink:0; color:var(--fg); }
+    .btn-outline:hover { border-color:var(--accent); }
+    .btn-solid { padding:9px 20px; border-radius:999px; border:0; background:var(--accent); color:#fff; font-size:13.5px; font-weight:800; }
+    .btn-solid:hover { background:var(--accent-dark); }
+    .d-note { padding:8px 22px; background:#fff8e8; border-bottom:1px solid #f5e3b8; font-size:12.5px; color:#7a5200; flex-shrink:0; }
+    .d-body { flex:1; min-height:0; overflow-y:auto; padding:22px; display:flex; flex-direction:column; justify-content:flex-end; gap:20px; }
+    .m { display:flex; gap:12px; max-width:min(720px, 92%); }
+    .m-av { width:34px; height:34px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+    .m-buyer .m-av { background:#ece9fb; color:#6a54c9; }
+    .m-ai .m-av { background:var(--bubble-ai); color:var(--accent); }
+    .m-main { min-width:0; }
+    .m-label { font-size:12.5px; color:var(--muted); font-weight:600; margin-bottom:4px; display:flex; align-items:center; gap:7px; }
+    .ai-chip { font-size:10px; font-weight:800; letter-spacing:.04em; color:var(--accent); background:var(--accent-light); border-radius:5px; padding:1px 6px; }
+    .m-bubble { padding:11px 16px; border-radius:16px; font-size:15px; line-height:1.55; white-space:pre-line; overflow-wrap:anywhere; }
+    .m-buyer .m-bubble { background:var(--bubble-buyer); color:var(--fg); border-top-left-radius:6px; }
+    .m-ai .m-bubble { background:var(--bubble-ai); color:var(--accent); border-top-left-radius:6px; }
+    .m-time { font-size:12px; color:var(--muted); margin-top:5px; }
+    .m-vote { display:flex; gap:12px; justify-content:flex-end; margin-top:6px; padding-right:6px; }
+    .vote { width:26px; height:26px; border:0; background:none; color:var(--muted); border-radius:6px; display:flex; align-items:center; justify-content:center; }
+    .vote:hover { background:var(--surface); color:var(--fg); }
+    .vote.is-on { color:var(--blue); }
+    .d-foot { display:flex; align-items:center; gap:14px; margin:0 22px 18px; padding:12px 14px 12px 20px; border-radius:16px; background:var(--surface); flex-shrink:0; }
+    .d-foot p { flex:1; min-width:0; font-size:14px; color:var(--muted); }
+    .d-foot .composer { flex:1; min-width:0; border:0; background:transparent; font-size:14.5px; outline:none; }
+
+    /* ----- Info panel ----- */
+    .info { width:300px; flex-shrink:0; overflow-y:auto; padding:12px 14px 110px; border-left:1px solid var(--border-light); background:#fff; }
+    .info-photo { border-radius:12px; overflow:hidden; aspect-ratio:16/9; }
+    .info-photo img { width:100%; height:100%; object-fit:cover; }
+    .info h2 { font-size:16px; font-weight:800; color:var(--fg); margin:12px 0 0; }
+    .info h3 { font-size:14px; font-weight:800; color:var(--fg); margin:22px 0 10px; }
+    .info p { font-size:13.5px; color:var(--fg-secondary); line-height:1.5; }
+    .info p.muted { color:var(--muted); font-size:13px; }
+    .info p + p { margin-top:8px; }
+    .who { display:flex; gap:12px; align-items:flex-start; margin-bottom:12px; }
+    .who-av { width:38px; height:38px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+    .who-av.buyer { border:1.5px solid var(--border); color:var(--fg-secondary); background:#fff; }
+    .who-av.ai { background:var(--bubble-ai); color:var(--accent); }
+    .who b { display:block; font-size:15px; color:var(--fg); }
+    .who span { font-size:13px; color:var(--muted); line-height:1.4; display:block; }
+    .close-bar { display:flex; align-items:center; gap:8px; padding:9px 14px; border-radius:12px; background:var(--blue); color:#fff; font-size:14px; font-weight:800; }
+    .close-bar.is-talk { background:#7c4dff; }
+    .close-bar.is-info { background:var(--muted); }
+    .close-bar .segs { display:flex; gap:5px; }
+    .close-bar .segs i { width:18px; height:5px; border-radius:99px; background:rgba(255,255,255,.4); }
+    .close-bar .segs i.on { background:#fff; }
+    .close-bar span:last-child { margin-left:auto; }
+    .refresh { display:inline-flex; align-items:center; gap:8px; margin-top:12px; padding:8px 14px; border-radius:10px; border:1px solid var(--border); background:#fff; font-size:13px; font-weight:700; color:var(--fg); }
+    .refresh:hover { border-color:var(--accent); }
+    .refresh.is-spinning svg { animation:spin .7s linear; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .info-close { display:none; }
+    .info-backdrop { display:none; }
+
+    /* ----- Bottom nav (mobile) ----- */
+    .bnav { display:none; flex-shrink:0; border-top:1px solid var(--border-light); background:#fff; padding:6px 6px calc(6px + env(safe-area-inset-bottom, 0px)); }
+    .bnav button { flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; gap:3px; padding:7px 2px; border:0; background:none; border-radius:10px; font-size:11px; font-weight:700; color:var(--muted); position:relative; }
+    .bnav button.is-active { color:var(--accent); background:var(--accent-light); }
+    .bnav .nav-badge { position:absolute; top:2px; right:calc(50% - 22px); min-width:17px; height:17px; font-size:10.5px; padding:0 4px; margin:0; }
+
+    /* ----- Gate toast: locked actions ----- */
+    .gate { position:fixed; left:50%; bottom:24px; z-index:90; transform:translate(-50%, 16px); width:min(520px, calc(100vw - 24px)); display:flex; align-items:center; gap:12px; padding:13px 14px 13px 18px; border-radius:16px; background:var(--accent); color:#fff; box-shadow:0 18px 44px -14px rgba(0,20,60,.6); opacity:0; pointer-events:none; transition:opacity .25s ease, transform .3s cubic-bezier(.22,1,.36,1); }
+    .gate.is-open { opacity:1; transform:translate(-50%, 0); pointer-events:auto; }
+    .gate p { flex:1; min-width:0; font-size:13.5px; font-weight:600; line-height:1.4; }
+    .gate a { flex-shrink:0; padding:8px 14px; border-radius:999px; background:#fff; color:var(--accent); font-size:13px; font-weight:800; white-space:nowrap; }
+    .gate button { flex-shrink:0; width:26px; height:26px; border:0; border-radius:50%; background:rgba(255,255,255,.16); color:#fff; display:flex; align-items:center; justify-content:center; }
+    @media (prefers-reduced-motion:reduce){ .gate { transition:none; } }
+
+    /* ----- Hob, the assistant ----- */
+    .hob-btn { position:fixed; right:24px; bottom:24px; z-index:70; width:60px; height:60px; border:0; border-radius:50%; background:#fff; box-shadow:0 10px 28px -8px rgba(0,20,60,.5), 0 0 0 1px var(--border-light); display:flex; align-items:center; justify-content:center; padding:0; }
+    .hob-btn svg { width:44px; height:44px; }
+    .hob-btn:hover { transform:translateY(-2px); }
+    .hob-btn.is-nudge::before { content:''; position:absolute; inset:-5px; border-radius:50%; border:2px solid var(--blue); animation:ping 1.8s ease-out infinite; }
+    @keyframes ping { 0% { transform:scale(.9); opacity:.9; } 100% { transform:scale(1.35); opacity:0; } }
+    .hob-tip { position:fixed; right:96px; bottom:34px; z-index:70; padding:9px 14px; border-radius:12px; background:var(--accent); color:#fff; font-size:13px; font-weight:700; box-shadow:0 10px 24px -8px rgba(0,20,60,.5); }
+    .hob-tip::after { content:''; position:absolute; right:-6px; top:50%; width:12px; height:12px; background:var(--accent); transform:translateY(-50%) rotate(45deg); border-radius:2px; }
+    .hob-panel { position:fixed; right:24px; bottom:96px; z-index:75; width:min(380px, calc(100vw - 24px)); height:min(520px, calc(100vh - 130px)); display:flex; flex-direction:column; background:#fff; border-radius:20px; box-shadow:0 24px 60px -14px rgba(0,20,60,.5), 0 0 0 1px var(--border-light); overflow:hidden; }
+    .hob-head { display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border-light); flex-shrink:0; }
+    .hob-head svg { width:34px; height:34px; flex-shrink:0; }
+    .hob-head b { display:block; font-size:14.5px; color:var(--accent); }
+    .hob-head span { font-size:12px; color:var(--muted); }
+    .hob-head > div { flex:1; min-width:0; }
+    .hob-x { width:30px; height:30px; border:0; border-radius:50%; background:none; color:var(--muted); display:flex; align-items:center; justify-content:center; }
+    .hob-x:hover { background:var(--surface); }
+    .hob-body { flex:1; min-height:0; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:10px; }
+    .hb { max-width:88%; padding:10px 13px; border-radius:14px; font-size:13.5px; line-height:1.5; white-space:pre-line; }
+    .hb.bot { background:var(--bubble-ai); color:var(--accent); border-top-left-radius:5px; align-self:flex-start; }
+    .hb.me { background:var(--accent); color:#fff; border-top-right-radius:5px; align-self:flex-end; }
+    .hb a { display:inline-block; margin-top:8px; padding:7px 13px; border-radius:999px; background:var(--accent); color:#fff; font-size:12.5px; font-weight:800; }
+    .hob-chips { display:flex; flex-wrap:wrap; gap:7px; padding:0 14px 10px; flex-shrink:0; }
+    .hob-chips button { padding:7px 12px; border-radius:999px; border:1px solid var(--border); background:#fff; font-size:12.5px; font-weight:700; color:var(--blue); text-align:left; }
+    .hob-chips button:hover { border-color:var(--blue); background:var(--blue-light); }
+    .hob-input { display:flex; gap:8px; padding:10px 12px; border-top:1px solid var(--border-light); flex-shrink:0; }
+    .hob-input input { flex:1; min-width:0; border:1px solid var(--border); border-radius:999px; padding:9px 14px; font-size:13.5px; outline:none; }
+    .hob-input input:focus { border-color:var(--blue); }
+    .hob-input button { width:36px; height:36px; border:0; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+    /* ===== Responsive ===== */
+    /* Info panel becomes an overlay when there is no room for a fourth column */
+    @media (max-width:1279px){
+      .info { position:fixed; top:0; right:0; bottom:0; z-index:60; width:min(360px, 100%); transform:translateX(100%); transition:transform .3s cubic-bezier(.22,1,.36,1); box-shadow:-18px 0 40px -18px rgba(0,20,60,.4); padding-top:14px; }
+      body.info-open .info { transform:none; }
+      .info-backdrop { display:block; position:fixed; inset:0; z-index:55; background:rgba(15,23,42,.4); opacity:0; pointer-events:none; transition:opacity .25s ease; }
+      body.info-open .info-backdrop { opacity:1; pointer-events:auto; }
+      .info-close { display:flex; position:absolute; top:10px; right:10px; z-index:2; width:32px; height:32px; border:0; border-radius:50%; background:rgba(255,255,255,.92); color:var(--fg); align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,.18); }
+    }
+    @media (prefers-reduced-motion:reduce){ .info, .info-backdrop { transition:none; } }
+    @media (max-width:1099px){
+      .nav { display:none; }
+      .bnav { display:flex; }
+      .list { width:100%; border-right:0; }
+      body:not(.view-list) .list { display:none; }
+      body.view-list .detail { display:none; }
+      .d-back { display:flex; }
+      .d-head { padding:12px 14px; }
+      .d-banner, .d-note { padding-left:14px; padding-right:14px; }
+      .d-body { padding:16px 14px; }
+      .d-foot { margin:0 84px 12px 14px; padding:10px 10px 10px 14px; gap:10px; }
+      .d-foot p { font-size:13px; }
+      .hob-btn { bottom:86px; right:16px; width:54px; height:54px; }
+      .hob-btn svg { width:40px; height:40px; }
+      .hob-tip { right:16px; bottom:150px; }
+      .hob-tip::after { right:20px; top:auto; bottom:-6px; transform:rotate(45deg); }
+      .hob-panel { right:0; left:0; bottom:0; width:100%; height:78vh; border-radius:20px 20px 0 0; }
+      .gate { bottom:84px; }
+    }
+    @media (max-width:760px){
+      .info { top:auto; left:0; right:0; bottom:0; width:100%; height:82vh; border-radius:20px 20px 0 0; transform:translateY(100%); box-shadow:0 -18px 40px -18px rgba(0,20,60,.4); padding-top:14px; }
+      body.info-open .info { transform:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="claim-bar" id="claim-bar" role="region" aria-label="Free Property Expert offer" hidden>
+    <div class="claim-clip">
+      <div class="claim-inner">
+        <p class="claim-text">This AI Assistant can be yours, free for your first 3 months.</p>
+        <a class="claim-cta" data-claim href="#" target="_blank" rel="noopener">Claim it here &rarr;</a>
+        <button class="claim-close" type="button" id="claim-close" aria-label="Dismiss this message">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="shell">
+
+    <!-- ===== Left nav ===== -->
+    <nav class="nav" aria-label="Main">
+      <div class="nav-top">
+        <span class="logo">infina<span> .ai</span></span>
+        <button class="nav-collapse" type="button" data-gate aria-label="Collapse sidebar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 4v16"/></svg>
+        </button>
+      </div>
+      <button class="nav-search" type="button" data-gate>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        Search <kbd>&#8984;K</kbd>
+      </button>
+      <div class="nav-list">
+        <button class="nav-item" type="button" data-gate><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</button>
+        <button class="nav-item is-active" type="button"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>Chats<span class="nav-badge" id="nav-badge" hidden>1</span></button>
+        <button class="nav-item" type="button" data-gate><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg>Pipeline</button>
+        <button class="nav-item" type="button" data-gate><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l7-4v16M10 21h11V11l-6-3M3 21h18"/></svg>Listings</button>
+        <button class="nav-item" type="button" data-gate><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 010 6.8M18 14.8c2.2.6 3.5 2.2 3.5 5.2"/></svg>Buyers</button>
+        <button class="nav-item" type="button" data-gate><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M3 19h18"/></svg>Insights</button>
+      </div>
+      <div class="nav-spacer"></div>
+      <div class="nav-user">
+        <span class="nav-avatar">YOU</span>
+        <div><b>Your name</b><span>Demo account</span></div>
+      </div>
+      <button class="nav-foot" type="button" data-gate><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>Settings</button>
+      <button class="nav-foot" type="button" data-gate><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>Dark mode<span class="toggle"></span></button>
+    </nav>
+
+    <!-- ===== Chat list ===== -->
+    <section class="list" aria-label="Chats">
+      <div class="list-head">
+        <h1>Chats</h1>
+        <button class="list-search" type="button" data-gate>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+          Search people or homes
+        </button>
+        <div class="chips" id="chips">
+          <button class="chip is-active" type="button" data-filter="all">All</button>
+          <button class="chip" type="button" data-filter="needs"><span class="dot"></span>Needs you <span id="needs-count">1</span></button>
+          <button class="chip" type="button" data-gate>Listings</button>
+          <button class="chip" type="button" data-gate>My page</button>
+          <button class="chip" type="button" data-gate>Clients</button>
+        </div>
+      </div>
+      <div class="list-rows" id="list-rows"></div>
+    </section>
+
+    <!-- ===== Chat detail ===== -->
+    <main class="detail" aria-label="Conversation">
+      <div class="d-head">
+        <button class="d-back" type="button" id="d-back" aria-label="Back to chats">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <span class="d-avatar"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span>
+        <div class="d-title">
+          <div class="d-title-top"><b>Anonymous buyer #1</b><span class="pill" id="d-pill">Ready to tour</span></div>
+          <div class="d-sub" id="d-sub">123 Main Street, with your assistant</div>
+        </div>
+        <button class="d-info" type="button" id="d-info" aria-label="Show details about this chat" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 16.5V11M12 7.6h.01"/></svg>
+        </button>
+      </div>
+      <div class="d-banner" id="d-banner">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01"/></svg>
+        <span id="d-banner-text">Assistant answers in this chat.</span>
+        <button class="btn-outline" type="button" id="d-toggle">Turn off</button>
+      </div>
+      <div class="d-note" id="d-note" hidden>Sample conversation. Chat as a buyer on the Property Expert demo, then open the notification to see your own here.</div>
+      <div class="d-body" id="d-body"></div>
+      <div class="d-foot">
+        <p>You can read this chat. Join to write in it.</p>
+        <button class="btn-solid" type="button" data-gate="join">Join</button>
+      </div>
+    </main>
+
+    <!-- ===== Info panel ===== -->
+    <aside class="info" id="info" aria-label="About this buyer">
+      <button class="info-close" type="button" id="info-close" aria-label="Close details">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="info-photo"><img id="i-photo" src="uploads/property-123-main.jpg" alt=""></div>
+      <h2 id="i-name">123 Main Street</h2>
+
+      <h3>Next step</h3>
+      <p id="i-next">Invite them to a showing</p>
+
+      <h3>In this chat</h3>
+      <div class="who"><span class="who-av buyer"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span><div><b>Anonymous buyer #1</b><span>Started the chat</span></div></div>
+      <div class="who"><span class="who-av ai"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01"/></svg></span><div><b>Your assistant</b><span>Answers unless a line is only for people</span></div></div>
+
+      <h3>How close they are</h3>
+      <div class="close-bar" id="i-bar"><span class="segs"><i></i><i></i><i></i><i></i><i></i></span><span id="i-bar-label">Ready to tour</span></div>
+      <p id="i-summary" style="margin-top:12px;"></p>
+      <p class="muted" id="i-why"></p>
+
+      <h3>What they told us</h3>
+      <p class="muted" id="i-updated">Updated by AI just now &middot; up to date</p>
+      <p id="i-told"></p>
+      <p class="muted">Written from the chat's signals, not a full summary.</p>
+      <button class="refresh" type="button" id="i-refresh">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>
+        Refresh now
+      </button>
+
+      <h3>How they got here</h3>
+      <p>Opened your Property Expert page</p>
+      <p class="muted">Just now</p>
+    </aside>
+  </div>
+  <div class="info-backdrop" id="info-backdrop"></div>
+
+  <!-- ===== Bottom nav (mobile) ===== -->
+  <nav class="bnav" aria-label="Main">
+    <button type="button" data-gate><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</button>
+    <button type="button" class="is-active" id="bnav-chats"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>Chats<span class="nav-badge" id="bnav-badge" hidden>1</span></button>
+    <button type="button" data-gate><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg>Pipeline</button>
+    <button type="button" data-gate><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l7-4v16M10 21h11V11l-6-3M3 21h18"/></svg>Listings</button>
+    <button type="button" data-gate><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5"/></svg>Buyers</button>
+  </nav>
+
+  <!-- ===== Locked-action toast ===== -->
+  <div class="gate" id="gate" role="status" aria-live="polite">
+    <p id="gate-text">This is a demo. Claim your assistant to use this.</p>
+    <a data-claim href="#" target="_blank" rel="noopener">Claim it here &rarr;</a>
+    <button type="button" id="gate-close" aria-label="Dismiss"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+
+  <!-- ===== Hob ===== -->
+  <div class="hob-tip" id="hob-tip" hidden>New here? Ask Hob</div>
+  <button class="hob-btn" type="button" id="hob-btn" aria-label="Ask Hob, your assistant" aria-expanded="false" aria-controls="hob-panel">
+    <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>
+  </button>
+  <section class="hob-panel" id="hob-panel" role="dialog" aria-label="Hob, your assistant" hidden>
+    <div class="hob-head">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>
+      <div><b>Hob</b><span>Your assistant &middot; Sees: Chats</span></div>
+      <button class="hob-x" type="button" id="hob-x" aria-label="Close Hob"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="hob-body" id="hob-body"></div>
+    <div class="hob-chips" id="hob-chips"></div>
+    <form class="hob-input" id="hob-form" autocomplete="off">
+      <input type="text" id="hob-input" placeholder="Ask about this page..." aria-label="Ask Hob about this page">
+      <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </form>
+  </section>
+
+  <script>
+    // ===== Config =====
+    var CLAIM_URL = 'https://infina-us-agent.up.railway.app/dashboard';
+    var LEAD_KEY = 'pe-demo-lead';
+    var CLAIM_BAR_DELAY_MS = 4000;
+    var SAMPLE_LEAD = {
+      v: 1, sample: true, intent: 'tour', persona: null,
+      property: { name: '123 Main Street', city: 'Austin, TX 78703', photo: 'uploads/property-123-main.jpg' },
+      messages: [
+        { role: 'buyer', text: "I'd like to request a showing of this home.", ts: 0 },
+        { role: 'assistant', text: 'There are no open houses scheduled right now. The listing agent represents the seller, and you can request a private showing below.', ts: 0 }
+      ],
+      startedAt: 0, updatedAt: 0
+    };
+
+    document.querySelectorAll('[data-claim]').forEach(function(a){ a.href = CLAIM_URL; });
+
+    // ===== Load the conversation handed over by the demo page =====
+    // The URL hash is read first (it survives sandboxed embeds that block storage),
+    // then localStorage, then a built-in sample so the page is never empty.
+    var INTENTS = { tour: 1, talk: 1, info: 1 };
+    function clean(d){
+      if (!d || !Array.isArray(d.messages) || !d.messages.length) return null;
+      var msgs = d.messages.slice(0, 80).filter(function(m){
+        return m && (m.role === 'buyer' || m.role === 'assistant') && typeof m.text === 'string';
+      }).map(function(m){
+        return { role: m.role, text: m.text.slice(0, 3000), ts: typeof m.ts === 'number' ? m.ts : 0 };
+      });
+      if (!msgs.length) return null;
+      var pr = d.property || {};
+      return {
+        sample: !!d.sample,
+        intent: INTENTS[d.intent] ? d.intent : 'info',
+        persona: typeof d.persona === 'string' ? d.persona.slice(0, 40) : null,
+        property: {
+          name: typeof pr.name === 'string' ? pr.name.slice(0, 120) : '123 Main Street',
+          city: typeof pr.city === 'string' ? pr.city.slice(0, 120) : 'Austin, TX 78703',
+          photo: /^uploads\/[\w.\-]+\.(jpg|jpeg|png|webp)$/i.test(pr.photo || '') ? pr.photo : 'uploads/property-123-main.jpg'
+        },
+        messages: msgs
+      };
+    }
+    function loadLead(){
+      var raw = null;
+      var m = location.hash.match(/lead=([^&]+)/);
+      if (m) { try { raw = decodeURIComponent(m[1]); } catch (e) {} }
+      if (!raw) { try { raw = localStorage.getItem(LEAD_KEY); } catch (e) {} }
+      if (raw) { try { var c = clean(JSON.parse(raw)); if (c) return c; } catch (e) {} }
+      return clean(SAMPLE_LEAD);
+    }
+    var lead = loadLead();
+    var needsYou = lead.intent === 'tour' || lead.intent === 'talk';
+
+    // ===== Small helpers =====
+    function el(tag, cls, text){
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      return n;
+    }
+    function fmt(ts){
+      var d = ts ? new Date(ts) : new Date();
+      return d.toLocaleString('en-US', { weekday:'short', month:'short', day:'numeric', hour:'numeric', minute:'2-digit' });
+    }
+    var ICON_USER = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>';
+    var ICON_BOT = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01"/></svg>';
+    var ICON_THUMB_UP = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v9H4v-9zM7 11l4-8a2.5 2.5 0 012.5 2.5V9h5.2a2 2 0 012 2.3l-1.2 7a2 2 0 01-2 1.7H7"/></svg>';
+    var ICON_THUMB_DOWN = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 13V4h3v9zM17 13l-4 8a2.5 2.5 0 01-2.5-2.5V15H5.3a2 2 0 01-2-2.3l1.2-7A2 2 0 016.5 4H17"/></svg>';
+
+    // ===== Derived labels for this lead =====
+    var INTENT_COPY = {
+      tour: { pill: 'Ready to tour', cls: '',        lit: 4, next: 'Invite them to a showing', why: 'Why: Asked to see the home', means: 'They asked to see the home, so your assistant marked them Ready to tour and put the chat under Needs you. A chat under Needs you is one where a person should step in.', pre: 'Ready to tour: ' },
+      talk: { pill: 'Wants to talk', cls: 'is-talk', lit: 3, next: 'Reach out to them directly', why: 'Why: Asked to talk to the agent', means: 'They asked to talk to the agent, so your assistant marked them Wants to talk and put the chat under Needs you. A chat under Needs you is one where a person should step in.', pre: 'Wants to talk: ' },
+      info: { pill: 'Exploring',     cls: 'is-info', lit: 2, next: 'Let your assistant keep answering', why: 'Why: Asking about the home', means: 'They are asking about the home but have not asked to see it or talk to anyone, so your assistant keeps answering and nothing needs you yet.', pre: '' }
+    };
+    var C = INTENT_COPY[lead.intent];
+    var buyerMsgs = lead.messages.filter(function(m){ return m.role === 'buyer'; });
+    var firstBuyer = buyerMsgs.length ? buyerMsgs[0].text : '';
+    var lastTs = lead.messages[lead.messages.length - 1].ts;
+    var PERSONA_TEXT = {
+      'First-time buyer': "Says they are a first-time buyer.",
+      'Upgrade': 'Is looking to upgrade.',
+      'Investment': 'Is buying as an investment.',
+      'Flip': 'Is planning a flip.',
+      'Vacation home': 'Is looking for a vacation home.'
+    };
+
+    // ===== Render: header, banner, info panel =====
+    (function renderHeader(){
+      var pill = document.getElementById('d-pill');
+      pill.textContent = C.pill;
+      if (C.cls) pill.classList.add(C.cls);
+      document.getElementById('d-sub').textContent = lead.property.name + ', with your assistant';
+      document.getElementById('d-note').hidden = !lead.sample;
+      document.title = 'Anonymous buyer #1, ' + lead.property.name + ' | Infina AI';
+    })();
+
+    (function renderInfo(){
+      var photo = document.getElementById('i-photo');
+      photo.src = lead.property.photo;
+      photo.alt = lead.property.name;
+      document.getElementById('i-name').textContent = lead.property.name;
+      document.getElementById('i-next').textContent = C.next;
+      var bar = document.getElementById('i-bar');
+      if (C.cls) bar.classList.add(C.cls);
+      bar.querySelectorAll('.segs i').forEach(function(seg, i){ seg.classList.toggle('on', i < C.lit); });
+      document.getElementById('i-bar-label').textContent = C.pill;
+      var n = buyerMsgs.length;
+      document.getElementById('i-summary').textContent = 'An anonymous buyer asked ' + n + ' question' + (n === 1 ? '' : 's') + ' about ' + lead.property.name + ', ' + lead.property.city + '.';
+      document.getElementById('i-why').textContent = C.why;
+      document.getElementById('i-updated').textContent = 'Updated by AI ' + fmt(lastTs) + ' · up to date';
+      document.getElementById('i-told').textContent = (lead.persona && PERSONA_TEXT[lead.persona]) ? PERSONA_TEXT[lead.persona] : "They haven't said what they are looking for yet.";
+    })();
+
+    // ===== Render: chat list =====
+    var rowsEl = document.getElementById('list-rows');
+    var filter = 'all';
+    function previewText(){
+      var t = C.pre + firstBuyer;
+      return t;
+    }
+    function buildRow(opts){
+      var b = el('button', 'row' + (opts.selected ? ' is-selected' : '') + (opts.needs ? ' needs' : ''));
+      b.type = 'button';
+      var thumb = el('span', 'row-thumb');
+      var img = el('img'); img.src = opts.photo; img.alt = '';
+      var ic = el('i'); ic.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>';
+      thumb.appendChild(img); thumb.appendChild(ic);
+      var main = el('span', 'row-main');
+      var top = el('span', 'row-top');
+      top.appendChild(el('b', null, opts.name));
+      if (opts.sample) top.appendChild(el('span', 'tag-sample', 'Sample'));
+      top.appendChild(el('span', null, opts.date));
+      main.appendChild(top);
+      main.appendChild(el('span', 'row-addr', opts.addr));
+      main.appendChild(el('br'));
+      var prev = el('span', 'row-prev');
+      prev.appendChild(el('span', null, opts.preview));
+      if (opts.needs) prev.appendChild(el('i', 'dot'));
+      main.appendChild(prev);
+      b.appendChild(thumb); b.appendChild(main);
+      return b;
+    }
+    function renderList(){
+      rowsEl.textContent = '';
+      var items = [];
+      var live = buildRow({ name: 'Anonymous buyer #1', date: lead.sample ? 'Today' : 'Just now', addr: lead.property.name, preview: previewText(), photo: lead.property.photo, selected: true, needs: needsYou });
+      live.addEventListener('click', function(){ document.body.classList.remove('view-list'); });
+      items.push({ node: live, needs: needsYou });
+      var s1 = buildRow({ name: 'Anonymous buyer #2', date: 'Yesterday', addr: '88 Lakeview Drive', preview: 'first time buyer', photo: 'uploads/property-lakeview-88.jpg', sample: true });
+      var s2 = buildRow({ name: 'Anonymous buyer #3', date: 'Mon', addr: '42 Oak Lane', preview: 'Asked about financing', photo: 'uploads/property-oaklane-42.jpg', sample: true });
+      [s1, s2].forEach(function(n){ n.addEventListener('click', function(){ openGate('These are sample chats. Claim your assistant to see your own buyers here.'); }); items.push({ node: n, needs: false }); });
+      var shown = items.filter(function(it){ return filter === 'all' || it.needs; });
+      if (!shown.length) rowsEl.appendChild(el('div', 'list-empty', 'Nothing needs you right now.'));
+      shown.forEach(function(it){ rowsEl.appendChild(it.node); });
+    }
+    document.getElementById('needs-count').textContent = needsYou ? '1' : '0';
+    document.querySelectorAll('#nav-badge, #bnav-badge').forEach(function(b){ b.hidden = !needsYou; });
+    document.getElementById('chips').addEventListener('click', function(e){
+      var c = e.target.closest('.chip');
+      if (!c || c.hasAttribute('data-gate')) return;
+      filter = c.getAttribute('data-filter');
+      document.querySelectorAll('#chips .chip[data-filter]').forEach(function(x){ x.classList.toggle('is-active', x === c); });
+      renderList();
+    });
+    renderList();
+
+    // ===== Render: conversation =====
+    (function renderChat(){
+      var body = document.getElementById('d-body');
+      var lastAi = -1;
+      lead.messages.forEach(function(m, i){ if (m.role === 'assistant') lastAi = i; });
+      lead.messages.forEach(function(m, i){
+        var row = el('div', 'm ' + (m.role === 'buyer' ? 'm-buyer' : 'm-ai'));
+        var av = el('span', 'm-av'); av.innerHTML = m.role === 'buyer' ? ICON_USER : ICON_BOT;
+        var main = el('div', 'm-main');
+        var label = el('div', 'm-label');
+        label.appendChild(el('span', null, m.role === 'buyer' ? 'Anonymous buyer #1' : 'Your assistant'));
+        if (m.role === 'assistant') label.appendChild(el('span', 'ai-chip', 'AI'));
+        main.appendChild(label);
+        main.appendChild(el('div', 'm-bubble', m.text));
+        if (m.role === 'assistant' && i === lastAi) {
+          var vote = el('div', 'm-vote');
+          [['up', ICON_THUMB_UP, 'Good answer'], ['down', ICON_THUMB_DOWN, 'Bad answer']].forEach(function(v){
+            var b = el('button', 'vote'); b.type = 'button'; b.innerHTML = v[1]; b.setAttribute('aria-label', v[2]); b.setAttribute('aria-pressed', 'false');
+            b.addEventListener('click', function(){
+              var on = !b.classList.contains('is-on');
+              vote.querySelectorAll('.vote').forEach(function(x){ x.classList.remove('is-on'); x.setAttribute('aria-pressed', 'false'); });
+              if (on) { b.classList.add('is-on'); b.setAttribute('aria-pressed', 'true'); }
+            });
+            vote.appendChild(b);
+          });
+          main.appendChild(vote);
+        }
+        main.appendChild(el('div', 'm-time', fmt(m.ts)));
+        row.appendChild(av); row.appendChild(main);
+        body.appendChild(row);
+      });
+      body.scrollTop = body.scrollHeight;
+    })();
+
+    // ===== Turn assistant on/off (this chat only) =====
+    var assistantOn = true;
+    document.getElementById('d-toggle').addEventListener('click', function(){
+      assistantOn = !assistantOn;
+      document.getElementById('d-banner-text').textContent = assistantOn ? 'Assistant answers in this chat.' : 'Assistant is paused in this chat.';
+      this.textContent = assistantOn ? 'Turn off' : 'Turn on';
+    });
+
+    // ===== Locked actions =====
+    var gate = document.getElementById('gate');
+    var gateTimer = null;
+    var GATE_COPY = {
+      join: 'This is a demo. Claim your assistant (free for your first 3 months) to join chats and reply to buyers.',
+      generic: 'This is a demo. Claim your assistant (free for your first 3 months) to use this.'
+    };
+    function openGate(text){
+      document.getElementById('gate-text').textContent = text || GATE_COPY.generic;
+      gate.classList.add('is-open');
+      clearTimeout(gateTimer);
+      gateTimer = setTimeout(closeGate, 7000);
+    }
+    function closeGate(){ gate.classList.remove('is-open'); }
+    document.getElementById('gate-close').addEventListener('click', closeGate);
+    document.addEventListener('click', function(e){
+      var g = e.target.closest('[data-gate]');
+      if (!g) return;
+      openGate(GATE_COPY[g.getAttribute('data-gate')] || GATE_COPY.generic);
+    });
+
+    // ===== Refresh now =====
+    document.getElementById('i-refresh').addEventListener('click', function(){
+      var b = this;
+      b.classList.remove('is-spinning'); void b.offsetWidth; b.classList.add('is-spinning');
+      document.getElementById('i-updated').textContent = 'Updated by AI ' + fmt(Date.now()) + ' · up to date';
+    });
+
+    // ===== Info panel: a column when there is room, an overlay otherwise =====
+    var wide = window.matchMedia('(min-width:1280px)');
+    var infoBtn = document.getElementById('d-info');
+    function setInfo(open){
+      document.body.classList.toggle('info-open', open);
+      document.body.classList.toggle('info-hidden', !open && wide.matches);
+      infoBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    function infoIsOpen(){ return wide.matches ? !document.body.classList.contains('info-hidden') : document.body.classList.contains('info-open'); }
+    infoBtn.addEventListener('click', function(){ setInfo(!infoIsOpen()); });
+    document.getElementById('info-close').addEventListener('click', function(){ setInfo(false); });
+    document.getElementById('info-backdrop').addEventListener('click', function(){ setInfo(false); });
+    if (wide.addEventListener) wide.addEventListener('change', function(){ document.body.classList.remove('info-open', 'info-hidden'); infoBtn.setAttribute('aria-expanded', wide.matches ? 'true' : 'false'); });
+    infoBtn.setAttribute('aria-expanded', wide.matches ? 'true' : 'false');
+    var styleHide = document.createElement('style');
+    styleHide.textContent = '@media (min-width:1280px){ body.info-hidden .info { display:none; } }';
+    document.head.appendChild(styleHide);
+
+    // ===== Mobile: list and detail are separate screens =====
+    document.getElementById('d-back').addEventListener('click', function(){ document.body.classList.add('view-list'); });
+    document.getElementById('bnav-chats').addEventListener('click', function(){ document.body.classList.toggle('view-list'); });
+
+    // ===== Esc closes whatever is open =====
+    document.addEventListener('keydown', function(e){
+      if (e.key !== 'Escape') return;
+      if (!document.getElementById('hob-panel').hidden) { closeHob(); return; }
+      if (document.body.classList.contains('info-open')) { setInfo(false); return; }
+      closeGate();
+    });
+
+    // ===== Claim bar: the nudge, once the agent has had a look around =====
+    (function(){
+      var bar = document.getElementById('claim-bar');
+      var KEY = 'pe-demo-claim-dismissed';
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function dismissed(){ try { return sessionStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+      function remember(){ try { sessionStorage.setItem(KEY, '1'); } catch (e) {} }
+      if (dismissed()) return;
+      setTimeout(function(){
+        bar.hidden = false;
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){ bar.classList.add('is-open'); }); });
+      }, CLAIM_BAR_DELAY_MS);
+      document.getElementById('claim-close').addEventListener('click', function(){
+        bar.classList.remove('is-open');
+        remember();
+        setTimeout(function(){ bar.hidden = true; }, reduce ? 0 : 400);
+      });
+    })();
+
+    // ===== Hob =====
+    var hobBtn = document.getElementById('hob-btn');
+    var hobPanel = document.getElementById('hob-panel');
+    var hobTip = document.getElementById('hob-tip');
+    var hobBody = document.getElementById('hob-body');
+    var hobChips = document.getElementById('hob-chips');
+    var HOB = [
+      { q: "What does '" + C.pill + "' mean?", a: C.means },
+      { q: 'What does Turn off do?', a: 'Turn off pauses the assistant in this one chat, so you can take over. Your other chats keep running as normal.' },
+      { q: 'How do I reply to this buyer?', a: 'Use Join under the chat to write in it yourself. In this demo Join is locked: claim your assistant to use it.' },
+      { q: 'How do I get my own?', a: "You can claim it here. It's free for your first 3 months.", claim: true }
+    ];
+    var hobGreeted = false;
+    function hobSay(text, who, claim){
+      var b = el('div', 'hb ' + who);
+      b.appendChild(document.createTextNode(text));
+      if (claim) { b.appendChild(document.createElement('br')); var a = el('a', null, 'Claim it here →'); a.href = CLAIM_URL; a.target = '_blank'; a.rel = 'noopener'; b.appendChild(a); }
+      hobBody.appendChild(b);
+      hobBody.scrollTop = hobBody.scrollHeight;
+    }
+    function hobAsk(q){
+      var hit = HOB.filter(function(h){ return h.q.toLowerCase() === q.trim().toLowerCase(); })[0];
+      hobSay(q, 'me');
+      if (hit) hobSay(hit.a, 'bot', hit.claim);
+      else hobSay('I can explain what you see on this page. Try one of the questions below, or claim your assistant to ask me about your own chats.', 'bot', true);
+    }
+    HOB.forEach(function(h){
+      var b = el('button', null, h.q); b.type = 'button';
+      b.addEventListener('click', function(){ hobAsk(h.q); });
+      hobChips.appendChild(b);
+    });
+    function openHob(){
+      hobPanel.hidden = false; hobBtn.setAttribute('aria-expanded', 'true');
+      hobBtn.classList.remove('is-nudge'); hobTip.hidden = true;
+      if (!hobGreeted) { hobGreeted = true; hobSay("Hi, I'm Hob. I explain this page and help you run it. Ask me anything, or pick a question below.", 'bot'); }
+    }
+    function closeHob(){ hobPanel.hidden = true; hobBtn.setAttribute('aria-expanded', 'false'); }
+    hobBtn.addEventListener('click', function(){ hobPanel.hidden ? openHob() : closeHob(); });
+    document.getElementById('hob-x').addEventListener('click', closeHob);
+    document.getElementById('hob-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      var inp = document.getElementById('hob-input');
+      if (inp.value.trim()) hobAsk(inp.value);
+      inp.value = '';
+    });
+    // A gentle nudge so the agent notices Hob, then it gets out of the way
+    setTimeout(function(){
+      if (!hobPanel.hidden) return;
+      hobBtn.classList.add('is-nudge'); hobTip.hidden = false;
+      setTimeout(function(){ hobBtn.classList.remove('is-nudge'); hobTip.hidden = true; }, 12000);
+    }, 2500);
+  </script>
+</body>
+</html>
