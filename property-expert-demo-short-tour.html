@@ -1278,7 +1278,6 @@
 
     function leadEligible(){ return answeredCount > 0 && !leadNotified && !pendingAnswer; }
     function armIdle(){
-      return;   // short tour: the lead notification is raised by the tour, not by a timer
       clearTimeout(idleTimer);
       if (!leadEligible()) return;
       idleTimer = setTimeout(onIdle, LEAD_IDLE_MS);
@@ -1345,7 +1344,7 @@
     }
     // Refresh the link at the moment of activation so it carries the latest chat,
     // even if the buyer kept typing after the notification appeared.
-    toastLink.addEventListener('click', function(){ toastLink.href = adminHref('&tour=2'); PETour.emit('toast-click'); });
+    toastLink.addEventListener('click', function(){ toastLink.href = adminHref('&tour=2'); setTimeout(hideLeadToast, 150); });
     document.getElementById('lead-toast-close').addEventListener('click', hideLeadToast);
 
     // ===== Asking =====
@@ -1450,9 +1449,6 @@
       for (var i = cards.length - 1; i >= 0; i--) if (cards[i].querySelector('.slot-btn:not([disabled])')) return cards[i];
       return null;
     }
-    function ensureLeadToast(){
-      if (answeredCount > 0 && toast.hidden) showLeadToast();
-    }
     var TOUR1 = [
       { kind: 'action', on: 'answered', target: ['#m-suggest-list', '#chip-row-2'],
         title: 'Your customers see this page',
@@ -1471,13 +1467,11 @@
           if (openShowingCard()) return 'Pick a time that works.';
           return mobile ? 'Tap <b>Can I schedule a tour?</b>' : 'Tap <b>Schedule a Tour</b>.';
         } },
-      { kind: 'action', on: 'toast-click', refreshOn: 'answered', onRefresh: ensureLeadToast,
-        target: function(){ return toast.hidden ? null : toast; },
-        before: ensureLeadToast,
-        title: function(){ return answeredCount > 0 ? 'You just got a lead' : 'One more thing'; },
-        text: function(){ return answeredCount > 0 ? 'Tap the alert to open your dashboard.' : 'Ask a question first, so there is a lead to show.'; },
+      { kind: 'info', target: null, refreshOn: 'answered',
+        title: function(){ return answeredCount > 0 ? 'Your first lead' : 'One more thing'; },
+        text: function(){ return answeredCount > 0 ? 'This buyer is now waiting in your dashboard.' : 'Ask a question first, so there is a lead to show.'; },
         cta: function(){
-          if (answeredCount > 0) return { label: 'Open my dashboard →', href: adminHref('&tour=2'), sameTab: true, onClick: function(){ leadNotified = true; } };
+          if (answeredCount > 0) return { label: 'Open my dashboard \u2192', href: adminHref('&tour=2'), sameTab: true, onClick: function(){ leadNotified = true; hideLeadToast(); } };
           return { label: 'Ask one for me', onClick: function(){ askQuestion(LEAD_ACTIONS.tour); } };
         },
         closeLabel: 'Not now' }
@@ -1487,7 +1481,11 @@
       hobTip.hidden = true; hobBtn.classList.remove('is-nudge');
       if (!toast.hidden) hideLeadToast();
       closeSheet();
-      PETour.start(TOUR1, { onEnd: function(reason){ markTourSeen(); } });
+      PETour.start(TOUR1, { onEnd: function(reason){
+        markTourSeen();
+        // the quiet-period notification stays as the fallback once the tour is over
+        armIdle();
+      } });
     }
     hobBtn.addEventListener('click', startTour1);
     hobTip.addEventListener('click', startTour1);
