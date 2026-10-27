@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Expert AI, demo for 123 Main Street</title>
+  <meta name="description" content="A demo of Property Expert, a 24/7 AI expert for a single property that answers buyer questions using listing details, disclosures, inspection reports and public records.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#ffffff; --surface:#fafafa; --fg:#1a1f2e; --fg-secondary:#334155; --muted:#64748b;
+      --border:#e5e7eb; --border-light:#f2f2f2;
+      --accent:#001F5C; --accent-dark:#001340; --accent-light:rgba(0,31,92,.08);
+      --blue:#1863dc; --blue-light:rgba(24,99,220,.08);
+      --green:#0e9f61; --green-light:rgba(16,163,102,.12);
+      --amber:#b8790f; --amber-light:rgba(217,146,26,.14);
+      --font-body:'Be Vietnam Pro',-apple-system,system-ui,sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:var(--font-body); background:var(--surface); color:var(--fg); line-height:1.55; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; height:auto; display:block; }
+    button { font-family:inherit; cursor:pointer; }
+    input { font-family:inherit; }
+
+    .page { max-width:1440px; margin:0 auto; padding:20px; }
+    .app { display:grid; grid-template-columns:280px 1fr 300px; gap:20px; align-items:start; }
+
+    .card { background:#fff; border:1px solid var(--border-light); border-radius:16px; }
+
+    /* ===== Talk to agent (lives in the chat header) ===== */
+    .talk-agent { display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--border); border-radius:999px; padding:9px 16px; font-size:13px; font-weight:700; color:var(--fg); white-space:nowrap; flex-shrink:0; }
+    .talk-agent svg { color:var(--blue); flex-shrink:0; }
+    .talk-agent:hover { border-color:var(--blue); background:var(--blue-light); }
+
+    /* ===== Left sidebar ===== */
+    .pe-header { display:flex; align-items:center; gap:12px; padding:18px; }
+    .pe-header-icon { width:40px; height:40px; border-radius:10px; background:var(--blue-light); color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .pe-header-title { display:flex; align-items:center; gap:8px; font-size:16px; font-weight:800; color:var(--accent); }
+    .pe-badge { font-size:10.5px; font-weight:800; letter-spacing:.04em; background:var(--accent); color:#fff; padding:3px 7px; border-radius:6px; }
+    .pe-header-sub { font-size:12.5px; color:var(--muted); margin-top:2px; }
+
+    .gallery { position:relative; margin:0 18px 18px; border-radius:12px; overflow:hidden; aspect-ratio:4/3; background:#000; }
+    .gallery img { width:100%; height:100%; object-fit:cover; }
+    .gallery-nav { position:absolute; top:50%; transform:translateY(-50%); width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.9); border:0; display:flex; align-items:center; justify-content:center; color:var(--fg); box-shadow:0 2px 6px rgba(0,0,0,.2); }
+    .gallery-nav:hover { background:#fff; }
+    .gallery-prev { left:10px; }
+    .gallery-next { right:10px; }
+    .gallery-count { position:absolute; right:10px; bottom:10px; background:rgba(0,0,0,.55); color:#fff; font-size:11.5px; font-weight:700; padding:4px 9px; border-radius:999px; }
+
+    .pe-summary { padding:0 18px 18px; }
+    .pe-summary-head { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .pe-summary-head h1 { font-size:18px; font-weight:800; color:var(--accent); }
+    .pe-forsale { font-size:11px; font-weight:800; background:var(--green-light); color:var(--green); padding:4px 9px; border-radius:999px; flex-shrink:0; }
+    .pe-address { font-size:13px; color:var(--muted); margin-top:3px; }
+    .pe-price { font-size:24px; font-weight:800; color:var(--fg); margin-top:10px; }
+    .pe-stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; }
+    .pe-stat { display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--fg-secondary); }
+    .pe-stat svg { color:var(--blue); flex-shrink:0; }
+    .pe-stat b { display:block; font-size:14px; color:var(--fg); font-weight:700; }
+
+    .pe-nav { display:flex; flex-direction:column; padding:8px; border-top:1px solid var(--border-light); }
+    .pe-nav button { display:flex; align-items:center; gap:11px; padding:11px 12px; border:0; background:none; border-radius:10px; font-size:13.5px; font-weight:600; color:var(--fg-secondary); text-align:left; width:100%; }
+    .pe-nav button svg { color:var(--muted); flex-shrink:0; }
+    .pe-nav button:hover { background:var(--surface); }
+    .pe-nav button.is-active { background:var(--blue-light); color:var(--blue); }
+    .pe-nav button.is-active svg { color:var(--blue); }
+
+    /* ===== Center chat ===== */
+    .chat-card { display:flex; flex-direction:column; height:calc(100vh - 100px); min-height:560px; }
+    .chat-header { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 22px; border-bottom:1px solid var(--border-light); flex-shrink:0; }
+    .chat-header-who { display:flex; align-items:center; gap:11px; min-width:0; }
+    .chat-header-avatar { width:38px; height:38px; border-radius:50%; background:var(--blue-light); color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .chat-header-who b { display:block; font-size:15px; font-weight:800; color:var(--accent); }
+    .chat-status { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted); }
+    .chat-status-dot { width:7px; height:7px; border-radius:50%; background:var(--green); flex-shrink:0; }
+    @media (max-width:520px){
+      .chat-header { padding:12px 16px; }
+      .talk-agent span { display:none; }
+      .talk-agent { padding:9px 12px; }
+    }
+    .chat-scroll { flex:1; overflow-y:auto; }
+    .chat-thread { display:flex; flex-direction:column; gap:18px; padding:26px; }
+    .msg { display:flex; gap:12px; max-width:88%; }
+    .msg-bot { align-self:flex-start; }
+    .msg-user { align-self:flex-end; flex-direction:row-reverse; }
+    .msg-avatar { width:36px; height:36px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:var(--blue-light); color:var(--blue); }
+    .msg-avatar img { width:100%; height:100%; border-radius:50%; object-fit:cover; }
+    .msg-body { display:flex; flex-direction:column; gap:4px; min-width:0; }
+    .msg-bubble { font-size:14.5px; line-height:1.6; }
+    .msg-user .msg-bubble { background:var(--accent); color:#fff; padding:13px 17px; border-radius:16px 16px 4px 16px; }
+    .msg-bot .msg-bubble-text { color:var(--fg-secondary); margin-bottom:4px; }
+    .msg-time { font-size:11px; color:var(--muted); }
+    .msg-user .msg-time { text-align:right; }
+
+    .persona-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .persona-pill { padding:9px 15px; border-radius:999px; border:1.5px solid var(--border); background:#fff; font-size:13px; font-weight:600; color:var(--fg); }
+    .persona-pill:hover { border-color:var(--blue); }
+    .persona-pill.is-active { background:var(--accent); color:#fff; border-color:var(--accent); }
+    .persona-label { font-size:13.5px; font-weight:700; margin-top:14px; margin-bottom:2px; display:block; }
+
+    .insight-wrap { background:var(--surface); border:1px solid var(--border-light); border-radius:14px; padding:18px; max-width:620px; }
+    .insight-intro { font-size:14px; color:var(--fg-secondary); margin-bottom:14px; }
+    .insight-card { display:flex; gap:12px; padding:14px 0; border-top:1px solid var(--border-light); }
+    .insight-card:first-child { border-top:none; padding-top:0; }
+    .insight-icon { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .insight-icon.is-ok { background:var(--green-light); color:var(--green); }
+    .insight-icon.is-warn { background:var(--amber-light); color:var(--amber); }
+    .insight-icon.is-info { background:var(--blue-light); color:var(--blue); }
+    .insight-body b { display:block; font-size:14px; color:var(--fg); margin-bottom:3px; }
+    .insight-body p { font-size:13px; color:var(--fg-secondary); line-height:1.55; margin-bottom:10px; }
+    .insight-sources { display:flex; flex-wrap:wrap; gap:8px; }
+    .source-chip { display:flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--border-light); border-radius:10px; padding:7px 10px; font-size:12px; }
+    .source-chip svg:first-child { color:var(--muted); flex-shrink:0; }
+    .source-chip b { font-size:12px; color:var(--fg); font-weight:700; }
+    .source-chip span { display:block; font-size:10.5px; color:var(--muted); }
+    .source-chip svg:last-child { color:var(--muted); margin-left:4px; flex-shrink:0; }
+    .insight-summary { font-size:13.5px; color:var(--fg-secondary); margin-top:14px; padding-top:14px; border-top:1px solid var(--border-light); }
+
+    .chip-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+    .chip-row + .chip-row { margin-top:8px; }
+    .follow-chip { padding:8px 14px; border-radius:999px; border:1px solid var(--border); background:#fff; font-size:13px; font-weight:600; color:var(--blue); }
+    .follow-chip:hover { border-color:var(--blue); background:var(--blue-light); }
+
+    .chat-input-row { display:flex; align-items:center; gap:10px; padding:16px 22px; border-top:1px solid var(--border-light); }
+    .chat-input-row svg { color:var(--muted); flex-shrink:0; }
+    .chat-input-row input { flex:1; min-width:0; border:1px solid var(--border); border-radius:999px; padding:11px 18px; font-size:14px; }
+    .chat-input-row input:focus { outline:none; border-color:var(--blue); }
+    .chat-send { width:38px; height:38px; border-radius:50%; background:var(--accent); color:#fff; border:0; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .chat-send:hover { background:var(--accent-dark); }
+
+    /* ===== Right sidebar ===== */
+    .app-right { display:flex; flex-direction:column; gap:16px; }
+    .side-panel { padding:18px; }
+    .side-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:14px; }
+    .side-head-left { display:flex; align-items:center; gap:9px; font-size:14.5px; font-weight:800; color:var(--accent); }
+    .side-head-left svg { color:var(--blue); flex-shrink:0; }
+    .side-head a { font-size:12.5px; font-weight:700; color:var(--blue); }
+
+    .insight-mini { display:flex; gap:11px; padding:10px 0; border-top:1px solid var(--border-light); }
+    .insight-mini:first-child { border-top:none; padding-top:0; }
+    .insight-mini b { display:block; font-size:13px; color:var(--fg); }
+    .insight-mini span { font-size:11.5px; color:var(--muted); }
+
+    .doc-row { display:flex; align-items:center; gap:11px; padding:9px 0; border-top:1px solid var(--border-light); }
+    .doc-row:first-child { border-top:none; padding-top:0; }
+    .doc-icon { color:var(--muted); flex-shrink:0; display:flex; }
+    .doc-row b { display:block; font-size:13px; color:var(--fg); }
+    .doc-row span { font-size:11.5px; color:var(--muted); }
+    .doc-ext { margin-left:auto; color:var(--muted); flex-shrink:0; }
+
+    .step-row { display:flex; align-items:center; gap:11px; padding:10px 0; border-top:1px solid var(--border-light); }
+    .step-row:first-child { border-top:none; padding-top:0; }
+    .step-icon { width:30px; height:30px; border-radius:8px; background:var(--blue-light); color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .step-row b { display:block; font-size:13px; color:var(--fg); }
+    .step-row span { font-size:11.5px; color:var(--muted); }
+    .step-chevron { margin-left:auto; color:var(--muted); flex-shrink:0; }
+
+    /* ===== Message entry and typing indicator ===== */
+    .msg { animation:msg-in .25s ease both; }
+    @keyframes msg-in { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+    .typing { display:flex; align-items:center; gap:5px; padding:15px 18px; background:var(--surface); border:1px solid var(--border-light); border-radius:14px; width:fit-content; }
+    .typing i { width:7px; height:7px; border-radius:50%; background:var(--muted); animation:typing-bounce 1.2s infinite; }
+    .typing i:nth-child(2) { animation-delay:.15s; }
+    .typing i:nth-child(3) { animation-delay:.3s; }
+    @keyframes typing-bounce { 0%,60%,100% { transform:translateY(0); opacity:.35; } 30% { transform:translateY(-5px); opacity:1; } }
+    @media (prefers-reduced-motion:reduce){
+      .msg { animation:none; }
+      .typing i { animation:none; opacity:.6; }
+    }
+
+    /* ===== Desktop app shell: lock to viewport, each column scrolls on its own ===== */
+    @media (min-width:1101px){
+      html, body { height:100%; overflow:hidden; }
+      .page { height:100%; display:flex; flex-direction:column; }
+      .app { flex:1; min-height:0; align-items:stretch; }
+      .app-left { max-height:100%; overflow-y:auto; }
+      .chat-card { height:100%; min-height:0; }
+      .app-right { max-height:100%; overflow-y:auto; padding-bottom:84px; }
+      .app-left::-webkit-scrollbar, .app-right::-webkit-scrollbar, .chat-scroll::-webkit-scrollbar { width:8px; }
+      .app-left::-webkit-scrollbar-thumb, .app-right::-webkit-scrollbar-thumb, .chat-scroll::-webkit-scrollbar-thumb { background:var(--border); border-radius:999px; }
+      .app-left::-webkit-scrollbar-track, .app-right::-webkit-scrollbar-track, .chat-scroll::-webkit-scrollbar-track { background:transparent; }
+    }
+
+    /* ===== Mobile app shell (below 1101px) ===== */
+    .m-only { display:none; }
+    @media (min-width:1101px){
+      .sheet-backdrop { display:none !important; }
+    }
+
+    @media (max-width:1100px){
+      html, body { height:100%; overflow:hidden; }
+      body { display:flex; flex-direction:column; background:#fff; }
+      .app-left, .app-right, .chat-header { display:none; }
+      .page { max-width:560px; width:100%; padding:0; flex:1; min-height:0; display:flex; flex-direction:column; border-left:1px solid var(--border-light); border-right:1px solid var(--border-light); }
+      .app { display:flex; flex-direction:column; flex:1; min-height:0; gap:0; }
+      .chat-card { flex:1; min-height:0; height:auto; border:0; border-radius:0; }
+
+      .m-only { display:block; }
+      .m-nav { display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border-light); background:#fff; flex-shrink:0; }
+      .m-nav-btn { width:34px; height:34px; border-radius:50%; border:0; background:none; display:flex; align-items:center; justify-content:center; color:var(--fg); flex-shrink:0; }
+      .m-nav-btn:hover { background:var(--surface); }
+      .m-nav-title { flex:1; min-width:0; text-align:center; }
+      .m-nav-title b { display:block; font-size:15px; font-weight:800; color:var(--accent); }
+      .m-nav-title span { display:block; font-size:12px; color:var(--muted); }
+
+      .m-hero { flex-shrink:0; border-bottom:1px solid var(--border-light); }
+      .m-hero-photo { position:relative; aspect-ratio:16/10; background:#000; }
+      .m-hero-photo img { width:100%; height:100%; object-fit:cover; }
+      .m-hero-count { position:absolute; right:10px; bottom:10px; background:rgba(0,0,0,.55); color:#fff; font-size:11.5px; font-weight:700; padding:4px 9px; border-radius:999px; }
+      .m-price-row { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 16px 10px; }
+      .m-price-row b { font-size:24px; font-weight:800; color:var(--fg); }
+      .m-stats { display:flex; gap:14px; padding:0 16px 14px; }
+      .m-stat { display:flex; align-items:center; gap:7px; font-size:12px; color:var(--muted); min-width:0; }
+      .m-stat svg { color:var(--blue); flex-shrink:0; }
+      .m-stat b { display:block; font-size:13.5px; color:var(--fg); font-weight:700; }
+
+      /* The hero scrolls away with the thread; the tab bar then pins to the top */
+      .m-tabs { position:sticky; top:0; z-index:5; display:flex; gap:4px; padding:8px 10px; border-bottom:1px solid var(--border-light); background:#fff; flex-shrink:0; overflow-x:auto; }
+      .m-tab { flex:1; min-width:64px; display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 4px; border:0; background:none; border-radius:10px; font-size:11.5px; font-weight:700; color:var(--muted); }
+      .m-tab svg { color:var(--muted); }
+      .m-tab.is-active { background:var(--blue-light); color:var(--blue); }
+      .m-tab.is-active svg { color:var(--blue); }
+
+      body.is-chatting .m-hero { display:none; }
+      body:not(.is-chatting) .chip-row { display:none; }
+      /* The long opening question is offered as a suggestion row instead */
+      #chip-row-1 { display:none; }
+      .chip-row { padding-left:16px !important; padding-right:16px !important; }
+      .follow-chip { font-size:12.5px; padding:7px 12px; }
+
+      .chat-scroll { padding:0; }
+      .chat-thread { padding:18px 16px; gap:16px; }
+      .msg { max-width:94%; }
+      .insight-wrap { padding:15px; }
+      .chat-input-row { padding:12px 14px; }
+
+      .m-persona-chip { display:inline-flex; align-items:center; gap:8px; align-self:flex-start; background:#fff; border:1.5px solid var(--border); border-radius:999px; padding:7px 13px; font-size:13px; font-weight:700; color:var(--fg); }
+      .m-persona-chip svg:first-child { color:var(--blue); flex-shrink:0; }
+      .m-persona-chip svg:last-child { color:var(--muted); flex-shrink:0; }
+      .m-persona-chip[hidden] { display:none; }
+
+      .persona-row { display:none; }
+      .m-persona-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:10px; }
+      .m-persona-tile { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; padding:14px 8px; border:1.5px solid var(--border); border-radius:12px; background:#fff; font-size:12.5px; font-weight:700; color:var(--fg); text-align:center; line-height:1.3; }
+      .m-persona-tile svg { color:var(--muted); }
+      .m-persona-tile.is-active { border-color:var(--blue); background:var(--blue-light); color:var(--blue); }
+      .m-persona-tile.is-active svg { color:var(--blue); }
+
+      .m-suggest-label { display:block; font-size:13.5px; font-weight:700; margin:16px 0 8px; }
+      .m-suggest-list { display:flex; flex-direction:column; gap:8px; }
+      .m-suggest-row { display:flex; align-items:center; gap:10px; width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; background:#fff; font-size:13px; font-weight:600; color:var(--blue); text-align:left; }
+      .m-suggest-row span { flex:1; min-width:0; }
+      .m-suggest-row svg { color:var(--muted); flex-shrink:0; }
+      .m-suggest-row:hover { border-color:var(--blue); background:var(--blue-light); }
+    }
+
+    /* ===== Lead notification: a stand-in for the OS notification an agent would get ===== */
+    .lead-toast { position:fixed; top:20px; right:20px; z-index:80; width:min(340px, calc(100vw - 32px)); display:flex; align-items:flex-start; gap:6px; padding:12px 12px 12px 14px; border-radius:18px; background:rgba(255,255,255,.94); -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px); border:1px solid rgba(0,0,0,.07); box-shadow:0 18px 44px -14px rgba(0,20,60,.45), 0 2px 6px rgba(0,20,60,.08); opacity:0; transform:translateY(-14px); transition:opacity .28s ease, transform .36s cubic-bezier(.22,1,.36,1); }
+    .lead-toast[hidden] { display:none; }
+    .lead-toast.is-open { opacity:1; transform:none; }
+    .lead-toast-link { flex:1; min-width:0; display:flex; gap:11px; color:inherit; }
+    .lead-toast-icon { flex-shrink:0; width:38px; height:38px; border-radius:10px; background:linear-gradient(140deg, var(--blue), var(--accent)); color:#fff; display:flex; align-items:center; justify-content:center; }
+    .lead-toast-body { display:flex; flex-direction:column; gap:2px; min-width:0; }
+    .lead-toast-meta { display:flex; align-items:center; gap:6px; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+    .lead-toast-title { font-size:14.5px; font-weight:800; color:var(--accent); line-height:1.3; }
+    .lead-toast-text { font-size:13.5px; color:var(--fg-secondary); line-height:1.45; overflow-wrap:anywhere; }
+    .lead-toast-cta { margin-top:4px; font-size:13px; font-weight:800; color:var(--blue); }
+    .lead-toast-link:hover .lead-toast-cta { text-decoration:underline; }
+    .lead-toast-close { flex-shrink:0; width:26px; height:26px; border:0; border-radius:50%; background:rgba(0,20,60,.07); color:var(--fg-secondary); display:flex; align-items:center; justify-content:center; }
+    .lead-toast-close:hover { background:rgba(0,20,60,.14); }
+    @media (max-width:1100px){
+      .lead-toast { top:calc(env(safe-area-inset-top, 0px) + 10px); left:10px; right:10px; width:auto; }
+    }
+    @media (prefers-reduced-motion:reduce){ .lead-toast { transition:none; transform:none; } }
+
+    /* ===== Private showing card inside an assistant reply ===== */
+    .showing-card { margin-top:12px; padding:14px; border:1px solid var(--border); border-radius:12px; background:#fff; max-width:420px; }
+    .showing-card b { display:block; font-size:14px; color:var(--accent); }
+    .showing-card > span { display:block; margin-top:2px; font-size:12.5px; color:var(--muted); }
+    .showing-slots { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+    .slot-btn { padding:9px 14px; border-radius:999px; border:1.5px solid var(--border); background:#fff; font-size:13px; font-weight:700; color:var(--fg); }
+    .slot-btn:hover:not(:disabled) { border-color:var(--blue); background:var(--blue-light); color:var(--blue); }
+    .slot-btn:disabled { cursor:default; opacity:.55; }
+    .slot-btn.is-picked { opacity:1; background:var(--accent); border-color:var(--accent); color:#fff; }
+
+    /* Next Steps rows that act like buttons */
+    .step-row.is-action { cursor:pointer; border-radius:10px; margin:0 -8px; padding-left:8px; padding-right:8px; transition:background .15s; }
+    .step-row.is-action:hover { background:var(--surface); }
+    .step-row.is-action:focus-visible { outline:2px solid var(--blue); outline-offset:1px; }
+
+    /* ===== Bottom sheets ===== */
+    .sheet-backdrop { position:fixed; inset:0; z-index:60; background:rgba(15,23,42,.45); display:flex; align-items:flex-end; justify-content:center; animation:fade-in .2s ease; }
+    .sheet-backdrop[hidden] { display:none; }
+    @keyframes fade-in { from { opacity:0; } to { opacity:1; } }
+    .sheet { width:100%; max-width:560px; max-height:88vh; background:#fff; border-radius:18px 18px 0 0; display:flex; flex-direction:column; animation:sheet-up .26s cubic-bezier(.22,1,.36,1); }
+    .sheet[hidden] { display:none; }
+    @keyframes sheet-up { from { transform:translateY(100%); } to { transform:none; } }
+    @media (prefers-reduced-motion:reduce){ .sheet, .sheet-backdrop { animation:none; } }
+    .sheet-handle { width:40px; height:4px; border-radius:999px; background:var(--border); margin:10px auto 0; flex-shrink:0; }
+    .sheet-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 18px 12px; flex-shrink:0; }
+    .sheet-head h2 { font-size:18px; font-weight:800; color:var(--accent); }
+    .sheet-close { width:32px; height:32px; border-radius:50%; border:0; background:var(--surface); color:var(--fg); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .sheet-close:hover { background:var(--border-light); }
+    .sheet-body { overflow-y:auto; padding:0 18px 22px; }
+
+    .sheet-photo { position:relative; border-radius:12px; overflow:hidden; aspect-ratio:16/10; background:#000; }
+    .sheet-photo img { width:100%; height:100%; object-fit:cover; }
+    .sheet-desc { font-size:13.5px; color:var(--fg-secondary); line-height:1.6; margin:14px 0 4px; }
+    .sheet-nav-row { display:flex; align-items:center; gap:11px; width:100%; padding:13px 0; border:0; border-top:1px solid var(--border-light); background:none; font-size:14px; font-weight:600; color:var(--fg); text-align:left; }
+    .sheet-nav-row svg:first-child { color:var(--blue); flex-shrink:0; }
+    .sheet-nav-row span { flex:1; min-width:0; }
+    .sheet-nav-row svg:last-child { color:var(--muted); flex-shrink:0; }
+    .sheet-cta { display:flex; flex-direction:column; gap:10px; margin-top:18px; }
+    .btn-solid { display:flex; align-items:center; justify-content:center; gap:9px; padding:14px; border-radius:12px; border:0; background:var(--blue); color:#fff; font-size:14.5px; font-weight:700; }
+    .btn-solid:hover { background:#1455bd; }
+    .btn-outline { display:flex; align-items:center; justify-content:center; gap:9px; padding:14px; border-radius:12px; border:1.5px solid var(--blue); background:#fff; color:var(--blue); font-size:14.5px; font-weight:700; }
+    .btn-outline:hover { background:var(--blue-light); }
+
+    .doc-filters { display:flex; gap:7px; overflow-x:auto; padding:2px 0 14px; }
+    .doc-filter { padding:7px 13px; border-radius:999px; border:1px solid var(--border); background:#fff; font-size:12.5px; font-weight:700; color:var(--fg-secondary); white-space:nowrap; }
+    .doc-filter.is-active { background:var(--accent); border-color:var(--accent); color:#fff; }
+    .sheet-doc { display:flex; align-items:center; gap:12px; padding:13px; border:1px solid var(--border-light); border-radius:12px; margin-bottom:10px; }
+    .sheet-doc[hidden] { display:none; }
+    .sheet-doc-icon { color:var(--muted); flex-shrink:0; display:flex; }
+    .sheet-doc b { display:block; font-size:13.5px; color:var(--fg); }
+    .sheet-doc span { font-size:11.5px; color:var(--muted); }
+    .sheet-doc-ext { margin-left:auto; color:var(--muted); flex-shrink:0; }
+    .sheet-note { font-size:11.5px; color:var(--muted); line-height:1.55; margin-top:6px; }
+
+    .sheet-insight { display:flex; gap:11px; padding:13px 0; border-top:1px solid var(--border-light); }
+    .sheet-insight:first-child { border-top:none; padding-top:0; }
+    .sheet-insight b { display:block; font-size:13.5px; color:var(--fg); }
+    .sheet-insight span { font-size:12px; color:var(--muted); }
+
+    .map-box { border-radius:12px; overflow:hidden; border:1px solid var(--border-light); background:#eef2f7; }
+    .map-box svg { display:block; width:100%; height:auto; }
+    .poi-row { display:flex; align-items:center; gap:11px; padding:12px 0; border-top:1px solid var(--border-light); }
+    .poi-icon { width:32px; height:32px; border-radius:8px; background:var(--blue-light); color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .poi-row b { display:block; font-size:13.5px; color:var(--fg); }
+    .poi-row span { font-size:11.5px; color:var(--muted); }
+    .poi-dist { margin-left:auto; font-size:12.5px; font-weight:700; color:var(--fg-secondary); flex-shrink:0; }
+
+    .action-row { display:flex; align-items:center; gap:12px; width:100%; padding:14px 0; border:0; border-top:1px solid var(--border-light); background:none; text-align:left; }
+    .action-row:first-of-type { border-top:none; }
+    .action-icon { width:40px; height:40px; border-radius:11px; background:var(--blue-light); color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .action-row b { display:block; font-size:14px; color:var(--fg); }
+    .action-row span { font-size:12px; color:var(--muted); }
+
+    /* ===== Hob, the guide ===== */
+    .hob-btn { position:fixed; right:24px; bottom:24px; z-index:70; width:60px; height:60px; border:0; border-radius:50%; background:#fff; box-shadow:0 10px 28px -8px rgba(0,20,60,.5), 0 0 0 1px var(--border-light); display:flex; align-items:center; justify-content:center; padding:0; transition:transform .2s; }
+    .hob-btn svg { width:44px; height:44px; }
+    .hob-btn:hover { transform:translateY(-2px); }
+    .hob-btn.is-nudge::before { content:''; position:absolute; inset:-5px; border-radius:50%; border:2px solid var(--blue); animation:ping 1.8s ease-out infinite; }
+    @keyframes ping { 0% { transform:scale(.9); opacity:.9; } 100% { transform:scale(1.35); opacity:0; } }
+    .hob-tip { position:fixed; right:96px; bottom:34px; z-index:70; padding:9px 14px; border:0; border-radius:12px; background:var(--accent); color:#fff; font-size:13px; font-weight:700; box-shadow:0 10px 24px -8px rgba(0,20,60,.5); }
+    .hob-tip[hidden] { display:none; }
+    .hob-tip::after { content:''; position:absolute; right:-6px; top:50%; width:12px; height:12px; background:var(--accent); transform:translateY(-50%) rotate(45deg); border-radius:2px; }
+    @media (max-width:1100px){
+      /* On mobile Hob sits in the header, beside the actions button, so it never covers the composer */
+      .hob-btn { bottom:auto; top:10px; right:calc(max(0px, (100vw - 560px) / 2) + 56px); width:38px; height:38px; box-shadow:0 4px 12px -4px rgba(0,20,60,.45), 0 0 0 1px var(--border-light); }
+      .hob-btn svg { width:28px; height:28px; }
+      .hob-btn.is-nudge::before { inset:-4px; }
+      .hob-tip { bottom:auto; top:58px; right:calc(max(0px, (100vw - 560px) / 2) + 14px); }
+      .hob-tip::after { right:34px; top:-6px; transform:rotate(45deg); }
+    }
+    @media (prefers-reduced-motion:reduce){ .hob-btn.is-nudge::before { animation:none; } .hob-btn { transition:none; } }
+
+    /* ===== Hob tour (same block in both demo pages) ===== */
+    .tour-spot { position:fixed; z-index:90; left:50%; top:50%; width:0; height:0; border-radius:16px; box-shadow:0 0 0 100vmax rgba(8,18,46,.58); pointer-events:none; opacity:0; }
+    .tour-spot.is-on { opacity:1; }
+    .tour-spot.is-anim { transition:left .32s cubic-bezier(.22,1,.36,1), top .32s cubic-bezier(.22,1,.36,1), width .32s cubic-bezier(.22,1,.36,1), height .32s cubic-bezier(.22,1,.36,1), opacity .25s ease; }
+    .tour-spot.has-ring::after { content:''; position:absolute; inset:-3px; border-radius:inherit; border:2px solid #fff; opacity:.9; }
+    .tour-block { position:fixed; inset:0; z-index:92; background:transparent; }
+    .tour-block[hidden], .tour-bubble[hidden], .tour-spot[hidden] { display:none; }
+    .tour-bubble { position:fixed; z-index:95; width:min(330px, calc(100vw - 24px)); padding:16px 16px 14px; border-radius:18px; background:#fff; color:var(--fg, #1a1f2e); box-shadow:0 24px 60px -14px rgba(0,20,60,.55), 0 0 0 1px rgba(0,20,60,.06); opacity:0; transform:translateY(8px); transition:opacity .22s ease, transform .3s cubic-bezier(.22,1,.36,1); }
+    .tour-bubble.is-on { opacity:1; transform:none; }
+    .tour-head { display:flex; align-items:center; gap:9px; margin-bottom:10px; }
+    .tour-head > svg { width:30px; height:30px; flex-shrink:0; }
+    .tour-head b { font-size:13.5px; font-weight:800; color:var(--accent, #001F5C); }
+    .tour-count { margin-left:auto; font-size:11.5px; font-weight:700; color:var(--muted, #64748b); }
+    .tour-x { flex-shrink:0; width:26px; height:26px; border:0; border-radius:50%; background:rgba(0,20,60,.06); color:var(--fg-secondary, #334155); display:flex; align-items:center; justify-content:center; }
+    .tour-x:hover { background:rgba(0,20,60,.12); }
+    .tour-title { font-size:16px; font-weight:800; line-height:1.3; color:var(--accent, #001F5C); }
+    .tour-text { margin-top:6px; font-size:13.5px; line-height:1.55; color:var(--fg-secondary, #334155); }
+    .tour-text b { color:var(--fg, #1a1f2e); }
+    .tour-dots { display:flex; gap:5px; margin-top:12px; }
+    .tour-dots i { width:6px; height:6px; border-radius:50%; background:rgba(0,31,92,.16); }
+    .tour-dots i.is-done { background:rgba(24,99,220,.5); }
+    .tour-dots i.is-now { width:18px; border-radius:999px; background:var(--blue, #1863dc); }
+    .tour-actions { display:flex; align-items:center; gap:10px; margin-top:12px; }
+    .tour-skip { border:0; background:none; padding:6px 2px; font-size:12.5px; font-weight:700; color:var(--muted, #64748b); text-decoration:underline; text-underline-offset:2px; }
+    .tour-skip:hover { color:var(--fg, #1a1f2e); }
+    .tour-spacer { flex:1; }
+    .tour-btn { display:inline-flex; align-items:center; justify-content:center; padding:10px 18px; border:0; border-radius:999px; background:var(--accent, #001F5C); color:#fff; font-size:13.5px; font-weight:800; white-space:nowrap; text-decoration:none; }
+    .tour-btn:hover { background:var(--accent-dark, #001340); }
+    .tour-btn.is-ghost { background:var(--blue-light, rgba(24,99,220,.08)); color:var(--blue, #1863dc); }
+    .tour-btn.is-ghost:hover { background:rgba(24,99,220,.16); }
+    .tour-btn.is-claim { background:linear-gradient(120deg, var(--blue, #1863dc) 0%, var(--accent, #001F5C) 100%); }
+    .tour-btn[hidden] { display:none; }
+    .tour-arrow { position:absolute; width:12px; height:12px; background:#fff; border-radius:2px; transform:rotate(45deg); }
+    .tour-bubble.is-docked .tour-arrow { display:none; }
+    .tour-bubble.is-docked { left:12px; right:12px; width:auto; }
+    @media (max-width:1100px){ .tour-bubble { padding:14px 14px 12px; } }
+    @media (prefers-reduced-motion:reduce){ .tour-spot.is-anim, .tour-bubble { transition:none; transform:none; } }
+  </style>
+</head>
+<body>
+  <header class="m-nav m-only">
+    <button class="m-nav-btn" type="button" aria-label="Back">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <div class="m-nav-title">
+      <b>123 Main Street</b>
+      <span>Austin, TX 78703</span>
+    </div>
+    <button class="m-nav-btn" type="button" id="m-more" aria-label="More actions">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>
+    </button>
+  </header>
+
+  <div class="page">
+    <div class="app">
+      <!-- ===== Left sidebar ===== -->
+      <div class="card app-left">
+        <div class="pe-header">
+          <span class="pe-header-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+          <div>
+            <div class="pe-header-title">Property Expert <span class="pe-badge">AI</span></div>
+            <p class="pe-header-sub">Your 24/7 expert for this property</p>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <img id="gallery-img" src="uploads/property-123-main.jpg" alt="123 Main Street exterior">
+          <button class="gallery-nav gallery-prev" type="button" id="gallery-prev" aria-label="Previous photo">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <button class="gallery-nav gallery-next" type="button" id="gallery-next" aria-label="Next photo">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+          <span class="gallery-count" id="gallery-count">1 / 5</span>
+        </div>
+
+        <div class="pe-summary">
+          <div class="pe-summary-head">
+            <h1>123 Main Street</h1>
+            <span class="pe-forsale">For Sale</span>
+          </div>
+          <p class="pe-address">Austin, TX 78703</p>
+          <p class="pe-price">$895,000</p>
+          <div class="pe-stats">
+            <div class="pe-stat"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6"/><path d="M3 18h18M5 10V7a1 1 0 011-1h5a1 1 0 011 1v3"/></svg><div><b>3</b>Beds</div></div>
+            <div class="pe-stat"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M5 12V6a2 2 0 012-2h3v2"/><path d="M6 12v6a2 2 0 002 2h8a2 2 0 002-2v-6"/></svg><div><b>2.5</b>Baths</div></div>
+            <div class="pe-stat"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h16M14 4v16" /><rect x="4" y="4" width="16" height="16" rx="2"/></svg><div><b>2,104</b>Sq Ft</div></div>
+            <div class="pe-stat"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg><div><b>6,534</b>Lot Sq Ft</div></div>
+          </div>
+        </div>
+
+        <div class="pe-nav" id="pe-nav">
+          <button type="button" class="is-active" data-tab="ask"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>Ask Property Expert</button>
+          <button type="button" data-tab="overview"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M9 4v18"/></svg>Overview</button>
+          <button type="button" data-tab="neighborhood"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21s7-6.4 7-11a7 7 0 10-14 0c0 4.6 7 11 7 11z"/></svg>Neighborhood</button>
+          <button type="button" data-tab="price"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M3 19h18"/></svg>Price & Comparables</button>
+          <button type="button" data-tab="details"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg>Property Details</button>
+          <button type="button" data-tab="documents"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5M9 13h6M9 17h6"/></svg>Documents</button>
+          <button type="button" data-tab="map"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Map & Nearby</button>
+          <button type="button" data-tab="tour" data-lead="tour"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Schedule a Tour</button>
+        </div>
+      </div>
+
+      <!-- ===== Center chat ===== -->
+      <div class="card chat-card">
+        <div class="chat-header">
+          <div class="chat-header-who">
+            <span class="chat-header-avatar"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+            <div>
+              <b>Property Expert</b>
+              <span class="chat-status"><i class="chat-status-dot"></i>Online, replies instantly</span>
+            </div>
+          </div>
+          <button class="talk-agent" type="button" data-lead="talk">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.1-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 2 .6 2.9a2 2 0 01-.5 2.1L8 10a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.9.5 2.9.6a2 2 0 011.7 2.1z"/></svg>
+            <span>Talk to Agent</span>
+          </button>
+        </div>
+
+        <div class="chat-scroll" id="chat-scroll">
+        <div class="m-hero m-only">
+          <div class="m-hero-photo">
+            <img id="m-hero-img" src="uploads/property-123-main.jpg" alt="123 Main Street exterior">
+            <span class="m-hero-count" id="m-hero-count">1 / 5</span>
+          </div>
+          <div class="m-price-row">
+            <b>$895,000</b>
+            <span class="pe-forsale">For Sale</span>
+          </div>
+          <div class="m-stats">
+            <div class="m-stat"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6"/><path d="M3 18h18M5 10V7a1 1 0 011-1h5a1 1 0 011 1v3"/></svg><div><b>3</b>Beds</div></div>
+            <div class="m-stat"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M5 12V6a2 2 0 012-2h3v2"/><path d="M6 12v6a2 2 0 002 2h8a2 2 0 002-2v-6"/></svg><div><b>2.5</b>Baths</div></div>
+            <div class="m-stat"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 14h16M14 4v16"/></svg><div><b>2,104</b>Sq Ft</div></div>
+            <div class="m-stat"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg><div><b>6,534</b>Lot Sq Ft</div></div>
+          </div>
+        </div>
+
+        <nav class="m-tabs m-only" id="m-tabs">
+          <button class="m-tab is-active" type="button" data-sheet="chat"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>Chat</button>
+          <button class="m-tab" type="button" data-sheet="overview"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M9 4v18"/></svg>Overview</button>
+          <button class="m-tab" type="button" data-sheet="insights"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4z"/></svg>Insights</button>
+          <button class="m-tab" type="button" data-sheet="docs"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg>Docs</button>
+          <button class="m-tab" type="button" data-sheet="nearby"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Nearby</button>
+        </nav>
+
+        <div class="chat-thread" id="chat-thread">
+          <button class="m-persona-chip m-only" type="button" id="m-persona-chip" hidden>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+            <span id="m-persona-chip-label">First-time buyer</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="msg msg-bot">
+            <span class="msg-avatar"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+            <div class="msg-body">
+              <div class="msg-bubble">
+                <p class="msg-bubble-text"><b>Hi! I'm your Property Expert for 123 Main Street.</b><br>Ask me anything about this home. I'll answer using the listing details, disclosures, inspection reports, HOA info, public records and more.</p>
+                <span class="persona-label">What type of buyer are you?</span>
+                <div class="persona-row" id="persona-row">
+                  <button class="persona-pill" type="button" data-persona="First-time buyer">First-time buyer</button>
+                  <button class="persona-pill" type="button" data-persona="Upgrade">Upgrade</button>
+                  <button class="persona-pill" type="button" data-persona="Investment">Investment</button>
+                  <button class="persona-pill" type="button" data-persona="Flip">Flip</button>
+                  <button class="persona-pill" type="button" data-persona="Vacation home">Vacation home</button>
+                </div>
+
+                <div class="m-persona-grid m-only" id="m-persona-grid">
+                  <button class="m-persona-tile" type="button" data-persona="First-time buyer"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>First-time buyer</button>
+                  <button class="m-persona-tile" type="button" data-persona="Upgrade"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Upgrade</button>
+                  <button class="m-persona-tile" type="button" data-persona="Investment"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M3 19h18"/></svg>Investment</button>
+                  <button class="m-persona-tile" type="button" data-persona="Flip"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 01-5.9 5.9L4 17v3h3l4.8-4.8a4.5 4.5 0 005.9-5.9l-2.6 2.6-2.1-2.1z"/></svg>Flip</button>
+                  <button class="m-persona-tile" type="button" data-persona="Vacation home"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11M12 11c0-4 3-7 8-7-1 4-4 7-8 7zM12 11C12 7 9 4 4 4c1 4 4 7 8 7z"/></svg>Vacation home</button>
+                </div>
+
+                <span class="m-suggest-label m-only">Try asking something like:</span>
+                <div class="m-suggest-list m-only" id="m-suggest-list">
+                  <button class="m-suggest-row" type="button" data-q="Are there any known issues with this property?"><span>Are there any red flags?</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+                  <button class="m-suggest-row" type="button" data-q="Tell me more about the roof"><span>What repairs have been made?</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+                  <button class="m-suggest-row" type="button" data-q="What's the HOA like?"><span>What are the HOA rules and fees?</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="chip-row" style="padding:0 22px;" id="chip-row-1">
+          <button class="follow-chip" type="button" data-q="Are there any known issues with this property?">Are there any known issues with this property?</button>
+        </div>
+        <div class="chip-row" style="padding:0 22px 12px;" id="chip-row-2">
+          <button class="follow-chip" type="button" data-q="Tell me more about the roof">Tell me more about the roof</button>
+          <button class="follow-chip" type="button" data-q="Any HVAC issues?">Any HVAC issues?</button>
+          <button class="follow-chip" type="button" data-q="What's the HOA like?">What's the HOA like?</button>
+          <button class="follow-chip" type="button" data-q="Should I be concerned?">Should I be concerned?</button>
+          <button class="follow-chip" type="button" data-q="Can I schedule a tour?">Can I schedule a tour?</button>
+        </div>
+
+        <div class="chat-input-row">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.4 11.1l-8.5 8.5a5 5 0 01-7.1-7.1l8.5-8.5a3.5 3.5 0 014.9 4.9l-8.4 8.4a2 2 0 01-2.8-2.8l7.8-7.8"/></svg>
+          <input type="text" id="chat-input" placeholder="Ask a follow-up question about this property...">
+          <button class="chat-send" type="button" id="chat-send" aria-label="Send">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ===== Right sidebar ===== -->
+      <div class="app-right">
+        <div class="card side-panel">
+          <div class="side-head">
+            <span class="side-head-left"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4z"/></svg>Key Insights</span>
+          </div>
+          <div class="insight-mini">
+            <span class="insight-icon is-ok"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <div><b>No major structural issues</b><span>Based on inspection report (Jul 2023)</span></div>
+          </div>
+          <div class="insight-mini">
+            <span class="insight-icon is-warn"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2.5 17a1.5 1.5 0 001.3 2.2h16.4a1.5 1.5 0 001.3-2.2L13.7 3.9a1.5 1.5 0 00-2.6 0z"/></svg></span>
+            <div><b>Foundation repair completed in 2022</b><span>With lifetime transferable warranty</span></div>
+          </div>
+          <div class="insight-mini">
+            <span class="insight-icon is-info"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+            <div><b>Roof is 12 years old</b><span>In fair condition, consider further review</span></div>
+          </div>
+        </div>
+
+        <div class="card side-panel">
+          <div class="side-head">
+            <span class="side-head-left"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Property Documents</span>
+            <a href="#">View all</a>
+          </div>
+          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Seller Disclosure</b><span>Jun 18, 2023</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Inspection Report</b><span>Jul 12, 2023</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Repair Invoice</b><span>Mar 3, 2022</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>HOA Documents</b><span>Jan 10, 2024</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Property Survey</b><span>Feb 2, 2021</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+        </div>
+
+        <div class="card side-panel">
+          <div class="side-head">
+            <span class="side-head-left"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Next Steps</span>
+          </div>
+          <div class="step-row is-action" role="button" tabindex="0" data-lead="tour"><span class="step-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><div><b>Schedule a tour</b><span>See the property in person</span></div><span class="step-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
+          <div class="step-row is-action" role="button" tabindex="0" data-lead="ask"><span class="step-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span><div><b>Ask the agent a question</b><span>Get additional details</span></div><span class="step-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
+          <div class="step-row"><span class="step-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M3 19h18"/></svg></span><div><b>Compare with similar homes</b><span>See how this property stacks up</span></div><span class="step-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
+          <div class="step-row"><span class="step-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></span><div><b>Save this property</b><span>Keep track and get updates</span></div><span class="step-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Hob: starts the guided tour ===== -->
+  <button class="hob-tip" type="button" id="hob-tip" hidden>New here? Take a 30s tour</button>
+  <button class="hob-btn" type="button" id="hob-btn" aria-label="Take a tour with Hob">
+    <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>
+  </button>
+
+  <!-- ===== Lead notification (shown ~5s after the buyer chat goes quiet) ===== -->
+  <div class="lead-toast" id="lead-toast" role="status" aria-live="polite" hidden>
+    <a class="lead-toast-link" id="lead-toast-link" href="#" target="_blank" rel="noopener">
+      <span class="lead-toast-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+      <span class="lead-toast-body">
+        <span class="lead-toast-meta"><span>Infina AI</span><span>&middot; now</span></span>
+        <span class="lead-toast-title" id="lead-toast-title">New lead</span>
+        <span class="lead-toast-text" id="lead-toast-text"></span>
+        <span class="lead-toast-cta" id="lead-toast-cta">Click to view</span>
+      </span>
+    </a>
+    <button class="lead-toast-close" type="button" id="lead-toast-close" aria-label="Dismiss notification">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- ===== Bottom sheets (mobile) ===== -->
+  <div class="sheet-backdrop" id="sheet-backdrop" hidden>
+    <section class="sheet" id="sheet-overview" role="dialog" aria-modal="true" aria-label="Property Overview" hidden>
+      <span class="sheet-handle"></span>
+      <div class="sheet-head"><h2>Property Overview</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+      <div class="sheet-body">
+        <div class="sheet-photo"><img src="uploads/property-123-main.jpg" alt="123 Main Street exterior"><span class="m-hero-count">1 / 5</span></div>
+        <div class="pe-summary-head" style="margin-top:14px;"><h1 style="font-size:19px;font-weight:800;color:var(--accent);">123 Main Street</h1><span class="pe-forsale">For Sale</span></div>
+        <p class="pe-address">Austin, TX 78703</p>
+        <p class="pe-price" style="font-size:22px;">$895,000</p>
+        <div class="m-stats" style="padding:12px 0 0;">
+          <div class="m-stat"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6"/><path d="M3 18h18M5 10V7a1 1 0 011-1h5a1 1 0 011 1v3"/></svg><div><b>3</b>Beds</div></div>
+          <div class="m-stat"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M5 12V6a2 2 0 012-2h3v2"/><path d="M6 12v6a2 2 0 002 2h8a2 2 0 002-2v-6"/></svg><div><b>2.5</b>Baths</div></div>
+          <div class="m-stat"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 14h16M14 4v16"/></svg><div><b>2,104</b>Sq Ft</div></div>
+          <div class="m-stat"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg><div><b>6,534</b>Lot Sq Ft</div></div>
+        </div>
+        <p class="sheet-desc">Modern single-family home in the heart of Austin with an open floor plan, updated kitchen, and spacious backyard. Located in a highly desirable neighborhood with top-rated schools and easy access to downtown.</p>
+        <button class="sheet-nav-row" type="button"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg><span>Property Details</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="sheet-nav-row" type="button"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M3 19h18"/></svg><span>Price & Comparables</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="sheet-nav-row" type="button"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Neighborhood</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="sheet-nav-row" type="button" data-open-sheet="nearby"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-6 2V6l6-2 6 2 6-2v16l-6 2z"/><path d="M9 4v16M15 6v16"/></svg><span>Map & Nearby</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="sheet-nav-row" type="button" data-lead="tour"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Schedule a Tour</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        <div class="sheet-cta">
+          <button class="btn-solid" type="button" data-lead="tour"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Schedule a Tour</button>
+          <button class="btn-outline" type="button" data-lead="ask"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>Ask the Agent a Question</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="sheet" id="sheet-insights" role="dialog" aria-modal="true" aria-label="Key Insights" hidden>
+      <span class="sheet-handle"></span>
+      <div class="sheet-head"><h2>Key Insights</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+      <div class="sheet-body">
+        <div class="sheet-insight"><span class="insight-icon is-ok"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>No major structural issues</b><span>Based on inspection report (Jul 2023)</span></div></div>
+        <div class="sheet-insight"><span class="insight-icon is-warn"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2.5 17a1.5 1.5 0 001.3 2.2h16.4a1.5 1.5 0 001.3-2.2L13.7 3.9a1.5 1.5 0 00-2.6 0z"/></svg></span><div><b>Foundation repair completed in 2022</b><span>With lifetime transferable warranty</span></div></div>
+        <div class="sheet-insight"><span class="insight-icon is-info"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span><div><b>Roof is 12 years old</b><span>In fair condition, consider further review</span></div></div>
+        <p class="sheet-note">Insights are generated from the documents on file for this property. Always confirm details with your agent.</p>
+      </div>
+    </section>
+
+    <section class="sheet" id="sheet-docs" role="dialog" aria-modal="true" aria-label="Property Documents" hidden>
+      <span class="sheet-handle"></span>
+      <div class="sheet-head"><h2>Property Documents</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+      <div class="sheet-body">
+        <div class="doc-filters" id="doc-filters">
+          <button class="doc-filter is-active" type="button" data-filter="all">All (5)</button>
+          <button class="doc-filter" type="button" data-filter="disclosures">Disclosures (2)</button>
+          <button class="doc-filter" type="button" data-filter="inspection">Inspection (1)</button>
+          <button class="doc-filter" type="button" data-filter="hoa">HOA (1)</button>
+        </div>
+        <div id="doc-list">
+          <div class="sheet-doc" data-cat="disclosures"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Seller Disclosure</b><span>Jun 18, 2023 &middot; 12 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="sheet-doc" data-cat="inspection"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Inspection Report</b><span>Jul 12, 2023 &middot; 28 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="sheet-doc" data-cat="disclosures"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Repair Invoice</b><span>Mar 3, 2022 &middot; 4 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="sheet-doc" data-cat="hoa"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>HOA Documents</b><span>Jan 10, 2024 &middot; 16 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="sheet-doc" data-cat="survey"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Property Survey</b><span>Feb 2, 2021 &middot; 6 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+        </div>
+        <p class="sheet-note">These documents are provided for informational purposes. Always review with your agent and professional advisors.</p>
+      </div>
+    </section>
+
+    <section class="sheet" id="sheet-nearby" role="dialog" aria-modal="true" aria-label="Map and Nearby" hidden>
+      <span class="sheet-handle"></span>
+      <div class="sheet-head"><h2>Map &amp; Nearby</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+      <div class="sheet-body">
+        <div class="map-box">
+          <svg viewBox="0 0 360 190" role="img" aria-label="Stylised map of the neighborhood">
+            <rect width="360" height="190" fill="#eaf0f6"/>
+            <path d="M0 66h360M0 130h360M86 0v190M232 0v190" stroke="#fff" stroke-width="12"/>
+            <path d="M0 98h360M160 0v190" stroke="#fff" stroke-width="6"/>
+            <rect x="12" y="12" width="60" height="42" rx="4" fill="#dde6f0"/>
+            <rect x="248" y="12" width="96" height="42" rx="4" fill="#dde6f0"/>
+            <rect x="12" y="142" width="60" height="36" rx="4" fill="#dde6f0"/>
+            <rect x="248" y="142" width="96" height="36" rx="4" fill="#d8ebdc"/>
+            <rect x="100" y="12" width="46" height="42" rx="4" fill="#d8ebdc"/>
+            <circle cx="180" cy="82" r="15" fill="rgba(24,99,220,.18)"/>
+            <path d="M180 70a8 8 0 00-8 8c0 6 8 14 8 14s8-8 8-14a8 8 0 00-8-8z" fill="#1863dc"/>
+            <circle cx="180" cy="78" r="3" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="poi-row" style="border-top:none;"><span class="poi-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span><div><b>Casis Elementary</b><span>Rated 9 out of 10</span></div><span class="poi-dist">0.4 mi</span></div>
+        <div class="poi-row"><span class="poi-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2l-4 6v12a2 2 0 002 2h16a2 2 0 002-2V8l-4-6z"/><path d="M2 8h20M16 12a4 4 0 01-8 0"/></svg></span><div><b>H-E-B Grocery</b><span>Open until 11 PM</span></div><span class="poi-dist">0.8 mi</span></div>
+        <div class="poi-row"><span class="poi-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12M12 12a5 5 0 015-5 5 5 0 01-5 5zM12 12a5 5 0 00-5-5 5 5 0 005 5z"/></svg></span><div><b>Zilker Park</b><span>Trails and playground</span></div><span class="poi-dist">1.2 mi</span></div>
+        <div class="poi-row"><span class="poi-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l6-4 6 4v12M15 21V12l6-3v12M3 21h18"/></svg></span><div><b>Downtown Austin</b><span>About 10 minutes by car</span></div><span class="poi-dist">3.1 mi</span></div>
+        <p class="sheet-note">Distances are approximate and shown for demo purposes.</p>
+      </div>
+    </section>
+
+    <section class="sheet" id="sheet-actions" role="dialog" aria-modal="true" aria-label="Actions" hidden>
+      <span class="sheet-handle"></span>
+      <div class="sheet-head"><h2>Actions</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+      <div class="sheet-body">
+        <button class="action-row" type="button" data-lead="tour"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><div><b>Schedule a Tour</b><span>See the property in person</span></div></button>
+        <button class="action-row" type="button" data-lead="ask"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span><div><b>Ask the Agent a Question</b><span>Get additional details</span></div></button>
+        <button class="action-row" type="button"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M3 19h18"/></svg></span><div><b>Compare with Similar Homes</b><span>See how this property stacks up</span></div></button>
+        <button class="action-row" type="button"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></span><div><b>Save This Property</b><span>Keep track and get updates</span></div></button>
+        <button class="action-row" type="button"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 14v4a2 2 0 002 2h12a2 2 0 002-2v-4"/></svg></span><div><b>Share this Property</b><span>Send it to someone else</span></div></button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // ===== Hob tour (same block in both demo pages) =====
+    // Steps: { target, title, text, kind: 'info' | 'action', on, before, cta, nextLabel }
+    //  target   selector, list of selectors (first visible wins), or a function; none = centred card
+    //  kind     'info' waits for the button; 'action' leaves the page usable and waits for `on`
+    //  on       name of the event (PETour.emit) that completes an action step
+    //  skipIf   optional function; true means this step is passed over
+    //  cta      optional function returning { label, href, claim, onClick } for the primary button
+    var PETour = (function(){
+      var HOB_SVG = '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>';
+      var dockMQ = window.matchMedia('(max-width:' + (window.PETOUR_DOCK_MAX || 1100) + 'px)');   // the page's phone layout breakpoint
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var spot, block, bubble, elCount, elTitle, elText, elDots, btnNext, btnSkip, btnLink, arrow;
+      var st = null;           // { steps, i, opts }
+      var raf = 0, advanceTimer = 0;
+
+      function make(tag, cls){ var n = document.createElement(tag); if (cls) n.className = cls; return n; }
+      function build(){
+        if (bubble) return;
+        spot = make('div', 'tour-spot'); spot.hidden = true;
+        block = make('div', 'tour-block'); block.hidden = true;
+        bubble = make('div', 'tour-bubble'); bubble.hidden = true;
+        bubble.setAttribute('role', 'dialog');
+        bubble.setAttribute('aria-label', 'Tour with Hob');
+        var head = make('div', 'tour-head');
+        head.innerHTML = HOB_SVG + '<b>Hob</b>';
+        elCount = make('span', 'tour-count');
+        var x = make('button', 'tour-x'); x.type = 'button'; x.setAttribute('aria-label', 'Close the tour');
+        x.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+        x.addEventListener('click', function(){ end('skip'); });
+        head.appendChild(elCount); head.appendChild(x);
+        elTitle = make('div', 'tour-title');
+        elText = make('p', 'tour-text'); elText.setAttribute('aria-live', 'polite');
+        elDots = make('div', 'tour-dots');
+        var actions = make('div', 'tour-actions');
+        btnSkip = make('button', 'tour-skip'); btnSkip.type = 'button'; btnSkip.textContent = 'Skip tour';
+        btnSkip.addEventListener('click', function(){ end('skip'); });
+        btnNext = make('button', 'tour-btn'); btnNext.type = 'button';
+        btnNext.addEventListener('click', function(){
+          var s = st && st.steps[st.i]; var c = s && s.cta && s.cta();
+          if (c && c.onClick) { c.onClick(); return; }
+          next();
+        });
+        btnLink = make('a', 'tour-btn'); btnLink.target = '_blank'; btnLink.rel = 'noopener'; btnLink.hidden = true;
+        btnLink.addEventListener('click', function(){
+          var s = st && st.steps[st.i]; var c = s && s.cta && s.cta();
+          if (c && c.href) btnLink.href = c.href;   // carry the latest state into the new tab
+          if (c && c.onClick) c.onClick(btnLink);
+          // the link opens in a new tab; the tour on this page is finished
+          setTimeout(function(){ end('done'); }, 120);
+        });
+        actions.appendChild(btnSkip); actions.appendChild(make('span', 'tour-spacer')); actions.appendChild(btnNext); actions.appendChild(btnLink);
+        arrow = make('i', 'tour-arrow');
+        bubble.appendChild(head); bubble.appendChild(elTitle); bubble.appendChild(elText); bubble.appendChild(elDots); bubble.appendChild(actions); bubble.appendChild(arrow);
+        document.body.appendChild(spot); document.body.appendChild(block); document.body.appendChild(bubble);
+        window.addEventListener('resize', schedule);
+        window.addEventListener('scroll', schedule, true);
+        document.addEventListener('keydown', function(e){ if (st && e.key === 'Escape') end('skip'); });
+      }
+
+      function visible(e){
+        if (!e) return false;
+        var r = e.getBoundingClientRect();
+        return r.width > 0 && r.height > 0 && getComputedStyle(e).visibility !== 'hidden';
+      }
+      function resolve(t){
+        if (!t) return null;
+        if (typeof t === 'function') return t();
+        var list = Array.isArray(t) ? t : [t];
+        for (var i = 0; i < list.length; i++) { var e = document.querySelector(list[i]); if (visible(e)) return e; }
+        return null;
+      }
+      function schedule(){ if (!st || raf) return; raf = requestAnimationFrame(function(){ raf = 0; place(); }); }
+
+      function overlaps(a, b){ return !(a.right <= b.left || b.right <= a.left || a.bottom <= b.top || b.bottom <= a.top); }
+      function clamp(v, lo, hi){ return Math.max(lo, Math.min(hi, v)); }
+
+      function place(){
+        if (!st) return;
+        var vw = window.innerWidth, vh = window.innerHeight, M = 12, GAP = 16, PAD = 8;
+        var target = resolve(st.steps[st.i].target);
+        var docked = dockMQ.matches && !!target;
+        bubble.classList.toggle('is-docked', docked);
+        bubble.style.right = ''; bubble.style.bottom = '';
+        var bw = bubble.offsetWidth, bh = bubble.offsetHeight;
+        var tr = null;
+        if (target) {
+          var r = target.getBoundingClientRect();
+          tr = { left: r.left - PAD, top: r.top - PAD, right: r.right + PAD, bottom: r.bottom + PAD };
+          if (docked) {
+            // On a phone a tall target must leave room for the card: spotlight only the part clear of it
+            tr.top = Math.max(tr.top, 6); tr.bottom = Math.min(tr.bottom, tr.top + vh * 0.42);
+            if ((tr.top + tr.bottom) / 2 > vh / 2) tr.top = Math.max(tr.top, 10 + bh + 8);
+            else tr.bottom = Math.min(tr.bottom, vh - 12 - bh - 8);
+            if (tr.bottom - tr.top < 48) tr.bottom = tr.top + 48;
+          }
+          tr.width = tr.right - tr.left; tr.height = tr.bottom - tr.top;
+          spot.style.left = tr.left + 'px'; spot.style.top = tr.top + 'px';
+          spot.style.width = tr.width + 'px'; spot.style.height = tr.height + 'px';
+          spot.classList.add('has-ring');
+        } else {
+          spot.style.left = '50%'; spot.style.top = '50%'; spot.style.width = '0px'; spot.style.height = '0px';
+          spot.classList.remove('has-ring');
+        }
+        if (!tr) {
+          bubble.style.left = clamp((vw - bw) / 2, M, vw - bw - M) + 'px';
+          bubble.style.top = clamp((vh - bh) / 2, M, vh - bh - M) + 'px';
+          arrow.style.display = 'none';
+          return;
+        }
+        arrow.style.display = '';
+        if (docked) {
+          var safeTop = 10;
+          var topRect = { left: 12, right: vw - 12, top: safeTop, bottom: safeTop + bh };
+          var botRect = { left: 12, right: vw - 12, top: vh - 12 - bh, bottom: vh - 12 };
+          var preferTop = (tr.top + tr.bottom) / 2 > vh / 2;
+          var first = preferTop ? topRect : botRect, second = preferTop ? botRect : topRect;
+          var pick = !overlaps(first, tr) ? first : (!overlaps(second, tr) ? second : first);
+          bubble.style.left = '12px';
+          bubble.style.top = pick.top + 'px';
+          return;
+        }
+        // Desktop: beside the target when there is room, else above or below
+        var cx = (tr.left + tr.right) / 2, cy = (tr.top + tr.bottom) / 2;
+        var cands = [
+          { side: 'right',  left: tr.right + GAP,        top: cy - bh / 2 },
+          { side: 'left',   left: tr.left - GAP - bw,    top: cy - bh / 2 },
+          { side: 'bottom', left: cx - bw / 2,           top: tr.bottom + GAP },
+          { side: 'top',    left: cx - bw / 2,           top: tr.top - GAP - bh }
+        ];
+        var chosen = null;
+        for (var i = 0; i < cands.length; i++) {
+          var c = cands[i];
+          if (c.left >= M && c.left + bw <= vw - M && c.top >= M && c.top + bh <= vh - M) { chosen = c; break; }
+        }
+        if (!chosen) {
+          // Target is large: sit inside its nearest free corner, no arrow
+          chosen = { side: null, left: vw - bw - M - 8, top: vh - bh - M - 8 };
+          if (overlaps({ left: chosen.left, top: chosen.top, right: chosen.left + bw, bottom: chosen.top + bh }, tr)) chosen.left = M + 8;
+        }
+        var L = clamp(chosen.left, M, vw - bw - M), T = clamp(chosen.top, M, vh - bh - M);
+        bubble.style.left = L + 'px'; bubble.style.top = T + 'px';
+        if (!chosen.side) { arrow.style.display = 'none'; return; }
+        var a = 6;
+        if (chosen.side === 'right' || chosen.side === 'left') {
+          arrow.style.top = clamp(cy - T - a, 16, bh - 28) + 'px'; arrow.style.bottom = '';
+          arrow.style.left = chosen.side === 'right' ? (-a) + 'px' : ''; arrow.style.right = chosen.side === 'left' ? (-a) + 'px' : '';
+        } else {
+          arrow.style.left = clamp(cx - L - a, 20, bw - 32) + 'px'; arrow.style.right = '';
+          arrow.style.top = chosen.side === 'bottom' ? (-a) + 'px' : ''; arrow.style.bottom = chosen.side === 'top' ? (-a) + 'px' : '';
+        }
+      }
+
+      function render(){
+        var s = st.steps[st.i];
+        var total = st.steps.length;
+        var text = typeof s.text === 'function' ? s.text(dockMQ.matches) : s.text;
+        elCount.textContent = (st.i + 1) + ' of ' + total;
+        elTitle.textContent = typeof s.title === 'function' ? s.title(dockMQ.matches) : s.title;
+        elText.innerHTML = text;
+        elDots.textContent = '';
+        for (var k = 0; k < total; k++) { var d = make('i', k < st.i ? 'is-done' : (k === st.i ? 'is-now' : '')); elDots.appendChild(d); }
+        var last = st.i === total - 1;
+        var c = s.cta ? s.cta() : null;
+        btnLink.hidden = true; btnNext.hidden = false;
+        btnNext.className = 'tour-btn'; btnNext.disabled = false;
+        if (c && c.href) {
+          btnNext.hidden = true; btnLink.hidden = false;
+          btnLink.textContent = c.label; btnLink.href = c.href;
+          btnLink.className = 'tour-btn' + (c.claim ? ' is-claim' : '');
+        } else if (c) {
+          btnNext.textContent = c.label;
+        } else if (s.kind === 'action') {
+          btnNext.textContent = 'Skip this step'; btnNext.className = 'tour-btn is-ghost';
+        } else {
+          btnNext.textContent = s.nextLabel || (last ? 'Done' : 'Next');
+        }
+        btnSkip.textContent = last ? (s.closeLabel || 'Close') : 'Skip tour';
+        block.hidden = s.kind === 'action';
+      }
+
+      function show(i, instant){
+        clearTimeout(advanceTimer);
+        st.i = i;
+        var s = st.steps[i];
+        if (s.before) s.before();
+        render();
+        spot.hidden = false; bubble.hidden = false;
+        var t = resolve(s.target);
+        if (t && !instant) {
+          var r = t.getBoundingClientRect(), vh = window.innerHeight;
+          var behavior = reduce ? 'auto' : 'smooth';
+          t.style.scrollMarginTop = '76px';   // clear any sticky bar at the top
+          try {
+            if (dockMQ.matches && r.height >= vh * 0.42) {
+              // tall target on a phone: show its beginning, which is what the card talks about
+              if (r.top < 70 || r.top > vh * 0.5) t.scrollIntoView({ block: 'start', behavior: behavior });
+            } else if (r.height < vh * 0.8 && (r.top < 60 || r.bottom > vh - 60)) {
+              t.scrollIntoView({ block: 'center', behavior: behavior });
+            }
+          } catch (e) {}
+        }
+        if (!reduce) { spot.classList.add('is-anim'); }
+        place();
+        requestAnimationFrame(function(){ spot.classList.add('is-on'); bubble.classList.add('is-on'); place(); });
+        if (!reduce) setTimeout(function(){ if (spot) spot.classList.remove('is-anim'); }, 380);
+        // keep following a target that is still moving (smooth scroll, layout settling)
+        setTimeout(schedule, 120); setTimeout(schedule, 400);
+        if (s.kind !== 'action') { try { btnLink.hidden ? btnNext.focus({ preventScroll: true }) : btnLink.focus({ preventScroll: true }); } catch (e) {} }
+      }
+
+      function next(){
+        if (!st) return;
+        if (st.i >= st.steps.length - 1) { end('done'); return; }
+        var j = st.i + 1;
+        while (j < st.steps.length - 1 && st.steps[j].skipIf && st.steps[j].skipIf()) j++;
+        show(j);
+      }
+      function start(steps, opts){
+        build();
+        if (st) end('replaced');
+        st = { steps: steps, i: 0, opts: opts || {} };
+        show(0);
+      }
+      function end(reason){
+        if (!st) return;
+        var o = st.opts; st = null;
+        clearTimeout(advanceTimer);
+        spot.classList.remove('is-on', 'is-anim'); bubble.classList.remove('is-on');
+        spot.hidden = true; block.hidden = true; bubble.hidden = true;
+        if (o.onEnd) o.onEnd(reason);
+      }
+      // Host pages report what happened ('answered'); an action step waiting for it moves on
+      function emit(name){
+        if (!st) return;
+        var s = st.steps[st.i];
+        if (s.on === name) {
+          clearTimeout(advanceTimer);
+          advanceTimer = setTimeout(function(){ if (st && st.steps[st.i] === s) next(); }, 650);
+        } else if (s.refreshOn === name) {
+          render(); schedule();
+        }
+      }
+      return { start: start, end: end, emit: emit, active: function(){ return !!st; }, refresh: function(){ if (st) { render(); schedule(); } } };
+    })();
+
+    // ===== Conversation state =====
+    // Everything the buyer (the agent, role-playing) says and gets back is recorded
+    // so it can become the lead the agent is notified about, and be rendered on the
+    // admin demo page exactly as it was typed.
+    var ADMIN_DEMO_URL = 'property-expert-admin-demo-tour.html';
+    var LEAD_IDLE_MS = 5000;          // quiet time before the "new lead" notification
+    var LEAD_KEY = 'pe-demo-lead';
+    var PROPERTY = { name: '123 Main Street', city: 'Austin, TX 78703', photo: 'uploads/property-123-main.jpg' };
+    var convo = [];                   // { role: 'buyer' | 'assistant', text, ts }
+    var chosenPersona = null;
+    var answeredCount = 0;            // buyer messages that received a reply
+    var leadNotified = false;
+
+    function esc(str){
+      return String(str).replace(/[&<>"']/g, function(c){
+        return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+      });
+    }
+
+    // ===== Gallery =====
+    var galleryPhotos = [
+      { src: 'uploads/property-123-main.jpg', alt: '123 Main Street exterior' },
+      { src: 'uploads/property-123-main-living.jpg', alt: '123 Main Street living room' },
+      { src: 'uploads/property-123-main-kitchen.jpg', alt: '123 Main Street kitchen' },
+      { src: 'uploads/property-123-main-bedroom.jpg', alt: '123 Main Street primary bedroom' },
+      { src: 'uploads/property-123-main-backyard.jpg', alt: '123 Main Street backyard' }
+    ];
+    var galleryIndex = 0;
+    var galleryImg = document.getElementById('gallery-img');
+    var galleryCount = document.getElementById('gallery-count');
+    function renderGallery(){
+      galleryImg.src = galleryPhotos[galleryIndex].src;
+      galleryImg.alt = galleryPhotos[galleryIndex].alt;
+      galleryCount.textContent = (galleryIndex + 1) + ' / ' + galleryPhotos.length;
+    }
+    document.getElementById('gallery-prev').addEventListener('click', function(){
+      galleryIndex = (galleryIndex - 1 + galleryPhotos.length) % galleryPhotos.length;
+      renderGallery();
+    });
+    document.getElementById('gallery-next').addEventListener('click', function(){
+      galleryIndex = (galleryIndex + 1) % galleryPhotos.length;
+      renderGallery();
+    });
+
+    // ===== Left nav tabs (visual only) =====
+    document.getElementById('pe-nav').addEventListener('click', function(e){
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      if (btn.hasAttribute('data-lead')) return;   // handled by the lead trigger below
+      document.querySelectorAll('#pe-nav button').forEach(function(b){ b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+    });
+
+    // ===== Persona selection (desktop pills + mobile tiles share one state) =====
+    var personaChip = document.getElementById('m-persona-chip');
+    var personaChipLabel = document.getElementById('m-persona-chip-label');
+    function selectPersona(name){
+      chosenPersona = name;
+      document.querySelectorAll('.persona-pill, .m-persona-tile').forEach(function(b){
+        b.classList.toggle('is-active', b.getAttribute('data-persona') === name);
+      });
+      personaChipLabel.textContent = name;
+      personaChip.hidden = false;
+    }
+    document.getElementById('persona-row').addEventListener('click', function(e){
+      var btn = e.target.closest('.persona-pill');
+      if (btn) selectPersona(btn.getAttribute('data-persona'));
+    });
+    document.getElementById('m-persona-grid').addEventListener('click', function(e){
+      var btn = e.target.closest('.m-persona-tile');
+      if (btn) selectPersona(btn.getAttribute('data-persona'));
+    });
+    personaChip.addEventListener('click', function(){
+      // Reopen the picker by scrolling back to the intro message
+      var grid = document.getElementById('m-persona-grid');
+      if (grid) grid.scrollIntoView({ behavior:'smooth', block:'center' });
+    });
+
+    // ===== Bottom sheets =====
+    var backdrop = document.getElementById('sheet-backdrop');
+    var sheets = {
+      overview: document.getElementById('sheet-overview'),
+      insights: document.getElementById('sheet-insights'),
+      docs: document.getElementById('sheet-docs'),
+      nearby: document.getElementById('sheet-nearby'),
+      actions: document.getElementById('sheet-actions')
+    };
+    function closeSheet(){
+      backdrop.hidden = true;
+      Object.keys(sheets).forEach(function(k){ sheets[k].hidden = true; });
+      document.querySelectorAll('.m-tab').forEach(function(t){
+        t.classList.toggle('is-active', t.getAttribute('data-sheet') === 'chat');
+      });
+    }
+    function openSheet(name){
+      if (!sheets[name]) return;
+      Object.keys(sheets).forEach(function(k){ sheets[k].hidden = k !== name; });
+      backdrop.hidden = false;
+      sheets[name].querySelector('.sheet-body').scrollTop = 0;
+    }
+    backdrop.addEventListener('click', function(e){
+      if (e.target === backdrop) closeSheet();
+    });
+    document.querySelectorAll('.sheet-close').forEach(function(btn){
+      btn.addEventListener('click', closeSheet);
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && !backdrop.hidden) closeSheet();
+    });
+    document.querySelectorAll('[data-open-sheet]').forEach(function(btn){
+      btn.addEventListener('click', function(){ openSheet(btn.getAttribute('data-open-sheet')); });
+    });
+
+    // ===== Mobile tab bar =====
+    document.getElementById('m-tabs').addEventListener('click', function(e){
+      var btn = e.target.closest('.m-tab');
+      if (!btn) return;
+      var target = btn.getAttribute('data-sheet');
+      document.querySelectorAll('.m-tab').forEach(function(t){ t.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      if (target === 'chat') { closeSheet(); return; }
+      openSheet(target);
+    });
+    document.getElementById('m-more').addEventListener('click', function(){ openSheet('actions'); });
+
+    // ===== Document filters =====
+    document.getElementById('doc-filters').addEventListener('click', function(e){
+      var btn = e.target.closest('.doc-filter');
+      if (!btn) return;
+      var filter = btn.getAttribute('data-filter');
+      document.querySelectorAll('.doc-filter').forEach(function(b){ b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      document.querySelectorAll('.sheet-doc').forEach(function(doc){
+        doc.hidden = filter !== 'all' && doc.getAttribute('data-cat') !== filter;
+      });
+    });
+
+    // ===== Scripted Q&A =====
+    function sourceChip(name, date){
+      return '<span class="source-chip"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg><span><b>' + name + '</b><span>' + date + '</span></span><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span>';
+    }
+    function insightCard(kind, title, desc, sources){
+      var iconMap = {
+        ok: '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+        warn: '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2.5 17a1.5 1.5 0 001.3 2.2h16.4a1.5 1.5 0 001.3-2.2L13.7 3.9a1.5 1.5 0 00-2.6 0z"/></svg>',
+        info: '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>'
+      };
+      return '<div class="insight-card"><span class="insight-icon is-' + kind + '">' + iconMap[kind] + '</span><div class="insight-body"><b>' + title + '</b><p>' + desc + '</p><div class="insight-sources">' + sources.map(function(s){ return sourceChip(s[0], s[1]); }).join('') + '</div></div></div>';
+    }
+
+    var answers = {
+      "are there any known issues with this property?": {
+        intro: "Based on the available disclosures and inspection report, here's what I found:",
+        cards: [
+          ['ok', 'No major structural issues', 'The inspection report from July 2023 did not note any structural issues.', [['Inspection Report', 'Jul 12, 2023']]],
+          ['warn', 'Previous foundation repair (completed in 2022)', 'The seller disclosure notes foundation repairs were completed in 2022 with a lifetime transferable warranty.', [['Seller Disclosure', 'Jun 18, 2023'], ['Repair Invoice', 'Mar 3, 2022']]],
+          ['info', 'Roof is 12 years old', 'The inspection report notes the roof is approximately 12 years old and in fair condition.', [['Inspection Report', 'Jul 12, 2023']]]
+        ],
+        summary: "Overall, there are no major red flags, but you may want to review the roof condition and confirm details about the foundation warranty with the agent."
+      },
+      "tell me more about the roof": {
+        intro: "Here's what the inspection report says about the roof:",
+        cards: [
+          ['info', 'Asphalt shingle roof, approximately 12 years old', 'Inspector rated it in fair condition with some granule loss on the south-facing slope, typical for its age.', [['Inspection Report', 'Jul 12, 2023']]],
+          ['warn', 'No active leaks found, but remaining life is limited', 'Inspector estimates 5 to 8 years of remaining service life under normal conditions.', [['Inspection Report', 'Jul 12, 2023']]]
+        ],
+        summary: "Most lenders won't require roof work at this age, but it's worth asking the agent whether the seller would consider a credit or replacement before closing."
+      },
+      "any hvac issues?": {
+        intro: "Here's what I found about the HVAC system:",
+        cards: [
+          ['ok', 'HVAC system serviced in 2023', 'Annual maintenance record shows the system was serviced and passed inspection with no issues noted.', [['Inspection Report', 'Jul 12, 2023']]],
+          ['info', 'System is 7 years old', 'Within the typical 10 to 15 year lifespan for this unit type, no replacement expected soon.', [['Inspection Report', 'Jul 12, 2023']]]
+        ],
+        summary: "The HVAC system looks to be in good working order based on available records."
+      },
+      "what's the hoa like?": {
+        intro: "Here's what the HOA documents show for this property:",
+        cards: [
+          ['info', 'HOA dues are $145 per month', 'Covers landscaping of common areas, community pool access, and exterior building insurance.', [['HOA Documents', 'Jan 10, 2024']]],
+          ['warn', 'Rental restrictions apply', 'Short-term rentals under 30 days are not permitted under current HOA bylaws.', [['HOA Documents', 'Jan 10, 2024']]]
+        ],
+        summary: "If a rental strategy matters to you, this HOA's rules are worth discussing with the agent before you move forward."
+      }
+    };
+    var fallbackAnswer = "Let me check that for you, I'll have an answer with sources shortly. In this demo, try one of the suggested questions above to see a full example.";
+    var talkAnswer = "Happy to help. I've flagged this for the listing agent so they can follow up with you directly. In the meantime, ask me anything about the home and I'll answer from the documents.";
+    var tourIntro = "There are no open houses scheduled right now. The listing agent represents the seller, and you can request a private showing below.";
+    var SHOWING_SLOTS = ['Sat, 10:00 AM', 'Sat, 2:00 PM', 'Sun, 11:00 AM'];
+
+    var chatScroll = document.getElementById('chat-scroll');
+    var chatThread = document.getElementById('chat-thread');
+    function scrollChatToBottom(){ chatScroll.scrollTop = chatScroll.scrollHeight; }
+    function nowTime(){
+      var d = new Date();
+      var h = d.getHours() % 12 || 12;
+      var m = d.getMinutes().toString().padStart(2, '0');
+      return h + ':' + m + ' ' + (d.getHours() >= 12 ? 'PM' : 'AM');
+    }
+
+    // ----- What the buyer's words say about intent -----
+    var TOUR_RE = /\b(tour|showing|show me|visit|open house|appointment|schedule|see (the|this) (home|house|place|property))\b/i;
+    var TALK_RE = /\b(agent|realtor|broker|human|real person|call me|talk to|speak (to|with)|contact)\b/i;
+    function intentOf(text){
+      if (TOUR_RE.test(text)) return 'tour';
+      if (TALK_RE.test(text)) return 'talk';
+      return 'info';
+    }
+    var INTENT_RANK = { info: 1, talk: 2, tour: 3 };
+    function leadIntent(){
+      var best = 'info';
+      convo.forEach(function(m){
+        if (m.role !== 'buyer') return;
+        var i = intentOf(m.text);
+        if (INTENT_RANK[i] > INTENT_RANK[best]) best = i;
+      });
+      return best;
+    }
+
+    function addUserMessage(text){
+      convo.push({ role: 'buyer', text: text, ts: Date.now() });
+      var el = document.createElement('div');
+      el.className = 'msg msg-user';
+      el.innerHTML = '<span class="msg-avatar"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><div class="msg-body"><div class="msg-bubble">' + esc(text) + '</div><span class="msg-time">' + nowTime() + '</span></div>';
+      chatThread.appendChild(el);
+    }
+
+    var BOT_AVATAR = '<span class="msg-avatar"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>';
+
+    // Builds the reply as { html, plain }. `plain` is what the admin page shows.
+    function buildReply(text, forced){
+      if (forced && forced.type === 'confirm') {
+        var t = "Done. I've sent your request for " + forced.slot + " to the listing agent. They'll confirm with you shortly, and I'm still here if you have more questions.";
+        return { html: '<p class="msg-bubble-text">' + esc(t) + '</p>', plain: t };
+      }
+      var key = text.trim().toLowerCase();
+      var data = answers[key];
+      if (data) {
+        var cardsHtml = data.cards.map(function(c){ return insightCard(c[0], c[1], c[2], c[3]); }).join('');
+        var plain = data.intro + '\n' + data.cards.map(function(c){ return '• ' + c[1] + ': ' + c[2]; }).join('\n') + '\n' + data.summary;
+        return { html: '<div class="insight-wrap"><p class="insight-intro">' + data.intro + '</p>' + cardsHtml + '<p class="insight-summary">' + data.summary + '</p></div>', plain: plain };
+      }
+      var intent = intentOf(text);
+      if (intent === 'tour') {
+        var slots = SHOWING_SLOTS.map(function(sl){ return '<button class="slot-btn" type="button" data-slot="' + sl + '">' + sl + '</button>'; }).join('');
+        return {
+          html: '<p class="msg-bubble-text">' + tourIntro + '</p><div class="showing-card"><b>Request a private showing</b><span>Pick a time and I\'ll send your request to the listing agent.</span><div class="showing-slots">' + slots + '</div></div>',
+          plain: tourIntro + ' Request a private showing: ' + SHOWING_SLOTS.join(', ') + '.'
+        };
+      }
+      if (intent === 'talk') return { html: '<p class="msg-bubble-text">' + talkAnswer + '</p>', plain: talkAnswer };
+      return { html: '<p class="msg-bubble-text">' + fallbackAnswer + '</p>', plain: fallbackAnswer };
+    }
+
+    function addBotAnswer(text, forced){
+      var reply = buildReply(text, forced);
+      convo.push({ role: 'assistant', text: reply.plain, ts: Date.now() });
+      var el = document.createElement('div');
+      el.className = 'msg msg-bot';
+      el.innerHTML = BOT_AVATAR + '<div class="msg-body"><div class="msg-bubble">' + reply.html + '</div><span class="msg-time">' + nowTime() + '</span></div>';
+      chatThread.appendChild(el);
+    }
+
+    function addTypingIndicator(){
+      var el = document.createElement('div');
+      el.className = 'msg msg-bot';
+      el.id = 'typing-indicator';
+      el.innerHTML = BOT_AVATAR + '<div class="msg-body"><div class="typing" role="status" aria-label="Property Expert is typing"><i></i><i></i><i></i></div></div>';
+      chatThread.appendChild(el);
+      return el;
+    }
+
+    // ===== Lead notification =====
+    // Once the buyer chat goes quiet for LEAD_IDLE_MS, show the notification an
+    // agent would get on their phone or desktop, linking to the admin demo with
+    // the very conversation they just had.
+    var idleTimer = null;
+    var pendingAnswer = null;
+    var leadPending = false;          // idle elapsed while the tab was in the background
+    var toast = document.getElementById('lead-toast');
+    var toastLink = document.getElementById('lead-toast-link');
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var coarsePointer = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+
+    function leadEligible(){ return answeredCount > 0 && !leadNotified && !pendingAnswer; }
+    function armIdle(){
+      clearTimeout(idleTimer);
+      if (!leadEligible()) return;
+      idleTimer = setTimeout(onIdle, LEAD_IDLE_MS);
+    }
+    function onIdle(){
+      if (!leadEligible() || PETour.active()) return;
+      if (document.hidden) { leadPending = true; return; }
+      showLeadToast();
+    }
+    // Any real interaction restarts the quiet period. Programmatic scrolling is
+    // deliberately not counted, or the auto-scroll after each reply would reset it.
+    ['keydown', 'pointerdown', 'wheel', 'touchmove'].forEach(function(ev){
+      document.addEventListener(ev, function(){ if (idleTimer) armIdle(); }, { passive: true, capture: true });
+    });
+    document.addEventListener('visibilitychange', function(){
+      if (!document.hidden && leadPending) { leadPending = false; if (leadEligible()) showLeadToast(); }
+    });
+
+    function leadSnapshot(){
+      return {
+        v: 1,
+        property: PROPERTY,
+        persona: chosenPersona,
+        intent: leadIntent(),
+        messages: convo,
+        startedAt: convo.length ? convo[0].ts : Date.now(),
+        updatedAt: convo.length ? convo[convo.length - 1].ts : Date.now()
+      };
+    }
+    // The snapshot travels in the URL hash so it works even where storage is blocked
+    // (sandboxed embeds), and is also written to localStorage for same-origin reads.
+    function adminHref(extra){
+      var json = JSON.stringify(leadSnapshot());
+      try { localStorage.setItem(LEAD_KEY, json); } catch (e) {}
+      return ADMIN_DEMO_URL + '#lead=' + encodeURIComponent(json) + (extra || '');
+    }
+    function lastBuyerText(){
+      for (var i = convo.length - 1; i >= 0; i--) if (convo[i].role === 'buyer') return convo[i].text;
+      return '';
+    }
+    function showLeadToast(){
+      leadNotified = true;
+      var intent = leadIntent();
+      var title = 'New lead';
+      var body;
+      if (intent === 'tour') { title = 'New lead: ready to tour'; body = 'An anonymous buyer asked to tour ' + PROPERTY.name + '.'; }
+      else if (intent === 'talk') { title = 'New lead: wants to talk'; body = 'An anonymous buyer asked to talk to you about ' + PROPERTY.name + '.'; }
+      else {
+        var q = lastBuyerText();
+        if (q.length > 70) q = q.slice(0, 67) + '...';
+        body = 'An anonymous buyer asked about ' + PROPERTY.name + ': "' + q + '"';
+      }
+      document.getElementById('lead-toast-title').textContent = title;
+      document.getElementById('lead-toast-text').textContent = body;
+      document.getElementById('lead-toast-cta').textContent = (coarsePointer ? 'Tap' : 'Click') + ' to view';
+      toastLink.href = adminHref();
+      toast.hidden = false;
+      if (reduceMotion) { toast.classList.add('is-open'); }
+      else { requestAnimationFrame(function(){ requestAnimationFrame(function(){ toast.classList.add('is-open'); }); }); }
+    }
+    function hideLeadToast(){
+      toast.classList.remove('is-open');
+      setTimeout(function(){ toast.hidden = true; }, reduceMotion ? 0 : 380);
+    }
+    // Refresh the link at the moment of activation so it carries the latest chat,
+    // even if the buyer kept typing after the notification appeared.
+    toastLink.addEventListener('click', function(){ toastLink.href = adminHref(); setTimeout(hideLeadToast, 150); });
+    document.getElementById('lead-toast-close').addEventListener('click', hideLeadToast);
+
+    // ===== Asking =====
+    function askQuestion(text, forced){
+      if (!text) return;
+      clearTimeout(pendingAnswer);
+      clearTimeout(idleTimer);
+      var stale = document.getElementById('typing-indicator');
+      if (stale) stale.remove();
+
+      // On mobile the chat goes full screen once a conversation starts:
+      // the hero collapses and the follow-up chips take its place.
+      document.body.classList.add('is-chatting');
+      closeSheet();
+
+      addUserMessage(text);
+      addTypingIndicator();
+      scrollChatToBottom();
+
+      pendingAnswer = setTimeout(function(){
+        pendingAnswer = null;
+        var indicator = document.getElementById('typing-indicator');
+        if (indicator) indicator.remove();
+        addBotAnswer(text, forced);
+        answeredCount++;
+        scrollChatToBottom();
+        armIdle();
+        PETour.emit('answered');
+      }, 1100);
+    }
+
+    // Choosing a time on the showing card is the buyer committing to a tour
+    chatThread.addEventListener('click', function(e){
+      var b = e.target.closest('.slot-btn');
+      if (!b || b.disabled) return;
+      var card = b.closest('.showing-card');
+      card.querySelectorAll('.slot-btn').forEach(function(x){ x.disabled = true; x.classList.toggle('is-picked', x === b); });
+      var slot = b.getAttribute('data-slot');
+      askQuestion(slot + ' works for me.', { type: 'confirm', slot: slot });
+    });
+
+    // The buyer-facing handoff controls (Schedule a Tour, Talk to Agent, Ask the
+    // agent) each start a lead: they become a message in the chat, answered by the AI.
+    var LEAD_ACTIONS = { tour: "I'd like to schedule a tour.", talk: "I'd like to talk to the agent.", ask: "I have a question for the agent." };
+    document.addEventListener('click', function(e){
+      var t = e.target.closest('[data-lead]');
+      if (!t) return;
+      askQuestion(LEAD_ACTIONS[t.getAttribute('data-lead')]);
+    });
+    document.addEventListener('keydown', function(e){
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('[data-lead][role="button"]')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    });
+
+    document.getElementById('chip-row-1').addEventListener('click', function(e){
+      var btn = e.target.closest('.follow-chip');
+      if (btn) askQuestion(btn.getAttribute('data-q'));
+    });
+    document.getElementById('chip-row-2').addEventListener('click', function(e){
+      var btn = e.target.closest('.follow-chip');
+      if (btn) askQuestion(btn.getAttribute('data-q'));
+    });
+    document.getElementById('m-suggest-list').addEventListener('click', function(e){
+      var btn = e.target.closest('.m-suggest-row');
+      if (btn) askQuestion(btn.getAttribute('data-q'));
+    });
+
+    var chatInput = document.getElementById('chat-input');
+    function sendFromInput(){
+      var val = chatInput.value.trim();
+      if (!val) return;
+      askQuestion(val);
+      chatInput.value = '';
+    }
+    document.getElementById('chat-send').addEventListener('click', sendFromInput);
+    chatInput.addEventListener('keydown', function(e){
+      if (e.key === 'Enter') sendFromInput();
+    });
+
+    // ===== Hob and the tour =====
+    var TOUR1_KEY = 'pe-tour1-done';
+    var hobBtn = document.getElementById('hob-btn');
+    var hobTip = document.getElementById('hob-tip');
+    function tourSeen(){ try { return localStorage.getItem(TOUR1_KEY) === '1'; } catch (e) { return false; } }
+    function markTourSeen(){ try { localStorage.setItem(TOUR1_KEY, '1'); } catch (e) {} }
+    function lastBotMessage(){
+      var all = chatThread.querySelectorAll('.msg-bot:not(#typing-indicator)');
+      return all.length ? all[all.length - 1] : null;
+    }
+    var TOUR1 = [
+      { kind: 'info', target: ['.app-left', '.m-hero', '.m-tabs'],
+        title: 'Meet your Property Expert',
+        text: 'This is an AI expert for <b>one home</b>. It knows the listing, disclosures, inspection reports and public records, so buyers get real answers.' },
+      { kind: 'info', target: '#chat-thread .msg-bot',
+        title: 'Buyers ask it anything',
+        text: 'They chat here at any hour, even 2 AM. You stop answering the same questions again and again.' },
+      { kind: 'action', on: 'answered', target: ['#m-suggest-list', '#chip-row-2'],
+        title: 'Try it as a buyer',
+        text: 'Play the buyer. <b>Tap a question</b> to see how it answers.' },
+      { kind: 'info', target: lastBotMessage, skipIf: function(){ return answeredCount === 0; },
+        title: 'Answers come from the documents',
+        text: 'That answer is based on this home\'s own listing and documents, not a guess.' },
+      { kind: 'action', on: 'answered', target: '.chat-input-row',
+        title: 'Now ask your own',
+        text: '<b>Type any question</b> and send it. Try something a real buyer would ask, like "Is there a pool?"' },
+      { kind: 'info', target: ['.talk-agent', '#m-more'],
+        title: 'When a buyer wants a person',
+        text: function(mobile){
+          return mobile
+            ? 'Buyers who want you open <b>Actions</b> and ask for a tour or for the agent. Each one reaches you as a lead.'
+            : 'Buyers who want you tap <b>Talk to Agent</b> or ask to schedule a tour. Each one reaches you as a lead.';
+        } },
+      { kind: 'info', target: null, refreshOn: 'answered',
+        title: 'Every chat is logged for you',
+        text: function(){
+          return answeredCount > 0
+            ? 'This conversation is saved in your <b>admin dashboard</b>, along with every buyer chat to come. Want to see how it looks?'
+            : 'Ask one question first, so there is a real chat to show you in the dashboard.';
+        },
+        cta: function(){
+          if (answeredCount > 0) {
+            return { label: 'Show me my dashboard →', href: adminHref('&tour=2'), onClick: function(){ leadNotified = true; hideLeadToast(); } };
+          }
+          return { label: 'Ask one for me', onClick: function(){ askQuestion('Any HVAC issues?'); } };
+        },
+        closeLabel: 'Not now' }
+    ];
+    function startTour1(){
+      if (PETour.active()) return;
+      hobTip.hidden = true; hobBtn.classList.remove('is-nudge');
+      if (!toast.hidden) hideLeadToast();
+      closeSheet();
+      PETour.start(TOUR1, { onEnd: function(reason){
+        markTourSeen();
+        // the quiet-period notification stays as the fallback once the tour is over
+        armIdle();
+      } });
+    }
+    hobBtn.addEventListener('click', startTour1);
+    hobTip.addEventListener('click', startTour1);
+    if (!tourSeen()) {
+      setTimeout(function(){
+        if (PETour.active()) return;
+        hobBtn.classList.add('is-nudge'); hobTip.hidden = false;
+        setTimeout(function(){ hobBtn.classList.remove('is-nudge'); hobTip.hidden = true; }, 20000);
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

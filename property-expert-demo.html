@@ -179,7 +179,7 @@
       .app { flex:1; min-height:0; align-items:stretch; }
       .app-left { max-height:100%; overflow-y:auto; }
       .chat-card { height:100%; min-height:0; }
-      .app-right { max-height:100%; overflow-y:auto; padding-bottom:84px; }
+      .app-right { max-height:100%; overflow-y:auto; }
       .app-left::-webkit-scrollbar, .app-right::-webkit-scrollbar, .chat-scroll::-webkit-scrollbar { width:8px; }
       .app-left::-webkit-scrollbar-thumb, .app-right::-webkit-scrollbar-thumb, .chat-scroll::-webkit-scrollbar-thumb { background:var(--border); border-radius:999px; }
       .app-left::-webkit-scrollbar-track, .app-right::-webkit-scrollbar-track, .chat-scroll::-webkit-scrollbar-track { background:transparent; }
@@ -349,63 +349,6 @@
     .action-icon { width:40px; height:40px; border-radius:11px; background:var(--blue-light); color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .action-row b { display:block; font-size:14px; color:var(--fg); }
     .action-row span { font-size:12px; color:var(--muted); }
-
-    /* ===== Hob, the guide ===== */
-    .hob-btn { position:fixed; right:24px; bottom:24px; z-index:70; width:60px; height:60px; border:0; border-radius:50%; background:#fff; box-shadow:0 10px 28px -8px rgba(0,20,60,.5), 0 0 0 1px var(--border-light); display:flex; align-items:center; justify-content:center; padding:0; transition:transform .2s; }
-    .hob-btn svg { width:44px; height:44px; }
-    .hob-btn:hover { transform:translateY(-2px); }
-    .hob-btn.is-nudge::before { content:''; position:absolute; inset:-5px; border-radius:50%; border:2px solid var(--blue); animation:ping 1.8s ease-out infinite; }
-    @keyframes ping { 0% { transform:scale(.9); opacity:.9; } 100% { transform:scale(1.35); opacity:0; } }
-    .hob-tip { position:fixed; right:96px; bottom:34px; z-index:70; padding:9px 14px; border:0; border-radius:12px; background:var(--accent); color:#fff; font-size:13px; font-weight:700; box-shadow:0 10px 24px -8px rgba(0,20,60,.5); }
-    .hob-tip[hidden] { display:none; }
-    .hob-tip::after { content:''; position:absolute; right:-6px; top:50%; width:12px; height:12px; background:var(--accent); transform:translateY(-50%) rotate(45deg); border-radius:2px; }
-    @media (max-width:1100px){
-      /* On mobile Hob sits in the header, beside the actions button, so it never covers the composer */
-      .hob-btn { bottom:auto; top:10px; right:calc(max(0px, (100vw - 560px) / 2) + 56px); width:38px; height:38px; box-shadow:0 4px 12px -4px rgba(0,20,60,.45), 0 0 0 1px var(--border-light); }
-      .hob-btn svg { width:28px; height:28px; }
-      .hob-btn.is-nudge::before { inset:-4px; }
-      .hob-tip { bottom:auto; top:58px; right:calc(max(0px, (100vw - 560px) / 2) + 14px); }
-      .hob-tip::after { right:34px; top:-6px; transform:rotate(45deg); }
-    }
-    @media (prefers-reduced-motion:reduce){ .hob-btn.is-nudge::before { animation:none; } .hob-btn { transition:none; } }
-
-    /* ===== Hob tour (same block in both demo pages) ===== */
-    .tour-spot { position:fixed; z-index:90; left:50%; top:50%; width:0; height:0; border-radius:16px; box-shadow:0 0 0 100vmax rgba(8,18,46,.58); pointer-events:none; opacity:0; }
-    .tour-spot.is-on { opacity:1; }
-    .tour-spot.is-anim { transition:left .32s cubic-bezier(.22,1,.36,1), top .32s cubic-bezier(.22,1,.36,1), width .32s cubic-bezier(.22,1,.36,1), height .32s cubic-bezier(.22,1,.36,1), opacity .25s ease; }
-    .tour-spot.has-ring::after { content:''; position:absolute; inset:-3px; border-radius:inherit; border:2px solid #fff; opacity:.9; }
-    .tour-block { position:fixed; inset:0; z-index:92; background:transparent; }
-    .tour-block[hidden], .tour-bubble[hidden], .tour-spot[hidden] { display:none; }
-    .tour-bubble { position:fixed; z-index:95; width:min(330px, calc(100vw - 24px)); padding:16px 16px 14px; border-radius:18px; background:#fff; color:var(--fg, #1a1f2e); box-shadow:0 24px 60px -14px rgba(0,20,60,.55), 0 0 0 1px rgba(0,20,60,.06); opacity:0; transform:translateY(8px); transition:opacity .22s ease, transform .3s cubic-bezier(.22,1,.36,1); }
-    .tour-bubble.is-on { opacity:1; transform:none; }
-    .tour-head { display:flex; align-items:center; gap:9px; margin-bottom:10px; }
-    .tour-head > svg { width:30px; height:30px; flex-shrink:0; }
-    .tour-head b { font-size:13.5px; font-weight:800; color:var(--accent, #001F5C); }
-    .tour-count { margin-left:auto; font-size:11.5px; font-weight:700; color:var(--muted, #64748b); }
-    .tour-x { flex-shrink:0; width:26px; height:26px; border:0; border-radius:50%; background:rgba(0,20,60,.06); color:var(--fg-secondary, #334155); display:flex; align-items:center; justify-content:center; }
-    .tour-x:hover { background:rgba(0,20,60,.12); }
-    .tour-title { font-size:16px; font-weight:800; line-height:1.3; color:var(--accent, #001F5C); }
-    .tour-text { margin-top:6px; font-size:13.5px; line-height:1.55; color:var(--fg-secondary, #334155); }
-    .tour-text b { color:var(--fg, #1a1f2e); }
-    .tour-dots { display:flex; gap:5px; margin-top:12px; }
-    .tour-dots i { width:6px; height:6px; border-radius:50%; background:rgba(0,31,92,.16); }
-    .tour-dots i.is-done { background:rgba(24,99,220,.5); }
-    .tour-dots i.is-now { width:18px; border-radius:999px; background:var(--blue, #1863dc); }
-    .tour-actions { display:flex; align-items:center; gap:10px; margin-top:12px; }
-    .tour-skip { border:0; background:none; padding:6px 2px; font-size:12.5px; font-weight:700; color:var(--muted, #64748b); text-decoration:underline; text-underline-offset:2px; }
-    .tour-skip:hover { color:var(--fg, #1a1f2e); }
-    .tour-spacer { flex:1; }
-    .tour-btn { display:inline-flex; align-items:center; justify-content:center; padding:10px 18px; border:0; border-radius:999px; background:var(--accent, #001F5C); color:#fff; font-size:13.5px; font-weight:800; white-space:nowrap; text-decoration:none; }
-    .tour-btn:hover { background:var(--accent-dark, #001340); }
-    .tour-btn.is-ghost { background:var(--blue-light, rgba(24,99,220,.08)); color:var(--blue, #1863dc); }
-    .tour-btn.is-ghost:hover { background:rgba(24,99,220,.16); }
-    .tour-btn.is-claim { background:linear-gradient(120deg, var(--blue, #1863dc) 0%, var(--accent, #001F5C) 100%); }
-    .tour-btn[hidden] { display:none; }
-    .tour-arrow { position:absolute; width:12px; height:12px; background:#fff; border-radius:2px; transform:rotate(45deg); }
-    .tour-bubble.is-docked .tour-arrow { display:none; }
-    .tour-bubble.is-docked { left:12px; right:12px; width:auto; }
-    @media (max-width:1100px){ .tour-bubble { padding:14px 14px 12px; } }
-    @media (prefers-reduced-motion:reduce){ .tour-spot.is-anim, .tour-bubble { transition:none; transform:none; } }
   </style>
 </head>
 <body>
@@ -619,12 +562,6 @@
     </div>
   </div>
 
-  <!-- ===== Hob: starts the guided tour ===== -->
-  <button class="hob-tip" type="button" id="hob-tip" hidden>New here? Take a 30s tour</button>
-  <button class="hob-btn" type="button" id="hob-btn" aria-label="Take a tour with Hob">
-    <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>
-  </button>
-
   <!-- ===== Lead notification (shown ~5s after the buyer chat goes quiet) ===== -->
   <div class="lead-toast" id="lead-toast" role="status" aria-live="polite" hidden>
     <a class="lead-toast-link" id="lead-toast-link" href="#" target="_blank" rel="noopener">
@@ -743,251 +680,6 @@
   </div>
 
   <script>
-    // ===== Hob tour (same block in both demo pages) =====
-    // Steps: { target, title, text, kind: 'info' | 'action', on, before, cta, nextLabel }
-    //  target   selector, list of selectors (first visible wins), or a function; none = centred card
-    //  kind     'info' waits for the button; 'action' leaves the page usable and waits for `on`
-    //  on       name of the event (PETour.emit) that completes an action step
-    //  skipIf   optional function; true means this step is passed over
-    //  cta      optional function returning { label, href, claim, onClick } for the primary button
-    var PETour = (function(){
-      var HOB_SVG = '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>';
-      var dockMQ = window.matchMedia('(max-width:' + (window.PETOUR_DOCK_MAX || 1100) + 'px)');   // the page's phone layout breakpoint
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var spot, block, bubble, elCount, elTitle, elText, elDots, btnNext, btnSkip, btnLink, arrow;
-      var st = null;           // { steps, i, opts }
-      var raf = 0, advanceTimer = 0;
-
-      function make(tag, cls){ var n = document.createElement(tag); if (cls) n.className = cls; return n; }
-      function build(){
-        if (bubble) return;
-        spot = make('div', 'tour-spot'); spot.hidden = true;
-        block = make('div', 'tour-block'); block.hidden = true;
-        bubble = make('div', 'tour-bubble'); bubble.hidden = true;
-        bubble.setAttribute('role', 'dialog');
-        bubble.setAttribute('aria-label', 'Tour with Hob');
-        var head = make('div', 'tour-head');
-        head.innerHTML = HOB_SVG + '<b>Hob</b>';
-        elCount = make('span', 'tour-count');
-        var x = make('button', 'tour-x'); x.type = 'button'; x.setAttribute('aria-label', 'Close the tour');
-        x.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
-        x.addEventListener('click', function(){ end('skip'); });
-        head.appendChild(elCount); head.appendChild(x);
-        elTitle = make('div', 'tour-title');
-        elText = make('p', 'tour-text'); elText.setAttribute('aria-live', 'polite');
-        elDots = make('div', 'tour-dots');
-        var actions = make('div', 'tour-actions');
-        btnSkip = make('button', 'tour-skip'); btnSkip.type = 'button'; btnSkip.textContent = 'Skip tour';
-        btnSkip.addEventListener('click', function(){ end('skip'); });
-        btnNext = make('button', 'tour-btn'); btnNext.type = 'button';
-        btnNext.addEventListener('click', function(){
-          var s = st && st.steps[st.i]; var c = s && s.cta && s.cta();
-          if (c && c.onClick) { c.onClick(); return; }
-          next();
-        });
-        btnLink = make('a', 'tour-btn'); btnLink.target = '_blank'; btnLink.rel = 'noopener'; btnLink.hidden = true;
-        btnLink.addEventListener('click', function(){
-          var s = st && st.steps[st.i]; var c = s && s.cta && s.cta();
-          if (c && c.href) btnLink.href = c.href;   // carry the latest state into the new tab
-          if (c && c.onClick) c.onClick(btnLink);
-          // the link opens in a new tab; the tour on this page is finished
-          setTimeout(function(){ end('done'); }, 120);
-        });
-        actions.appendChild(btnSkip); actions.appendChild(make('span', 'tour-spacer')); actions.appendChild(btnNext); actions.appendChild(btnLink);
-        arrow = make('i', 'tour-arrow');
-        bubble.appendChild(head); bubble.appendChild(elTitle); bubble.appendChild(elText); bubble.appendChild(elDots); bubble.appendChild(actions); bubble.appendChild(arrow);
-        document.body.appendChild(spot); document.body.appendChild(block); document.body.appendChild(bubble);
-        window.addEventListener('resize', schedule);
-        window.addEventListener('scroll', schedule, true);
-        document.addEventListener('keydown', function(e){ if (st && e.key === 'Escape') end('skip'); });
-      }
-
-      function visible(e){
-        if (!e) return false;
-        var r = e.getBoundingClientRect();
-        return r.width > 0 && r.height > 0 && getComputedStyle(e).visibility !== 'hidden';
-      }
-      function resolve(t){
-        if (!t) return null;
-        if (typeof t === 'function') return t();
-        var list = Array.isArray(t) ? t : [t];
-        for (var i = 0; i < list.length; i++) { var e = document.querySelector(list[i]); if (visible(e)) return e; }
-        return null;
-      }
-      function schedule(){ if (!st || raf) return; raf = requestAnimationFrame(function(){ raf = 0; place(); }); }
-
-      function overlaps(a, b){ return !(a.right <= b.left || b.right <= a.left || a.bottom <= b.top || b.bottom <= a.top); }
-      function clamp(v, lo, hi){ return Math.max(lo, Math.min(hi, v)); }
-
-      function place(){
-        if (!st) return;
-        var vw = window.innerWidth, vh = window.innerHeight, M = 12, GAP = 16, PAD = 8;
-        var target = resolve(st.steps[st.i].target);
-        var docked = dockMQ.matches && !!target;
-        bubble.classList.toggle('is-docked', docked);
-        bubble.style.right = ''; bubble.style.bottom = '';
-        var bw = bubble.offsetWidth, bh = bubble.offsetHeight;
-        var tr = null;
-        if (target) {
-          var r = target.getBoundingClientRect();
-          tr = { left: r.left - PAD, top: r.top - PAD, right: r.right + PAD, bottom: r.bottom + PAD };
-          if (docked) {
-            // On a phone a tall target must leave room for the card: spotlight only the part clear of it
-            tr.top = Math.max(tr.top, 6); tr.bottom = Math.min(tr.bottom, tr.top + vh * 0.42);
-            if ((tr.top + tr.bottom) / 2 > vh / 2) tr.top = Math.max(tr.top, 10 + bh + 8);
-            else tr.bottom = Math.min(tr.bottom, vh - 12 - bh - 8);
-            if (tr.bottom - tr.top < 48) tr.bottom = tr.top + 48;
-          }
-          tr.width = tr.right - tr.left; tr.height = tr.bottom - tr.top;
-          spot.style.left = tr.left + 'px'; spot.style.top = tr.top + 'px';
-          spot.style.width = tr.width + 'px'; spot.style.height = tr.height + 'px';
-          spot.classList.add('has-ring');
-        } else {
-          spot.style.left = '50%'; spot.style.top = '50%'; spot.style.width = '0px'; spot.style.height = '0px';
-          spot.classList.remove('has-ring');
-        }
-        if (!tr) {
-          bubble.style.left = clamp((vw - bw) / 2, M, vw - bw - M) + 'px';
-          bubble.style.top = clamp((vh - bh) / 2, M, vh - bh - M) + 'px';
-          arrow.style.display = 'none';
-          return;
-        }
-        arrow.style.display = '';
-        if (docked) {
-          var safeTop = 10;
-          var topRect = { left: 12, right: vw - 12, top: safeTop, bottom: safeTop + bh };
-          var botRect = { left: 12, right: vw - 12, top: vh - 12 - bh, bottom: vh - 12 };
-          var preferTop = (tr.top + tr.bottom) / 2 > vh / 2;
-          var first = preferTop ? topRect : botRect, second = preferTop ? botRect : topRect;
-          var pick = !overlaps(first, tr) ? first : (!overlaps(second, tr) ? second : first);
-          bubble.style.left = '12px';
-          bubble.style.top = pick.top + 'px';
-          return;
-        }
-        // Desktop: beside the target when there is room, else above or below
-        var cx = (tr.left + tr.right) / 2, cy = (tr.top + tr.bottom) / 2;
-        var cands = [
-          { side: 'right',  left: tr.right + GAP,        top: cy - bh / 2 },
-          { side: 'left',   left: tr.left - GAP - bw,    top: cy - bh / 2 },
-          { side: 'bottom', left: cx - bw / 2,           top: tr.bottom + GAP },
-          { side: 'top',    left: cx - bw / 2,           top: tr.top - GAP - bh }
-        ];
-        var chosen = null;
-        for (var i = 0; i < cands.length; i++) {
-          var c = cands[i];
-          if (c.left >= M && c.left + bw <= vw - M && c.top >= M && c.top + bh <= vh - M) { chosen = c; break; }
-        }
-        if (!chosen) {
-          // Target is large: sit inside its nearest free corner, no arrow
-          chosen = { side: null, left: vw - bw - M - 8, top: vh - bh - M - 8 };
-          if (overlaps({ left: chosen.left, top: chosen.top, right: chosen.left + bw, bottom: chosen.top + bh }, tr)) chosen.left = M + 8;
-        }
-        var L = clamp(chosen.left, M, vw - bw - M), T = clamp(chosen.top, M, vh - bh - M);
-        bubble.style.left = L + 'px'; bubble.style.top = T + 'px';
-        if (!chosen.side) { arrow.style.display = 'none'; return; }
-        var a = 6;
-        if (chosen.side === 'right' || chosen.side === 'left') {
-          arrow.style.top = clamp(cy - T - a, 16, bh - 28) + 'px'; arrow.style.bottom = '';
-          arrow.style.left = chosen.side === 'right' ? (-a) + 'px' : ''; arrow.style.right = chosen.side === 'left' ? (-a) + 'px' : '';
-        } else {
-          arrow.style.left = clamp(cx - L - a, 20, bw - 32) + 'px'; arrow.style.right = '';
-          arrow.style.top = chosen.side === 'bottom' ? (-a) + 'px' : ''; arrow.style.bottom = chosen.side === 'top' ? (-a) + 'px' : '';
-        }
-      }
-
-      function render(){
-        var s = st.steps[st.i];
-        var total = st.steps.length;
-        var text = typeof s.text === 'function' ? s.text(dockMQ.matches) : s.text;
-        elCount.textContent = (st.i + 1) + ' of ' + total;
-        elTitle.textContent = typeof s.title === 'function' ? s.title(dockMQ.matches) : s.title;
-        elText.innerHTML = text;
-        elDots.textContent = '';
-        for (var k = 0; k < total; k++) { var d = make('i', k < st.i ? 'is-done' : (k === st.i ? 'is-now' : '')); elDots.appendChild(d); }
-        var last = st.i === total - 1;
-        var c = s.cta ? s.cta() : null;
-        btnLink.hidden = true; btnNext.hidden = false;
-        btnNext.className = 'tour-btn'; btnNext.disabled = false;
-        if (c && c.href) {
-          btnNext.hidden = true; btnLink.hidden = false;
-          btnLink.textContent = c.label; btnLink.href = c.href;
-          btnLink.className = 'tour-btn' + (c.claim ? ' is-claim' : '');
-        } else if (c) {
-          btnNext.textContent = c.label;
-        } else if (s.kind === 'action') {
-          btnNext.textContent = 'Skip this step'; btnNext.className = 'tour-btn is-ghost';
-        } else {
-          btnNext.textContent = s.nextLabel || (last ? 'Done' : 'Next');
-        }
-        btnSkip.textContent = last ? (s.closeLabel || 'Close') : 'Skip tour';
-        block.hidden = s.kind === 'action';
-      }
-
-      function show(i, instant){
-        clearTimeout(advanceTimer);
-        st.i = i;
-        var s = st.steps[i];
-        if (s.before) s.before();
-        render();
-        spot.hidden = false; bubble.hidden = false;
-        var t = resolve(s.target);
-        if (t && !instant) {
-          var r = t.getBoundingClientRect(), vh = window.innerHeight;
-          var behavior = reduce ? 'auto' : 'smooth';
-          t.style.scrollMarginTop = '76px';   // clear any sticky bar at the top
-          try {
-            if (dockMQ.matches && r.height >= vh * 0.42) {
-              // tall target on a phone: show its beginning, which is what the card talks about
-              if (r.top < 70 || r.top > vh * 0.5) t.scrollIntoView({ block: 'start', behavior: behavior });
-            } else if (r.height < vh * 0.8 && (r.top < 60 || r.bottom > vh - 60)) {
-              t.scrollIntoView({ block: 'center', behavior: behavior });
-            }
-          } catch (e) {}
-        }
-        if (!reduce) { spot.classList.add('is-anim'); }
-        place();
-        requestAnimationFrame(function(){ spot.classList.add('is-on'); bubble.classList.add('is-on'); place(); });
-        if (!reduce) setTimeout(function(){ if (spot) spot.classList.remove('is-anim'); }, 380);
-        // keep following a target that is still moving (smooth scroll, layout settling)
-        setTimeout(schedule, 120); setTimeout(schedule, 400);
-        if (s.kind !== 'action') { try { btnLink.hidden ? btnNext.focus({ preventScroll: true }) : btnLink.focus({ preventScroll: true }); } catch (e) {} }
-      }
-
-      function next(){
-        if (!st) return;
-        if (st.i >= st.steps.length - 1) { end('done'); return; }
-        var j = st.i + 1;
-        while (j < st.steps.length - 1 && st.steps[j].skipIf && st.steps[j].skipIf()) j++;
-        show(j);
-      }
-      function start(steps, opts){
-        build();
-        if (st) end('replaced');
-        st = { steps: steps, i: 0, opts: opts || {} };
-        show(0);
-      }
-      function end(reason){
-        if (!st) return;
-        var o = st.opts; st = null;
-        clearTimeout(advanceTimer);
-        spot.classList.remove('is-on', 'is-anim'); bubble.classList.remove('is-on');
-        spot.hidden = true; block.hidden = true; bubble.hidden = true;
-        if (o.onEnd) o.onEnd(reason);
-      }
-      // Host pages report what happened ('answered'); an action step waiting for it moves on
-      function emit(name){
-        if (!st) return;
-        var s = st.steps[st.i];
-        if (s.on === name) {
-          clearTimeout(advanceTimer);
-          advanceTimer = setTimeout(function(){ if (st && st.steps[st.i] === s) next(); }, 650);
-        } else if (s.refreshOn === name) {
-          render(); schedule();
-        }
-      }
-      return { start: start, end: end, emit: emit, active: function(){ return !!st; }, refresh: function(){ if (st) { render(); schedule(); } } };
-    })();
-
     // ===== Conversation state =====
     // Everything the buyer (the agent, role-playing) says and gets back is recorded
     // so it can become the lead the agent is notified about, and be rendered on the
@@ -1279,7 +971,7 @@
       idleTimer = setTimeout(onIdle, LEAD_IDLE_MS);
     }
     function onIdle(){
-      if (!leadEligible() || PETour.active()) return;
+      if (!leadEligible()) return;
       if (document.hidden) { leadPending = true; return; }
       showLeadToast();
     }
@@ -1305,10 +997,10 @@
     }
     // The snapshot travels in the URL hash so it works even where storage is blocked
     // (sandboxed embeds), and is also written to localStorage for same-origin reads.
-    function adminHref(extra){
+    function adminHref(){
       var json = JSON.stringify(leadSnapshot());
       try { localStorage.setItem(LEAD_KEY, json); } catch (e) {}
-      return ADMIN_DEMO_URL + '#lead=' + encodeURIComponent(json) + (extra || '');
+      return ADMIN_DEMO_URL + '#lead=' + encodeURIComponent(json);
     }
     function lastBuyerText(){
       for (var i = convo.length - 1; i >= 0; i--) if (convo[i].role === 'buyer') return convo[i].text;
@@ -1368,7 +1060,6 @@
         answeredCount++;
         scrollChatToBottom();
         armIdle();
-        PETour.emit('answered');
       }, 1100);
     }
 
@@ -1421,75 +1112,6 @@
     chatInput.addEventListener('keydown', function(e){
       if (e.key === 'Enter') sendFromInput();
     });
-
-    // ===== Hob and the tour =====
-    var TOUR1_KEY = 'pe-tour1-done';
-    var hobBtn = document.getElementById('hob-btn');
-    var hobTip = document.getElementById('hob-tip');
-    function tourSeen(){ try { return localStorage.getItem(TOUR1_KEY) === '1'; } catch (e) { return false; } }
-    function markTourSeen(){ try { localStorage.setItem(TOUR1_KEY, '1'); } catch (e) {} }
-    function lastBotMessage(){
-      var all = chatThread.querySelectorAll('.msg-bot:not(#typing-indicator)');
-      return all.length ? all[all.length - 1] : null;
-    }
-    var TOUR1 = [
-      { kind: 'info', target: ['.app-left', '.m-hero', '.m-tabs'],
-        title: 'Meet your Property Expert',
-        text: 'This is an AI expert for <b>one home</b>. It knows the listing, disclosures, inspection reports and public records, so buyers get real answers.' },
-      { kind: 'info', target: '#chat-thread .msg-bot',
-        title: 'Buyers ask it anything',
-        text: 'They chat here at any hour, even 2 AM. You stop answering the same questions again and again.' },
-      { kind: 'action', on: 'answered', target: ['#m-suggest-list', '#chip-row-2'],
-        title: 'Try it as a buyer',
-        text: 'Play the buyer. <b>Tap a question</b> to see how it answers.' },
-      { kind: 'info', target: lastBotMessage, skipIf: function(){ return answeredCount === 0; },
-        title: 'Answers come from the documents',
-        text: 'That answer is based on this home\'s own listing and documents, not a guess.' },
-      { kind: 'action', on: 'answered', target: '.chat-input-row',
-        title: 'Now ask your own',
-        text: '<b>Type any question</b> and send it. Try something a real buyer would ask, like "Is there a pool?"' },
-      { kind: 'info', target: ['.talk-agent', '#m-more'],
-        title: 'When a buyer wants a person',
-        text: function(mobile){
-          return mobile
-            ? 'Buyers who want you open <b>Actions</b> and ask for a tour or for the agent. Each one reaches you as a lead.'
-            : 'Buyers who want you tap <b>Talk to Agent</b> or ask to schedule a tour. Each one reaches you as a lead.';
-        } },
-      { kind: 'info', target: null, refreshOn: 'answered',
-        title: 'Every chat is logged for you',
-        text: function(){
-          return answeredCount > 0
-            ? 'This conversation is saved in your <b>admin dashboard</b>, along with every buyer chat to come. Want to see how it looks?'
-            : 'Ask one question first, so there is a real chat to show you in the dashboard.';
-        },
-        cta: function(){
-          if (answeredCount > 0) {
-            return { label: 'Show me my dashboard →', href: adminHref('&tour=2'), onClick: function(){ leadNotified = true; hideLeadToast(); } };
-          }
-          return { label: 'Ask one for me', onClick: function(){ askQuestion('Any HVAC issues?'); } };
-        },
-        closeLabel: 'Not now' }
-    ];
-    function startTour1(){
-      if (PETour.active()) return;
-      hobTip.hidden = true; hobBtn.classList.remove('is-nudge');
-      if (!toast.hidden) hideLeadToast();
-      closeSheet();
-      PETour.start(TOUR1, { onEnd: function(reason){
-        markTourSeen();
-        // the quiet-period notification stays as the fallback once the tour is over
-        armIdle();
-      } });
-    }
-    hobBtn.addEventListener('click', startTour1);
-    hobTip.addEventListener('click', startTour1);
-    if (!tourSeen()) {
-      setTimeout(function(){
-        if (PETour.active()) return;
-        hobBtn.classList.add('is-nudge'); hobTip.hidden = false;
-        setTimeout(function(){ hobBtn.classList.remove('is-nudge'); hobTip.hidden = true; }, 20000);
-      }, 1500);
-    }
   </script>
 </body>
 </html>
