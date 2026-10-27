@@ -405,7 +405,15 @@
     .tour-bubble.is-docked .tour-arrow { display:none; }
     .tour-bubble.is-docked { left:12px; right:12px; width:auto; }
     @media (max-width:1100px){ .tour-bubble { padding:14px 14px 12px; } }
-    @media (prefers-reduced-motion:reduce){ .tour-spot.is-anim, .tour-bubble { transition:none; transform:none; } }
+    .tour-btn:disabled { opacity:.65; cursor:default; }
+    .tour-cursor { position:fixed; z-index:97; left:0; top:0; width:26px; height:26px; pointer-events:none; opacity:0; transition:transform .7s cubic-bezier(.22,1,.36,1), opacity .2s ease; filter:drop-shadow(0 3px 5px rgba(0,20,60,.45)); }
+    .tour-cursor.is-on { opacity:1; }
+    .tour-cursor.is-still { transition:opacity .2s ease; }
+    .tour-cursor svg { display:block; }
+    .tour-cursor::after { content:''; position:absolute; left:-10px; top:-10px; width:20px; height:20px; border-radius:50%; background:rgba(24,99,220,.4); transform:scale(0); opacity:0; }
+    .tour-cursor.is-tap::after { animation:tour-tap .5s ease-out; }
+    @keyframes tour-tap { 0% { transform:scale(.3); opacity:.9; } 100% { transform:scale(2.8); opacity:0; } }
+    @media (prefers-reduced-motion:reduce){ .tour-spot.is-anim, .tour-bubble, .tour-cursor { transition:none; transform:none; } .tour-cursor::after { animation:none !important; } }
   </style>
 </head>
 <body>
@@ -757,6 +765,65 @@
       var spot, block, bubble, elCount, elTitle, elText, elDots, btnNext, btnSkip, btnLink, arrow;
       var st = null;           // { steps, i, opts }
       var raf = 0, advanceTimer = 0;
+      var busy = false, cursor = null, cursorPos = null, waiters = {};
+
+      // ----- Hob doing the clicking for the agent (step.run) -----
+      function sleep(ms){ return new Promise(function(res){ setTimeout(res, reduce ? Math.min(ms, 60) : ms); }); }
+      function when(name, timeout){
+        return new Promise(function(res){
+          var done = false;
+          function fin(){ if (!done) { done = true; res(); } }
+          (waiters[name] = waiters[name] || []).push(fin);
+          setTimeout(fin, timeout || 5000);
+        });
+      }
+      function cursorEl(){
+        if (cursor) return cursor;
+        cursor = document.createElement('div'); cursor.className = 'tour-cursor';
+        cursor.innerHTML = '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M3 2l7.5 19 2.6-7.9L21 10.5z" fill="#fff" stroke="#001F5C" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+        document.body.appendChild(cursor);
+        return cursor;
+      }
+      function hideCursor(){ if (cursor) cursor.classList.remove('is-on'); cursorPos = null; }
+      function moveCursor(x, y, instant){
+        var c = cursorEl();
+        c.classList.toggle('is-still', !!instant);
+        c.style.transform = 'translate(' + Math.round(x) + 'px,' + Math.round(y) + 'px)';
+        c.classList.add('is-on');
+        cursorPos = { x: x, y: y };
+      }
+      function tap(el){
+        if (!el || !st) return sleep(0);
+        try { el.scrollIntoView({ block: 'nearest' }); } catch (e) {}
+        return sleep(150).then(function(){
+          if (!st) return;
+          var r = el.getBoundingClientRect();
+          var x = r.left + r.width / 2, y = r.top + r.height / 2;
+          if (!cursorPos) { moveCursor(Math.min(window.innerWidth - 30, x + 150), Math.min(window.innerHeight - 30, y + 110), true); void cursorEl().offsetWidth; }
+          moveCursor(x, y, false);
+          return sleep(780);
+        }).then(function(){
+          if (!st) return;
+          cursorEl().classList.add('is-tap');
+          return sleep(260);
+        }).then(function(){
+          if (!st) return;
+          el.click();
+          return sleep(320);
+        }).then(function(){ if (cursor) cursor.classList.remove('is-tap'); });
+      }
+      function runStep(s){
+        busy = true; btnNext.disabled = true; btnNext.textContent = 'Watching...';
+        var token = st;
+        var helpers = { tap: tap, sleep: sleep, when: when, say: function(t){ elText.innerHTML = t; schedule(); } };
+        var p;
+        try { p = s.run(helpers); } catch (e) { p = null; }
+        Promise.resolve(p).catch(function(){}).then(function(){
+          busy = false; hideCursor();
+          if (st !== token) return;
+          next();
+        });
+      }
 
       function make(tag, cls){ var n = document.createElement(tag); if (cls) n.className = cls; return n; }
       function build(){
@@ -782,7 +849,9 @@
         btnNext = make('button', 'tour-btn'); btnNext.type = 'button';
         btnNext.addEventListener('click', function(){
           var s = st && st.steps[st.i]; var c = s && s.cta && s.cta();
+          if (busy) return;
           if (c && c.onClick) { c.onClick(); return; }
+          if (s && s.run) { runStep(s); return; }
           next();
         });
         btnLink = make('a', 'tour-btn'); btnLink.target = '_blank'; btnLink.rel = 'noopener'; btnLink.hidden = true;
@@ -907,7 +976,7 @@
         var last = st.i === total - 1;
         var c = s.cta ? s.cta() : null;
         btnLink.hidden = true; btnNext.hidden = false;
-        btnNext.className = 'tour-btn'; btnNext.disabled = false;
+        btnNext.className = 'tour-btn'; btnNext.disabled = busy;
         if (c && c.href) {
           btnNext.hidden = true; btnLink.hidden = false;
           btnLink.textContent = c.label; btnLink.href = c.href;
@@ -921,6 +990,7 @@
           btnNext.textContent = s.nextLabel || (last ? 'Done' : 'Next');
         }
         btnSkip.textContent = last ? (s.closeLabel || 'Close') : 'Skip tour';
+        btnSkip.hidden = !!st.opts.noSkip && !(last && s.closeLabel);
         block.hidden = s.kind === 'action';
       }
 
@@ -969,7 +1039,7 @@
       }
       function end(reason){
         if (!st) return;
-        var o = st.opts; st = null;
+        var o = st.opts; st = null; busy = false; hideCursor();
         clearTimeout(advanceTimer);
         spot.classList.remove('is-on', 'is-anim'); bubble.classList.remove('is-on');
         spot.hidden = true; block.hidden = true; bubble.hidden = true;
@@ -977,6 +1047,7 @@
       }
       // Host pages report what happened ('answered'); an action step waiting for it moves on
       function emit(name){
+        (waiters[name] || []).splice(0).forEach(function(f){ f(); });
         if (!st) return;
         var s = st.steps[st.i];
         if (s.on === name) {
@@ -1450,9 +1521,14 @@
       return null;
     }
     var TOUR1 = [
-      { kind: 'action', on: 'answered', target: ['#m-suggest-list', '#chip-row-2'],
+      { kind: 'info', target: ['#m-suggest-list', '#chip-row-2'],
         title: 'Your customers see this page',
-        text: 'Ask a question like a buyer would.' },
+        text: 'Watch Hob ask a question like a buyer would.',
+        run: function(h){
+          var q = document.querySelector('#m-suggest-list .m-suggest-row[data-q="Tell me more about the roof"]');
+          var chip = (q && q.getBoundingClientRect().width > 0) ? q : document.querySelector('#chip-row-2 .follow-chip[data-q="Tell me more about the roof"]');
+          return h.tap(chip).then(function(){ return h.when('answered', 4000); }).then(function(){ return h.sleep(600); });
+        } },
       { kind: 'info', skipIf: function(){ var m = lastBotMessage(); return !m || !m.querySelector('.source-chip'); },
         target: function(){
           var m = lastBotMessage();
@@ -1460,18 +1536,24 @@
         },
         title: 'Every answer has a source',
         text: 'You always see where it came from.' },
-      { kind: 'action', on: 'confirmed', refreshOn: 'answered',
+      { kind: 'info',
         target: function(){ return openShowingCard() || firstVisible(['.pe-nav [data-lead="tour"]', '#chip-row-2 .follow-chip[data-q="Can I schedule a tour?"]']); },
         title: 'Now book a showing',
-        text: function(mobile){
-          if (openShowingCard()) return 'Pick a time that works.';
-          return mobile ? 'Tap <b>Can I schedule a tour?</b>' : 'Tap <b>Schedule a Tour</b>.';
+        text: 'Hob taps Schedule a Tour, then picks a time.',
+        run: function(h){
+          var ctrl = firstVisible(['.pe-nav [data-lead="tour"]', '#chip-row-2 .follow-chip[data-q="Can I schedule a tour?"]']);
+          return h.tap(ctrl)
+            .then(function(){ return h.when('answered', 4000); })
+            .then(function(){ h.say('Now it picks a time that works.'); return h.sleep(900); })
+            .then(function(){ var card = openShowingCard(); return h.tap(card && card.querySelector('.slot-btn:not([disabled])')); })
+            .then(function(){ return h.when('confirmed', 4000); })
+            .then(function(){ return h.sleep(600); });
         } },
       { kind: 'info', target: null, refreshOn: 'answered',
         title: function(){ return answeredCount > 0 ? 'Your first lead' : 'One more thing'; },
         text: function(){ return answeredCount > 0 ? 'This buyer is now waiting in your dashboard.' : 'Ask a question first, so there is a lead to show.'; },
         cta: function(){
-          if (answeredCount > 0) return { label: 'Open my dashboard \u2192', href: adminHref('&tour=2'), sameTab: true, onClick: function(){ leadNotified = true; hideLeadToast(); } };
+          if (answeredCount > 0) return { label: 'Open my dashboard →', href: adminHref('&tour=2'), sameTab: true, onClick: function(){ leadNotified = true; hideLeadToast(); } };
           return { label: 'Ask one for me', onClick: function(){ askQuestion(LEAD_ACTIONS.tour); } };
         },
         closeLabel: 'Not now' }
@@ -1481,7 +1563,7 @@
       hobTip.hidden = true; hobBtn.classList.remove('is-nudge');
       if (!toast.hidden) hideLeadToast();
       closeSheet();
-      PETour.start(TOUR1, { onEnd: function(reason){
+      PETour.start(TOUR1, { noSkip: true, onEnd: function(reason){
         markTourSeen();
         // the quiet-period notification stays as the fallback once the tour is over
         armIdle();
