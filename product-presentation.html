@@ -146,7 +146,26 @@
     @keyframes blink { 50% { opacity:.3 } }
     @keyframes typing { 0%,60%,100% { transform:none; opacity:.5 } 30% { transform:translateY(-3px); opacity:1 } }
 
-    /* ===== 2 · Contents ===== */
+    /* ===== 2 · The film ===== */
+    .film-in { flex-direction:row; gap:calc(var(--u)*3); align-items:center; }
+    .film-side { width:calc(var(--u)*22); flex-shrink:0; display:flex; flex-direction:column; }
+    .film-side .h { font-size:calc(var(--u)*2.8); }
+    .film-side .sub { font-size:calc(var(--u)*1.15); }
+    .film-pick { display:flex; flex-direction:column; gap:calc(var(--u)*.7); margin-top:calc(var(--u)*2); }
+    .film-pick button { display:flex; align-items:center; gap:calc(var(--u)*.9); width:100%; text-align:left; padding:calc(var(--u)*.9) calc(var(--u)*1.1); border-radius:calc(var(--u)*1.1); border:1.5px solid rgba(255,255,255,.2); background:rgba(255,255,255,.06); color:#fff; font-size:max(13px, calc(var(--u)*1.1)); font-weight:700; transition:background .2s, border-color .2s; }
+    .film-pick button:hover { background:rgba(255,255,255,.12); }
+    .film-pick button i { width:calc(var(--u)*2.4); height:calc(var(--u)*2.4); min-width:28px; min-height:28px; border-radius:50%; background:rgba(255,255,255,.14); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .film-pick button i svg { width:40%; height:40%; margin-left:8%; }
+    .film-pick button small { display:block; font-size:max(11px, calc(var(--u)*.88)); font-weight:600; color:rgba(255,255,255,.65); }
+    .film-pick button[aria-pressed="true"] { background:#fff; border-color:#fff; color:var(--accent); }
+    .film-pick button[aria-pressed="true"] i { background:var(--blue); color:#fff; }
+    .film-pick button[aria-pressed="true"] small { color:var(--muted); }
+    .film-note { margin-top:auto; padding-top:calc(var(--u)*1.4); font-size:max(11px, calc(var(--u)*.88)); color:rgba(255,255,255,.55); }
+    .film-wrap { flex:1; min-width:0; height:100%; display:flex; align-items:center; justify-content:center; }
+    .film { position:relative; width:100%; max-height:100%; aspect-ratio:16 / 9; border-radius:calc(var(--u)*1.2); overflow:hidden; background:#000; box-shadow:0 30px 70px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.12); }
+    .film iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+
+    /* ===== 3 · Contents ===== */
     .toc { flex:1; display:grid; grid-template-columns:repeat(4, 1fr); grid-auto-rows:1fr; gap:calc(var(--u)*1.2); margin-top:calc(var(--u)*2.6); }
     .toc-item { display:flex; flex-direction:column; text-align:left; gap:calc(var(--u)*.5); padding:calc(var(--u)*1.4); border-radius:calc(var(--u)*1.3); border:1.5px solid var(--border); background:#fff; color:var(--fg); transition:border-color .2s, transform .2s, box-shadow .2s; }
     .toc-item:hover { border-color:var(--accent); transform:translateY(-3px); box-shadow:var(--shadow-card); }
@@ -499,6 +518,12 @@
       .feed { min-height:150px; }
       .step b { font-size:15px; }
       .step p { font-size:13.5px; }
+      /* film */
+      .film-in { flex-direction:column; align-items:stretch; padding:30px 14px 36px; gap:18px; }
+      .film-side { width:auto; }
+      .film-side .h { font-size:26px; }
+      .film-wrap { height:auto; flex:none; }
+      .film-note { padding-top:12px; }
       /* demo */
       .demo-in { flex-direction:column; padding:30px 14px 36px; gap:18px; }
       .demo-side { width:auto; }
@@ -557,7 +582,7 @@
             <p class="hero-sub anim d2">Capture every lead. Keep it warm. Close more deals.</p>
             <p class="hero-p anim d2">Every listing gets an AI expert, every buyer gets an AI concierge, and every agent gets an AI chief of staff.</p>
             <div class="hero-ctas anim d3">
-              <button type="button" class="btn btn-blue" data-go="contents">Start the presentation
+              <button type="button" class="btn btn-blue" data-go="film">Start the presentation
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
               <button type="button" class="btn btn-glass" data-go="demo-buyer">Jump to the live demo</button>
             </div>
@@ -588,8 +613,30 @@
       </div>
     </section>
 
-    <!-- 2 · Contents -->
-    <section class="slide" id="contents" data-title="Contents" aria-label="Slide 2, Contents">
+    <!-- 2 · The film -->
+    <section class="slide" id="film" data-title="The film" aria-label="Slide 2, The film">
+      <div class="card is-dark">
+        <div class="in film-in">
+          <div class="film-side">
+            <span class="kicker anim">The film</span>
+            <h2 class="h anim d1">Infina AI in the U.S.</h2>
+            <p class="sub anim d1">A short film on the product and the market, before we go into the details.</p>
+            <div class="film-pick anim d2" role="group" aria-label="Choose a film">
+              <button type="button" data-film="1RWdazQ-N-xteeA2UG80zXDEF5okjQ6EF" aria-pressed="true"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z"/></svg></i><span>Infina AI USA 2.0<small>The latest cut</small></span></button>
+              <button type="button" data-film="11WEWmHeX5PfnHsdflFSULBX0SWNVc3IA" aria-pressed="false"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z"/></svg></i><span>Infina AI USA Real Estate<small>Real estate focus</small></span></button>
+            </div>
+            <p class="film-note anim d3">Press play in the video. Arrow keys move slides when the video is not focused.</p>
+          </div>
+          <div class="film-wrap anim d2">
+            <div class="film"><iframe id="film-frame" title="Infina AI film" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+          </div>
+        </div>
+        <span class="slide-no">02</span>
+      </div>
+    </section>
+
+    <!-- 3 · Contents -->
+    <section class="slide" id="contents" data-title="Contents" aria-label="Slide 3, Contents">
       <div class="card">
         <div class="in">
           <span class="kicker anim">Contents</span>
@@ -605,12 +652,12 @@
             <button type="button" class="toc-item is-demo" data-go="demo-agent"><em>Interactive</em><i>08</i><b>Live demo: agent</b><span>Walk through the agent dashboard</span></button>
           </div>
         </div>
-        <span class="slide-no">02</span>
+        <span class="slide-no">03</span>
       </div>
     </section>
 
     <!-- 3 · Thesis -->
-    <section class="slide" id="thesis" data-title="The thesis" aria-label="Slide 3, The thesis">
+    <section class="slide" id="thesis" data-title="The thesis" aria-label="Slide 4, The thesis">
       <div class="card">
         <div class="in">
           <span class="kicker anim"><i>01</i>The thesis</span>
@@ -636,12 +683,12 @@
             </article>
           </div>
         </div>
-        <span class="slide-no">03</span>
+        <span class="slide-no">04</span>
       </div>
     </section>
 
     <!-- 4 · Ecosystem -->
-    <section class="slide" id="ecosystem" data-title="The ecosystem" aria-label="Slide 4, The ecosystem">
+    <section class="slide" id="ecosystem" data-title="The ecosystem" aria-label="Slide 5, The ecosystem">
       <div class="card">
         <div class="in">
           <div class="eco-top">
@@ -705,12 +752,12 @@
           </div>
           <p class="eco-cap anim d3" id="eco-cap" aria-live="polite"></p>
         </div>
-        <span class="slide-no">04</span>
+        <span class="slide-no">05</span>
       </div>
     </section>
 
     <!-- 5 · Property Expert -->
-    <section class="slide" id="property-expert" data-title="Property Expert" aria-label="Slide 5, Property Expert">
+    <section class="slide" id="property-expert" data-title="Property Expert" aria-label="Slide 6, Property Expert">
       <div class="card">
         <div class="in">
           <div class="prod">
@@ -744,12 +791,12 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">05</span>
+        <span class="slide-no">06</span>
       </div>
     </section>
 
     <!-- 6 · Home Concierge -->
-    <section class="slide" id="home-concierge" data-title="Home Concierge" aria-label="Slide 6, Home Concierge">
+    <section class="slide" id="home-concierge" data-title="Home Concierge" aria-label="Slide 7, Home Concierge">
       <div class="card">
         <div class="in">
           <div class="prod">
@@ -781,12 +828,12 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">06</span>
+        <span class="slide-no">07</span>
       </div>
     </section>
 
     <!-- 7 · Realisa -->
-    <section class="slide" id="realisa" data-title="Realisa" aria-label="Slide 7, Realisa">
+    <section class="slide" id="realisa" data-title="Realisa" aria-label="Slide 8, Realisa">
       <div class="card">
         <div class="in">
           <div class="prod">
@@ -822,12 +869,12 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">07</span>
+        <span class="slide-no">08</span>
       </div>
     </section>
 
     <!-- 8 · How it works -->
-    <section class="slide" id="how" data-title="How it works" aria-label="Slide 8, How it works">
+    <section class="slide" id="how" data-title="How it works" aria-label="Slide 9, How it works">
       <div class="card">
         <div class="in">
           <span class="kicker anim"><i>06</i>How it works</span>
@@ -854,12 +901,12 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">08</span>
+        <span class="slide-no">09</span>
       </div>
     </section>
 
     <!-- 9 · Live demo: buyer -->
-    <section class="slide" id="demo-buyer" data-title="Live demo: buyer" data-demo="1" aria-label="Slide 9, Live demo as a buyer">
+    <section class="slide" id="demo-buyer" data-title="Live demo: buyer" data-demo="1" aria-label="Slide 10, Live demo as a buyer">
       <div class="card is-dark">
         <div class="in demo-in">
           <div class="demo-side">
@@ -898,12 +945,12 @@
             <button type="button" class="next-hint" hidden data-go="demo-agent">This is the agent side. Continue on the next slide →</button>
           </div>
         </div>
-        <span class="slide-no">09</span>
+        <span class="slide-no">10</span>
       </div>
     </section>
 
     <!-- 10 · Live demo: agent -->
-    <section class="slide" id="demo-agent" data-title="Live demo: agent" data-demo="1" aria-label="Slide 10, Live demo as an agent">
+    <section class="slide" id="demo-agent" data-title="Live demo: agent" data-demo="1" aria-label="Slide 11, Live demo as an agent">
       <div class="card is-dark">
         <div class="in demo-in">
           <div class="demo-side">
@@ -941,12 +988,12 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">10</span>
+        <span class="slide-no">11</span>
       </div>
     </section>
 
     <!-- 11 · Vision -->
-    <section class="slide" id="vision" data-title="Vision" aria-label="Slide 11, Vision">
+    <section class="slide" id="vision" data-title="Vision" aria-label="Slide 12, Vision">
       <div class="card">
         <div class="in">
           <div class="vision">
@@ -964,12 +1011,12 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">11</span>
+        <span class="slide-no">12</span>
       </div>
     </section>
 
     <!-- 12 · Thank you -->
-    <section class="slide" id="thanks" data-title="Thank you" aria-label="Slide 12, Thank you">
+    <section class="slide" id="thanks" data-title="Thank you" aria-label="Slide 13, Thank you">
       <div class="card is-dark">
         <div class="in end-in">
           <div class="end-grid">
@@ -990,7 +1037,7 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">12</span>
+        <span class="slide-no">13</span>
       </div>
     </section>
   </main>
@@ -999,7 +1046,7 @@
   <nav class="deck-bar" aria-label="Slide navigation">
     <i class="bar-progress" id="bar-progress"></i>
     <button type="button" class="nav-btn" id="prev" aria-label="Previous slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-    <span class="bar-count" id="bar-count"><b>1</b> / 12</span>
+    <span class="bar-count" id="bar-count"><b>1</b> / 13</span>
     <button type="button" class="nav-btn" id="next" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     <div class="pages" id="pages"></div>
     <span class="bar-hint"><kbd>←</kbd><kbd>→</kbd> to move</span>
@@ -1132,6 +1179,7 @@
     // ===== Things that play when their slide comes into view =====
     function onEnter(id){
       if (id === 'hero') heroPlay();
+      if (id === 'film') loadFilm();
       if (id === 'how') { stepCur = 0; renderStep(0, true); }
       else stopSteps();
     }
@@ -1155,6 +1203,19 @@
       heroTimers.push(setTimeout(function(){ heroToast.classList.add('is-on'); }, at + 500));
       heroTimers.push(setTimeout(function(){ if (slides[cur] && slides[cur].id === 'hero') heroPlay(); }, at + 6500));
     }
+
+    // The film: load the player when its slide is first shown, swap films on demand
+    var filmFrame = document.getElementById('film-frame');
+    var filmBtns = document.querySelectorAll('[data-film]');
+    var filmId = filmBtns[0].getAttribute('data-film');
+    function loadFilm(){ var src = 'https://drive.google.com/file/d/' + filmId + '/preview'; if (filmFrame.getAttribute('src') !== src) filmFrame.setAttribute('src', src); }
+    filmBtns.forEach(function(b){
+      b.addEventListener('click', function(){
+        filmId = b.getAttribute('data-film');
+        filmBtns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        loadFilm();
+      });
+    });
 
     // Ecosystem: highlight one side of the deal
     var LENS = {
