@@ -464,13 +464,10 @@
       body:not(.view-slides) .in > :first-child:not(.hero-bg) { margin-top:auto; }
       body:not(.view-slides) .in > :last-child { margin-bottom:auto; }
       body:not(.view-slides) .in > *, body:not(.view-slides) .in .flow, body:not(.view-slides) .in .toc, body:not(.view-slides) .in .three, body:not(.view-slides) .in .prod, body:not(.view-slides) .in .how, body:not(.view-slides) .in .vision { flex:none; min-height:auto; }
-      /* more below: a soft fade and a hint at the foot of the card */
+      /* more below: a soft fade at the foot of the card */
       body:not(.view-slides) .card::after { content:''; position:absolute; left:0; right:0; bottom:0; height:64px; border-radius:0 0 20px 20px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff 85%); pointer-events:none; opacity:0; transition:opacity .25s; z-index:2; }
       body:not(.view-slides) .card.is-dark::after { background:linear-gradient(180deg, rgba(0,31,92,0), var(--accent) 85%); }
       body:not(.view-slides) .card.has-more::after { opacity:1; }
-      body:not(.view-slides) .more-hint { position:absolute; left:50%; bottom:10px; transform:translateX(-50%); z-index:3; display:none; align-items:center; gap:5px; padding:5px 11px; border-radius:999px; background:var(--accent); color:#fff; font-size:11.5px; font-weight:700; pointer-events:none; }
-      body:not(.view-slides) .card.is-dark .more-hint { background:#fff; color:var(--accent); }
-      body:not(.view-slides) .card.has-more .more-hint { display:inline-flex; }
       body:not(.view-slides) .card.has-more .slide-no { opacity:0; }
       body:not(.view-slides) .slide-no { right:16px; bottom:12px; font-size:11px; }
       body:not(.view-slides) .h { font-size:30px; }
@@ -572,7 +569,6 @@
       body.view-slides:not(.presenting) .slide.is-active .card { box-shadow:0 0 0 10px var(--blue), 0 30px 60px -30px rgba(0,20,60,.5); }
       body.view-slides .slide::after { content:attr(data-n) "   " attr(data-title); position:absolute; left:14px; right:14px; top:calc(720px * var(--k, .28) + 18px); font-size:12px; font-weight:700; color:var(--muted); white-space:pre; overflow:hidden; text-overflow:ellipsis; }
       body.view-slides .anim { opacity:1; transform:none; transition:none; }
-      body.view-slides .more-hint { display:none !important; }
       /* presenting: one slide at a time on black, swipe sideways, turn the phone for a bigger slide */
       body.presenting .deck-head, body.presenting .deck-bar { display:none; }
       body.presenting .deck { top:0; bottom:0; flex-direction:row; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; padding:0; background:#0b0f1a; }
@@ -1226,12 +1222,9 @@
       resizeT = setTimeout(function(){ layoutView(); if (cur > -1) goTo(cur, true); fitFrames(); }, 120);
     });
 
-    // Phones: show a hint while a slide card has more content below
+    // Phones: fade the foot of a slide card while it has more content below
     slides.forEach(function(sl){
       var card = sl.querySelector('.card'), inn = sl.querySelector('.in');
-      var hint = document.createElement('span'); hint.className = 'more-hint'; hint.setAttribute('aria-hidden', 'true');
-      hint.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>Scroll';
-      card.appendChild(hint);
       function check(){ card.classList.toggle('has-more', phone.matches && !slidesView() && inn.scrollHeight - inn.clientHeight - inn.scrollTop > 24); }
       inn.addEventListener('scroll', check, { passive: true });
       window.addEventListener('resize', check);
