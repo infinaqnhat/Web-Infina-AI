@@ -594,6 +594,43 @@
       body.presenting .present-ui button { width:36px; height:36px; }
       .present-ui span { padding:5px 8px; font-size:11px; }
     }
+
+    /* ===== Print and PDF: one 16:9 page per slide, interactive slides become links and codes ===== */
+    .print-only, .print-note { display:none !important; }
+    .print-note a { color:#fff; font-weight:700; text-decoration:underline; text-underline-offset:3px; }
+    .live-in { flex-direction:row; gap:calc(var(--u)*3); align-items:center; }
+    .live-side { width:calc(var(--u)*34); flex-shrink:0; display:flex; flex-direction:column; }
+    .qr-row { display:flex; gap:calc(var(--u)*1.2); margin-top:calc(var(--u)*2.2); }
+    .qr { flex:1; display:flex; flex-direction:column; gap:calc(var(--u)*.3); padding:calc(var(--u)*1); border-radius:calc(var(--u)*1.2); background:#fff; color:var(--accent); text-decoration:none; }
+    .qr svg { width:100%; height:auto; display:block; margin-bottom:calc(var(--u)*.5); }
+    .qr b { font-size:calc(var(--u)*1.1); }
+    .qr span { font-size:calc(var(--u)*.85); color:var(--muted); line-height:1.3; }
+    .live-url { margin-top:calc(var(--u)*1.6); font-size:calc(var(--u)*.95); font-weight:700; color:var(--sky); text-decoration:underline; text-underline-offset:3px; }
+    .shots { position:relative; flex:1; height:100%; }
+    .shot { position:absolute; margin:0; border-radius:calc(var(--u)*1); overflow:hidden; background:#fff; box-shadow:0 30px 60px -24px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.15); }
+    .shot img { width:100%; display:block; }
+    .shot figcaption { padding:calc(var(--u)*.55) calc(var(--u)*.9); font-size:calc(var(--u)*.88); font-weight:700; color:var(--accent); background:#fff; border-top:1px solid var(--border); }
+    .shot.s1 { left:0; top:4%; width:78%; }
+    .shot.s2 { right:0; bottom:4%; width:66%; }
+    @media print {
+      @page { size:1280px 720px; margin:0; }
+      html, body { height:auto; overflow:visible; background:#fff; }
+      .deck-head, .deck-bar, .sheet, .present-ui, .present-tip, .no-print { display:none !important; }
+      .print-only { display:block !important; }
+      .deck { position:static; display:block; overflow:visible; counter-reset:pg; }
+      .slide { display:block; width:1280px; height:720px; padding:0; break-after:page; page-break-after:always; counter-increment:pg; }
+      .slide:last-child { break-after:auto; page-break-after:auto; }
+      .card { position:relative !important; left:auto !important; top:auto !important; width:1280px !important; height:720px; aspect-ratio:auto; border-radius:0; box-shadow:none !important; transform:none !important; }
+      .anim, .lc, .toast { opacity:1 !important; transform:none !important; transition:none !important; }
+      .typing, .arrow i, .step .bar, .more-hint { display:none !important; }
+      /* buttons do nothing on paper: the See it live page carries the links instead */
+      .hero-ctas, .prod-cta, .lens, .next-hint { display:none !important; }
+      .print-note { display:block !important; }
+      *, *::before, *::after { animation:none !important; }
+      .slide-no { font-size:0 !important; }
+      .slide-no::after { content:counter(pg, decimal-leading-zero); font-size:calc(var(--u)*1); }
+      .card::after { display:none !important; }
+    }
     @media (prefers-reduced-motion:reduce){
       .deck { scroll-behavior:auto; }
       .anim { opacity:1; transform:none; transition:none; }
@@ -613,6 +650,9 @@
     <button type="button" class="head-btn" id="open-contents" aria-haspopup="dialog">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Contents
     </button>
+    <a class="head-btn hide-sm" href="uploads/AI-Property-Product-Presentation.pdf" download>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>PDF
+    </a>
     <button type="button" class="head-btn hide-sm" id="fullscreen">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 00-2 2v3M21 8V5a2 2 0 00-2-2h-3M3 16v3a2 2 0 002 2h3M16 21h3a2 2 0 002-2v-3"/></svg>Present
     </button>
@@ -665,7 +705,7 @@
     </section>
 
     <!-- 2 · The film -->
-    <section class="slide" id="film" data-title="The film" aria-label="Slide 2, The film">
+    <section class="slide no-print" id="film" data-title="The film" aria-label="Slide 2, The film">
       <div class="card is-dark">
         <div class="in film-in">
           <div class="film-side">
@@ -686,7 +726,7 @@
     </section>
 
     <!-- 3 · Contents -->
-    <section class="slide" id="contents" data-title="Contents" aria-label="Slide 3, Contents">
+    <section class="slide no-print" id="contents" data-title="Contents" aria-label="Slide 3, Contents">
       <div class="card">
         <div class="in">
           <span class="kicker anim">Contents</span>
@@ -956,7 +996,7 @@
     </section>
 
     <!-- 9 · Live demo: buyer -->
-    <section class="slide" id="demo-buyer" data-title="Live demo: buyer" data-demo="1" aria-label="Slide 10, Live demo as a buyer">
+    <section class="slide no-print" id="demo-buyer" data-title="Live demo: buyer" data-demo="1" aria-label="Slide 10, Live demo as a buyer">
       <div class="card is-dark">
         <div class="in demo-in">
           <div class="demo-side">
@@ -1000,7 +1040,7 @@
     </section>
 
     <!-- 10 · Live demo: agent -->
-    <section class="slide" id="demo-agent" data-title="Live demo: agent" data-demo="1" aria-label="Slide 11, Live demo as an agent">
+    <section class="slide no-print" id="demo-agent" data-title="Live demo: agent" data-demo="1" aria-label="Slide 11, Live demo as an agent">
       <div class="card is-dark">
         <div class="in demo-in">
           <div class="demo-side">
@@ -1042,7 +1082,31 @@
       </div>
     </section>
 
-    <!-- 11 · Vision -->
+    <!-- Print only: the live demo and the film, as links and codes for the PDF -->
+    <section class="slide print-only" id="see-live" data-title="See it live" aria-hidden="true">
+      <div class="card is-dark">
+        <div class="in live-in">
+          <div class="live-side">
+            <span class="kicker"><i>07</i>Try it yourself</span>
+            <h2 class="h">See it live.</h2>
+            <p class="sub">On the web this deck is interactive: ask the AI as a buyer, then walk through the agent dashboard. Scan a code or click a link.</p>
+            <div class="qr-row">
+              <a class="qr" href="https://infinaqnhat.github.io/Web-Infina-AI/property-expert-demo-tour.html#tour=1"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" class="qr-svg"><path fill="#fff" d="M0 0h41v41h-41z"/><path stroke="#001f5c" d="M2 2.5h7m2 0h1m2 0h4m2 0h1m2 0h1m8 0h7m-37 1h1m5 0h1m1 0h1m2 0h6m5 0h1m2 0h2m3 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h3m7 0h4m6 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m5 0h2m1 0h1m1 0h1m2 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m3 0h1m3 0h1m2 0h3m1 0h1m1 0h1m4 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m2 0h2m2 0h1m1 0h3m4 0h1m1 0h1m1 0h1m1 0h1m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m2 0h3m1 0h1m3 0h1m2 0h1m1 0h1m-25 1h1m5 0h1m1 0h2m2 0h2m2 0h2m2 0h1m1 0h4m1 0h4m2 0h3m-34 1h1m1 0h1m3 0h1m1 0h1m1 0h1m3 0h2m1 0h1m3 0h1m1 0h3m1 0h1m1 0h2m1 0h2m-34 1h2m2 0h1m3 0h2m1 0h1m1 0h2m1 0h1m1 0h1m3 0h1m2 0h2m4 0h1m1 0h2m-37 1h1m3 0h1m2 0h2m1 0h1m1 0h1m1 0h1m4 0h1m8 0h4m1 0h1m2 0h1m-36 1h1m2 0h1m1 0h4m4 0h3m2 0h2m1 0h3m2 0h1m2 0h2m4 0h1m-37 1h1m2 0h1m3 0h6m1 0h1m1 0h1m1 0h3m2 0h1m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m-35 1h4m1 0h2m6 0h3m3 0h1m3 0h1m1 0h3m2 0h3m1 0h2m-36 1h1m5 0h1m3 0h3m8 0h1m5 0h4m1 0h3m-35 1h1m1 0h2m1 0h1m1 0h1m1 0h2m2 0h1m2 0h1m7 0h3m2 0h3m1 0h2m-36 1h3m4 0h1m2 0h3m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m3 0h2m2 0h1m3 0h1m-36 1h2m1 0h1m1 0h2m2 0h6m1 0h1m2 0h2m2 0h1m1 0h4m2 0h1m1 0h1m2 0h1m-34 1h1m4 0h1m3 0h2m1 0h2m1 0h1m1 0h1m5 0h1m6 0h1m2 0h1m-36 1h2m1 0h3m1 0h1m4 0h1m3 0h1m1 0h1m2 0h2m1 0h3m1 0h2m1 0h3m-35 1h2m1 0h1m4 0h2m1 0h3m1 0h2m1 0h2m1 0h3m3 0h1m4 0h1m1 0h1m-33 1h9m2 0h6m1 0h1m1 0h1m3 0h2m1 0h1m1 0h3m2 0h1m-36 1h1m2 0h2m3 0h1m8 0h3m3 0h1m2 0h7m1 0h2m-37 1h1m2 0h2m1 0h2m1 0h1m2 0h2m1 0h2m1 0h3m3 0h1m5 0h1m4 0h1m-36 1h2m2 0h2m1 0h1m1 0h1m1 0h1m7 0h3m1 0h2m2 0h2m2 0h1m1 0h2m-35 1h1m4 0h3m3 0h1m1 0h1m1 0h1m1 0h1m2 0h2m4 0h2m1 0h3m2 0h3m-37 1h1m2 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m4 0h1m2 0h1m1 0h1m2 0h6m-37 1h1m2 0h1m2 0h5m3 0h2m1 0h1m1 0h2m1 0h4m2 0h5m1 0h1m1 0h1m-29 1h1m2 0h2m2 0h4m1 0h2m1 0h1m4 0h1m3 0h1m3 0h1m-37 1h7m3 0h1m1 0h2m1 0h3m1 0h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h1m3 0h1m-37 1h1m5 0h1m5 0h2m1 0h2m2 0h2m2 0h1m2 0h3m3 0h1m2 0h2m-37 1h1m1 0h3m1 0h1m3 0h1m3 0h1m2 0h3m2 0h1m1 0h9m1 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m4 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h6m3 0h3m-37 1h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h4m1 0h1m3 0h1m2 0h4m4 0h1m1 0h2m-37 1h1m5 0h1m4 0h1m2 0h1m5 0h1m1 0h1m4 0h4m1 0h2m2 0h1m-37 1h7m1 0h1m2 0h1m2 0h3m2 0h2m1 0h1m1 0h1m3 0h1m1 0h2m1 0h1m2 0h1"/></svg><b>Be the buyer</b><span>Property Expert demo</span></a>
+              <a class="qr" href="https://infinaqnhat.github.io/Web-Infina-AI/dashboard/chats/index.html#tour=0"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" class="qr-svg"><path fill="#fff" d="M0 0h41v41h-41z"/><path stroke="#001f5c" d="M2 2.5h7m1 0h1m1 0h1m1 0h1m3 0h2m2 0h1m1 0h2m3 0h2m1 0h7m-37 1h1m5 0h1m2 0h3m2 0h3m2 0h1m2 0h1m1 0h1m5 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m6 0h1m3 0h2m1 0h2m1 0h1m3 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h4m4 0h5m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m5 0h3m1 0h1m1 0h1m2 0h1m1 0h4m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h4m1 0h1m1 0h1m2 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h4m2 0h4m1 0h1m1 0h3m2 0h3m-29 1h1m3 0h1m1 0h6m1 0h2m1 0h1m1 0h2m1 0h4m1 0h1m1 0h6m2 0h1m-36 1h2m2 0h1m1 0h1m1 0h6m2 0h2m1 0h1m2 0h1m2 0h4m2 0h2m1 0h1m-36 1h1m2 0h1m1 0h2m3 0h3m2 0h1m1 0h1m4 0h2m3 0h1m1 0h3m1 0h2m-34 1h1m1 0h2m3 0h1m1 0h3m1 0h6m1 0h2m1 0h1m2 0h2m5 0h2m-36 1h1m3 0h3m1 0h3m1 0h1m1 0h1m2 0h1m1 0h3m1 0h2m3 0h4m2 0h3m-37 1h1m1 0h2m4 0h1m2 0h4m1 0h1m1 0h1m2 0h1m1 0h1m2 0h3m3 0h2m-34 1h2m1 0h1m2 0h1m2 0h4m1 0h2m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1m1 0h4m-33 1h1m5 0h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h2m1 0h7m1 0h1m1 0h1m-36 1h1m1 0h1m2 0h2m3 0h2m2 0h1m2 0h2m1 0h2m1 0h1m4 0h3m1 0h3m-36 1h1m4 0h1m1 0h1m3 0h4m1 0h3m2 0h1m1 0h6m3 0h1m2 0h1m-36 1h2m1 0h1m1 0h2m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m2 0h1m3 0h2m1 0h3m1 0h1m-34 1h1m1 0h2m2 0h1m3 0h1m2 0h1m2 0h1m2 0h4m2 0h7m1 0h2m-36 1h1m2 0h1m1 0h2m3 0h4m1 0h1m1 0h1m1 0h5m3 0h1m1 0h3m1 0h2m-34 1h2m2 0h1m1 0h5m1 0h1m1 0h1m1 0h2m2 0h1m1 0h1m3 0h2m2 0h2m-33 1h1m2 0h2m1 0h2m1 0h3m1 0h3m2 0h1m1 0h2m1 0h2m2 0h2m2 0h5m-36 1h1m1 0h1m4 0h2m5 0h3m2 0h5m2 0h1m2 0h1m1 0h2m1 0h1m-34 1h3m1 0h2m4 0h3m2 0h1m2 0h1m1 0h1m1 0h1m3 0h1m2 0h2m1 0h2m-35 1h2m1 0h2m2 0h1m2 0h5m3 0h1m2 0h1m1 0h1m1 0h4m3 0h1m-31 1h1m1 0h1m1 0h2m3 0h1m2 0h2m2 0h1m1 0h5m1 0h2m4 0h1m-31 1h4m2 0h2m1 0h3m1 0h3m1 0h3m1 0h2m3 0h3m3 0h1m-35 1h4m2 0h5m1 0h2m3 0h1m3 0h2m1 0h1m1 0h1m1 0h5m1 0h2m-28 1h2m1 0h2m2 0h2m1 0h2m3 0h1m2 0h1m1 0h1m3 0h1m3 0h1m-37 1h7m1 0h5m2 0h3m2 0h1m1 0h5m1 0h1m1 0h1m1 0h1m-33 1h1m5 0h1m3 0h3m1 0h1m2 0h5m2 0h1m3 0h1m3 0h3m-35 1h1m1 0h3m1 0h1m1 0h3m3 0h2m2 0h1m1 0h3m1 0h1m3 0h7m1 0h1m-37 1h1m1 0h3m1 0h1m3 0h2m2 0h1m1 0h2m3 0h3m2 0h2m1 0h3m2 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m3 0h2m4 0h2m5 0h1m1 0h3m1 0h2m2 0h2m-35 1h1m5 0h1m2 0h4m4 0h2m1 0h2m1 0h2m2 0h1m2 0h1m1 0h1m1 0h2m-36 1h7m1 0h1m1 0h2m2 0h2m1 0h1m1 0h3m2 0h1m2 0h1m1 0h1m1 0h1m2 0h3"/></svg><b>Be the agent</b><span>Dashboard tour</span></a>
+              <a class="qr" href="https://drive.google.com/file/d/1rqyiJv--T6Ai9ITCeb0E4X4emLAff89p/view"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" class="qr-svg"><path fill="#fff" d="M0 0h41v41h-41z"/><path stroke="#001f5c" d="M2 2.5h7m6 0h4m1 0h1m2 0h3m1 0h2m3 0h7m-37 1h1m5 0h1m2 0h3m3 0h1m3 0h1m3 0h1m1 0h3m2 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m4 0h4m1 0h5m5 0h1m3 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m4 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h2m2 0h1m3 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m2 0h3m1 0h2m1 0h1m4 0h1m1 0h2m1 0h3m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m1 0h1m2 0h4m2 0h1m1 0h1m2 0h2m1 0h2m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-27 1h3m2 0h1m1 0h2m2 0h1m1 0h2m-25 1h1m2 0h1m1 0h2m1 0h5m2 0h4m1 0h2m4 0h1m1 0h2m1 0h1m-30 1h4m1 0h2m5 0h6m1 0h1m2 0h1m3 0h1m1 0h2m1 0h2m1 0h1m-35 1h2m1 0h2m1 0h2m5 0h1m2 0h2m1 0h2m5 0h4m1 0h1m1 0h2m-37 1h1m1 0h1m1 0h1m4 0h1m1 0h2m3 0h1m1 0h4m1 0h3m1 0h2m2 0h3m-33 1h1m1 0h1m1 0h2m1 0h1m1 0h1m3 0h2m1 0h1m3 0h1m1 0h3m2 0h3m2 0h1m1 0h2m-37 1h3m1 0h1m2 0h3m4 0h2m2 0h2m1 0h2m1 0h1m5 0h2m2 0h3m-36 1h2m2 0h2m2 0h1m1 0h2m1 0h1m5 0h1m2 0h1m4 0h5m1 0h1m1 0h1m-37 1h1m3 0h2m1 0h1m1 0h1m1 0h3m1 0h2m3 0h3m1 0h3m1 0h2m2 0h1m-31 1h1m1 0h1m1 0h1m1 0h3m4 0h2m3 0h5m2 0h1m1 0h3m1 0h2m1 0h1m-33 1h1m2 0h2m3 0h2m1 0h1m1 0h1m1 0h1m2 0h2m1 0h2m1 0h1m3 0h5m-34 1h1m1 0h2m2 0h2m2 0h1m4 0h3m1 0h1m1 0h2m2 0h1m1 0h7m-37 1h2m2 0h2m5 0h3m1 0h7m1 0h1m2 0h2m1 0h3m2 0h2m-36 1h2m1 0h1m2 0h1m1 0h1m1 0h4m2 0h1m2 0h1m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m1 0h2m-33 1h1m1 0h1m3 0h1m1 0h2m1 0h1m2 0h1m3 0h1m2 0h2m3 0h3m1 0h1m1 0h1m-36 1h1m2 0h1m2 0h1m2 0h2m1 0h1m3 0h1m1 0h5m5 0h3m4 0h2m-37 1h1m1 0h2m1 0h1m2 0h1m2 0h2m1 0h3m1 0h2m1 0h3m1 0h5m6 0h1m-36 1h1m1 0h1m2 0h2m1 0h3m1 0h4m1 0h1m3 0h1m2 0h1m4 0h1m2 0h1m1 0h2m-36 1h2m2 0h1m1 0h3m4 0h2m2 0h1m3 0h1m1 0h2m2 0h1m1 0h2m1 0h1m1 0h2m-37 1h1m2 0h2m1 0h3m4 0h1m1 0h4m1 0h1m2 0h1m2 0h1m1 0h2m1 0h4m1 0h1m-36 1h1m3 0h1m1 0h1m2 0h1m2 0h2m1 0h4m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m3 0h2m-37 1h2m1 0h2m1 0h3m1 0h1m3 0h2m3 0h6m2 0h7m1 0h2m-29 1h4m1 0h2m2 0h1m3 0h1m1 0h6m3 0h2m1 0h2m-37 1h7m2 0h2m3 0h1m1 0h2m4 0h1m1 0h2m1 0h2m1 0h1m1 0h2m2 0h1m-37 1h1m5 0h1m1 0h1m2 0h2m1 0h1m4 0h4m1 0h1m3 0h1m3 0h4m-36 1h1m1 0h3m1 0h1m3 0h2m1 0h1m3 0h1m1 0h1m2 0h1m2 0h1m2 0h6m2 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h2m3 0h3m3 0h4m2 0h2m2 0h1m-36 1h1m1 0h3m1 0h1m2 0h1m4 0h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m2 0h2m-37 1h1m5 0h1m2 0h3m3 0h1m5 0h2m2 0h1m3 0h1m1 0h1m-32 1h7m1 0h2m1 0h2m4 0h1m1 0h10m1 0h1m3 0h3"/></svg><b>Watch the film</b><span>Infina AI for U.S. real estate</span></a>
+            </div>
+            <a class="live-url" href="https://infinaqnhat.github.io/Web-Infina-AI/product-presentation.html">infinaqnhat.github.io/Web-Infina-AI/product-presentation.html</a>
+          </div>
+          <div class="shots">
+            <figure class="shot s1"><img src="uploads/pp-pdf-buyer.jpg" alt="Property Expert answering a buyer with cited documents"><figcaption>Buyer: cited answers from the home's own documents</figcaption></figure>
+            <figure class="shot s2"><img src="uploads/pp-pdf-agent.jpg" alt="The agent dashboard with every buyer chat"><figcaption>Agent: every chat, with the AI's work</figcaption></figure>
+          </div>
+        </div>
+        <span class="slide-no">00</span>
+      </div>
+    </section>
+
+    <!-- 12 · Vision -->
     <section class="slide" id="vision" data-title="Vision" aria-label="Slide 12, Vision">
       <div class="card">
         <div class="in">
@@ -1074,6 +1138,7 @@
               <span class="kicker anim">Thank you</span>
               <h2 class="end-h anim d1">See it live, then let's talk.</h2>
               <p class="sub anim d2">We would love to walk you through the product, the U.S. go-to-market and where we are taking the network next.</p>
+              <p class="sub print-note">Interactive version with the live demo: <a href="https://infinaqnhat.github.io/Web-Infina-AI/product-presentation.html">infinaqnhat.github.io/Web-Infina-AI/product-presentation.html</a></p>
               <div class="hero-ctas anim d3">
                 <button type="button" class="btn btn-glass" data-go="demo-buyer">Back to the live demo</button>
                 <button type="button" class="btn btn-glass" data-go="hero">Start over</button>
@@ -1131,7 +1196,7 @@
     function slidesView(){ return phone.matches && document.body.classList.contains('view-slides'); }
     function presenting(){ return slidesView() && document.body.classList.contains('presenting'); }
     function listView(){ return slidesView() && !presenting(); }
-    var slides = [].slice.call(document.querySelectorAll('.slide'));
+    var slides = [].slice.call(document.querySelectorAll('.slide:not(.print-only)'));
     var N = slides.length, cur = -1;
 
     // ===== Slide navigation =====
@@ -1462,6 +1527,16 @@
     var asked = (location.search.match(/[?&]view=(slides|cards)\b/) || [])[1];
     var saved = null; try { saved = localStorage.getItem('pp-phone-view'); } catch (e) {}
     if (asked || saved === 'slides') setView(asked || saved, !!asked);
+
+    // ===== Print and PDF: show every animated part in its fullest state =====
+    function preparePrint(){
+      heroTimers.forEach(clearTimeout); heroTimers = [];
+      heroMsgs.forEach(function(m){ m.classList.add('is-on'); }); heroTyping.hidden = true; heroToast.classList.add('is-on');
+      setLens('all');
+      stopSteps(); renderStep(3, false);
+    }
+    window.addEventListener('beforeprint', preparePrint);
+    window.__preparePrint = preparePrint;
 
     // Open on the slide in the address, else the first
     var start = indexOf(location.hash.slice(1));

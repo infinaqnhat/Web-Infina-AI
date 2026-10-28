@@ -7,7 +7,8 @@
   "scripts": {
     "spec": "node scripts/extract-ui-spec.mjs",
     "spec:scaffold": "node scripts/extract-ui-spec.mjs --scaffold",
-    "spec:check": "node scripts/extract-ui-spec.mjs --check"
+    "spec:check": "node scripts/extract-ui-spec.mjs --check",
+    "pdf": "node scripts/build-presentation-pdf.mjs"
   },
   "devDependencies": {
     "node-html-parser": "^7.0.1"
