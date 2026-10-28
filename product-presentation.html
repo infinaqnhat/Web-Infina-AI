@@ -457,108 +457,139 @@
       /* phones swipe sideways too: one portrait card per slide, its own content scrolls inside */
       .deck-bar { padding:0 12px; gap:10px; justify-content:space-between; }
       .deck-bar .pages, .deck-bar .bar-hint { display:none; }
-      .bar-swipe { display:inline-flex !important; }
-      .slide { padding:10px 10px 12px; align-items:stretch; }
-      .card { width:100%; height:100%; aspect-ratio:auto; border-radius:20px; box-shadow:0 18px 40px -24px rgba(0,20,60,.45), 0 0 0 1px rgba(0,20,60,.05); }
-      .in { --u:10.5px; position:absolute; inset:0; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; padding:30px 18px 44px; justify-content:flex-start; }
+      body:not(.view-slides) .slide { padding:10px 10px 12px; align-items:stretch; }
+      body:not(.view-slides) .card { width:100%; height:100%; aspect-ratio:auto; border-radius:20px; box-shadow:0 18px 40px -24px rgba(0,20,60,.45), 0 0 0 1px rgba(0,20,60,.05); }
+      body:not(.view-slides) .in { --u:10.5px; position:absolute; inset:0; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; padding:30px 18px 44px; justify-content:flex-start; }
       /* short slides sit in the middle of the card, long ones start at the top and scroll */
-      .in > :first-child:not(.hero-bg) { margin-top:auto; }
-      .in > :last-child { margin-bottom:auto; }
-      .in > *, .in .flow, .in .toc, .in .three, .in .prod, .in .how, .in .vision { flex:none; min-height:auto; }
+      body:not(.view-slides) .in > :first-child:not(.hero-bg) { margin-top:auto; }
+      body:not(.view-slides) .in > :last-child { margin-bottom:auto; }
+      body:not(.view-slides) .in > *, body:not(.view-slides) .in .flow, body:not(.view-slides) .in .toc, body:not(.view-slides) .in .three, body:not(.view-slides) .in .prod, body:not(.view-slides) .in .how, body:not(.view-slides) .in .vision { flex:none; min-height:auto; }
       /* more below: a soft fade and a hint at the foot of the card */
-      .card::after { content:''; position:absolute; left:0; right:0; bottom:0; height:64px; border-radius:0 0 20px 20px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff 85%); pointer-events:none; opacity:0; transition:opacity .25s; z-index:2; }
-      .card.is-dark::after { background:linear-gradient(180deg, rgba(0,31,92,0), var(--accent) 85%); }
-      .card.has-more::after { opacity:1; }
-      .more-hint { position:absolute; left:50%; bottom:10px; transform:translateX(-50%); z-index:3; display:none; align-items:center; gap:5px; padding:5px 11px; border-radius:999px; background:var(--accent); color:#fff; font-size:11.5px; font-weight:700; pointer-events:none; }
-      .card.is-dark .more-hint { background:#fff; color:var(--accent); }
-      .card.has-more .more-hint { display:inline-flex; }
-      .card.has-more .slide-no { opacity:0; }
-      .slide-no { right:16px; bottom:12px; font-size:11px; }
-      .h { font-size:30px; }
-      .sub { font-size:15.5px; }
-      .kicker { font-size:11.5px; }
+      body:not(.view-slides) .card::after { content:''; position:absolute; left:0; right:0; bottom:0; height:64px; border-radius:0 0 20px 20px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff 85%); pointer-events:none; opacity:0; transition:opacity .25s; z-index:2; }
+      body:not(.view-slides) .card.is-dark::after { background:linear-gradient(180deg, rgba(0,31,92,0), var(--accent) 85%); }
+      body:not(.view-slides) .card.has-more::after { opacity:1; }
+      body:not(.view-slides) .more-hint { position:absolute; left:50%; bottom:10px; transform:translateX(-50%); z-index:3; display:none; align-items:center; gap:5px; padding:5px 11px; border-radius:999px; background:var(--accent); color:#fff; font-size:11.5px; font-weight:700; pointer-events:none; }
+      body:not(.view-slides) .card.is-dark .more-hint { background:#fff; color:var(--accent); }
+      body:not(.view-slides) .card.has-more .more-hint { display:inline-flex; }
+      body:not(.view-slides) .card.has-more .slide-no { opacity:0; }
+      body:not(.view-slides) .slide-no { right:16px; bottom:12px; font-size:11px; }
+      body:not(.view-slides) .h { font-size:30px; }
+      body:not(.view-slides) .sub { font-size:15.5px; }
+      body:not(.view-slides) .kicker { font-size:11.5px; }
       /* hero */
-      .hero-in { flex-direction:column; padding:0; justify-content:flex-start; }
-      .hero-bg::after { background:linear-gradient(180deg, rgba(0,19,64,.93) 0%, rgba(0,31,92,.85) 60%, rgba(0,31,92,.75) 100%); }
-      .hero-copy { padding:40px 18px 10px; }
-      .hero-h { font-size:38px; }
-      .hero-sub { font-size:18px; }
-      .hero-p { font-size:15px; }
-      .hero-stage { padding:20px 18px 80px; }
-      .hero-in { overflow-y:auto; }
-      .live { width:min(340px, 100%); }
-      .toast { left:auto; right:18px; bottom:28px; width:240px; }
+      body:not(.view-slides) .hero-in { flex-direction:column; padding:0; justify-content:flex-start; }
+      body:not(.view-slides) .hero-bg::after { background:linear-gradient(180deg, rgba(0,19,64,.93) 0%, rgba(0,31,92,.85) 60%, rgba(0,31,92,.75) 100%); }
+      body:not(.view-slides) .hero-copy { padding:40px 18px 10px; }
+      body:not(.view-slides) .hero-h { font-size:38px; }
+      body:not(.view-slides) .hero-sub { font-size:18px; }
+      body:not(.view-slides) .hero-p { font-size:15px; }
+      body:not(.view-slides) .hero-stage { padding:20px 18px 80px; }
+      body:not(.view-slides) .hero-in { overflow-y:auto; }
+      body:not(.view-slides) .live { width:min(340px, 100%); }
+      body:not(.view-slides) .toast { left:auto; right:18px; bottom:28px; width:240px; }
       /* contents */
-      .toc { grid-template-columns:1fr 1fr; grid-auto-rows:auto; }
-      .toc-item { padding:14px; }
-      .toc-item b { font-size:15px; margin-top:6px; }
-      .toc-item span { font-size:12px; }
+      body:not(.view-slides) .toc { grid-template-columns:1fr 1fr; grid-auto-rows:auto; }
+      body:not(.view-slides) .toc-item { padding:14px; }
+      body:not(.view-slides) .toc-item b { font-size:15px; margin-top:6px; }
+      body:not(.view-slides) .toc-item span { font-size:12px; }
       /* thesis */
-      .three { grid-template-columns:1fr; }
-      .t-card h3 { font-size:20px; }
-      .t-card p { font-size:14.5px; }
+      body:not(.view-slides) .three { grid-template-columns:1fr; }
+      body:not(.view-slides) .t-card h3 { font-size:20px; }
+      body:not(.view-slides) .t-card p { font-size:14.5px; }
       /* ecosystem */
-      .eco-top { flex-direction:column; align-items:flex-start; }
-      .lens { max-width:100%; overflow-x:auto; }
-      .flow { grid-template-columns:1fr; }
-      .flow .f-col > .f-label, .lanes > .f-label, .side > .f-label { display:none; }
-      .f-buyer { flex-direction:row; flex-wrap:wrap; align-items:center; }
-      .f-buyer .who-text { flex:1; min-width:180px; }
-      .bubbles { flex-direction:row; flex-wrap:wrap; width:100%; }
-      .lanes { grid-template-columns:1fr; grid-template-rows:auto; }
-      .lane { display:flex; flex-direction:column; }
-      .lane > * { grid-row:auto !important; }
-      .lane[data-lane="sell"] { grid-row:1; } .f-link { grid-row:2; grid-column:1; padding-top:12px; } .lane[data-lane="buy"] { grid-row:3; }
-      .f-link::before { display:none; }
-      .lane-title { display:flex; align-items:center; gap:8px; margin-top:16px; font-size:11.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
-      .lane-title::before, .lane-title::after { content:''; flex:1; height:1px; background:var(--border); }
-      .arrow { min-height:52px; }
-      .arrow::before { left:50%; right:auto; top:6px; bottom:12px; width:2px; height:auto; margin:0 0 0 -1px; }
-      .arrow::after { left:50%; right:auto; top:auto; bottom:10px; margin:0 0 0 -5px; width:9px; height:9px; transform:rotate(135deg); }
-      .arrow em { left:calc(50% + 14px); top:50%; transform:translateY(-50%); }
-      .arrow i { left:50%; margin:0 0 0 -4px; animation-name:down; }
-      .side { grid-template-columns:1fr; }
-      .side > .arrow { grid-row:1; }
-      .arrow.is-back::after { left:50%; top:6px; bottom:auto; transform:rotate(-45deg); }
-      .arrow.is-back i { animation-name:up; }
-      .f-real ul { flex-direction:row; flex-wrap:wrap; }
+      body:not(.view-slides) .eco-top { flex-direction:column; align-items:flex-start; }
+      body:not(.view-slides) .lens { max-width:100%; overflow-x:auto; }
+      body:not(.view-slides) .flow { grid-template-columns:1fr; }
+      body:not(.view-slides) .flow .f-col > .f-label, body:not(.view-slides) .lanes > .f-label, body:not(.view-slides) .side > .f-label { display:none; }
+      body:not(.view-slides) .f-buyer { flex-direction:row; flex-wrap:wrap; align-items:center; }
+      body:not(.view-slides) .f-buyer .who-text { flex:1; min-width:180px; }
+      body:not(.view-slides) .bubbles { flex-direction:row; flex-wrap:wrap; width:100%; }
+      body:not(.view-slides) .lanes { grid-template-columns:1fr; grid-template-rows:auto; }
+      body:not(.view-slides) .lane { display:flex; flex-direction:column; }
+      body:not(.view-slides) .lane > * { grid-row:auto !important; }
+      body:not(.view-slides) .lane[data-lane="sell"] { grid-row:1; } body:not(.view-slides) .f-link { grid-row:2; grid-column:1; padding-top:12px; } body:not(.view-slides) .lane[data-lane="buy"] { grid-row:3; }
+      body:not(.view-slides) .f-link::before { display:none; }
+      body:not(.view-slides) .lane-title { display:flex; align-items:center; gap:8px; margin-top:16px; font-size:11.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+      body:not(.view-slides) .lane-title::before, body:not(.view-slides) .lane-title::after { content:''; flex:1; height:1px; background:var(--border); }
+      body:not(.view-slides) .arrow { min-height:52px; }
+      body:not(.view-slides) .arrow::before { left:50%; right:auto; top:6px; bottom:12px; width:2px; height:auto; margin:0 0 0 -1px; }
+      body:not(.view-slides) .arrow::after { left:50%; right:auto; top:auto; bottom:10px; margin:0 0 0 -5px; width:9px; height:9px; transform:rotate(135deg); }
+      body:not(.view-slides) .arrow em { left:calc(50% + 14px); top:50%; transform:translateY(-50%); }
+      body:not(.view-slides) .arrow i { left:50%; margin:0 0 0 -4px; animation-name:down; }
+      body:not(.view-slides) .side { grid-template-columns:1fr; }
+      body:not(.view-slides) .side > .arrow { grid-row:1; }
+      body:not(.view-slides) .arrow.is-back::after { left:50%; top:6px; bottom:auto; transform:rotate(-45deg); }
+      body:not(.view-slides) .arrow.is-back i { animation-name:up; }
+      body:not(.view-slides) .f-real ul { flex-direction:row; flex-wrap:wrap; }
       /* products */
-      .prod { grid-template-columns:1fr; gap:24px; }
-      .visual { padding:30px 12px; order:-1; }
-      .mock { width:min(330px, 100%); }
-      .tagline { font-size:17px; }
-      .checks li { font-size:14.5px; }
-      .float { right:8px; top:8px; }
+      body:not(.view-slides) .prod { grid-template-columns:1fr; gap:24px; }
+      body:not(.view-slides) .visual { padding:30px 12px; order:-1; }
+      body:not(.view-slides) .mock { width:min(330px, 100%); }
+      body:not(.view-slides) .tagline { font-size:17px; }
+      body:not(.view-slides) .checks li { font-size:14.5px; }
+      body:not(.view-slides) .float { right:8px; top:8px; }
       /* how */
-      .how { grid-template-columns:1fr; }
-      .lead { order:-1; }
-      .feed { min-height:150px; }
-      .step b { font-size:15px; }
-      .step p { font-size:13.5px; }
+      body:not(.view-slides) .how { grid-template-columns:1fr; }
+      body:not(.view-slides) .lead { order:-1; }
+      body:not(.view-slides) .feed { min-height:150px; }
+      body:not(.view-slides) .step b { font-size:15px; }
+      body:not(.view-slides) .step p { font-size:13.5px; }
       /* film */
-      .film-in { flex-direction:column; align-items:stretch; padding:30px 14px 36px; gap:18px; }
-      .film-side { width:auto; }
-      .film-side .h { font-size:26px; }
-      .film-wrap { height:auto; flex:none; }
-      .film-note { padding-top:12px; }
+      body:not(.view-slides) .film-in { flex-direction:column; align-items:stretch; padding:30px 14px 36px; gap:18px; }
+      body:not(.view-slides) .film-side { width:auto; }
+      body:not(.view-slides) .film-side .h { font-size:26px; }
+      body:not(.view-slides) .film-wrap { height:auto; flex:none; }
+      body:not(.view-slides) .film-note { padding-top:12px; }
       /* demo */
-      .demo-in { flex-direction:column; padding:30px 14px 36px; gap:18px; }
-      .demo-side { width:auto; }
-      .demo-side .h { font-size:26px; }
-      .how-to li { font-size:14px; }
-      .demo-tools { margin-top:16px; }
-      .seg-device { display:none; }
-      .frame-wrap { flex:none; height:min(72svh, 640px); min-height:460px; }
-      .frame, .frame.is-phone { width:100%; height:100%; aspect-ratio:auto; padding:0; border-radius:16px; background:#fff; }
-      .frame .chrome { display:none; }
-      .frame .viewport, .frame.is-phone .viewport { border-radius:0; }
-      .poster h3 { font-size:22px; }
-      .poster p { font-size:14px; }
+      body:not(.view-slides) .demo-in { flex-direction:column; padding:30px 14px 36px; gap:18px; }
+      body:not(.view-slides) .demo-side { width:auto; }
+      body:not(.view-slides) .demo-side .h { font-size:26px; }
+      body:not(.view-slides) .how-to li { font-size:14px; }
+      body:not(.view-slides) .demo-tools { margin-top:16px; }
+      body:not(.view-slides) .seg-device { display:none; }
+      body:not(.view-slides) .frame-wrap { flex:none; height:min(72svh, 640px); min-height:460px; }
+      body:not(.view-slides) .frame, body:not(.view-slides) .frame.is-phone { width:100%; height:100%; aspect-ratio:auto; padding:0; border-radius:16px; background:#fff; }
+      body:not(.view-slides) .frame .chrome { display:none; }
+      body:not(.view-slides) .frame .viewport, body:not(.view-slides) .frame.is-phone .viewport { border-radius:0; }
+      body:not(.view-slides) .poster h3 { font-size:22px; }
+      body:not(.view-slides) .poster p { font-size:14px; }
       /* vision, end */
-      .vision, .end-grid { grid-template-columns:1fr; gap:24px; }
-      .end-h { font-size:36px; }
-      .layer small { display:none; }
+      body:not(.view-slides) .vision, body:not(.view-slides) .end-grid { grid-template-columns:1fr; gap:24px; }
+      body:not(.view-slides) .end-h { font-size:36px; }
+      body:not(.view-slides) .layer small { display:none; }
       .sheet-list { grid-template-columns:1fr; }
+    }
+    /* ===== Phones, Slides view: the desktop slides scaled down, tap one to present ===== */
+    .view-seg, .present-ui, .present-tip { display:none; }
+    @media (max-width:860px){
+      .view-seg { display:inline-flex; gap:2px; padding:3px; border-radius:999px; background:var(--surface); border:1px solid var(--border); }
+      .view-seg button { min-height:34px; padding:0 12px; border:0; border-radius:999px; background:none; font-size:12px; font-weight:700; color:var(--muted); }
+      .view-seg button[aria-pressed="true"] { background:var(--accent); color:#fff; }
+      body.view-slides .deck { flex-direction:column; overflow-x:hidden; overflow-y:auto; scroll-snap-type:none; padding:4px 0 20px; }
+      body.view-slides .slide { flex:none; display:block; position:relative; height:calc(720px * var(--k, .28) + 44px); padding:0; scroll-snap-align:none; }
+      body.view-slides .card { position:absolute; left:12px; top:10px; width:1280px; aspect-ratio:16 / 9; border-radius:30px; transform:scale(var(--k, .28)); transform-origin:0 0; cursor:pointer; box-shadow:0 30px 60px -30px rgba(0,20,60,.5), 0 0 0 3px rgba(0,20,60,.06); }
+      body.view-slides:not(.presenting) .card > * { pointer-events:none; }
+      body.view-slides:not(.presenting) .slide.is-active .card { box-shadow:0 0 0 10px var(--blue), 0 30px 60px -30px rgba(0,20,60,.5); }
+      body.view-slides .slide::after { content:attr(data-n) "   " attr(data-title); position:absolute; left:14px; right:14px; top:calc(720px * var(--k, .28) + 18px); font-size:12px; font-weight:700; color:var(--muted); white-space:pre; overflow:hidden; text-overflow:ellipsis; }
+      body.view-slides .anim { opacity:1; transform:none; transition:none; }
+      body.view-slides .more-hint { display:none !important; }
+      /* presenting: one slide at a time on black, swipe sideways, turn the phone for a bigger slide */
+      body.presenting .deck-head, body.presenting .deck-bar { display:none; }
+      body.presenting .deck { top:0; bottom:0; flex-direction:row; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; padding:0; background:#0b0f1a; }
+      body.presenting .slide { flex:0 0 100%; height:100%; scroll-snap-align:start; }
+      body.presenting .slide::after { display:none; }
+      body.presenting .card { left:var(--px, 8px); top:var(--py, 8px); cursor:default; box-shadow:none; }
+      body.presenting .present-ui { display:flex; position:fixed; top:max(10px, env(safe-area-inset-top)); right:10px; z-index:70; gap:8px; align-items:center; }
+      .present-ui span { font-size:12px; font-weight:700; color:#fff; background:rgba(255,255,255,.14); padding:7px 11px; border-radius:999px; font-variant-numeric:tabular-nums; }
+      .present-ui button { width:40px; height:40px; border-radius:50%; border:0; background:rgba(255,255,255,.16); color:#fff; display:flex; align-items:center; justify-content:center; }
+      body.presenting .present-tip { display:inline-flex; position:fixed; left:50%; bottom:max(14px, env(safe-area-inset-bottom)); transform:translateX(-50%); z-index:70; align-items:center; gap:7px; padding:7px 12px; border-radius:999px; background:rgba(255,255,255,.14); color:rgba(255,255,255,.85); font-size:12px; font-weight:600; white-space:nowrap; }
+    }
+    @media (max-width:860px) and (orientation:landscape){
+      body.presenting .present-tip { display:none; }
+      /* the slide fills the height: keep the controls in the dark margin beside it */
+      body.presenting .present-ui { flex-direction:column-reverse; align-items:flex-end; top:8px; right:6px; gap:6px; }
+      body.presenting .present-ui button { width:36px; height:36px; }
+      .present-ui span { padding:5px 8px; font-size:11px; }
     }
     @media (prefers-reduced-motion:reduce){
       .deck { scroll-behavior:auto; }
@@ -1066,8 +1097,19 @@
     <button type="button" class="nav-btn" id="next" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     <div class="pages" id="pages"></div>
     <span class="bar-hint"><kbd>←</kbd><kbd>→</kbd> to move</span>
+    <div class="view-seg" role="group" aria-label="Phone view">
+      <button type="button" data-view="cards" aria-pressed="true">Cards</button>
+      <button type="button" data-view="slides" aria-pressed="false">Slides</button>
+    </div>
     <span class="bar-swipe" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M15 8l4 4-4 4M9 8l-4 4 4 4"/></svg>Swipe</span>
   </nav>
+
+  <!-- ===== Presenting on a phone ===== -->
+  <div class="present-ui">
+    <span id="present-count">1 / 13</span>
+    <button type="button" id="present-x" aria-label="Stop presenting"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <span class="present-tip" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/></svg>Turn your phone for a bigger slide · swipe to move</span>
 
   <!-- ===== Contents sheet ===== -->
   <div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-label="All slides">
@@ -1082,6 +1124,10 @@
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var phone = window.matchMedia('(max-width: 860px)');
     var deck = document.getElementById('deck');
+    // Phones have two views: Cards (portrait cards, swiped) and Slides (the desktop slides scaled down, like a design app)
+    function slidesView(){ return phone.matches && document.body.classList.contains('view-slides'); }
+    function presenting(){ return slidesView() && document.body.classList.contains('presenting'); }
+    function listView(){ return slidesView() && !presenting(); }
     var slides = [].slice.call(document.querySelectorAll('.slide'));
     var N = slides.length, cur = -1;
 
@@ -1091,7 +1137,9 @@
       i = Math.max(0, Math.min(N - 1, i));
       var s = slides[i];
       var how = instant || reduce ? 'instant' : 'smooth';
-      deck.scrollTo({ left: s.offsetLeft, behavior: how });
+      // the list centres the slide, so the middle-of-screen check picks the same one
+      if (listView()) deck.scrollTo({ top: Math.max(0, s.offsetTop - (deck.clientHeight - s.offsetHeight) / 2), behavior: how });
+      else deck.scrollTo({ left: s.offsetLeft, behavior: how });
     }
     function next(){ goTo(cur + 1); }
     function prev(){ goTo(cur - 1); }
@@ -1122,6 +1170,7 @@
       [].forEach.call(dots, function(d, j){ d.classList.toggle('is-on', j === i); if (j === i) d.scrollIntoView({ block:'nearest', inline:'nearest' }); });
       [].forEach.call(sheetList.querySelectorAll('button'), function(b, j){ b.classList.toggle('is-on', j === i); });
       document.getElementById('bar-count').innerHTML = '<b>' + (i + 1) + '</b> / ' + N;
+      document.getElementById('present-count').textContent = (i + 1) + ' / ' + N;
       document.getElementById('bar-progress').style.width = ((i + 1) / N * 100) + '%';
       document.getElementById('prev').disabled = i === 0;
       document.getElementById('next').disabled = i === N - 1;
@@ -1134,7 +1183,7 @@
       if (io) io.disconnect();
       io = new IntersectionObserver(function(entries){
         entries.forEach(function(e){ if (e.isIntersecting) setActive(slides.indexOf(e.target)); });
-      }, { root: deck, threshold: 0, rootMargin: '0px -45% 0px -45%' });
+      }, { root: deck, threshold: 0, rootMargin: listView() ? '-45% 0px -45% 0px' : '0px -45% 0px -45%' });
       slides.forEach(function(s){ io.observe(s); });
     }
     watchSlides();
@@ -1152,6 +1201,8 @@
       if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
       if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); next(); }
       else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+      else if (listView() && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) { e.preventDefault(); if (e.key === 'ArrowDown') next(); else prev(); }
+      else if (e.key === 'Escape' && presenting()) stopPresenting();
       else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
       else if (e.key === 'End') { e.preventDefault(); goTo(N - 1); }
     });
@@ -1172,7 +1223,7 @@
     var resizeT;
     window.addEventListener('resize', function(){
       clearTimeout(resizeT);
-      resizeT = setTimeout(function(){ if (cur > -1) goTo(cur, true); fitFrames(); }, 120);
+      resizeT = setTimeout(function(){ layoutView(); if (cur > -1) goTo(cur, true); fitFrames(); }, 120);
     });
 
     // Phones: show a hint while a slide card has more content below
@@ -1181,7 +1232,7 @@
       var hint = document.createElement('span'); hint.className = 'more-hint'; hint.setAttribute('aria-hidden', 'true');
       hint.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>Scroll';
       card.appendChild(hint);
-      function check(){ card.classList.toggle('has-more', phone.matches && inn.scrollHeight - inn.clientHeight - inn.scrollTop > 24); }
+      function check(){ card.classList.toggle('has-more', phone.matches && !slidesView() && inn.scrollHeight - inn.clientHeight - inn.scrollTop > 24); }
       inn.addEventListener('scroll', check, { passive: true });
       window.addEventListener('resize', check);
       setTimeout(check, 300);
@@ -1320,7 +1371,7 @@
     function fitFrames(){
       frames.forEach(function(frame){
         var iframe = frame.querySelector('iframe'), vp = frame.querySelector('.viewport');
-        if (phone.matches) { iframe.style.width = '100%'; iframe.style.height = '100%'; iframe.style.transform = 'none'; return; }
+        if (phone.matches && !slidesView()) { iframe.style.width = '100%'; iframe.style.height = '100%'; iframe.style.transform = 'none'; return; }
         // scale a real screen size down to the frame, then fill the frame exactly
         var size = SIZES[frame.classList.contains('is-phone') ? 'phone' : 'desktop'];
         var scale = Math.min(vp.clientWidth / size.w, vp.clientHeight / size.h);
@@ -1357,10 +1408,65 @@
     if ('ResizeObserver' in window) { var ro = new ResizeObserver(fitFrames); frames.forEach(function(f){ ro.observe(f.querySelector('.viewport')); }); }
     fitFrames();
 
+    // ===== Phone views =====
+    slides.forEach(function(sl, i){ sl.setAttribute('data-n', i + 1); });
+    function layoutView(){
+      var w = deck.clientWidth, h = deck.clientHeight;
+      if (presenting()) {
+        var k = Math.min((w - 16) / 1280, (h - 16) / 720);
+        deck.style.setProperty('--k', k);
+        deck.style.setProperty('--px', ((w - 1280 * k) / 2) + 'px');
+        deck.style.setProperty('--py', ((h - 720 * k) / 2) + 'px');
+      } else if (slidesView()) {
+        deck.style.setProperty('--k', (w - 24) / 1280);
+      }
+    }
+    function refresh(){ layoutView(); watchSlides(); fitFrames(); if (cur > -1) goTo(cur, true); }
+    var viewBtns = document.querySelectorAll('[data-view]');
+    function setView(v, keep){
+      document.body.classList.toggle('view-slides', v === 'slides');
+      viewBtns.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-view') === v ? 'true' : 'false'); });
+      if (!keep) { try { localStorage.setItem('pp-phone-view', v); } catch (e) {} }
+      refresh();
+    }
+    viewBtns.forEach(function(b){ b.addEventListener('click', function(){ setView(b.getAttribute('data-view')); }); });
+    var wasFull = false;
+    function startPresenting(i){
+      document.body.classList.add('presenting');
+      var el = document.documentElement;
+      if (el.requestFullscreen) el.requestFullscreen().then(function(){
+        wasFull = true;
+        try { screen.orientation.lock('landscape').catch(function(){}); } catch (e) {}
+      }).catch(function(){});
+      layoutView(); watchSlides(); fitFrames(); goTo(i, true);
+    }
+    function stopPresenting(){
+      var i = cur;
+      document.body.classList.remove('presenting');
+      try { screen.orientation.unlock(); } catch (e) {}
+      if (document.fullscreenElement) document.exitFullscreen().catch(function(){});
+      wasFull = false;
+      layoutView(); watchSlides(); fitFrames(); goTo(i, true);
+    }
+    document.getElementById('present-x').addEventListener('click', stopPresenting);
+    document.addEventListener('fullscreenchange', function(){
+      if (wasFull && !document.fullscreenElement && presenting()) stopPresenting();
+    });
+    // In the Slides view a tap on a slide presents it
+    deck.addEventListener('click', function(e){
+      if (!listView()) return;
+      var sl = e.target.closest('.slide');
+      if (sl) startPresenting(slides.indexOf(sl));
+    });
+    // ?view=slides or ?view=cards in the link, else the last choice on this phone
+    var asked = (location.search.match(/[?&]view=(slides|cards)\b/) || [])[1];
+    var saved = null; try { saved = localStorage.getItem('pp-phone-view'); } catch (e) {}
+    if (asked || saved === 'slides') setView(asked || saved, !!asked);
+
     // Open on the slide in the address, else the first
     var start = indexOf(location.hash.slice(1));
     if (start > 0) goTo(start, true);
-    phone.addEventListener && phone.addEventListener('change', function(){ watchSlides(); fitFrames(); if (cur > -1) goTo(cur, true); });
+    phone.addEventListener && phone.addEventListener('change', refresh);
   })();
   </script>
 </body>
