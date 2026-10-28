@@ -209,6 +209,13 @@
     .tag { align-self:flex-start; font-size:calc(var(--u)*.82); font-weight:800; letter-spacing:.08em; text-transform:uppercase; padding:calc(var(--u)*.3) calc(var(--u)*.7); border-radius:999px; background:var(--amber-light); color:var(--amber); }
     .f-buyer h3 { font-size:calc(var(--u)*1.55); color:var(--accent); line-height:1.15; margin-top:calc(var(--u)*.3); }
     .f-buyer p { font-size:calc(var(--u)*1.02); color:var(--fg-secondary); line-height:1.45; margin-top:calc(var(--u)*.3); }
+    #ecosystem .h { font-size:calc(var(--u)*2.7); max-width:none; }
+    #ecosystem .flow { margin-top:calc(var(--u)*1.4); }
+    .asks { list-style:none; display:flex; flex-direction:column; gap:calc(var(--u)*.5); margin-top:calc(var(--u)*.3); }
+    .asks li { display:flex; align-items:center; gap:calc(var(--u)*.6); font-size:calc(var(--u)*.98); font-weight:700; color:var(--accent); background:#fff; border:1px solid #f5d9a8; padding:calc(var(--u)*.55) calc(var(--u)*.8); border-radius:calc(var(--u)*.8); transition:opacity .35s; }
+    .asks li i { font-style:normal; width:calc(var(--u)*1.6); height:calc(var(--u)*1.6); border-radius:50%; background:var(--accent); color:#fff; font-size:calc(var(--u)*.78); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .q { display:block; margin-top:calc(var(--u)*.6); background:var(--accent); color:#fff; font-size:calc(var(--u)*.92); font-weight:600; line-height:1.4; padding:calc(var(--u)*.5) calc(var(--u)*.8); border-radius:calc(var(--u)*1) calc(var(--u)*1) calc(var(--u)*.3) calc(var(--u)*1); }
+    .flow[data-lens="sell"] .asks li[data-lane="buy"], .flow[data-lens="buy"] .asks li[data-lane="sell"] { opacity:.3; }
     .bubbles { display:flex; flex-direction:column; gap:calc(var(--u)*.5); margin-top:calc(var(--u)*.4); }
     .bubbles span { align-self:flex-start; font-size:calc(var(--u)*.98); font-weight:600; color:#fff; background:var(--accent); padding:calc(var(--u)*.6) calc(var(--u)*.9); border-radius:calc(var(--u)*1.1) calc(var(--u)*1.1) calc(var(--u)*1.1) calc(var(--u)*.3); }
     .bubbles span:nth-child(2) { align-self:flex-end; background:#0b3a8f; border-radius:calc(var(--u)*1.1) calc(var(--u)*1.1) calc(var(--u)*.3) calc(var(--u)*1.1); }
@@ -753,9 +760,9 @@
                 <div class="who-text">
                   <span class="tag">End user</span>
                   <h3>Home buyer</h3>
-                  <p>Asks anything, any hour, from a yard sign, a link or a text.</p>
+                  <p>Asks the AI any hour, from a sign, a link or a text.</p>
                 </div>
-                <div class="bubbles" aria-label="Example questions"><span>Any issues with the roof?</span><span>Homes near good schools?</span></div>
+                <ul class="asks" aria-label="Two kinds of questions"><li data-lane="sell"><i>1</i>About one home</li><li data-lane="buy"><i>2</i>Where to buy</li></ul>
               </div>
             </div>
             <div class="lanes">
@@ -763,16 +770,16 @@
               <div class="f-label l-agent"><b>3</b>Who it works for</div>
               <div class="lane" data-lane="sell">
                 <div class="lane-title">Selling side</div>
-                <div class="arrow"><em>Asks</em><i></i></div>
-                <div class="f-ai"><small>On every listing</small><b>Property Expert <i>AI</i></b><p>Answers from the home's own documents, with sources.</p></div>
+                <div class="arrow"><em>1 · Asks</em><i></i></div>
+                <div class="f-ai"><small>On every listing</small><b>Property Expert <i>AI</i></b><span class="q">Is the roof in good shape at 123 Main St?</span><p>Answers from that home's own documents, with sources.</p></div>
                 <div class="arrow"><em>Warm lead</em><i></i></div>
                 <div class="f-agent"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>Listing agent</b><p>Gets tour requests with the full chat.</p><small>No lead goes cold</small></div>
               </div>
               <div class="f-link"><span>Concierge recommends homes from the Property Expert network</span></div>
               <div class="lane" data-lane="buy">
                 <div class="lane-title">Buying side</div>
-                <div class="arrow"><em>Asks</em><i></i></div>
-                <div class="f-ai"><small>For every buyer</small><b>Home Concierge <i>AI</i></b><p>Learns needs, budget and timeline, then matches homes.</p></div>
+                <div class="arrow"><em>2 · Asks</em><i></i></div>
+                <div class="f-ai"><small>For every buyer</small><b>Home Concierge <i>AI</i></b><span class="q">Good schools and a yard, under $900K. Where should we buy?</span><p>Learns goals and budget, then recommends homes and areas.</p></div>
                 <div class="arrow"><em>Warm lead</em><i></i></div>
                 <div class="f-agent"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg>Buyer's agent</b><p>Knows who is ready and what they want.</p><small>Closes with full context</small></div>
               </div>
