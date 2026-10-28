@@ -172,6 +172,12 @@
     .ef-tag { align-self:flex-start; font-size:10.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; padding:4px 9px; border-radius:999px; background:var(--amber-light); color:var(--amber); }
     .ef-buyer h3 { font-size:19px; color:var(--accent); letter-spacing:-.01em; line-height:1.2; }
     .ef-buyer p { font-size:13.5px; color:var(--fg-secondary); line-height:1.5; }
+    .ef-asks { list-style:none; display:flex; flex-direction:column; gap:7px; margin-top:4px; }
+    .ef-asks li { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:var(--accent); background:#fff; border:1px solid #f5d9a8; padding:8px 10px; border-radius:11px; transition:opacity .35s; }
+    .ef-asks li i { font-style:normal; width:20px; height:20px; border-radius:50%; background:var(--accent); color:#fff; font-size:11px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .ef-q { display:block; margin-top:9px; background:var(--accent); color:#fff; font-size:12.5px; font-weight:600; line-height:1.4; padding:8px 11px; border-radius:13px 13px 4px 13px; }
+    .ef-q::before { content:'Buyer asks'; display:block; font-size:9.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--sky, #9cc3ff); margin-bottom:2px; }
+    .eco-flow[data-lens="sell"] .ef-asks li[data-lane="buy"], .eco-flow[data-lens="buy"] .ef-asks li[data-lane="sell"] { opacity:.3; }
     .ef-bubbles { display:flex; flex-direction:column; gap:7px; margin-top:8px; }
     .ef-bubbles span { align-self:flex-start; max-width:100%; font-size:12.5px; font-weight:600; color:#fff; background:var(--accent); padding:8px 12px; border-radius:14px 14px 14px 4px; }
     .ef-bubbles span:nth-child(2) { align-self:flex-end; border-radius:14px 14px 4px 14px; background:#0b3a8f; }
@@ -626,12 +632,9 @@
             <div class="ef-who">
               <span class="ef-tag">End user</span>
               <h3>Home buyer</h3>
-              <p>Asks anything, any hour, from a yard sign, a link or a text. No login, no form.</p>
+              <p>Asks the AI any hour, from a yard sign, a link or a text. No login, no form. Two kinds of questions:</p>
             </div>
-            <div class="ef-bubbles" aria-label="Example questions">
-              <span>Any issues with the roof?</span>
-              <span>Homes near good schools?</span>
-            </div>
+            <ul class="ef-asks" aria-label="Two kinds of questions"><li data-lane="sell"><i>1</i>About one home</li><li data-lane="buy"><i>2</i>Where and what to buy</li></ul>
           </div>
         </div>
 
@@ -642,11 +645,12 @@
 
           <div class="ef-lane" data-lane="sell">
             <div class="ef-lane-title">Selling side</div>
-            <div class="ef-arrow"><em>Asks</em><i></i></div>
+            <div class="ef-arrow"><em>1 · Asks</em><i></i></div>
             <div class="ef-ai">
               <small>On every listing</small>
               <b>Property Expert <i>AI</i></b>
-              <p>Answers from the home's own listing, disclosures and inspection, with sources.</p>
+              <span class="ef-q">Is the roof in good shape at 123 Main St?</span>
+              <p>Answers about that one home from its listing, disclosures and inspection, with sources.</p>
             </div>
             <div class="ef-arrow"><em>Warm lead</em><i></i></div>
             <div class="ef-agent">
@@ -661,11 +665,12 @@
 
           <div class="ef-lane" data-lane="buy">
             <div class="ef-lane-title">Buying side</div>
-            <div class="ef-arrow"><em>Asks</em><i></i></div>
+            <div class="ef-arrow"><em>2 · Asks</em><i></i></div>
             <div class="ef-ai">
               <small>For every buyer</small>
               <b>Home Concierge <i>AI</i></b>
-              <p>Sent by the buyer's agent at first contact. Learns needs, budget and timeline.</p>
+              <span class="ef-q">Good schools and a yard, under $900K. Where should we buy?</span>
+              <p>Sent by the buyer's agent. Learns goals, budget and timeline, then recommends where and what to buy.</p>
             </div>
             <div class="ef-arrow"><em>Warm lead</em><i></i></div>
             <div class="ef-agent">
