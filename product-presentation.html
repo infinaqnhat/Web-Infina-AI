@@ -152,6 +152,7 @@
     .film-side .h { font-size:calc(var(--u)*2.8); }
     .film-side .sub { font-size:calc(var(--u)*1.15); }
     .film-pick { display:flex; flex-direction:column; gap:calc(var(--u)*.7); margin-top:calc(var(--u)*2); }
+    .film-pick[hidden] { display:none; }
     .film-pick button { display:flex; align-items:center; gap:calc(var(--u)*.9); width:100%; text-align:left; padding:calc(var(--u)*.9) calc(var(--u)*1.1); border-radius:calc(var(--u)*1.1); border:1.5px solid rgba(255,255,255,.2); background:rgba(255,255,255,.06); color:#fff; font-size:max(13px, calc(var(--u)*1.1)); font-weight:700; transition:background .2s, border-color .2s; }
     .film-pick button:hover { background:rgba(255,255,255,.12); }
     .film-pick button i { width:calc(var(--u)*2.4); height:calc(var(--u)*2.4); min-width:28px; min-height:28px; border-radius:50%; background:rgba(255,255,255,.14); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
@@ -619,11 +620,10 @@
         <div class="in film-in">
           <div class="film-side">
             <span class="kicker anim">The film</span>
-            <h2 class="h anim d1">Infina AI in the U.S.</h2>
+            <h2 class="h anim d1">Infina AI for U.S. real estate.</h2>
             <p class="sub anim d1">A short film on the product and the market, before we go into the details.</p>
             <div class="film-pick anim d2" role="group" aria-label="Choose a film">
-              <button type="button" data-film="1RWdazQ-N-xteeA2UG80zXDEF5okjQ6EF" aria-pressed="true"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z"/></svg></i><span>Infina AI USA 2.0<small>The latest cut</small></span></button>
-              <button type="button" data-film="11WEWmHeX5PfnHsdflFSULBX0SWNVc3IA" aria-pressed="false"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z"/></svg></i><span>Infina AI USA Real Estate<small>Real estate focus</small></span></button>
+              <button type="button" data-film="1rqyiJv--T6Ai9ITCeb0E4X4emLAff89p" aria-pressed="true"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z"/></svg></i><span>Infina AI USA Real Estate<small>Real estate focus</small></span></button>
             </div>
             <p class="film-note anim d3">Press play in the video. Arrow keys move slides when the video is not focused.</p>
           </div>
@@ -1208,6 +1208,7 @@
     var filmFrame = document.getElementById('film-frame');
     var filmBtns = document.querySelectorAll('[data-film]');
     var filmId = filmBtns[0].getAttribute('data-film');
+    if (filmBtns.length < 2) filmBtns[0].parentNode.hidden = true;
     function loadFilm(){ var src = 'https://drive.google.com/file/d/' + filmId + '/preview'; if (filmFrame.getAttribute('src') !== src) filmFrame.setAttribute('src', src); }
     filmBtns.forEach(function(b){
       b.addEventListener('click', function(){
