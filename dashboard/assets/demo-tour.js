@@ -1,5 +1,5 @@
 // Realisa, the guide for the agent dashboard demo.
-// One tour that walks across several dashboard pages: Chats, one chat, Pipeline, Buyers, Insights.
+// One short tour across several dashboard pages: Chats, one chat, Pipeline, Insights.
 // The step to show travels in the URL hash (#tour=N), so moving to the next page keeps the tour going.
 // Pages load this file with <script src="<relative>/assets/demo-tour.js" defer></script>.
 (function () {
@@ -33,32 +33,16 @@
 
   // ===== The tour =====
   var STEPS = [
-    { page: 'chats/index.html', target: function () { return firstVisible(['ul[aria-label="Chats"]']); },
+    { page: 'chats/index.html', target: function () { return firstVisible(['section[aria-label="Chats"]', 'ul[aria-label="Chats"]']); },
       title: 'Every buyer chat, in one inbox',
-      text: 'Chats from your listings, your own page and your clients land here. Your assistant answers them for you, day and night.' },
-    { page: 'chats/index.html', target: function () { return byText('section[aria-label="Chats"] button', 'Needs you'); },
-      title: 'Know who needs you',
-      text: 'Most chats need nothing from you. When a buyer is ready, or the assistant has a question, the chat is marked <b>Needs you</b>.' },
-    { page: 'chats/index.html', target: function () { var ul = q('ul[aria-label="Chats"]'); return ul && ul.querySelector('li'); },
-      title: 'Open a chat',
-      text: 'Megan and Chris Lee found a home from its yard sign. Let\'s see what they talked about.',
-      nextLabel: 'Open the chat' },
+      text: 'Chats from your listings, your page and your clients land here. Your assistant answers them day and night, and marks the ones that <b>need you</b>.',
+      nextLabel: 'Open a chat' },
     { page: 'chats/listing/p1/c1/index.html', target: function () { return firstVisible(['section[aria-label^="Chat with"] ol[aria-label="Chat"]', 'section[aria-label^="Chat with"]']); },
       title: 'The whole conversation',
-      text: 'Everything the buyers sent, from voice notes to a pre-approval letter, and every answer the assistant gave, with its source.' },
+      text: 'Megan and Chris found the home from its yard sign. Here is every message they sent and every answer the assistant gave, with its source.' },
     { page: 'chats/listing/p1/c1/index.html', target: function () { return firstVisible(['section[aria-label="The assistant asked you"]']); },
       title: 'It asks instead of guessing',
-      text: 'The buyers asked for a credit for the old water heater. The assistant did not make up an answer: it asked you, once.' },
-    { page: 'chats/listing/p1/c1/index.html', target: function () { var t = q('#agent-message'); return t && (t.closest('form') || t); },
-      title: 'Jump in any time',
-      text: 'Write to the buyers yourself whenever you want. The assistant steps back while you talk.' },
-    { page: 'chats/listing/p1/c1/index.html', target: function () { return firstVisible(['aside[aria-label="Details"]']); },
-      skipIf: function () { return !visible(q('aside[aria-label="Details"]')); },
-      title: 'A quick read on the buyer',
-      text: 'Budget, timeline, financing, worries and the next step, summarised from the chat so you can act fast.' },
-    { page: 'index.html', target: function () { return firstVisible(['section[data-testid="pipeline-tiles"]']); },
-      title: 'Your pipeline at a glance',
-      text: 'Open deals, pipeline value and commission in play, always up to date.' },
+      text: 'They asked for a credit on the old water heater. The assistant did not make up an answer: it asked you, once. You can jump into any chat yourself.' },
     { page: 'index.html', target: function () {
         // desktop: the whole board; phone: the stage that is showing
         var s = q('section[data-stage-section]');
@@ -70,18 +54,9 @@
       },
       title: 'Deals move on their own',
       text: 'One card per buyer and home. The assistant moves deals to <b>Engaged</b> and <b>Showing booked</b> from the chats. You move the rest.' },
-    { page: 'buyers/index.html', target: function () { return firstVisible(['ul[aria-label="People who left contact"]']); },
-      title: 'A next step for every buyer',
-      text: 'Everyone who left a contact, with their stage and what to do next. Nobody slips through.' },
-    { page: 'insights/index.html', target: function () {
-        var h = q('section[data-testid="insights-headline"]');
-        return h ? [h, h.nextElementSibling].filter(visible) : null;
-      },
+    { page: 'insights/index.html', target: function () { return firstVisible(['section[data-testid="insights-headline"]']); },
       title: 'What the AI did for you',
-      text: 'How many people visited your homes, chatted with the AI, left a contact and asked to see the home.' },
-    { page: 'insights/index.html', target: null,
-      title: 'That\'s the agent side',
-      text: 'Buyers get answers around the clock. You get warm leads with the full story. Tap me any time to take this tour again.',
+      text: 'How many people visited your homes, chatted with the AI, left a contact and asked to see the home. Tap me any time to take this tour again.',
       nextLabel: 'Done' }
   ];
   var TOTAL = STEPS.length;
@@ -138,7 +113,7 @@
 
   // Launcher and tip
   var btn = make('button', 'rl-btn'); btn.type = 'button'; btn.setAttribute('aria-label', 'Take a tour with Realisa'); btn.innerHTML = REALISA_SVG;
-  var tip = make('button', 'rl-tip'); tip.type = 'button'; tip.textContent = 'New here? Take a 1-minute tour'; tip.hidden = true;
+  var tip = make('button', 'rl-tip'); tip.type = 'button'; tip.textContent = 'New here? Take a 5-step tour'; tip.hidden = true;
   document.body.appendChild(tip); document.body.appendChild(btn);
 
   // Tour layers
