@@ -1,5 +1,5 @@
 // Realisa, the guide for the agent dashboard demo.
-// One short tour across several dashboard pages: Chats, one chat, Pipeline, Insights.
+// One short tour across several dashboard pages: Chats, one chat, Pipeline, Listings, Insights.
 // The step to show travels in the URL hash (#tour=N), so moving to the next page keeps the tour going.
 // Pages load this file with <script src="<relative>/assets/demo-tour.js" defer></script>.
 (function () {
@@ -54,6 +54,9 @@
       },
       title: 'Deals move on their own',
       text: 'One card per buyer and home. The assistant moves deals to <b>Engaged</b> and <b>Showing booked</b> from the chats. You move the rest.' },
+    { page: 'properties/index.html', target: function () { return firstVisible(['ul[aria-label="Listings"]']); },
+      title: 'Every listing, with its own AI',
+      text: 'Each home gets its own page, link and QR code, plus everything the AI knows about it. See visitors, chats and buyers per listing, and the questions waiting for you.' },
     { page: 'insights/index.html', target: function () { return firstVisible(['section[data-testid="insights-headline"]']); },
       title: 'What the AI did for you',
       text: 'How many people visited your homes, chatted with the AI, left a contact and asked to see the home. Tap me any time to take this tour again.',
@@ -113,7 +116,7 @@
 
   // Launcher and tip
   var btn = make('button', 'rl-btn'); btn.type = 'button'; btn.setAttribute('aria-label', 'Take a tour with Realisa'); btn.innerHTML = REALISA_SVG;
-  var tip = make('button', 'rl-tip'); tip.type = 'button'; tip.textContent = 'New here? Take a 5-step tour'; tip.hidden = true;
+  var tip = make('button', 'rl-tip'); tip.type = 'button'; tip.textContent = 'New here? Take a 6-step tour'; tip.hidden = true;
   document.body.appendChild(tip); document.body.appendChild(btn);
 
   // Tour layers
@@ -211,7 +214,8 @@
     tip.hidden = true; btn.classList.remove('is-nudge');
     var t = resolveTarget(s);
     var first = Array.isArray(t) ? t[0] : t;
-    if (first) first.scrollIntoView({ block: 'center', inline: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+    // a tall target starts at its top, so the first rows are what people see
+    if (first) first.scrollIntoView({ block: first.getBoundingClientRect().height > innerHeight * 0.7 ? 'start' : 'center', inline: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
     elCount.textContent = (i + 1) + ' of ' + TOTAL;
     elTitle.textContent = s.title;
     elText.innerHTML = s.text;
