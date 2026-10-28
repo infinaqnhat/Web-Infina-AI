@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <base target="_top">
+  <script>
+    // Embedded in a same-origin page (the investor overview): keep links inside the frame
+    try { if (window.top !== window.self && window.top.location.origin === location.origin) document.querySelector('base').target = '_self'; } catch (e) {}
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Property Expert AI, demo for 123 Main Street</title>
@@ -1483,7 +1487,10 @@
     }
     hobBtn.addEventListener('click', startTour1);
     hobTip.addEventListener('click', startTour1);
-    if (!tourSeen()) {
+    if (/[#&]tour=1\b/.test(location.hash)) {
+      // opened as a guided demo: start the tour straight away
+      setTimeout(startTour1, 900);
+    } else if (!tourSeen()) {
       setTimeout(function(){
         if (PETour.active()) return;
         hobBtn.classList.add('is-nudge'); hobTip.hidden = false;

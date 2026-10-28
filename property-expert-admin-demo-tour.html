@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <base target="_top">
+  <script>
+    // Embedded in a same-origin page (the investor overview): keep links inside the frame
+    try { if (window.top !== window.self && window.top.location.origin === location.origin) document.querySelector('base').target = '_self'; } catch (e) {}
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Infina AI inbox, demo</title>

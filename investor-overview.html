@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infina AI · Investor Overview</title>
+  <meta name="description" content="Infina AI is an AI agent ecosystem for U.S. residential real estate. Property Expert, Home Concierge and HOb capture every lead, keep it warm and help agents close more deals.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Infina AI">
+  <meta property="og:title" content="Infina AI · An AI agent ecosystem for real estate">
+  <meta property="og:description" content="Capture every lead. Keep it warm. Close more deals. Try the live Property Expert demo.">
+  <meta property="og:image" content="uploads/hero-seller-signqr-v3.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#ffffff; --surface:#f6f8fc; --fg:#1a1f2e; --fg-secondary:#334155; --muted:#5b6678;
+      --border:#e3e8f0; --border-light:#eef1f6;
+      --accent:#001F5C; --accent-dark:#001340; --accent-light:rgba(0,31,92,.08);
+      --blue:#1863dc; --blue-light:rgba(24,99,220,.09);
+      --green:#0b8a55; --green-light:rgba(16,163,102,.12);
+      --amber:#a86a00; --amber-light:rgba(217,146,26,.15);
+      --gold:#f5a623;
+      --font-body:'Be Vietnam Pro',-apple-system,system-ui,sans-serif;
+      --section-gap:clamp(64px,8vw,112px); --radius:22px;
+      --shadow-card:0 1px 2px rgba(0,20,60,.04), 0 12px 32px -14px rgba(0,20,60,.18);
+      --shadow-pop:0 30px 70px -24px rgba(0,20,60,.45), 0 0 0 1px rgba(0,20,60,.06);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:84px; }
+    body { font-family:var(--font-body); background:var(--bg); color:var(--fg); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
+    button { font-family:inherit; cursor:pointer; }
+    :focus-visible { outline:3px solid var(--blue); outline-offset:3px; border-radius:8px; }
+
+    .wrap { max-width:1200px; margin:0 auto; padding:0 32px; }
+    @media (max-width:640px){ .wrap { padding:0 16px; } }
+    section { padding:var(--section-gap) 0; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); }
+    .eyebrow::before { content:''; width:18px; height:2px; border-radius:2px; background:currentColor; }
+    .h2 { font-size:clamp(30px,4.2vw,48px); line-height:1.12; letter-spacing:-.025em; font-weight:800; color:var(--accent); margin-top:14px; max-width:820px; }
+    .lead { font-size:clamp(16px,1.6vw,18.5px); color:var(--fg-secondary); margin-top:16px; max-width:720px; }
+    .center { text-align:center; }
+    .center .h2, .center .lead { margin-left:auto; margin-right:auto; }
+
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:48px; padding:13px 24px; border-radius:999px; border:0; font-size:15px; font-weight:700; transition:transform .2s, box-shadow .2s, background .2s; white-space:nowrap; }
+    .btn-primary { background:var(--accent); color:#fff; box-shadow:0 10px 24px -10px rgba(0,31,92,.7); }
+    .btn-primary:hover { background:var(--accent-dark); transform:translateY(-2px); }
+    .btn-blue { background:var(--blue); color:#fff; box-shadow:0 10px 24px -10px rgba(24,99,220,.8); }
+    .btn-blue:hover { background:#1253be; transform:translateY(-2px); }
+    .btn-ghost { background:#fff; color:var(--accent); border:1.5px solid var(--border); }
+    .btn-ghost:hover { border-color:var(--accent); }
+    .btn-glass { background:rgba(255,255,255,.14); color:#fff; border:1.5px solid rgba(255,255,255,.4); backdrop-filter:blur(8px); }
+    .btn-glass:hover { background:rgba(255,255,255,.24); }
+
+    /* Reveal on scroll */
+    .reveal { opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.22,1,.36,1); }
+    .reveal.is-in { opacity:1; transform:none; }
+
+    /* ===== Hero ===== */
+    .hero { position:relative; min-height:min(860px,100vh); padding:120px 0 72px; display:flex; align-items:center; color:#fff; overflow:hidden; background:#0b1d3f; }
+    .hero-bg { position:absolute; inset:0; background:url('uploads/hero-seller-signqr-v3.jpg') center right/cover no-repeat; transform:scale(1.04); }
+    .hero-bg::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg, rgba(0,19,64,.94) 0%, rgba(0,31,92,.82) 38%, rgba(0,31,92,.25) 72%, rgba(0,31,92,.1) 100%); }
+    .hero-grid { position:relative; display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center; }
+    .hero-tag { display:inline-flex; align-items:center; gap:10px; padding:7px 14px 7px 8px; border-radius:999px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22); font-size:13px; font-weight:600; backdrop-filter:blur(6px); }
+    .hero-tag b { background:#fff; color:var(--accent); padding:3px 9px; border-radius:999px; font-size:11.5px; font-weight:800; letter-spacing:.04em; }
+    .hero h1 { font-size:clamp(38px,5.6vw,66px); line-height:1.04; letter-spacing:-.035em; font-weight:800; margin-top:22px; }
+    .hero h1 span { color:#9cc3ff; }
+    .hero-sub { font-size:clamp(19px,2vw,24px); font-weight:700; margin-top:18px; color:#fff; }
+    .hero-p { font-size:16.5px; color:rgba(255,255,255,.84); margin-top:14px; max-width:560px; }
+    .hero-ctas { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+    .hero-trio { display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; }
+    .hero-trio span { display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:700; padding:8px 13px; border-radius:12px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); }
+    .hero-trio i { width:8px; height:8px; border-radius:50%; background:#9cc3ff; }
+
+    /* Hero live chat card */
+    .hero-stage { position:relative; justify-self:end; width:100%; max-width:400px; }
+    .live-card { background:#fff; color:var(--fg); border-radius:22px; box-shadow:var(--shadow-pop); overflow:hidden; }
+    .live-head { display:flex; align-items:center; gap:11px; padding:13px 16px; border-bottom:1px solid var(--border-light); }
+    .live-head img { width:40px; height:40px; border-radius:10px; object-fit:cover; }
+    .live-head b { display:block; font-size:14px; color:var(--accent); line-height:1.25; }
+    .live-head span { font-size:12px; color:var(--muted); }
+    .live-badge { margin-left:auto; font-size:10.5px; font-weight:800; letter-spacing:.05em; color:var(--green); background:var(--green-light); padding:4px 9px; border-radius:999px; display:inline-flex; align-items:center; gap:6px; }
+    .live-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--green); animation:blink 1.6s infinite; }
+    .live-body { padding:16px; min-height:318px; display:flex; flex-direction:column; gap:11px; background:linear-gradient(#fff, #fbfcfe); }
+    .lc-msg { opacity:0; transform:translateY(8px); transition:opacity .45s, transform .45s cubic-bezier(.22,1,.36,1); }
+    .lc-msg.is-on { opacity:1; transform:none; }
+    .lc-user { align-self:flex-end; background:var(--accent); color:#fff; font-size:13.5px; padding:10px 14px; border-radius:16px 16px 4px 16px; max-width:85%; }
+    .lc-bot { font-size:13px; color:var(--fg-secondary); }
+    .lc-cite { display:flex; gap:10px; padding:10px 12px; border:1px solid var(--border-light); border-radius:12px; background:#fff; }
+    .lc-cite .ic { width:24px; height:24px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+    .ic.ok { background:var(--green-light); color:var(--green); }
+    .ic.info { background:var(--blue-light); color:var(--blue); }
+    .lc-cite b { display:block; font-size:13px; color:var(--fg); }
+    .lc-cite p { font-size:12px; color:var(--muted); }
+    .lc-src { display:inline-flex; align-items:center; gap:5px; margin-top:5px; font-size:11px; font-weight:700; color:var(--blue); background:var(--blue-light); padding:3px 8px; border-radius:6px; }
+    .lc-typing { align-self:flex-start; display:flex; gap:4px; padding:10px 12px; border-radius:12px; background:var(--surface); }
+    .lc-typing i { width:6px; height:6px; border-radius:50%; background:var(--muted); animation:typing 1s infinite; }
+    .lc-typing i:nth-child(2){ animation-delay:.15s } .lc-typing i:nth-child(3){ animation-delay:.3s }
+    .lc-typing[hidden] { display:none; }
+    .live-input { display:flex; align-items:center; gap:8px; padding:12px 16px; border-top:1px solid var(--border-light); font-size:13px; color:var(--muted); }
+    .live-input span { flex:1; border:1px solid var(--border); border-radius:999px; padding:9px 14px; }
+    .live-input i { width:34px; height:34px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; color:#fff; }
+    .hero-toast { position:absolute; left:-56px; bottom:-26px; width:270px; display:flex; gap:11px; padding:13px 14px; border-radius:16px; background:#fff; color:var(--fg); box-shadow:var(--shadow-pop); opacity:0; transform:translateY(14px) scale(.97); transition:opacity .5s, transform .5s cubic-bezier(.22,1,.36,1); }
+    .hero-toast.is-on { opacity:1; transform:none; }
+    .hero-toast .ic { width:36px; height:36px; border-radius:10px; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .hero-toast small { font-size:10.5px; font-weight:800; letter-spacing:.08em; color:var(--blue); }
+    .hero-toast b { display:block; font-size:13.5px; color:var(--accent); }
+    .hero-toast p { font-size:12px; color:var(--muted); line-height:1.45; }
+    .scroll-cue { position:absolute; left:50%; bottom:22px; transform:translateX(-50%); color:rgba(255,255,255,.7); font-size:12px; font-weight:600; display:flex; flex-direction:column; align-items:center; gap:6px; }
+    .scroll-cue i { width:22px; height:34px; border:2px solid rgba(255,255,255,.5); border-radius:12px; position:relative; }
+    .scroll-cue i::after { content:''; position:absolute; left:50%; top:6px; width:4px; height:7px; margin-left:-2px; border-radius:2px; background:#fff; animation:cue 1.8s infinite; }
+    @keyframes blink { 50% { opacity:.3 } }
+    @keyframes typing { 0%,60%,100% { transform:none; opacity:.5 } 30% { transform:translateY(-3px); opacity:1 } }
+    @keyframes cue { 0% { transform:translateY(0); opacity:1 } 70% { transform:translateY(10px); opacity:0 } 100% { opacity:0 } }
+    @media (max-width:980px){
+      .hero { padding:110px 0 80px; min-height:0; }
+      .hero-bg::after { background:linear-gradient(180deg, rgba(0,19,64,.92) 0%, rgba(0,31,92,.86) 60%, rgba(0,31,92,.7) 100%); }
+      .hero-grid { grid-template-columns:1fr; gap:56px; }
+      .hero-stage { justify-self:center; }
+      .hero-toast { left:auto; right:-8px; bottom:-34px; width:250px; }
+      .scroll-cue { display:none; }
+    }
+
+    /* ===== Section nav (sticky chips) ===== */
+    .jump { position:sticky; top:72px; z-index:50; background:rgba(255,255,255,.92); backdrop-filter:blur(14px); border-bottom:1px solid var(--border-light); }
+    .jump-inner { display:flex; gap:6px; overflow-x:auto; padding:10px 0; scrollbar-width:none; }
+    .jump-inner::-webkit-scrollbar { display:none; }
+    .jump a { flex-shrink:0; font-size:13.5px; font-weight:700; color:var(--muted); padding:8px 15px; border-radius:999px; transition:background .2s, color .2s; }
+    .jump a:hover { color:var(--accent); background:var(--surface); }
+    .jump a.is-active { color:#fff; background:var(--accent); }
+    .jump a.is-demo { color:var(--blue); background:var(--blue-light); margin-left:auto; }
+    .jump a.is-demo.is-active { color:#fff; background:var(--blue); }
+
+    /* ===== Thesis ===== */
+    .thesis-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:44px; }
+    .thesis-card { position:relative; padding:30px 28px; border-radius:var(--radius); background:#fff; border:1px solid var(--border); box-shadow:var(--shadow-card); transition:transform .3s, box-shadow .3s; }
+    .thesis-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-pop); }
+    .thesis-num { display:flex; align-items:center; justify-content:space-between; }
+    .thesis-num small { font-size:12px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+    .thesis-num .ic { width:44px; height:44px; border-radius:14px; display:flex; align-items:center; justify-content:center; }
+    .thesis-card h3 { font-size:21px; line-height:1.3; letter-spacing:-.01em; color:var(--accent); margin-top:20px; font-weight:800; }
+    .thesis-card p { font-size:15px; color:var(--fg-secondary); margin-top:10px; }
+    .thesis-card.is-problem .ic { background:var(--amber-light); color:var(--amber); }
+    .thesis-card.is-answer .ic { background:var(--blue-light); color:var(--blue); }
+    .thesis-card.is-flywheel { background:var(--accent); border-color:var(--accent); }
+    .thesis-card.is-flywheel small { color:#9cc3ff; }
+    .thesis-card.is-flywheel .ic { background:rgba(255,255,255,.12); color:#fff; }
+    .thesis-card.is-flywheel h3 { color:#fff; }
+    .thesis-card.is-flywheel p { color:rgba(255,255,255,.82); }
+    @media (max-width:900px){ .thesis-grid { grid-template-columns:1fr; } }
+
+    /* ===== Ecosystem ===== */
+    .eco { background:var(--surface); }
+    .eco-shell { margin-top:44px; display:grid; grid-template-columns:1fr 330px; gap:24px; align-items:start; }
+    .eco-map { position:relative; padding:28px; border-radius:28px; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow-card); }
+    .eco-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:16px 14px; position:relative; }
+    .eco-role { grid-row:1; display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 10px; border-radius:18px; border:1.5px solid var(--border); background:#fff; color:var(--fg); text-align:center; transition:border-color .25s, background .25s, transform .25s, box-shadow .25s; }
+    .eco-role:hover { border-color:var(--blue); transform:translateY(-2px); }
+    .eco-role.is-on { border-color:var(--accent); background:var(--accent); color:#fff; box-shadow:0 14px 30px -14px rgba(0,31,92,.7); }
+    .eco-role .av { width:46px; height:46px; border-radius:50%; background:var(--accent-light); color:var(--accent); display:flex; align-items:center; justify-content:center; transition:background .25s, color .25s; }
+    .eco-role.is-on .av { background:rgba(255,255,255,.16); color:#fff; }
+    .eco-role b { font-size:14.5px; line-height:1.2; }
+    .eco-role span { font-size:12px; color:var(--muted); }
+    .eco-role.is-on span { color:rgba(255,255,255,.75); }
+    .r-listing { grid-column:1 / 3; } .r-buyer { grid-column:3 / 5; } .r-bagent { grid-column:5 / 7; }
+    .eco-links { grid-row:2; grid-column:1 / 7; height:34px; position:relative; }
+    .eco-links svg { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+    .eco-links path { fill:none; stroke:var(--border); stroke-width:2; stroke-dasharray:5 5; transition:stroke .3s; }
+    .eco-links path.is-on { stroke:var(--blue); stroke-dasharray:none; animation:none; }
+    .eco-prod { grid-row:3; position:relative; padding:18px 18px 16px; border-radius:18px; background:var(--blue-light); border:1.5px solid transparent; transition:opacity .3s, border-color .3s, background .3s, transform .3s; }
+    .eco-prod small { font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); }
+    .eco-prod b { display:block; font-size:19px; color:var(--accent); margin-top:4px; letter-spacing:-.01em; }
+    .eco-prod p { font-size:13px; color:var(--fg-secondary); margin-top:4px; line-height:1.5; }
+    .p-pe { grid-column:1 / 4; } .p-hc { grid-column:4 / 7; }
+    .eco-bridge { grid-row:4; grid-column:1 / 7; display:flex; align-items:center; justify-content:center; gap:10px; font-size:12.5px; font-weight:700; color:var(--blue); text-align:center; }
+    .eco-bridge svg { flex-shrink:0; }
+    .eco-hob { grid-row:5; grid-column:1 / 7; display:flex; align-items:center; gap:16px; padding:16px 20px; border-radius:18px; background:var(--accent); color:#fff; transition:opacity .3s, transform .3s; }
+    .eco-hob svg.hob { width:46px; height:46px; flex-shrink:0; background:#fff; border-radius:14px; padding:5px; }
+    .eco-hob b { font-size:19px; }
+    .eco-hob p { font-size:13px; color:rgba(255,255,255,.8); }
+    .eco-hob .tags { margin-left:auto; display:flex; flex-wrap:wrap; gap:6px; justify-content:flex-end; }
+    .eco-hob .tags span { font-size:11.5px; font-weight:700; padding:4px 9px; border-radius:999px; background:rgba(255,255,255,.12); }
+    .eco-map.has-focus .eco-prod:not(.is-on), .eco-map.has-focus .eco-hob:not(.is-on) { opacity:.28; }
+    .eco-prod.is-on { border-color:var(--blue); background:#fff; transform:translateY(-2px); box-shadow:var(--shadow-card); }
+    .eco-hob.is-on { transform:translateY(-2px); }
+    .eco-panel { position:sticky; top:150px; padding:26px; border-radius:24px; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow-card); min-height:300px; }
+    .eco-panel small { font-size:12px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); }
+    .eco-panel h3 { font-size:22px; color:var(--accent); margin-top:6px; letter-spacing:-.01em; line-height:1.25; }
+    .eco-panel p { font-size:14.5px; color:var(--fg-secondary); margin-top:10px; }
+    .eco-panel ul { list-style:none; margin-top:16px; display:flex; flex-direction:column; gap:10px; }
+    .eco-panel li { display:flex; gap:10px; font-size:14px; color:var(--fg); }
+    .eco-panel li svg { color:var(--green); flex-shrink:0; margin-top:3px; }
+    .eco-hint { margin-top:14px; font-size:13px; color:var(--muted); display:flex; align-items:center; gap:8px; }
+    .eco-hint i { width:8px; height:8px; border-radius:50%; background:var(--blue); animation:blink 1.4s infinite; }
+    @media (max-width:980px){
+      .eco-shell { grid-template-columns:1fr; }
+      .eco-panel { position:static; min-height:0; }
+    }
+    @media (max-width:640px){
+      .eco-map { padding:16px; border-radius:22px; }
+      .eco-grid { gap:12px 8px; }
+      .eco-role { padding:12px 4px; }
+      .eco-role .av { width:38px; height:38px; }
+      .eco-role b { font-size:12.5px; }
+      .eco-role span { display:none; }
+      .p-pe, .p-hc { grid-column:1 / 7; }
+      .p-hc { grid-row:4; }
+      .eco-bridge { grid-row:5; }
+      .eco-hob { grid-row:6; flex-wrap:wrap; }
+      .eco-hob .tags { margin-left:0; justify-content:flex-start; }
+      .eco-links { height:22px; }
+    }
+
+    /* ===== Products ===== */
+    .tabs { display:inline-flex; gap:6px; padding:6px; margin-top:36px; border-radius:999px; background:var(--surface); border:1px solid var(--border); max-width:100%; overflow-x:auto; scrollbar-width:none; }
+    .tabs::-webkit-scrollbar { display:none; }
+    .tab { flex-shrink:0; display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:10px 20px; border:0; border-radius:999px; background:none; font-size:14.5px; font-weight:700; color:var(--muted); transition:background .25s, color .25s; }
+    .tab:hover { color:var(--accent); }
+    .tab[aria-selected="true"] { background:var(--accent); color:#fff; box-shadow:0 8px 18px -8px rgba(0,31,92,.6); }
+    .prod-panel { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; margin-top:40px; }
+    .prod-panel[hidden] { display:none; }
+    .prod-panel.is-enter .prod-copy, .prod-panel.is-enter .prod-visual { animation:enter .55s cubic-bezier(.22,1,.36,1) both; }
+    .prod-panel.is-enter .prod-visual { animation-delay:.06s; }
+    @keyframes enter { from { opacity:0; transform:translateY(16px) } to { opacity:1; transform:none } }
+    .who { display:flex; flex-wrap:wrap; gap:6px; }
+    .who span { font-size:12px; font-weight:700; padding:5px 11px; border-radius:999px; background:var(--accent-light); color:var(--accent); }
+    .prod-copy h3 { font-size:clamp(28px,3.2vw,38px); letter-spacing:-.02em; color:var(--accent); margin-top:14px; line-height:1.1; }
+    .prod-copy .tagline { font-size:17px; font-weight:700; color:var(--blue); margin-top:8px; }
+    .prod-copy > p { font-size:16px; color:var(--fg-secondary); margin-top:14px; }
+    .checks { list-style:none; margin-top:22px; display:flex; flex-direction:column; gap:12px; }
+    .checks li { display:flex; gap:12px; font-size:15px; font-weight:600; color:var(--fg); }
+    .checks li span { width:24px; height:24px; border-radius:50%; background:var(--green-light); color:var(--green); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .prod-cta { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+    .prod-visual { position:relative; display:flex; justify-content:center; padding:36px 20px; border-radius:30px; background:radial-gradient(120% 90% at 80% 0%, rgba(24,99,220,.16) 0%, rgba(24,99,220,0) 60%), var(--surface); border:1px solid var(--border-light); }
+    .mock { width:100%; max-width:380px; background:#fff; border-radius:22px; box-shadow:var(--shadow-pop); overflow:hidden; font-size:13px; }
+    .mock-head { display:flex; align-items:center; gap:11px; padding:14px 16px 10px; }
+    .mock-head img, .mock-head .mk-ic { width:38px; height:38px; border-radius:10px; object-fit:cover; flex-shrink:0; }
+    .mk-ic { display:flex; align-items:center; justify-content:center; background:var(--blue-light); color:var(--blue); }
+    .mock-head b { display:block; font-size:14px; color:var(--accent); line-height:1.25; }
+    .mock-head span { font-size:11.5px; color:var(--muted); }
+    .mock-tabs { display:flex; gap:4px; padding:0 12px 10px; border-bottom:1px solid var(--border-light); }
+    .mock-tabs span { font-size:12px; font-weight:700; color:var(--muted); padding:6px 10px; border-radius:8px; }
+    .mock-tabs span.is-on { background:var(--blue-light); color:var(--blue); }
+    .mock-body { padding:14px; display:flex; flex-direction:column; gap:10px; }
+    .mk-user { align-self:flex-end; background:var(--accent); color:#fff; padding:9px 13px; border-radius:14px 14px 4px 14px; max-width:85%; }
+    .mk-time { align-self:flex-end; font-size:10.5px; color:var(--muted); margin-top:-6px; }
+    .mk-bot { color:var(--fg-secondary); max-width:92%; }
+    .mk-card { display:flex; gap:10px; align-items:center; padding:10px; border:1px solid var(--border-light); border-radius:12px; }
+    .mk-card img { width:54px; height:44px; border-radius:8px; object-fit:cover; flex-shrink:0; }
+    .mk-card b { display:block; font-size:13px; color:var(--fg); }
+    .mk-card span { font-size:11.5px; color:var(--muted); }
+    .mk-card a, .mk-card em { margin-left:auto; font-style:normal; font-size:11px; font-weight:700; color:var(--blue); background:var(--blue-light); padding:5px 8px; border-radius:8px; white-space:nowrap; }
+    .mk-chips { display:flex; flex-wrap:wrap; gap:6px; }
+    .mk-chips span { font-size:11.5px; font-weight:600; padding:6px 10px; border-radius:999px; border:1px solid var(--border); color:var(--blue); }
+    .mk-learned { display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:11.5px; color:var(--muted); }
+    .mk-learned span { font-weight:700; color:var(--green); background:var(--green-light); padding:4px 9px; border-radius:999px; }
+    .mk-brief { padding:12px; border-radius:14px; background:var(--surface); border:1px solid var(--border-light); }
+    .mk-brief small { font-size:10.5px; font-weight:800; letter-spacing:.08em; color:var(--blue); }
+    .mk-brief > b { display:block; font-size:13.5px; color:var(--accent); margin:3px 0 8px; }
+    .mk-task { display:flex; gap:10px; padding:9px 0; border-top:1px solid var(--border); }
+    .mk-task .dot { width:26px; height:26px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .mk-task b { display:block; font-size:12.5px; color:var(--fg); }
+    .mk-task span { font-size:11.5px; color:var(--muted); line-height:1.4; display:block; }
+    .mk-task em { font-style:normal; font-size:11px; font-weight:700; color:#fff; background:var(--accent); padding:4px 9px; border-radius:999px; display:inline-block; margin-top:5px; }
+    .mk-pipe { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+    .mk-pipe div { text-align:center; padding:9px 4px; border-radius:10px; background:var(--surface); }
+    .mk-pipe b { display:block; font-size:18px; color:var(--accent); }
+    .mk-pipe span { font-size:11px; color:var(--muted); }
+    .mk-pipe .warm { background:var(--amber-light); } .mk-pipe .warm b { color:var(--amber); }
+    .mk-pipe .uc { background:var(--green-light); } .mk-pipe .uc b { color:var(--green); }
+    .mock-input { display:flex; gap:8px; align-items:center; padding:12px 14px; border-top:1px solid var(--border-light); color:var(--muted); }
+    .mock-input span { flex:1; border:1px solid var(--border); border-radius:999px; padding:8px 12px; font-size:12px; }
+    .mock-input i { width:32px; height:32px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+    .float-note { position:absolute; right:-6px; top:22px; display:flex; gap:10px; align-items:center; padding:11px 13px; border-radius:14px; background:#fff; box-shadow:var(--shadow-pop); max-width:220px; animation:bob 4s ease-in-out infinite; }
+    .float-note .ic { width:30px; height:30px; border-radius:9px; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .float-note small { font-size:10px; font-weight:800; letter-spacing:.08em; color:var(--blue); display:block; }
+    .float-note b { font-size:12.5px; color:var(--accent); line-height:1.3; display:block; }
+    @keyframes bob { 50% { transform:translateY(-6px) } }
+    .mock-note { font-size:12px; color:var(--muted); margin-top:18px; }
+    @media (max-width:980px){
+      .prod-panel { grid-template-columns:1fr; gap:32px; }
+      .prod-visual { order:-1; padding:28px 14px; }
+      .float-note { right:6px; top:auto; bottom:-12px; }
+    }
+
+    /* ===== How it works ===== */
+    .how { background:linear-gradient(180deg, var(--surface) 0%, #fff 100%); }
+    .how-shell { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:48px; align-items:start; }
+    .how-shell > *, .prod-panel > *, .eco-shell > *, .hero-grid > *, .vision-grid > *, .contact-card > * { min-width:0; }
+    .steps { display:flex; flex-direction:column; gap:10px; }
+    .step { display:flex; gap:16px; width:100%; text-align:left; padding:18px 20px; border-radius:18px; border:1.5px solid var(--border); background:#fff; color:var(--fg); transition:border-color .25s, box-shadow .25s, background .25s; position:relative; overflow:hidden; }
+    .step:hover { border-color:var(--blue); }
+    .step .n { width:38px; height:38px; border-radius:12px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; background:var(--surface); color:var(--muted); transition:background .25s, color .25s; }
+    .step small { font-size:11.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+    .step b { display:block; font-size:16.5px; color:var(--accent); line-height:1.3; margin-top:2px; }
+    .step p { font-size:14px; color:var(--fg-secondary); margin-top:6px; display:none; }
+    .step.is-on { border-color:var(--accent); box-shadow:var(--shadow-card); }
+    .step.is-on .n { background:var(--accent); color:#fff; }
+    .step.is-on p { display:block; }
+    .step.is-moment.is-on { border-color:var(--amber); }
+    .step.is-moment.is-on .n { background:var(--amber); }
+    .step .bar { position:absolute; left:0; bottom:0; height:3px; width:0; background:var(--blue); }
+    .step.is-on .bar.is-run { animation:fill var(--step-ms,5200ms) linear forwards; }
+    @keyframes fill { to { width:100% } }
+    .lead-card { position:sticky; top:150px; padding:24px; border-radius:26px; background:var(--accent); color:#fff; box-shadow:var(--shadow-pop); overflow:hidden; }
+    .lead-card::before { content:''; position:absolute; right:-80px; top:-80px; width:240px; height:240px; border-radius:50%; background:radial-gradient(circle, rgba(156,195,255,.35), transparent 70%); }
+    .lead-top { position:relative; display:flex; align-items:center; gap:12px; }
+    .lead-top .av { width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,.14); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background .4s; }
+    .lead-top b { display:block; font-size:17px; }
+    .lead-top span { font-size:12.5px; color:rgba(255,255,255,.7); }
+    .temp { position:relative; margin-top:22px; }
+    .temp-row { display:flex; justify-content:space-between; font-size:11.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.6); }
+    .temp-track { height:10px; border-radius:999px; background:rgba(255,255,255,.12); margin-top:8px; overflow:hidden; }
+    .temp-fill { height:100%; width:10%; border-radius:999px; background:linear-gradient(90deg, #9cc3ff, #f5a623); transition:width .8s cubic-bezier(.22,1,.36,1); }
+    .temp-label { margin-top:10px; font-size:13px; font-weight:700; }
+    .temp-label span { display:inline-block; padding:3px 10px; border-radius:999px; background:rgba(255,255,255,.14); }
+    .lead-feed { position:relative; margin-top:20px; display:flex; flex-direction:column; gap:8px; min-height:200px; }
+    .feed-item { display:flex; gap:10px; padding:11px 12px; border-radius:14px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.1); font-size:13px; animation:enter .5s cubic-bezier(.22,1,.36,1) both; }
+    .feed-item svg { flex-shrink:0; color:#9cc3ff; margin-top:2px; }
+    .feed-item b { display:block; font-size:13px; }
+    .feed-item span { color:rgba(255,255,255,.72); font-size:12.5px; }
+    .feed-item.is-hot { background:#fff; color:var(--fg); }
+    .feed-item.is-hot svg { color:var(--amber); }
+    .feed-item.is-hot b { color:var(--accent); }
+    .feed-item.is-hot span { color:var(--muted); }
+    .how-ctrl { position:relative; display:flex; align-items:center; gap:10px; margin-top:18px; }
+    .how-ctrl button { min-height:40px; padding:8px 14px; border-radius:999px; border:1px solid rgba(255,255,255,.3); background:rgba(255,255,255,.1); color:#fff; font-size:12.5px; font-weight:700; display:inline-flex; align-items:center; gap:7px; }
+    .how-ctrl button:hover { background:rgba(255,255,255,.2); }
+    .grounded { margin-top:48px; display:flex; flex-wrap:wrap; align-items:center; gap:10px; padding:20px 24px; border-radius:20px; background:#fff; border:1px solid var(--border); }
+    .grounded > b { font-size:14px; color:var(--accent); margin-right:6px; }
+    .grounded span { display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:700; color:var(--fg-secondary); padding:7px 13px; border-radius:10px; background:var(--surface); border:1px solid var(--border-light); }
+    .grounded span svg { color:var(--blue); }
+    .compare { margin-top:22px; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .compare div { padding:20px 22px; border-radius:18px; border:1px solid var(--border); background:#fff; }
+    .compare small { font-size:11.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+    .compare p { font-size:15px; color:var(--fg-secondary); margin-top:6px; }
+    .compare .is-us { background:var(--blue-light); border-color:rgba(24,99,220,.25); }
+    .compare .is-us small { color:var(--blue); }
+    .compare .is-us p { color:var(--fg); }
+    @media (max-width:980px){
+      .how-shell { grid-template-columns:1fr; }
+      .lead-card { position:relative; top:auto; order:-1; }
+      .compare { grid-template-columns:1fr; }
+    }
+
+    /* ===== Live demo ===== */
+    .demo { background:#0b1d3f; color:#fff; position:relative; overflow:hidden; }
+    .demo::before { content:''; position:absolute; left:50%; top:-320px; width:1100px; height:640px; margin-left:-550px; background:radial-gradient(closest-side, rgba(24,99,220,.45), transparent); pointer-events:none; }
+    .demo .eyebrow { color:#9cc3ff; }
+    .demo .h2 { color:#fff; }
+    .demo .lead { color:rgba(255,255,255,.8); }
+    .demo-howto { position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:36px; }
+    .demo-howto div { display:flex; gap:12px; padding:16px 18px; border-radius:16px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); text-align:left; }
+    .demo-howto b { width:30px; height:30px; border-radius:50%; background:#fff; color:var(--accent); font-size:13px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .demo-howto p { font-size:14px; color:rgba(255,255,255,.85); }
+    .demo-howto strong { color:#fff; }
+    .demo-bar { position:relative; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin-top:32px; }
+    .seg { display:inline-flex; gap:4px; padding:5px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); }
+    .seg button { min-height:40px; padding:8px 16px; border:0; border-radius:999px; background:none; color:rgba(255,255,255,.75); font-size:13.5px; font-weight:700; display:inline-flex; align-items:center; gap:8px; }
+    .seg button:hover { color:#fff; }
+    .seg button[aria-pressed="true"] { background:#fff; color:var(--accent); }
+    .demo-tools { display:flex; flex-wrap:wrap; gap:10px; }
+    .demo-tools a, .demo-tools button { min-height:40px; padding:8px 16px; border-radius:999px; border:1px solid rgba(255,255,255,.25); background:none; color:#fff; font-size:13.5px; font-weight:700; display:inline-flex; align-items:center; gap:8px; }
+    .demo-tools a:hover, .demo-tools button:hover { background:rgba(255,255,255,.1); }
+    .stage { position:relative; margin-top:18px; display:flex; justify-content:center; }
+    .frame { position:relative; width:100%; border-radius:18px; background:#fff; box-shadow:0 40px 90px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.1); overflow:hidden; transition:max-width .5s cubic-bezier(.22,1,.36,1), border-radius .5s; max-width:1200px; }
+    .frame-chrome { display:flex; align-items:center; gap:10px; padding:10px 14px; background:#eef1f6; border-bottom:1px solid var(--border); }
+    .frame-chrome i { width:11px; height:11px; border-radius:50%; background:#d4d9e2; }
+    .frame-chrome i:nth-child(1){ background:#ff5f57 } .frame-chrome i:nth-child(2){ background:#febc2e } .frame-chrome i:nth-child(3){ background:#28c840 }
+    .frame-url { flex:1; display:flex; align-items:center; gap:8px; margin-left:8px; padding:6px 12px; border-radius:8px; background:#fff; font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .frame-view { position:relative; height:760px; background:var(--surface); }
+    .frame iframe { display:block; width:100%; height:100%; border:0; background:#fff; }
+    .frame.is-phone { max-width:400px; border-radius:44px; padding:12px; background:#0a0f1c; }
+    .frame.is-phone .frame-chrome { display:none; }
+    .frame.is-phone .frame-view { height:800px; border-radius:32px; overflow:hidden; }
+    .poster { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; padding:24px; text-align:center; color:#fff; background:linear-gradient(180deg, rgba(0,19,64,.55), rgba(0,19,64,.88)), url('uploads/property-123-main.jpg') center/cover; }
+    .poster[hidden] { display:none; }
+    .poster .play { width:84px; height:84px; border-radius:50%; background:#fff; color:var(--accent); display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 12px rgba(255,255,255,.16); animation:pulse 2.2s infinite; }
+    @keyframes pulse { 50% { box-shadow:0 0 0 22px rgba(255,255,255,.06) } }
+    .poster h3 { font-size:clamp(22px,3vw,30px); letter-spacing:-.02em; line-height:1.2; }
+    .poster p { font-size:15px; color:rgba(255,255,255,.85); max-width:460px; }
+    .poster .row { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+    .demo-note { position:relative; margin-top:16px; font-size:13px; color:rgba(255,255,255,.6); text-align:center; }
+    @media (max-width:900px){
+      .demo-howto { grid-template-columns:1fr; }
+      .frame-view { height:720px; }
+    }
+    @media (max-width:640px){
+      .demo-bar { flex-direction:column; align-items:stretch; }
+      .seg { justify-content:center; }
+      .seg button { flex:1; justify-content:center; padding:8px 10px; }
+      .demo-tools { justify-content:center; }
+      .seg-device { display:none; }
+      .frame { border-radius:14px; }
+      .frame-view { height:min(760px, calc(100vh - 140px)); min-height:560px; }
+    }
+
+    /* ===== Vision ===== */
+    .vision-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+    .vision-copy p { font-size:17px; color:var(--fg-secondary); margin-top:16px; }
+    .vision-copy p + p { margin-top:12px; }
+    .layers { display:flex; flex-direction:column; gap:10px; }
+    .layer { display:flex; align-items:center; gap:14px; padding:16px 18px; border-radius:16px; border:1px solid var(--border); background:#fff; }
+    .layer .ic { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:var(--blue-light); color:var(--blue); }
+    .layer b { display:block; font-size:15px; color:var(--accent); }
+    .layer span { font-size:13px; color:var(--muted); }
+    .layer small { margin-left:auto; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; padding:4px 9px; border-radius:999px; flex-shrink:0; }
+    .layer small.now { background:var(--green-light); color:var(--green); }
+    .layer small.next { background:var(--surface); color:var(--muted); border:1px solid var(--border); }
+    .layer.is-core { background:var(--accent); border-color:var(--accent); }
+    .layer.is-core .ic { background:rgba(255,255,255,.14); color:#fff; }
+    .layer.is-core b { color:#fff; }
+    .layer.is-core span { color:rgba(255,255,255,.75); }
+    @media (max-width:980px){ .vision-grid { grid-template-columns:1fr; gap:36px; } }
+    @media (max-width:480px){ .layer small { display:none; } }
+
+    /* ===== Contact ===== */
+    .contact { padding-top:0; }
+    .contact-card { position:relative; display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center; padding:clamp(28px,5vw,56px); border-radius:32px; background:linear-gradient(135deg, var(--accent) 0%, #0b3a8f 100%); color:#fff; overflow:hidden; }
+    .contact-card::after { content:''; position:absolute; right:-120px; bottom:-160px; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle, rgba(156,195,255,.3), transparent 70%); pointer-events:none; }
+    .contact-card h2 { font-size:clamp(28px,3.6vw,42px); line-height:1.12; letter-spacing:-.025em; }
+    .contact-card > div > p { font-size:16.5px; color:rgba(255,255,255,.82); margin-top:12px; max-width:520px; }
+    .contact-card .row { display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+    .person { position:relative; z-index:1; padding:22px; border-radius:22px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); backdrop-filter:blur(8px); }
+    .person small { font-size:11.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:#9cc3ff; }
+    .person b { display:block; font-size:18px; margin-top:8px; }
+    .person p { font-size:14px; color:rgba(255,255,255,.8); margin-top:4px; }
+    .person a { display:flex; align-items:center; gap:8px; font-size:14px; font-weight:600; margin-top:12px; color:#fff; }
+    .person a:hover { text-decoration:underline; }
+    @media (max-width:900px){ .contact-card { grid-template-columns:1fr; } }
+
+    @media (prefers-reduced-motion:reduce){
+      html { scroll-behavior:auto; }
+      .reveal { opacity:1; transform:none; transition:none; }
+      .float-note, .poster .play, .live-badge::before, .eco-hint i, .scroll-cue i::after { animation:none; }
+      .prod-panel.is-enter .prod-copy, .prod-panel.is-enter .prod-visual, .feed-item { animation:none; }
+      .step.is-on .bar.is-run { animation:none; }
+    }
+  </style>
+</head>
+<body>
+  <infina-nav cta-text="Try the live demo" cta-href="#demo" logo-lg></infina-nav>
+
+  <!-- ===== Hero ===== -->
+  <header class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="hero-tag"><b>2026</b>Investor overview · U.S. residential real estate</span>
+        <h1>An AI agent ecosystem for <span>real estate.</span></h1>
+        <p class="hero-sub">Capture every lead. Keep it warm. Close more deals.</p>
+        <p class="hero-p">Infina AI connects listing agents, buyer's agents and home buyers through one shared intelligence. Every listing gets an AI expert, every buyer gets an AI concierge, and every agent gets an AI chief of staff.</p>
+        <div class="hero-ctas">
+          <a href="#demo" class="btn btn-blue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z"/></svg>
+            Try the live demo
+          </a>
+          <a href="#ecosystem" class="btn btn-glass">See how it fits together</a>
+        </div>
+        <div class="hero-trio" aria-label="The three AI agents">
+          <span><i></i>Property Expert</span>
+          <span><i></i>Home Concierge</span>
+          <span><i></i>HOb</span>
+        </div>
+      </div>
+
+      <div class="hero-stage" aria-hidden="true">
+        <div class="live-card">
+          <div class="live-head">
+            <img src="uploads/property-123-main-thumb.jpg" alt="">
+            <div><b>123 Main Street</b><span>Property Expert · Austin, TX</span></div>
+            <span class="live-badge">LIVE</span>
+          </div>
+          <div class="live-body" id="hero-chat">
+            <div class="lc-msg lc-user">Are there any known issues with this property?</div>
+            <div class="lc-msg lc-bot">Based on the disclosures and inspection report, here's what I found:</div>
+            <div class="lc-msg lc-cite">
+              <span class="ic ok"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <div><b>No major structural issues</b><p>The July 2023 inspection noted none.</p><span class="lc-src">Inspection Report · Jul 12, 2023</span></div>
+            </div>
+            <div class="lc-msg lc-cite">
+              <span class="ic info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 8v5M12 16h.01"/></svg></span>
+              <div><b>Foundation repair in 2022</b><p>Lifetime transferable warranty.</p><span class="lc-src">Seller Disclosure · Jun 18, 2023</span></div>
+            </div>
+            <div class="lc-msg lc-user">Can I schedule a tour this Saturday?</div>
+            <div class="lc-typing" hidden><i></i><i></i><i></i></div>
+          </div>
+          <div class="live-input"><span>Ask a follow-up question…</span><i><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></div>
+        </div>
+        <div class="hero-toast" id="hero-toast">
+          <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg></span>
+          <div><small>INFINA AI · NOW</small><b>New tour request</b><p>A buyer on 123 Main Street wants to tour this Saturday.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"><i></i>Scroll</div>
+  </header>
+
+  <!-- ===== Section jump bar ===== -->
+  <nav class="jump" aria-label="On this page">
+    <div class="wrap jump-inner">
+      <a href="#thesis">Thesis</a>
+      <a href="#ecosystem">Ecosystem</a>
+      <a href="#products">Products</a>
+      <a href="#how">How it works</a>
+      <a href="#vision">Vision</a>
+      <a href="#demo" class="is-demo">Try the demo</a>
+    </div>
+  </nav>
+
+  <!-- ===== Thesis ===== -->
+  <section id="thesis">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">The thesis</span>
+        <h2 class="h2">Buyer intent is captured late and lost early. We start before the buyer raises a hand.</h2>
+      </div>
+      <div class="thesis-grid">
+        <article class="thesis-card is-problem reveal">
+          <div class="thesis-num"><small>01 · The problem</small><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg></span></div>
+          <h3>Buyer intent is captured late and lost early.</h3>
+          <p>Buyers research alone across portals and general chatbots. Agents only see them once they call, and most early interest is never followed up.</p>
+        </article>
+        <article class="thesis-card is-answer reveal">
+          <div class="thesis-num"><small>02 · Our answer</small><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span></div>
+          <h3>AI on both sides of the deal, with the agent at the center.</h3>
+          <p>Agents that answer every buyer 24/7 from real property data, learn what each buyer needs, and hand the agent a warm lead at the right moment.</p>
+        </article>
+        <article class="thesis-card is-flywheel reveal">
+          <div class="thesis-num"><small>03 · Why it compounds</small><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 01-15.5 6.2M3 12a9 9 0 0115.5-6.2"/><path d="M18 2v4h-4M6 22v-4h4"/></svg></span></div>
+          <h3>Every listing makes every buyer's concierge better.</h3>
+          <p>Each Property Expert becomes inventory the Home Concierge can recommend. More listings mean better matches; better matches mean more buyers for every listing.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Ecosystem ===== -->
+  <section class="eco" id="ecosystem">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">The ecosystem</span>
+        <h2 class="h2">One intelligence, both sides of the deal.</h2>
+        <p class="lead">Pick a role to see which AI agents work for them.</p>
+      </div>
+      <div class="eco-shell reveal">
+        <div class="eco-map" id="eco-map">
+          <div class="eco-grid">
+            <button type="button" class="eco-role r-listing" data-role="listing" aria-pressed="false">
+              <span class="av"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg></span>
+              <b>Listing agent</b><span>Sells the home</span>
+            </button>
+            <button type="button" class="eco-role r-buyer" data-role="buyer" aria-pressed="false">
+              <span class="av"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span>
+              <b>Home buyer</b><span>Served by both</span>
+            </button>
+            <button type="button" class="eco-role r-bagent" data-role="bagent" aria-pressed="false">
+              <span class="av"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg></span>
+              <b>Buyer's agent</b><span>Represents the buyer</span>
+            </button>
+
+            <div class="eco-links" aria-hidden="true">
+              <svg viewBox="0 0 600 34" preserveAspectRatio="none">
+                <path data-link="listing-pe" d="M100 0 C100 18, 150 16, 150 34"/>
+                <path data-link="buyer-pe" d="M300 0 C300 18, 200 16, 200 34"/>
+                <path data-link="buyer-hc" d="M300 0 C300 18, 400 16, 400 34"/>
+                <path data-link="bagent-hc" d="M500 0 C500 18, 450 16, 450 34"/>
+              </svg>
+            </div>
+
+            <div class="eco-prod p-pe" data-prod="pe">
+              <small>Per listing</small>
+              <b>Property Expert</b>
+              <p>A 24/7 expert on one home, with cited answers.</p>
+            </div>
+            <div class="eco-prod p-hc" data-prod="hc">
+              <small>Per buyer</small>
+              <b>Home Concierge</b>
+              <p>A personal concierge that learns and matches.</p>
+            </div>
+            <div class="eco-bridge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg>
+              Concierge recommends homes from the Property Expert network
+            </div>
+            <div class="eco-hob" data-prod="hob">
+              <svg class="hob" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>
+              <div><b>HOb</b><p>AI chief of staff for every agent, on both sides of the deal</p></div>
+              <div class="tags"><span>Pipeline</span><span>Clients</span><span>Schedule</span><span>Reminders</span></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="eco-panel" id="eco-panel" aria-live="polite">
+          <small id="eco-k">The whole picture</small>
+          <h3 id="eco-t">Three agents. One shared intelligence.</h3>
+          <p id="eco-p">Each listing gets a Property Expert, each buyer gets a Home Concierge, and every agent gets HOb. What one learns, the network can use.</p>
+          <ul id="eco-l"></ul>
+          <p class="eco-hint" id="eco-hint"><i></i>Tap a role on the map</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Products ===== -->
+  <section id="products">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">The products</span>
+        <h2 class="h2">Three agents, each owning a job in the journey.</h2>
+      </div>
+      <div class="tabs reveal" role="tablist" aria-label="Products">
+        <button class="tab" role="tab" id="tab-pe" aria-controls="panel-pe" aria-selected="true">Property Expert</button>
+        <button class="tab" role="tab" id="tab-hc" aria-controls="panel-hc" aria-selected="false" tabindex="-1">Home Concierge</button>
+        <button class="tab" role="tab" id="tab-hob" aria-controls="panel-hob" aria-selected="false" tabindex="-1">HOb</button>
+      </div>
+
+      <!-- Property Expert -->
+      <div class="prod-panel" role="tabpanel" id="panel-pe" aria-labelledby="tab-pe">
+        <div class="prod-copy">
+          <div class="who"><span>Listing agent</span><span>Home buyer</span></div>
+          <h3>Property Expert</h3>
+          <p class="tagline">Turns every listing into a 24/7 expert.</p>
+          <p>Buyers scan a QR on the yard sign or open a link and get cited answers from the listing, disclosures, inspection and public records.</p>
+          <ul class="checks">
+            <li><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Captures anonymous interest from every sign and link</li>
+            <li><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Answers with cited sources, never guesses</li>
+            <li><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Converts questions into tour requests</li>
+          </ul>
+          <div class="prod-cta">
+            <a href="#demo" class="btn btn-primary" data-demo="guided">Try Property Expert live</a>
+          </div>
+        </div>
+        <div class="prod-visual">
+          <div class="mock" aria-hidden="true">
+            <div class="mock-head"><img src="uploads/property-123-main-thumb.jpg" alt=""><div><b>123 Main Street</b><span>Austin, TX 78703</span></div></div>
+            <div class="mock-tabs"><span class="is-on">Chat</span><span>Overview</span><span>Insights</span><span>Docs</span></div>
+            <div class="mock-body">
+              <div class="mk-user">Are there any known issues with this property?</div>
+              <div class="mk-time">11:33 AM</div>
+              <div class="mk-bot">Based on the disclosures and inspection report, here's what I found:</div>
+              <div class="lc-cite"><span class="ic ok"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>No major structural issues</b><p>The July 2023 inspection noted no structural issues.</p><span class="lc-src">Inspection Report · Jul 12, 2023</span></div></div>
+              <div class="lc-cite"><span class="ic info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 8v5M12 16h.01"/></svg></span><div><b>Foundation repair in 2022</b><p>Completed with a lifetime transferable warranty.</p><span class="lc-src">Seller Disclosure · Jun 18, 2023</span></div></div>
+              <div class="mk-user">Can I schedule a tour this Saturday?</div>
+              <div class="mk-chips"><span>Any HVAC issues?</span><span>What's the HOA like?</span></div>
+            </div>
+            <div class="mock-input"><span>Ask a follow-up question…</span><i></i></div>
+          </div>
+          <div class="float-note" aria-hidden="true">
+            <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/></svg></span>
+            <div><small>INFINA AI · NOW</small><b>New tour request on 123 Main Street</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Home Concierge -->
+      <div class="prod-panel" role="tabpanel" id="panel-hc" aria-labelledby="tab-hc" hidden>
+        <div class="prod-copy">
+          <div class="who"><span>Buyer's agent</span><span>Home buyer</span></div>
+          <h3>Home Concierge</h3>
+          <p class="tagline">A personal concierge for every buyer, sent at first contact.</p>
+          <p>It learns what the buyer needs, recommends homes from the Property Expert network, and carries that context to closing.</p>
+          <ul class="checks">
+            <li><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Engages new leads with no buyer profile needed</li>
+            <li><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Learns needs, budget comfort and timeline</li>
+            <li><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Matches buyers to homes in the network</li>
+          </ul>
+        </div>
+        <div class="prod-visual">
+          <div class="mock" aria-hidden="true">
+            <div class="mock-head"><span class="mk-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1z"/></svg></span><div><b>Home Concierge</b><span>Shared by Sarah Jenkins, Broker</span></div></div>
+            <div class="mock-tabs"><span class="is-on">Chat</span><span>Homes</span><span>Profile</span><span>Tasks</span></div>
+            <div class="mock-body">
+              <div class="mk-bot">Hi! I'm your Home Concierge. What's one thing you'd love to have in your next home?</div>
+              <div class="mk-user">A shorter commute. Our lease ends in four months.</div>
+              <div class="mk-time">9:12 PM</div>
+              <div class="mk-bot">Got it. Here are 2 homes within a 20-minute commute that fit your timeline:</div>
+              <div class="mk-card"><img src="uploads/property-148-maple-main.jpg" alt=""><div><b>148 Maple Ave</b><span>$748,000 · 4 bd · 14 min</span></div><em>Ask its Expert</em></div>
+              <div class="mk-card"><img src="uploads/property-oaklane-42.jpg" alt=""><div><b>22 Oak Lane</b><span>$812,000 · 3 bd · 18 min</span></div><em>Ask its Expert</em></div>
+              <div class="mk-learned">Learned: <span>Short commute</span><span>Move in ~4 months</span></div>
+              <div class="mk-chips"><span>Tour 148 Maple Ave</span><span>Compare both</span></div>
+            </div>
+            <div class="mock-input"><span>Type or speak…</span><i></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOb -->
+      <div class="prod-panel" role="tabpanel" id="panel-hob" aria-labelledby="tab-hob" hidden>
+        <div class="prod-copy">
+          <div class="who"><span>Listing agent</span><span>Buyer's agent</span></div>
+          <h3>HOb</h3>
+          <p class="tagline">The agent's AI chief of staff.</p>
+          <p>Ask anything about pipeline, clients, schedule or open tasks, or don't ask at all: HOb surfaces what needs attention before it slips.</p>
+          <ul class="checks">
+            <li><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Answers any question on pipeline, clients, schedule</li>
+            <li><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Reminds proactively, without being asked</li>
+            <li><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Prioritizes warm leads over noise</li>
+          </ul>
+          <div class="prod-cta">
+            <a href="#demo" class="btn btn-primary" data-demo="agent">See the agent dashboard live</a>
+          </div>
+        </div>
+        <div class="prod-visual">
+          <div class="mock" aria-hidden="true">
+            <div class="mock-head"><svg viewBox="0 0 48 48" width="38" height="38"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg><div><b>HOb</b><span>Your AI chief of staff</span></div></div>
+            <div class="mock-tabs"><span class="is-on">Chat</span><span>Pipeline</span><span>Clients</span><span>Schedule</span></div>
+            <div class="mock-body">
+              <div class="mk-brief">
+                <small>MORNING BRIEF · SENT WITHOUT ASKING</small>
+                <b>Good morning, Sarah. 3 things need you today:</b>
+                <div class="mk-task"><span class="dot" style="background:var(--amber-light);color:var(--amber)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Tour request · 123 Main St</b><span>Buyer wants Saturday 10 AM. Asked about the roof and foundation.</span><em>Confirm slot</em></div></div>
+                <div class="mk-task"><span class="dot" style="background:var(--blue-light);color:var(--blue)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M16 3v4M8 3v4M4 11h16"/></svg></span><div><b>Offer deadline · 22 Oak Lane</b><span>Tomorrow, 5:00 PM.</span></div></div>
+                <div class="mk-task"><span class="dot" style="background:var(--green-light);color:var(--green)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span><div><b>3 buyers quiet for 5 days</b><span>I drafted a follow-up for each. Review?</span></div></div>
+              </div>
+              <div class="mk-user">How's my pipeline this week?</div>
+              <div class="mk-time">8:04 AM</div>
+              <div class="mk-pipe"><div><b>24</b><span>Cold</span></div><div class="warm"><b>6</b><span>Warm</span></div><div class="uc"><b>1</b><span>Under contract</span></div></div>
+            </div>
+            <div class="mock-input"><span>Ask HOb anything…</span><i></i></div>
+          </div>
+        </div>
+      </div>
+      <p class="mock-note">Screens are illustrative product mockups. The live demo below is interactive.</p>
+    </div>
+  </section>
+
+  <!-- ===== How it works ===== -->
+  <section class="how" id="how">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">How it works · Positioning</span>
+        <h2 class="h2">Lead Capture. Lead Retain.</h2>
+        <p class="lead">Portals and CRMs start when the buyer raises a hand. Infina AI starts before: it captures anonymous interest, qualifies it in conversation, and retains the buyer all the way to closing.</p>
+      </div>
+
+      <div class="how-shell reveal">
+        <div class="steps" id="steps">
+          <button type="button" class="step is-on" data-step="0">
+            <span class="n">01</span>
+            <div><small>Capture</small><b>A stranger starts a conversation</b><p>From a yard-sign QR, listing link or the first message from a buyer's agent. No login, no form.</p></div>
+            <i class="bar"></i>
+          </button>
+          <button type="button" class="step" data-step="1">
+            <span class="n">02</span>
+            <div><small>Engage</small><b>The AI learns what matters</b><p>Grounded answers build trust while the AI picks up needs, budget comfort and timeline.</p></div>
+            <i class="bar"></i>
+          </button>
+          <button type="button" class="step is-moment" data-step="2">
+            <span class="n">03</span>
+            <div><small>The moment</small><b>Cold becomes warm: the buyer asks to see the home</b><p>A tour request after talking to the AI. The agent is alerted instantly, with full context of what this buyer cares about.</p></div>
+            <i class="bar"></i>
+          </button>
+          <button type="button" class="step" data-step="3">
+            <span class="n">04</span>
+            <div><small>Retain</small><b>Stay with the buyer to closing</b><p>Concerns, documents and deadlines stay visible. HOb keeps the agent on top of every step.</p></div>
+            <i class="bar"></i>
+          </button>
+        </div>
+
+        <div class="lead-card" aria-live="polite">
+          <div class="lead-top">
+            <span class="av"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span>
+            <div><b id="lead-name">Anonymous visitor</b><span id="lead-src">Scanned the yard sign at 123 Main St</span></div>
+          </div>
+          <div class="temp">
+            <div class="temp-row"><span>Cold</span><span>Warm</span></div>
+            <div class="temp-track"><div class="temp-fill" id="temp-fill"></div></div>
+            <p class="temp-label">Lead status: <span id="temp-label">Cold, unknown</span></p>
+          </div>
+          <div class="lead-feed" id="lead-feed"></div>
+          <div class="how-ctrl">
+            <button type="button" id="how-play"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg><span>Pause</span></button>
+            <button type="button" id="how-restart"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 109-9 9 9 0 00-6.4 2.6L3 8"/><path d="M3 3v5h5"/></svg>Replay</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grounded reveal">
+        <b>Every answer grounded in:</b>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>MLS</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>Seller Disclosure</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>Inspection Report</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>Public Records</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>HOA</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>Comps</span>
+      </div>
+      <div class="compare reveal">
+        <div><small>Portals and CRMs</small><p>Start when the buyer fills a form or calls. Everything before that moment is invisible.</p></div>
+        <div class="is-us"><small>Infina AI</small><p>Starts at the first anonymous question, turns it into a warm lead, and stays with the buyer to closing.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Live demo ===== -->
+  <section class="demo" id="demo">
+    <div class="wrap center">
+      <div class="reveal">
+        <span class="eyebrow">Try it yourself</span>
+        <h2 class="h2">Be the buyer. Then see what the agent sees.</h2>
+        <p class="lead">This is the working Property Expert for 123 Main Street, Austin. Ask it anything a real buyer would ask, then follow the lead into the agent's dashboard.</p>
+      </div>
+      <div class="demo-howto reveal">
+        <div><b>1</b><p><strong>Ask a question</strong> as a buyer. Tap a suggestion or type your own, like "Is there a pool?"</p></div>
+        <div><b>2</b><p><strong>Ask for a tour</strong> or to talk to the agent. That turns the chat into a lead.</p></div>
+        <div><b>3</b><p><strong>Switch to the agent view</strong> to see the lead arrive with the full conversation.</p></div>
+      </div>
+
+      <div class="demo-bar">
+        <div class="seg" role="group" aria-label="Which side of the demo">
+          <button type="button" data-view="buyer" aria-pressed="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>Buyer view</button>
+          <button type="button" data-view="agent" aria-pressed="false"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>Agent view</button>
+        </div>
+        <div class="demo-tools">
+          <div class="seg seg-device" role="group" aria-label="Screen size">
+            <button type="button" data-device="desktop" aria-pressed="true">Desktop</button>
+            <button type="button" data-device="phone" aria-pressed="false">Phone</button>
+          </div>
+          <a id="demo-full" href="property-expert-demo-tour.html" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Open full screen</a>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="frame" id="frame">
+          <div class="frame-chrome" aria-hidden="true"><i></i><i></i><i></i><span class="frame-url" id="frame-url"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>infina.ai/expert/123-main-street</span></div>
+          <div class="frame-view">
+            <iframe id="demo-iframe" title="Property Expert live demo" loading="lazy"></iframe>
+            <div class="poster" id="poster">
+              <span class="play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z"/></svg></span>
+              <h3 id="poster-title">123 Main Street, Austin, TX</h3>
+              <p id="poster-text">A guide walks you through it in about a minute. You do the clicking.</p>
+              <div class="row">
+                <button type="button" class="btn btn-blue" id="start-guided">Start the guided demo</button>
+                <button type="button" class="btn btn-glass" id="start-free">Explore on my own</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="demo-note">Demo with a sample listing. Nothing you type is sent anywhere.</p>
+    </div>
+  </section>
+
+  <!-- ===== Vision ===== -->
+  <section id="vision">
+    <div class="wrap vision-grid">
+      <div class="vision-copy reveal">
+        <span class="eyebrow">Vision</span>
+        <h2 class="h2">The intelligence layer behind every home purchase.</h2>
+        <p>Today an agent's business is scattered across portals, CRMs, group chats and memory. We are building the layer where every listing, every buyer conversation and every agent decision lives together.</p>
+        <p>It starts with the moment a stranger becomes a client, and grows into the network that connects every buyer to the right home and the right agent.</p>
+      </div>
+      <div class="layers reveal" aria-label="How the layer grows">
+        <div class="layer">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span>
+          <div><b>The first conversation</b><span>A stranger becomes a client</span></div>
+          <small class="now">Today</small>
+        </div>
+        <div class="layer">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1z"/></svg></span>
+          <div><b>Every listing, every buyer</b><span>One shared memory across the journey</span></div>
+          <small class="now">Today</small>
+        </div>
+        <div class="layer">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M7.3 10.9l9.4-4.8M7.3 13.1l9.4 4.8"/></svg></span>
+          <div><b>The network</b><span>Right buyer, right home, right agent</span></div>
+          <small class="next">Next</small>
+        </div>
+        <div class="layer is-core">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5"/></svg></span>
+          <div><b>The intelligence layer</b><span>Behind every home purchase</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <div>
+          <h2>See it live, then let's talk.</h2>
+          <p>We would love to walk you through the product, the U.S. go-to-market and where we are taking the network next.</p>
+          <div class="row">
+            <a href="#demo" class="btn btn-glass">Try the live demo</a>
+            <a href="mailto:[email]" class="btn" style="background:#fff;color:var(--accent)">Request the investor deck</a>
+          </div>
+        </div>
+        <div class="person">
+          <small>Contact</small>
+          <b>[Contact name, title]</b>
+          <p>Infina AI</p>
+          <a href="mailto:[email]"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>[email]</a>
+          <a href="tel:[phone]"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg>[phone]</a>
+          <a href="https://infina.ai" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>infina.ai</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <infina-footer links='[{"text":"Ecosystem","href":"#ecosystem"},{"text":"Products","href":"#products"},{"text":"Live demo","href":"#demo"}]'></infina-footer>
+
+  <script src="nav.js"></script>
+  <script src="footer.js"></script>
+  <script>
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ===== Reveal on scroll =====
+    var reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !reduce) {
+      var ro = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('is-in'); ro.unobserve(e.target); } });
+      }, { rootMargin:'0px 0px -8% 0px' });
+      reveals.forEach(function(el){ ro.observe(el); });
+    } else {
+      reveals.forEach(function(el){ el.classList.add('is-in'); });
+    }
+
+    // ===== Hero: the chat plays itself, then the agent is notified =====
+    var heroMsgs = document.querySelectorAll('#hero-chat .lc-msg');
+    var heroTyping = document.querySelector('#hero-chat .lc-typing');
+    var heroToast = document.getElementById('hero-toast');
+    var heroTimers = [];
+    function heroPlay(){
+      heroTimers.forEach(clearTimeout); heroTimers = [];
+      heroMsgs.forEach(function(m){ m.classList.remove('is-on'); });
+      heroToast.classList.remove('is-on');
+      if (reduce) { heroMsgs.forEach(function(m){ m.classList.add('is-on'); }); heroToast.classList.add('is-on'); return; }
+      var at = 600;
+      heroMsgs.forEach(function(m, i){
+        if (i === 1) { heroTimers.push(setTimeout(function(){ heroTyping.hidden = false; }, at)); at += 1100; }
+        heroTimers.push(setTimeout(function(){ if (i === 1) heroTyping.hidden = true; m.classList.add('is-on'); }, at));
+        at += i === 0 ? 700 : 900;
+      });
+      heroTimers.push(setTimeout(function(){ heroToast.classList.add('is-on'); }, at + 500));
+      heroTimers.push(setTimeout(heroPlay, at + 6500));
+    }
+    heroPlay();
+
+    // ===== Section jump bar: highlight the section in view =====
+    var jumpLinks = document.querySelectorAll('.jump a');
+    var sections = Array.prototype.map.call(jumpLinks, function(a){ return document.querySelector(a.getAttribute('href')); });
+    function onScroll(){
+      var y = window.scrollY + 160, current = -1;
+      sections.forEach(function(s, i){ if (s && s.offsetTop <= y) current = i; });
+      jumpLinks.forEach(function(a, i){ a.classList.toggle('is-active', i === current); });
+    }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
+
+    // ===== Ecosystem map =====
+    var ROLES = {
+      listing: {
+        k: 'Listing agent', t: 'Every listing becomes a 24/7 expert.',
+        p: 'The yard sign and listing link open a Property Expert. Anonymous interest turns into tour requests, and HOb keeps the pipeline moving.',
+        l: ['Property Expert answers buyers on each listing', 'Tour requests arrive with full context', 'HOb flags what needs attention today'],
+        on: ['pe', 'hob'], links: ['listing-pe']
+      },
+      buyer: {
+        k: 'Home buyer', t: 'Served by both sides, never left waiting.',
+        p: 'Cited answers on any home at any hour, plus a personal concierge that learns what they need and recommends homes from the network.',
+        l: ['Real answers from listing documents, not guesses', 'A concierge that remembers needs and timeline', 'Matched to homes that fit, then to the right agent'],
+        on: ['pe', 'hc'], links: ['buyer-pe', 'buyer-hc']
+      },
+      bagent: {
+        k: "Buyer's agent", t: 'A concierge at first contact.',
+        p: 'The agent sends a Home Concierge with the first message. It qualifies needs, budget comfort and timeline, and HOb says who is ready.',
+        l: ['Engages new leads with no profile needed', 'Learns needs, budget comfort and timeline', 'HOb prioritizes warm buyers over noise'],
+        on: ['hc', 'hob'], links: ['bagent-hc']
+      }
+    };
+    var ecoMap = document.getElementById('eco-map');
+    var roleBtns = ecoMap.querySelectorAll('.eco-role');
+    var prods = ecoMap.querySelectorAll('[data-prod]');
+    var links = ecoMap.querySelectorAll('[data-link]');
+    var CHECK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
+    var ecoTouched = false, ecoAuto = null;
+    function setRole(key){
+      var r = ROLES[key];
+      roleBtns.forEach(function(b){ var on = b.getAttribute('data-role') === key; b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      ecoMap.classList.add('has-focus');
+      prods.forEach(function(p){ p.classList.toggle('is-on', r.on.indexOf(p.getAttribute('data-prod')) > -1); });
+      links.forEach(function(l){ l.classList.toggle('is-on', r.links.indexOf(l.getAttribute('data-link')) > -1); });
+      document.getElementById('eco-k').textContent = r.k;
+      document.getElementById('eco-t').textContent = r.t;
+      document.getElementById('eco-p').textContent = r.p;
+      var ul = document.getElementById('eco-l'); ul.innerHTML = '';
+      r.l.forEach(function(txt){ var li = document.createElement('li'); li.innerHTML = CHECK; li.appendChild(document.createTextNode(txt)); ul.appendChild(li); });
+    }
+    roleBtns.forEach(function(b){
+      b.addEventListener('click', function(){
+        ecoTouched = true; clearInterval(ecoAuto);
+        document.getElementById('eco-hint').hidden = true;
+        setRole(b.getAttribute('data-role'));
+      });
+    });
+    // Until someone taps, gently cycle through the roles while the map is on screen
+    if (!reduce && 'IntersectionObserver' in window) {
+      var order = ['listing', 'buyer', 'bagent'], oi = 0;
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          clearInterval(ecoAuto);
+          if (e.isIntersecting && !ecoTouched) {
+            ecoAuto = setInterval(function(){ setRole(order[oi % 3]); oi++; }, 3200);
+          }
+        });
+      }, { threshold:.4 }).observe(ecoMap);
+    }
+
+    // ===== Product tabs =====
+    var tabs = document.querySelectorAll('.tab');
+    function selectTab(tab, focus){
+      tabs.forEach(function(t){
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        panel.hidden = !on;
+        if (on) { panel.classList.remove('is-enter'); void panel.offsetWidth; panel.classList.add('is-enter'); }
+      });
+      if (focus) tab.focus();
+    }
+    tabs.forEach(function(t, i){
+      t.addEventListener('click', function(){ selectTab(t); });
+      t.addEventListener('keydown', function(e){
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          var n = (i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+          selectTab(tabs[n], true);
+        }
+      });
+    });
+
+    // ===== How it works: steps drive the lead card =====
+    var STEPS = [
+      { name:'Anonymous visitor', src:'Scanned the yard sign at 123 Main St', temp:12, label:'Cold, unknown',
+        feed:[{ t:'Opened Property Expert', d:'From the yard-sign QR. No login, no form.' }] },
+      { name:'Anonymous visitor', src:'3 questions in 6 minutes', temp:42, label:'Engaged',
+        feed:[{ t:'Asked about the foundation and roof', d:'Answered from the inspection report and disclosure' },
+              { t:'Learned', d:'Family of four · needs 4 bd · moving in ~4 months' }] },
+      { name:'Buyer · 123 Main St', src:'Asked to see the home', temp:82, label:'Warm, tour requested',
+        feed:[{ t:'Tour request: Saturday 10 AM', d:'Agent alerted instantly with the full chat', hot:true }] },
+      { name:'Buyer · 123 Main St', src:'Working with Sarah Jenkins', temp:100, label:'Retained to closing',
+        feed:[{ t:'HOb: inspection response due Thursday', d:'Reminder sent to the agent without asking' },
+              { t:'Concerns and documents in one place', d:'Context carried from the first question' }] }
+    ];
+    var stepBtns = document.querySelectorAll('.step');
+    var feed = document.getElementById('lead-feed');
+    var ICON_DOT = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="5"/></svg>';
+    var STEP_MS = 5200, stepTimer = null, playing = !reduce, cur = 0;
+    var playBtn = document.getElementById('how-play');
+    function renderStep(i){
+      cur = i;
+      stepBtns.forEach(function(b, j){
+        b.classList.toggle('is-on', j === i);
+        var bar = b.querySelector('.bar');
+        bar.classList.remove('is-run'); void bar.offsetWidth;
+        if (j === i && playing) bar.classList.add('is-run');
+      });
+      var s = STEPS[i];
+      document.getElementById('lead-name').textContent = s.name;
+      document.getElementById('lead-src').textContent = s.src;
+      document.getElementById('temp-fill').style.width = s.temp + '%';
+      document.getElementById('temp-label').textContent = s.label;
+      if (i === 0) feed.innerHTML = '';
+      // Rebuild the feed up to this step so clicking any step shows the right history
+      feed.innerHTML = '';
+      for (var k = 0; k <= i; k++) {
+        STEPS[k].feed.forEach(function(f){
+          var d = document.createElement('div');
+          d.className = 'feed-item' + (f.hot ? ' is-hot' : '');
+          d.innerHTML = ICON_DOT + '<div><b></b><span></span></div>';
+          d.querySelector('b').textContent = f.t;
+          d.querySelector('span').textContent = f.d;
+          feed.insertBefore(d, feed.firstChild);
+        });
+      }
+      while (feed.children.length > 4) feed.removeChild(feed.lastChild);
+      clearTimeout(stepTimer);
+      if (playing) stepTimer = setTimeout(function(){ renderStep((cur + 1) % STEPS.length); }, STEP_MS);
+    }
+    function setPlaying(p){
+      playing = p;
+      playBtn.querySelector('span').textContent = p ? 'Pause' : 'Play';
+      playBtn.querySelector('svg').innerHTML = p ? '<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>' : '<path d="M8 5v14l11-7z"/>';
+      renderStep(cur);
+    }
+    stepBtns.forEach(function(b, i){ b.addEventListener('click', function(){ setPlaying(false); renderStep(i); }); });
+    playBtn.addEventListener('click', function(){ setPlaying(!playing); });
+    document.getElementById('how-restart').addEventListener('click', function(){ cur = 0; setPlaying(true); });
+    document.documentElement.style.setProperty('--step-ms', STEP_MS + 'ms');
+    // Start the autoplay only once the section is on screen
+    playing = false; setPlaying(false);
+    if (!reduce && 'IntersectionObserver' in window) {
+      var howSeen = false;
+      new IntersectionObserver(function(entries, obs){
+        entries.forEach(function(e){ if (e.isIntersecting && !howSeen) { howSeen = true; cur = 0; setPlaying(true); obs.disconnect(); } });
+      }, { threshold:.35 }).observe(document.getElementById('steps'));
+    }
+
+    // ===== Live demo =====
+    var PAGES = {
+      buyer: { url:'property-expert-demo-tour.html', bar:'infina.ai/expert/123-main-street',
+               title:'123 Main Street, Austin, TX', text:'A guide walks you through it in about a minute. You do the clicking.' },
+      agent: { url:'property-expert-admin-demo-tour.html', bar:'infina.ai/agent/inbox',
+               title:"The agent's inbox", text:'See how a buyer chat lands as a lead, with HOb pointing out what matters.' }
+    };
+    var view = 'buyer', started = false;
+    var iframe = document.getElementById('demo-iframe');
+    var poster = document.getElementById('poster');
+    var frame = document.getElementById('frame');
+    var fullLink = document.getElementById('demo-full');
+    function load(guided){
+      var p = PAGES[view];
+      var hash = guided ? (view === 'buyer' ? '#tour=1' : '#tour=2') : '';
+      iframe.src = p.url + hash;
+      poster.hidden = true; started = true;
+    }
+    function setView(v, autostart){
+      view = v;
+      document.querySelectorAll('[data-view]').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-view') === v ? 'true' : 'false'); });
+      var p = PAGES[v];
+      document.getElementById('frame-url').lastChild.textContent = p.bar;
+      document.getElementById('poster-title').textContent = p.title;
+      document.getElementById('poster-text').textContent = p.text;
+      fullLink.href = p.url;
+      if (started || autostart) load(true);
+    }
+    document.querySelectorAll('[data-view]').forEach(function(b){
+      b.addEventListener('click', function(){ setView(b.getAttribute('data-view')); });
+    });
+    document.querySelectorAll('[data-device]').forEach(function(b){
+      b.addEventListener('click', function(){
+        var d = b.getAttribute('data-device');
+        document.querySelectorAll('[data-device]').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        frame.classList.toggle('is-phone', d === 'phone');
+      });
+    });
+    document.getElementById('start-guided').addEventListener('click', function(){ load(true); });
+    document.getElementById('start-free').addEventListener('click', function(){ load(false); });
+    // Buttons elsewhere on the page that jump to the demo
+    document.querySelectorAll('[data-demo]').forEach(function(a){
+      a.addEventListener('click', function(){
+        setView(a.getAttribute('data-demo') === 'agent' ? 'agent' : 'buyer', true);
+      });
+    });
+  })();
+  </script>
+</body>
+</html>
