@@ -155,65 +155,128 @@
 
     /* ===== Ecosystem ===== */
     .eco { background:var(--surface); }
-    .eco-shell { margin-top:44px; display:grid; grid-template-columns:1fr 330px; gap:24px; align-items:start; }
-    .eco-map { position:relative; padding:28px; border-radius:28px; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow-card); }
-    .eco-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:16px 14px; position:relative; }
-    .eco-role { grid-row:1; display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 10px; border-radius:18px; border:1.5px solid var(--border); background:#fff; color:var(--fg); text-align:center; transition:border-color .25s, background .25s, transform .25s, box-shadow .25s; }
-    .eco-role:hover { border-color:var(--blue); transform:translateY(-2px); }
-    .eco-role.is-on { border-color:var(--accent); background:var(--accent); color:#fff; box-shadow:0 14px 30px -14px rgba(0,31,92,.7); }
-    .eco-role .av { width:46px; height:46px; border-radius:50%; background:var(--accent-light); color:var(--accent); display:flex; align-items:center; justify-content:center; transition:background .25s, color .25s; }
-    .eco-role.is-on .av { background:rgba(255,255,255,.16); color:#fff; }
-    .eco-role b { font-size:14.5px; line-height:1.2; }
-    .eco-role span { font-size:12px; color:var(--muted); }
-    .eco-role.is-on span { color:rgba(255,255,255,.75); }
-    .r-listing { grid-column:1 / 3; } .r-buyer { grid-column:3 / 5; } .r-bagent { grid-column:5 / 7; }
-    .eco-links { grid-row:2; grid-column:1 / 7; height:34px; position:relative; }
-    .eco-links svg { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
-    .eco-links path { fill:none; stroke:var(--border); stroke-width:2; stroke-dasharray:5 5; transition:stroke .3s; }
-    .eco-links path.is-on { stroke:var(--blue); stroke-dasharray:none; animation:none; }
-    .eco-prod { grid-row:3; position:relative; padding:18px 18px 16px; border-radius:18px; background:var(--blue-light); border:1.5px solid transparent; transition:opacity .3s, border-color .3s, background .3s, transform .3s; }
-    .eco-prod small { font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); }
-    .eco-prod b { display:block; font-size:19px; color:var(--accent); margin-top:4px; letter-spacing:-.01em; }
-    .eco-prod p { font-size:13px; color:var(--fg-secondary); margin-top:4px; line-height:1.5; }
-    .p-pe { grid-column:1 / 4; } .p-hc { grid-column:4 / 7; }
-    .eco-bridge { grid-row:4; grid-column:1 / 7; display:flex; align-items:center; justify-content:center; gap:10px; font-size:12.5px; font-weight:700; color:var(--blue); text-align:center; }
-    .eco-bridge svg { flex-shrink:0; }
-    .eco-hob { grid-row:5; grid-column:1 / 7; display:flex; align-items:center; gap:16px; padding:16px 20px; border-radius:18px; background:var(--accent); color:#fff; transition:opacity .3s, transform .3s; }
-    .eco-hob svg.hob { width:46px; height:46px; flex-shrink:0; background:#fff; border-radius:14px; padding:5px; }
-    .eco-hob b { font-size:19px; }
-    .eco-hob p { font-size:13px; color:rgba(255,255,255,.8); }
-    .eco-hob .tags { margin-left:auto; display:flex; flex-wrap:wrap; gap:6px; justify-content:flex-end; }
-    .eco-hob .tags span { font-size:11.5px; font-weight:700; padding:4px 9px; border-radius:999px; background:rgba(255,255,255,.12); }
-    .eco-map.has-focus .eco-prod:not(.is-on), .eco-map.has-focus .eco-hob:not(.is-on) { opacity:.28; }
-    .eco-prod.is-on { border-color:var(--blue); background:#fff; transform:translateY(-2px); box-shadow:var(--shadow-card); }
-    .eco-hob.is-on { transform:translateY(-2px); }
-    .eco-panel { position:sticky; top:150px; padding:26px; border-radius:24px; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow-card); min-height:300px; }
-    .eco-panel small { font-size:12px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); }
-    .eco-panel h3 { font-size:22px; color:var(--accent); margin-top:6px; letter-spacing:-.01em; line-height:1.25; }
-    .eco-panel p { font-size:14.5px; color:var(--fg-secondary); margin-top:10px; }
-    .eco-panel ul { list-style:none; margin-top:16px; display:flex; flex-direction:column; gap:10px; }
-    .eco-panel li { display:flex; gap:10px; font-size:14px; color:var(--fg); }
-    .eco-panel li svg { color:var(--green); flex-shrink:0; margin-top:3px; }
-    .eco-hint { margin-top:14px; font-size:13px; color:var(--muted); display:flex; align-items:center; gap:8px; }
-    .eco-hint i { width:8px; height:8px; border-radius:50%; background:var(--blue); animation:blink 1.4s infinite; }
-    @media (max-width:980px){
-      .eco-shell { grid-template-columns:1fr; }
-      .eco-panel { position:static; min-height:0; }
+    .eco-lens { display:inline-flex; gap:4px; padding:5px; margin-top:32px; border-radius:999px; background:#fff; border:1px solid var(--border); max-width:100%; overflow-x:auto; scrollbar-width:none; }
+    .eco-lens::-webkit-scrollbar { display:none; }
+    .eco-lens button { flex-shrink:0; min-height:40px; padding:8px 16px; border:0; border-radius:999px; background:none; font-size:13.5px; font-weight:700; color:var(--muted); }
+    .eco-lens button:hover { color:var(--accent); }
+    .eco-lens button[aria-pressed="true"] { background:var(--accent); color:#fff; }
+    .eco-flow { margin-top:20px; display:grid; grid-template-columns:210px 1fr 236px; gap:0; align-items:stretch; padding:26px; border-radius:28px; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow-card); }
+    .ef-label { display:flex; align-items:center; gap:8px; height:28px; margin-bottom:12px; font-size:11.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); white-space:nowrap; }
+    .ef-label b { width:22px; height:22px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--accent-light); color:var(--accent); font-size:11px; letter-spacing:0; }
+    .ef-col { display:flex; flex-direction:column; min-width:0; }
+
+    /* 1 · the buyer */
+    .ef-buyer { flex:1; display:flex; flex-direction:column; justify-content:center; gap:12px; padding:20px 18px; border-radius:20px; background:linear-gradient(180deg, #fff7e8 0%, #fff 100%); border:1.5px solid #f5d9a8; }
+    .ef-buyer .av { width:54px; height:54px; border-radius:50%; overflow:hidden; border:3px solid #fff; box-shadow:0 6px 16px -8px rgba(0,20,60,.5); }
+    .ef-buyer .av img { width:100%; height:100%; object-fit:cover; }
+    .ef-tag { align-self:flex-start; font-size:10.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; padding:4px 9px; border-radius:999px; background:var(--amber-light); color:var(--amber); }
+    .ef-buyer h3 { font-size:19px; color:var(--accent); letter-spacing:-.01em; line-height:1.2; }
+    .ef-buyer p { font-size:13.5px; color:var(--fg-secondary); line-height:1.5; }
+    .ef-bubbles { display:flex; flex-direction:column; gap:7px; margin-top:8px; }
+    .ef-bubbles span { align-self:flex-start; max-width:100%; font-size:12.5px; font-weight:600; color:#fff; background:var(--accent); padding:8px 12px; border-radius:14px 14px 14px 4px; }
+    .ef-bubbles span:nth-child(2) { align-self:flex-end; border-radius:14px 14px 4px 14px; background:#0b3a8f; }
+
+    /* 2 + 3 · the lanes */
+    .ef-lanes { display:grid; grid-template-columns:76px minmax(0,1fr) 96px minmax(0,1fr); grid-template-rows:auto 1fr auto 1fr; align-items:stretch; }
+    .ef-lanes > .ef-label { grid-row:1; }
+    .ef-lanes > .ef-label.l-ai { grid-column:2; }
+    .ef-lanes > .ef-label.l-agent { grid-column:4; }
+    .ef-lane { display:contents; }
+    .ef-lane-title { display:none; }
+    .ef-lane > * { transition:opacity .35s, filter .35s; }
+    .ef-lane[data-lane="sell"] > * { grid-row:2; }
+    .ef-lane[data-lane="buy"] > * { grid-row:4; }
+    .ef-ai { padding:16px; border-radius:18px; background:var(--blue-light); border:1.5px solid rgba(24,99,220,.22); }
+    .ef-ai small, .ef-agent small, .ef-realisa small { display:block; font-size:10.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); }
+    .ef-ai b { display:flex; align-items:center; gap:8px; font-size:17px; color:var(--accent); margin-top:4px; letter-spacing:-.01em; }
+    .ef-ai b i { font-style:normal; font-size:10px; font-weight:800; color:#fff; background:var(--blue); padding:2px 6px; border-radius:5px; }
+    .ef-ai p, .ef-agent p { font-size:13px; color:var(--fg-secondary); margin-top:6px; line-height:1.5; }
+    .ef-agent { display:flex; flex-direction:column; padding:16px; border-radius:18px; background:#fff; border:1.5px solid var(--border); }
+    .ef-agent .ic { width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:var(--accent-light); color:var(--accent); margin-bottom:10px; }
+    .ef-agent b { font-size:16.5px; color:var(--accent); letter-spacing:-.01em; }
+    .ef-agent small { color:var(--green); margin-top:auto; padding-top:10px; display:flex; align-items:center; gap:6px; }
+    .ef-link { grid-row:3; grid-column:2; display:flex; justify-content:center; padding:10px 0; position:relative; }
+    .ef-link::before { content:''; position:absolute; left:50%; top:0; bottom:0; border-left:2px dashed rgba(24,99,220,.35); }
+    .ef-link span { position:relative; display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:700; color:var(--blue); background:#fff; border:1px solid rgba(24,99,220,.25); padding:5px 10px; border-radius:999px; text-align:center; line-height:1.35; }
+
+    /* Arrows with a travelling dot */
+    .ef-arrow { position:relative; min-height:40px; }
+    .ef-arrow::before { content:''; position:absolute; left:10px; right:12px; top:50%; height:2px; margin-top:-1px; background:rgba(24,99,220,.35); }
+    .ef-arrow::after { content:''; position:absolute; right:8px; top:50%; width:9px; height:9px; margin-top:-5px; border-top:2px solid var(--blue); border-right:2px solid var(--blue); transform:rotate(45deg); }
+    .ef-arrow em { position:absolute; left:50%; top:50%; transform:translate(-50%, -30px); font-style:normal; font-size:10.5px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--blue); white-space:nowrap; }
+    .ef-arrow i { position:absolute; left:10px; top:50%; width:8px; height:8px; margin-top:-4px; border-radius:50%; background:var(--blue); box-shadow:0 0 0 4px rgba(24,99,220,.15); animation:ef-run 2.4s linear infinite; }
+    .ef-arrow.is-back::after { right:auto; left:8px; transform:rotate(-135deg); }
+    .ef-arrow.is-back i { animation-name:ef-back; }
+    .ef-arrow.is-gold::before { background:rgba(245,166,35,.55); }
+    .ef-arrow.is-gold::after { border-color:var(--gold); }
+    .ef-arrow.is-gold i { background:var(--gold); box-shadow:0 0 0 4px rgba(245,166,35,.18); }
+    .ef-arrow.is-gold em { color:var(--amber); }
+    @keyframes ef-run { from { left:10px; opacity:0 } 15% { opacity:1 } 85% { opacity:1 } to { left:calc(100% - 22px); opacity:0 } }
+    @keyframes ef-back { from { left:calc(100% - 22px); opacity:0 } 15% { opacity:1 } 85% { opacity:1 } to { left:10px; opacity:0 } }
+    @keyframes ef-down { from { top:6px; opacity:0 } 15% { opacity:1 } 85% { opacity:1 } to { top:calc(100% - 18px); opacity:0 } }
+    @keyframes ef-up { from { top:calc(100% - 18px); opacity:0 } 15% { opacity:1 } 85% { opacity:1 } to { top:6px; opacity:0 } }
+
+    /* 4 · Realisa */
+    .ef-side { display:grid; grid-template-columns:64px 1fr; grid-template-rows:auto 1fr; }
+    .ef-side > .ef-label { grid-column:2; }
+    .ef-side > .ef-arrow { grid-row:2; }
+    .ef-realisa { grid-row:2; display:flex; flex-direction:column; gap:8px; padding:18px; border-radius:20px; background:var(--accent); color:#fff; }
+    .ef-realisa svg.hob { width:48px; height:48px; background:#fff; border-radius:14px; padding:5px; }
+    .ef-realisa small { color:#9cc3ff; margin-top:4px; }
+    .ef-realisa b { font-size:20px; letter-spacing:-.01em; }
+    .ef-realisa p { font-size:13px; color:rgba(255,255,255,.82); line-height:1.5; }
+    .ef-realisa ul { list-style:none; display:flex; flex-direction:column; gap:7px; margin-top:auto; padding-top:6px; }
+    .ef-realisa li { display:flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700; padding:7px 10px; border-radius:10px; background:rgba(255,255,255,.1); }
+    .ef-realisa li svg { color:var(--gold); flex-shrink:0; }
+
+    /* Lens: dim the side that is not in focus */
+    .eco-flow[data-lens="sell"] .ef-lane[data-lane="buy"] > *,
+    .eco-flow[data-lens="buy"] .ef-lane[data-lane="sell"] > *,
+    .eco-flow[data-lens="sell"] .ef-link, .eco-flow[data-lens="buy"] .ef-link { opacity:.22; filter:grayscale(.6); }
+    .eco-flow[data-lens="sell"] .ef-lane[data-lane="sell"] .ef-ai,
+    .eco-flow[data-lens="buy"] .ef-lane[data-lane="buy"] .ef-ai { border-color:var(--blue); box-shadow:0 12px 28px -14px rgba(24,99,220,.6); }
+    .eco-caption { margin-top:18px; display:flex; gap:12px; align-items:flex-start; padding:16px 20px; border-radius:18px; background:#fff; border:1px solid var(--border); font-size:15px; color:var(--fg-secondary); }
+    .eco-caption svg { flex-shrink:0; color:var(--blue); margin-top:2px; }
+    .eco-caption b { color:var(--accent); }
+
+    /* Stacked: tablet and phone read top to bottom */
+    @media (max-width:1099px){
+      .eco-flow { grid-template-columns:1fr; padding:20px; gap:0; }
+      .ef-buyer { flex-direction:row; flex-wrap:wrap; align-items:center; }
+      .ef-buyer .ef-who { flex:1; min-width:200px; }
+      .ef-bubbles { margin-top:0; flex-direction:row; flex-wrap:wrap; width:100%; }
+      .ef-lanes { grid-template-columns:1fr 1fr; grid-template-rows:auto; column-gap:14px; margin-top:4px; }
+      .ef-lanes > .ef-label { display:none; }
+      .ef-lane { display:flex; flex-direction:column; }
+      .ef-lane-title { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:16px; font-size:11.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+      .ef-lane-title::before, .ef-lane-title::after { content:''; flex:1; height:1px; background:var(--border); }
+      .ef-lane[data-lane="sell"] { grid-column:1; grid-row:1; }
+      .ef-lane[data-lane="buy"] { grid-column:2; grid-row:1; }
+      .ef-lane > * { grid-row:auto !important; }
+      .ef-link { grid-column:1 / 3; grid-row:2; padding:12px 0 0; }
+      .ef-link::before { display:none; }
+      .ef-ai, .ef-agent { flex:1; }
+      .ef-arrow { min-height:58px; }
+      .ef-arrow::before { left:50%; right:auto; top:6px; bottom:12px; width:2px; height:auto; margin:0 0 0 -1px; }
+      .ef-arrow::after { left:50%; right:auto; top:auto; bottom:10px; margin:0 0 0 -5px; transform:rotate(135deg); }
+      .ef-arrow em { left:calc(50% + 14px); top:50%; transform:translateY(-50%); }
+      .ef-arrow i { left:50%; margin:0 0 0 -4px; top:6px; animation-name:ef-down; }
+      .ef-side { grid-template-columns:1fr; }
+      .ef-side > .ef-label { display:none; }
+      .ef-side > .ef-arrow { grid-row:1; }
+      .ef-arrow.is-back::after { left:50%; top:6px; bottom:auto; margin-left:-5px; transform:rotate(-45deg); }
+      .ef-arrow.is-back i { animation-name:ef-up; }
+      .ef-realisa ul { flex-direction:row; flex-wrap:wrap; }
+      .ef-col.c-buyer > .ef-label { display:none; }
     }
     @media (max-width:640px){
-      .eco-map { padding:16px; border-radius:22px; }
-      .eco-grid { gap:12px 8px; }
-      .eco-role { padding:12px 4px; }
-      .eco-role .av { width:38px; height:38px; }
-      .eco-role b { font-size:12.5px; }
-      .eco-role span { display:none; }
-      .p-pe, .p-hc { grid-column:1 / 7; }
-      .p-hc { grid-row:4; }
-      .eco-bridge { grid-row:5; }
-      .eco-hob { grid-row:6; flex-wrap:wrap; }
-      .eco-hob .tags { margin-left:0; justify-content:flex-start; }
-      .eco-links { height:22px; }
+      .eco-flow { padding:14px; border-radius:22px; }
+      .ef-lanes { grid-template-columns:1fr; }
+      .ef-lane[data-lane="buy"] { grid-column:1; grid-row:3; }
+      .ef-link { grid-column:1; grid-row:2; }
+      .ef-ai b { font-size:16px; }
     }
+    @media (prefers-reduced-motion:reduce){ .ef-arrow i { display:none; } }
 
     /* ===== Products ===== */
     .tabs { display:inline-flex; gap:6px; padding:6px; margin-top:36px; border-radius:999px; background:var(--surface); border:1px solid var(--border); max-width:100%; overflow-x:auto; scrollbar-width:none; }
@@ -290,7 +353,7 @@
     /* ===== How it works ===== */
     .how { background:linear-gradient(180deg, var(--surface) 0%, #fff 100%); }
     .how-shell { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:48px; align-items:start; }
-    .how-shell > *, .prod-panel > *, .eco-shell > *, .hero-grid > *, .vision-grid > *, .contact-card > * { min-width:0; }
+    .how-shell > *, .prod-panel > *, .hero-grid > *, .vision-grid > *, .contact-card > * { min-width:0; }
     .steps { display:flex; flex-direction:column; gap:10px; }
     .step { display:flex; gap:16px; width:100%; text-align:left; padding:18px 20px; border-radius:18px; border:1.5px solid var(--border); background:#fff; color:var(--fg); transition:border-color .25s, box-shadow .25s, background .25s; position:relative; overflow:hidden; }
     .step:hover { border-color:var(--blue); }
@@ -544,64 +607,95 @@
     <div class="wrap">
       <div class="reveal">
         <span class="eyebrow">The ecosystem</span>
-        <h2 class="h2">One intelligence, both sides of the deal.</h2>
-        <p class="lead">Pick a role to see which AI agents work for them.</p>
+        <h2 class="h2">Buyers talk to the AI. Agents get the deal.</h2>
+        <p class="lead">The home buyer is the end user: they ask the questions. Two AI agents answer them around the clock and hand warm leads to the agents they work for. Realisa keeps every agent on top of it all.</p>
       </div>
-      <div class="eco-shell reveal">
-        <div class="eco-map" id="eco-map">
-          <div class="eco-grid">
-            <button type="button" class="eco-role r-listing" data-role="listing" aria-pressed="false">
-              <span class="av"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg></span>
-              <b>Listing agent</b><span>Sells the home</span>
-            </button>
-            <button type="button" class="eco-role r-buyer" data-role="buyer" aria-pressed="false">
-              <span class="av"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span>
-              <b>Home buyer</b><span>Served by both</span>
-            </button>
-            <button type="button" class="eco-role r-bagent" data-role="bagent" aria-pressed="false">
-              <span class="av"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg></span>
-              <b>Buyer's agent</b><span>Represents the buyer</span>
-            </button>
 
-            <div class="eco-links" aria-hidden="true">
-              <svg viewBox="0 0 600 34" preserveAspectRatio="none">
-                <path data-link="listing-pe" d="M100 0 C100 18, 150 16, 150 34"/>
-                <path data-link="buyer-pe" d="M300 0 C300 18, 200 16, 200 34"/>
-                <path data-link="buyer-hc" d="M300 0 C300 18, 400 16, 400 34"/>
-                <path data-link="bagent-hc" d="M500 0 C500 18, 450 16, 450 34"/>
-              </svg>
-            </div>
+      <div class="eco-lens reveal" role="group" aria-label="Highlight a side of the deal">
+        <button type="button" data-lens="all" aria-pressed="true">Both sides</button>
+        <button type="button" data-lens="sell" aria-pressed="false">Selling side</button>
+        <button type="button" data-lens="buy" aria-pressed="false">Buying side</button>
+      </div>
 
-            <div class="eco-prod p-pe" data-prod="pe">
-              <small>Per listing</small>
-              <b>Property Expert</b>
-              <p>A 24/7 expert on one home, with cited answers.</p>
+      <div class="eco-flow reveal" id="eco-flow" data-lens="all">
+        <!-- 1 · the end user -->
+        <div class="ef-col c-buyer">
+          <div class="ef-label"><b>1</b>Who asks</div>
+          <div class="ef-buyer">
+            <span class="av"><img src="uploads/journey-discovery.jpg" alt="A home buyer on her phone"></span>
+            <div class="ef-who">
+              <span class="ef-tag">End user</span>
+              <h3>Home buyer</h3>
+              <p>Asks anything, any hour, from a yard sign, a link or a text. No login, no form.</p>
             </div>
-            <div class="eco-prod p-hc" data-prod="hc">
-              <small>Per buyer</small>
-              <b>Home Concierge</b>
-              <p>A personal concierge that learns and matches.</p>
-            </div>
-            <div class="eco-bridge">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg>
-              Concierge recommends homes from the Property Expert network
-            </div>
-            <div class="eco-hob" data-prod="hob">
-              <svg class="hob" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>
-              <div><b>Realisa</b><p>AI chief of staff for every agent, on both sides of the deal</p></div>
-              <div class="tags"><span>Pipeline</span><span>Clients</span><span>Schedule</span><span>Reminders</span></div>
+            <div class="ef-bubbles" aria-label="Example questions">
+              <span>Any issues with the roof?</span>
+              <span>Homes near good schools?</span>
             </div>
           </div>
         </div>
 
-        <aside class="eco-panel" id="eco-panel" aria-live="polite">
-          <small id="eco-k">The whole picture</small>
-          <h3 id="eco-t">Three agents. One shared intelligence.</h3>
-          <p id="eco-p">Each listing gets a Property Expert, each buyer gets a Home Concierge, and every agent gets Realisa. What one learns, the network can use.</p>
-          <ul id="eco-l"></ul>
-          <p class="eco-hint" id="eco-hint"><i></i>Tap a role on the map</p>
-        </aside>
+        <!-- 2 + 3 · the AI that answers, and who it works for -->
+        <div class="ef-lanes">
+          <div class="ef-label l-ai"><b>2</b>AI that answers</div>
+          <div class="ef-label l-agent"><b>3</b>Who it works for</div>
+
+          <div class="ef-lane" data-lane="sell">
+            <div class="ef-lane-title">Selling side</div>
+            <div class="ef-arrow"><em>Asks</em><i></i></div>
+            <div class="ef-ai">
+              <small>On every listing</small>
+              <b>Property Expert <i>AI</i></b>
+              <p>Answers from the home's own listing, disclosures and inspection, with sources.</p>
+            </div>
+            <div class="ef-arrow"><em>Warm lead</em><i></i></div>
+            <div class="ef-agent">
+              <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg></span>
+              <b>Listing agent</b>
+              <p>Sells the home. Gets tour requests with the full chat.</p>
+              <small><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>No lead goes cold</small>
+            </div>
+          </div>
+
+          <div class="ef-link"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></svg>Concierge recommends homes from the Property Expert network</span></div>
+
+          <div class="ef-lane" data-lane="buy">
+            <div class="ef-lane-title">Buying side</div>
+            <div class="ef-arrow"><em>Asks</em><i></i></div>
+            <div class="ef-ai">
+              <small>For every buyer</small>
+              <b>Home Concierge <i>AI</i></b>
+              <p>Sent by the buyer's agent at first contact. Learns needs, budget and timeline.</p>
+            </div>
+            <div class="ef-arrow"><em>Warm lead</em><i></i></div>
+            <div class="ef-agent">
+              <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg></span>
+              <b>Buyer's agent</b>
+              <p>Represents the buyer. Knows who is ready and what they want.</p>
+              <small><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Closes with full context</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 · the agent's chief of staff -->
+        <div class="ef-side">
+          <div class="ef-label"><b>4</b>Their assistant</div>
+          <div class="ef-arrow is-back is-gold"><em>Reminds</em><i></i></div>
+          <div class="ef-realisa">
+            <svg class="hob" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>
+            <small>Chief of staff</small>
+            <b>Realisa</b>
+            <p>The agent's own assistant, on both sides of the deal. It reminds, prioritizes and briefs, before anything slips.</p>
+            <ul>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2"/></svg>Morning brief</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/></svg>Follow-up reminders</li>
+              <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Pipeline and schedule</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
+      <p class="eco-caption reveal" aria-live="polite"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span id="eco-caption"><b>The buyer asks. The AI answers. The agent gets a warm lead.</b> Realisa makes sure nothing slips on either side.</span></p>
     </div>
   </section>
 
@@ -952,64 +1046,33 @@
     window.addEventListener('scroll', onScroll, { passive:true });
     onScroll();
 
-    // ===== Ecosystem map =====
-    var ROLES = {
-      listing: {
-        k: 'Listing agent', t: 'Every listing becomes a 24/7 expert.',
-        p: 'The yard sign and listing link open a Property Expert. Anonymous interest turns into tour requests, and Realisa keeps the pipeline moving.',
-        l: ['Property Expert answers buyers on each listing', 'Tour requests arrive with full context', 'Realisa flags what needs attention today'],
-        on: ['pe', 'hob'], links: ['listing-pe']
-      },
-      buyer: {
-        k: 'Home buyer', t: 'Served by both sides, never left waiting.',
-        p: 'Cited answers on any home at any hour, plus a personal concierge that learns what they need and recommends homes from the network.',
-        l: ['Real answers from listing documents, not guesses', 'A concierge that remembers needs and timeline', 'Matched to homes that fit, then to the right agent'],
-        on: ['pe', 'hc'], links: ['buyer-pe', 'buyer-hc']
-      },
-      bagent: {
-        k: "Buyer's agent", t: 'A concierge at first contact.',
-        p: 'The agent sends a Home Concierge with the first message. It qualifies needs, budget comfort and timeline, and Realisa says who is ready.',
-        l: ['Engages new leads with no profile needed', 'Learns needs, budget comfort and timeline', 'Realisa prioritizes warm buyers over noise'],
-        on: ['hc', 'hob'], links: ['bagent-hc']
-      }
+    // ===== Ecosystem: highlight one side of the deal =====
+    var LENS = {
+      all: '<b>The buyer asks. The AI answers. The agent gets a warm lead.</b> Realisa makes sure nothing slips on either side.',
+      sell: '<b>Selling side:</b> a buyer scans the yard sign and asks the home\'s Property Expert. When they ask to tour, the listing agent gets the lead with the full chat.',
+      buy: '<b>Buying side:</b> the buyer\'s agent sends a Home Concierge at first contact. It learns what the buyer needs, recommends homes from the network, and tells the agent who is ready.'
     };
-    var ecoMap = document.getElementById('eco-map');
-    var roleBtns = ecoMap.querySelectorAll('.eco-role');
-    var prods = ecoMap.querySelectorAll('[data-prod]');
-    var links = ecoMap.querySelectorAll('[data-link]');
-    var CHECK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
-    var ecoTouched = false, ecoAuto = null;
-    function setRole(key){
-      var r = ROLES[key];
-      roleBtns.forEach(function(b){ var on = b.getAttribute('data-role') === key; b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
-      ecoMap.classList.add('has-focus');
-      prods.forEach(function(p){ p.classList.toggle('is-on', r.on.indexOf(p.getAttribute('data-prod')) > -1); });
-      links.forEach(function(l){ l.classList.toggle('is-on', r.links.indexOf(l.getAttribute('data-link')) > -1); });
-      document.getElementById('eco-k').textContent = r.k;
-      document.getElementById('eco-t').textContent = r.t;
-      document.getElementById('eco-p').textContent = r.p;
-      var ul = document.getElementById('eco-l'); ul.innerHTML = '';
-      r.l.forEach(function(txt){ var li = document.createElement('li'); li.innerHTML = CHECK; li.appendChild(document.createTextNode(txt)); ul.appendChild(li); });
+    var ecoFlow = document.getElementById('eco-flow');
+    var lensBtns = document.querySelectorAll('.eco-lens [data-lens]');
+    var lensPicked = 'all';
+    function setLens(k){
+      ecoFlow.setAttribute('data-lens', k);
+      document.getElementById('eco-caption').innerHTML = LENS[k];
     }
-    roleBtns.forEach(function(b){
+    lensBtns.forEach(function(b){
       b.addEventListener('click', function(){
-        ecoTouched = true; clearInterval(ecoAuto);
-        document.getElementById('eco-hint').hidden = true;
-        setRole(b.getAttribute('data-role'));
+        lensPicked = b.getAttribute('data-lens');
+        lensBtns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        setLens(lensPicked);
       });
     });
-    // Until someone taps, gently cycle through the roles while the map is on screen
-    if (!reduce && 'IntersectionObserver' in window) {
-      var order = ['listing', 'buyer', 'bagent'], oi = 0;
-      new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          clearInterval(ecoAuto);
-          if (e.isIntersecting && !ecoTouched) {
-            ecoAuto = setInterval(function(){ setRole(order[oi % 3]); oi++; }, 3200);
-          }
-        });
-      }, { threshold:.4 }).observe(ecoMap);
-    }
+    // Pointing at a side previews it
+    ecoFlow.querySelectorAll('.ef-lane').forEach(function(lane){
+      lane.querySelectorAll('.ef-ai, .ef-agent').forEach(function(card){
+        card.addEventListener('mouseenter', function(){ setLens(lane.getAttribute('data-lane')); });
+        card.addEventListener('mouseleave', function(){ setLens(lensPicked); });
+      });
+    });
 
     // ===== Product tabs =====
     var tabs = document.querySelectorAll('.tab');
