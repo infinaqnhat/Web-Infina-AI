@@ -806,7 +806,7 @@
       <div class="demo-howto reveal">
         <div><b>1</b><p><strong>Ask a question</strong> as a buyer. Tap a suggestion or type your own, like "Is there a pool?"</p></div>
         <div><b>2</b><p><strong>Ask for a tour</strong> or to talk to the agent. That turns the chat into a lead.</p></div>
-        <div><b>3</b><p><strong>Switch to the agent view</strong> to see the lead arrive with the full conversation.</p></div>
+        <div><b>3</b><p><strong>Switch to the agent view</strong> to see the agent's dashboard: chats, pipeline, buyers and insights.</p></div>
       </div>
 
       <div class="demo-bar">
@@ -1104,10 +1104,10 @@
 
     // ===== Live demo =====
     var PAGES = {
-      buyer: { url:'property-expert-demo-tour.html', bar:'infina.ai/expert/123-main-street',
+      buyer: { url:'property-expert-demo-tour.html?agent=dashboard', bar:'infina.ai/expert/123-main-street',
                title:'123 Main Street, Austin, TX', text:'A guide walks you through it in about a minute. You do the clicking.' },
-      agent: { url:'property-expert-admin-demo-tour.html', bar:'infina.ai/agent/inbox',
-               title:"The agent's inbox", text:'See how a buyer chat lands as a lead, with Realisa pointing out what matters.' }
+      agent: { url:'dashboard/chats/index.html', bar:'infina.ai/dashboard',
+               title:"The agent's dashboard", text:'Chats, pipeline, buyers and insights in one place. Realisa shows you around in about a minute.' }
     };
     var view = 'buyer', started = false;
     var iframe = document.getElementById('demo-iframe');
@@ -1116,20 +1116,30 @@
     var fullLink = document.getElementById('demo-full');
     function load(guided){
       var p = PAGES[view];
-      var hash = guided ? (view === 'buyer' ? '#tour=1' : '#tour=2') : '';
+      var hash = guided ? (view === 'buyer' ? '#tour=1' : '#tour=0') : '';
       iframe.src = p.url + hash;
       poster.hidden = true; started = true;
     }
-    function setView(v, autostart){
+    function setView(v, autostart, keepFrame){
       view = v;
       document.querySelectorAll('[data-view]').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-view') === v ? 'true' : 'false'); });
       var p = PAGES[v];
       document.getElementById('frame-url').lastChild.textContent = p.bar;
       document.getElementById('poster-title').textContent = p.title;
       document.getElementById('poster-text').textContent = p.text;
-      fullLink.href = p.url;
-      if (started || autostart) load(true);
+      fullLink.href = p.url.split('?')[0];
+      if (!keepFrame && (started || autostart)) load(true);
     }
+    // The demo moves from the buyer page to the agent page inside the frame:
+    // keep the Buyer / Agent switch in step with what is on screen
+    iframe.addEventListener('load', function(){
+      try {
+        var path = iframe.contentWindow.location.pathname;
+        if (!path || path === 'blank') return;
+        var v = /\/dashboard\//.test(path) ? 'agent' : 'buyer';
+        if (v !== view) setView(v, false, true);
+      } catch (e) {}
+    });
     document.querySelectorAll('[data-view]').forEach(function(b){
       b.addEventListener('click', function(){ setView(b.getAttribute('data-view')); });
     });

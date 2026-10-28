@@ -631,7 +631,7 @@
 
   <!-- ===== Lead notification (shown ~5s after the buyer chat goes quiet) ===== -->
   <div class="lead-toast" id="lead-toast" role="status" aria-live="polite" hidden>
-    <a class="lead-toast-link" id="lead-toast-link" href="#" target="_blank" rel="noopener">
+    <a class="lead-toast-link" id="lead-toast-link" href="#" target="_self">
       <span class="lead-toast-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
       <span class="lead-toast-body">
         <span class="lead-toast-meta"><span>Infina AI</span><span>&middot; now</span></span>
@@ -792,9 +792,9 @@
         btnLink = make('a', 'tour-btn'); btnLink.target = '_blank'; btnLink.rel = 'noopener'; btnLink.hidden = true;
         btnLink.addEventListener('click', function(){
           var s = st && st.steps[st.i]; var c = s && s.cta && s.cta();
-          if (c && c.href) btnLink.href = c.href;   // carry the latest state into the new tab
+          if (c && c.href) btnLink.href = c.href;   // carry the latest state into the next page
           if (c && c.onClick) c.onClick(btnLink);
-          // the link opens in a new tab; the tour on this page is finished
+          // the link leaves this page (same tab or a new one); the tour here is finished
           setTimeout(function(){ end('done'); }, 120);
         });
         actions.appendChild(btnSkip); actions.appendChild(make('span', 'tour-spacer')); actions.appendChild(btnNext); actions.appendChild(btnLink);
@@ -915,6 +915,7 @@
         if (c && c.href) {
           btnNext.hidden = true; btnLink.hidden = false;
           btnLink.textContent = c.label; btnLink.href = c.href;
+          btnLink.target = c.sameTab ? '_self' : '_blank';
           btnLink.className = 'tour-btn' + (c.claim ? ' is-claim' : '');
         } else if (c) {
           btnNext.textContent = c.label;
@@ -997,6 +998,8 @@
     // so it can become the lead the agent is notified about, and be rendered on the
     // admin demo page exactly as it was typed.
     var ADMIN_DEMO_URL = 'property-expert-admin-demo-tour.html';
+    // ?agent=dashboard (the investor overview): the agent side is the dashboard demo instead
+    var AGENT_DASHBOARD = /[?&]agent=dashboard\b/.test(location.search);
     var LEAD_IDLE_MS = 5000;          // quiet time before the "new lead" notification
     var LEAD_KEY = 'pe-demo-lead';
     var PROPERTY = { name: '123 Main Street', city: 'Austin, TX 78703', photo: 'uploads/property-123-main.jpg' };
@@ -1310,6 +1313,7 @@
     // The snapshot travels in the URL hash so it works even where storage is blocked
     // (sandboxed embeds), and is also written to localStorage for same-origin reads.
     function adminHref(extra){
+      if (AGENT_DASHBOARD) return 'dashboard/chats/index.html' + (extra ? '#tour=0' : '');
       var json = JSON.stringify(leadSnapshot());
       try { localStorage.setItem(LEAD_KEY, json); } catch (e) {}
       return ADMIN_DEMO_URL + '#lead=' + encodeURIComponent(json) + (extra || '');
@@ -1463,12 +1467,14 @@
         title: 'Every chat is logged for you',
         text: function(){
           return answeredCount > 0
-            ? 'This conversation is saved in your <b>admin dashboard</b>, along with every buyer chat to come. Want to see how it looks?'
+            ? (AGENT_DASHBOARD
+                ? 'Every buyer chat lands in your <b>dashboard</b>, with your pipeline, buyers and insights. Want to see how it looks?'
+                : 'This conversation is saved in your <b>admin dashboard</b>, along with every buyer chat to come. Want to see how it looks?')
             : 'Ask one question first, so there is a real chat to show you in the dashboard.';
         },
         cta: function(){
           if (answeredCount > 0) {
-            return { label: 'Show me my dashboard →', href: adminHref('&tour=2'), onClick: function(){ leadNotified = true; hideLeadToast(); } };
+            return { label: 'Show me my dashboard →', href: adminHref('&tour=2'), sameTab: true, onClick: function(){ leadNotified = true; hideLeadToast(); } };
           }
           return { label: 'Ask one for me', onClick: function(){ askQuestion('Any HVAC issues?'); } };
         },
