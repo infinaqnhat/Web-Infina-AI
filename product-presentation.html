@@ -451,7 +451,7 @@
     .sheet-list button.is-on i { background:rgba(255,255,255,.15); color:#fff; }
 
     /* ===== Phones and narrow screens: portrait slide cards, still swiped sideways ===== */
-    @media (max-width:860px){
+    @media screen and (max-width:860px){
       :root { --head-h:56px; --bar-h:58px; }
       .deck-head { padding:0 12px; gap:10px; }
       .deck-logo { display:none; }
@@ -565,7 +565,7 @@
     }
     /* ===== Phones, Slides view: the desktop slides scaled down, tap one to present ===== */
     .view-seg, .present-ui, .present-tip { display:none; }
-    @media (max-width:860px){
+    @media screen and (max-width:860px){
       .view-seg { display:inline-flex; gap:2px; padding:3px; border-radius:999px; background:var(--surface); border:1px solid var(--border); }
       .view-seg button { min-height:34px; padding:0 12px; border:0; border-radius:999px; background:none; font-size:12px; font-weight:700; color:var(--muted); }
       .view-seg button[aria-pressed="true"] { background:var(--accent); color:#fff; }
@@ -587,7 +587,7 @@
       .present-ui button { width:40px; height:40px; border-radius:50%; border:0; background:rgba(255,255,255,.16); color:#fff; display:flex; align-items:center; justify-content:center; }
       body.presenting .present-tip { display:inline-flex; position:fixed; left:50%; bottom:max(14px, env(safe-area-inset-bottom)); transform:translateX(-50%); z-index:70; align-items:center; gap:7px; padding:7px 12px; border-radius:999px; background:rgba(255,255,255,.14); color:rgba(255,255,255,.85); font-size:12px; font-weight:600; white-space:nowrap; }
     }
-    @media (max-width:860px) and (orientation:landscape){
+    @media screen and (max-width:860px) and (orientation:landscape){
       body.presenting .present-tip { display:none; }
       /* the slide fills the height: keep the controls in the dark margin beside it */
       body.presenting .present-ui { flex-direction:column-reverse; align-items:flex-end; top:8px; right:6px; gap:6px; }
@@ -618,9 +618,10 @@
       .deck-head, .deck-bar, .sheet, .present-ui, .present-tip, .no-print { display:none !important; }
       .print-only { display:block !important; }
       .deck { position:static; display:block; overflow:visible; counter-reset:pg; }
-      .slide { display:block; width:1280px; height:720px; padding:0; break-after:page; page-break-after:always; counter-increment:pg; }
+      /* slides take the page width and keep 16:9, so any paper size (and browsers that ignore @page size) scale them instead of squeezing */
+      .slide { display:block; width:100%; height:auto; padding:0; break-after:page; page-break-after:always; break-inside:avoid; counter-increment:pg; }
       .slide:last-child { break-after:auto; page-break-after:auto; }
-      .card { position:relative !important; left:auto !important; top:auto !important; width:1280px !important; height:720px; aspect-ratio:auto; border-radius:0; box-shadow:none !important; transform:none !important; }
+      .card { position:relative !important; left:auto !important; top:auto !important; width:100% !important; height:auto !important; aspect-ratio:16 / 9 !important; border-radius:0; box-shadow:none !important; transform:none !important; }
       .anim, .lc, .toast { opacity:1 !important; transform:none !important; transition:none !important; }
       .typing, .arrow i, .step .bar, .more-hint { display:none !important; }
       /* buttons do nothing on paper: the See it live page carries the links instead */
@@ -1319,7 +1320,9 @@
     });
 
     // ===== Things that play when their slide comes into view =====
+    var printMode = false;
     function onEnter(id){
+      if (printMode) return;   // keep the print state while pages are made
       if (id === 'hero') heroPlay();
       if (id === 'film') loadFilm();
       if (id === 'how') { stepCur = 0; renderStep(0, true); }
@@ -1530,12 +1533,14 @@
 
     // ===== Print and PDF: show every animated part in its fullest state =====
     function preparePrint(){
+      printMode = true;
       heroTimers.forEach(clearTimeout); heroTimers = [];
       heroMsgs.forEach(function(m){ m.classList.add('is-on'); }); heroTyping.hidden = true; heroToast.classList.add('is-on');
       setLens('all');
       stopSteps(); renderStep(3, false);
     }
     window.addEventListener('beforeprint', preparePrint);
+    window.addEventListener('afterprint', function(){ printMode = false; });
     window.__preparePrint = preparePrint;
 
     // Open on the slide in the address, else the first
