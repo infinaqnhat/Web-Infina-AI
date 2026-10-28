@@ -286,3 +286,5 @@ User duyệt hết: nâng #2330 làm pillar, cả 10 cluster (kể cả bài ref
 3. Hai bài **có thể bỏ nếu SERP yếu**: warm leads (gộp vào database) và sales funnel (gộp vào #277). Bạn muốn mình tự quyết khi viết, hay hỏi lại?
 4. Làm bài **referral fee** (kèm file mẫu thỏa thuận tải về, ghi rõ không phải tư vấn pháp lý) hay chỉ mở rộng #1961.
 5. Có làm **8.2** (6 bài cũ, chỉ thêm link tới #2330) ngay bây giờ, hay chờ đăng bài mới rồi làm cùng inbound pass.
+
+**Verify 28/10 15:00 UTC:** bài 1 #2404 (10:00) và bài 2 #2413 (14:00) đã publish đúng giờ, category 392, ảnh đại diện và 3 ảnh trong thân trả 200, 8 và 9 link nội bộ đều 200 (kể cả link chéo giữa hai bài), đúng 1 link lên pillar #2330, không em dash.
