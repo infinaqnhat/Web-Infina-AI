@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <base target="_top">
+  <script>
+    // Embedded in a same-origin page (the investor overview): keep links inside the frame
+    try { if (window.top !== window.self && window.top.location.origin === location.origin) document.querySelector('base').target = '_self'; } catch (e) {}
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Infina AI inbox, demo</title>
@@ -172,7 +176,7 @@
     .gate button { flex-shrink:0; width:26px; height:26px; border:0; border-radius:50%; background:rgba(255,255,255,.16); color:#fff; display:flex; align-items:center; justify-content:center; }
     @media (prefers-reduced-motion:reduce){ .gate { transition:none; } }
 
-    /* ----- Hob, the assistant ----- */
+    /* ----- Realisa, the assistant ----- */
     .hob-btn { position:fixed; right:24px; bottom:24px; z-index:70; width:60px; height:60px; border:0; border-radius:50%; background:#fff; box-shadow:0 10px 28px -8px rgba(0,20,60,.5), 0 0 0 1px var(--border-light); display:flex; align-items:center; justify-content:center; padding:0; }
     .hob-btn svg { width:44px; height:44px; }
     .hob-btn:hover { transform:translateY(-2px); }
@@ -236,7 +240,7 @@
       body.info-open .info { transform:none; }
     }
 
-    /* ===== Hob tour (same block in both demo pages) ===== */
+    /* ===== Realisa tour (same block in both demo pages) ===== */
     .tour-spot { position:fixed; z-index:90; left:50%; top:50%; width:0; height:0; border-radius:16px; box-shadow:0 0 0 100vmax rgba(8,18,46,.58); pointer-events:none; opacity:0; }
     .tour-spot.is-on { opacity:1; }
     .tour-spot.is-anim { transition:left .32s cubic-bezier(.22,1,.36,1), top .32s cubic-bezier(.22,1,.36,1), width .32s cubic-bezier(.22,1,.36,1), height .32s cubic-bezier(.22,1,.36,1), opacity .25s ease; }
@@ -408,28 +412,28 @@
     <button type="button" id="gate-close" aria-label="Dismiss"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
   </div>
 
-  <!-- ===== Hob ===== -->
+  <!-- ===== Realisa ===== -->
   <button class="hob-tip" type="button" id="hob-tip" hidden>Want a 30s tour of this page?</button>
-  <button class="hob-btn" type="button" id="hob-btn" aria-label="Ask Hob, your assistant" aria-expanded="false" aria-controls="hob-panel">
+  <button class="hob-btn" type="button" id="hob-btn" aria-label="Ask Realisa, your assistant" aria-expanded="false" aria-controls="hob-panel">
     <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>
   </button>
-  <section class="hob-panel" id="hob-panel" role="dialog" aria-label="Hob, your assistant" hidden>
+  <section class="hob-panel" id="hob-panel" role="dialog" aria-label="Realisa, your assistant" hidden>
     <div class="hob-head">
       <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>
-      <div><b>Hob</b><span>Your assistant &middot; Sees: Chats</span></div>
-      <button class="hob-x" type="button" id="hob-x" aria-label="Close Hob"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <div><b>Realisa</b><span>Your assistant &middot; Sees: Chats</span></div>
+      <button class="hob-x" type="button" id="hob-x" aria-label="Close Realisa"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
     </div>
     <div class="hob-body" id="hob-body"></div>
     <div class="hob-chips" id="hob-chips"></div>
     <form class="hob-input" id="hob-form" autocomplete="off">
-      <input type="text" id="hob-input" placeholder="Ask about this page..." aria-label="Ask Hob about this page">
+      <input type="text" id="hob-input" placeholder="Ask about this page..." aria-label="Ask Realisa about this page">
       <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </form>
   </section>
 
   <script>
     var PETOUR_DOCK_MAX = 1099;
-    // ===== Hob tour (same block in both demo pages) =====
+    // ===== Realisa tour (same block in both demo pages) =====
     // Steps: { target, title, text, kind: 'info' | 'action', on, before, cta, nextLabel }
     //  target   selector, list of selectors (first visible wins), or a function; none = centred card
     //  kind     'info' waits for the button; 'action' leaves the page usable and waits for `on`
@@ -451,9 +455,9 @@
         block = make('div', 'tour-block'); block.hidden = true;
         bubble = make('div', 'tour-bubble'); bubble.hidden = true;
         bubble.setAttribute('role', 'dialog');
-        bubble.setAttribute('aria-label', 'Tour with Hob');
+        bubble.setAttribute('aria-label', 'Tour with Realisa');
         var head = make('div', 'tour-head');
-        head.innerHTML = HOB_SVG + '<b>Hob</b>';
+        head.innerHTML = HOB_SVG + '<b>Realisa</b>';
         elCount = make('span', 'tour-count');
         var x = make('button', 'tour-x'); x.type = 'button'; x.setAttribute('aria-label', 'Close the tour');
         x.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
@@ -939,7 +943,7 @@
       closeGate();
     });
 
-    // ===== Hob =====
+    // ===== Realisa =====
     var hobBtn = document.getElementById('hob-btn');
     var hobPanel = document.getElementById('hob-panel');
     var hobTip = document.getElementById('hob-tip');
@@ -973,7 +977,7 @@
     function openHob(){
       hobPanel.hidden = false; hobBtn.setAttribute('aria-expanded', 'true');
       hobBtn.classList.remove('is-nudge'); hobTip.hidden = true;
-      if (!hobGreeted) { hobGreeted = true; hobSay("Hi, I'm Hob. I explain this page and help you run it. Ask me anything, or pick a question below.", 'bot'); }
+      if (!hobGreeted) { hobGreeted = true; hobSay("Hi, I'm Realisa. I explain this page and help you run it. Ask me anything, or pick a question below.", 'bot'); }
     }
     function closeHob(){ hobPanel.hidden = true; hobBtn.setAttribute('aria-expanded', 'false'); }
     hobBtn.addEventListener('click', function(){ hobPanel.hidden ? openHob() : closeHob(); });
@@ -985,7 +989,7 @@
       inp.value = '';
     });
 
-    // ===== Hob and the tour =====
+    // ===== Realisa and the tour =====
     var TOUR2_KEY = 'pe-tour2-done';
     function tourSeen(){ try { return localStorage.getItem(TOUR2_KEY) === '1'; } catch (e) { return false; } }
     function markTourSeen(){ try { localStorage.setItem(TOUR2_KEY, '1'); } catch (e) {} }
