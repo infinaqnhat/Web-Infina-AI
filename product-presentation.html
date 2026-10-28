@@ -64,6 +64,7 @@
     .page-dot.is-demo { color:var(--blue); border-color:rgba(24,99,220,.35); }
     .page-dot.is-demo.is-on { background:var(--blue); border-color:var(--blue); color:#fff; }
     .bar-hint { font-size:12px; color:var(--muted); white-space:nowrap; display:flex; align-items:center; gap:6px; }
+    .bar-swipe { display:none; align-items:center; gap:6px; font-size:12px; font-weight:700; color:var(--muted); }
     .bar-hint kbd { font-family:inherit; font-size:11px; font-weight:700; padding:2px 6px; border-radius:5px; border:1px solid var(--border); background:#fff; color:var(--fg-secondary); }
 
     /* ===== The deck: horizontal on desktop ===== */
@@ -442,9 +443,9 @@
     .sheet-list button.is-on { background:var(--accent); color:#fff; border-color:var(--accent); }
     .sheet-list button.is-on i { background:rgba(255,255,255,.15); color:#fff; }
 
-    /* ===== Phones and narrow screens: one slide per screen, scrolling down ===== */
+    /* ===== Phones and narrow screens: portrait slide cards, still swiped sideways ===== */
     @media (max-width:860px){
-      :root { --head-h:56px; --bar-h:0px; }
+      :root { --head-h:56px; --bar-h:58px; }
       .deck-head { padding:0 12px; gap:10px; }
       .deck-logo { display:none; }
       .deck-title { flex:1; min-width:0; padding-left:0; border-left:0; flex-direction:column; align-items:flex-start; gap:0; }
@@ -453,11 +454,25 @@
       .deck-title b { font-size:14px; }
       .deck-title span { font-size:11.5px; }
       .head-btn.hide-sm { display:none; }
-      .deck-bar { display:none; }
-      .deck { flex-direction:column; overflow-x:hidden; overflow-y:auto; scroll-snap-type:y proximity; }
-      .slide { flex:0 0 auto; height:auto; min-height:calc(100svh - var(--head-h)); padding:0; align-items:stretch; }
-      .card { width:100%; aspect-ratio:auto; border-radius:0; box-shadow:none; border-bottom:1px solid var(--border); }
-      .in { --u:10.5px; position:relative; inset:auto; min-height:calc(100svh - var(--head-h)); padding:36px 18px 40px; justify-content:center; }
+      /* phones swipe sideways too: one portrait card per slide, its own content scrolls inside */
+      .deck-bar { padding:0 12px; gap:10px; justify-content:space-between; }
+      .deck-bar .pages, .deck-bar .bar-hint { display:none; }
+      .bar-swipe { display:inline-flex !important; }
+      .slide { padding:10px 10px 12px; align-items:stretch; }
+      .card { width:100%; height:100%; aspect-ratio:auto; border-radius:20px; box-shadow:0 18px 40px -24px rgba(0,20,60,.45), 0 0 0 1px rgba(0,20,60,.05); }
+      .in { --u:10.5px; position:absolute; inset:0; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; padding:30px 18px 44px; justify-content:flex-start; }
+      /* short slides sit in the middle of the card, long ones start at the top and scroll */
+      .in > :first-child:not(.hero-bg) { margin-top:auto; }
+      .in > :last-child { margin-bottom:auto; }
+      .in > *, .in .flow, .in .toc, .in .three, .in .prod, .in .how, .in .vision { flex:none; min-height:auto; }
+      /* more below: a soft fade and a hint at the foot of the card */
+      .card::after { content:''; position:absolute; left:0; right:0; bottom:0; height:64px; border-radius:0 0 20px 20px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff 85%); pointer-events:none; opacity:0; transition:opacity .25s; z-index:2; }
+      .card.is-dark::after { background:linear-gradient(180deg, rgba(0,31,92,0), var(--accent) 85%); }
+      .card.has-more::after { opacity:1; }
+      .more-hint { position:absolute; left:50%; bottom:10px; transform:translateX(-50%); z-index:3; display:none; align-items:center; gap:5px; padding:5px 11px; border-radius:999px; background:var(--accent); color:#fff; font-size:11.5px; font-weight:700; pointer-events:none; }
+      .card.is-dark .more-hint { background:#fff; color:var(--accent); }
+      .card.has-more .more-hint { display:inline-flex; }
+      .card.has-more .slide-no { opacity:0; }
       .slide-no { right:16px; bottom:12px; font-size:11px; }
       .h { font-size:30px; }
       .sub { font-size:15.5px; }
@@ -469,7 +484,8 @@
       .hero-h { font-size:38px; }
       .hero-sub { font-size:18px; }
       .hero-p { font-size:15px; }
-      .hero-stage { padding:20px 18px 70px; }
+      .hero-stage { padding:20px 18px 80px; }
+      .hero-in { overflow-y:auto; }
       .live { width:min(340px, 100%); }
       .toast { left:auto; right:18px; bottom:28px; width:240px; }
       /* contents */
@@ -532,7 +548,7 @@
       .how-to li { font-size:14px; }
       .demo-tools { margin-top:16px; }
       .seg-device { display:none; }
-      .frame-wrap { flex:none; height:calc(100svh - var(--head-h) - 90px); min-height:520px; }
+      .frame-wrap { flex:none; height:min(72svh, 640px); min-height:460px; }
       .frame, .frame.is-phone { width:100%; height:100%; aspect-ratio:auto; padding:0; border-radius:16px; background:#fff; }
       .frame .chrome { display:none; }
       .frame .viewport, .frame.is-phone .viewport { border-radius:0; }
@@ -1050,6 +1066,7 @@
     <button type="button" class="nav-btn" id="next" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     <div class="pages" id="pages"></div>
     <span class="bar-hint"><kbd>←</kbd><kbd>→</kbd> to move</span>
+    <span class="bar-swipe" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M15 8l4 4-4 4M9 8l-4 4 4 4"/></svg>Swipe</span>
   </nav>
 
   <!-- ===== Contents sheet ===== -->
@@ -1063,7 +1080,7 @@
   <script>
   (function(){
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var vertical = window.matchMedia('(max-width: 860px)');
+    var phone = window.matchMedia('(max-width: 860px)');
     var deck = document.getElementById('deck');
     var slides = [].slice.call(document.querySelectorAll('.slide'));
     var N = slides.length, cur = -1;
@@ -1074,8 +1091,7 @@
       i = Math.max(0, Math.min(N - 1, i));
       var s = slides[i];
       var how = instant || reduce ? 'instant' : 'smooth';
-      if (vertical.matches) deck.scrollTo({ top: s.offsetTop, behavior: how });
-      else deck.scrollTo({ left: s.offsetLeft, behavior: how });
+      deck.scrollTo({ left: s.offsetLeft, behavior: how });
     }
     function next(){ goTo(cur + 1); }
     function prev(){ goTo(cur - 1); }
@@ -1118,7 +1134,7 @@
       if (io) io.disconnect();
       io = new IntersectionObserver(function(entries){
         entries.forEach(function(e){ if (e.isIntersecting) setActive(slides.indexOf(e.target)); });
-      }, { root: deck, threshold: 0, rootMargin: vertical.matches ? '-45% 0px -45% 0px' : '0px -45% 0px -45%' });
+      }, { root: deck, threshold: 0, rootMargin: '0px -45% 0px -45%' });
       slides.forEach(function(s){ io.observe(s); });
     }
     watchSlides();
@@ -1134,18 +1150,16 @@
       if (!sheet.hidden) { if (e.key === 'Escape') closeSheet(); return; }
       var t = e.target;
       if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
-      if (e.key === 'ArrowRight' || e.key === 'PageDown' || (e.key === ' ' && !vertical.matches)) { e.preventDefault(); next(); }
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); next(); }
       else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
       else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
       else if (e.key === 'End') { e.preventDefault(); goTo(N - 1); }
-      else if (vertical.matches && e.key === 'ArrowDown') { e.preventDefault(); next(); }
-      else if (vertical.matches && e.key === 'ArrowUp') { e.preventDefault(); prev(); }
     });
 
     // Desktop: a mouse wheel moves one slide sideways (trackpads keep their own sideways swipe)
     var wheelLock = false;
     deck.addEventListener('wheel', function(e){
-      if (vertical.matches) return;
+      if (phone.matches) return;
       if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
       e.preventDefault();
       if (wheelLock || Math.abs(e.deltaY) < 8) return;
@@ -1159,6 +1173,18 @@
     window.addEventListener('resize', function(){
       clearTimeout(resizeT);
       resizeT = setTimeout(function(){ if (cur > -1) goTo(cur, true); fitFrames(); }, 120);
+    });
+
+    // Phones: show a hint while a slide card has more content below
+    slides.forEach(function(sl){
+      var card = sl.querySelector('.card'), inn = sl.querySelector('.in');
+      var hint = document.createElement('span'); hint.className = 'more-hint'; hint.setAttribute('aria-hidden', 'true');
+      hint.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>Scroll';
+      card.appendChild(hint);
+      function check(){ card.classList.toggle('has-more', phone.matches && inn.scrollHeight - inn.clientHeight - inn.scrollTop > 24); }
+      inn.addEventListener('scroll', check, { passive: true });
+      window.addEventListener('resize', check);
+      setTimeout(check, 300);
     });
 
     // Contents sheet
@@ -1294,7 +1320,7 @@
     function fitFrames(){
       frames.forEach(function(frame){
         var iframe = frame.querySelector('iframe'), vp = frame.querySelector('.viewport');
-        if (vertical.matches) { iframe.style.width = '100%'; iframe.style.height = '100%'; iframe.style.transform = 'none'; return; }
+        if (phone.matches) { iframe.style.width = '100%'; iframe.style.height = '100%'; iframe.style.transform = 'none'; return; }
         // scale a real screen size down to the frame, then fill the frame exactly
         var size = SIZES[frame.classList.contains('is-phone') ? 'phone' : 'desktop'];
         var scale = Math.min(vp.clientWidth / size.w, vp.clientHeight / size.h);
@@ -1334,7 +1360,7 @@
     // Open on the slide in the address, else the first
     var start = indexOf(location.hash.slice(1));
     if (start > 0) goTo(start, true);
-    vertical.addEventListener && vertical.addEventListener('change', function(){ watchSlides(); fitFrames(); if (cur > -1) goTo(cur, true); });
+    phone.addEventListener && phone.addEventListener('change', function(){ watchSlides(); fitFrames(); if (cur > -1) goTo(cur, true); });
   })();
   </script>
 </body>
