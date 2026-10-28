@@ -851,7 +851,7 @@ Ranh giới: Cụm 10 là "lead đến từ đâu", Cụm 7 là "chăm lead sau 
 | `how-to` Wave 3 | Warm Leads in Real Estate: 7 Signals in Your Database (`warm-leads-real-estate`) | `warm leads real estate` | Consideration/MOF | ✅ Đã viết 26/10 = #2434, 1314 từ (0,61%), **scheduled 01/11/2026 10:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân |
 | `how-to` Wave 3 | Real Estate Referral Fee: How Much It Is and How to Write the Agreement (`real-estate-referral-fee`) | `real estate referral fee` | Consideration/MOF | ✅ Đã viết 26/10 = #2436, 1408 từ (0,85%), **scheduled 01/11/2026 14:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân, kèm file mẫu term sheet (đã host, có link tải trong bài) |
 
-### Cụm 10: Lead Generation (nguồn lead cho agent), 📝 13 bài đã duyệt 23/10/2026, chưa viết, đăng 26/10 đến 31/10
+### Cụm 10: Lead Generation (nguồn lead cho agent), ✅ 13 bài đã đăng 23 đến 27/10/2026; inbound pass wave 1 (26/10) và wave 2 + audit (28/10) xong
 
 Plan đầy đủ (dữ liệu keyword, SERP, ranh giới, brief từng bài, lịch) ở `references/plan-cum-10-lead-generation.md`. Bảng theo dõi ở `references/teardown-infina-table.md` mục Cụm 10. Keyword đã đặt chỗ trong `used-keywords.md` (23/10).
 

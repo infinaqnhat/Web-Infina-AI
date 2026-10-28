@@ -373,3 +373,8 @@ Theo yêu cầu "kéo sớm hơn", lịch mục 9 được thay bằng lịch d�
 | 10 | zillow-leads-for-real-estate-agents | #2324 | 1.502 | Trang Zillow trả 403; chỉ nêu điều đọc được nguyên văn từ báo cáo FY2025 của Zillow Group (SEC) và HousingWire (nguồn phụ, ngày 21/01/2026); "tối đa 40% hoa hồng" chỉ là thông tin thứ cấp trong vụ kiện, ghi rõ nguồn và phản hồi của Zillow. Ví dụ $9.000 / 30% / $6.300 là số bịa, ghi "Not Zillow's terms" |
 
 Tracker rows #165 đến #177 (Type = Plan, cùng quy ước Cụm 9): `references/files/tracker-rows-cum10.tsv`. Cảnh mockup: `skills/mockup-images/scripts/scenes/s_m_leadgen.py` (pillar, hub) và `s_m_lg_a.py` đến `s_m_lg_d.py` (cluster).
+
+## 12. Nhật ký 28/10/2026: inbound pass wave 2 và audit
+
+Đã thêm link theo mục 8 và mục 6 (pillar, hub, cluster wave 1 sang wave 2, 6 donor). Audit (REST toàn site, 193 bài publish): mỗi cluster đúng 1 link lên pillar, ≥2 link ngang, ≥1 inbound, 0 anchor >8 từ, money page đủ ở pillar và bài 5, 6, 7, 8, 10, 13. Đa dạng anchor sau sửa: pillar 76%, listing-leads 82%, expired-listings 89%, circle 90%, SOI 73%, buyer 88%, free 100%, companies 100%, expired scripts 71%, Zillow 83%, probate 100%, FSBO 83%, sign-in 100%. Số liệu IN, chữ và ngày sửa thật đã ghi vào `teardown-infina-table.md`.
+
