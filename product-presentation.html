@@ -268,6 +268,7 @@
     .flow[data-lens="sell"] .lane[data-lane="buy"] > *, .flow[data-lens="buy"] .lane[data-lane="sell"] > *,
     .flow[data-lens="sell"] .f-link, .flow[data-lens="buy"] .f-link { opacity:.2; filter:grayscale(.6); }
     .flow[data-lens="sell"] .lane[data-lane="sell"] .f-ai, .flow[data-lens="buy"] .lane[data-lane="buy"] .f-ai { border-color:var(--blue); box-shadow:0 12px 28px -14px rgba(24,99,220,.6); }
+    .eco-cap-print { display:none; }
     .eco-cap { margin-top:calc(var(--u)*1.4); font-size:calc(var(--u)*1.12); color:var(--fg-secondary); min-height:3em; }
     .eco-cap b { color:var(--accent); }
 
@@ -626,6 +627,25 @@
       .typing, .arrow i, .step .bar, .more-hint { display:none !important; }
       /* buttons do nothing on paper: the See it live page carries the links instead */
       .hero-ctas, .prod-cta, .lens, .next-hint { display:none !important; }
+      /* nothing waits for a tap on paper: every step's text and both sides of the deal are shown */
+      .step p { display:block !important; }
+      .step, .step.is-on, .step.is-moment.is-on { border-color:var(--border) !important; box-shadow:none !important; }
+      .step .n, .step.is-on .n { background:var(--accent) !important; color:#fff !important; }
+      .step.is-moment .n { background:var(--amber) !important; }
+      .steps { gap:calc(var(--u)*.6) !important; }
+      .step { padding:calc(var(--u)*1) calc(var(--u)*1.3) !important; }
+      .feed { gap:calc(var(--u)*.3) !important; }
+      .feed-item { padding:calc(var(--u)*.32) calc(var(--u)*.85) !important; align-items:center; }
+      .lead { padding:calc(var(--u)*1.4) calc(var(--u)*1.6) !important; }
+      .feed-item i { margin-top:0 !important; }
+      .feed-item b { font-size:calc(var(--u)*.92) !important; }
+      .feed-item span { font-size:calc(var(--u)*.82) !important; }
+      .lead .temp-row { margin-top:calc(var(--u)*.8) !important; }
+      .lead .feed { margin-top:calc(var(--u)*.7) !important; flex:none !important; overflow:visible !important; }
+      .how { align-items:start !important; }
+      .eco-cap { display:none !important; }
+      .eco-cap-print { display:grid !important; grid-template-columns:1fr 1fr; gap:calc(var(--u)*2); margin-top:calc(var(--u)*1.1); font-size:calc(var(--u)*.98); line-height:1.45; color:var(--fg-secondary); }
+      .eco-cap-print b { color:var(--accent); }
       .print-note { display:block !important; }
       *, *::before, *::after { animation:none !important; }
       .slide-no { font-size:0 !important; }
@@ -842,6 +862,10 @@
             </div>
           </div>
           <p class="eco-cap anim d3" id="eco-cap" aria-live="polite"></p>
+          <div class="eco-cap-print" aria-hidden="true">
+            <p><b>Selling side:</b> a buyer scans the yard sign and asks the home's Property Expert. When they ask to tour, the listing agent gets the lead with the full chat.</p>
+            <p><b>Buying side:</b> the buyer's agent sends a Home Concierge at first contact. It learns what the buyer needs, recommends homes and tells the agent who is ready.</p>
+          </div>
         </div>
         <span class="slide-no">05</span>
       </div>
@@ -1425,7 +1449,7 @@
         d.querySelector('b').textContent = f.t; d.querySelector('span').textContent = f.d;
         feed.insertBefore(d, feed.firstChild);
       });
-      while (feed.children.length > 3) feed.removeChild(feed.lastChild);
+      while (!printMode && feed.children.length > 3) feed.removeChild(feed.lastChild);
       clearTimeout(stepTimer);
       if (stepPlaying) stepTimer = setTimeout(function(){ renderStep((stepCur + 1) % STEPS.length, true); }, 5200);
     }
@@ -1538,6 +1562,8 @@
       heroMsgs.forEach(function(m){ m.classList.add('is-on'); }); heroTyping.hidden = true; heroToast.classList.add('is-on');
       setLens('all');
       stopSteps(); renderStep(3, false);
+      // on paper the lead's story reads top to bottom, first event first
+      [].slice.call(feed.children).reverse().forEach(function(n){ feed.appendChild(n); });
     }
     window.addEventListener('beforeprint', preparePrint);
     window.addEventListener('afterprint', function(){ printMode = false; });
