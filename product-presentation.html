@@ -37,8 +37,7 @@
 
     /* ===== Deck chrome ===== */
     .deck-head { position:fixed; top:0; left:0; right:0; height:var(--head-h); z-index:40; display:flex; align-items:center; gap:16px; padding:0 20px; background:rgba(255,255,255,.92); backdrop-filter:blur(14px); border-bottom:1px solid var(--border); }
-    .deck-logo img { height:20px; width:auto; }
-    .deck-title { display:flex; align-items:center; gap:10px; min-width:0; padding-left:16px; border-left:1px solid var(--border); }
+    .deck-title { display:flex; align-items:center; gap:10px; min-width:0; }
     .deck-title b { font-size:15px; font-weight:800; color:var(--accent); white-space:nowrap; }
     .deck-title span { font-size:13px; font-weight:600; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .deck-head .grow { flex:1; }
@@ -303,6 +302,7 @@
     .mk-card img { width:calc(var(--u)*4.2); height:calc(var(--u)*3.4); border-radius:calc(var(--u)*.6); object-fit:cover; flex-shrink:0; }
     .mk-card b { display:block; font-size:calc(var(--u)*1); color:var(--fg); }
     .mk-card span { font-size:calc(var(--u)*.88); color:var(--muted); }
+    .mk-card em.is-mls { color:var(--muted); background:var(--surface); }
     .mk-card em { margin-left:auto; font-style:normal; font-size:calc(var(--u)*.85); font-weight:700; color:var(--blue); background:var(--blue-light); padding:calc(var(--u)*.4) calc(var(--u)*.6); border-radius:calc(var(--u)*.6); white-space:nowrap; }
     .mk-chips { display:flex; flex-wrap:wrap; gap:calc(var(--u)*.45); }
     .mk-chips span { font-size:calc(var(--u)*.88); font-weight:600; padding:calc(var(--u)*.45) calc(var(--u)*.8); border-radius:999px; border:1px solid var(--border); color:var(--blue); }
@@ -457,7 +457,6 @@
     @media screen and (max-width:860px){
       :root { --head-h:56px; --bar-h:58px; }
       .deck-head { padding:0 12px; gap:10px; }
-      .deck-logo { display:none; }
       .deck-title { flex:1; min-width:0; padding-left:0; border-left:0; flex-direction:column; align-items:flex-start; gap:0; }
       .deck-title span { max-width:100%; }
       .deck-head .grow { display:none; }
@@ -667,7 +666,6 @@
 <body>
   <!-- ===== Deck header: what this page is ===== -->
   <header class="deck-head">
-    <a class="deck-logo" href="home.html" aria-label="Infina AI home"><img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI"></a>
     <div class="deck-title"><b>ReallyWise.ai</b><span>Product Presentation · U.S. residential real estate</span></div>
     <span class="grow"></span>
     <button type="button" class="head-btn" id="open-contents" aria-haspopup="dialog">
@@ -791,8 +789,8 @@
             <article class="t-card is-flywheel anim d4">
               <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 01-15.5 6.2M3 12a9 9 0 0115.5-6.2"/><path d="M18 2v4h-4M6 22v-4h4"/></svg></span>
               <small>Why it compounds</small>
-              <h3>Every listing makes every buyer's concierge better.</h3>
-              <p>Each Property Expert becomes inventory the Home Concierge can recommend. More listings mean better matches; better matches mean more buyers for every listing.</p>
+              <h3>The right home for every buyer, from every listing.</h3>
+              <p>Home Concierge recommends from every listing on the market, so buyers find the home that fits them best. Homes with a Property Expert add instant, cited answers, so every new expert makes decisions faster.</p>
             </article>
           </div>
         </div>
@@ -838,7 +836,7 @@
                 <div class="arrow"><em>Warm lead</em><i></i></div>
                 <div class="f-agent"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>Listing agent</b><p>Gets tour requests with the full chat.</p><small>No lead goes cold</small></div>
               </div>
-              <div class="f-link"><span>Concierge recommends homes from the Property Expert network</span></div>
+              <div class="f-link"><span>Concierge recommends any home on the market. Homes with a Property Expert answer instantly.</span></div>
               <div class="lane" data-lane="buy">
                 <div class="lane-title">Buying side</div>
                 <div class="arrow"><em>2 · Asks</em><i></i></div>
@@ -922,11 +920,11 @@
               <h2 class="h anim d1"><span class="brand-pre">ReallyWise.ai</span>Home Concierge</h2>
               <p class="tagline anim d1">A personal concierge for every buyer.</p>
               <div class="who anim d2"><span class="is-user">Used by: home buyers</span><span>Works for: buyer's agent</span></div>
-              <p class="sub anim d2">Sent by the buyer's agent at first contact. It learns what the buyer needs, recommends homes from the Property Expert network, and carries that context to closing.</p>
+              <p class="sub anim d2">Sent by the buyer's agent at first contact. It learns what the buyer needs and recommends the homes that fit best, from every listing on the market, with or without a Property Expert. Its goal: the home the buyer loves most.</p>
               <ul class="checks anim d3">
                 <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Engages new leads with no buyer profile needed</li>
                 <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Learns needs, budget comfort and timeline</li>
-                <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Matches buyers to homes in the network</li>
+                <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Recommends from any listing, not just Property Expert homes</li>
               </ul>
             </div>
             <div class="visual anim d2">
@@ -938,7 +936,7 @@
                   <div class="mk-user">A shorter commute. Our lease ends in four months.</div>
                   <div class="mk-bot">Got it. Here are 2 homes within a 20-minute commute that fit your timeline:</div>
                   <div class="mk-card"><img src="uploads/property-148-maple-main.jpg" alt=""><div><b>148 Maple Ave</b><span>$748,000 · 4 bd · 14 min</span></div><em>Ask its Expert</em></div>
-                  <div class="mk-card"><img src="uploads/property-oaklane-42.jpg" alt=""><div><b>22 Oak Lane</b><span>$812,000 · 3 bd · 18 min</span></div><em>Ask its Expert</em></div>
+                  <div class="mk-card"><img src="uploads/property-oaklane-42.jpg" alt=""><div><b>22 Oak Lane</b><span>$812,000 · 3 bd · 18 min</span></div><em class="is-mls">From MLS</em></div>
                   <div class="mk-learned">Learned: <span>Short commute</span><span>Move in ~4 months</span></div>
                 </div>
               </div>
@@ -1174,8 +1172,7 @@
             <div class="person anim d2">
               <small>Contact</small>
               <b>James Vuong</b>
-              <p>CEO, Infina</p>
-              <a href="https://infina.ai" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>infina.ai</a>
+              <p>CEO</p>
             </div>
           </div>
         </div>
