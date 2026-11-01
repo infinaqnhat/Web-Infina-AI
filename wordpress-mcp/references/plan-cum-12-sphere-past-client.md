@@ -277,6 +277,8 @@ Giữ trần 3 bài/ngày: routine news 18:06 UTC chiếm 1 slot, cluster đăng
 
 **Log inbound pass wave 1 (30/10/2026):** bài 1 đến 4 verify đạt. 9 donor thêm link (#1961, #1977, #1949 → thank-you-notes; #1122, #1272 → past-client-follow-up; #1225, #1223, #263 → client-database; #1488 → customer-service). Pillar #2330 làm mới 1.381 → 2.949 chữ, 5 ảnh, 24 link nội bộ, Related Reading 4 cluster live. Việc còn lại: thêm link #2420 vào pillar sau khi live (wave 2 01/11); bảng tier cũ của pillar (past clients ở A) lệch #2408 (past clients ở B), pillar đã có câu nối, cân nhắc đồng bộ khi audit 03/11.
 
+**Log inbound pass wave 2 (01/11/2026):** bài 5 đến 8 verify đạt. 10 donor thêm link (#1272, #1317, #1227 → lead-nurturing; #2262, #1122 → seller leads; #277, #263 → sales funnel; #1284, #1341, #1071 → AI lead nurture). Bài 1 đến 4 thêm link ngang tới bài 5 đến 8 (mỗi bài 3 đến 4 link ngang). Pillar #2330: Related Reading +4 cluster, +1 link seller leads, +2 hàng bảng. Việc còn lại cho audit 03/11: anchor tới pillar #2330 chỉ 62% khác nhau (cần ≥70%), #1122 chưa link #2330, thêm link #2434 và #2436 sau khi live (01/11 10:00 và 14:00), đồng bộ bảng tier cũ của pillar với #2408.
+
 ## 12. Quyết định của user (26/10)
 
 User duyệt hết: nâng #2330 làm pillar, cả 10 cluster (kể cả bài referral fee riêng), thêm link cho 6 bài cũ ngay, bắt đầu đăng từ 28/10. Bài 7 và 9 viết riêng. Các câu hỏi ở mục 13 là bản gốc để tham khảo.
