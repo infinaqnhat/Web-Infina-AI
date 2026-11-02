@@ -200,6 +200,32 @@
     .t-card.is-flywheel h3 { color:#fff; }
     .t-card.is-flywheel p { color:rgba(255,255,255,.82); }
 
+    /* ===== 3b · Thesis VP layout ===== */
+    #thesis .h { font-size:calc(var(--u)*2.4); margin-top:calc(var(--u)*.7); }
+    .vp-grid { flex:1; display:grid; grid-template-columns:repeat(4,1fr); gap:calc(var(--u)*1.2); margin-top:calc(var(--u)*1.4); min-height:0; }
+    .vp-col { display:flex; flex-direction:column; border:1px solid var(--border); border-radius:calc(var(--u)*1.3); padding:calc(var(--u)*1.7); background:#fff; box-shadow:var(--shadow-card); gap:calc(var(--u)*.85); }
+    .vp-col.is-outcome { background:var(--accent); border-color:var(--accent); }
+    .vp-step { display:inline-flex; align-items:center; justify-content:center; width:calc(var(--u)*2.2); height:calc(var(--u)*2.2); border-radius:50%; background:var(--blue-light); color:var(--blue); font-size:calc(var(--u)*.85); font-weight:800; letter-spacing:0; }
+    .vp-outcome-badge { display:flex; align-items:center; gap:calc(var(--u)*.6); }
+    .vp-chk { width:calc(var(--u)*2.2); height:calc(var(--u)*2.2); border-radius:50%; background:var(--sky); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .vp-chk svg { width:55%; height:55%; color:var(--accent); }
+    .vp-outcome-badge span { font-size:calc(var(--u)*.82); font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--sky); }
+    .vp-title { font-size:calc(var(--u)*1.6); font-weight:800; line-height:1.22; letter-spacing:-.015em; color:var(--fg); }
+    .vp-col.is-outcome .vp-title { color:#fff; }
+    .vp-section { display:flex; flex-direction:column; gap:calc(var(--u)*.3); }
+    .vp-label { font-size:calc(var(--u)*.78); font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); }
+    .vp-section.is-rw .vp-label { color:var(--blue); }
+    .vp-col.is-outcome .vp-label { color:rgba(255,255,255,.5); }
+    .vp-col.is-outcome .vp-section.is-rw .vp-label { color:var(--sky); }
+    .vp-text { font-size:calc(var(--u)*1.08); color:var(--fg-secondary); line-height:1.5; }
+    .vp-col.is-outcome .vp-text { color:rgba(255,255,255,.8); }
+    .vp-tag-row { margin-top:auto; padding-top:calc(var(--u)*.7); border-top:1px solid var(--border-light); }
+    .vp-col.is-outcome .vp-tag-row { border-top-color:rgba(255,255,255,.15); }
+    .vp-tag { display:inline-flex; align-items:center; gap:calc(var(--u)*.45); padding:calc(var(--u)*.35) calc(var(--u)*.85); border-radius:999px; background:var(--blue-light); border:1px solid rgba(24,99,220,.18); font-size:calc(var(--u)*.82); font-weight:700; color:var(--blue); }
+    .vp-tag svg { width:calc(var(--u)*.9); height:calc(var(--u)*.9); flex-shrink:0; }
+    .vp-col.is-outcome .vp-tag { background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.18); color:#fff; }
+    .vp-footnote { font-size:calc(var(--u)*.8); color:var(--muted); margin-top:calc(var(--u)*.7); line-height:1.5; }
+
     /* ===== 4 · Ecosystem flow ===== */
     .eco-top { display:flex; align-items:flex-end; justify-content:space-between; gap:calc(var(--u)*2); }
     .lens { flex-shrink:0; display:inline-flex; gap:calc(var(--u)*.3); padding:calc(var(--u)*.35); border-radius:999px; background:var(--surface); border:1px solid var(--border); }
@@ -778,36 +804,79 @@
     <section class="slide" id="thesis" data-title="The thesis" aria-label="Slide 4, The thesis">
       <div class="card">
         <div class="in">
-          <span class="kicker anim"><i>01</i>The thesis</span>
-          <h2 class="h anim d1">AI that captures every buyer signal and hands your agent a hot lead at the right moment.</h2>
-          <div class="three">
-            <article class="t-card is-problem anim d2">
-              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg></span>
-              <small>The problem</small>
-              <h3>Intent slips at both ends of the funnel.</h3>
-<p>Buyers research alone on portals: agents never see early interest. The ones who do reach out: <strong>~50% are never followed up</strong>, and the average agent takes <strong>15 hours to reply</strong>. Most intent never becomes a lead. The rest goes cold between meetings.</p>
-            </article>
-            <article class="t-card is-answer anim d3">
-              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>
-              <small>Our answer</small>
-              <h3>Three AI agents that cover the full buyer journey, with the agent at the center.</h3>
-              <ul class="vp-list">
-                <li><b>Home Concierge:</b> meets buyers from first thought, brainstorms their needs, and guides them through the process</li>
-                <li><b>Property Expert:</b> answers buyer questions on any listing 24/7, from real property data</li>
-                <li><b>Realisa:</b> keeps every agent on top of their pipeline so no hot lead moment is missed</li>
-              </ul>
-            </article>
-            <article class="t-card is-flywheel anim d4">
-              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 01-15.5 6.2M3 12a9 9 0 0115.5-6.2"/><path d="M18 2v4h-4M6 22v-4h4"/></svg></span>
-              <small>Why it compounds</small>
-              <h3>The earlier you engage, the hotter the lead at close.</h3>
-              <ul class="vp-list">
-                <li><b>Home Concierge</b> builds context months before buyers are ready, so the agent knows exactly what they want by close</li>
-                <li><b>Property Expert</b> turns every listing question into a lead signal, so interest is never invisible</li>
-                <li><b>Realisa</b> delivers the right moment to act, so no hot lead slips through the pipeline</li>
-              </ul>
-            </article>
+          <span class="kicker anim"><i>01</i>Value proposition</span>
+          <h2 class="h anim d1">ReallyWise gives every agent an AI team that wins buyers from first question to closed deal.</h2>
+          <div class="vp-grid">
+
+            <div class="vp-col anim d2">
+              <div class="vp-step">01</div>
+              <h3 class="vp-title">Capture every lead.</h3>
+              <div class="vp-section">
+                <span class="vp-label">Today</span>
+                <p class="vp-text">Buyers research alone on portals and chatbots. Agents never see early interest.</p>
+              </div>
+              <div class="vp-section is-rw">
+                <span class="vp-label">With ReallyWise</span>
+                <p class="vp-text">Every listing, yard sign and link becomes a 24/7 expert that turns anonymous visitors into named leads.</p>
+              </div>
+              <div class="vp-tag-row">
+                <span class="vp-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1z"/></svg>Property Expert</span>
+              </div>
+            </div>
+
+            <div class="vp-col anim d3">
+              <div class="vp-step">02</div>
+              <h3 class="vp-title">Deepen every relationship.</h3>
+              <div class="vp-section">
+                <span class="vp-label">Today</span>
+                <p class="vp-text">Leads go cold between meetings. What each buyer wants lives in memory and group chats.</p>
+              </div>
+              <div class="vp-section is-rw">
+                <span class="vp-label">With ReallyWise</span>
+                <p class="vp-text">A personal concierge learns each buyer's needs from day one and matches them to the right homes.</p>
+              </div>
+              <div class="vp-tag-row">
+                <span class="vp-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Home Concierge</span>
+              </div>
+            </div>
+
+            <div class="vp-col anim d3">
+              <div class="vp-step">03</div>
+              <h3 class="vp-title">Multiply your capacity.</h3>
+              <div class="vp-section">
+                <span class="vp-label">Today</span>
+                <p class="vp-text">The average agent takes 15 hours to reply and loses track of follow-ups.</p>
+              </div>
+              <div class="vp-section is-rw">
+                <span class="vp-label">With ReallyWise</span>
+                <p class="vp-text">An AI chief of staff runs the pipeline, flags hot leads and reminds agents before anything slips.</p>
+              </div>
+              <div class="vp-tag-row">
+                <span class="vp-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>Realisa</span>
+              </div>
+            </div>
+
+            <div class="vp-col is-outcome anim d4">
+              <div class="vp-outcome-badge">
+                <div class="vp-chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div>
+                <span>The outcome</span>
+              </div>
+              <h3 class="vp-title">Close more deals.</h3>
+              <div class="vp-section">
+                <span class="vp-label">Today</span>
+                <p class="vp-text">~50% of inbound leads are never followed up. Intent goes cold before it becomes a deal.</p>
+              </div>
+              <div class="vp-section is-rw">
+                <span class="vp-label">With ReallyWise</span>
+                <p class="vp-text">Agents step in at the hot-lead moment, with full context of what each buyer cares about.</p>
+              </div>
+              <div class="vp-tag-row">
+                <span class="vp-tag">All three, working together</span>
+              </div>
+            </div>
+
           </div>
+          <p class="vp-footnote">Hot lead: a buyer who asks to tour a home after talking to the AI.</p>
         </div>
         <span class="slide-no">04</span>
       </div>
