@@ -235,6 +235,8 @@ Giữ trần 3 bài/ngày: routine news 18:06 UTC chiếm 1 slot.
 - Không dùng số liệu vendor; mọi nhịp gửi, số email, thời lượng video là gợi ý của ta, đã ghi trong bài.
 
 
+**Log check-in 02/11/2026 15:00 UTC:** pillar #2486 `real-estate-drip-email` (đăng 10:00, 2.624 chữ) và bài 1 #2494 `real-estate-drip-campaign-templates` (đăng 14:00, 1.689 chữ) verify đạt bằng REST: status publish đúng giờ, category 392, có ảnh đại diện, 3 ảnh trong thân mỗi bài, mọi ảnh và link nội bộ trả 200, không em dash. Slug thật khớp plan. Pillar đã link bài 1; bài 1 link về pillar. Không có link tới bài chưa live. Chưa cần sửa.
+
 ## 12. Quyết định của user (26/10)
 
 Duyệt hết: pillar mới, cả 10 bài (kể cả video email và 2 bài mỏng volume), làm file CMA template, đăng từ 02/11. Câu hỏi gốc ở mục 9.
