@@ -185,6 +185,13 @@
     .t-card small { margin-top:calc(var(--u)*2); font-size:calc(var(--u)*.95); font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
     .t-card h3 { font-size:calc(var(--u)*1.85); line-height:1.22; letter-spacing:-.015em; color:var(--accent); margin-top:calc(var(--u)*.7); }
     .t-card p { font-size:calc(var(--u)*1.2); color:var(--fg-secondary); margin-top:calc(var(--u)*.9); line-height:1.55; }
+    .t-card ul.vp-list { list-style:none; margin-top:calc(var(--u)*.9); display:flex; flex-direction:column; gap:calc(var(--u)*.8); }
+    .t-card ul.vp-list li { font-size:calc(var(--u)*1.2); color:var(--fg-secondary); line-height:1.5; padding-left:calc(var(--u)*1.4); position:relative; }
+    .t-card ul.vp-list li::before { content:''; position:absolute; left:0; top:.55em; width:5px; height:5px; border-radius:50%; background:var(--blue); }
+    .t-card ul.vp-list li b { color:var(--fg); font-weight:700; }
+    .t-card.is-flywheel ul.vp-list li { color:rgba(255,255,255,.82); }
+    .t-card.is-flywheel ul.vp-list li::before { background:var(--sky); }
+    .t-card.is-flywheel ul.vp-list li b { color:#fff; }
     .t-card.is-problem .ic { background:var(--amber-light); color:var(--amber); }
     .t-card.is-answer .ic { background:var(--blue-light); color:var(--blue); }
     .t-card.is-flywheel { background:var(--accent); border-color:var(--accent); }
@@ -784,7 +791,11 @@
               <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>
               <small>Our answer</small>
               <h3>Three AI agents that cover the full buyer journey, with the agent at the center.</h3>
-              <p>Home Concierge meets buyers from first thought: brainstorming needs and guiding them through the process. Property Expert answers questions on specific listings. Realisa keeps every agent on top of their pipeline without missing a warm moment.</p>
+              <ul class="vp-list">
+                <li><b>Home Concierge:</b> meets buyers from first thought, brainstorms their needs, and guides them through the process</li>
+                <li><b>Property Expert:</b> answers buyer questions on any listing 24/7, from real property data</li>
+                <li><b>Realisa:</b> keeps every agent on top of their pipeline so no hot lead moment is missed</li>
+              </ul>
             </article>
             <article class="t-card is-flywheel anim d4">
               <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 01-15.5 6.2M3 12a9 9 0 0115.5-6.2"/><path d="M18 2v4h-4M6 22v-4h4"/></svg></span>
