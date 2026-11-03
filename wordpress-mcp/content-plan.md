@@ -831,7 +831,7 @@ Ranh giới: Cụm 7 là hệ thống follow-up tự động, Cụm 12 là giữ
 | `how-to` Wave 4 | Why a Bad Drip Campaign Is Worse Than None (and How to Audit Yours) (`bad-drip-campaign-real-estate`) | `bad drip campaign` | Consideration/MOF | ✅ Đã viết 26/10 = #2484, 1521 từ (0,79%), **scheduled 06/11/2026 10:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân |
 | `how-to` Wave 4 | Video Email for Real Estate: How to Send One Prospects Will Watch (`video-email-for-real-estate`) | `video email for real estate` | Consideration/MOF | ✅ Đã viết 26/10 = #2490, 1253 từ (0,64%), **scheduled 06/11/2026 14:00 UTC**, category Real Estate Marketing (392), hero mockup + 3 mockup trong thân |
 
-### Cụm 12: Sphere of influence và nuôi khách cũ, ✅ 10 bài đã viết và lên lịch 26/10/2026 (đăng 28/10 đến 01/11), làm mới pillar #2330 hẹn 30/10
+### Cụm 12: Sphere of influence và nuôi khách cũ, ✅ 10 bài đã đăng 28/10 đến 01/11, pillar #2330 làm mới 30/10, audit link xong 03/11
 
 Plan đầy đủ ở `references/plan-cum-12-sphere-past-client.md`. Bảng theo dõi ở `references/teardown-infina-table.md` mục Cụm 12. Keyword đã đặt chỗ trong `used-keywords.md` (26/10). Pillar là **#2330** `sphere-of-influence-real-estate` (đã live 24/10, nâng cấp lên khoảng 3.000 chữ ngày 30/10).
 
