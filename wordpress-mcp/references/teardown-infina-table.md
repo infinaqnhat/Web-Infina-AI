@@ -439,7 +439,7 @@ Hiện #2330 chỉ có **7 inbound**, toàn từ Cụm 10 và #1961. Bài giữ 
 
 | Bài | Cụm hiện tại | IN | Chữ | Đề xuất |
 |---|---|---|---|---|
-| [#1178 /ai-comparative-market-analysis-minutes-real-estate-agents](https://infina.ai/news/ai-comparative-market-analysis-minutes-real-estate-agents/) | News chưa gắn cụm | 1 | 806 | **Gắn vào Cụm 13** (hỗ trợ bài 4); donor |
+| [#1178 /ai-comparative-market-analysis-minutes-real-estate-agents](https://infina.ai/news/ai-comparative-market-analysis-minutes-real-estate-agents/) | News chưa gắn cụm | 1 | 806 | **Đã gắn vào Cụm 13 (04/11)** làm bài hỗ trợ CMA (bài 4 và 5); donor khi #2498 live |
 | [#1223 /real-estate-lead-follow-up-automation-guide](https://infina.ai/news/real-estate-lead-follow-up-automation-guide/) | Cụm 7 (pillar) | 27 | 3,000 | Giữ. Canh: drip nói "gửi cái gì", #1223 nói "hệ thống". Link 2 chiều |
 | [#1227 /how-to-set-up-automated-lead-follow-up-real-estate](https://infina.ai/news/how-to-set-up-automated-lead-follow-up-real-estate/) | Cụm 7 | 4 | 577 | Giữ. Bước 3 "Segmented Drip Sequences" là donor cho pillar |
 | [#1272 /buyer-lead-nurture-campaign-real-estate-agents](https://infina.ai/news/buyer-lead-nurture-campaign-real-estate-agents/) | Cụm 7 | 2 | 584 | Giữ. Donor cho bài 1 |

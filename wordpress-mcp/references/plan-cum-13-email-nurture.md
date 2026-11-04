@@ -237,6 +237,8 @@ Giữ trần 3 bài/ngày: routine news 18:06 UTC chiếm 1 slot.
 
 **Log check-in 02/11/2026 15:00 UTC:** pillar #2486 `real-estate-drip-email` (đăng 10:00, 2.624 chữ) và bài 1 #2494 `real-estate-drip-campaign-templates` (đăng 14:00, 1.689 chữ) verify đạt bằng REST: status publish đúng giờ, category 392, có ảnh đại diện, 3 ảnh trong thân mỗi bài, mọi ảnh và link nội bộ trả 200, không em dash. Slug thật khớp plan. Pillar đã link bài 1; bài 1 link về pillar. Không có link tới bài chưa live. Chưa cần sửa.
 
+**Log inbound pass đợt 1 (04/11/2026):** pillar #2486 và bài 1 đến 3 (#2494, #2482, #2492) verify đạt (publish, category 392, ảnh và link 200, không em dash). Donor thêm link: #1223 và #1227 → pillar; #1272 → drip templates; #2189 → pillar và realtor email templates; #2400 và #2413 → pillar; #2171 và #1341 → follow-up email. Pillar #2486: Related Reading +2 bullet (#2482, #2492; bullet #2494 đã có). Bài 1 #2494 thêm 2 link ngang (#2482, #2492); #2492 thêm 1 link ngang (#2494); #2482 đã đủ. Mỗi bài 1 đến 3 có 2 link ngang trong cụm và đúng 1 link pillar. Anchor về pillar: 8 khác nhau trên 10 (80%). #1178 (AI CMA) gắn vào Cụm 13 làm bài hỗ trợ CMA; sẽ làm donor khi #2498 live (04/11 10:00). Inbound đợt 2 hẹn 06/11.
+
 ## 12. Quyết định của user (26/10)
 
 Duyệt hết: pillar mới, cả 10 bài (kể cả video email và 2 bài mỏng volume), làm file CMA template, đăng từ 02/11. Câu hỏi gốc ở mục 9.
