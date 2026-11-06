@@ -239,6 +239,8 @@ Giữ trần 3 bài/ngày: routine news 18:06 UTC chiếm 1 slot.
 
 **Log inbound pass đợt 1 (04/11/2026):** pillar #2486 và bài 1 đến 3 (#2494, #2482, #2492) verify đạt (publish, category 392, ảnh và link 200, không em dash). Donor thêm link: #1223 và #1227 → pillar; #1272 → drip templates; #2189 → pillar và realtor email templates; #2400 và #2413 → pillar; #2171 và #1341 → follow-up email. Pillar #2486: Related Reading +2 bullet (#2482, #2492; bullet #2494 đã có). Bài 1 #2494 thêm 2 link ngang (#2482, #2492); #2492 thêm 1 link ngang (#2494); #2482 đã đủ. Mỗi bài 1 đến 3 có 2 link ngang trong cụm và đúng 1 link pillar. Anchor về pillar: 8 khác nhau trên 10 (80%). #1178 (AI CMA) gắn vào Cụm 13 làm bài hỗ trợ CMA; sẽ làm donor khi #2498 live (04/11 10:00). Inbound đợt 2 hẹn 06/11.
 
+**Log inbound pass đợt 2 (06/11/2026):** bài 4 đến 7 (#2498, #2500, #2488, #2496) verify đạt (publish đúng giờ, category 392, ảnh và link 200, file cma-template.xlsx tải được, không em dash). Donor thêm link: #1178, #1955, #936, #2262 → CMA how-to; #1955, #936 → cma-template; #2330, #2189, #2413 → newsletter. Pillar #2486: Related Reading +4 bullet (#2498, #2500, #2488, #2496). Bài 1 đến 3 thêm link tới bài sau (#2494 và #2482 → subject lines, #2492 → newsletter); #2500 thêm 2 link ngang (#2482, #2496). Sau đợt này mỗi bài 1 đến 7 có đúng 1 link pillar và 2 đến 4 link ngang trong cụm. Chưa link #2484 và #2490 (live 06/11 10:00 và 14:00): làm ở audit 09/11 (donor: #1296? bài về email lỗi, #1341, #1122 theo mục 10).
+
 ## 12. Quyết định của user (26/10)
 
 Duyệt hết: pillar mới, cả 10 bài (kể cả video email và 2 bài mỏng volume), làm file CMA template, đăng từ 02/11. Câu hỏi gốc ở mục 9.
