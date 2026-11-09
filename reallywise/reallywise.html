@@ -67,7 +67,7 @@
     .btn-primary:hover { background:var(--accent-dark); }
     .btn-ghost { background:transparent; color:var(--fg); padding:13px 24px; border-radius:10px; font-size:15px; font-weight:600; border:1.5px solid var(--border); transition:all .25s; }
     .btn-ghost:hover { border-color:var(--fg); background:var(--surface); }
-    .btn-secondary { background:var(--navy-100); color:var(--accent); padding:12px 20px; border-radius:10px; font-size:14px; font-weight:600; border:0; cursor:pointer; transition:all .2s; }
+    .btn-secondary { background:#fff; color:var(--accent); padding:12px 20px; border-radius:10px; font-size:14px; font-weight:600; border:1px solid var(--border); cursor:pointer; transition:all .2s; }
     .btn-secondary:hover { background:var(--border); }
 
     .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
@@ -86,13 +86,13 @@
     .mobile-break { display:none; }
     @media (max-width:600px){ .mobile-break { display:inline; } }
     .hero-sub { font-size:18px; font-weight:500; color:#fff; line-height:1.55; margin:18px 0 0; max-width:56ch; }
-    .create-box { margin-top:28px; max-width:600px; background:#fff; border:1px solid var(--border); border-radius:16px; padding:20px; box-shadow:var(--shadow); }
-    .create-label { display:block; font-size:14px; font-weight:600; color:var(--fg); margin-bottom:10px; }
+    .create-box { margin-top:28px; max-width:600px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.28); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-radius:16px; padding:20px; }
+    .create-label { display:block; font-size:14px; font-weight:600; color:#fff; margin-bottom:10px; }
     .create-row { display:flex; flex-wrap:wrap; gap:10px; align-items:stretch; }
     .create-row input { flex:1 1 260px; min-height:48px; font-family:var(--font-body); font-size:15px; color:var(--fg); background:#fff; border:1.5px solid var(--border); border-radius:6px; padding:0 16px; outline:none; transition:border-color .15s, box-shadow .15s; }
     .create-row input:focus { border-color:var(--green-700); box-shadow:0 0 0 2px rgba(6,122,67,.2); }
     .create-row .btn-primary { min-height:48px; padding:0 22px; font-size:15px; }
-    .create-note { font-size:13px; color:var(--fg-secondary); margin:12px 0 0; }
+    .create-note { font-size:13px; color:rgba(255,255,255,.88); margin:12px 0 0; }
 
     /* Hero slider (tabs + swipe): a real sliding track, one slide-width per tab */
     .hero-slider { position:relative; overflow:hidden; }
@@ -110,17 +110,17 @@
 
     /* QR result panel (listing agent hero) */
     .qr-result { margin-top:20px; max-width:600px; }
-    .qr-loading { background:#fff; border:1px solid var(--border); border-radius:16px; padding:20px; box-shadow:var(--shadow); }
-    .qr-loading h4 { color:var(--fg); font-size:16px; font-weight:700; margin-bottom:16px; }
+    .qr-loading { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.28); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-radius:16px; padding:20px; }
+    .qr-loading h4 { color:#fff; font-size:16px; font-weight:700; margin-bottom:16px; }
     .qr-steps { display:flex; flex-direction:column; gap:10px; }
-    .qr-step { display:grid; grid-template-columns:18px minmax(0,1fr); gap:10px; align-items:baseline; font-size:14px; color:var(--muted); }
-    .qr-step .mark { font-size:13px; color:var(--border); }
-    .qr-step.is-done { color:var(--fg); }
-    .qr-step.is-done .mark { color:var(--green-700); }
-    .qr-built { display:flex; gap:20px; align-items:center; background:#fff; border:1px solid var(--border); border-radius:16px; padding:20px; box-shadow:var(--shadow); }
+    .qr-step { display:grid; grid-template-columns:18px minmax(0,1fr); gap:10px; align-items:baseline; font-size:14px; color:rgba(255,255,255,.6); }
+    .qr-step .mark { font-size:13px; color:rgba(255,255,255,.6); }
+    .qr-step.is-done { color:#fff; }
+    .qr-step.is-done .mark { color:var(--green-500); }
+    .qr-built { display:flex; gap:20px; align-items:center; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.28); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-radius:16px; padding:20px; }
     .qr-built img { width:104px; height:104px; border-radius:10px; background:#fff; border:1px solid var(--border); padding:6px; flex-shrink:0; }
-    .qr-built-text b { display:block; color:var(--fg); font-size:16px; font-weight:700; margin-bottom:6px; }
-    .qr-built-text p { color:var(--fg-secondary); font-size:14px; line-height:1.5; margin-bottom:12px; }
+    .qr-built-text b { display:block; color:#fff; font-size:16px; font-weight:700; margin-bottom:6px; }
+    .qr-built-text p { color:rgba(255,255,255,.88); font-size:14px; line-height:1.5; margin-bottom:12px; }
     .qr-built-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
     @media (max-width:520px){ .qr-built{ flex-direction:column; text-align:center; } }
 
@@ -489,8 +489,8 @@
     .final-cta { background:var(--sand); text-align:center; }
     .final-cta h2 { font-size:clamp(30px,4vw,44px); font-weight:800; line-height:1.15; letter-spacing:-.01em; color:var(--accent); }
     .final-cta .italic-line { font-size:clamp(18px,2vw,22px); font-weight:500; color:var(--fg-secondary); margin-top:16px; }
-    .final-create { max-width:560px; margin:36px auto 0; }
-    .final-create .create-note { color:var(--muted); }
+    .final-create { max-width:560px; margin:36px auto 0; background:none; border:0; padding:0; -webkit-backdrop-filter:none; backdrop-filter:none; }
+    .final-create .create-note { color:var(--fg-secondary); }
     .final-create .create-row { flex-wrap:nowrap; gap:0; background:#fff; border:1.5px solid var(--border); border-radius:12px; padding:6px 6px 6px 20px; }
     .final-create .create-row input { flex:1 1 auto; min-width:0; border:0; border-radius:0; padding:0 12px 0 0; }
     .final-create .create-row input:focus { box-shadow:none; }
@@ -515,7 +515,7 @@
 </head>
 <body>
 
-  <rw-nav cta-text="Create Property Expert →" cta-href="#hero-create-qr" transparent-until-scroll transparent-until="#hero-slider" links='[{"text":"For listing agents","href":"#hero-slider","slide":1},{"text":"For buyer agents","href":"#hero-slider","slide":0}]'></rw-nav>
+  <rw-nav cta-text="Create Property Expert →" cta-href="#hero-create-qr" links='[{"text":"For listing agents","href":"#hero-slider","slide":1},{"text":"For buyer agents","href":"#hero-slider","slide":0}]'></rw-nav>
 
   <!-- ===== Hero slider: Buying agent / Listing agent tabs ===== -->
   <header class="hero-slider" id="hero-slider">

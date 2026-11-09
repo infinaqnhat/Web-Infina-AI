@@ -5,16 +5,9 @@
   //   cta-text, cta-href   primary button (navy)
   //   links                JSON array of { text, href, slide } shown in the centre and in the mobile panel
   //   logo-href            where the logo points (default "./")
-  //   transparent-until-scroll, transparent-until="#selector"
-  //                        sit transparent over a photo hero (reversed logo) until the page scrolls past that element
   var CSS = [
     'rw-nav { display: contents; }',
-    'nav.rw-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,.96); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-light, #E7EBF4); }',
-    'nav.rw-nav.is-transparent { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: transparent; }',
-    '.rw-nav.is-transparent .nav-center a { color: #fff; background: rgba(7,24,67,.4); border-color: rgba(255,255,255,.4); }',
-    '.rw-nav.is-transparent .nav-center a:hover { border-color: #fff; color: #fff; }',
-    '.rw-nav.is-transparent .nav-center a.is-active { color: var(--accent, #071843); background: #fff; border-color: #fff; }',
-    '.rw-nav.is-transparent .nav-toggle { color: #fff; }',
+    'nav.rw-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,.72); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4); border-bottom: 1px solid rgba(255,255,255,.5); }',
     '.rw-nav .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; max-width: 1200px; margin: 0 auto; padding: 0 32px; }',
     '.rw-nav .logo { display: flex; align-items: center; flex-shrink: 0; }',
     '.rw-nav .logo-img { height: 44px; width: auto; display: block; }',
@@ -42,8 +35,6 @@
     '@media (prefers-reduced-motion: reduce) { .rw-nav .nav-mobile-panel { transition: none; } }'
   ].join('\n');
 
-  var LOGO_PRIMARY = 'brand/Really_Wise_Logo.svg';
-  var LOGO_REVERSED = 'brand/reallywise-logo-reversed.png';
   var HAMBURGER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
 
   function esc(str) { return String(str).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -67,13 +58,12 @@
         return '<a href="' + esc(l.href || '#') + '"' + (l.slide !== undefined ? ' data-slide="' + esc(l.slide) + '"' : '') + '>' + esc(l.text) + '</a>';
       }
 
-      var transparentUntilScroll = this.hasAttribute('transparent-until-scroll');
       var nav = document.createElement('nav');
-      nav.className = 'rw-nav' + (transparentUntilScroll ? ' is-transparent' : '');
+      nav.className = 'rw-nav';
       nav.setAttribute('aria-label', 'Main');
       nav.innerHTML =
         '<div class="nav-inner">' +
-          '<a href="' + esc(logoHref) + '" class="logo"><img src="' + (transparentUntilScroll ? LOGO_REVERSED : LOGO_PRIMARY) + '" alt="ReallyWise" class="logo-img"></a>' +
+          '<a href="' + esc(logoHref) + '" class="logo"><img src="brand/Really_Wise_Logo.svg" alt="ReallyWise" class="logo-img"></a>' +
           '<div class="nav-center">' + links.map(linkHtml).join('') + '</div>' +
           '<a href="' + esc(ctaHref) + '" class="nav-cta">' + esc(ctaText) + '</a>' +
           '<button type="button" class="nav-toggle" aria-label="Menu" aria-expanded="false">' + HAMBURGER + '</button>' +
@@ -101,23 +91,6 @@
       });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && document.body.classList.contains('nav-open')) setOpen(false); });
       window.addEventListener('resize', function () { if (window.innerWidth > 768 && document.body.classList.contains('nav-open')) setOpen(false); });
-
-      if (transparentUntilScroll) {
-        var untilSelector = this.getAttribute('transparent-until');
-        var logo = nav.querySelector('.logo-img');
-        var update = function () {
-          var threshold = window.innerHeight * 0.7;
-          var untilEl = untilSelector && document.querySelector(untilSelector);
-          if (untilEl) threshold = untilEl.getBoundingClientRect().bottom + window.scrollY - 80;
-          var clear = window.scrollY < threshold;
-          nav.classList.toggle('is-transparent', clear);
-          var src = clear ? LOGO_REVERSED : LOGO_PRIMARY;
-          if (logo.getAttribute('src') !== src) logo.setAttribute('src', src);
-        };
-        update();
-        window.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update);
-      }
 
       this.remove();
     }
