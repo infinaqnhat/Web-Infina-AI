@@ -77,7 +77,7 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 | Cụm 9: Marketing và Branding | 28 | `real-estate-marketing` (24 IN, 2,677 chữ); `real-estate-branding` (12 IN, 1,829 chữ) | 44,943 | 0 | 0 | 0 |
 | Cụm 10: Lead Generation, nguồn lead (đã đăng 23-27/10, audit 28/10) | 13 | `real-estate-lead-generation` (16 IN, 2,276 chữ); `listing-leads` (9 IN, 1,843 chữ) | 20,440 | 0 | 0 | 0 |
 | Cụm 12: Sphere of influence và nuôi khách cũ (đã đăng đủ 28/10 đến 01/11, audit 03/11) | 11 (1 pillar + 10 cluster, tất cả live) | `sphere-of-influence-real-estate` (24 bài trỏ vào, 25 link, 3,078 chữ, 10 link ngang trong cụm) | 10 cluster, 14,417 chữ đo 03/11 (1,314 đến 1,520 chữ mỗi bài), mỗi bài 1 link pillar, 3 đến 5 link ngang, 3 đến 12 bài trỏ vào | – | – | 0 |
-| Cụm 13: Email, drip campaign và nuôi lead (đã viết, lên lịch 02/11 đến 06/11) | 10 chờ đăng | `real-estate-drip-email` (chưa đăng, 2,626 chữ bản thảo) | chưa đo (khoảng 15,000 chữ bản thảo) | – | – | 0 |
+| Cụm 13: Email, drip campaign và nuôi lead (đã đăng đủ 02/11 đến 06/11, audit 09/11) | 10 (1 pillar + 9 cluster, tất cả live) | `real-estate-drip-email` (15 bài trỏ vào, 15 link, 2,718 chữ, 9 link ngang trong cụm) | 9 cluster, 13,098 chữ đo 09/11 (1,254 đến 1,994 chữ mỗi bài), mỗi bài 1 link pillar, 2 đến 5 link ngang, 4 đến 12 bài trỏ vào | – | – | 0 |
 | Bài News real estate chưa gắn cụm trong plan | 42 | không có | 31,637 | 0 | 18 | 12 |
 | Ngoài chủ đề real estate (AI/tech) | 11 | không có | 2,784 | 11 | 11 | 0 |
 
@@ -87,7 +87,7 @@ có. Dòng này là để biết mà đi sửa, không phải để sửa trong 
 - **Pillar nhận thêm link nhờ inbound pass:** `real-estate-lead-follow-up-automation-guide` (#1223) 22 thành 29 IN, `tcpa-compliance-for-real-estate-agents` 22 thành 31 IN, `real-estate-marketing` (#1825) 22 thành 24 IN, `sphere-of-influence-real-estate` (#2330) từ 7 thành 14 IN. Pillar Cụm 10 (#2260) đang 16 IN, hub #2262 đang 9 IN.
 - **Bài sửa trong đợt này (thêm link, đổi anchor, thêm link tải file):** #1825, #1853, #1977, #1949, #1223, #263 (link tới #2330), #2328 (link file sign-in sheet), #1501 (link donor cho #2512), cùng khoảng 20 bài Cụm 10 và donor ở hai đợt inbound pass.
 - **Mồ côi và "không trỏ pillar nào":** không đổi (0 mồ côi trong cụm plan; 18 bài News và 11 bài AI/tech chưa có pillar). Hai bài news mới đều có pillar.
-- **Chờ đo sau khi đăng:** 20 bài Cụm 12 và 13 (đăng 28/10 đến 06/11); số IN, chữ, ngày sửa của chúng sẽ cập nhật ở lần audit 03/11 và 09/11.
+- **Đã đo sau khi đăng:** Cụm 12 (audit 03/11) và Cụm 13 (audit 09/11); 20 bài mới đã có IN, chữ và ngày thật ở mục riêng từng cụm.
 
 **Ba thứ đáng nhìn nhất trong bảng tóm tắt này.**
 
@@ -412,9 +412,9 @@ Hiện #2330 chỉ có **7 inbound**, toàn từ Cụm 10 và #1961. Bài giữ 
 
 ---
 
-## Cụm 13: Email, drip campaign và nuôi lead  (ĐÃ DUYỆT 26/10, 1 pillar mới + 9 bài, đăng 02/11 đến 06/11)
+## Cụm 13: Email, drip campaign và nuôi lead  (ĐÃ ĐĂNG ĐỦ 02/11 đến 06/11, audit 09/11, 1 pillar mới + 9 bài)
 
-**Trạng thái (26/10/2026): ĐÃ DUYỆT HẾT.** Plan ở `plan-cum-13-email-nurture.md` (brief từng bài ở mục 10). Keyword đã đặt chỗ trong `used-keywords.md`, đã ghi `content-plan.md`. **10 bài đã viết và lên lịch ngày 26/10** (`future`, `list_posts` xác nhận đúng giờ).
+**Trạng thái (09/11/2026): ĐÃ ĐĂNG ĐỦ 10 bài (02/11 đến 06/11), inbound pass 3 đợt và audit cụm xong 09/11.** Plan ở `plan-cum-13-email-nurture.md` (brief từng bài ở mục 10). Keyword đã đặt chỗ trong `used-keywords.md`, đã ghi `content-plan.md`.
 
 **Nguồn ý tưởng:** 11 chủ đề user gửi (ảnh sheet 26/10) là các bài trong hub "Email và nurture" của Follow Up Boss (pillar `real-estate-drip-email`, 39 IN, 3,196 chữ cộng 8 bài, tổng 18,726 chữ). Mỗi chủ đề được viết lại theo góc riêng của Infina, không nhắm đúng chữ trong sheet. Dữ liệu keyword đã gộp vào file tổng ngày 26/10 (export US 15:05).
 
@@ -455,6 +455,8 @@ Hiện #2330 chỉ có **7 inbound**, toàn từ Cụm 10 và #1961. Bài giữ 
 **Rủi ro:** file CMA template tải về cần chỗ lưu (`upload_media` chỉ nhận ảnh); CMA có người đọc là chủ nhà nên mở bài bằng định nghĩa đơn giản; mọi bài về email phải nêu CAN-SPAM; không dùng số liệu vendor về open rate hay nhịp gửi.
 
 **Đã chốt 26/10:** pillar mới (không gộp #1223); duyệt cả 10 bài; video email viết riêng; làm file CMA template (user host lại sau); subject lines và bad drip đều viết.
+
+**Audit 09/11/2026 (REST 225 bài publish):** cả 9 cluster và pillar đạt: đúng 1 link về pillar `real-estate-drip-email`, 2 đến 5 link ngang trong cụm (#2498 đúng mức 2), ≥4 bài khác trỏ vào, có link home Infina AI (3 bài #2492, #2500, #2496 thiếu và đã thêm 09/11), 0 anchor trên 8 chữ, 0 em dash trong bài của cụm, density keyword 0,55 đến 1,11% (#2484 dùng `bad drip campaign` 12 lần, 0,78%). Anchor khác nhau của từng đích: pillar #2486 **93%** (14 trên 15 link, từ 67% trước khi đổi 4 anchor), #2494 100%, #2482 76%, #2492 90%, #2498 100%, #2500 100%, #2488 100%, #2496 100%, #2484 100%, #2490 100%. Inbound pillar: **15 bài trỏ vào** (đúng mục tiêu 15 đến 18). Inbound từng cluster (số bài trỏ vào): #2494 7, #2482 12, #2492 8, #2498 6, #2500 4, #2488 7, #2496 6, #2484 6, #2490 4. Chữ: #2494 1,746, #2482 1,489, #2492 1,630, #2498 1,994, #2500 1,440, #2488 1,534, #2496 1,437, #2484 1,533, #2490 1,254; pillar #2486 2,718 chữ. Kiểm trùng keyword: #1223 và #2400 có 1 lần "drip campaign", #263 có 1 lần mỗi "drip email", "drip campaign", "newsletter", "subject line", #2189 và #2413 nhắc "newsletter" 1 đến 2 lần, #277 và #1227 không có: không cannibalize. Việc còn lại: #1227 có sẵn em dash cũ ở nhiều đoạn (không thuộc cụm, xử lý riêng nếu muốn sạch); #2490 và #2500 là 2 cluster ít inbound nhất (4 bài), theo dõi GSC.
 
 ---
 

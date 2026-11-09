@@ -812,7 +812,7 @@ riêng (đã có #1229 ở Cụm 7). Không viết lại CRM marketing (#263, C�
 
 ---
 
-### Cụm 13: Email, drip campaign và nuôi lead, ✅ pillar + 9 bài đã viết và lên lịch 26/10/2026 (đăng 02/11 đến 06/11)
+### Cụm 13: Email, drip campaign và nuôi lead, ✅ pillar + 9 bài đã đăng đủ (02/11 đến 06/11), inbound pass và audit xong 09/11
 
 Plan đầy đủ ở `references/plan-cum-13-email-nurture.md`. Bảng theo dõi ở `references/teardown-infina-table.md` mục Cụm 13. Keyword đã đặt chỗ trong `used-keywords.md` (26/10). Pillar mới `real-estate-drip-email`; chưa có bài nào về drip, newsletter, subject line hay CMA hướng dẫn trên site (chỉ #1178 là tin CMA bằng AI, sẽ gắn vào cụm).
 
