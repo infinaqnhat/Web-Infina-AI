@@ -7,14 +7,14 @@
   //   logo-href            where the logo points (default "./")
   var CSS = [
     'rw-nav { display: contents; }',
-    'nav.rw-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,.72); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4); border-bottom: 1px solid rgba(255,255,255,.5); }',
+    'nav.rw-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: transparent; }',
     '.rw-nav .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; max-width: 1200px; margin: 0 auto; padding: 0 32px; }',
     '.rw-nav .logo { display: flex; align-items: center; flex-shrink: 0; }',
     '.rw-nav .logo-img { height: 44px; width: auto; display: block; }',
     '.rw-nav .nav-center { display: flex; align-items: center; gap: 8px; }',
-    '.rw-nav .nav-center a { font-family: var(--font-body, "DM Sans", system-ui, sans-serif); font-size: 14px; font-weight: 600; color: var(--fg-secondary, #4E5878); padding: 9px 16px; border-radius: 10px; border: 1px solid var(--border, #DCE1EC); background: var(--surface, #F5F7FB); text-decoration: none; transition: background .2s, color .2s, border-color .2s; }',
-    '.rw-nav .nav-center a:hover { border-color: var(--accent, #071843); color: var(--accent, #071843); }',
-    '.rw-nav .nav-center a.is-active { color: #fff; background: var(--accent, #071843); border-color: var(--accent, #071843); }',
+    '.rw-nav .nav-center a { font-family: var(--font-body, "DM Sans", system-ui, sans-serif); font-size: 14px; font-weight: 600; color: #fff; padding: 9px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,.4); background: rgba(255,255,255,.14); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); text-decoration: none; transition: background .2s, color .2s; }',
+    '.rw-nav .nav-center a:hover { background: rgba(255,255,255,.26); }',
+    '.rw-nav .nav-center a.is-active { color: var(--accent, #071843); background: #fff; border-color: #fff; }',
     '.rw-nav .nav-cta { font-family: var(--font-body, "DM Sans", system-ui, sans-serif); background: var(--accent, #071843); color: #fff !important; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background .2s; }',
     '.rw-nav .nav-cta:hover { background: var(--accent-dark, #050F2B); }',
     '.rw-nav .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--accent, #071843); }',
