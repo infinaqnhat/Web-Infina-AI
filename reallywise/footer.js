@@ -1,57 +1,47 @@
 (function () {
-  if (customElements.get('infina-footer')) return;
+  if (customElements.get('rw-footer')) return;
 
+  // ReallyWise site footer. Attribute: links = JSON array of { text, href, dataSlide }
   var CSS = [
-    'infina-footer { display: contents; }',
-    'footer.infina-footer { background: #fff; padding: 48px 0; border-top: 1px solid var(--border-light, rgba(0,0,0,.08)); }',
-    'footer.infina-footer .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; max-width: 1200px; margin: 0 auto; padding: 0 32px; }',
-    'footer.infina-footer .footer-logo { display: flex; align-items: center; }',
-    'footer.infina-footer .footer-logo img { height: 23px; width: auto; display: block; }',
-    'footer.infina-footer .footer-links { display: flex; gap: 32px; }',
-    'footer.infina-footer .footer-links a { font-size: 14px; color: var(--muted, #9ca3af); transition: color .2s; text-decoration: none; }',
-    'footer.infina-footer .footer-links a:hover { color: var(--accent, #001F5C); }',
-    'footer.infina-footer .footer-copy { font-size: 13px; color: var(--muted, #9ca3af); }',
-    '@media (max-width: 640px) {',
-    '  footer.infina-footer .footer-inner { flex-direction: column; text-align: center; padding: 0 16px; }',
+    'rw-footer { display: contents; }',
+    'footer.rw-footer { background: #fff; padding: 48px 0; border-top: 1px solid var(--border, #DCE1EC); }',
+    'footer.rw-footer .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; max-width: 1200px; margin: 0 auto; padding: 0 32px; }',
+    'footer.rw-footer .footer-logo { display: flex; align-items: center; }',
+    'footer.rw-footer .footer-logo img { height: 42px; width: auto; display: block; }',
+    'footer.rw-footer .footer-links { display: flex; gap: 32px; }',
+    'footer.rw-footer .footer-links a { font-family: var(--font-body, "DM Sans", system-ui, sans-serif); font-size: 14px; font-weight: 500; color: var(--fg-secondary, #4E5878); text-decoration: none; transition: color .2s; }',
+    'footer.rw-footer .footer-links a:hover { color: var(--accent, #071843); }',
+    'footer.rw-footer .footer-copy { font-family: var(--font-body, "DM Sans", system-ui, sans-serif); font-size: 13px; color: var(--fg-secondary, #4E5878); }',
+    '@media (max-width: 768px) {',
+    '  footer.rw-footer .footer-inner { flex-direction: column; text-align: center; padding: 0 16px; }',
     '}'
   ].join('\n');
 
-  class InfinaFooter extends HTMLElement {
+  function esc(str) { return String(str).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  class RwFooter extends HTMLElement {
     connectedCallback() {
-      if (!document.getElementById('infina-footer-styles')) {
+      if (!document.getElementById('rw-footer-styles')) {
         var s = document.createElement('style');
-        s.id = 'infina-footer-styles';
+        s.id = 'rw-footer-styles';
         s.textContent = CSS;
         document.head.appendChild(s);
       }
 
-      var linksAttr = this.getAttribute('links');
-      var links = [
-        { text: 'Inside', href: 'inside.html' },
-        { text: 'Work', href: 'work.html' },
-        { text: 'Personal', href: 'personal.html' }
-      ];
-      if (linksAttr) {
-        try {
-          var parsed = JSON.parse(linksAttr);
-          if (Array.isArray(parsed) && parsed.length) links = parsed;
-        } catch (e) {}
-      }
-
+      var links = [];
+      try { links = JSON.parse(this.getAttribute('links') || '[]'); } catch (e) {}
       var linksHtml = links.map(function (l) {
-        var extra = l.dataSlide !== undefined ? ' data-slide="' + l.dataSlide + '"' : '';
-        return '<a href="' + l.href + '"' + extra + '>' + l.text + '</a>';
+        var extra = l.dataSlide !== undefined ? ' data-slide="' + esc(l.dataSlide) + '"' : '';
+        return '<a href="' + esc(l.href) + '"' + extra + '>' + esc(l.text) + '</a>';
       }).join('');
 
       var footer = document.createElement('footer');
-      footer.className = 'infina-footer';
+      footer.className = 'rw-footer';
       footer.innerHTML =
         '<div class="footer-inner">' +
-          '<div class="footer-logo">' +
-            '<img src="uploads/infina-ai-logo-web-329e3857.png" alt="Infina AI">' +
-          '</div>' +
+          '<div class="footer-logo"><img src="brand/Really_Wise_Logo.svg" alt="ReallyWise"></div>' +
           '<div class="footer-links">' + linksHtml + '</div>' +
-          '<p class="footer-copy">© 2026 Infina. All rights reserved.</p>' +
+          '<p class="footer-copy">© 2026 ReallyWise. All rights reserved.</p>' +
         '</div>';
 
       this.parentNode.insertBefore(footer, this);
@@ -59,5 +49,5 @@
     }
   }
 
-  customElements.define('infina-footer', InfinaFooter);
+  customElements.define('rw-footer', RwFooter);
 })();
