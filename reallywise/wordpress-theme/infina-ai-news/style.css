@@ -1,0 +1,331 @@
+/*
+Theme Name: Infina AI News
+Theme URI: https://infina.ai/news
+Author: Infina AI
+Author URI: https://infina.ai
+Description: Newsroom-style block theme for the Infina AI blog. Matches the Infina AI marketing site (Be Vietnam Pro, navy #001F5C / blue #1863DC). Ships a newsroom home (featured + side list + news table + search/promo aside), single post, page, archive, search and 404 templates.
+Requires at least: 6.4
+Tested up to: 6.6
+Requires PHP: 7.4
+Version: 1.1.3
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: infina-ai-news
+Tags: blog, news, block-theme, full-site-editing, one-column, custom-colors
+*/
+
+:root {
+  --navy: #001F5C;
+  --blue: #1863DC;
+  --blue-soft: #EEF3FF;
+  --blue-mid: #C7D4FA;
+  --bg: #ffffff;
+  --surface: #f8fafc;
+  --fg: #1a1f2e;
+  --fg-secondary: #334155;
+  --muted: #64748b;
+  --border: #e5e7eb;
+  --border-light: #f2f2f2;
+  --accent: #001F5C;
+  --accent-light: rgba(0, 31, 92, 0.07);
+  --radius: 18px;
+}
+
+body { font-family: "Be Vietnam Pro", -apple-system, system-ui, sans-serif; color: var(--fg); background: var(--bg); }
+a { color: var(--blue); text-decoration: none; }
+img { max-width: 100%; height: auto; }
+
+/* Sticky footer + remove the default 24px block-gap between header/main/footer,
+   so the nav sits flush and the footer stays at the bottom on short pages
+   (fixes the big white gaps above/below content on short articles). */
+.wp-site-blocks { display: flex; flex-direction: column; min-height: 100vh; }
+.wp-site-blocks > * { margin-block-start: 0 !important; margin-block-end: 0 !important; }
+.wp-site-blocks > main { flex: 1 0 auto; }
+
+/* ===== Nav ================================================================= */
+.site-nav {
+  position: sticky; top: 0; z-index: 1000;
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.site-nav .nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px; max-width: 1200px; margin: 0 auto; padding: 0 32px;
+}
+.nav-logo img { height: 23px; width: auto; display: block; }
+.nav-center { display: flex; align-items: center; gap: 40px; }
+.nav-item { font-size: 15px; font-weight: 500; color: var(--fg-secondary); position: relative; transition: color .2s; }
+.nav-item.active { color: var(--fg); }
+.nav-item::after { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width .3s; }
+.nav-item.active::after, .nav-item:hover::after { width: 100%; }
+.nav-cta { background: var(--accent); color: #fff !important; padding: 11px 22px; border-radius: 9999px; font-size: 14px; font-weight: 500; transition: all .3s; }
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--fg-secondary); }
+.nav-mobile-panel { display: none; }
+
+@media (max-width: 768px) {
+  .nav-center, .site-nav .nav-cta { display: none; }
+  .nav-toggle { display: block; }
+  .nav-mobile-panel {
+    position: absolute; top: 100%; left: 0; right: 0; z-index: 999;
+    display: flex; flex-direction: column; padding: 8px 24px 20px;
+    background: rgba(255, 255, 255, 0.98); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    transform: translateY(-12px); opacity: 0; visibility: hidden;
+    transition: transform .25s ease, opacity .25s ease, visibility .25s ease;
+  }
+  body.nav-open .nav-mobile-panel { transform: translateY(0); opacity: 1; visibility: visible; }
+  .nav-mobile-panel .nav-item { padding: 14px 6px; font-size: 16px; border-bottom: 1px solid var(--border-light); }
+  .nav-mobile-panel .nav-item::after { display: none; }
+  .nav-mobile-cta { margin-top: 14px; text-align: center; background: var(--accent); color: #fff !important; padding: 14px 24px; border-radius: 9999px; font-weight: 600; }
+  body.nav-open { overflow: hidden; }
+  .site-nav .nav-inner { padding: 0 clamp(16px, 5vw, 24px); }
+}
+
+/* ===== Newsroom home ====================================================== */
+.newsroom { padding-top: clamp(32px, 5vw, 56px) !important; padding-bottom: clamp(48px, 7vw, 80px) !important; }
+
+.nr-featured { gap: 48px !important; padding-bottom: clamp(32px, 4vw, 48px); border-bottom: 1px solid var(--border); margin-bottom: clamp(40px, 5vw, 64px); }
+.nr-lead-image img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius); }
+.nr-lead-image { margin-bottom: 20px; overflow: hidden; }
+.nr-lead-title { font-size: clamp(24px, 2.6vw, 34px) !important; line-height: 1.18 !important; margin: 12px 0 10px !important; }
+.nr-lead-title a { color: var(--fg); transition: color .2s; }
+.nr-lead-q .wp-block-post:hover .nr-lead-title a { color: var(--blue); }
+
+.nr-side .nr-side-item { gap: 16px !important; align-items: flex-start !important; padding: 18px 0; border-top: 1px solid var(--border-light); }
+.nr-side .wp-block-post:first-child .nr-side-item { padding-top: 0; border-top: none; }
+.nr-side-thumb { flex: 0 0 104px; margin: 0 !important; }
+.nr-side-thumb img,
+.nr-side-thumb .nr-thumb-ph { width: 104px; height: 74px; object-fit: cover; border-radius: 10px; display: block; }
+.nr-side-body { flex: 1; min-width: 0; }
+.nr-side-title { font-size: 16px !important; line-height: 1.3 !important; margin: 6px 0 5px !important; }
+.nr-side-title a { color: var(--fg); transition: color .2s; }
+.nr-side-item:hover .nr-side-title a { color: var(--blue); }
+
+.nr-meta { align-items: center !important; gap: 12px !important; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.nr-meta > * { font-size: 12px; color: var(--muted); margin: 0; }
+.nr-meta .nr-cat a, .nr-meta .nr-cat { font-weight: 700; color: var(--fg-secondary); }
+.nr-meta .nr-author { font-weight: 600; color: var(--fg-secondary); }
+.nr-meta > * + *::before { content: "·"; margin-right: 12px; color: var(--border); }
+.nr-excerpt { color: var(--muted) !important; font-size: 14px !important; line-height: 1.6 !important; }
+.nr-excerpt .wp-block-post-excerpt__more-link { display: none; }
+
+/* News table + aside */
+.nr-news { gap: 48px !important; align-items: flex-start !important; }
+.nr-news-heading { font-size: clamp(22px, 2.4vw, 30px) !important; margin-bottom: 20px !important; }
+.nr-table .wp-block-post-template { list-style: none; margin: 0; padding: 0; }
+.nr-table { transition: opacity 0.2s ease; }
+.nr-table.is-loading { opacity: 0.45; pointer-events: none; }
+.nr-row { display: flex; gap: 20px !important; align-items: flex-start !important; padding: 22px 0 !important; border-top: 1px solid var(--border-light); }
+.nr-table .wp-block-post-template > .wp-block-post:first-child .nr-row { border-top: none; padding-top: 0 !important; }
+.nr-row-thumb { flex: 0 0 168px; margin: 0 !important; }
+.nr-row-thumb img,
+.nr-row-thumb .nr-thumb-ph { width: 168px; height: 112px; object-fit: cover; border-radius: 12px; display: block; }
+.nr-row-body { flex: 1; min-width: 0; }
+.nr-row-title { font-size: 17px !important; font-weight: 700 !important; line-height: 1.35 !important; margin: 4px 0 6px !important; letter-spacing: -0.01em; }
+.nr-row-title a { color: var(--fg); transition: color .2s; }
+.nr-row:hover .nr-row-title a { color: var(--blue); }
+.nr-row .nr-excerpt { font-size: 13.5px !important; }
+
+/* Branded fallback thumbnail (post without a featured image) */
+.nr-thumb-ph {
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+  color: #fff; font-weight: 800; letter-spacing: -0.02em;
+  font-size: 26px; line-height: 1;
+}
+.nr-side-thumb .nr-thumb-ph { font-size: 20px; }
+.nr-lead-image .nr-thumb-ph { width: 100%; aspect-ratio: 16 / 10; height: auto; font-size: 56px; border-radius: var(--radius); }
+
+@media (max-width: 600px) {
+  .nr-row { gap: 14px !important; padding: 16px 0 !important; }
+  .nr-row-thumb { flex: 0 0 116px; }
+  .nr-row-thumb img,
+  .nr-row-thumb .nr-thumb-ph { width: 116px; height: 82px; border-radius: 10px; }
+  .nr-row-title { font-size: 15px !important; }
+  .nr-row .nr-excerpt { display: none !important; }
+  .nr-side-thumb { flex: 0 0 88px; }
+  .nr-side-thumb img,
+  .nr-side-thumb .nr-thumb-ph { width: 88px; height: 62px; }
+}
+
+.nr-pagination { margin-top: 24px; padding-top: 8px; }
+.nr-pagination a, .nr-pagination .wp-block-query-pagination-numbers { font-size: 14px; font-weight: 600; color: var(--accent); }
+
+/* Aside */
+.nr-search .wp-block-search__inside-wrapper {
+  border: 1px solid var(--border); border-radius: 999px; padding: 4px 4px 4px 18px; background: #fff;
+}
+.nr-search .wp-block-search__input { border: none; background: transparent; font-family: inherit; font-size: 14px; }
+.nr-search .wp-block-search__button { background: var(--accent); color: #fff; border-radius: 999px; margin: 0; }
+/* Full-bleed photo card, echoing the infina.ai hero: photo + navy scrim, light-blue
+   accent on the key phrase, and a glass "paste your listing" panel. */
+.nr-promo {
+  display: flex; flex-direction: column; gap: 10px; aspect-ratio: 1 / 1; margin-top: 20px;
+  padding: 26px; border-radius: var(--radius); color: #fff;
+  /* No overflow: hidden here. It would zero the automatic minimum height, so the
+     1:1 box could not grow past a square and the CTA got clipped on narrow
+     side-by-side widths (901-1100px). Backgrounds are already clipped to the
+     rounded corners by border-radius. */
+  background:
+    linear-gradient(180deg, rgba(0,20,60,.62) 0%, rgba(0,20,60,.18) 42%, rgba(0,20,60,.5) 100%),
+    url("assets/images/promo-property-expert.jpg") center / cover no-repeat,
+    linear-gradient(150deg, var(--blue) 0%, var(--navy) 100%);
+  transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s;
+}
+.nr-promo:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -14px rgba(0, 31, 92, 0.4); }
+.nr-promo-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.85); text-shadow: 0 1px 8px rgba(0,20,60,.5); }
+.nr-promo-title { font-size: 24px; font-weight: 800; line-height: 1.2; letter-spacing: -.02em; text-shadow: 0 1px 14px rgba(0,20,60,.5); }
+.nr-promo-accent { display: block; color: #9cc2ff; }
+.nr-promo-box {
+  display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding: 12px;
+  border-radius: 16px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.32);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.nr-promo-label { font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.9); }
+.nr-promo-input {
+  display: block; padding: 11px 14px; border-radius: 999px; background: #fff; color: #6b7280;
+  font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.nr-promo-cta {
+  align-self: flex-start; margin-top: 4px; padding: 11px 20px; border-radius: 999px;
+  background: #fff; color: var(--navy); font-size: 14px; font-weight: 700;
+  transition: transform .2s, box-shadow .2s;
+}
+.nr-promo:hover .nr-promo-cta { transform: translateX(3px); box-shadow: 0 8px 18px rgba(0,20,60,.3); }
+/* The theme stacks the News columns at 900px (see the 900px block below), which
+   would stretch the 1:1 card to the full content width, so drop the ratio there. */
+@media (max-width: 900px) {
+  .nr-promo { aspect-ratio: auto; min-height: 380px; }
+}
+
+/* Keep the sidebar promo in view while the News list scrolls past (desktop).
+   Two things make sticky work here:
+   1. .nr-news is vertically aligned to the top, so each column is only as tall
+      as its own content. A sticky child in a column exactly its own height has
+      no room to travel, so the sidebar column is stretched to the row height.
+   2. The nav is sticky and 72px tall, so the card pins below it with a gap.
+   The 901px floor matches where the theme stops stacking the columns (below it
+   there is no side-by-side layout to stick against). The height guard stops it
+   sticking on short windows, where the card would be taller than the space left
+   under the nav and its CTA would be clipped. */
+@media (min-width: 901px) and (min-height: 640px) {
+  .nr-news > .wp-block-column:last-child { align-self: stretch; }
+  .nr-news .nr-promo { position: sticky; top: calc(72px + 24px); }
+}
+
+/* Narrow side-by-side band (901-1100px): the card is only ~260-330px wide, so
+   tighten the CTA slightly to keep "Create yours in a minute →" on one line. */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .nr-news .nr-promo-cta { padding: 11px 14px; font-size: 13px; white-space: nowrap; }
+}
+
+/* ----- Wide variant: end-of-article banner ---------------------------------
+   Desktop: copy on the left, glass panel + CTA on the right.
+   Mobile: stacks into the same order as the sidebar card (eyebrow, title,
+   panel, CTA) by flattening the two wrappers with display: contents. */
+.post-promo { margin-top: clamp(40px, 5vw, 56px) !important; }
+.post-promo .nr-promo { margin-top: 0; }
+.nr-promo--wide {
+  aspect-ratio: auto; min-height: 300px; flex-direction: row; align-items: center;
+  justify-content: space-between; gap: clamp(24px, 4vw, 48px); padding: clamp(28px, 4vw, 48px);
+  background:
+    linear-gradient(90deg, rgba(0,20,60,.88) 0%, rgba(0,20,60,.62) 50%, rgba(0,20,60,.22) 100%),
+    url("assets/images/promo-property-expert-wide.jpg") center / cover no-repeat,
+    linear-gradient(150deg, var(--blue) 0%, var(--navy) 100%);
+}
+.nr-promo--wide .nr-promo-copy { display: flex; flex: 1 1 50%; flex-direction: column; gap: 12px; min-width: 0; }
+.nr-promo--wide .nr-promo-title { font-size: clamp(26px, 3.4vw, 38px); }
+.nr-promo--wide .nr-promo-action { display: flex; flex: 0 1 380px; flex-direction: column; gap: 12px; min-width: 0; }
+.nr-promo--wide .nr-promo-box { margin-top: 0; }
+.nr-promo--wide .nr-promo-cta { align-self: stretch; margin-top: 0; text-align: center; }
+@media (max-width: 781px) {
+  .nr-promo--wide {
+    flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 10px; min-height: 380px;
+    background:
+      linear-gradient(180deg, rgba(0,20,60,.66) 0%, rgba(0,20,60,.2) 42%, rgba(0,20,60,.55) 100%),
+      url("assets/images/promo-property-expert.jpg") center / cover no-repeat,
+      linear-gradient(150deg, var(--blue) 0%, var(--navy) 100%);
+  }
+  .nr-promo--wide .nr-promo-copy,
+  .nr-promo--wide .nr-promo-action { display: contents; }
+  .nr-promo--wide .nr-promo-box { margin-top: auto; }
+  .nr-promo--wide .nr-promo-cta { align-self: flex-start; margin-top: 4px; text-align: left; }
+  .nr-promo--wide .nr-promo-title { font-size: 24px; }
+}
+
+/* ===== Single post ======================================================== */
+/* Scoped to the <main> element: WordPress also puts a `single-post` class on
+   <body> for single posts, so a bare .single-post rule would pad the body and
+   create white gaps above the header / below the footer. */
+main.single-post { padding-top: clamp(32px, 5vw, 56px) !important; padding-bottom: clamp(32px, 4vw, 48px) !important; }
+.post-header { text-align: center; margin-bottom: 28px !important; }
+.post-tag { justify-content: center; margin-bottom: 18px !important; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.post-tag a { color: var(--blue); }
+.post-title { font-size: clamp(30px, 4.5vw, 52px) !important; line-height: 1.1 !important; }
+.post-meta { justify-content: center !important; gap: 12px !important; font-size: 13px; color: var(--muted); margin-top: 20px; }
+.post-meta > * { font-size: 13px; color: var(--muted); margin: 0; }
+.post-meta > * + *::before { content: "·"; margin-right: 12px; color: var(--border); }
+.post-author-name { font-weight: 600; color: var(--fg-secondary); }
+.post-feature-image { margin: clamp(28px, 4vw, 44px) auto !important; border-radius: var(--radius); overflow: hidden; }
+.post-feature-image img { width: 100%; border-radius: var(--radius); }
+
+.post-content { font-size: 18px; line-height: 1.75; color: var(--fg-secondary); }
+.post-content h2 { font-size: 28px; margin-top: 1.8em; color: var(--fg); }
+.post-content h3 { font-size: 22px; margin-top: 1.5em; color: var(--fg); }
+.post-content a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+.post-content blockquote { border-left: 3px solid var(--blue); padding-left: 24px; font-style: italic; color: var(--fg); }
+.post-content img { border-radius: 12px; }
+.post-content pre { background: #0b1533; color: #e6ecff; padding: 20px 22px; border-radius: 12px; overflow-x: auto; }
+.post-content code { background: var(--blue-soft); color: var(--navy); padding: 2px 6px; border-radius: 5px; }
+.post-content pre code { background: none; color: inherit; padding: 0; }
+
+/* Tables inside article content */
+.post-content .wp-block-table { margin: 1.8em 0; overflow-x: auto; }
+.post-content table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; }
+.post-content th,
+.post-content td { border: 1px solid var(--border); padding: 12px 16px; text-align: left; vertical-align: top; }
+.post-content thead th { background: var(--blue-soft, #eef3fd); color: var(--navy); font-weight: 700; }
+.post-content tbody tr:nth-child(even) { background: #fafbfc; }
+.post-content .wp-block-table.is-style-stripes td { border-bottom: 1px solid var(--border-light); }
+.post-content .wp-block-table figcaption { font-size: 13px; color: var(--muted); text-align: center; margin-top: 8px; }
+
+.post-author-card { align-items: center !important; gap: 16px !important; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--border); }
+.author-img img, .post-author-card .wp-block-avatar img { width: 56px; height: 56px; border-radius: 50%; }
+.author-name { font-weight: 700; color: var(--fg); }
+.author-bio { font-size: 14px; color: var(--muted); margin: 2px 0 0; }
+
+/* ===== Archive / search header =========================================== */
+.archive-header { text-align: center; padding: clamp(40px, 6vw, 72px) 0 clamp(24px, 3vw, 40px); }
+.archive-title { font-size: clamp(28px, 4vw, 44px) !important; }
+.archive-desc { color: var(--muted); margin-top: 12px; }
+
+/* ===== Footer ============================================================= */
+.site-footer { background: #fff; padding: 48px 0; border-top: 1px solid var(--border-light); }
+.site-footer .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+.footer-logo img { height: 23px; width: auto; display: block; }
+.footer-links { display: flex; gap: 32px; }
+.footer-links a { font-size: 14px; color: var(--muted); transition: color .2s; }
+.footer-links a:hover { color: var(--accent); }
+.footer-copy { font-size: 13px; color: var(--muted); margin: 0; }
+
+/* ===== Error ============================================================== */
+.error-page { text-align: center; padding: clamp(80px, 14vw, 160px) 0 !important; }
+.error-code { font-size: clamp(56px, 12vw, 120px) !important; font-weight: 800; color: var(--blue-mid) !important; line-height: 1 !important; margin: 0 !important; }
+.error-title { font-size: clamp(24px, 4vw, 40px) !important; margin-top: 12px !important; }
+.error-sub { color: var(--muted); margin-top: 12px !important; }
+.error-cta { font-weight: 700; }
+
+/* ===== Responsive ========================================================= */
+@media (max-width: 900px) {
+  /* Stack columns by wrapping (keep flex-direction:row). Forcing column-direction
+     makes flex-basis:100% resolve as HEIGHT, which balloons a column into a giant
+     empty block on mobile. */
+  .nr-featured, .nr-news { flex-wrap: wrap !important; }
+  .nr-featured .wp-block-column, .nr-news .wp-block-column { flex-basis: 100% !important; max-width: 100% !important; }
+}
+@media (max-width: 600px) {
+  .site-footer .footer-inner { flex-direction: column; text-align: center; padding: 0 clamp(16px, 5vw, 24px); }
+}
