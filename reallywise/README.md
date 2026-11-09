@@ -8,7 +8,7 @@ duplicate of the root files. The brand source of truth is `brand/`.
 ## Rebrand status
 | File | Status |
 |---|---|
-| `realsalex-v2.html`, `nav.js`, `footer.js` | Done. Name, logo, fonts, colors, hero, copy, metadata. `nav.js` and `footer.js` are now the `rw-nav` and `rw-footer` components and only serve ReallyWise pages |
+| `reallywise.html`, `nav.js`, `footer.js` | Done. Name, logo, fonts, colors, hero, copy, metadata. `nav.js` and `footer.js` are now the `rw-nav` and `rw-footer` components and only serve ReallyWise pages |
 | everything else | Not started |
 
 Defaults used for the landing page, change them in one place if the answer differs:
@@ -23,7 +23,7 @@ Defaults used for the landing page, change them in one place if the answer diffe
 | `brand/ReallyWise-Brand-Guideline.html` | Brand guideline v1.0 (11/2026) | uploaded by the team |
 | `brand/Really_Wise_Logo.svg` | Primary logo | uploaded by the team |
 | `brand/reallywise-app-icon.svg`, `brand/reallywise-favicon.svg` | App icon and favicon, copied from the guideline | extracted from the guideline |
-| `realsalex-v2.html` | Product landing page | `realsalex-v2.html` |
+| `reallywise.html` | Product landing page | `realsalex-v2.html` (renamed) |
 | `nav.js`, `footer.js` | Shared nav and footer web components | `nav.js`, `footer.js` |
 | `property-expert-demo*.html`, `property-expert-admin-demo*.html` | Six demo pages: notification flow, long Hob tour, short tour, each with its admin page | same names at the root |
 | `dashboard/` | Static export of the agent dashboard (62 pages) | `dashboard/` |
