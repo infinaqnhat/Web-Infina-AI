@@ -111,7 +111,7 @@
     @media (min-width:769px){ .hero-tabs{ display:none; } }
 
     /* Hero tuning control (preview tool): overlay on/off, overlay strength, photo brightness */
-    .hero-tune { position:absolute; right:16px; bottom:16px; z-index:6; width:236px; padding:12px 14px; border-radius:12px; background:rgba(7,24,67,.72); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); color:#fff; font-size:13px; font-weight:500; }
+    .hero-tune { position:absolute; right:16px; bottom:16px; z-index:6; width:252px; padding:12px 14px; border-radius:12px; background:rgba(7,24,67,.72); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); color:#fff; font-size:13px; font-weight:500; }
     .hero-tune-row { display:flex; align-items:center; justify-content:space-between; gap:10px; }
     .hero-tune-row + .hero-tune-row { margin-top:10px; }
     .hero-tune b { font-weight:700; }
@@ -127,7 +127,14 @@
     .hero-tune-switch input:checked + i::after { transform:translateX(18px); }
     .hero-tune-switch input:focus-visible + i { outline:2px solid #fff; outline-offset:2px; }
     .hero-tune.is-off .tune-strength { opacity:.45; pointer-events:none; }
-    @media (max-width:768px){ .hero-tune { right:12px; left:12px; width:auto; bottom:12px; } }
+    .hero-tune { max-height:calc(100vh - 120px); overflow-y:auto; }
+    .hero-tune hr { border:0; border-top:1px solid rgba(255,255,255,.25); margin:12px 0 10px; }
+    .hero-tune select { font-family:inherit; font-size:12.5px; color:#fff; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.4); border-radius:6px; padding:4px 6px; }
+    .hero-tune select option { color:#071843; }
+    .hero-tune.clear-off .tune-clear { opacity:.45; pointer-events:none; }
+    /* Clear area: the scrim is cut away where the mask is transparent */
+    html.has-clear .hero-scrim { -webkit-mask-image:var(--hero-clear-mask), linear-gradient(#000,#000); mask-image:var(--hero-clear-mask), linear-gradient(#000,#000); -webkit-mask-composite:xor; mask-composite:exclude; }
+    @media (max-width:768px){ .hero-tune { right:12px; left:12px; width:auto; bottom:12px; max-height:46vh; } }
     @media (prefers-reduced-motion:reduce){ .hero-tune-switch i, .hero-tune-switch i::after { transition:none; } }
 
     /* QR result panel (listing agent hero) */
@@ -615,6 +622,27 @@
       </div>
       <label class="tune-label tune-strength"><span>Strength <output id="tune-scrim-out">100%</output></span><input type="range" id="tune-scrim" min="0" max="100" step="5" value="100"></label>
       <label class="tune-label"><span>Photo brightness <output id="tune-bright-out">100%</output></span><input type="range" id="tune-bright" min="80" max="140" step="5" value="100"></label>
+      <hr>
+      <div class="hero-tune-row">
+        <b>Clear area</b>
+        <label class="hero-tune-switch"><input type="checkbox" id="clr-on" aria-label="Clear area on or off"><i></i></label>
+      </div>
+      <div class="tune-clear">
+        <div class="hero-tune-row" style="margin-top:10px;">
+          <span>Shape</span>
+          <select id="clr-shape" aria-label="Clear area shape">
+            <option value="ellipse">Ellipse</option>
+            <option value="circle">Circle</option>
+            <option value="rounded">Rounded rectangle</option>
+            <option value="band">Horizontal band</option>
+          </select>
+        </div>
+        <label class="tune-label"><span>Width <output id="clr-w-out">40%</output></span><input type="range" id="clr-w" min="5" max="100" step="1" value="40"></label>
+        <label class="tune-label"><span>Height <output id="clr-h-out">30%</output></span><input type="range" id="clr-h" min="5" max="100" step="1" value="30"></label>
+        <label class="tune-label"><span>Position across <output id="clr-x-out">15%</output></span><input type="range" id="clr-x" min="0" max="100" step="1" value="15"></label>
+        <label class="tune-label"><span>Position down <output id="clr-y-out">12%</output></span><input type="range" id="clr-y" min="0" max="100" step="1" value="12"></label>
+        <label class="tune-label"><span>Soft edge <output id="clr-f-out">60%</output></span><input type="range" id="clr-f" min="0" max="100" step="1" value="60"></label>
+      </div>
     </div>
   </header>
 
@@ -2135,30 +2163,55 @@
     })();
   </script>
   <script>
-    // Hero tuning control: overlay on/off, overlay strength and photo brightness. Remembered per browser.
+    // Hero tuning control: overlay on/off and strength, photo brightness, and a clear area cut out of the overlay.
+    // Remembered per browser. Preview tool: remove once the values are chosen.
     (function(){
-      var KEY = 'rw-hero-tune';
-      var on = document.getElementById('tune-on'), sc = document.getElementById('tune-scrim'), br = document.getElementById('tune-bright');
-      var scOut = document.getElementById('tune-scrim-out'), brOut = document.getElementById('tune-bright-out');
-      var box = document.getElementById('hero-tune'), root = document.documentElement;
-      if (!on || !sc || !br) return;
+      var KEY = 'rw-hero-tune-v2';
+      var $ = function(id){ return document.getElementById(id); };
+      var on = $('tune-on'), sc = $('tune-scrim'), br = $('tune-bright');
+      var cOn = $('clr-on'), cShape = $('clr-shape'), cW = $('clr-w'), cH = $('clr-h'), cX = $('clr-x'), cY = $('clr-y'), cF = $('clr-f');
+      var box = $('hero-tune'), root = document.documentElement;
+      if (!on || !sc || !br || !cOn) return;
+      var outs = { 'tune-scrim': 'tune-scrim-out', 'tune-bright': 'tune-bright-out', 'clr-w': 'clr-w-out', 'clr-h': 'clr-h-out', 'clr-x': 'clr-x-out', 'clr-f': 'clr-f-out', 'clr-y': 'clr-y-out' };
+      function heroBox(){
+        var h = document.querySelector('.hero-slide.is-active') || document.querySelector('.hero-slide');
+        var r = h.getBoundingClientRect();
+        return { w: Math.max(1, Math.round(r.width)), h: Math.max(1, Math.round(r.height)) };
+      }
+      function holeSvg(){
+        var d = heroBox(), W = d.w, H = d.h;
+        var cx = W * cX.value / 100, cy = H * cY.value / 100, w = W * cW.value / 100, h = H * cH.value / 100;
+        var blur = cF.value * 1.2, shape;
+        if (cShape.value === 'circle') { var rr = Math.min(w, h) / 2; shape = '<circle cx="' + cx + '" cy="' + cy + '" r="' + rr + '"/>'; }
+        else if (cShape.value === 'rounded') shape = '<rect x="' + (cx - w / 2) + '" y="' + (cy - h / 2) + '" width="' + w + '" height="' + h + '" rx="' + Math.min(w, h) * 0.22 + '"/>';
+        else if (cShape.value === 'band') shape = '<rect x="-' + (blur * 3) + '" y="' + (cy - h / 2) + '" width="' + (W + blur * 6) + '" height="' + h + '"/>';
+        else shape = '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + w / 2 + '" ry="' + h / 2 + '"/>';
+        var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '">' +
+          '<defs><filter id="f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="' + blur + '"/></filter></defs>' +
+          '<g fill="#000" filter="url(#f)">' + shape + '</g></svg>';
+        return 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")';
+      }
       function apply(){
-        var enabled = on.checked;
+        var enabled = on.checked, clear = cOn.checked;
         root.style.setProperty('--hero-scrim', enabled ? String(sc.value / 100) : '0');
         root.style.setProperty('--hero-brightness', String(br.value / 100));
-        scOut.textContent = sc.value + '%'; brOut.textContent = br.value + '%';
+        root.classList.toggle('has-clear', clear);
+        if (clear) root.style.setProperty('--hero-clear-mask', holeSvg());
+        Object.keys(outs).forEach(function(k){ var o = $(outs[k]); if (o) o.textContent = $(k).value + '%'; });
         box.classList.toggle('is-off', !enabled);
-        try { localStorage.setItem(KEY, JSON.stringify({ on: enabled, scrim: +sc.value, bright: +br.value })); } catch (e) {}
+        box.classList.toggle('clear-off', !clear);
+        try { localStorage.setItem(KEY, JSON.stringify({ on: enabled, scrim: +sc.value, bright: +br.value, clear: clear, shape: cShape.value, w: +cW.value, h: +cH.value, x: +cX.value, y: +cY.value, f: +cF.value })); } catch (e) {}
       }
       try {
-        var saved = JSON.parse(localStorage.getItem(KEY) || 'null');
-        if (saved) { on.checked = saved.on !== false; sc.value = saved.scrim; br.value = saved.bright; }
+        var v = JSON.parse(localStorage.getItem(KEY) || 'null');
+        if (v) { on.checked = v.on !== false; sc.value = v.scrim; br.value = v.bright; cOn.checked = !!v.clear; cShape.value = v.shape; cW.value = v.w; cH.value = v.h; cX.value = v.x; cY.value = v.y; cF.value = v.f; }
       } catch (e) {}
-      [on, sc, br].forEach(function(el){ el.addEventListener('input', apply); });
+      [on, sc, br, cOn, cShape, cW, cH, cX, cY, cF].forEach(function(el){ el.addEventListener('input', apply); el.addEventListener('change', apply); });
+      window.addEventListener('resize', function(){ if (cOn.checked) apply(); });
       apply();
     })();
   </script>
-  <script src="footer.js"></script>
+    <script src="footer.js"></script>
   <script>
     // Wire the page-specific footer links to the same hero tab switch as the nav
     (function(){
