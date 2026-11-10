@@ -29,7 +29,7 @@
     '.rw-nav .nav-mobile-panel { display: none; }',
     '@media (max-width: 768px) {',
     '  .rw-nav .nav-center, .rw-nav .nav-cta { display: none; }',
-    '  .rw-nav .logo-img { height: 42px; }',
+    '  .rw-nav .logo-img { height: 44px; }',
     '  .rw-nav .nav-toggle { display: block; }',
     '  .rw-nav .nav-mobile-panel { display: flex; flex-direction: column; position: fixed; top: 72px; left: 0; right: 0; background: #fff; padding: 8px 24px 20px; border-bottom: 1px solid var(--border, #DCE1EC); box-shadow: 0 6px 20px rgba(7,24,67,.08); transform: translateY(-8px); opacity: 0; visibility: hidden; transition: transform .25s, opacity .25s, visibility .25s; }',
     '  body.nav-open .rw-nav .nav-mobile-panel { transform: translateY(0); opacity: 1; visibility: visible; }',

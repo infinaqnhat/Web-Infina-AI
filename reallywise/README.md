@@ -21,9 +21,9 @@ Defaults used for the landing page, change them in one place if the answer diffe
 | Path | What it is | Copied from |
 |---|---|---|
 | `brand/ReallyWise-Brand-Guideline.html` | Brand guideline v1.0 (11/2026) | uploaded by the team |
-| `brand/Really_Wise_Logo.svg` | Primary logo | uploaded by the team |
-| `brand/reallywise-app-icon.svg`, `brand/reallywise-favicon.svg` | App icon and favicon, copied from the guideline | extracted from the guideline |
-| `brand/reallywise-logo-primary.png`, `-reversed.png`, `-mono.png` | Official logo PNGs, copied from the guideline downloads. The landing page uses the primary SVG only | extracted from the guideline |
+| `brand/Really_Wise_Logo.svg` | Primary logo (new version with the green dot, Nov 10) | uploaded by the team |
+| `brand/reallywise-app-icon.svg`, `brand/reallywise-favicon.svg` | New app icon (W and i on a white rounded square), used as favicon and apple-touch icon | uploaded by the team (Nov 10) |
+| `brand/reallywise-logo-primary.png`, `-reversed.png`, `-mono.png` | Logo PNGs rendered from the new logo SVG. Reversed and mono are derived by recoloring, not supplied by the brand team | rendered from `Really_Wise_Logo.svg` |
 | `reallywise.html` | Product landing page | `realsalex-v2.html` (renamed) |
 | `nav.js`, `footer.js` | Shared nav and footer web components | `nav.js`, `footer.js` |
 | `property-expert-demo*.html`, `property-expert-admin-demo*.html` | Six demo pages: notification flow, long Hob tour, short tour, each with its admin page | same names at the root |
