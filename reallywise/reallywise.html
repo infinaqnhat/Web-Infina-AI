@@ -78,7 +78,8 @@
     .hero { position:relative; min-height:100vh; min-height:100dvh; display:flex; align-items:center; overflow:hidden; padding:clamp(120px,14vh,160px) 0 64px; scroll-margin-top:80px; }
     .hero-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:70% center; z-index:-2; }
     .hero > .container { width:100%; }
-    .hero-scrim { position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(0,10,35,.225) 0%, rgba(0,10,35,.04) 14%, rgba(0,10,35,.02) 38%, rgba(0,10,35,.225) 100%), linear-gradient(90deg, rgba(0,8,28,.34) 0%, rgba(0,8,28,.19) 55%, rgba(0,8,28,0) 88%); }
+    .hero-photo { filter:brightness(var(--hero-brightness,1)); }
+    .hero-scrim { opacity:var(--hero-scrim,1); position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(0,10,35,.225) 0%, rgba(0,10,35,.04) 14%, rgba(0,10,35,.02) 38%, rgba(0,10,35,.225) 100%), linear-gradient(90deg, rgba(0,8,28,.34) 0%, rgba(0,8,28,.19) 55%, rgba(0,8,28,0) 88%); }
     .hero-copy { max-width:640px; text-align:left; }
     .hero-video-section { padding-top:0; display:none; }
     .hero h1, .hero h2.hero-title { font-size:clamp(32px,4.4vw,52px); font-weight:800; letter-spacing:-.01em; line-height:1.12; color:#fff; }
@@ -108,6 +109,26 @@
     @media (max-width:600px){ .hero-tab{ font-size:13px; padding:8px 14px; } }
     @media (max-width:768px){ .hero { padding-top:152px; } }
     @media (min-width:769px){ .hero-tabs{ display:none; } }
+
+    /* Hero tuning control (preview tool): overlay on/off, overlay strength, photo brightness */
+    .hero-tune { position:absolute; right:16px; bottom:16px; z-index:6; width:236px; padding:12px 14px; border-radius:12px; background:rgba(7,24,67,.72); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); color:#fff; font-size:13px; font-weight:500; }
+    .hero-tune-row { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .hero-tune-row + .hero-tune-row { margin-top:10px; }
+    .hero-tune b { font-weight:700; }
+    .hero-tune output { font-family:var(--font-mono); font-size:12px; min-width:38px; text-align:right; }
+    .hero-tune input[type=range] { width:100%; accent-color:var(--green-500); }
+    .hero-tune .tune-label { display:block; margin-top:10px; }
+    .hero-tune .tune-label span { display:flex; justify-content:space-between; margin-bottom:4px; }
+    .hero-tune-switch { position:relative; width:40px; height:22px; flex-shrink:0; }
+    .hero-tune-switch input { position:absolute; inset:0; opacity:0; margin:0; cursor:pointer; z-index:1; }
+    .hero-tune-switch i { position:absolute; inset:0; border-radius:999px; background:rgba(255,255,255,.3); transition:background .2s; }
+    .hero-tune-switch i::after { content:''; position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%; background:#fff; transition:transform .2s; }
+    .hero-tune-switch input:checked + i { background:var(--green-500); }
+    .hero-tune-switch input:checked + i::after { transform:translateX(18px); }
+    .hero-tune-switch input:focus-visible + i { outline:2px solid #fff; outline-offset:2px; }
+    .hero-tune.is-off .tune-strength { opacity:.45; pointer-events:none; }
+    @media (max-width:768px){ .hero-tune { right:12px; left:12px; width:auto; bottom:12px; } }
+    @media (prefers-reduced-motion:reduce){ .hero-tune-switch i, .hero-tune-switch i::after { transition:none; } }
 
     /* QR result panel (listing agent hero) */
     .qr-result { margin-top:20px; max-width:600px; }
@@ -586,6 +607,14 @@
         </div>
       </div>
     </div>
+    </div>
+    <div class="hero-tune" id="hero-tune" role="group" aria-label="Hero image darkening">
+      <div class="hero-tune-row">
+        <b>Hero overlay</b>
+        <label class="hero-tune-switch"><input type="checkbox" id="tune-on" checked aria-label="Overlay on or off"><i></i></label>
+      </div>
+      <label class="tune-label tune-strength"><span>Strength <output id="tune-scrim-out">100%</output></span><input type="range" id="tune-scrim" min="0" max="100" step="5" value="100"></label>
+      <label class="tune-label"><span>Photo brightness <output id="tune-bright-out">100%</output></span><input type="range" id="tune-bright" min="80" max="140" step="5" value="100"></label>
     </div>
   </header>
 
@@ -2103,6 +2132,30 @@
         a.classList.toggle('is-active', Number(a.getAttribute('data-slide')) === activeIndex);
         a.addEventListener('click', function(e){ e.preventDefault(); goToSlide(Number(a.getAttribute('data-slide'))); });
       });
+    })();
+  </script>
+  <script>
+    // Hero tuning control: overlay on/off, overlay strength and photo brightness. Remembered per browser.
+    (function(){
+      var KEY = 'rw-hero-tune';
+      var on = document.getElementById('tune-on'), sc = document.getElementById('tune-scrim'), br = document.getElementById('tune-bright');
+      var scOut = document.getElementById('tune-scrim-out'), brOut = document.getElementById('tune-bright-out');
+      var box = document.getElementById('hero-tune'), root = document.documentElement;
+      if (!on || !sc || !br) return;
+      function apply(){
+        var enabled = on.checked;
+        root.style.setProperty('--hero-scrim', enabled ? String(sc.value / 100) : '0');
+        root.style.setProperty('--hero-brightness', String(br.value / 100));
+        scOut.textContent = sc.value + '%'; brOut.textContent = br.value + '%';
+        box.classList.toggle('is-off', !enabled);
+        try { localStorage.setItem(KEY, JSON.stringify({ on: enabled, scrim: +sc.value, bright: +br.value })); } catch (e) {}
+      }
+      try {
+        var saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+        if (saved) { on.checked = saved.on !== false; sc.value = saved.scrim; br.value = saved.bright; }
+      } catch (e) {}
+      [on, sc, br].forEach(function(el){ el.addEventListener('input', apply); });
+      apply();
     })();
   </script>
   <script src="footer.js"></script>
