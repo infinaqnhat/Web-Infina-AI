@@ -626,7 +626,7 @@
       <hr>
       <div class="hero-tune-row">
         <b>Clear area</b>
-        <label class="hero-tune-switch"><input type="checkbox" id="clr-on" aria-label="Clear area on or off"><i></i></label>
+        <label class="hero-tune-switch"><input type="checkbox" id="clr-on" checked aria-label="Clear area on or off"><i></i></label>
       </div>
       <div class="tune-clear">
         <div class="hero-tune-row" style="margin-top:10px;">
@@ -638,11 +638,11 @@
             <option value="band">Horizontal band</option>
           </select>
         </div>
-        <label class="tune-label"><span>Width <output id="clr-w-out">40%</output></span><input type="range" id="clr-w" min="5" max="100" step="1" value="40"></label>
+        <label class="tune-label"><span>Width <output id="clr-w-out">74%</output></span><input type="range" id="clr-w" min="5" max="100" step="1" value="74"></label>
         <label class="tune-label"><span>Height <output id="clr-h-out">30%</output></span><input type="range" id="clr-h" min="5" max="100" step="1" value="30"></label>
-        <label class="tune-label"><span>Position across <output id="clr-x-out">15%</output></span><input type="range" id="clr-x" min="0" max="100" step="1" value="15"></label>
-        <label class="tune-label"><span>Position down <output id="clr-y-out">12%</output></span><input type="range" id="clr-y" min="0" max="100" step="1" value="12"></label>
-        <label class="tune-label"><span>Soft edge <output id="clr-f-out">60%</output></span><input type="range" id="clr-f" min="0" max="100" step="1" value="60"></label>
+        <label class="tune-label"><span>Position across <output id="clr-x-out">19%</output></span><input type="range" id="clr-x" min="0" max="100" step="1" value="19"></label>
+        <label class="tune-label"><span>Position down <output id="clr-y-out">8%</output></span><input type="range" id="clr-y" min="0" max="100" step="1" value="8"></label>
+        <label class="tune-label"><span>Soft edge <output id="clr-f-out">38%</output></span><input type="range" id="clr-f" min="0" max="100" step="1" value="38"></label>
       </div>
     </div>
   </header>
@@ -2165,17 +2165,18 @@
   </script>
   <script>
     // Hero tuning control: overlay on/off and strength, photo brightness, and a clear area cut out of the overlay.
-    // Remembered per browser. Preview tool: remove once the values are chosen. Off unless the URL has ?overlay=true.
+    // Defaults are set in the markup. The panel shows only with ?overlay=true (values saved per browser).
     (function(){
-      var KEY = 'rw-hero-tune-v2';
+      var KEY = 'rw-hero-tune-v3';
       var $ = function(id){ return document.getElementById(id); };
       var on = $('tune-on'), sc = $('tune-scrim'), br = $('tune-bright');
       var cOn = $('clr-on'), cShape = $('clr-shape'), cW = $('clr-w'), cH = $('clr-h'), cX = $('clr-x'), cY = $('clr-y'), cF = $('clr-f');
       var box = $('hero-tune'), root = document.documentElement;
       if (!on || !sc || !br || !cOn) return;
-      // Only shown (and only applied) when the URL has ?overlay=true, e.g. reallywise.html?overlay=true
-      if (!/[?&]overlay=true(&|#|$)/.test(location.search + location.hash)) return;
-      box.hidden = false;
+      // The defaults below (the markup values) always apply. The panel, and any values saved from it,
+      // are only used when the URL has ?overlay=true, e.g. reallywise.html?overlay=true
+      var tune = /[?&]overlay=true(&|#|$)/.test(location.search + location.hash);
+      box.hidden = !tune;
       var outs = { 'tune-scrim': 'tune-scrim-out', 'tune-bright': 'tune-bright-out', 'clr-w': 'clr-w-out', 'clr-h': 'clr-h-out', 'clr-x': 'clr-x-out', 'clr-f': 'clr-f-out', 'clr-y': 'clr-y-out' };
       function heroBox(){
         var h = document.querySelector('.hero-slide.is-active') || document.querySelector('.hero-slide');
@@ -2204,9 +2205,9 @@
         Object.keys(outs).forEach(function(k){ var o = $(outs[k]); if (o) o.textContent = $(k).value + '%'; });
         box.classList.toggle('is-off', !enabled);
         box.classList.toggle('clear-off', !clear);
-        try { localStorage.setItem(KEY, JSON.stringify({ on: enabled, scrim: +sc.value, bright: +br.value, clear: clear, shape: cShape.value, w: +cW.value, h: +cH.value, x: +cX.value, y: +cY.value, f: +cF.value })); } catch (e) {}
+        if (tune) try { localStorage.setItem(KEY, JSON.stringify({ on: enabled, scrim: +sc.value, bright: +br.value, clear: clear, shape: cShape.value, w: +cW.value, h: +cH.value, x: +cX.value, y: +cY.value, f: +cF.value })); } catch (e) {}
       }
-      try {
+      if (tune) try {
         var v = JSON.parse(localStorage.getItem(KEY) || 'null');
         if (v) { on.checked = v.on !== false; sc.value = v.scrim; br.value = v.bright; cOn.checked = !!v.clear; cShape.value = v.shape; cW.value = v.w; cH.value = v.h; cX.value = v.x; cY.value = v.y; cF.value = v.f; }
       } catch (e) {}
