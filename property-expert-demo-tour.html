@@ -1493,16 +1493,8 @@
     }
     hobBtn.addEventListener('click', startTour1);
     hobTip.addEventListener('click', startTour1);
-    if (/[#&]tour=1\b/.test(location.hash)) {
-      // opened as a guided demo: start the tour straight away
-      setTimeout(startTour1, 900);
-    } else if (!tourSeen()) {
-      setTimeout(function(){
-        if (PETour.active()) return;
-        hobBtn.classList.add('is-nudge'); hobTip.hidden = false;
-        setTimeout(function(){ hobBtn.classList.remove('is-nudge'); hobTip.hidden = true; }, 20000);
-      }, 1500);
-    }
+    // This page opens straight into the tour, whether or not it was seen before
+    setTimeout(startTour1, 700);
   </script>
 </body>
 </html>
