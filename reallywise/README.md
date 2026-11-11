@@ -21,9 +21,9 @@ Defaults used for the landing page, change them in one place if the answer diffe
 | Path | What it is | Copied from |
 |---|---|---|
 | `brand/ReallyWise-Brand-Guideline.html` | Brand guideline v1.0 (11/2026) | uploaded by the team |
-| `brand/Really_Wise_Logo.svg` | Primary logo (new version with the green dot, Nov 10) | uploaded by the team |
-| `brand/reallywise-app-icon.svg`, `brand/reallywise-favicon.svg` | New app icon (W and i on a white rounded square), used as favicon and apple-touch icon | uploaded by the team (Nov 10) |
-| `brand/reallywise-logo-primary.png`, `-reversed.png`, `-mono.png` | Logo PNGs rendered from the new logo SVG. Reversed and mono are derived by recoloring, not supplied by the brand team | rendered from `Really_Wise_Logo.svg` |
+| `brand/Really_Wise_Logo.svg`, `brand/Really_Wise_Logo_white.svg` | Primary logo and its white version (chat-house mark with "reallyWise", Nov 11) | uploaded by the team |
+| `brand/reallywise-app-icon.svg`, `brand/reallywise-favicon.svg` | App icon (W and i on a white rounded square) from the previous logo round, used as favicon and apple-touch icon. Not yet redrawn for the new mark | uploaded by the team (Nov 10) |
+| `brand/reallywise-logo-primary.png`, `-reversed.png`, `-mono.png` | Logo PNGs rendered from the logo SVGs. Reversed comes from the white SVG; mono is derived by recoloring | rendered from `Really_Wise_Logo.svg` |
 | `reallywise.html` | Product landing page | `realsalex-v2.html` (renamed) |
 | `nav.js`, `footer.js` | Shared nav and footer web components | `nav.js`, `footer.js` |
 | `property-expert-demo*.html`, `property-expert-admin-demo*.html` | Six demo pages: notification flow, long Hob tour, short tour, each with its admin page | same names at the root |
