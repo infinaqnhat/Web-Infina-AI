@@ -616,7 +616,7 @@
       </div>
     </div>
     </div>
-    <div class="hero-tune" id="hero-tune" role="group" aria-label="Hero image darkening">
+    <div class="hero-tune" id="hero-tune" hidden role="group" aria-label="Hero image darkening">
       <div class="hero-tune-row">
         <b>Hero overlay</b>
         <label class="hero-tune-switch"><input type="checkbox" id="tune-on" checked aria-label="Overlay on or off"><i></i></label>
@@ -2165,7 +2165,7 @@
   </script>
   <script>
     // Hero tuning control: overlay on/off and strength, photo brightness, and a clear area cut out of the overlay.
-    // Remembered per browser. Preview tool: remove once the values are chosen.
+    // Remembered per browser. Preview tool: remove once the values are chosen. Off unless the URL has ?overlay=true.
     (function(){
       var KEY = 'rw-hero-tune-v2';
       var $ = function(id){ return document.getElementById(id); };
@@ -2173,6 +2173,9 @@
       var cOn = $('clr-on'), cShape = $('clr-shape'), cW = $('clr-w'), cH = $('clr-h'), cX = $('clr-x'), cY = $('clr-y'), cF = $('clr-f');
       var box = $('hero-tune'), root = document.documentElement;
       if (!on || !sc || !br || !cOn) return;
+      // Only shown (and only applied) when the URL has ?overlay=true, e.g. reallywise.html?overlay=true
+      if (!/[?&]overlay=true(&|#|$)/.test(location.search + location.hash)) return;
+      box.hidden = false;
       var outs = { 'tune-scrim': 'tune-scrim-out', 'tune-bright': 'tune-bright-out', 'clr-w': 'clr-w-out', 'clr-h': 'clr-h-out', 'clr-x': 'clr-x-out', 'clr-f': 'clr-f-out', 'clr-y': 'clr-y-out' };
       function heroBox(){
         var h = document.querySelector('.hero-slide.is-active') || document.querySelector('.hero-slide');
