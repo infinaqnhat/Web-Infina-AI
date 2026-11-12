@@ -4,7 +4,7 @@
   // ReallyWise site footer. Attribute: links = JSON array of { text, href, dataSlide }
   var CSS = [
     'rw-footer { display: contents; }',
-    'footer.rw-footer { background: #fff; padding: 48px 0; border-top: 1px solid var(--border, #DCE1EC); }',
+    'footer.rw-footer { background: #fff; padding: 48px 0; border-top: 1px solid var(--border, #DBE1EE); }',
     'footer.rw-footer .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; max-width: 1200px; margin: 0 auto; padding: 0 32px; }',
     'footer.rw-footer .footer-logo { display: flex; align-items: center; }',
     'footer.rw-footer .footer-logo img { height: 32px; width: auto; display: block; }',

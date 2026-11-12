@@ -31,18 +31,19 @@
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an AI assistant for real estate agents?", "acceptedAnswer": {"@type": "Answer", "text": "It is software that answers buyers' questions about a listing at any hour, using the listing's own data such as the MLS record, seller disclosure, inspection report and public records. ReallyWise is built so the agent stays at the center of the relationship: it answers the routine questions and tells you when a buyer is ready for a conversation."}}, {"@type": "Question", "name": "How does ReallyWise work?", "acceptedAnswer": {"@type": "Answer", "text": "Paste a link to your listing and ReallyWise creates a private page with an AI Property Expert for that home. Buyers open it from a link or a QR code on a yard sign or brochure, ask questions, and get answers that show their sources. You see what they asked and where your attention can help."}}, {"@type": "Question", "name": "Does the AI assistant replace the agent?", "acceptedAnswer": {"@type": "Answer", "text": "No. Property Expert does not replace you, it extends you. The agent sees every question and can join the conversation at any point."}}, {"@type": "Question", "name": "Does it make up answers?", "acceptedAnswer": {"@type": "Answer", "text": "It is grounded in your listing data and shows the source for each answer. If the answer is not in the data, it says so."}}, {"@type": "Question", "name": "Do I need a CRM or a long setup?", "acceptedAnswer": {"@type": "Answer", "text": "No. There is no CRM connection and no complicated setup. You can start with one listing and create your first advisor in under a minute."}}, {"@type": "Question", "name": "Do buyers need to log in?", "acceptedAnswer": {"@type": "Answer", "text": "No. Buyers get answers instantly with no login, and every buyer gets a private conversation."}}]}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;1,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Montserrat:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:#ffffff; --surface:#F5F7FB; --sand:#F6F2EA;
+      --bg:#ffffff; --surface:#F4F6FB; --sand:#F6F2EA;
       --fg:#012976; --fg-secondary:#4E5878; --muted:#4E5878;
-      --border:#DCE1EC; --border-light:#E4E9F3;
+      --border:#DBE1EE; --border-light:#E4E9F3;
       --navy-900:#012976; --navy-700:#013A9E; --navy-500:#33599F; --navy-100:#E4E9F3;
       --green-500:#0BB563; --green-700:#067A43; --green-100:#E2F6EC;
       --danger:#C23A2E; --warning:#A85F00;
       --accent:#012976; --accent-dark:#011F59; --accent-light:rgba(1,41,118,.06);
       --font-body:'DM Sans','Segoe UI',system-ui,sans-serif;
-      --font-head:'Montserrat','Avenir Next',Arial,sans-serif;
+      --font-head:'Inter','Helvetica Neue',Arial,sans-serif;
+      --font-accent:'Montserrat','Avenir Next',Arial,sans-serif;
       --font-mono:'DM Mono',ui-monospace,Menlo,monospace;
       --shadow:0 1px 2px rgba(1,41,118,.06), 0 6px 20px rgba(1,41,118,.08);
       --section-gap:clamp(48px,6vw,72px); --radius:16px;
@@ -53,13 +54,14 @@
     a { color:inherit; text-decoration:none; }
     img { max-width:100%; height:auto; display:block; }
     h1, h2, h3, h4 { font-family:var(--font-head); }
+    button, input, select, textarea { font-family:inherit; }
     :focus-visible { outline:2px solid var(--green-700); outline-offset:2px; }
     .container { max-width:1160px; margin:0 auto; padding:0 32px; }
     @media (max-width:600px){ .container{ padding:0 20px; } }
 
     .section { padding:var(--section-gap) 0; }
     .section-head { text-align:center; max-width:720px; margin:0 auto 56px; }
-    .section-head h2 { font-size:clamp(28px,3.2vw,38px); font-weight:800; letter-spacing:-.01em; line-height:1.2; color:var(--accent); }
+    .section-head h2 { font-size:clamp(28px,3.2vw,38px); font-weight:800; letter-spacing:-.012em; line-height:1.2; color:var(--accent); }
     .section-head p { font-size:17px; color:var(--muted); margin-top:16px; line-height:1.7; }
     @keyframes gradient-shift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
     h2 .accent, .final-cta h2 .accent { background:linear-gradient(135deg,var(--green-700) 0%,#3FD08A 50%,var(--green-700) 100%); background-size:200% 200%; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; animation:gradient-shift 4s ease infinite; }
@@ -83,7 +85,7 @@
     .hero-scrim { opacity:var(--hero-scrim,1); position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(0,10,35,.225) 0%, rgba(0,10,35,.04) 14%, rgba(0,10,35,.02) 38%, rgba(0,10,35,.225) 100%), linear-gradient(90deg, rgba(0,8,28,.34) 0%, rgba(0,8,28,.19) 55%, rgba(0,8,28,0) 88%); }
     .hero-copy { max-width:640px; text-align:left; }
     .hero-video-section { padding-top:0; display:none; }
-    .hero h1, .hero h2.hero-title { font-size:clamp(32px,4.4vw,52px); font-weight:800; letter-spacing:-.01em; line-height:1.12; color:#fff; }
+    .hero h1, .hero h2.hero-title { font-size:clamp(32px,4.4vw,52px); font-weight:800; letter-spacing:-.012em; line-height:1.12; color:#fff; }
     .hero h1 .accent, .hero h2.hero-title .accent { background:none; -webkit-text-fill-color:#6FE3A8; animation:none; color:#6FE3A8; }
     .hero h1, .hero h2.hero-title { text-shadow:0 1px 3px rgba(1,41,118,.55), 0 2px 18px rgba(1,41,118,.35); }
     .mobile-break { display:none; }
@@ -455,13 +457,13 @@
     .intent-highest { position:absolute; top:-38px; right:6px; display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; color:var(--green-700); }
     .intent-highest-mobile { display:none; }
     .intent-funnel { display:flex; flex-direction:row; align-items:flex-end; gap:0; }
-    .intent-step { position:relative; min-width:0; display:flex; flex-direction:column; border-radius:16px 16px 0 0; padding:22px 20px 34px; flex-basis:0; }
+    .intent-step { position:relative; min-width:0; display:flex; flex-direction:column; border-radius:16px 16px 6px 6px; padding:22px 20px 34px; flex-basis:0; }
     .intent-step.lvl-1 { flex-grow:1.15; height:220px; }
     .intent-step.lvl-2 { flex-grow:1.05; height:280px; }
     .intent-step.lvl-3 { flex-grow:1; height:340px; }
     .intent-step.lvl-4 { flex-grow:.95; height:400px; }
     .intent-divider { display:block; width:32px; height:2px; border-radius:2px; background:currentColor; opacity:.35; margin:2px 0 14px; }
-    .intent-count { font-family:var(--font-head); font-size:30px; font-weight:800; letter-spacing:-.01em; line-height:1; margin-bottom:10px; }
+    .intent-count { font-family:var(--font-accent); font-size:30px; font-weight:800; letter-spacing:-.01em; line-height:1; margin-bottom:10px; }
     .intent-step.lvl-4 .intent-count { font-size:24px; white-space:nowrap; }
     .intent-stage { display:block; font-size:13px; font-weight:600; margin-bottom:10px; opacity:.8; }
     .intent-example { font-size:14.5px; line-height:1.5; }
@@ -477,7 +479,7 @@
       .intent-funnel { flex-direction:column; max-width:680px; align-items:stretch; padding-left:34px; position:relative; }
       .intent-step { flex:none; height:auto !important; border-radius:16px; padding:22px 60px 22px 24px; margin-bottom:26px; }
       .intent-step:last-child { margin-bottom:0; }
-      .intent-step::before { content:''; position:absolute; left:-30px; top:26px; width:14px; height:14px; border-radius:50%; box-shadow:0 0 0 4px #F5F7FB; z-index:2; }
+      .intent-step::before { content:''; position:absolute; left:-30px; top:26px; width:14px; height:14px; border-radius:50%; box-shadow:0 0 0 4px #F4F6FB; z-index:2; }
       .intent-step:not(:last-child)::after { content:''; position:absolute; left:-24px; top:26px; width:2px; height:calc(100% + 26px); background:var(--border); z-index:1; }
       .intent-step.lvl-1::before { background:var(--border); }
       .intent-step.lvl-2::before { background:var(--navy-500); }
@@ -1115,7 +1117,7 @@
         <div class="trust-grid">
           <div class="reveal">
             <span class="eyebrow">An extension of you, not a replacement</span>
-            <h2 style="font-size:clamp(28px,3.6vw,42px); font-weight:800; letter-spacing:-.02em; line-height:1.15; color:var(--accent);">Your client. Your relationship. <span class="accent">Your data.</span></h2>
+            <h2 style="font-size:clamp(28px,3.6vw,42px); font-weight:800; letter-spacing:-.012em; line-height:1.15; color:var(--accent);">Your client. Your relationship. <span class="accent">Your data.</span></h2>
             <ul class="trust-list">
               <li><span class="dot"></span><span class="tx">The advisor cites its sources.</span></li>
               <li><span class="dot"></span><span class="tx">It does not invent answers when information is unavailable.</span></li>
