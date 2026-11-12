@@ -10,7 +10,7 @@
     'footer.rw-footer .footer-logo img { height: 32px; width: auto; display: block; }',
     'footer.rw-footer .footer-links { display: flex; gap: 32px; }',
     'footer.rw-footer .footer-links a { font-family: var(--font-body, "DM Sans", system-ui, sans-serif); font-size: 14px; font-weight: 500; color: var(--fg-secondary, #4E5878); text-decoration: none; transition: color .2s; }',
-    'footer.rw-footer .footer-links a:hover { color: var(--accent, #071843); }',
+    'footer.rw-footer .footer-links a:hover { color: var(--accent, #012976); }',
     'footer.rw-footer .footer-copy { font-family: var(--font-body, "DM Sans", system-ui, sans-serif); font-size: 13px; color: var(--fg-secondary, #4E5878); }',
     '@media (max-width: 768px) {',
     '  footer.rw-footer .footer-inner { flex-direction: column; text-align: center; padding: 0 16px; }',
