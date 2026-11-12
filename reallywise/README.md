@@ -20,9 +20,9 @@ Defaults used for the landing page, change them in one place if the answer diffe
 ## Layout
 | Path | What it is | Copied from |
 |---|---|---|
-| `brand/ReallyWise-Brand-Guideline.html` | Brand guideline v1.0 (11/2026) | uploaded by the team |
+| `brand/ReallyWise-Brand-Guideline.html` | Brand guideline v2 (replaces v1; App icon is now the white-background version, the navy one is "Bản nền màu") | uploaded by the team |
 | `brand/Really_Wise_Logo.svg`, `brand/Really_Wise_Logo_white.svg` | Primary logo and its white version (chat-house mark with "reallyWise", Nov 11) | uploaded by the team |
-| `brand/reallywise-app-icon.svg`, `brand/reallywise-favicon.svg` | App icon (W and i on a white rounded square) from the previous logo round, used as favicon and apple-touch icon. Not yet redrawn for the new mark | uploaded by the team (Nov 10) |
+| `brand/reallywise-app-icon.svg`, `brand/reallywise-app-icon-color.svg`, `brand/reallywise-favicon.svg` | Chat-bubble app icon: white-background version (primary), navy-background version, and the 16px favicon. Extracted from the guideline v2; the favicon and apple-touch icon on the landing page use these | guideline v2 |
 | `brand/reallywise-logo-primary.png`, `-reversed.png`, `-mono.png` | Logo PNGs rendered from the logo SVGs. Reversed comes from the white SVG; mono is derived by recoloring | rendered from `Really_Wise_Logo.svg` |
 | `reallywise.html` | Product landing page | `realsalex-v2.html` (renamed) |
 | `nav.js`, `footer.js` | Shared nav and footer web components | `nav.js`, `footer.js` |
