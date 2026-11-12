@@ -8,20 +8,26 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Property Expert AI, demo for 123 Main Street</title>
+  <meta name="theme-color" content="#012976">
+  <link rel="icon" type="image/svg+xml" href="brand/reallywise-favicon.svg">
+  <link rel="apple-touch-icon" href="brand/reallywise-app-icon.svg">
+  <title>ReallyWise: Property Expert demo for 123 Main Street</title>
   <meta name="description" content="A demo of Property Expert, a 24/7 AI expert for a single property that answers buyer questions using listing details, disclosures, inspection reports and public records.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Montserrat:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:#ffffff; --surface:#fafafa; --fg:#1a1f2e; --fg-secondary:#334155; --muted:#64748b;
-      --border:#e5e7eb; --border-light:#f2f2f2;
-      --accent:#001F5C; --accent-dark:#001340; --accent-light:rgba(0,31,92,.08);
-      --blue:#1863dc; --blue-light:rgba(24,99,220,.08);
-      --green:#0e9f61; --green-light:rgba(16,163,102,.12);
-      --amber:#b8790f; --amber-light:rgba(217,146,26,.14);
-      --font-body:'Be Vietnam Pro',-apple-system,system-ui,sans-serif;
+      --bg:#ffffff; --surface:#F4F6FB; --sand:#F6F2EA; --fg:#012976; --fg-secondary:#4E5878; --muted:#4E5878;
+      --border:#DBE1EE; --border-light:#E4E9F3;
+      --navy-900:#012976; --navy-700:#013A9E; --navy-500:#33599F; --navy-100:#E4E9F3;
+      --green-500:#0BB563; --green-700:#067A43; --green-100:#E2F6EC; --danger:#C23A2E; --warning:#A85F00; --warning-light:rgba(168,95,0,.14);
+      --accent:#012976; --accent-dark:#011F59; --accent-light:rgba(1,41,118,.06);
+      --font-body:'DM Sans','Segoe UI',system-ui,sans-serif;
+      --font-head:'Inter','Helvetica Neue',Arial,sans-serif;
+      --font-accent:'Montserrat','Avenir Next',Arial,sans-serif;
+      --font-mono:'DM Mono',ui-monospace,Menlo,monospace;
+      --shadow:0 1px 2px rgba(1,41,118,.06), 0 6px 20px rgba(1,41,118,.08);
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:var(--font-body); background:var(--surface); color:var(--fg); line-height:1.55; -webkit-font-smoothing:antialiased; }
@@ -36,51 +42,51 @@
     .card { background:#fff; border:1px solid var(--border-light); border-radius:16px; }
 
     /* ===== Talk to agent (lives in the chat header) ===== */
-    .talk-agent { display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--border); border-radius:999px; padding:9px 16px; font-size:13px; font-weight:700; color:var(--fg); white-space:nowrap; flex-shrink:0; }
-    .talk-agent svg { color:var(--blue); flex-shrink:0; }
-    .talk-agent:hover { border-color:var(--blue); background:var(--blue-light); }
+    .talk-agent { display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:9px 16px; font-size:13px; font-weight:700; color:var(--fg); white-space:nowrap; flex-shrink:0; }
+    .talk-agent svg { color:var(--green-700); flex-shrink:0; }
+    .talk-agent:hover { border-color:var(--green-700); background:var(--green-100); }
 
     /* ===== Left sidebar ===== */
     .pe-header { display:flex; align-items:center; gap:12px; padding:18px; }
-    .pe-header-icon { width:40px; height:40px; border-radius:10px; background:var(--blue-light); color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .pe-header-title { display:flex; align-items:center; gap:8px; font-size:16px; font-weight:800; color:var(--accent); }
-    .pe-badge { font-size:10.5px; font-weight:800; letter-spacing:.04em; background:var(--accent); color:#fff; padding:3px 7px; border-radius:6px; }
+    .pe-header-icon { width:40px; height:40px; border-radius:10px; background:var(--green-100); color:var(--green-700); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .pe-header-title { display:flex; align-items:center; gap:8px; font-size:16px; font-weight:700; color:var(--accent); }
+    .pe-badge { font-size:10.5px; font-weight:700; background:var(--accent); color:#fff; padding:3px 7px; border-radius:6px; }
     .pe-header-sub { font-size:12.5px; color:var(--muted); margin-top:2px; }
 
     .gallery { position:relative; margin:0 18px 18px; border-radius:12px; overflow:hidden; aspect-ratio:4/3; background:#000; }
     .gallery img { width:100%; height:100%; object-fit:cover; }
-    .gallery-nav { position:absolute; top:50%; transform:translateY(-50%); width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.9); border:0; display:flex; align-items:center; justify-content:center; color:var(--fg); box-shadow:0 2px 6px rgba(0,0,0,.2); }
+    .gallery-nav { position:absolute; top:50%; transform:translateY(-50%); width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.9); border:0; display:flex; align-items:center; justify-content:center; color:var(--fg); box-shadow:var(--shadow); }
     .gallery-nav:hover { background:#fff; }
     .gallery-prev { left:10px; }
     .gallery-next { right:10px; }
-    .gallery-count { position:absolute; right:10px; bottom:10px; background:rgba(0,0,0,.55); color:#fff; font-size:11.5px; font-weight:700; padding:4px 9px; border-radius:999px; }
+    .gallery-count { position:absolute; right:10px; bottom:10px; background:rgba(1,41,118,.55); color:#fff; font-size:11.5px; font-weight:700; padding:4px 9px; border-radius:999px; }
 
     .pe-summary { padding:0 18px 18px; }
     .pe-summary-head { display:flex; align-items:center; justify-content:space-between; gap:10px; }
-    .pe-summary-head h1 { font-size:18px; font-weight:800; color:var(--accent); }
-    .pe-forsale { font-size:11px; font-weight:800; background:var(--green-light); color:var(--green); padding:4px 9px; border-radius:999px; flex-shrink:0; }
+    .pe-summary-head h1 { font-size:18px; font-weight:700; color:var(--accent); }
+    .pe-forsale { font-size:11px; font-weight:700; background:var(--green-100); color:var(--green-700); padding:4px 9px; border-radius:999px; flex-shrink:0; }
     .pe-address { font-size:13px; color:var(--muted); margin-top:3px; }
-    .pe-price { font-size:24px; font-weight:800; color:var(--fg); margin-top:10px; }
+    .pe-price { font-size:24px; font-weight:700; color:var(--fg); margin-top:10px; }
     .pe-stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; }
     .pe-stat { display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--fg-secondary); }
-    .pe-stat svg { color:var(--blue); flex-shrink:0; }
+    .pe-stat svg { color:var(--green-700); flex-shrink:0; }
     .pe-stat b { display:block; font-size:14px; color:var(--fg); font-weight:700; }
 
     .pe-nav { display:flex; flex-direction:column; padding:8px; border-top:1px solid var(--border-light); }
     .pe-nav button { display:flex; align-items:center; gap:11px; padding:11px 12px; border:0; background:none; border-radius:10px; font-size:13.5px; font-weight:600; color:var(--fg-secondary); text-align:left; width:100%; }
     .pe-nav button svg { color:var(--muted); flex-shrink:0; }
     .pe-nav button:hover { background:var(--surface); }
-    .pe-nav button.is-active { background:var(--blue-light); color:var(--blue); }
-    .pe-nav button.is-active svg { color:var(--blue); }
+    .pe-nav button.is-active { background:var(--green-100); color:var(--green-700); }
+    .pe-nav button.is-active svg { color:var(--green-700); }
 
     /* ===== Center chat ===== */
     .chat-card { display:flex; flex-direction:column; height:calc(100vh - 100px); min-height:560px; }
     .chat-header { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 22px; border-bottom:1px solid var(--border-light); flex-shrink:0; }
     .chat-header-who { display:flex; align-items:center; gap:11px; min-width:0; }
-    .chat-header-avatar { width:38px; height:38px; border-radius:50%; background:var(--blue-light); color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .chat-header-who b { display:block; font-size:15px; font-weight:800; color:var(--accent); }
+    .chat-header-avatar { width:38px; height:38px; border-radius:50%; background:var(--green-100); color:var(--green-700); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .chat-header-who b { display:block; font-size:15px; font-weight:700; color:var(--accent); }
     .chat-status { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted); }
-    .chat-status-dot { width:7px; height:7px; border-radius:50%; background:var(--green); flex-shrink:0; }
+    .chat-status-dot { width:7px; height:7px; border-radius:50%; background:var(--green-700); flex-shrink:0; }
     @media (max-width:520px){
       .chat-header { padding:12px 16px; }
       .talk-agent span { display:none; }
@@ -91,7 +97,7 @@
     .msg { display:flex; gap:12px; max-width:88%; }
     .msg-bot { align-self:flex-start; }
     .msg-user { align-self:flex-end; flex-direction:row-reverse; }
-    .msg-avatar { width:36px; height:36px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:var(--blue-light); color:var(--blue); }
+    .msg-avatar { width:36px; height:36px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:var(--green-100); color:var(--green-700); }
     .msg-avatar img { width:100%; height:100%; border-radius:50%; object-fit:cover; }
     .msg-body { display:flex; flex-direction:column; gap:4px; min-width:0; }
     .msg-bubble { font-size:14.5px; line-height:1.6; }
@@ -101,8 +107,8 @@
     .msg-user .msg-time { text-align:right; }
 
     .persona-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
-    .persona-pill { padding:9px 15px; border-radius:999px; border:1.5px solid var(--border); background:#fff; font-size:13px; font-weight:600; color:var(--fg); }
-    .persona-pill:hover { border-color:var(--blue); }
+    .persona-pill { padding:9px 15px; border-radius:6px; border:1.5px solid var(--border); background:#fff; font-size:13px; font-weight:600; color:var(--fg); }
+    .persona-pill:hover { border-color:var(--green-700); }
     .persona-pill.is-active { background:var(--accent); color:#fff; border-color:var(--accent); }
     .persona-label { font-size:13.5px; font-weight:700; margin-top:14px; margin-bottom:2px; display:block; }
 
@@ -111,9 +117,9 @@
     .insight-card { display:flex; gap:12px; padding:14px 0; border-top:1px solid var(--border-light); }
     .insight-card:first-child { border-top:none; padding-top:0; }
     .insight-icon { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .insight-icon.is-ok { background:var(--green-light); color:var(--green); }
-    .insight-icon.is-warn { background:var(--amber-light); color:var(--amber); }
-    .insight-icon.is-info { background:var(--blue-light); color:var(--blue); }
+    .insight-icon.is-ok { background:var(--green-100); color:var(--green-700); }
+    .insight-icon.is-warn { background:var(--warning-light); color:var(--warning); }
+    .insight-icon.is-info { background:var(--green-100); color:var(--green-700); }
     .insight-body b { display:block; font-size:14px; color:var(--fg); margin-bottom:3px; }
     .insight-body p { font-size:13px; color:var(--fg-secondary); line-height:1.55; margin-bottom:10px; }
     .insight-sources { display:flex; flex-wrap:wrap; gap:8px; }
@@ -126,13 +132,13 @@
 
     .chip-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
     .chip-row + .chip-row { margin-top:8px; }
-    .follow-chip { padding:8px 14px; border-radius:999px; border:1px solid var(--border); background:#fff; font-size:13px; font-weight:600; color:var(--blue); }
-    .follow-chip:hover { border-color:var(--blue); background:var(--blue-light); }
+    .follow-chip { padding:8px 14px; border-radius:6px; border:1px solid var(--border); background:#fff; font-size:13px; font-weight:600; color:var(--green-700); }
+    .follow-chip:hover { border-color:var(--green-700); background:var(--green-100); }
 
     .chat-input-row { display:flex; align-items:center; gap:10px; padding:16px 22px; border-top:1px solid var(--border-light); }
     .chat-input-row svg { color:var(--muted); flex-shrink:0; }
-    .chat-input-row input { flex:1; min-width:0; border:1px solid var(--border); border-radius:999px; padding:11px 18px; font-size:14px; }
-    .chat-input-row input:focus { outline:none; border-color:var(--blue); }
+    .chat-input-row input { flex:1; min-width:0; border:1px solid var(--border); border-radius:10px; padding:11px 18px; font-size:14px; }
+    .chat-input-row input:focus { outline:none; border-color:var(--green-700); }
     .chat-send { width:38px; height:38px; border-radius:50%; background:var(--accent); color:#fff; border:0; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .chat-send:hover { background:var(--accent-dark); }
 
@@ -140,9 +146,9 @@
     .app-right { display:flex; flex-direction:column; gap:16px; }
     .side-panel { padding:18px; }
     .side-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:14px; }
-    .side-head-left { display:flex; align-items:center; gap:9px; font-size:14.5px; font-weight:800; color:var(--accent); }
-    .side-head-left svg { color:var(--blue); flex-shrink:0; }
-    .side-head a { font-size:12.5px; font-weight:700; color:var(--blue); }
+    .side-head-left { display:flex; align-items:center; gap:9px; font-size:14.5px; font-weight:700; color:var(--accent); }
+    .side-head-left svg { color:var(--green-700); flex-shrink:0; }
+    .side-head a { font-size:12.5px; font-weight:700; color:var(--green-700); }
 
     .insight-mini { display:flex; gap:11px; padding:10px 0; border-top:1px solid var(--border-light); }
     .insight-mini:first-child { border-top:none; padding-top:0; }
@@ -158,7 +164,7 @@
 
     .step-row { display:flex; align-items:center; gap:11px; padding:10px 0; border-top:1px solid var(--border-light); }
     .step-row:first-child { border-top:none; padding-top:0; }
-    .step-icon { width:30px; height:30px; border-radius:8px; background:var(--blue-light); color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .step-icon { width:30px; height:30px; border-radius:8px; background:var(--green-100); color:var(--green-700); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .step-row b { display:block; font-size:13px; color:var(--fg); }
     .step-row span { font-size:11.5px; color:var(--muted); }
     .step-chevron { margin-left:auto; color:var(--muted); flex-shrink:0; }
@@ -208,26 +214,26 @@
       .m-nav-btn { width:34px; height:34px; border-radius:50%; border:0; background:none; display:flex; align-items:center; justify-content:center; color:var(--fg); flex-shrink:0; }
       .m-nav-btn:hover { background:var(--surface); }
       .m-nav-title { flex:1; min-width:0; text-align:center; }
-      .m-nav-title b { display:block; font-size:15px; font-weight:800; color:var(--accent); }
+      .m-nav-title b { display:block; font-size:15px; font-weight:700; color:var(--accent); }
       .m-nav-title span { display:block; font-size:12px; color:var(--muted); }
 
       .m-hero { flex-shrink:0; border-bottom:1px solid var(--border-light); }
       .m-hero-photo { position:relative; aspect-ratio:16/10; background:#000; }
       .m-hero-photo img { width:100%; height:100%; object-fit:cover; }
-      .m-hero-count { position:absolute; right:10px; bottom:10px; background:rgba(0,0,0,.55); color:#fff; font-size:11.5px; font-weight:700; padding:4px 9px; border-radius:999px; }
+      .m-hero-count { position:absolute; right:10px; bottom:10px; background:rgba(1,41,118,.55); color:#fff; font-size:11.5px; font-weight:700; padding:4px 9px; border-radius:999px; }
       .m-price-row { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 16px 10px; }
-      .m-price-row b { font-size:24px; font-weight:800; color:var(--fg); }
+      .m-price-row b { font-size:24px; font-weight:700; color:var(--fg); }
       .m-stats { display:flex; gap:14px; padding:0 16px 14px; }
       .m-stat { display:flex; align-items:center; gap:7px; font-size:12px; color:var(--muted); min-width:0; }
-      .m-stat svg { color:var(--blue); flex-shrink:0; }
+      .m-stat svg { color:var(--green-700); flex-shrink:0; }
       .m-stat b { display:block; font-size:13.5px; color:var(--fg); font-weight:700; }
 
       /* The hero scrolls away with the thread; the tab bar then pins to the top */
       .m-tabs { position:sticky; top:0; z-index:5; display:flex; gap:4px; padding:8px 10px; border-bottom:1px solid var(--border-light); background:#fff; flex-shrink:0; overflow-x:auto; }
       .m-tab { flex:1; min-width:64px; display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 4px; border:0; background:none; border-radius:10px; font-size:11.5px; font-weight:700; color:var(--muted); }
       .m-tab svg { color:var(--muted); }
-      .m-tab.is-active { background:var(--blue-light); color:var(--blue); }
-      .m-tab.is-active svg { color:var(--blue); }
+      .m-tab.is-active { background:var(--green-100); color:var(--green-700); }
+      .m-tab.is-active svg { color:var(--green-700); }
 
       body.is-chatting .m-hero { display:none; }
       body:not(.is-chatting) .chip-row { display:none; }
@@ -242,8 +248,8 @@
       .insight-wrap { padding:15px; }
       .chat-input-row { padding:12px 14px; }
 
-      .m-persona-chip { display:inline-flex; align-items:center; gap:8px; align-self:flex-start; background:#fff; border:1.5px solid var(--border); border-radius:999px; padding:7px 13px; font-size:13px; font-weight:700; color:var(--fg); }
-      .m-persona-chip svg:first-child { color:var(--blue); flex-shrink:0; }
+      .m-persona-chip { display:inline-flex; align-items:center; gap:8px; align-self:flex-start; background:#fff; border:1.5px solid var(--border); border-radius:6px; padding:7px 13px; font-size:13px; font-weight:700; color:var(--fg); }
+      .m-persona-chip svg:first-child { color:var(--green-700); flex-shrink:0; }
       .m-persona-chip svg:last-child { color:var(--muted); flex-shrink:0; }
       .m-persona-chip[hidden] { display:none; }
 
@@ -251,31 +257,31 @@
       .m-persona-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:10px; }
       .m-persona-tile { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; padding:14px 8px; border:1.5px solid var(--border); border-radius:12px; background:#fff; font-size:12.5px; font-weight:700; color:var(--fg); text-align:center; line-height:1.3; }
       .m-persona-tile svg { color:var(--muted); }
-      .m-persona-tile.is-active { border-color:var(--blue); background:var(--blue-light); color:var(--blue); }
-      .m-persona-tile.is-active svg { color:var(--blue); }
+      .m-persona-tile.is-active { border-color:var(--green-700); background:var(--green-100); color:var(--green-700); }
+      .m-persona-tile.is-active svg { color:var(--green-700); }
 
       .m-suggest-label { display:block; font-size:13.5px; font-weight:700; margin:16px 0 8px; }
       .m-suggest-list { display:flex; flex-direction:column; gap:8px; }
-      .m-suggest-row { display:flex; align-items:center; gap:10px; width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; background:#fff; font-size:13px; font-weight:600; color:var(--blue); text-align:left; }
+      .m-suggest-row { display:flex; align-items:center; gap:10px; width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; background:#fff; font-size:13px; font-weight:600; color:var(--green-700); text-align:left; }
       .m-suggest-row span { flex:1; min-width:0; }
       .m-suggest-row svg { color:var(--muted); flex-shrink:0; }
-      .m-suggest-row:hover { border-color:var(--blue); background:var(--blue-light); }
+      .m-suggest-row:hover { border-color:var(--green-700); background:var(--green-100); }
     }
 
     /* ===== Lead notification: a stand-in for the OS notification an agent would get ===== */
-    .lead-toast { position:fixed; top:20px; right:20px; z-index:80; width:min(340px, calc(100vw - 32px)); display:flex; align-items:flex-start; gap:6px; padding:12px 12px 12px 14px; border-radius:18px; background:rgba(255,255,255,.94); -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px); border:1px solid rgba(0,0,0,.07); box-shadow:0 18px 44px -14px rgba(0,20,60,.45), 0 2px 6px rgba(0,20,60,.08); opacity:0; transform:translateY(-14px); transition:opacity .28s ease, transform .36s cubic-bezier(.22,1,.36,1); }
+    .lead-toast { position:fixed; top:20px; right:20px; z-index:80; width:min(340px, calc(100vw - 32px)); display:flex; align-items:flex-start; gap:6px; padding:12px 12px 12px 14px; border-radius:18px; background:rgba(255,255,255,.94); -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px); border:1px solid rgba(1,41,118,.07); box-shadow:var(--shadow); opacity:0; transform:translateY(-14px); transition:opacity .28s ease, transform .36s cubic-bezier(.22,1,.36,1); }
     .lead-toast[hidden] { display:none; }
     .lead-toast.is-open { opacity:1; transform:none; }
     .lead-toast-link { flex:1; min-width:0; display:flex; gap:11px; color:inherit; }
-    .lead-toast-icon { flex-shrink:0; width:38px; height:38px; border-radius:10px; background:linear-gradient(140deg, var(--blue), var(--accent)); color:#fff; display:flex; align-items:center; justify-content:center; }
+    .lead-toast-icon { flex-shrink:0; width:38px; height:38px; border-radius:10px; background:none; color:#fff; display:flex; align-items:center; justify-content:center; }
     .lead-toast-body { display:flex; flex-direction:column; gap:2px; min-width:0; }
-    .lead-toast-meta { display:flex; align-items:center; gap:6px; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:700; }
-    .lead-toast-title { font-size:14.5px; font-weight:800; color:var(--accent); line-height:1.3; }
+    .lead-toast-meta { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted); font-weight:600; }
+    .lead-toast-title { font-size:14.5px; font-weight:700; color:var(--accent); line-height:1.3; }
     .lead-toast-text { font-size:13.5px; color:var(--fg-secondary); line-height:1.45; overflow-wrap:anywhere; }
-    .lead-toast-cta { margin-top:4px; font-size:13px; font-weight:800; color:var(--blue); }
+    .lead-toast-cta { margin-top:4px; font-size:13px; font-weight:700; color:var(--green-700); }
     .lead-toast-link:hover .lead-toast-cta { text-decoration:underline; }
-    .lead-toast-close { flex-shrink:0; width:26px; height:26px; border:0; border-radius:50%; background:rgba(0,20,60,.07); color:var(--fg-secondary); display:flex; align-items:center; justify-content:center; }
-    .lead-toast-close:hover { background:rgba(0,20,60,.14); }
+    .lead-toast-close { flex-shrink:0; width:26px; height:26px; border:0; border-radius:50%; background:rgba(1,41,118,.07); color:var(--fg-secondary); display:flex; align-items:center; justify-content:center; }
+    .lead-toast-close:hover { background:rgba(1,41,118,.14); }
     @media (max-width:1100px){
       .lead-toast { top:calc(env(safe-area-inset-top, 0px) + 10px); left:10px; right:10px; width:auto; }
     }
@@ -286,18 +292,18 @@
     .showing-card b { display:block; font-size:14px; color:var(--accent); }
     .showing-card > span { display:block; margin-top:2px; font-size:12.5px; color:var(--muted); }
     .showing-slots { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
-    .slot-btn { padding:9px 14px; border-radius:999px; border:1.5px solid var(--border); background:#fff; font-size:13px; font-weight:700; color:var(--fg); }
-    .slot-btn:hover:not(:disabled) { border-color:var(--blue); background:var(--blue-light); color:var(--blue); }
+    .slot-btn { padding:9px 14px; border-radius:6px; border:1.5px solid var(--border); background:#fff; font-size:13px; font-weight:700; color:var(--fg); }
+    .slot-btn:hover:not(:disabled) { border-color:var(--green-700); background:var(--green-100); color:var(--green-700); }
     .slot-btn:disabled { cursor:default; opacity:.55; }
     .slot-btn.is-picked { opacity:1; background:var(--accent); border-color:var(--accent); color:#fff; }
 
-    /* Next Steps rows that act like buttons */
+    /* Next steps rows that act like buttons */
     .step-row.is-action { cursor:pointer; border-radius:10px; margin:0 -8px; padding-left:8px; padding-right:8px; transition:background .15s; }
     .step-row.is-action:hover { background:var(--surface); }
-    .step-row.is-action:focus-visible { outline:2px solid var(--blue); outline-offset:1px; }
+    .step-row.is-action:focus-visible { outline:2px solid var(--green-700); outline-offset:1px; }
 
     /* ===== Bottom sheets ===== */
-    .sheet-backdrop { position:fixed; inset:0; z-index:60; background:rgba(15,23,42,.45); display:flex; align-items:flex-end; justify-content:center; animation:fade-in .2s ease; }
+    .sheet-backdrop { position:fixed; inset:0; z-index:60; background:rgba(1,41,118,.45); display:flex; align-items:flex-end; justify-content:center; animation:fade-in .2s ease; }
     .sheet-backdrop[hidden] { display:none; }
     @keyframes fade-in { from { opacity:0; } to { opacity:1; } }
     .sheet { width:100%; max-width:560px; max-height:88vh; background:#fff; border-radius:18px 18px 0 0; display:flex; flex-direction:column; animation:sheet-up .26s cubic-bezier(.22,1,.36,1); }
@@ -306,7 +312,7 @@
     @media (prefers-reduced-motion:reduce){ .sheet, .sheet-backdrop { animation:none; } }
     .sheet-handle { width:40px; height:4px; border-radius:999px; background:var(--border); margin:10px auto 0; flex-shrink:0; }
     .sheet-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 18px 12px; flex-shrink:0; }
-    .sheet-head h2 { font-size:18px; font-weight:800; color:var(--accent); }
+    .sheet-head h2 { font-size:18px; font-weight:700; color:var(--accent); }
     .sheet-close { width:32px; height:32px; border-radius:50%; border:0; background:var(--surface); color:var(--fg); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .sheet-close:hover { background:var(--border-light); }
     .sheet-body { overflow-y:auto; padding:0 18px 22px; }
@@ -315,17 +321,17 @@
     .sheet-photo img { width:100%; height:100%; object-fit:cover; }
     .sheet-desc { font-size:13.5px; color:var(--fg-secondary); line-height:1.6; margin:14px 0 4px; }
     .sheet-nav-row { display:flex; align-items:center; gap:11px; width:100%; padding:13px 0; border:0; border-top:1px solid var(--border-light); background:none; font-size:14px; font-weight:600; color:var(--fg); text-align:left; }
-    .sheet-nav-row svg:first-child { color:var(--blue); flex-shrink:0; }
+    .sheet-nav-row svg:first-child { color:var(--green-700); flex-shrink:0; }
     .sheet-nav-row span { flex:1; min-width:0; }
     .sheet-nav-row svg:last-child { color:var(--muted); flex-shrink:0; }
     .sheet-cta { display:flex; flex-direction:column; gap:10px; margin-top:18px; }
-    .btn-solid { display:flex; align-items:center; justify-content:center; gap:9px; padding:14px; border-radius:12px; border:0; background:var(--blue); color:#fff; font-size:14.5px; font-weight:700; }
+    .btn-solid { display:flex; align-items:center; justify-content:center; gap:9px; padding:14px; border-radius:12px; border:0; background:var(--green-700); color:#fff; font-size:14.5px; font-weight:700; }
     .btn-solid:hover { background:#1455bd; }
-    .btn-outline { display:flex; align-items:center; justify-content:center; gap:9px; padding:14px; border-radius:12px; border:1.5px solid var(--blue); background:#fff; color:var(--blue); font-size:14.5px; font-weight:700; }
-    .btn-outline:hover { background:var(--blue-light); }
+    .btn-outline { display:flex; align-items:center; justify-content:center; gap:9px; padding:14px; border-radius:12px; border:1.5px solid var(--green-700); background:#fff; color:var(--green-700); font-size:14.5px; font-weight:700; }
+    .btn-outline:hover { background:var(--green-100); }
 
     .doc-filters { display:flex; gap:7px; overflow-x:auto; padding:2px 0 14px; }
-    .doc-filter { padding:7px 13px; border-radius:999px; border:1px solid var(--border); background:#fff; font-size:12.5px; font-weight:700; color:var(--fg-secondary); white-space:nowrap; }
+    .doc-filter { padding:7px 13px; border-radius:6px; border:1px solid var(--border); background:#fff; font-size:12.5px; font-weight:700; color:var(--fg-secondary); white-space:nowrap; }
     .doc-filter.is-active { background:var(--accent); border-color:var(--accent); color:#fff; }
     .sheet-doc { display:flex; align-items:center; gap:12px; padding:13px; border:1px solid var(--border-light); border-radius:12px; margin-bottom:10px; }
     .sheet-doc[hidden] { display:none; }
@@ -343,29 +349,29 @@
     .map-box { border-radius:12px; overflow:hidden; border:1px solid var(--border-light); background:#eef2f7; }
     .map-box svg { display:block; width:100%; height:auto; }
     .poi-row { display:flex; align-items:center; gap:11px; padding:12px 0; border-top:1px solid var(--border-light); }
-    .poi-icon { width:32px; height:32px; border-radius:8px; background:var(--blue-light); color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .poi-icon { width:32px; height:32px; border-radius:8px; background:var(--green-100); color:var(--green-700); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .poi-row b { display:block; font-size:13.5px; color:var(--fg); }
     .poi-row span { font-size:11.5px; color:var(--muted); }
     .poi-dist { margin-left:auto; font-size:12.5px; font-weight:700; color:var(--fg-secondary); flex-shrink:0; }
 
     .action-row { display:flex; align-items:center; gap:12px; width:100%; padding:14px 0; border:0; border-top:1px solid var(--border-light); background:none; text-align:left; }
     .action-row:first-of-type { border-top:none; }
-    .action-icon { width:40px; height:40px; border-radius:11px; background:var(--blue-light); color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .action-icon { width:40px; height:40px; border-radius:11px; background:var(--green-100); color:var(--green-700); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .action-row b { display:block; font-size:14px; color:var(--fg); }
     .action-row span { font-size:12px; color:var(--muted); }
 
     /* ===== Realisa, the guide ===== */
-    .hob-btn { position:fixed; right:24px; bottom:24px; z-index:70; width:60px; height:60px; border:0; border-radius:50%; background:#fff; box-shadow:0 10px 28px -8px rgba(0,20,60,.5), 0 0 0 1px var(--border-light); display:flex; align-items:center; justify-content:center; padding:0; transition:transform .2s; }
+    .hob-btn { position:fixed; right:24px; bottom:24px; z-index:70; width:60px; height:60px; border:0; border-radius:50%; background:#fff; box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; padding:0; transition:transform .2s; }
     .hob-btn svg { width:44px; height:44px; }
     .hob-btn:hover { transform:translateY(-2px); }
-    .hob-btn.is-nudge::before { content:''; position:absolute; inset:-5px; border-radius:50%; border:2px solid var(--blue); animation:ping 1.8s ease-out infinite; }
+    .hob-btn.is-nudge::before { content:''; position:absolute; inset:-5px; border-radius:50%; border:2px solid var(--green-700); animation:ping 1.8s ease-out infinite; }
     @keyframes ping { 0% { transform:scale(.9); opacity:.9; } 100% { transform:scale(1.35); opacity:0; } }
-    .hob-tip { position:fixed; right:96px; bottom:34px; z-index:70; padding:9px 14px; border:0; border-radius:12px; background:var(--accent); color:#fff; font-size:13px; font-weight:700; box-shadow:0 10px 24px -8px rgba(0,20,60,.5); }
+    .hob-tip { position:fixed; right:96px; bottom:34px; z-index:70; padding:9px 14px; border:0; border-radius:12px; background:var(--accent); color:#fff; font-size:13px; font-weight:700; box-shadow:var(--shadow); }
     .hob-tip[hidden] { display:none; }
     .hob-tip::after { content:''; position:absolute; right:-6px; top:50%; width:12px; height:12px; background:var(--accent); transform:translateY(-50%) rotate(45deg); border-radius:2px; }
     @media (max-width:1100px){
       /* On mobile Realisa sits in the header, beside the actions button, so it never covers the composer */
-      .hob-btn { bottom:auto; top:10px; right:calc(max(0px, (100vw - 560px) / 2) + 56px); width:38px; height:38px; box-shadow:0 4px 12px -4px rgba(0,20,60,.45), 0 0 0 1px var(--border-light); }
+      .hob-btn { bottom:auto; top:10px; right:calc(max(0px, (100vw - 560px) / 2) + 56px); width:38px; height:38px; box-shadow:var(--shadow); }
       .hob-btn svg { width:28px; height:28px; }
       .hob-btn.is-nudge::before { inset:-4px; }
       .hob-tip { bottom:auto; top:58px; right:calc(max(0px, (100vw - 560px) / 2) + 14px); }
@@ -374,49 +380,65 @@
     @media (prefers-reduced-motion:reduce){ .hob-btn.is-nudge::before { animation:none; } .hob-btn { transition:none; } }
 
     /* ===== Realisa tour (same block in both demo pages) ===== */
-    .tour-spot { position:fixed; z-index:90; left:50%; top:50%; width:0; height:0; border-radius:16px; box-shadow:0 0 0 100vmax rgba(8,18,46,.58); pointer-events:none; opacity:0; }
+    .tour-spot { position:fixed; z-index:90; left:50%; top:50%; width:0; height:0; border-radius:16px; box-shadow:0 0 0 100vmax rgba(1,41,118,.58); pointer-events:none; opacity:0; }
     .tour-spot.is-on { opacity:1; }
     .tour-spot.is-anim { transition:left .32s cubic-bezier(.22,1,.36,1), top .32s cubic-bezier(.22,1,.36,1), width .32s cubic-bezier(.22,1,.36,1), height .32s cubic-bezier(.22,1,.36,1), opacity .25s ease; }
     .tour-spot.has-ring::after { content:''; position:absolute; inset:-3px; border-radius:inherit; border:2px solid #fff; opacity:.9; }
     .tour-block { position:fixed; inset:0; z-index:92; background:transparent; }
     .tour-block[hidden], .tour-bubble[hidden], .tour-spot[hidden] { display:none; }
-    .tour-bubble { position:fixed; z-index:95; width:min(330px, calc(100vw - 24px)); padding:16px 16px 14px; border-radius:18px; background:#fff; color:var(--fg, #1a1f2e); box-shadow:0 24px 60px -14px rgba(0,20,60,.55), 0 0 0 1px rgba(0,20,60,.06); opacity:0; transform:translateY(8px); transition:opacity .22s ease, transform .3s cubic-bezier(.22,1,.36,1); }
+    .tour-bubble { position:fixed; z-index:95; width:min(330px, calc(100vw - 24px)); padding:16px 16px 14px; border-radius:18px; background:#fff; color:var(--fg, #012976); box-shadow:var(--shadow); opacity:0; transform:translateY(8px); transition:opacity .22s ease, transform .3s cubic-bezier(.22,1,.36,1); }
     .tour-bubble.is-on { opacity:1; transform:none; }
     .tour-head { display:flex; align-items:center; gap:9px; margin-bottom:10px; }
     .tour-head > svg { width:30px; height:30px; flex-shrink:0; }
-    .tour-head b { font-size:13.5px; font-weight:800; color:var(--accent, #001F5C); }
-    .tour-count { margin-left:auto; font-size:11.5px; font-weight:700; color:var(--muted, #64748b); }
-    .tour-x { flex-shrink:0; width:26px; height:26px; border:0; border-radius:50%; background:rgba(0,20,60,.06); color:var(--fg-secondary, #334155); display:flex; align-items:center; justify-content:center; }
-    .tour-x:hover { background:rgba(0,20,60,.12); }
-    .tour-title { font-size:16px; font-weight:800; line-height:1.3; color:var(--accent, #001F5C); }
-    .tour-text { margin-top:6px; font-size:13.5px; line-height:1.55; color:var(--fg-secondary, #334155); }
-    .tour-text b { color:var(--fg, #1a1f2e); }
+    .tour-head b { font-size:13.5px; font-weight:700; color:var(--accent); }
+    .tour-count { margin-left:auto; font-size:11.5px; font-weight:700; color:var(--muted, #4E5878); }
+    .tour-x { flex-shrink:0; width:26px; height:26px; border:0; border-radius:50%; background:rgba(1,41,118,.06); color:var(--fg-secondary, #4E5878); display:flex; align-items:center; justify-content:center; }
+    .tour-x:hover { background:rgba(1,41,118,.12); }
+    .tour-title { font-size:16px; font-weight:700; line-height:1.3; color:var(--accent); }
+    .tour-text { margin-top:6px; font-size:13.5px; line-height:1.55; color:var(--fg-secondary, #4E5878); }
+    .tour-text b { color:var(--fg, #012976); }
     .tour-dots { display:flex; gap:5px; margin-top:12px; }
-    .tour-dots i { width:6px; height:6px; border-radius:50%; background:rgba(0,31,92,.16); }
-    .tour-dots i.is-done { background:rgba(24,99,220,.5); }
-    .tour-dots i.is-now { width:18px; border-radius:999px; background:var(--blue, #1863dc); }
+    .tour-dots i { width:6px; height:6px; border-radius:50%; background:rgba(1,41,118,.16); }
+    .tour-dots i.is-done { background:rgba(11,181,99,.5); }
+    .tour-dots i.is-now { width:18px; border-radius:999px; background:var(--green-700); }
     .tour-actions { display:flex; align-items:center; gap:10px; margin-top:12px; }
-    .tour-skip { border:0; background:none; padding:6px 2px; font-size:12.5px; font-weight:700; color:var(--muted, #64748b); text-decoration:underline; text-underline-offset:2px; }
-    .tour-skip:hover { color:var(--fg, #1a1f2e); }
+    .tour-skip { border:0; background:none; padding:6px 2px; font-size:12.5px; font-weight:700; color:var(--muted, #4E5878); text-decoration:underline; text-underline-offset:2px; }
+    .tour-skip:hover { color:var(--fg, #012976); }
     .tour-spacer { flex:1; }
-    .tour-btn { display:inline-flex; align-items:center; justify-content:center; padding:10px 18px; border:0; border-radius:999px; background:var(--accent, #001F5C); color:#fff; font-size:13.5px; font-weight:800; white-space:nowrap; text-decoration:none; }
-    .tour-btn:hover { background:var(--accent-dark, #001340); }
-    .tour-btn.is-ghost { background:var(--blue-light, rgba(24,99,220,.08)); color:var(--blue, #1863dc); }
-    .tour-btn.is-ghost:hover { background:rgba(24,99,220,.16); }
-    .tour-btn.is-claim { background:linear-gradient(120deg, var(--blue, #1863dc) 0%, var(--accent, #001F5C) 100%); }
+    .tour-btn { display:inline-flex; align-items:center; justify-content:center; padding:10px 18px; border:0; border-radius:10px; background:var(--accent); color:#fff; font-size:13.5px; font-weight:700; white-space:nowrap; text-decoration:none; }
+    .tour-btn:hover { background:var(--accent-dark); }
+    .tour-btn.is-ghost { background:var(--blue-light, rgba(11,181,99,.08)); color:var(--green-700); }
+    .tour-btn.is-ghost:hover { background:rgba(11,181,99,.16); }
+    .tour-btn.is-claim { background:var(--green-500); color:var(--accent); }
     .tour-btn[hidden] { display:none; }
     .tour-arrow { position:absolute; width:12px; height:12px; background:#fff; border-radius:2px; transform:rotate(45deg); }
     .tour-bubble.is-docked .tour-arrow { display:none; }
     .tour-bubble.is-docked { left:12px; right:12px; width:auto; }
     @media (max-width:1100px){ .tour-bubble { padding:14px 14px 12px; } }
     @media (prefers-reduced-motion:reduce){ .tour-spot.is-anim, .tour-bubble { transition:none; transform:none; } }
-  </style>
+  
+    /* ===== ReallyWise brand (guideline v2) ===== */
+    h1, h2, h3, h4, .pe-header-title, .pe-price, .m-price-row b, .m-nav-title b, .chat-header-who b, .sheet-head h2, .tour-title, .lead-toast-title { font-family:var(--font-head); }
+    .pe-stat b, .m-stat b, .doc-row span, .sheet-doc span, .poi-dist, .gallery-count, .m-hero-count, .msg-time, .tour-count { font-family:var(--font-mono); font-weight:500; }
+    .pe-price, .m-price-row b { font-weight:700; }
+    :focus-visible { outline:2px solid var(--green-700); outline-offset:2px; }
+    .pe-brand { padding:16px 18px 0; }
+    .pe-brand img { height:30px; width:auto; display:block; }
+    .pe-header-icon, .chat-header-avatar, .msg-avatar { background:none; padding:0; overflow:hidden; }
+    .pe-header-icon svg, .chat-header-avatar svg, .msg-avatar svg { width:100%; height:100%; display:block; }
+    .m-nav-mark { width:34px; height:34px; flex-shrink:0; display:flex; }
+    .m-nav-mark svg { width:100%; height:100%; display:block; }
+    .hob-btn { background:none; box-shadow:0 10px 28px -8px rgba(1,41,118,.5); }
+    .hob-btn svg { width:100%; height:100%; display:block; }
+    .tour-head > svg { width:30px; height:30px; }
+    .lead-toast-icon svg { width:100%; height:100%; display:block; }
+    .chat-foot { margin:0; padding:0 22px 14px; font-size:12px; color:var(--muted); }
+    @media (max-width:1100px){ .chat-foot { padding:0 16px 10px; } }
+</style>
 </head>
 <body>
   <header class="m-nav m-only">
-    <button class="m-nav-btn" type="button" aria-label="Back">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
-    </button>
+    <span class="m-nav-mark"><svg aria-hidden="true" viewBox="0 0 120 120"><rect fill="#012976" width="120" height="120" rx="27"/><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H295.702L140.286 665.814L139.526 666.256C130.86 671.287 120 665.034 120 655.013V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg></span>
     <div class="m-nav-title">
       <b>123 Main Street</b>
       <span>Austin, TX 78703</span>
@@ -430,8 +452,9 @@
     <div class="app">
       <!-- ===== Left sidebar ===== -->
       <div class="card app-left">
+        <div class="pe-brand"><img src="brand/Really_Wise_Logo.svg" alt="ReallyWise"></div>
         <div class="pe-header">
-          <span class="pe-header-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+          <span class="pe-header-icon"><svg aria-hidden="true" viewBox="0 0 120 120"><circle fill="#012976" cx="60" cy="60" r="60"/><g transform="translate(24.3 26.9) scale(.098)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H295.702L140.286 665.814L139.526 666.256C130.86 671.287 120 665.034 120 655.013V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg></span>
           <div>
             <div class="pe-header-title">Property Expert <span class="pe-badge">AI</span></div>
             <p class="pe-header-sub">Your 24/7 expert for this property</p>
@@ -452,7 +475,7 @@
         <div class="pe-summary">
           <div class="pe-summary-head">
             <h1>123 Main Street</h1>
-            <span class="pe-forsale">For Sale</span>
+            <span class="pe-forsale">For sale</span>
           </div>
           <p class="pe-address">Austin, TX 78703</p>
           <p class="pe-price">$895,000</p>
@@ -468,11 +491,11 @@
           <button type="button" class="is-active" data-tab="ask"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>Ask Property Expert</button>
           <button type="button" data-tab="overview"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M9 4v18"/></svg>Overview</button>
           <button type="button" data-tab="neighborhood"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21s7-6.4 7-11a7 7 0 10-14 0c0 4.6 7 11 7 11z"/></svg>Neighborhood</button>
-          <button type="button" data-tab="price"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M3 19h18"/></svg>Price & Comparables</button>
-          <button type="button" data-tab="details"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg>Property Details</button>
+          <button type="button" data-tab="price"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M3 19h18"/></svg>Price & comparables</button>
+          <button type="button" data-tab="details"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg>Property details</button>
           <button type="button" data-tab="documents"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5M9 13h6M9 17h6"/></svg>Documents</button>
-          <button type="button" data-tab="map"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Map & Nearby</button>
-          <button type="button" data-tab="tour" data-lead="tour"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Schedule a Tour</button>
+          <button type="button" data-tab="map"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Map & nearby</button>
+          <button type="button" data-tab="tour" data-lead="tour"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Schedule a tour</button>
         </div>
       </div>
 
@@ -480,7 +503,7 @@
       <div class="card chat-card">
         <div class="chat-header">
           <div class="chat-header-who">
-            <span class="chat-header-avatar"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+            <span class="chat-header-avatar"><svg aria-hidden="true" viewBox="0 0 120 120"><circle fill="#012976" cx="60" cy="60" r="60"/><g transform="translate(24.3 26.9) scale(.098)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H295.702L140.286 665.814L139.526 666.256C130.86 671.287 120 665.034 120 655.013V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg></span>
             <div>
               <b>Property Expert</b>
               <span class="chat-status"><i class="chat-status-dot"></i>Online, replies instantly</span>
@@ -488,7 +511,7 @@
           </div>
           <button class="talk-agent" type="button" data-lead="talk">
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.1-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 2 .6 2.9a2 2 0 01-.5 2.1L8 10a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.9.5 2.9.6a2 2 0 011.7 2.1z"/></svg>
-            <span>Talk to Agent</span>
+            <span>Talk to the agent</span>
           </button>
         </div>
 
@@ -500,7 +523,7 @@
           </div>
           <div class="m-price-row">
             <b>$895,000</b>
-            <span class="pe-forsale">For Sale</span>
+            <span class="pe-forsale">For sale</span>
           </div>
           <div class="m-stats">
             <div class="m-stat"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6"/><path d="M3 18h18M5 10V7a1 1 0 011-1h5a1 1 0 011 1v3"/></svg><div><b>3</b>Beds</div></div>
@@ -525,7 +548,7 @@
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="msg msg-bot">
-            <span class="msg-avatar"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+            <span class="msg-avatar"><svg aria-hidden="true" viewBox="0 0 120 120"><circle fill="#012976" cx="60" cy="60" r="60"/><g transform="translate(24.3 26.9) scale(.098)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H295.702L140.286 665.814L139.526 666.256C130.86 671.287 120 665.034 120 655.013V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg></span>
             <div class="msg-body">
               <div class="msg-bubble">
                 <p class="msg-bubble-text"><b>Hi! I'm your Property Expert for 123 Main Street.</b><br>Ask me anything about this home. I'll answer using the listing details, disclosures, inspection reports, HOA info, public records and more.</p>
@@ -576,13 +599,14 @@
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
         </div>
+        <p class="chat-foot">Answers come from the listing documents. Estimates are not appraisals.</p>
       </div>
 
       <!-- ===== Right sidebar ===== -->
       <div class="app-right">
         <div class="card side-panel">
           <div class="side-head">
-            <span class="side-head-left"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4z"/></svg>Key Insights</span>
+            <span class="side-head-left"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4z"/></svg>Key insights</span>
           </div>
           <div class="insight-mini">
             <span class="insight-icon is-ok"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
@@ -600,19 +624,19 @@
 
         <div class="card side-panel">
           <div class="side-head">
-            <span class="side-head-left"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Property Documents</span>
+            <span class="side-head-left"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Property documents</span>
             <a href="#">View all</a>
           </div>
-          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Seller Disclosure</b><span>Jun 18, 2023</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
-          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Inspection Report</b><span>Jul 12, 2023</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
-          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Repair Invoice</b><span>Mar 3, 2022</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
-          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>HOA Documents</b><span>Jan 10, 2024</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
-          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Property Survey</b><span>Feb 2, 2021</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Seller disclosure</b><span>Jun 18, 2023</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Inspection report</b><span>Jul 12, 2023</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Repair invoice</b><span>Mar 3, 2022</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>HOA documents</b><span>Jan 10, 2024</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="doc-row"><span class="doc-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Property survey</b><span>Feb 2, 2021</span></div><span class="doc-ext"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
         </div>
 
         <div class="card side-panel">
           <div class="side-head">
-            <span class="side-head-left"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Next Steps</span>
+            <span class="side-head-left"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Next steps</span>
           </div>
           <div class="step-row is-action" role="button" tabindex="0" data-lead="tour"><span class="step-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><div><b>Schedule a tour</b><span>See the property in person</span></div><span class="step-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
           <div class="step-row is-action" role="button" tabindex="0" data-lead="ask"><span class="step-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span><div><b>Ask the agent a question</b><span>Get additional details</span></div><span class="step-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
@@ -626,15 +650,15 @@
   <!-- ===== Realisa: starts the guided tour ===== -->
   <button class="hob-tip" type="button" id="hob-tip" hidden>New here? Take a 30s tour</button>
   <button class="hob-btn" type="button" id="hob-btn" aria-label="Take a tour with Realisa">
-    <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>
+    <svg aria-hidden="true" viewBox="0 0 120 120"><circle fill="#012976" cx="60" cy="60" r="60"/><g transform="translate(24.3 26.9) scale(.098)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H295.702L140.286 665.814L139.526 666.256C130.86 671.287 120 665.034 120 655.013V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg>
   </button>
 
   <!-- ===== Lead notification (shown ~5s after the buyer chat goes quiet) ===== -->
   <div class="lead-toast" id="lead-toast" role="status" aria-live="polite" hidden>
     <a class="lead-toast-link" id="lead-toast-link" href="#" target="_self">
-      <span class="lead-toast-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+      <span class="lead-toast-icon"><svg aria-hidden="true" viewBox="0 0 120 120"><rect fill="#012976" width="120" height="120" rx="27"/><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H295.702L140.286 665.814L139.526 666.256C130.86 671.287 120 665.034 120 655.013V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg></span>
       <span class="lead-toast-body">
-        <span class="lead-toast-meta"><span>ReallyWise.ai</span><span>&middot; now</span></span>
+        <span class="lead-toast-meta"><span>ReallyWise</span><span>&middot; now</span></span>
         <span class="lead-toast-title" id="lead-toast-title">New lead</span>
         <span class="lead-toast-text" id="lead-toast-text"></span>
         <span class="lead-toast-cta" id="lead-toast-cta">Click to view</span>
@@ -647,12 +671,12 @@
 
   <!-- ===== Bottom sheets (mobile) ===== -->
   <div class="sheet-backdrop" id="sheet-backdrop" hidden>
-    <section class="sheet" id="sheet-overview" role="dialog" aria-modal="true" aria-label="Property Overview" hidden>
+    <section class="sheet" id="sheet-overview" role="dialog" aria-modal="true" aria-label="Property overview" hidden>
       <span class="sheet-handle"></span>
-      <div class="sheet-head"><h2>Property Overview</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+      <div class="sheet-head"><h2>Property overview</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
       <div class="sheet-body">
         <div class="sheet-photo"><img src="uploads/property-123-main.jpg" alt="123 Main Street exterior"><span class="m-hero-count">1 / 5</span></div>
-        <div class="pe-summary-head" style="margin-top:14px;"><h1 style="font-size:19px;font-weight:800;color:var(--accent);">123 Main Street</h1><span class="pe-forsale">For Sale</span></div>
+        <div class="pe-summary-head" style="margin-top:14px;"><h1 style="font-size:19px;font-weight:800;color:var(--accent);">123 Main Street</h1><span class="pe-forsale">For sale</span></div>
         <p class="pe-address">Austin, TX 78703</p>
         <p class="pe-price" style="font-size:22px;">$895,000</p>
         <div class="m-stats" style="padding:12px 0 0;">
@@ -661,33 +685,33 @@
           <div class="m-stat"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 14h16M14 4v16"/></svg><div><b>2,104</b>Sq Ft</div></div>
           <div class="m-stat"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg><div><b>6,534</b>Lot Sq Ft</div></div>
         </div>
-        <p class="sheet-desc">Modern single-family home in the heart of Austin with an open floor plan, updated kitchen, and spacious backyard. Located in a highly desirable neighborhood with top-rated schools and easy access to downtown.</p>
-        <button class="sheet-nav-row" type="button"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg><span>Property Details</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-        <button class="sheet-nav-row" type="button"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M3 19h18"/></svg><span>Price & Comparables</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        <p class="sheet-desc">Modern single-family home in the heart of Austin with an open floor plan, updated kitchen, and spacious backyard. Casis Elementary is 0.4 mi away and rated 9 out of 10 by the school district. Downtown Austin is about 10 minutes by car.</p>
+        <button class="sheet-nav-row" type="button"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg><span>Property details</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="sheet-nav-row" type="button"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M3 19h18"/></svg><span>Price & comparables</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
         <button class="sheet-nav-row" type="button"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Neighborhood</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-        <button class="sheet-nav-row" type="button" data-open-sheet="nearby"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-6 2V6l6-2 6 2 6-2v16l-6 2z"/><path d="M9 4v16M15 6v16"/></svg><span>Map & Nearby</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-        <button class="sheet-nav-row" type="button" data-lead="tour"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Schedule a Tour</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="sheet-nav-row" type="button" data-open-sheet="nearby"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-6 2V6l6-2 6 2 6-2v16l-6 2z"/><path d="M9 4v16M15 6v16"/></svg><span>Map & nearby</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="sheet-nav-row" type="button" data-lead="tour"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Schedule a tour</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
         <div class="sheet-cta">
-          <button class="btn-solid" type="button" data-lead="tour"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Schedule a Tour</button>
-          <button class="btn-outline" type="button" data-lead="ask"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>Ask the Agent a Question</button>
+          <button class="btn-solid" type="button" data-lead="tour"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Schedule a tour</button>
+          <button class="btn-outline" type="button" data-lead="ask"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>Ask the agent a question</button>
         </div>
       </div>
     </section>
 
-    <section class="sheet" id="sheet-insights" role="dialog" aria-modal="true" aria-label="Key Insights" hidden>
+    <section class="sheet" id="sheet-insights" role="dialog" aria-modal="true" aria-label="Key insights" hidden>
       <span class="sheet-handle"></span>
-      <div class="sheet-head"><h2>Key Insights</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+      <div class="sheet-head"><h2>Key insights</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
       <div class="sheet-body">
         <div class="sheet-insight"><span class="insight-icon is-ok"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>No major structural issues</b><span>Based on inspection report (Jul 2023)</span></div></div>
         <div class="sheet-insight"><span class="insight-icon is-warn"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2.5 17a1.5 1.5 0 001.3 2.2h16.4a1.5 1.5 0 001.3-2.2L13.7 3.9a1.5 1.5 0 00-2.6 0z"/></svg></span><div><b>Foundation repair completed in 2022</b><span>With lifetime transferable warranty</span></div></div>
         <div class="sheet-insight"><span class="insight-icon is-info"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span><div><b>Roof is 12 years old</b><span>In fair condition, consider further review</span></div></div>
-        <p class="sheet-note">Insights are generated from the documents on file for this property. Always confirm details with your agent.</p>
+        <p class="sheet-note">Insights come from the documents on file for this property. Each one shows its source.</p>
       </div>
     </section>
 
-    <section class="sheet" id="sheet-docs" role="dialog" aria-modal="true" aria-label="Property Documents" hidden>
+    <section class="sheet" id="sheet-docs" role="dialog" aria-modal="true" aria-label="Property documents" hidden>
       <span class="sheet-handle"></span>
-      <div class="sheet-head"><h2>Property Documents</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+      <div class="sheet-head"><h2>Property documents</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
       <div class="sheet-body">
         <div class="doc-filters" id="doc-filters">
           <button class="doc-filter is-active" type="button" data-filter="all">All (5)</button>
@@ -696,19 +720,19 @@
           <button class="doc-filter" type="button" data-filter="hoa">HOA (1)</button>
         </div>
         <div id="doc-list">
-          <div class="sheet-doc" data-cat="disclosures"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Seller Disclosure</b><span>Jun 18, 2023 &middot; 12 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
-          <div class="sheet-doc" data-cat="inspection"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Inspection Report</b><span>Jul 12, 2023 &middot; 28 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
-          <div class="sheet-doc" data-cat="disclosures"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Repair Invoice</b><span>Mar 3, 2022 &middot; 4 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
-          <div class="sheet-doc" data-cat="hoa"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>HOA Documents</b><span>Jan 10, 2024 &middot; 16 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
-          <div class="sheet-doc" data-cat="survey"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Property Survey</b><span>Feb 2, 2021 &middot; 6 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="sheet-doc" data-cat="disclosures"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Seller disclosure</b><span>Jun 18, 2023 &middot; 12 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="sheet-doc" data-cat="inspection"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Inspection report</b><span>Jul 12, 2023 &middot; 28 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="sheet-doc" data-cat="disclosures"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Repair invoice</b><span>Mar 3, 2022 &middot; 4 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="sheet-doc" data-cat="hoa"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>HOA documents</b><span>Jan 10, 2024 &middot; 16 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
+          <div class="sheet-doc" data-cat="survey"><span class="sheet-doc-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v5h5"/></svg></span><div><b>Property survey</b><span>Feb 2, 2021 &middot; 6 pages</span></div><span class="sheet-doc-ext"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3L10 14"/><path d="M5 5h6v2H7v10h10v-4h2v6H5z"/></svg></span></div>
         </div>
-        <p class="sheet-note">These documents are provided for informational purposes. Always review with your agent and professional advisors.</p>
+        <p class="sheet-note">These documents are for information only. Ask a licensed professional if you need advice.</p>
       </div>
     </section>
 
     <section class="sheet" id="sheet-nearby" role="dialog" aria-modal="true" aria-label="Map and Nearby" hidden>
       <span class="sheet-handle"></span>
-      <div class="sheet-head"><h2>Map &amp; Nearby</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+      <div class="sheet-head"><h2>Map &amp; nearby</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
       <div class="sheet-body">
         <div class="map-box">
           <svg viewBox="0 0 360 190" role="img" aria-label="Stylised map of the neighborhood">
@@ -720,8 +744,8 @@
             <rect x="12" y="142" width="60" height="36" rx="4" fill="#dde6f0"/>
             <rect x="248" y="142" width="96" height="36" rx="4" fill="#d8ebdc"/>
             <rect x="100" y="12" width="46" height="42" rx="4" fill="#d8ebdc"/>
-            <circle cx="180" cy="82" r="15" fill="rgba(24,99,220,.18)"/>
-            <path d="M180 70a8 8 0 00-8 8c0 6 8 14 8 14s8-8 8-14a8 8 0 00-8-8z" fill="#1863dc"/>
+            <circle cx="180" cy="82" r="15" fill="rgba(11,181,99,.18)"/>
+            <path d="M180 70a8 8 0 00-8 8c0 6 8 14 8 14s8-8 8-14a8 8 0 00-8-8z" fill="#067A43"/>
             <circle cx="180" cy="78" r="3" fill="#fff"/>
           </svg>
         </div>
@@ -737,11 +761,11 @@
       <span class="sheet-handle"></span>
       <div class="sheet-head"><h2>Actions</h2><button class="sheet-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
       <div class="sheet-body">
-        <button class="action-row" type="button" data-lead="tour"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><div><b>Schedule a Tour</b><span>See the property in person</span></div></button>
-        <button class="action-row" type="button" data-lead="ask"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span><div><b>Ask the Agent a Question</b><span>Get additional details</span></div></button>
-        <button class="action-row" type="button"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M3 19h18"/></svg></span><div><b>Compare with Similar Homes</b><span>See how this property stacks up</span></div></button>
-        <button class="action-row" type="button"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></span><div><b>Save This Property</b><span>Keep track and get updates</span></div></button>
-        <button class="action-row" type="button"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 14v4a2 2 0 002 2h12a2 2 0 002-2v-4"/></svg></span><div><b>Share this Property</b><span>Send it to someone else</span></div></button>
+        <button class="action-row" type="button" data-lead="tour"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><div><b>Schedule a tour</b><span>See the property in person</span></div></button>
+        <button class="action-row" type="button" data-lead="ask"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span><div><b>Ask the agent a question</b><span>Get additional details</span></div></button>
+        <button class="action-row" type="button"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M3 19h18"/></svg></span><div><b>Compare with similar homes</b><span>See how this property stacks up</span></div></button>
+        <button class="action-row" type="button"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></span><div><b>Save this property</b><span>Keep track and get updates</span></div></button>
+        <button class="action-row" type="button"><span class="action-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 14v4a2 2 0 002 2h12a2 2 0 002-2v-4"/></svg></span><div><b>Share this property</b><span>Send it to someone else</span></div></button>
       </div>
     </section>
   </div>
@@ -755,7 +779,7 @@
     //  skipIf   optional function; true means this step is passed over
     //  cta      optional function returning { label, href, claim, onClick } for the primary button
     var PETour = (function(){
-      var HOB_SVG = '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L44 20v22a4 4 0 01-4 4H8a4 4 0 01-4-4V20z" fill="#001F5C"/><circle cx="17" cy="29" r="4.6" fill="#fff"/><circle cx="31" cy="29" r="4.6" fill="#fff"/><circle cx="17.6" cy="29.4" r="2" fill="#001F5C"/><circle cx="31.6" cy="29.4" r="2" fill="#001F5C"/><path d="M19 38.5q5 3.6 10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="38" cy="8" r="3.6" fill="#f5a623"/></svg>';
+      var HOB_SVG = '<svg aria-hidden="true" viewBox="0 0 120 120"><circle fill="#012976" cx="60" cy="60" r="60"/><g transform="translate(24.3 26.9) scale(.098)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H295.702L140.286 665.814L139.526 666.256C130.86 671.287 120 665.034 120 655.013V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg>';
       var dockMQ = window.matchMedia('(max-width:' + (window.PETOUR_DOCK_MAX || 1100) + 'px)');   // the page's phone layout breakpoint
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var spot, block, bubble, elCount, elTitle, elText, elDots, btnNext, btnSkip, btnLink, arrow;
@@ -1149,33 +1173,33 @@
       "are there any known issues with this property?": {
         intro: "Based on the available disclosures and inspection report, here's what I found:",
         cards: [
-          ['ok', 'No major structural issues', 'The inspection report from July 2023 did not note any structural issues.', [['Inspection Report', 'Jul 12, 2023']]],
-          ['warn', 'Previous foundation repair (completed in 2022)', 'The seller disclosure notes foundation repairs were completed in 2022 with a lifetime transferable warranty.', [['Seller Disclosure', 'Jun 18, 2023'], ['Repair Invoice', 'Mar 3, 2022']]],
-          ['info', 'Roof is 12 years old', 'The inspection report notes the roof is approximately 12 years old and in fair condition.', [['Inspection Report', 'Jul 12, 2023']]]
+          ['ok', 'No major structural issues', 'The inspection report from July 2023 did not note any structural issues.', [['Inspection report', 'Jul 12, 2023']]],
+          ['warn', 'Previous foundation repair (completed in 2022)', 'The seller disclosure notes foundation repairs were completed in 2022 with a lifetime transferable warranty.', [['Seller disclosure', 'Jun 18, 2023'], ['Repair invoice', 'Mar 3, 2022']]],
+          ['info', 'Roof is 12 years old', 'The inspection report notes the roof is approximately 12 years old and in fair condition.', [['Inspection report', 'Jul 12, 2023']]]
         ],
         summary: "Overall, there are no major red flags, but you may want to review the roof condition and confirm details about the foundation warranty with the agent."
       },
       "tell me more about the roof": {
         intro: "Here's what the inspection report says about the roof:",
         cards: [
-          ['info', 'Asphalt shingle roof, approximately 12 years old', 'Inspector rated it in fair condition with some granule loss on the south-facing slope, typical for its age.', [['Inspection Report', 'Jul 12, 2023']]],
-          ['warn', 'No active leaks found, but remaining life is limited', 'Inspector estimates 5 to 8 years of remaining service life under normal conditions.', [['Inspection Report', 'Jul 12, 2023']]]
+          ['info', 'Asphalt shingle roof, approximately 12 years old', 'Inspector rated it in fair condition with some granule loss on the south-facing slope, typical for its age.', [['Inspection report', 'Jul 12, 2023']]],
+          ['warn', 'No active leaks found, but remaining life is limited', 'Inspector estimates 5 to 8 years of remaining service life under normal conditions.', [['Inspection report', 'Jul 12, 2023']]]
         ],
         summary: "Most lenders won't require roof work at this age, but it's worth asking the agent whether the seller would consider a credit or replacement before closing."
       },
       "any hvac issues?": {
         intro: "Here's what I found about the HVAC system:",
         cards: [
-          ['ok', 'HVAC system serviced in 2023', 'Annual maintenance record shows the system was serviced and passed inspection with no issues noted.', [['Inspection Report', 'Jul 12, 2023']]],
-          ['info', 'System is 7 years old', 'Within the typical 10 to 15 year lifespan for this unit type, no replacement expected soon.', [['Inspection Report', 'Jul 12, 2023']]]
+          ['ok', 'HVAC system serviced in 2023', 'Annual maintenance record shows the system was serviced and passed inspection with no issues noted.', [['Inspection report', 'Jul 12, 2023']]],
+          ['info', 'System is 7 years old', 'Within the typical 10 to 15 year lifespan for this unit type, no replacement expected soon.', [['Inspection report', 'Jul 12, 2023']]]
         ],
         summary: "The HVAC system looks to be in good working order based on available records."
       },
       "what's the hoa like?": {
         intro: "Here's what the HOA documents show for this property:",
         cards: [
-          ['info', 'HOA dues are $145 per month', 'Covers landscaping of common areas, community pool access, and exterior building insurance.', [['HOA Documents', 'Jan 10, 2024']]],
-          ['warn', 'Rental restrictions apply', 'Short-term rentals under 30 days are not permitted under current HOA bylaws.', [['HOA Documents', 'Jan 10, 2024']]]
+          ['info', 'HOA dues are $145 per month', 'Covers landscaping of common areas, community pool access, and exterior building insurance.', [['HOA documents', 'Jan 10, 2024']]],
+          ['warn', 'Rental restrictions apply', 'Short-term rentals under 30 days are not permitted under current HOA bylaws.', [['HOA documents', 'Jan 10, 2024']]]
         ],
         summary: "If a rental strategy matters to you, this HOA's rules are worth discussing with the agent before you move forward."
       }
@@ -1222,7 +1246,7 @@
       chatThread.appendChild(el);
     }
 
-    var BOT_AVATAR = '<span class="msg-avatar"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>';
+    var BOT_AVATAR = '<span class="msg-avatar"><svg aria-hidden="true" viewBox="0 0 120 120"><circle fill="#012976" cx="60" cy="60" r="60"/><g transform="translate(24.3 26.9) scale(.098)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H295.702L140.286 665.814L139.526 666.256C130.86 671.287 120 665.034 120 655.013V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg></span>';
 
     // Builds the reply as { html, plain }. `plain` is what the admin page shows.
     function buildReply(text, forced){
@@ -1390,7 +1414,7 @@
       askQuestion(slot + ' works for me.', { type: 'confirm', slot: slot });
     });
 
-    // The buyer-facing handoff controls (Schedule a Tour, Talk to Agent, Ask the
+    // The buyer-facing handoff controls (Schedule a tour, Talk to the agent, Ask the
     // agent) each start a lead: they become a message in the chat, answered by the AI.
     var LEAD_ACTIONS = { tour: "I'd like to schedule a tour.", talk: "I'd like to talk to the agent.", ask: "I have a question for the agent." };
     document.addEventListener('click', function(e){
@@ -1461,7 +1485,7 @@
         text: function(mobile){
           return mobile
             ? 'Buyers who want you open <b>Actions</b> and ask for a tour or for the agent. Each one reaches you as a lead.'
-            : 'Buyers who want you tap <b>Talk to Agent</b> or ask to schedule a tour. Each one reaches you as a lead.';
+            : 'Buyers who want you tap <b>Talk to the agent</b> or ask to schedule a tour. Each one reaches you as a lead.';
         } },
       { kind: 'info', target: null, refreshOn: 'answered',
         title: 'Every chat is logged for you',
@@ -1493,16 +1517,8 @@
     }
     hobBtn.addEventListener('click', startTour1);
     hobTip.addEventListener('click', startTour1);
-    if (/[#&]tour=1\b/.test(location.hash)) {
-      // opened as a guided demo: start the tour straight away
-      setTimeout(startTour1, 900);
-    } else if (!tourSeen()) {
-      setTimeout(function(){
-        if (PETour.active()) return;
-        hobBtn.classList.add('is-nudge'); hobTip.hidden = false;
-        setTimeout(function(){ hobBtn.classList.remove('is-nudge'); hobTip.hidden = true; }, 20000);
-      }, 1500);
-    }
+    // This page opens straight into the tour, whether or not it was seen before
+    startTour1();
   </script>
 </body>
 </html>

@@ -9,11 +9,14 @@ duplicate of the root files. The brand source of truth is `brand/`.
 | File | Status |
 |---|---|
 | `reallywise.html`, `nav.js`, `footer.js` | Done. Name, logo, fonts, colors, hero, copy, metadata. `nav.js` and `footer.js` are now the `rw-nav` and `rw-footer` components and only serve ReallyWise pages |
+| `property-expert-demo-tour.html` | Done (assistant name Realisa kept) |
 | everything else | Not started |
 
 Navy on the landing page follows guideline v2: Navy 900 `#012976`, Navy 700 `#013A9E`, Navy 500 `#33599F`, Navy 100 `#E4E9F3` (hover navy `#011F59` is derived).
 
 Landing page follows guideline v2: Inter for headings and UI (Montserrat only for large numbers), DM Sans for text and buttons, DM Mono for data, logo at least 140px wide, soft corners, surface `#F4F6FB` and line `#DBE1EE`.
+
+`property-expert-demo-tour.html` is also rebranded to guideline v2 (fonts, navy and green, ReallyWise logo and favicon, chat-bubble avatar, sentence-case labels, factual school line, estimate disclaimer). The assistant is still called Realisa. The other five demo pages are not rebranded yet.
 
 Defaults used for the landing page, change them in one place if the answer differs:
 - Text name is "ReallyWise" (no ".ai"); `reallywise.ai` is used only as the domain in canonical, Open Graph and JSON-LD.
