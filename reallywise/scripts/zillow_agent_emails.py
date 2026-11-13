@@ -49,7 +49,11 @@ def zpid_of(url):
 
 def screen_name(profile_url):
     m = re.search(r"/profile/([^/?#]+)", profile_url or "")
-    return m.group(1).lower() if m else None
+    return norm(m.group(1)) if m else None
+
+
+def norm(s):
+    return re.sub(r"[^a-z0-9]", "", (s or "").lower())
 
 
 def read_links(args):
@@ -120,12 +124,14 @@ def main():
                                           "maxItems": len(profiles), "enrichEmails": True},
                           token, args.max_cost, args.timeout)
         for it in items:
-            key = (it.get("screenName") or screen_name(it.get("url"))or "").lower()
-            if key:
-                emails[key] = it
+            for key in (screen_name(it.get("url")), norm(it.get("screenName"))):
+                if key:
+                    emails[key] = it
     for r in rows.values():
         it = emails.get(screen_name(r.get("profile_url")) or "")
         if not it:
+            if r.get("profile_url"):
+                r["status"] = "không lấy được profile"
             continue
         r["email"] = it.get("email") or it.get("contactEmail") or ""
         r["email_source"] = "zillow_profile" if it.get("email") else ("agent_website" if it.get("contactEmail") else "")
