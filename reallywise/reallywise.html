@@ -693,7 +693,10 @@
     .hp-wires .on { stroke:var(--accent); stroke-width:2; }
     .hp-wires .on-dot { fill:var(--accent); }
     .hp-hub { position:relative; z-index:1; width:100%; aspect-ratio:1; max-width:280px; margin:0 auto; border-radius:50%; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; box-sizing:border-box; }
-    .hp-hub svg { width:70%; height:70%; display:block; overflow:visible; }
+    .hp-hub-me { position:absolute; inset:6px; width:calc(100% - 12px); height:calc(100% - 12px); border-radius:50%; object-fit:cover; object-position:46% 30%; display:block; }
+    .hp-hub-ai { position:absolute; right:5%; bottom:2%; width:38%; aspect-ratio:1; border-radius:50%; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; box-sizing:border-box; }
+    .hp-hub-ai svg { width:82%; height:82%; display:block; overflow:visible; }
+    .hp-hub-cap { position:absolute; top:calc(100% + 14px); left:50%; transform:translateX(-50%); white-space:nowrap; font-family:var(--font-head); font-weight:600; font-size:14px; line-height:20px; color:var(--accent); background:#fff; border:1px solid var(--border); border-radius:999px; padding:4px 14px; box-shadow:var(--shadow); }
     .hp-hub .d { fill:#fff; animation:hp-hub-dot 1.3s ease-in-out infinite; }
     .hp-hub .d2 { animation-delay:.22s; }
     .hp-hub .d3 { animation:hp-hub-dot 1.3s ease-in-out .44s 4, hp-hub-green .3s ease-out 5.8s both; }
@@ -703,11 +706,11 @@
     .hp-card:hover, .hp-card.is-on { transform:translateY(-4px); border-color:var(--navy-500); box-shadow:var(--shadow); }
     @media (max-width:1000px){
       .hp-orbit { grid-template-columns:1fr 1fr; gap:24px; }
-      .hp-hub { grid-column:1 / -1; grid-row:1; width:160px; margin-bottom:8px; }
+      .hp-hub { grid-column:1 / -1; grid-row:1; width:160px; margin-bottom:44px; }
       .hp-col { display:contents; }
       .hp-wires { display:none; }
     }
-    @media (max-width:620px){ .hp-orbit { grid-template-columns:1fr; } .hp-hub { width:132px; } }
+    @media (max-width:620px){ .hp-orbit { grid-template-columns:1fr; } .hp-hub { width:132px; } .hp-hub-cap { font-size:13px; } }
     @media (prefers-reduced-motion:reduce){ .hp-hub .d { animation:none !important; opacity:1; } .hp-hub .d3 { fill:#0BB563; } .hp-wires path { transition:none; } }
     .hp-card { display:flex; flex-direction:column; gap:12px; padding:24px; border-radius:16px; background:#fff; border:1px solid var(--border); }
     .hp-card svg { width:24px; height:24px; stroke:var(--accent); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
@@ -941,7 +944,7 @@
   <div class="hp-art-conv c1"><span class="hp-art-ini">B1</span><span class="hp-art-ln"><i></i><i></i></span><span class="hp-art-pill">Ready to tour</span></div>
 </div></div>
           </div>
-          <div class="hp-hub" id="hp-hub"><svg viewBox="0 0 120 120" role="img" aria-label="ReallyWise AI assistant"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H295.702L140.286 665.814L139.526 666.256C130.86 671.287 120 665.034 120 655.013V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#012976"/><circle class="d d1" cx="199" cy="338" r="56"/><circle class="d d2" cx="365" cy="338" r="56"/><circle class="d d3" cx="531" cy="338" r="56"/></g></svg></div>
+          <div class="hp-hub" id="hp-hub"><img class="hp-hub-me" src="uploads/home-realtor.jpg" alt="A realtor, the person at the center of every conversation" width="500" height="500" loading="lazy"><span class="hp-hub-ai" role="img" aria-label="ReallyWise AI assistant"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H295.702L140.286 665.814L139.526 666.256C130.86 671.287 120 665.034 120 655.013V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#012976"/><circle class="d d1" cx="199" cy="338" r="56"/><circle class="d d2" cx="365" cy="338" r="56"/><circle class="d d3" cx="531" cy="338" r="56"/></g></svg></span><span class="hp-hub-cap">You, with your AI team</span></div>
           <div class="hp-col hp-col-r">
           <div class="hp-card" data-side="r" data-i="2"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2"/></svg><h3>Multiply your capacity</h3><p>You can help more buyers without working more hours.</p><div class="hp-art hp-art-list" aria-hidden="true">
   <div class="hp-art-row r1"><span class="hp-art-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>HOA fees answered</span></div>
