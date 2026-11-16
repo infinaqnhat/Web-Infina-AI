@@ -560,6 +560,8 @@
 
     /* Hero (the photo, scrim, copy and sizes come from the shared .hero rules, like the tab heroes) */
     .hp-hero { color:#fff; isolation:isolate; }
+    .hp-hero .hero-photo { object-position:72% center; }
+    @media (max-width:700px){ .hp-hero .hero-photo { object-position:74% center; } }
     .hp-h1 { margin:0; letter-spacing:-.02em; }
     .hero h1.hp-h1 { font-size:clamp(34px,5vw,64px); line-height:1.06; }
     .hp-h1 span.hp-l1 { display:block; animation:hp-rise .9s cubic-bezier(.2,.7,.2,1) .15s both; }

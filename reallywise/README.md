@@ -16,7 +16,7 @@ Navy on the landing page follows guideline v2: Navy 900 `#012976`, Navy 700 `#01
 
 Landing page follows guideline v2: Inter for headings and UI (Montserrat only for large numbers), DM Sans for text and buttons, DM Mono for data, logo at least 140px wide, soft corners, surface `#F4F6FB` and line `#DBE1EE`.
 
-The homepage hero is full-bleed like the two tabs and reads its photo from `uploads/home-hero.jpg`. That file is currently a placeholder (a copy of the buyer tab photo): swap it for the final photo, nothing else needs to change. Overlay, brightness and clear area defaults are the same as the tabs.
+The homepage hero is full-bleed like the two tabs and reads its photo from `uploads/home-hero.jpg`. The photo was generated with Gemini (gemini-3-pro-image): an agent shaking hands with a couple in front of a craftsman home, white clouds at the top left like the two tab heroes. Swap the file to change it; nothing else needs to change. Overlay, brightness and clear area defaults are the same as the tabs.
 
 `property-expert-demo-tour.html` is also rebranded to guideline v2 (fonts, navy and green, ReallyWise logo and favicon, chat-bubble avatar, sentence-case labels, factual school line, estimate disclaimer). The assistant is still called Realisa. `property-expert-admin-demo-tour.html` is rebranded the same way (logo in the left nav, claim buttons in Insight Green). The other four demo pages are not rebranded yet.
 
