@@ -687,11 +687,11 @@
     /* Four benefits around the brand mark: two cards each side, lines drawn from each card into the hub */
     .hp-orbit { position:relative; display:grid; grid-template-columns:minmax(0,1fr) 280px minmax(0,1fr); gap:0 clamp(40px,6vw,96px); align-items:center; }
     .hp-col { display:flex; flex-direction:column; gap:24px; position:relative; z-index:1; }
-    .hp-lines { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; z-index:0; }
-    .hp-lines path { fill:none; stroke:var(--navy-500); stroke-width:1.25; stroke-linecap:round; stroke-linejoin:round; transition:stroke .2s ease, stroke-width .2s ease; }
-    .hp-lines circle { fill:var(--navy-500); transition:fill .2s ease; }
-    .hp-lines .on { stroke:var(--accent); stroke-width:2; }
-    .hp-lines .on-dot { fill:var(--accent); }
+    .hp-wires { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; z-index:0; }
+    .hp-wires path { fill:none; stroke:var(--navy-500); stroke-width:1.25; stroke-linecap:round; stroke-linejoin:round; transition:stroke .2s ease, stroke-width .2s ease; }
+    .hp-wires circle { fill:var(--navy-500); transition:fill .2s ease; }
+    .hp-wires .on { stroke:var(--accent); stroke-width:2; }
+    .hp-wires .on-dot { fill:var(--accent); }
     .hp-hub { position:relative; z-index:1; width:100%; aspect-ratio:1; max-width:280px; margin:0 auto; border-radius:50%; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; box-sizing:border-box; }
     .hp-hub svg { width:70%; height:70%; display:block; overflow:visible; }
     .hp-hub .d { fill:#fff; animation:hp-hub-dot 1.3s ease-in-out infinite; }
@@ -705,10 +705,10 @@
       .hp-orbit { grid-template-columns:1fr 1fr; gap:24px; }
       .hp-hub { grid-column:1 / -1; grid-row:1; width:160px; margin-bottom:8px; }
       .hp-col { display:contents; }
-      .hp-lines { display:none; }
+      .hp-wires { display:none; }
     }
     @media (max-width:620px){ .hp-orbit { grid-template-columns:1fr; } .hp-hub { width:132px; } }
-    @media (prefers-reduced-motion:reduce){ .hp-hub .d { animation:none !important; opacity:1; } .hp-hub .d3 { fill:#0BB563; } .hp-lines path { transition:none; } }
+    @media (prefers-reduced-motion:reduce){ .hp-hub .d { animation:none !important; opacity:1; } .hp-hub .d3 { fill:#0BB563; } .hp-wires path { transition:none; } }
     .hp-card { display:flex; flex-direction:column; gap:12px; padding:24px; border-radius:16px; background:#fff; border:1px solid var(--border); }
     .hp-card svg { width:24px; height:24px; stroke:var(--accent); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
 
@@ -927,7 +927,7 @@
           <p class="hp-lead">Everything we build is meant to put more of your time into the conversations that matter. Here is what that means in practice.</p>
         </div>
         <div class="hp-orbit hp-rv" id="hp-orbit">
-          <svg class="hp-lines" id="hp-lines" aria-hidden="true"></svg>
+          <svg class="hp-wires" id="hp-wires" aria-hidden="true"></svg>
           <div class="hp-col hp-col-l">
           <div class="hp-card" data-side="l" data-i="0"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><h3>Capture every lead</h3><p>Buyers ask at night, on weekends, while you're with another client. Every question gets an answer, and every interested buyer reaches you.</p><div class="hp-art hp-art-chat" aria-hidden="true">
   <div class="hp-art-head"><span class="hp-art-dot"></span><b>New lead</b><time>11:42 PM</time></div>
@@ -2669,7 +2669,7 @@
       })();
       // Mission section: draw a line from each card into the hub, from their real positions
       (function(){
-        var orbit = document.getElementById('hp-orbit'), svg = document.getElementById('hp-lines'), hub = document.getElementById('hp-hub');
+        var orbit = document.getElementById('hp-orbit'), svg = document.getElementById('hp-wires'), hub = document.getElementById('hp-hub');
         if (!orbit || !svg || !hub) return;
         var NS = 'http://www.w3.org/2000/svg', paths = [], dots = [];
         function draw(){
