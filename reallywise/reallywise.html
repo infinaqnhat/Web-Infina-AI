@@ -676,15 +676,43 @@
     /* Mission */
     .hp-mission { background:var(--sand); }
     .hp-mission .hp-kicker { color:var(--green-700); }
-    .hp-mission .hp-h2 { max-width:1100px; font-size:clamp(36px,5vw,72px); line-height:1.03; }
-    .hp-mission .hp-lead { color:var(--muted); }
+    .hp-mission .hp-h2 { max-width:900px; font-size:clamp(32px,3.9vw,54px); line-height:1.06; }
+    .hp-mission .hp-lead { color:var(--muted); max-width:560px; }
+    .hp-mission .hp-wrap { align-items:stretch; }
     .hp-intro { display:flex; flex-direction:column; gap:24px; }
-    .hp-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr)); gap:24px; }
+    .hp-mission .hp-intro { align-items:center; text-align:center; gap:20px; }
+    .hp-mission .hp-pad { gap:clamp(32px,4vw,56px); }
+    .hp-trust { margin:0; text-align:center; font-size:14px; line-height:20px; font-weight:500; color:var(--muted); }
+
+    /* Four benefits around the brand mark: two cards each side, lines drawn from each card into the hub */
+    .hp-orbit { position:relative; display:grid; grid-template-columns:minmax(0,1fr) 280px minmax(0,1fr); gap:0 clamp(40px,6vw,96px); align-items:center; }
+    .hp-col { display:flex; flex-direction:column; gap:24px; position:relative; z-index:1; }
+    .hp-lines { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; z-index:0; }
+    .hp-lines path { fill:none; stroke:var(--navy-500); stroke-width:1.25; stroke-linecap:round; stroke-linejoin:round; transition:stroke .2s ease, stroke-width .2s ease; }
+    .hp-lines circle { fill:var(--navy-500); transition:fill .2s ease; }
+    .hp-lines .on { stroke:var(--accent); stroke-width:2; }
+    .hp-lines .on-dot { fill:var(--accent); }
+    .hp-hub { position:relative; z-index:1; width:100%; aspect-ratio:1; max-width:280px; margin:0 auto; border-radius:50%; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; box-sizing:border-box; }
+    .hp-hub svg { width:70%; height:70%; display:block; overflow:visible; }
+    .hp-hub .d { fill:#fff; animation:hp-hub-dot 1.3s ease-in-out infinite; }
+    .hp-hub .d2 { animation-delay:.22s; }
+    .hp-hub .d3 { animation:hp-hub-dot 1.3s ease-in-out .44s 4, hp-hub-green .3s ease-out 5.8s both; }
+    @keyframes hp-hub-dot { 0%,70%,100%{opacity:.3} 35%{opacity:1} }
+    @keyframes hp-hub-green { to{fill:#0BB563;opacity:1} }
+    .hp-card { transition:transform .25s ease-out, box-shadow .25s ease-out, border-color .25s ease-out; }
+    .hp-card:hover, .hp-card.is-on { transform:translateY(-4px); border-color:var(--navy-500); box-shadow:var(--shadow); }
+    @media (max-width:1000px){
+      .hp-orbit { grid-template-columns:1fr 1fr; gap:24px; }
+      .hp-hub { grid-column:1 / -1; grid-row:1; width:160px; margin-bottom:8px; }
+      .hp-col { display:contents; }
+      .hp-lines { display:none; }
+    }
+    @media (max-width:620px){ .hp-orbit { grid-template-columns:1fr; } .hp-hub { width:132px; } }
+    @media (prefers-reduced-motion:reduce){ .hp-hub .d { animation:none !important; opacity:1; } .hp-hub .d3 { fill:#0BB563; } .hp-lines path { transition:none; } }
     .hp-card { display:flex; flex-direction:column; gap:12px; padding:24px; border-radius:16px; background:#fff; border:1px solid var(--border); }
     .hp-card svg { width:24px; height:24px; stroke:var(--accent); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
-    .hp-trust { margin:0; font-size:14px; line-height:20px; font-weight:500; color:var(--muted); }
-    .hp-card h3 { margin:0; font-family:var(--font-head); font-weight:700; font-size:22px; line-height:28px; }
-    .hp-card p { margin:0; font-size:16px; line-height:24px; color:var(--muted); }
+    .hp-card h3 { margin:0; font-family:var(--font-head); font-weight:700; font-size:20px; line-height:26px; }
+    .hp-card p { margin:0; font-size:15px; line-height:22px; color:var(--muted); }
 
     /* Meet your team */
     .hp-tools { background:var(--accent); color:#fff; }
@@ -850,11 +878,17 @@
           <h2 class="hp-h2">Arm every agent with a team of AI<span class="hp-dot" aria-hidden="true" style="animation:none"></span></h2>
           <p class="hp-lead">Everything we build is meant to put more of your time into the conversations that matter. Here is what that means in practice.</p>
         </div>
-        <div class="hp-cards hp-rv">
-          <div class="hp-card"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><h3>Capture every lead</h3><p>Buyers ask at night, on weekends, while you're with another client. Every question gets an answer, and every interested buyer reaches you.</p></div>
-          <div class="hp-card"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><h3>Deepen every relationship</h3><p>Your name is on every answer, and you can read the whole conversation. You step in with the full context, not a cold call.</p></div>
-          <div class="hp-card"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2"/></svg><h3>Multiply your capacity</h3><p>The routine questions are answered for you, so your time goes to the buyers who are ready to talk.</p></div>
-          <div class="hp-card"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/><path d="m9 15 2 2 4-4"/></svg><h3>Close more deals</h3><p>You see who is ready, what worried them, and when to call. That is how interest turns into a showing, an offer and a close.</p></div>
+        <div class="hp-orbit hp-rv" id="hp-orbit">
+          <svg class="hp-lines" id="hp-lines" aria-hidden="true"></svg>
+          <div class="hp-col hp-col-l">
+          <div class="hp-card" data-side="l" data-i="0"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><h3>Capture every lead</h3><p>Buyers ask at night, on weekends, while you're with another client. Every question gets an answer, and every interested buyer reaches you.</p></div>
+          <div class="hp-card" data-side="l" data-i="1"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><h3>Deepen every relationship</h3><p>Your name is on every answer, and you can read the whole conversation. You step in with the full context, not a cold call.</p></div>
+          </div>
+          <div class="hp-hub" id="hp-hub"><svg viewBox="0 0 120 120" role="img" aria-label="ReallyWise AI assistant"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H295.702L140.286 665.814L139.526 666.256C130.86 671.287 120 665.034 120 655.013V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#012976"/><circle class="d d1" cx="199" cy="338" r="56"/><circle class="d d2" cx="365" cy="338" r="56"/><circle class="d d3" cx="531" cy="338" r="56"/></g></svg></div>
+          <div class="hp-col hp-col-r">
+          <div class="hp-card" data-side="r" data-i="2"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2"/></svg><h3>Multiply your capacity</h3><p>The routine questions are answered for you, so your time goes to the buyers who are ready to talk.</p></div>
+          <div class="hp-card" data-side="r" data-i="3"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/><path d="m9 15 2 2 4-4"/></svg><h3>Close more deals</h3><p>You see who is ready, what worried them, and when to call. That is how interest turns into a showing, an offer and a close.</p></div>
+          </div>
         </div>
         <p class="hp-trust hp-rv">Every answer shows its source. We don't sell relationship data.</p>
       </div>
@@ -2561,6 +2595,46 @@
         if (href === (location.hash || '').toLowerCase() && parse(href).view === 'tab' && !parse(href).create) scrollTop();
       });
       route(true);
+
+      // Mission section: draw a line from each card into the hub, from their real positions
+      (function(){
+        var orbit = document.getElementById('hp-orbit'), svg = document.getElementById('hp-lines'), hub = document.getElementById('hp-hub');
+        if (!orbit || !svg || !hub) return;
+        var NS = 'http://www.w3.org/2000/svg', paths = [], dots = [];
+        function draw(){
+          svg.textContent = ''; paths = []; dots = [];
+          if (window.innerWidth <= 1000 || orbit.getBoundingClientRect().width === 0) return;
+          var o = orbit.getBoundingClientRect(), h = hub.getBoundingClientRect();
+          var cx = h.left + h.width / 2 - o.left, cy = h.top + h.height / 2 - o.top, r = h.width / 2;
+          orbit.querySelectorAll('.hp-card').forEach(function(card, i){
+            var c = card.getBoundingClientRect(), left = card.getAttribute('data-side') === 'l';
+            var y = c.top + c.height / 2 - o.top, x1 = (left ? c.right : c.left) - o.left;
+            var midX = left ? (x1 + (cx - r)) / 2 : (x1 + (cx + r)) / 2;
+            // leave the card horizontally, step toward the hub centre line, then enter the hub at its side
+            var hubX = left ? cx - r : cx + r, hubY = cy + (y < cy ? -r * 0.42 : r * 0.42);
+            var d = 'M' + x1 + ' ' + y + ' H' + midX + ' V' + hubY + ' H' + hubX;
+            var p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); p.setAttribute('data-i', i);
+            var dot = document.createElementNS(NS, 'circle'); dot.setAttribute('cx', x1); dot.setAttribute('cy', y); dot.setAttribute('r', 3.5); dot.setAttribute('data-i', i);
+            var dot2 = document.createElementNS(NS, 'circle'); dot2.setAttribute('cx', hubX); dot2.setAttribute('cy', hubY); dot2.setAttribute('r', 3.5); dot2.setAttribute('data-i', i);
+            svg.appendChild(p); svg.appendChild(dot); svg.appendChild(dot2); paths.push(p); dots.push(dot, dot2);
+          });
+        }
+        function mark(i, on){
+          paths.forEach(function(p){ if (p.getAttribute('data-i') === String(i)) p.classList.toggle('on', on); });
+          dots.forEach(function(d){ if (d.getAttribute('data-i') === String(i)) d.classList.toggle('on-dot', on); });
+        }
+        orbit.querySelectorAll('.hp-card').forEach(function(card, i){
+          card.addEventListener('mouseenter', function(){ mark(i, true); });
+          card.addEventListener('mouseleave', function(){ mark(i, false); });
+          card.addEventListener('focusin', function(){ mark(i, true); });
+          card.addEventListener('focusout', function(){ mark(i, false); });
+        });
+        var raf = 0; function soon(){ cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); }
+        window.addEventListener('resize', soon); window.addEventListener('rw:route', function(){ setTimeout(draw, 30); });
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+        window.addEventListener('load', draw);
+        draw();
+      })();
 
       // The AI badge sits beside the realtor in the hero photo. The photo is object-fit: cover, so the badge is
       // placed from the photo's own coordinates (data-ax, data-ay are fractions of the photo) and follows resizes.
