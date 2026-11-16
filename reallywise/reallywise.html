@@ -565,6 +565,7 @@
     .hp-h1 { margin:0; letter-spacing:-.02em; }
     .hp-hero .hero-copy { max-width:none; }
     .hero h1.hp-h1 { font-size:clamp(27px,4.2vw,60px); line-height:1.08; }
+    @media (min-width:701px) and (max-width:999px){ .hero.hp-hero { align-items:flex-start; padding-top:118px; } .hp-hero .hero-sub { max-width:44ch; } }
     @media (max-width:700px){ .hero h1.hp-h1 span.hp-l1, .hero h1.hp-h1 span.hp-l2 { display:inline !important; } .hero h1.hp-h1 span.hp-l1::after { content:' '; } .hero h1.hp-h1 { font-size:clamp(22px,7.4vw,36px); } }
     .hp-h1 span.hp-l1 { display:block; animation:hp-rise .9s cubic-bezier(.2,.7,.2,1) .15s both; }
     .hp-h1 span.hp-l2 { display:block; color:#6FE3A8; animation:hp-rise .9s cubic-bezier(.2,.7,.2,1) .6s both; }
@@ -2574,6 +2575,22 @@
           badge.style.left = Math.round(ox + parseFloat(badge.dataset.ax) * nw * k) + 'px';
           badge.style.top = Math.round(oy + parseFloat(badge.dataset.ay) * nh * k) + 'px';
           badge.classList.add('is-placed');
+          keepClear(ox, k, nw);
+        }
+        // Keep the headline and the paragraph off the people: their right edge stops at 57% of the photo.
+        // The headline shrinks (down to a floor) until it needs three lines at most.
+        var h1 = document.querySelector('#home-hero .hp-h1'), sub = document.querySelector('#home-hero .hero-sub');
+        function resetClear(){ if (h1) { h1.style.maxWidth = ''; h1.style.fontSize = ''; } if (sub) sub.style.maxWidth = ''; }
+        function keepClear(ox, k, nw){
+          if (!h1 || !sub) return;
+          resetClear();
+          if (window.innerWidth < 1000) return;
+          var left = h1.getBoundingClientRect().left, limit = Math.round(ox + 0.57 * nw * k - left - 24);
+          if (limit < 360) return;
+          h1.style.maxWidth = limit + 'px';
+          if (parseFloat(sub.style.maxWidth || 9999) > limit) sub.style.maxWidth = limit + 'px';
+          var fs = parseFloat(getComputedStyle(h1).fontSize), lh = parseFloat(getComputedStyle(h1).lineHeight) / fs;
+          while (fs > 30 && Math.round(h1.getBoundingClientRect().height / (fs * lh)) > 3) { fs -= 2; h1.style.fontSize = fs + 'px'; }
         }
         if (img.complete) place(); else img.addEventListener('load', place);
         window.addEventListener('resize', place);
