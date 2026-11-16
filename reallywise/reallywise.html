@@ -563,7 +563,9 @@
     .hp-hero .hero-photo { object-position:72% center; }
     @media (max-width:700px){ .hp-hero .hero-photo { object-position:74% center; } }
     .hp-h1 { margin:0; letter-spacing:-.02em; }
-    .hero h1.hp-h1 { font-size:clamp(34px,5vw,64px); line-height:1.06; }
+    .hp-hero .hero-copy { max-width:none; }
+    .hero h1.hp-h1 { font-size:clamp(27px,4.2vw,60px); line-height:1.08; }
+    @media (max-width:700px){ .hero h1.hp-h1 span.hp-l1, .hero h1.hp-h1 span.hp-l2 { display:inline !important; } .hero h1.hp-h1 span.hp-l1::after { content:' '; } .hero h1.hp-h1 { font-size:clamp(22px,7.4vw,36px); } }
     .hp-h1 span.hp-l1 { display:block; animation:hp-rise .9s cubic-bezier(.2,.7,.2,1) .15s both; }
     .hp-h1 span.hp-l2 { display:block; color:#6FE3A8; animation:hp-rise .9s cubic-bezier(.2,.7,.2,1) .6s both; }
     .hp-dot { display:inline-block; width:.2em; height:.2em; margin-left:.06em; border-radius:50%; background:var(--green-500); animation:hp-pop .5s ease-out 1.6s both; }
