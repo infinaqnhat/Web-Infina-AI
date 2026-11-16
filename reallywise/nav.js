@@ -17,9 +17,12 @@
     '.rw-nav .nav-center { display: flex; align-items: center; gap: 8px; }',
     '.rw-nav .nav-center a { font-family: var(--font-body, "DM Sans", system-ui, sans-serif); font-size: 14px; font-weight: 600; color: var(--fg-secondary, #4E5878); padding: 9px 16px; border-radius: 10px; border: 1px solid var(--border, #DBE1EE); background: var(--surface, #F4F6FB); text-decoration: none; transition: background .2s, color .2s, border-color .2s; }',
     '.rw-nav .nav-center a:hover { border-color: var(--accent, #012976); color: var(--accent, #012976); }',
+    '.rw-nav .nav-center a.plain { border-color: transparent; background: none; padding: 9px 8px; }',
+    '.rw-nav .nav-center a.plain:hover { border-color: transparent; text-decoration: underline; text-underline-offset: 4px; }',
     '.rw-nav .nav-center a.is-active { color: #fff; background: var(--accent, #012976); border-color: var(--accent, #012976); }',
     '.rw-nav.is-transparent .nav-center a { color: #fff; background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.4); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }',
     '.rw-nav.is-transparent .nav-center a:hover { background: rgba(255,255,255,.26); color: #fff; border-color: rgba(255,255,255,.4); }',
+    '.rw-nav.is-transparent .nav-center a.plain, .rw-nav.is-transparent .nav-center a.plain:hover { background: none; border-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }',
     '.rw-nav.is-transparent .nav-center a.is-active { color: var(--accent, #012976); background: #fff; border-color: #fff; }',
     '.rw-nav.is-transparent .nav-toggle { color: #fff; }',
     '.rw-nav .nav-cta { font-family: var(--font-body, "DM Sans", system-ui, sans-serif); background: var(--accent, #012976); color: #fff !important; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background .2s; }',
@@ -62,7 +65,7 @@
       try { links = JSON.parse(this.getAttribute('links') || '[]'); } catch (e) {}
 
       function linkHtml(l) {
-        return '<a href="' + esc(l.href || '#') + '"' + (l.slide !== undefined ? ' data-slide="' + esc(l.slide) + '"' : '') + '>' + esc(l.text) + '</a>';
+        return '<a href="' + esc(l.href || '#') + '"' + (l.slide !== undefined ? ' data-slide="' + esc(l.slide) + '"' : '') + (l.plain ? ' class="plain"' : '') + '>' + esc(l.text) + '</a>';
       }
 
       var transparentUntilScroll = this.hasAttribute('transparent-until-scroll');
@@ -105,12 +108,15 @@
         var update = function () {
           var threshold = window.innerHeight * 0.7;
           var untilEl = untilSelector && document.querySelector(untilSelector);
+          // when that element is not on screen at all (e.g. the homepage view), the bar is simply solid
+          if (untilEl && untilEl.offsetParent === null) { nav.classList.remove('is-transparent'); return; }
           if (untilEl) threshold = untilEl.getBoundingClientRect().bottom + window.scrollY - 80;
           nav.classList.toggle('is-transparent', window.scrollY < threshold);
         };
         update();
         window.addEventListener('scroll', update, { passive: true });
         window.addEventListener('resize', update);
+        window.addEventListener('rw:route', update);
       }
 
       this.remove();

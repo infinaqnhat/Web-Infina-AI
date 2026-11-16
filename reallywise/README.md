@@ -8,7 +8,7 @@ duplicate of the root files. The brand source of truth is `brand/`.
 ## Rebrand status
 | File | Status |
 |---|---|
-| `reallywise.html`, `nav.js`, `footer.js` | Done. Name, logo, fonts, colors, hero, copy, metadata. `nav.js` and `footer.js` are now the `rw-nav` and `rw-footer` components and only serve ReallyWise pages |
+| `reallywise.html`, `nav.js`, `footer.js` | Done. One page with three views: the homepage (no hash), the listing agents tab (`#listing-agent`) and the buyer agents tab (`#buyer-agent`). The logo and `#home` go to the homepage; `#mission`, `#fight`, `#tools` and `#endings` are homepage anchors. `nav.js` and `footer.js` are the `rw-nav` and `rw-footer` components and only serve ReallyWise pages |
 | `property-expert-demo-tour.html`, `property-expert-admin-demo-tour.html` | Done (assistant name Realisa kept) |
 | everything else | Not started |
 

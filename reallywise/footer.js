@@ -39,7 +39,7 @@
       footer.className = 'rw-footer';
       footer.innerHTML =
         '<div class="footer-inner">' +
-          '<div class="footer-logo"><img src="brand/Really_Wise_Logo.svg" alt="ReallyWise"></div>' +
+          '<div class="footer-logo"><a href="#home"><img src="brand/Really_Wise_Logo.svg" alt="ReallyWise"></a></div>' +
           '<div class="footer-links">' + linksHtml + '</div>' +
           '<p class="footer-copy">© 2026 ReallyWise. All rights reserved.</p>' +
         '</div>';
