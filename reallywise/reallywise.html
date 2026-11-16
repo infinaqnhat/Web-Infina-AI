@@ -547,7 +547,7 @@
     #home-view a { color:inherit; }
     #home-view section, #home-view .hp-hero { scroll-margin-top:72px; }
     .hp-wrap { max-width:1280px; margin:0 auto; padding:0 clamp(20px,5vw,56px); box-sizing:border-box; }
-    .hp-pad { padding-top:clamp(64px,9vw,128px); padding-bottom:clamp(64px,9vw,128px); display:flex; flex-direction:column; gap:clamp(40px,5vw,64px); }
+    .hp-pad { padding-top:var(--section-gap); padding-bottom:var(--section-gap); display:flex; flex-direction:column; gap:clamp(40px,5vw,64px); }
     .hp-kicker { font-family:var(--font-accent); font-weight:700; font-size:18px; line-height:22px; }
     .hp-h2 { margin:0; font-family:var(--font-head); font-weight:800; letter-spacing:-.035em; }
     .hp-lead { margin:0; max-width:720px; font-size:clamp(17px,1.4vw,20px); line-height:1.5; }
@@ -609,10 +609,9 @@
     .hp-steps h3 { margin:0; font-family:var(--font-head); font-weight:700; font-size:22px; line-height:28px; }
     .hp-steps p { margin:0; font-size:16px; line-height:24px; color:var(--muted); }
 
-    /* The fight section fits one screen on desktop: sizes follow the viewport height as well as the width */
+    /* The fight section fits one screen on desktop (its padding is the same as every other section): sizes follow the viewport height as well as the width */
     @media (min-width:901px){
-      #home-view #fight { scroll-margin-top:0; }
-      .hp-fight .hp-pad { min-height:100vh; min-height:100dvh; box-sizing:border-box; justify-content:center; padding-top:calc(72px + 3vh); padding-bottom:3vh; gap:clamp(14px,3vh,40px); }
+      .hp-fight .hp-pad { gap:clamp(14px,3vh,40px); }
       .hp-fight .hp-word { font-size:clamp(40px,min(7.4vw,12vh),108px); }
       .hp-fight .hp-fight-word p { font-size:clamp(20px,min(2.6vw,3.6vh),36px); }
       .hp-fight .hp-two { gap:16px 72px; }
@@ -663,7 +662,7 @@
 
     /* What a machine can't do */
     .hp-machine { background:var(--accent); color:#fff; overflow:hidden; }
-    .hp-machine .hp-pad { padding-top:clamp(64px,10vw,144px); padding-bottom:clamp(64px,10vw,144px); gap:clamp(40px,6vw,80px); }
+    .hp-machine .hp-pad { gap:clamp(40px,6vw,80px); }
     .hp-machine-top { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr)); gap:40px 72px; align-items:center; }
     .hp-machine h2 { font-size:clamp(32px,4.2vw,60px); line-height:1.04; }
     .hp-machine h2 span { display:block; } .hp-machine h2 span:first-child { color:var(--tint); }
@@ -688,7 +687,7 @@
 
     /* Meet your team */
     .hp-tools { background:var(--accent); color:#fff; }
-    .hp-tools .hp-pad { padding-bottom:clamp(48px,6vw,80px); gap:48px; }
+    .hp-tools .hp-pad { gap:48px; }
     .hp-tools .hp-kicker { color:var(--tint); }
     .hp-tools .hp-h2 { font-size:clamp(36px,5vw,72px); line-height:1.03; }
     .hp-tools .hp-lead { color:var(--on-navy); }
@@ -707,7 +706,7 @@
 
     /* Closing band */
     .hp-close { background:var(--sand); text-align:center; }
-    .hp-close .hp-pad { align-items:center; gap:32px; padding-top:clamp(56px,7vw,96px); padding-bottom:clamp(56px,7vw,96px); }
+    .hp-close .hp-pad { align-items:center; gap:32px; }
     .hp-close p.big { margin:0; max-width:900px; font-family:var(--font-head); font-weight:800; font-size:clamp(26px,3.4vw,48px); line-height:1.1; letter-spacing:-.03em; }
     .hp-close p.big span { color:var(--navy-500); }
 
