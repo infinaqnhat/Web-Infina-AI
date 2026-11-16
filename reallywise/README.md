@@ -41,6 +41,7 @@ Defaults used for the landing page, change them in one place if the answer diffe
 | `scripts/build-presentation-pdf.mjs` | Builds `uploads/AI-Property-Product-Presentation.pdf` from the presentation | `scripts/` |
 | `realsalex-mockups/` | Dashboard, deal room and email mockups | `realsalex-mockups/` |
 | `wordpress-theme/infina-ai-news/` | News blog block theme | `wordpress-theme/infina-ai-news/` |
+| `video/lead-capture-video.html`, `video/render-video.mjs` | Lead capture explainer video (66 s, 1920x1080): share kit, six channels (yard sign, open house, social, text and email, postcards, website), buyer chat with Realisa, lead in the dashboard. The HTML plays in a browser (click to restart, `?t=30` jumps to a time); `node video/render-video.mjs` renders it frame by frame to `uploads/property-expert-lead-capture.mp4` (Playwright and ffmpeg required). The QR code encodes `https://reallywise.ai/l/123-main` | new |
 | `uploads/` | Only the images, video and PDF these pages reference | `uploads/` |
 
 ## Notes

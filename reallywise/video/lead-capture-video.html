@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Property Expert Lead Capture</title>
+<meta name="description" content="Explainer video source: how ReallyWise Property Expert turns a QR code and a smart link into leads across every channel. Rendered to MP4 with render-video.mjs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-900:#012976; --navy-700:#013A9E; --navy-500:#33599F; --navy-100:#E4E9F3; --navy-hover:#011F59;
+  --green-500:#0bb563; --green-700:#067a43; --green-100:#e2f6ec; --sand-100:#f6f2ea;
+  --amber:#c27c0e; --amber-100:#fdf1dc;
+  --surface:#F4F6FB; --line:#DBE1EE; --ink:#0d1a36; --ink-2:#3a4762; --muted:#6b7690;
+  --f-head:'Inter',system-ui,sans-serif; --f-body:'DM Sans',system-ui,sans-serif; --f-mono:'DM Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#0b1430;overflow:hidden}
+body{font-family:var(--f-body);color:var(--ink);-webkit-font-smoothing:antialiased}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;background:var(--surface);transform-origin:0 0}
+.abs{position:absolute}
+.scene{position:absolute;inset:0;overflow:hidden}
+.scene.light{background:radial-gradient(1200px 700px at 85% 10%,#e7ecf7 0,rgba(231,236,247,0) 70%),var(--surface)}
+.scene.dark{background:radial-gradient(1100px 800px at 80% 0%,#0b3aa0 0,rgba(11,58,160,0) 60%),radial-gradient(900px 700px at 0% 100%,#0a2a73 0,rgba(10,42,115,0) 60%),var(--navy-900);color:#fff}
+
+h1,h2,h3{font-family:var(--f-head);letter-spacing:-.02em}
+.eyebrow{font-family:var(--f-body);font-weight:700;font-size:20px;letter-spacing:.02em;color:var(--navy-500);display:flex;align-items:center;gap:12px}
+.eyebrow .num{width:34px;height:34px;border-radius:50%;background:var(--navy-900);color:#fff;display:grid;place-items:center;font-family:var(--f-head);font-size:17px;font-weight:700}
+.h2{font-size:58px;line-height:1.06;font-weight:800;color:var(--navy-900);margin-top:18px}
+.lead{font-size:24px;line-height:1.5;color:var(--ink-2);margin-top:22px}
+.mono{font-family:var(--f-mono)}
+
+/* stepper */
+#stepper{position:absolute;left:50%;top:40px;margin-left:-370px;width:740px;height:52px;display:flex;gap:8px;padding:6px;background:#fff;border:1px solid var(--line);border-radius:999px;box-shadow:0 6px 20px rgba(1,41,118,.06);z-index:20}
+#stepper .st{flex:1;display:flex;align-items:center;justify-content:center;gap:9px;border-radius:999px;font-weight:700;font-size:16px;color:var(--muted)}
+#stepper .st i{font-style:normal;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--navy-100);color:var(--navy-500);font-size:13px;font-family:var(--f-head)}
+#stepper .st.on{background:var(--navy-900);color:#fff}
+#stepper .st.on i{background:#fff;color:var(--navy-900)}
+#stepper .st.done i{background:var(--green-500);color:#fff}
+
+/* QR */
+.qr{background:#fff;display:block;color:var(--navy-900)}
+.qr svg{display:block;width:100%;height:100%}
+
+/* ---------- Scene 1 ---------- */
+#s1 .icon{left:50%;top:250px;width:150px;height:150px;margin-left:-75px;border-radius:34px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+#s1 .kicker{left:0;right:0;top:440px;text-align:center;font-weight:700;font-size:24px;letter-spacing:.06em;color:#9fb4e2;text-transform:uppercase}
+#s1 h1{left:0;right:0;top:490px;text-align:center;font-size:84px;line-height:1.05;font-weight:800}
+#s1 h1 em{font-style:normal;color:#5fe0a0}
+#s1 .sub{left:0;right:0;top:700px;text-align:center;font-size:30px;color:#c9d5f1}
+
+/* ---------- Scene 2 ---------- */
+#s2 .copy{left:140px;top:300px;width:700px}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 20px 50px rgba(1,41,118,.08)}
+#kit{left:940px;top:200px;width:840px;height:700px;padding:34px}
+.lst{display:flex;gap:22px;align-items:center}
+.lst img{width:180px;height:124px;border-radius:14px;object-fit:cover}
+.lst h3{font-size:30px;color:var(--navy-900);font-weight:800}
+.lst .addr{font-size:19px;color:var(--muted);margin-top:4px}
+.lst .facts{font-size:19px;color:var(--ink-2);margin-top:10px}
+.lst .facts b{font-family:var(--f-mono);font-weight:500;color:var(--ink)}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-weight:700;font-size:15px;padding:6px 12px}
+.pill.live{background:var(--green-100);color:var(--green-700)}
+.pill.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green-500)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:14px;font-weight:700;font-size:20px;padding:0 26px;height:60px;border:0}
+.btn.navy{background:var(--navy-900);color:#fff}
+.btn.green{background:var(--green-500);color:#fff}
+.btn.ghost{background:#fff;color:var(--navy-900);border:1.5px solid var(--line)}
+#createBtn{left:34px;top:200px;width:772px;height:66px;font-size:22px}
+#createBtnPressed{left:34px;top:200px;width:772px;height:66px;font-size:22px;background:var(--navy-hover)}
+#kitBody{left:34px;top:200px;width:772px}
+.kitrow{display:flex;gap:30px}
+.qrbox{width:280px;height:280px;padding:18px;border:1.5px solid var(--line);border-radius:20px;background:#fff;position:relative}
+.qrbox .qr{width:100%;height:100%}
+.qrbox .badge{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:14px;background:#fff;padding:5px}
+.qrbox .badge img{width:100%;height:100%;border-radius:10px}
+.kitside{flex:1;display:flex;flex-direction:column;gap:14px}
+.lbl{font-size:16px;font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.linkfield{height:62px;border:1.5px solid var(--navy-500);border-radius:14px;display:flex;align-items:center;padding:0 18px;font-family:var(--f-mono);font-size:22px;color:var(--navy-900);background:#f8faff}
+.caret{display:inline-block;width:2px;height:1.05em;background:currentColor;margin-left:2px;vertical-align:-3px}
+.kitbtns{display:flex;gap:12px;flex-wrap:wrap}
+.kitbtns .btn{height:54px;font-size:18px;padding:0 18px}
+#copied{position:absolute;left:0;top:0}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
+.chip{display:inline-flex;align-items:center;gap:9px;height:46px;padding:0 18px;border-radius:999px;background:var(--navy-100);color:var(--navy-900);font-weight:700;font-size:18px}
+.chip svg{width:20px;height:20px}
+
+/* cursor */
+#cursor{width:40px;height:40px;z-index:30;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))}
+.ripple{width:70px;height:70px;border-radius:50%;border:3px solid var(--green-500);margin:-35px 0 0 -35px}
+
+/* ---------- Scene 3 ---------- */
+#s3 .head{left:0;right:0;top:112px;text-align:center}
+#s3 .head .h2{font-size:52px;margin-top:10px}
+#s3 .head .eyebrow{justify-content:center}
+.tile{width:540px;height:350px;background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 14px 34px rgba(1,41,118,.07)}
+.tile .mock{position:relative;height:236px;overflow:hidden}
+.tile .cap{padding:14px 22px 0}
+.tile .cap b{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-head);font-size:23px;color:var(--navy-900);font-weight:700}
+.tile .cap p{font-size:17.5px;line-height:1.4;color:var(--ink-2);margin-top:6px}
+.tag{font-family:var(--f-body);font-size:13px;font-weight:700;letter-spacing:.05em;padding:4px 10px;border-radius:999px;background:var(--navy-100);color:var(--navy-700)}
+.ring{inset:0;border:3px solid var(--green-500);border-radius:22px;pointer-events:none}
+.plus{right:16px;top:16px;background:var(--green-500);color:#fff;font-weight:700;font-size:17px;padding:7px 14px;border-radius:999px;box-shadow:0 6px 16px rgba(11,181,99,.4);z-index:3}
+.photo{position:absolute;inset:0;background-size:cover;background-position:center}
+
+/* sign (shared by tile and phone camera) */
+.sign{position:absolute}
+.sign .post{position:absolute;left:0;top:0;width:10px;height:100%;background:#8a5a32;border-radius:2px}
+.sign .arm{position:absolute;left:0;top:10px;height:9px;width:100%;background:#8a5a32;border-radius:2px}
+.sign .panel{position:absolute;left:22%;top:30px;width:74%;background:#fff;border-radius:4px;box-shadow:0 4px 12px rgba(0,0,0,.3);overflow:hidden;text-align:center}
+.sign .panel .fs{background:var(--navy-900);color:#fff;font-family:var(--f-head);font-weight:800}
+.sign .panel .ad{color:var(--navy-900);font-weight:700}
+.sign .rider{position:absolute;left:22%;width:74%;background:#fff;border-radius:4px;box-shadow:0 4px 12px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;flex-direction:column}
+.sign .rider .t{color:var(--navy-900);font-weight:800;font-family:var(--f-head);text-align:center;line-height:1.1}
+
+/* ---------- Scene 4 ---------- */
+#s4 .copy{left:120px;top:190px;width:560px}
+#s4 .copy .h2{font-size:54px}
+#s4 .copy .lead{font-size:22px}
+.feat{display:flex;gap:14px;align-items:flex-start;margin-top:22px;font-size:21px;line-height:1.4;color:var(--ink)}
+.feat .ck{width:32px;height:32px;border-radius:50%;background:var(--green-100);color:var(--green-700);display:grid;place-items:center;flex-shrink:0}
+#phone{left:755px;top:140px;width:410px;height:850px;border-radius:62px;background:#0c1222;padding:14px;box-shadow:0 40px 80px rgba(1,41,118,.28),inset 0 0 0 2px #2a3450}
+#screen{position:relative;width:100%;height:100%;border-radius:48px;overflow:hidden;background:#fff}
+.island{position:absolute;left:50%;top:12px;width:112px;height:32px;margin-left:-56px;border-radius:20px;background:#000;z-index:10}
+.sbar{position:absolute;left:0;right:0;top:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:6px 30px 0;font-weight:700;font-size:16px;z-index:9}
+#cam{inset:0;background:#000}
+#cam .photo{background-position:62% center}
+.vf{left:50%;top:50%;width:220px;height:220px;margin:-110px 0 0 -110px}
+.vf i{position:absolute;width:44px;height:44px;border-color:#0bb563;border-style:solid}
+.vf i:nth-child(1){left:0;top:0;border-width:5px 0 0 5px;border-radius:12px 0 0 0}
+.vf i:nth-child(2){right:0;top:0;border-width:5px 5px 0 0;border-radius:0 12px 0 0}
+.vf i:nth-child(3){left:0;bottom:0;border-width:0 0 5px 5px;border-radius:0 0 0 12px}
+.vf i:nth-child(4){right:0;bottom:0;border-width:0 5px 5px 0;border-radius:0 0 12px 0}
+#scanline{left:16px;right:16px;height:3px;background:#5fe0a0;box-shadow:0 0 14px #5fe0a0;top:0}
+.camhint{left:0;right:0;bottom:120px;text-align:center;color:#fff;font-weight:700;font-size:17px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.shutter{left:50%;bottom:34px;width:68px;height:68px;margin-left:-34px;border-radius:50%;border:5px solid #fff}
+#banner{left:12px;right:12px;top:58px;background:rgba(255,255,255,.96);border-radius:20px;padding:13px 16px;display:flex;gap:12px;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,.35);z-index:8}
+#banner img{width:40px;height:40px;border-radius:10px}
+#banner b{display:block;font-size:15px;color:var(--ink)}
+#banner span{font-size:13.5px;color:var(--muted);font-family:var(--f-mono)}
+#page{inset:0;background:#fff;display:flex;flex-direction:column}
+#page .hero{height:196px;flex-shrink:0;position:relative;background:url(../uploads/property-123-main.jpg) center/cover}
+#page .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 40%,rgba(0,0,0,.5))}
+#page .hero .pr{position:absolute;left:16px;bottom:12px;color:#fff;z-index:2}
+#page .hero .pr b{font-family:var(--f-head);font-size:26px;font-weight:800}
+#page .hero .pr span{display:block;font-size:13.5px;opacity:.95}
+#page .hero .fs{position:absolute;right:14px;bottom:16px;z-index:2;background:var(--green-500);color:#fff;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px}
+#page .meta{display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--line);font-size:13px;color:var(--muted);flex-shrink:0}
+#page .meta b{display:block;color:var(--ink);font-size:15.5px;font-family:var(--f-mono);font-weight:500}
+#page .who{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);flex-shrink:0}
+#page .who img{width:34px;height:34px;border-radius:50%}
+#page .who b{font-size:15px;color:var(--navy-900);display:block}
+#page .who span{font-size:12px;color:var(--green-700);font-weight:700}
+#msgs{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:10px 14px 8px;overflow:hidden;background:var(--surface)}
+.m{max-width:86%;font-size:14.5px;line-height:1.42;padding:10px 13px;border-radius:16px}
+.m.bot{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:5px;color:var(--ink)}
+.m.me{align-self:flex-end;background:var(--navy-900);color:#fff;border-bottom-right-radius:5px}
+.src{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:12px;font-weight:700;color:var(--navy-700);background:var(--navy-100);padding:4px 9px;border-radius:999px}
+.dots{align-self:flex-start;background:#fff;border:1px solid var(--line);border-radius:16px;border-bottom-left-radius:5px;padding:12px 14px;display:flex;gap:5px}
+.dots i{width:8px;height:8px;border-radius:50%;background:#9aa6c2;display:block}
+.slots{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.slot{position:relative;font-size:13px;font-weight:700;color:var(--navy-900);border:1.5px solid var(--line);border-radius:999px;padding:6px 10px;background:#fff}
+.slot .sel{inset:-1.5px;border-radius:999px;background:var(--navy-900);color:#fff;display:grid;place-items:center}
+.form{margin-top:9px;display:flex;flex-direction:column;gap:6px}
+.fi{height:34px;border:1.5px solid var(--line);border-radius:10px;padding:0 10px;display:flex;align-items:center;font-size:14px;color:var(--ink);background:#fff}
+.fi.ph{color:#a2abbf}
+.fsend{height:34px;border-radius:10px;background:var(--green-500);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center;position:relative}
+.ok{display:flex;gap:9px;align-items:flex-start}
+.ok .c{width:24px;height:24px;border-radius:50%;background:var(--green-500);color:#fff;display:grid;place-items:center;flex-shrink:0}
+#composer{flex-shrink:0;height:66px;padding:10px 12px 14px;display:flex;gap:8px;align-items:center;border-top:1px solid var(--line);background:#fff}
+#composer .in{flex:1;height:42px;border:1.5px solid var(--line);border-radius:999px;padding:0 16px;display:flex;align-items:center;font-size:14.5px;color:#a2abbf;white-space:nowrap;overflow:hidden}
+#composer .in.typing{color:var(--ink);border-color:var(--navy-500)}
+#composer .send{width:42px;height:42px;border-radius:50%;background:var(--navy-900);display:grid;place-items:center;color:#fff}
+.tap{width:54px;height:54px;border-radius:50%;background:rgba(1,41,118,.18);border:2px solid rgba(1,41,118,.5);margin:-27px 0 0 -27px;z-index:12}
+#docs{left:1250px;top:190px;width:540px}
+#docs .lbl{margin-bottom:16px}
+.doc{position:relative;display:flex;align-items:center;gap:16px;height:84px;padding:0 22px;background:#fff;border:1px solid var(--line);border-radius:18px;margin-bottom:14px;font-size:21px;font-weight:700;color:var(--navy-900)}
+.doc .di{width:46px;height:46px;border-radius:12px;background:var(--navy-100);color:var(--navy-700);display:grid;place-items:center}
+.doc small{display:block;font-size:15px;color:var(--muted);font-weight:500;margin-top:2px}
+.doc .hl{inset:-1px;border-radius:18px;border:3px solid var(--green-500);background:rgba(11,181,99,.06)}
+.doc .used{right:20px;top:50%;margin-top:-15px;background:var(--green-500);color:#fff;font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px}
+
+/* ---------- Scene 5 ---------- */
+#s5 .copy{left:140px;top:130px;width:1000px}
+#s5 .copy .h2{font-size:54px}
+#toast{left:1210px;top:136px;width:570px;padding:20px 22px;display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 22px 50px rgba(1,41,118,.16);z-index:5}
+#toast .ti{width:52px;height:52px;border-radius:14px;background:var(--green-500);color:#fff;display:grid;place-items:center;flex-shrink:0}
+#toast b{display:block;font-size:20px;color:var(--navy-900)}
+#toast span{font-size:17px;color:var(--ink-2)}
+#leadcard{left:140px;top:330px;width:880px;height:560px;padding:34px}
+.lh{display:flex;align-items:center;gap:20px}
+.av{width:76px;height:76px;border-radius:50%;background:var(--navy-900);color:#fff;display:grid;place-items:center;font-family:var(--f-head);font-weight:800;font-size:28px}
+.lh h3{font-size:34px;color:var(--navy-900);font-weight:800}
+.lh .ph{font-family:var(--f-mono);font-size:20px;color:var(--ink-2);margin-top:4px}
+.hot{margin-left:auto;background:var(--amber-100);color:var(--amber);font-size:17px;font-weight:700;padding:8px 16px;border-radius:999px}
+.rows{margin-top:24px;border-top:1px solid var(--line)}
+.row{display:flex;padding:14px 0;border-bottom:1px solid var(--line);font-size:20px}
+.row span{width:230px;color:var(--muted);flex-shrink:0}
+.row b{color:var(--ink);font-weight:700}
+.summary{margin-top:20px;background:var(--surface);border-radius:16px;padding:18px 20px;font-size:19px;line-height:1.5;color:var(--ink-2)}
+.summary .lbl{font-size:14px;margin-bottom:6px;color:var(--navy-500)}
+.acts{display:flex;gap:12px;margin-top:22px}
+.acts .btn{height:56px;font-size:19px}
+#chart{left:1070px;top:330px;width:710px;height:560px;padding:34px}
+#chart h3{font-size:26px;color:var(--navy-900);font-weight:800}
+#chart .sub{font-size:17px;color:var(--muted);margin-top:4px}
+.bars{margin-top:30px;display:flex;flex-direction:column;gap:24px}
+.bar{display:grid;grid-template-columns:190px 1fr 56px;align-items:center;gap:14px;font-size:18.5px;font-weight:700;color:var(--ink);position:relative}
+.bar .tr{height:22px;border-radius:999px;background:var(--navy-100);overflow:hidden}
+.bar .fl{height:100%;border-radius:999px;background:var(--navy-700);width:0}
+.bar.hi .fl{background:var(--green-500)}
+.bar .n{font-family:var(--f-mono);font-weight:500;text-align:right}
+.bar .new{right:-12px;top:-22px;background:var(--green-500);color:#fff;font-size:13px;padding:3px 9px;border-radius:999px}
+.total{margin-top:30px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
+.total span{font-size:19px;color:var(--muted);font-weight:700}
+.total b{font-family:'Montserrat',var(--f-head);font-size:46px;color:var(--navy-900);font-weight:800}
+
+/* ---------- Scene 6 ---------- */
+#s6 h1{left:0;right:0;top:300px;text-align:center;font-size:76px;line-height:1.1;font-weight:800}
+#s6 h1 em{font-style:normal;color:#5fe0a0}
+#s6 .logo{left:50%;top:640px;width:420px;margin-left:-210px}
+#s6 .tagline{left:0;right:0;top:760px;text-align:center;font-size:28px;color:#c9d5f1}
+#s6 .url{left:0;right:0;top:820px;text-align:center;font-family:var(--f-mono);font-size:26px;color:#fff}
+
+#hud{position:fixed;right:12px;bottom:10px;color:#8ea0c8;font:12px var(--f-mono);z-index:99}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- ================= Scene 1: intro ================= -->
+  <section class="scene dark" id="s1" data-in="0" data-out="4.6" data-d="0.01">
+    <img class="abs icon" src="../brand/reallywise-app-icon.svg" alt="ReallyWise app icon" data-in="0.2" data-fx="pop" data-d="0.7">
+    <div class="abs kicker" data-in="0.7" data-fx="up">ReallyWise Property Expert</div>
+    <h1 class="abs" data-in="1.0" data-fx="up" data-d="0.8">Turn every listing into<br>a <em>24/7 lead magnet.</em></h1>
+    <p class="abs sub" data-in="2.0" data-fx="up">One QR code. One link. Every channel. Buyers get answers, you get the lead.</p>
+  </section>
+
+  <!-- ================= Scene 2: generate ================= -->
+  <section class="scene light" id="s2" data-in="4.6" data-out="12.2">
+    <div class="abs copy">
+      <div class="eyebrow" data-in="5.0" data-fx="up"><span class="num">1</span>Generate</div>
+      <h2 class="h2" data-in="5.2" data-fx="up">A share kit for every listing, in one click.</h2>
+      <p class="lead" data-in="5.5" data-fx="up">Property Expert creates a QR code and a smart link for the home, already loaded with the listing details, disclosures, inspection report and public records.</p>
+    </div>
+    <div class="abs card" id="kit" data-in="5.3" data-fx="right" data-d="0.7">
+      <div class="lst">
+        <img src="../uploads/property-123-main.jpg" alt="123 Main Street exterior">
+        <div>
+          <h3>123 Main Street</h3>
+          <div class="addr">Austin, TX 78703</div>
+          <div class="facts"><b>$895,000</b> &nbsp;·&nbsp; 3 bd &nbsp;·&nbsp; 2.5 ba &nbsp;·&nbsp; 2,104 sq ft</div>
+        </div>
+        <span class="pill live" style="margin-left:auto;align-self:flex-start">Expert live</span>
+      </div>
+      <div class="abs btn navy" id="createBtn" data-in="5.8" data-out="7.2" data-od="0.25">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v7h-7"/></svg>
+        Create share kit
+      </div>
+      <div class="abs btn navy" id="createBtnPressed" data-in="6.95" data-out="7.2" data-od="0.25" data-d="0.05">Creating…</div>
+      <div class="abs" id="kitBody" data-in="7.4" data-fx="up">
+        <div class="kitrow">
+          <div class="qrbox" data-in="7.5" data-fx="pop" data-d="0.6">
+            <div class="qr"></div>
+            <div class="badge"><img src="../brand/reallywise-app-icon-color.svg" alt=""></div>
+          </div>
+          <div class="kitside">
+            <div class="lbl" data-in="7.8" data-fx="fade">Smart link</div>
+            <div class="linkfield" data-in="7.8" data-fx="fade"><span data-type="8.0,9.0" data-text="reallywise.ai/l/123-main"></span><span class="caret" data-in="8.0" data-out="9.4" data-od="0.1"></span></div>
+            <div class="kitbtns" data-in="8.6" data-fx="up">
+              <span class="btn navy" id="copyBtn" style="position:relative">
+                <span>Copy link</span>
+                <span data-in="9.8" data-fx="fade" data-d="0.15" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--green-500);border-radius:14px">Copied</span>
+              </span>
+              <span class="btn ghost">Download QR</span>
+              <span class="btn ghost">Print rider</span>
+            </div>
+            <div class="lbl" style="margin-top:8px" data-in="8.9" data-fx="fade">Tracked per channel</div>
+            <div style="font-size:18px;line-height:1.45;color:var(--ink-2)" data-in="8.9" data-fx="fade">Each channel gets its own tag, so you always know where a lead came from.</div>
+          </div>
+        </div>
+        <div class="lbl" style="margin-top:30px" data-in="10.0" data-fx="fade">Ready for</div>
+        <div class="chips">
+          <span class="chip" data-in="10.1" data-fx="pop">Yard sign</span>
+          <span class="chip" data-in="10.2" data-fx="pop">Open house</span>
+          <span class="chip" data-in="10.3" data-fx="pop">Instagram</span>
+          <span class="chip" data-in="10.4" data-fx="pop">Facebook</span>
+          <span class="chip" data-in="10.5" data-fx="pop">Text</span>
+          <span class="chip" data-in="10.6" data-fx="pop">Email</span>
+          <span class="chip" data-in="10.7" data-fx="pop">Postcards</span>
+          <span class="chip" data-in="10.8" data-fx="pop">Your website</span>
+        </div>
+      </div>
+    </div>
+    <div class="abs ripple" id="rip1" data-in="6.95" data-out="7.15" data-fx="ripple" data-d="0.4"></div>
+    <div class="abs ripple" id="rip2" data-in="9.75" data-out="9.95" data-fx="ripple" data-d="0.4"></div>
+    <svg class="abs" id="cursor" viewBox="0 0 24 24"><path d="M4 2l16 9.5-7 1.6 4.2 7.4-3 1.6-4.2-7.4L5 19z" fill="#0d1a36" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+  </section>
+
+  <!-- ================= Scene 3: share everywhere ================= -->
+  <section class="scene light" id="s3" data-in="12.2" data-out="29.6">
+    <div class="abs head">
+      <div class="eyebrow" data-in="12.5" data-fx="up"><span class="num">2</span>Share</div>
+      <h2 class="h2" data-in="12.7" data-fx="up">Put it everywhere buyers already are.</h2>
+    </div>
+
+    <!-- 1 yard sign -->
+    <div class="abs tile" style="left:110px;top:262px" data-in="13.4" data-fx="zoom" data-d="0.6">
+      <div class="mock">
+        <div class="photo" style="background-image:url(../uploads/property-123-main.jpg);background-position:30% 60%"></div>
+        <div class="sign" style="left:330px;top:22px;width:180px;height:228px">
+          <div class="post"></div><div class="arm"></div>
+          <div class="panel"><div class="fs" style="font-size:17px;padding:5px 0">FOR SALE</div><div class="ad" style="font-size:11.5px;padding:5px 4px">123 Main Street<br><span style="font-weight:500">3 bd · 2.5 ba</span></div></div>
+          <div class="rider" style="top:106px;height:104px;padding:6px"><div class="qr" style="width:62px;height:62px"></div><div class="t" style="font-size:11px;margin-top:5px">Scan to ask AI<br>about this home</div></div>
+        </div>
+        <div class="abs plus" data-in="15.0" data-fx="pop">+ Lead</div>
+      </div>
+      <div class="cap"><b>Yard sign rider <span class="tag">QR</span></b><p>Drive-by buyers scan at the curb, even at 9 PM on a Sunday.</p></div>
+      <div class="abs ring" data-in="13.4" data-out="15.8"></div>
+    </div>
+
+    <!-- 2 open house -->
+    <div class="abs tile" style="left:690px;top:262px" data-in="15.8" data-fx="zoom" data-d="0.6">
+      <div class="mock">
+        <div class="photo" style="background-image:url(../uploads/property-123-main-living.jpg);filter:brightness(.8)"></div>
+        <div class="abs" style="left:170px;top:22px;width:200px;height:216px;background:#fff;border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,.35);text-align:center;padding:12px 12px 0">
+          <div style="font-family:var(--f-head);font-weight:800;font-size:19px;color:var(--navy-900)">OPEN HOUSE</div>
+          <div style="font-size:13px;color:var(--ink-2);font-weight:700">Sat, 1–4 PM</div>
+          <div class="qr" style="width:96px;height:96px;margin:10px auto 8px"></div>
+          <div style="font-size:12.5px;line-height:1.25;color:var(--navy-900);font-weight:700">Scan to sign in<br>and ask anything</div>
+        </div>
+        <div class="abs plus" data-in="17.4" data-fx="pop">+ Lead</div>
+      </div>
+      <div class="cap"><b>Open house <span class="tag">QR</span></b><p>Replace the paper sign-in sheet. Every visitor leaves a real contact.</p></div>
+      <div class="abs ring" data-in="15.8" data-out="18.2"></div>
+    </div>
+
+    <!-- 3 social -->
+    <div class="abs tile" style="left:1270px;top:262px" data-in="18.2" data-fx="zoom" data-d="0.6">
+      <div class="mock" style="background:linear-gradient(135deg,#e4e9f3,#f6f2ea)">
+        <div class="abs" style="left:150px;top:12px;width:240px;height:212px;background:#fff;border-radius:16px;box-shadow:0 12px 30px rgba(1,41,118,.18);overflow:hidden">
+          <div style="display:flex;align-items:center;gap:8px;padding:9px 11px;font-size:12.5px;font-weight:700"><span style="width:24px;height:24px;border-radius:50%;background:var(--navy-900);display:inline-block"></span>yourname.realty</div>
+          <div style="position:relative;height:118px;background:url(../uploads/property-123-main-kitchen.jpg) center/cover">
+            <div class="abs" style="left:50%;bottom:12px;transform:translateX(-50%);background:#fff;color:var(--navy-700);font-weight:800;font-size:12px;padding:6px 11px;border-radius:9px;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.25)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="vertical-align:-1px"><path d="M10 14a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1M14 10a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg>
+              ASK AI ABOUT 123 MAIN</div>
+          </div>
+          <div style="padding:8px 11px;font-size:12px;line-height:1.35;color:var(--ink-2)"><b style="color:var(--ink)">Just listed in Austin.</b> Ask our AI anything, link in bio.</div>
+        </div>
+        <div class="abs plus" data-in="19.8" data-fx="pop">+ Lead</div>
+      </div>
+      <div class="cap"><b>Social posts and stories <span class="tag">LINK</span></b><p>A link in bio or a story sticker turns scrollers into conversations.</p></div>
+      <div class="abs ring" data-in="18.2" data-out="20.6"></div>
+    </div>
+
+    <!-- 4 sms / email -->
+    <div class="abs tile" style="left:110px;top:648px" data-in="20.6" data-fx="zoom" data-d="0.6">
+      <div class="mock" style="background:var(--navy-100)">
+        <div class="abs" style="left:120px;top:14px;width:300px">
+          <div style="margin-left:auto;width:250px;background:var(--navy-900);color:#fff;font-size:13px;line-height:1.4;padding:10px 12px;border-radius:16px 16px 5px 16px">Hi Sam! New listing you might love. Ask the AI anything, day or night:</div>
+          <div style="margin:6px 0 0 auto;width:250px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 12px rgba(1,41,118,.12)">
+            <div style="height:60px;background:url(../uploads/property-123-main.jpg) center/cover"></div>
+            <div style="padding:7px 10px;font-size:12.5px"><b style="display:block;color:var(--ink)">123 Main Street · $895,000</b><span class="mono" style="color:var(--muted);font-size:11.5px">reallywise.ai/l/123-main</span></div>
+          </div>
+          <div style="margin-top:8px;width:180px;background:#fff;font-size:13px;padding:9px 12px;border-radius:16px 16px 16px 5px;color:var(--ink)">Ooh, opening it now!</div>
+        </div>
+        <div class="abs plus" data-in="22.2" data-fx="pop">+ Lead</div>
+      </div>
+      <div class="cap"><b>Text and email blasts <span class="tag">LINK</span></b><p>Send one link to your sphere. Every click is tracked back to you.</p></div>
+      <div class="abs ring" data-in="20.6" data-out="23.0"></div>
+    </div>
+
+    <!-- 5 postcard -->
+    <div class="abs tile" style="left:690px;top:648px" data-in="23.0" data-fx="zoom" data-d="0.6">
+      <div class="mock" style="background:var(--sand-100)">
+        <div class="abs" style="left:60px;top:34px;width:420px;height:190px;background:#fff;border-radius:8px;box-shadow:0 14px 30px rgba(60,40,10,.2);transform:rotate(-3deg);display:flex;overflow:hidden">
+          <div style="width:52%;background:url(../uploads/property-123-main-backyard.jpg) center/cover"></div>
+          <div style="flex:1;padding:14px;display:flex;flex-direction:column;justify-content:space-between">
+            <div><div style="font-family:var(--f-head);font-weight:800;font-size:20px;color:var(--navy-900)">JUST LISTED</div><div style="font-size:12.5px;color:var(--ink-2)">123 Main Street · $895,000</div></div>
+            <div style="display:flex;gap:10px;align-items:center"><div class="qr" style="width:66px;height:66px"></div><div style="font-size:11.5px;font-weight:700;color:var(--navy-900);line-height:1.25">Scan for a 24/7<br>AI home expert</div></div>
+          </div>
+        </div>
+        <div class="abs plus" data-in="24.6" data-fx="pop">+ Lead</div>
+      </div>
+      <div class="cap"><b>Just Listed postcards <span class="tag">QR</span></b><p>Direct mail that finally shows you who responded.</p></div>
+      <div class="abs ring" data-in="23.0" data-out="25.4"></div>
+    </div>
+
+    <!-- 6 website -->
+    <div class="abs tile" style="left:1270px;top:648px" data-in="25.4" data-fx="zoom" data-d="0.6">
+      <div class="mock" style="background:linear-gradient(135deg,#f4f6fb,#e4e9f3)">
+        <div class="abs" style="left:40px;top:22px;width:460px;height:210px;background:#fff;border-radius:12px;box-shadow:0 12px 28px rgba(1,41,118,.14);overflow:hidden">
+          <div style="height:30px;background:#eef1f8;display:flex;align-items:center;gap:6px;padding:0 10px"><i style="width:9px;height:9px;border-radius:50%;background:#f26b5b"></i><i style="width:9px;height:9px;border-radius:50%;background:#f5bf4f"></i><i style="width:9px;height:9px;border-radius:50%;background:#61c554"></i><span class="mono" style="margin-left:10px;font-size:11px;color:var(--muted);background:#fff;padding:2px 10px;border-radius:6px">yourbrokerage.com/listings/123-main</span></div>
+          <div style="display:flex;gap:14px;padding:14px">
+            <div style="width:200px;height:140px;border-radius:8px;background:url(../uploads/property-123-main.jpg) center/cover"></div>
+            <div style="flex:1"><div style="font-family:var(--f-head);font-weight:800;font-size:17px;color:var(--navy-900)">123 Main Street</div><div class="mono" style="font-size:14px;margin-top:2px">$895,000</div><div style="font-size:12px;color:var(--muted);margin-top:4px">3 bd · 2.5 ba · 2,104 sq ft</div>
+              <div style="margin-top:14px;background:var(--navy-900);color:#fff;font-size:12.5px;font-weight:700;padding:9px 10px;border-radius:9px;display:flex;gap:7px;align-items:center"><img src="../brand/reallywise-app-icon.svg" style="width:18px;height:18px;border-radius:5px" alt="">Ask AI about this home</div>
+            </div>
+          </div>
+        </div>
+        <div class="abs plus" data-in="27.0" data-fx="pop">+ Lead</div>
+      </div>
+      <div class="cap"><b>Your website and listing pages <span class="tag">LINK</span></b><p>Add an "Ask AI" button anywhere the listing lives.</p></div>
+      <div class="abs ring" data-in="25.4" data-out="27.8"></div>
+    </div>
+  </section>
+
+  <!-- ================= Scene 4: buyer chat ================= -->
+  <section class="scene light" id="s4" data-in="29.6" data-out="50.4">
+    <div class="abs copy">
+      <div class="eyebrow" data-in="29.9" data-fx="up"><span class="num">3</span>Chat</div>
+      <h2 class="h2" data-in="30.1" data-fx="up">Buyers scan, then ask anything.</h2>
+      <p class="lead" data-in="30.4" data-fx="up">No app, no sign-up. The home opens on their phone with Realisa, an AI expert that answers from the property's own documents.</p>
+      <div class="feat" data-in="33.4" data-fx="left"><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Instant answers, day or night</div>
+      <div class="feat" data-in="37.0" data-fx="left"><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Every answer shows its source</div>
+      <div class="feat" data-in="44.6" data-fx="left"><span class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Books tours and collects contact details right in the chat</div>
+    </div>
+
+    <div class="abs" id="phone" data-in="29.8" data-fx="up" data-d="0.7">
+      <div id="screen">
+        <div class="island"></div>
+        <!-- camera -->
+        <div class="abs" id="cam" data-in="29.8" data-out="32.4" data-od="0.3">
+          <div class="photo" style="background-image:url(../uploads/property-123-main.jpg);background-size:auto 100%;background-position:68% center;filter:saturate(1.05)"></div>
+          <div class="sign" style="left:44px;top:250px;width:300px;height:420px">
+            <div class="post" style="width:14px"></div><div class="arm" style="height:12px"></div>
+            <div class="panel"><div class="fs" style="font-size:26px;padding:8px 0">FOR SALE</div><div class="ad" style="font-size:15px;padding:8px 4px">123 Main Street<br><span style="font-weight:500">3 bd · 2.5 ba</span></div></div>
+            <div class="rider" style="top:160px;height:150px;padding:10px"><div class="qr" style="width:96px;height:96px"></div><div class="t" style="font-size:12.5px;margin-top:6px">Scan to ask AI<br>about this home</div></div>
+          </div>
+          <div class="abs vf" style="left:121px;top:364px;margin:0;width:200px;height:200px" data-in="30.4" data-fx="zoom">
+            <i></i><i></i><i></i><i></i>
+            <div class="abs" id="scanline"></div>
+          </div>
+          <div class="abs camhint">Point your camera at the code</div>
+          <div class="abs shutter"></div>
+          <div class="abs" id="banner" data-in="31.2" data-fx="down" data-d="0.4">
+            <img src="../brand/reallywise-app-icon-color.svg" alt="">
+            <div><b>Open 123 Main Street</b><span>reallywise.ai/l/123-main</span></div>
+          </div>
+          <div class="abs tap" style="left:190px;top:92px" data-in="31.9" data-out="32.1" data-fx="ripple" data-d="0.35"></div>
+        </div>
+        <!-- property page -->
+        <div class="abs" id="page" data-in="32.3" data-fx="up" data-d="0.5">
+          <div class="sbar" style="color:#fff"><span>9:41</span><svg width="58" height="14" viewBox="0 0 58 14" fill="#fff"><rect x="0" y="8" width="3.5" height="6" rx="1"/><rect x="5.5" y="5" width="3.5" height="9" rx="1"/><rect x="11" y="2" width="3.5" height="12" rx="1"/><rect x="31" y="1" width="24" height="12" rx="3.5" fill="none" stroke="#fff" stroke-width="1.4"/><rect x="33.5" y="3.5" width="17" height="7" rx="1.5"/></svg></div>
+          <div class="hero"><div class="pr"><b>$895,000</b><span>123 Main Street, Austin, TX 78703</span></div><span class="fs">For sale</span></div>
+          <div class="meta"><div><b>3</b>Beds</div><div><b>2.5</b>Baths</div><div><b>2,104</b>Sq ft</div><div><b>6,534</b>Lot sq ft</div></div>
+          <div class="who"><img src="../brand/reallywise-app-icon-color.svg" alt=""><div><b>Realisa, Property Expert</b><span>● Online now</span></div></div>
+          <div id="msgs">
+            <div class="m bot" data-in="32.9" data-fx="up" data-d="0.4">Hi! I'm Realisa, the AI expert for 123 Main Street. Ask me anything: HOA, inspection, schools, or a tour.</div>
+
+            <div class="m me" data-in="35.7" data-fx="up" data-d="0.3">What's the HOA like?</div>
+            <div class="dots" data-in="35.95" data-out="36.8" data-od="0.05" data-fx="fade" data-d="0.2"><i></i><i></i><i></i></div>
+            <div class="m bot" data-in="36.85" data-fx="up" data-d="0.4">HOA dues are $145 a month. They cover common-area landscaping and community pool access.<br><span class="src"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg> HOA documents</span></div>
+
+            <div class="m me" data-in="39.7" data-fx="up" data-d="0.3">How old is the roof?</div>
+            <div class="dots" data-in="39.95" data-out="40.8" data-od="0.05" data-fx="fade" data-d="0.2"><i></i><i></i><i></i></div>
+            <div class="m bot" data-in="40.85" data-fx="up" data-d="0.4">The roof is 12 years old. The inspection found no major structural issues.<br><span class="src"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg> Inspection report</span></div>
+
+            <div class="m me" data-in="43.5" data-fx="up" data-d="0.3">Can I see it this weekend?</div>
+            <div class="dots" data-in="43.75" data-out="44.4" data-od="0.05" data-fx="fade" data-d="0.2"><i></i><i></i><i></i></div>
+            <div class="m bot" data-in="44.45" data-fx="up" data-d="0.4">Happy to set that up. Pick a time:
+              <div class="slots"><span class="slot">Sat 10:00 AM</span><span class="slot" id="slot2">Sat 2:00 PM<span class="abs sel" data-in="45.55" data-fx="fade" data-d="0.15">Sat 2:00 PM</span></span><span class="slot">Sun 11:00 AM</span></div>
+            </div>
+            <div class="m me" data-in="45.9" data-fx="up" data-d="0.3">Sat 2:00 PM works for me.</div>
+            <div class="dots" data-in="46.1" data-out="46.6" data-od="0.05" data-fx="fade" data-d="0.2"><i></i><i></i><i></i></div>
+            <div class="m bot" data-in="46.65" data-fx="up" data-d="0.4">Great. Where should the agent confirm your tour?
+              <div class="form">
+                <div class="fi"><span data-type="47.1,47.7" data-text="Jordan Lee"></span></div>
+                <div class="fi"><span class="mono" data-type="47.8,48.5" data-text="(512) 555-0148"></span></div>
+                <div class="fsend" id="sendBtn">Send to agent<span class="abs" style="inset:0;border-radius:10px;background:var(--green-700)" data-in="48.75" data-out="48.95" data-od="0.1" data-d="0.05"></span></div>
+              </div>
+            </div>
+            <div class="m bot" data-in="49.15" data-fx="up" data-d="0.4"><div class="ok"><span class="c"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><span><b>Tour request sent.</b> The listing agent will confirm Sat 2:00 PM shortly.</span></div></div>
+          </div>
+          <div id="composer"><div class="in" id="cin">Ask anything about this home</div><div class="send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+          <div class="abs tap" id="tapSlot" data-in="45.45" data-out="45.65" data-fx="ripple" data-d="0.35"></div>
+          <div class="abs tap" id="tapSend" data-in="48.7" data-out="48.9" data-fx="ripple" data-d="0.35"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="abs" id="docs">
+      <div class="lbl" data-in="32.6" data-fx="fade">Realisa answers from</div>
+      <div class="doc" data-in="32.8" data-fx="right"><span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1H4a1 1 0 01-1-1z"/></svg></span><div>Listing details<small>Price, size, features</small></div></div>
+      <div class="doc" data-in="33.0" data-fx="right"><span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg></span><div>Seller disclosure<small>Known issues and repairs</small></div></div>
+      <div class="doc" data-in="33.2" data-fx="right"><span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/></svg></span><div>Inspection report<small>Roof, systems, structure</small></div>
+        <div class="abs hl" data-in="40.85" data-out="43.2"></div><span class="abs used" data-in="40.85" data-out="43.2" data-fx="pop">Used</span></div>
+      <div class="doc" data-in="33.4" data-fx="right"><span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h8"/></svg></span><div>HOA documents<small>Dues, rules, amenities</small></div>
+        <div class="abs hl" data-in="36.85" data-out="39.4"></div><span class="abs used" data-in="36.85" data-out="39.4" data-fx="pop">Used</span></div>
+      <div class="doc" data-in="33.6" data-fx="right"><span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/></svg></span><div>Public records<small>Taxes, permits, sale history</small></div></div>
+      <div class="doc" data-in="33.8" data-fx="right"><span class="di"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div>Showing calendar<small>Open slots for tours</small></div>
+        <div class="abs hl" data-in="44.45" data-out="49.9"></div><span class="abs used" data-in="44.45" data-out="49.9" data-fx="pop">Used</span></div>
+    </div>
+  </section>
+
+  <!-- ================= Scene 5: agent gets the lead ================= -->
+  <section class="scene light" id="s5" data-in="50.4" data-out="59.4">
+    <div class="abs copy">
+      <div class="eyebrow" data-in="50.7" data-fx="up"><span class="num">4</span>Capture</div>
+      <h2 class="h2" data-in="50.9" data-fx="up">You get the lead, with the full story.</h2>
+    </div>
+    <div class="abs" id="toast" data-in="51.3" data-fx="down" data-d="0.5">
+      <span class="ti"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg></span>
+      <div><b>New hot lead · 123 Main Street</b><span>Jordan Lee wants a tour on Sat at 2:00 PM</span></div>
+    </div>
+    <div class="abs card" id="leadcard" data-in="51.7" data-fx="up" data-d="0.6">
+      <div class="lh">
+        <div class="av">JL</div>
+        <div><h3>Jordan Lee</h3><div class="ph">(512) 555-0148</div></div>
+        <span class="hot">Hot lead</span>
+      </div>
+      <div class="rows">
+        <div class="row" data-in="52.1" data-fx="left"><span>Source</span><b>Yard sign QR · 123 Main Street</b></div>
+        <div class="row" data-in="52.3" data-fx="left"><span>Tour request</span><b>Sat, 2:00 PM</b></div>
+        <div class="row" data-in="52.5" data-fx="left"><span>Asked about</span><b>HOA dues · Roof age · Weekend showing</b></div>
+      </div>
+      <div class="summary" data-in="52.9" data-fx="up"><div class="lbl">AI summary</div>Scanned the yard sign on a Saturday morning. Checked the HOA fees and roof condition, then booked a weekend tour. Ready for a call to confirm.</div>
+      <div class="acts" data-in="53.4" data-fx="up">
+        <span class="btn navy">Call Jordan</span><span class="btn green">Confirm tour</span><span class="btn ghost">Read the chat</span>
+      </div>
+    </div>
+    <div class="abs card" id="chart" data-in="52.0" data-fx="up" data-d="0.6">
+      <h3>Leads by channel</h3>
+      <div class="sub">123 Main Street · last 14 days · sample data</div>
+      <div class="bars">
+        <div class="bar hi"><span>Yard sign QR</span><div class="tr"><div class="fl" data-bar="52.6,1.6,1.0"></div></div><span class="n" data-count="52.6,1.6,17" data-bump="55.0">0</span><span class="abs new" data-in="55.0" data-fx="pop">+1 new</span></div>
+        <div class="bar"><span>Social posts</span><div class="tr"><div class="fl" data-bar="52.7,1.6,0.78"></div></div><span class="n" data-count="52.7,1.6,14">0</span></div>
+        <div class="bar"><span>Open house</span><div class="tr"><div class="fl" data-bar="52.8,1.6,0.61"></div></div><span class="n" data-count="52.8,1.6,11">0</span></div>
+        <div class="bar"><span>Text and email</span><div class="tr"><div class="fl" data-bar="52.9,1.6,0.5"></div></div><span class="n" data-count="52.9,1.6,9">0</span></div>
+        <div class="bar"><span>Postcards</span><div class="tr"><div class="fl" data-bar="53.0,1.6,0.33"></div></div><span class="n" data-count="53.0,1.6,6">0</span></div>
+        <div class="bar"><span>Website</span><div class="tr"><div class="fl" data-bar="53.1,1.6,0.28"></div></div><span class="n" data-count="53.1,1.6,5">0</span></div>
+      </div>
+      <div class="total"><span>Leads captured</span><b data-count="52.6,1.8,62" data-bump="55.0">0</b></div>
+    </div>
+  </section>
+
+  <!-- ================= Scene 6: outro ================= -->
+  <section class="scene dark" id="s6" data-in="59.4" data-d="0.6">
+    <h1 class="abs" data-in="59.9" data-fx="up" data-d="0.8">Every scan starts a conversation.<br><em>Every conversation is a lead.</em></h1>
+    <img class="abs logo" src="../brand/Really_Wise_Logo_white.svg" alt="ReallyWise" data-in="61.2" data-fx="up">
+    <div class="abs tagline" data-in="61.6" data-fx="up">Property Expert, the 24/7 AI expert for every listing</div>
+    <div class="abs url" data-in="62.0" data-fx="up">reallywise.ai</div>
+  </section>
+
+  <!-- stepper on top -->
+  <div id="stepper" data-in="5.0" data-out="59.0" data-fx="down">
+    <div class="st"><i>1</i>Generate</div><div class="st"><i>2</i>Share</div><div class="st"><i>3</i>Chat</div><div class="st"><i>4</i>Capture</div>
+  </div>
+</div>
+<div id="hud"></div>
+
+<script>
+const DURATION = 66;
+const QR_D = 'M0 0.5h7m2 0h1m1 0h1m2 0h1m2 0h2m2 0h2m1 0h1m1 0h7M0 1.5h1m5 0h1m1 0h1m1 0h1m2 0h7m1 0h2m3 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h1m4 0h3m2 0h1m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m4 0h7m2 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m1 0h1m3 0h1m2 0h2m5 0h3m1 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m1 0h1m2 0h1m1 0h1m4 0h5m3 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 7.5h1m4 0h3m1 0h2m1 0h3M2 8.5h1m2 0h6m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h2m1 0h5M3 9.5h2m2 0h5m1 0h1m1 0h4m1 0h4m1 0h3m1 0h1m2 0h1M1 10.5h3m1 0h2m2 0h1m3 0h2m1 0h1m3 0h1m2 0h2m2 0h2m1 0h1m1 0h1M2 11.5h1m2 0h1m4 0h2m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m2 0h1m4 0h1M0 12.5h1m1 0h1m2 0h3m1 0h1m1 0h1m1 0h2m4 0h3m4 0h2m1 0h1m1 0h2M0 13.5h1m2 0h1m5 0h1m2 0h1m4 0h1m2 0h2m1 0h2m1 0h2m4 0h1M0 14.5h1m1 0h1m3 0h1m3 0h2m1 0h1m2 0h2m1 0h2m2 0h1m1 0h1m2 0h1m3 0h1M0 15.5h1m1 0h2m4 0h7m5 0h1m1 0h1m2 0h1m1 0h2M0 16.5h4m2 0h2m2 0h2m1 0h1m2 0h2m1 0h1m2 0h1m2 0h3m1 0h1m1 0h2M0 17.5h1m1 0h1m6 0h4m5 0h1m2 0h1m1 0h1m2 0h2m2 0h3M1 18.5h2m2 0h2m2 0h5m3 0h7m1 0h2m1 0h5M0 19.5h1m2 0h1m1 0h1m3 0h2m3 0h2m3 0h1m2 0h2m1 0h1m3 0h1m2 0h1M2 20.5h1m1 0h4m2 0h4m2 0h4m3 0h2m1 0h2m3 0h2M2 21.5h4m1 0h1m2 0h1m1 0h1m2 0h2m1 0h3m1 0h3m1 0h2m1 0h1m2 0h1M0 22.5h4m2 0h2m4 0h1m2 0h1m1 0h1m2 0h4m1 0h2m1 0h1m1 0h1m1 0h1M5 23.5h1m1 0h1m1 0h4m1 0h1m5 0h1m1 0h1m6 0h1m1 0h2M0 24.5h2m1 0h2m1 0h1m1 0h2m3 0h2m1 0h1m5 0h1m1 0h6m1 0h2M8 25.5h2m1 0h1m1 0h1m1 0h2m2 0h2m1 0h1m1 0h1m3 0h5M0 26.5h7m1 0h2m1 0h4m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h2m2 0h1M0 27.5h1m5 0h1m1 0h1m2 0h1m3 0h1m2 0h1m3 0h3m3 0h2m1 0h2M0 28.5h1m1 0h3m1 0h1m5 0h2m1 0h2m4 0h9M0 29.5h1m1 0h3m1 0h1m2 0h2m1 0h1m1 0h4m1 0h1m2 0h4m1 0h4m1 0h1M0 30.5h1m1 0h3m1 0h1m1 0h2m1 0h1m5 0h1m3 0h1m6 0h1m1 0h3M0 31.5h1m5 0h1m2 0h1m1 0h1m3 0h5m2 0h5m2 0h1M0 32.5h7m2 0h1m4 0h2m3 0h4m1 0h3m1 0h2m2 0h1';
+const qrSvg = '<svg viewBox="-2 -2 37 37" shape-rendering="crispEdges"><path stroke="currentColor" d="' + QR_D + '"/></svg>';
+document.querySelectorAll('.qr').forEach(q => q.innerHTML = qrSvg);
+
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const easeOut = p => 1 - Math.pow(1 - p, 3);
+const easeInOut = p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+const back = p => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); };
+
+const animEls = [...document.querySelectorAll('[data-in]')].map(el => ({
+  el, a: +el.dataset.in, b: el.dataset.out ? +el.dataset.out : 1e9,
+  d: el.dataset.d ? +el.dataset.d : 0.5, od: el.dataset.od ? +el.dataset.od : 0.45, fx: el.dataset.fx || 'fade'
+}));
+const typeEls = [...document.querySelectorAll('[data-type]')].map(el => { const [s, e] = el.dataset.type.split(',').map(Number); return { el, s, e, text: el.dataset.text }; });
+const countEls = [...document.querySelectorAll('[data-count]')].map(el => { const [s, d, n] = el.dataset.count.split(',').map(Number); return { el, s, d, n, bump: el.dataset.bump ? +el.dataset.bump : null }; });
+const barEls = [...document.querySelectorAll('[data-bar]')].map(el => { const [s, d, w] = el.dataset.bar.split(',').map(Number); return { el, s, d, w }; });
+
+function applyAnim(o, t) {
+  const { el, a, b, d, od, fx } = o;
+  const vis = t >= a && t < b + od;
+  el.style.display = vis ? '' : 'none';
+  if (!vis) return;
+  const raw = clamp((t - a) / d), pin = easeOut(raw), pout = easeInOut(clamp((t - b) / od));
+  let op = pin * (1 - pout), tr = 'none', sc = 'none';
+  if (fx === 'up') tr = `0 ${(1 - pin) * 36}px`;
+  else if (fx === 'down') tr = `0 ${-(1 - pin) * 36}px`;
+  else if (fx === 'left') tr = `${-(1 - pin) * 50}px 0`;
+  else if (fx === 'right') tr = `${(1 - pin) * 60}px 0`;
+  else if (fx === 'zoom') sc = `${0.9 + 0.1 * pin}`;
+  else if (fx === 'pop') sc = `${0.4 + 0.6 * back(raw)}`;
+  else if (fx === 'ripple') { sc = `${0.3 + raw * 1.2}`; op = (1 - raw) * (1 - pout); }
+  el.style.opacity = op;
+  el.style.translate = tr;
+  el.style.scale = sc;
+}
+
+// cursor keyframes for scene 2: [time, x, y]
+let CUR = [[6.0, 1700, 1040], [6.9, 1356, 383], [7.4, 1356, 383], [9.5, 1365, 588], [10.4, 1365, 588], [11.4, 1840, 1060]];
+function cursorAt(t) {
+  const c = document.getElementById('cursor');
+  if (t < 6.0 || t > 11.4) { c.style.display = 'none'; return; }
+  c.style.display = '';
+  let i = 0; while (i < CUR.length - 2 && t > CUR[i + 1][0]) i++;
+  const [t0, x0, y0] = CUR[i], [t1, x1, y1] = CUR[i + 1];
+  const p = easeInOut(clamp((t - t0) / (t1 - t0)));
+  const x = x0 + (x1 - x0) * p, y = y0 + (y1 - y0) * p;
+  const pressed = (t > 6.95 && t < 7.15) || (t > 9.75 && t < 9.95);
+  c.style.left = (x - 8) + 'px'; c.style.top = (y - 4) + 'px';
+  c.style.scale = pressed ? '0.85' : '1';
+  c.style.opacity = t < 6.3 ? (t - 6.0) / 0.3 : 1;
+}
+
+// composer typing sessions in scene 4
+const TYPE = [[34.3, 35.4, 35.7, "What's the HOA like?"], [38.3, 39.4, 39.7, 'How old is the roof?'], [42.2, 43.2, 43.5, 'Can I see it this weekend?']];
+function composerAt(t) {
+  const c = document.getElementById('cin');
+  for (const [s, e, send, txt] of TYPE) {
+    if (t >= s && t < send) {
+      const n = Math.round(txt.length * clamp((t - s) / (e - s)));
+      const blink = Math.floor(t * 2.5) % 2 === 0 || t < e;
+      c.className = 'in typing';
+      c.innerHTML = escapeHtml(txt.slice(0, n)) + (blink ? '<span class="caret"></span>' : '');
+      return;
+    }
+  }
+  c.className = 'in'; c.textContent = 'Ask anything about this home';
+}
+const escapeHtml = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+function stepperAt(t) {
+  const idx = t < 12.2 ? 0 : t < 29.6 ? 1 : t < 50.4 ? 2 : 3;
+  document.querySelectorAll('#stepper .st').forEach((s, i) => { s.className = 'st' + (i === idx ? ' on' : i < idx ? ' done' : ''); s.querySelector('i').textContent = i < idx ? '✓' : String(i + 1); });
+}
+
+function seek(t) {
+  for (const o of animEls) applyAnim(o, t);
+  for (const o of typeEls) {
+    const n = Math.round(o.text.length * clamp((t - o.s) / (o.e - o.s)));
+    o.el.textContent = o.text.slice(0, n);
+    o.el.parentElement.classList.toggle('ph', n === 0);
+  }
+  for (const o of countEls) {
+    let v = Math.round(o.n * easeOut(clamp((t - o.s) / o.d)));
+    if (o.bump !== null && t >= o.bump) v = o.n + 1;
+    o.el.textContent = v;
+    o.el.style.color = (o.bump !== null && t >= o.bump && t < o.bump + 1.2) ? 'var(--green-700)' : '';
+  }
+  for (const o of barEls) {
+    let w = o.w * easeOut(clamp((t - o.s) / o.d));
+    o.el.style.width = (w * 100) + '%';
+  }
+  // typing dots bounce
+  document.querySelectorAll('.dots').forEach(d => [...d.children].forEach((i, k) => { i.style.translate = `0 ${-Math.max(0, Math.sin((t * 7) - k * 0.9)) * 5}px`; }));
+  // scan line
+  const sl = document.getElementById('scanline');
+  if (sl) sl.style.top = (10 + ((Math.sin(t * 4) + 1) / 2) * 180) + 'px';
+  cursorAt(t); composerAt(t); stepperAt(t);
+  document.getElementById('hud').textContent = RENDER ? '' : t.toFixed(2) + 's';
+}
+
+const params = new URLSearchParams(location.search);
+const RENDER = params.has('render');
+window.seek = seek;
+window.DURATION = DURATION;
+
+function fit() {
+  const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+  const st = document.getElementById('stage');
+  st.style.transform = `scale(${s})`;
+  st.style.left = (innerWidth - 1920 * s) / 2 + 'px';
+  st.style.top = (innerHeight - 1080 * s) / 2 + 'px';
+}
+function centerIn(el, ref) { const r = el.getBoundingClientRect(), q = ref.getBoundingClientRect(); return [r.left - q.left + r.width / 2, r.top - q.top + r.height / 2]; }
+function place(el, xy) { el.style.left = xy[0] + 'px'; el.style.top = xy[1] + 'px'; }
+function measure() {
+  const st = document.getElementById('stage'), s2 = document.getElementById('s2'), pg = document.getElementById('page');
+  seek(7.0); const a = centerIn(document.getElementById('createBtn'), s2);
+  seek(10.5); const b = centerIn(document.getElementById('copyBtn'), s2);
+  place(document.getElementById('rip1'), a); place(document.getElementById('rip2'), b);
+  CUR[1] = [6.9, ...a]; CUR[2] = [7.4, ...a]; CUR[3] = [9.5, ...b]; CUR[4] = [10.4, ...b];
+  seek(45.5); place(document.getElementById('tapSlot'), centerIn(document.getElementById('slot2'), pg));
+  seek(48.7); place(document.getElementById('tapSend'), centerIn(document.getElementById('sendBtn'), pg));
+}
+document.fonts.ready.then(() => Promise.all([...document.images].map(i => i.complete ? 1 : new Promise(r => { i.onload = i.onerror = r; })))).then(() => {
+  measure();
+  if (RENDER) { seek(+(params.get('t') || 0)); window.READY = true; return; }
+  fit(); addEventListener('resize', fit);
+  let start = performance.now() - (+(params.get('t') || 0)) * 1000;
+  addEventListener('click', () => { start = performance.now(); });
+  const loop = now => { seek(((now - start) / 1000) % DURATION); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+});
+</script>
+</body>
+</html>
