@@ -107,7 +107,13 @@
         var untilSelector = this.getAttribute('transparent-until');
         var update = function () {
           var threshold = window.innerHeight * 0.7;
-          var untilEl = untilSelector && document.querySelector(untilSelector);
+          // the selector may list several heroes (one per view): the first one on screen counts
+          var untilEl = null;
+          (untilSelector || '').split(',').forEach(function (sel) {
+            var el = sel.trim() && document.querySelector(sel.trim());
+            if (el && !untilEl && el.offsetParent !== null) untilEl = el;
+          });
+          if (!untilEl && untilSelector) { nav.classList.remove('is-transparent'); return; }
           // when that element is not on screen at all (e.g. the homepage view), the bar is simply solid
           if (untilEl && untilEl.offsetParent === null) { nav.classList.remove('is-transparent'); return; }
           if (untilEl) threshold = untilEl.getBoundingClientRect().bottom + window.scrollY - 80;
