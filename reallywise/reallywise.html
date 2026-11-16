@@ -714,6 +714,8 @@
 
     /* Card illustrations: small product UI, built from the brand components, flat Navy 100 panel */
     .hp-card { overflow:hidden; }
+    .hp-card { display:grid; grid-template-columns:24px minmax(0,1fr); column-gap:12px; row-gap:12px; align-items:center; }
+    .hp-card > :not(svg):not(h3) { grid-column:1 / -1; }
     .hp-art { margin-top:12px; padding:14px; border-radius:10px; background:var(--navy-100); display:flex; flex-direction:column; gap:8px; min-height:132px; box-sizing:border-box; font-family:var(--font-body); }
     .hp-art-head { display:flex; align-items:center; gap:8px; font-size:12px; line-height:16px; color:var(--accent); }
     .hp-art-head b { font-weight:600; }
