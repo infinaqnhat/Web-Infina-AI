@@ -595,16 +595,6 @@
     .hp-ai.is-side { transform:none; }
     .hp-ai.is-side .tail { left:-6px; bottom:auto; top:22px; }
     @media (prefers-reduced-motion:reduce){ .hp-ai .d3 { fill:#0BB563 !important; } .hp-ai .d { opacity:1 !important; } }
-    /* Questions strip */
-    .hp-marquee { background:var(--sand); padding:clamp(28px,4vw,48px) 0; display:flex; flex-direction:column; gap:12px; overflow:hidden; border-bottom:1px solid var(--border); }
-    .hp-track { display:flex; width:max-content; animation:hp-marquee 48s linear infinite; }
-    .hp-track.back { animation:hp-marquee-back 56s linear infinite; }
-    .hp-marquee:hover .hp-track { animation-play-state:paused; }
-    .hp-grp { display:flex; align-items:center; gap:40px; padding-right:40px; font-family:var(--font-head); font-weight:800; font-size:clamp(20px,2.4vw,32px); line-height:1.2; letter-spacing:-.02em; white-space:nowrap; color:var(--accent); }
-    .hp-grp i { width:.28em; height:.28em; border-radius:50%; background:var(--accent); flex-shrink:0; }
-    .hp-track.back .hp-grp { color:var(--navy-500); } .hp-track.back .hp-grp i { background:var(--navy-500); }
-    .hp-marquee-note { margin:8px auto 0; width:100%; max-width:1280px; box-sizing:border-box; padding:0 clamp(20px,5vw,56px); font-size:16px; line-height:24px; color:var(--muted); }
-
     /* The fight */
     .hp-fight { background:var(--sand); }
     .hp-fight-word { display:flex; flex-direction:column; gap:8px; }
@@ -711,19 +701,15 @@
     @keyframes hp-pop { 0%{transform:scale(0)} 70%{transform:scale(1.4)} 100%{transform:scale(1)} }
     @keyframes hp-swap { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
     @keyframes hp-unveil { from{clip-path:inset(100% 0 0 0 round 16px)} to{clip-path:inset(0 0 0 0 round 16px)} }
-    @keyframes hp-marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-    @keyframes hp-marquee-back { from{transform:translateX(-50%)} to{transform:translateX(0)} }
     @keyframes hp-strike { from{transform:scaleX(0)} to{transform:scaleX(1)} }
     @keyframes hp-ping { 0%{box-shadow:0 0 0 0 rgba(11,181,99,.55)} 100%{box-shadow:0 0 0 14px rgba(11,181,99,0)} }
     @supports (animation-timeline: view()) {
       .hp-rv { animation:hp-rise linear both; animation-timeline:view(); animation-range:entry 0% entry 50%; }
       .hp-sk { animation:hp-strike linear both; animation-timeline:view(); animation-range:entry 80% cover 45%; }
     }
-    @media (max-width:700px){ .hp-marquee-note { font-size:14px; } .hp-switch { width:100%; } .hp-switch button { flex:1; padding:12px 8px; } .hp-btns .hp-btn { flex:1 1 100%; justify-content:center; } }
+    @media (max-width:700px){ .hp-switch { width:100%; } .hp-switch button { flex:1; padding:12px 8px; } .hp-btns .hp-btn { flex:1 1 100%; justify-content:center; } }
     @media (prefers-reduced-motion:reduce){
       #home-view *, #home-view *::before { animation:none !important; transition:none !important; }
-      .hp-track { width:auto; flex-wrap:wrap; justify-content:center; row-gap:8px; padding:0 20px; }
-      .hp-track .hp-grp[aria-hidden="true"] { display:none; }
       .hp-hero-media img { clip-path:none; }
     }
 
@@ -757,12 +743,6 @@
           <div class="hp-ai" id="hp-ai" data-ax="0.745" data-ay="0.40" data-hx="0.73" data-hy="0.41"><span class="tail" aria-hidden="true"></span><svg viewBox="0 0 120 120" role="img" aria-label="ReallyWise AI assistant"><rect width="120" height="120" rx="27" fill="#fff"/><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H295.702L140.286 665.814L139.526 666.256C130.86 671.287 120 665.034 120 655.013V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#012976"/><circle class="d d1" cx="199" cy="338" r="56"/><circle class="d d2" cx="365" cy="338" r="56"/><circle class="d d3" cx="531" cy="338" r="56"/></g></svg></div>
         </div>
       </div>
-    </section>
-
-    <section class="hp-marquee" aria-label="Questions buyers ask at night">
-      <div class="hp-track"><div class="hp-grp"><span>Is the roof original?</span><i aria-hidden="true"></i><span>What are the HOA fees?</span><i aria-hidden="true"></i><span>Why has it been listed 46 days?</span><i aria-hidden="true"></i><span>Would they take $820K?</span><i aria-hidden="true"></i></div><div class="hp-grp" aria-hidden="true"><span>Is the roof original?</span><i aria-hidden="true"></i><span>What are the HOA fees?</span><i aria-hidden="true"></i><span>Why has it been listed 46 days?</span><i aria-hidden="true"></i><span>Would they take $820K?</span><i aria-hidden="true"></i></div></div>
-      <div class="hp-track back" aria-hidden="true"><div class="hp-grp"><span>Is it in a flood zone?</span><i aria-hidden="true"></i><span>What did the inspection find?</span><i aria-hidden="true"></i><span>How old is the water heater?</span><i aria-hidden="true"></i><span>Can I see it Saturday?</span><i aria-hidden="true"></i></div><div class="hp-grp" aria-hidden="true"><span>Is it in a flood zone?</span><i aria-hidden="true"></i><span>What did the inspection find?</span><i aria-hidden="true"></i><span>How old is the water heater?</span><i aria-hidden="true"></i><span>Can I see it Saturday?</span><i aria-hidden="true"></i></div></div>
-      <p class="hp-marquee-note">Buyers are asking these about your listings tonight. The only question is who answers.</p>
     </section>
 
     <section class="hp-fight" id="fight">
