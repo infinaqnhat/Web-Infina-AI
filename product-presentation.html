@@ -166,6 +166,25 @@
     .film { position:relative; width:100%; max-height:100%; aspect-ratio:16 / 9; border-radius:calc(var(--u)*1.2); overflow:hidden; background:#000; box-shadow:0 30px 70px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.12); }
     .film iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
 
+    /* ===== Lead capture ===== */
+    .lc-in { flex-direction:row; gap:calc(var(--u)*3); align-items:center; }
+    .lc-side { width:calc(var(--u)*33); flex-shrink:0; display:flex; flex-direction:column; }
+    .lc-side .h { font-size:calc(var(--u)*2.8); }
+    .lc-side .sub { font-size:calc(var(--u)*1.2); }
+    .lc-steps { list-style:none; display:flex; flex-direction:column; gap:calc(var(--u)*.6); margin-top:calc(var(--u)*1.8); }
+    .lc-steps button { display:flex; gap:calc(var(--u)*.9); align-items:flex-start; width:100%; text-align:left; padding:calc(var(--u)*.8) calc(var(--u)*1); border-radius:calc(var(--u)*1); border:1.5px solid var(--border); background:#fff; color:var(--fg-secondary); font-size:calc(var(--u)*1); line-height:1.4; transition:border-color .2s, background .2s; }
+    .lc-steps button:hover { border-color:var(--blue); }
+    .lc-steps button.is-on { border-color:var(--accent); background:var(--blue-light); }
+    .lc-steps i { font-style:normal; width:calc(var(--u)*1.9); height:calc(var(--u)*1.9); min-width:22px; min-height:22px; border-radius:50%; background:var(--accent); color:#fff; font-size:calc(var(--u)*.85); font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .lc-steps b { display:block; font-size:calc(var(--u)*1.1); color:var(--accent); }
+    .lc-media { flex:1; min-width:0; }
+    .lc-media video { display:block; width:100%; aspect-ratio:16 / 9; border-radius:calc(var(--u)*1.2); background:#000; box-shadow:var(--shadow-pop); }
+    .lc-print { display:none; position:relative; }
+    .lc-print img { width:100%; border-radius:calc(var(--u)*1.2); box-shadow:var(--shadow-pop); }
+    .lc-qr { position:absolute; right:calc(var(--u)*1.2); bottom:calc(var(--u)*1.2); width:calc(var(--u)*11); padding:calc(var(--u)*.8); border-radius:calc(var(--u)*1); background:#fff; box-shadow:var(--shadow-pop); display:flex; flex-direction:column; gap:calc(var(--u)*.4); }
+    .lc-qr svg { width:100%; height:auto; display:block; }
+    .lc-qr b { font-size:calc(var(--u)*.9); color:var(--accent); line-height:1.25; }
+
     /* ===== 3 · Contents ===== */
     .toc { flex:1; display:grid; grid-template-columns:repeat(4, 1fr); grid-auto-rows:1fr; gap:calc(var(--u)*1.2); margin-top:calc(var(--u)*2.6); }
     .toc-item { display:flex; flex-direction:column; text-align:left; gap:calc(var(--u)*.5); padding:calc(var(--u)*1.4); border-radius:calc(var(--u)*1.3); border:1.5px solid var(--border); background:#fff; color:var(--fg); transition:border-color .2s, transform .2s, box-shadow .2s; }
@@ -573,6 +592,12 @@
       body:not(.view-slides) .feed { min-height:150px; }
       body:not(.view-slides) .step b { font-size:15px; }
       body:not(.view-slides) .step p { font-size:13.5px; }
+      /* lead capture */
+      body:not(.view-slides) .lc-in { flex-direction:column; align-items:stretch; gap:18px; }
+      body:not(.view-slides) .lc-side { width:auto; }
+      body:not(.view-slides) .lc-side .h { font-size:26px; }
+      body:not(.view-slides) .lc-steps button { font-size:13.5px; }
+      body:not(.view-slides) .lc-steps b { font-size:14.5px; }
       /* film */
       body:not(.view-slides) .film-in { flex-direction:column; align-items:stretch; padding:30px 14px 36px; gap:18px; }
       body:not(.view-slides) .film-side { width:auto; }
@@ -678,6 +703,8 @@
       .lead .feed { margin-top:calc(var(--u)*.7) !important; flex:none !important; overflow:visible !important; }
       .how { align-items:start !important; }
       .eco-cap { display:none !important; }
+      .lc-media video { display:none !important; }
+      .lc-print { display:block !important; }
       .eco-cap-print { display:grid !important; grid-template-columns:1fr 1fr; gap:calc(var(--u)*2); margin-top:calc(var(--u)*1.1); font-size:calc(var(--u)*.98); line-height:1.45; color:var(--fg-secondary); }
       .eco-cap-print b { color:var(--accent); }
       .print-note { display:block !important; }
@@ -788,7 +815,7 @@
           <div class="toc anim d2">
             <button type="button" class="toc-item" data-go="thesis"><i>01</i><b>The thesis</b><span>Problem, answer, and why it compounds</span></button>
             <button type="button" class="toc-item" data-go="ecosystem"><i>02</i><b>The ecosystem</b><span>Who asks, who answers, who it works for</span></button>
-            <button type="button" class="toc-item" data-go="property-expert"><i>03</i><b>Property Expert</b><span>A 24/7 expert on every listing</span></button>
+            <button type="button" class="toc-item" data-go="property-expert"><i>03</i><b>Property Expert</b><span>A 24/7 expert on every listing, and lead capture</span></button>
             <button type="button" class="toc-item" data-go="home-concierge"><i>04</i><b>Home Concierge</b><span>From first thought to the right home</span></button>
             <button type="button" class="toc-item" data-go="realisa"><i>05</i><b>Realisa</b><span>The agent's AI assistant</span></button>
             <button type="button" class="toc-item" data-go="how"><i>06</i><b>How it works</b><span>Lead Capture. Lead Retain.</span></button>
@@ -994,8 +1021,27 @@
       </div>
     </section>
 
+    <!-- Lead capture -->
+    <section class="slide" id="lead-capture" data-title="Lead capture" aria-label="Slide 7, Lead capture">
+      <div class="card">
+        <div class="in lc-in">
+          <div class="lc-side">
+            <span class="kicker anim"><i>03</i>Property Expert · Lead capture</span>
+            <h2 class="h anim d1">Turn every listing into a 24/7 lead magnet.</h2>
+            <p class="sub anim d1">One QR code. One link. Every channel. Buyers get answers, you get the lead.</p>
+            <ol class="lc-steps anim d2" aria-label="Four steps, tap one to jump the video"><li><button type="button" data-seek="5"><i>1</i><span><b>Generate</b>A QR code and a smart link for the listing, in one click.</span></button></li><li><button type="button" data-seek="12.5"><i>2</i><span><b>Share</b>Yard sign, open house, social posts, text, email, postcards, your website.</span></button></li><li><button type="button" data-seek="30"><i>3</i><span><b>Chat</b>A buyer scans, asks Realisa anything about the home and books a tour.</span></button></li><li><button type="button" data-seek="50.5"><i>4</i><span><b>Capture</b>You get the lead with its source, every question and an AI summary.</span></button></li></ol>
+          </div>
+          <div class="lc-media anim d2">
+            <video id="lc-video" src="uploads/property-expert-lead-capture.mp4" poster="uploads/property-expert-lead-capture-poster.jpg" controls playsinline preload="metadata"></video>
+            <a class="lc-print" href="https://infinaqnhat.github.io/Web-Infina-AI/uploads/property-expert-lead-capture.mp4"><img src="uploads/property-expert-lead-capture-poster.jpg" alt="The lead card: source, tour request, questions and an AI summary"><span class="lc-qr"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" class="qr-svg"><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#001f5c" d="M2 2.5h7m1 0h1m1 0h1m2 0h1m1 0h1m5 0h2m1 0h1m5 0h7m-37 1h1m5 0h1m1 0h2m1 0h2m2 0h2m2 0h2m1 0h1m1 0h1m5 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h4m1 0h3m3 0h1m1 0h1m3 0h1m2 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m4 0h1m1 0h1m6 0h2m3 0h1m2 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h1m2 0h7m5 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m4 0h2m3 0h2m5 0h2m1 0h1m3 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-28 1h3m2 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-27 1h1m2 0h7m2 0h3m1 0h2m1 0h2m2 0h1m2 0h2m1 0h1m2 0h1m1 0h3m-34 1h2m6 0h1m1 0h2m1 0h2m1 0h1m2 0h2m1 0h1m1 0h1m4 0h4m-35 1h6m1 0h1m1 0h2m3 0h1m1 0h2m4 0h2m1 0h4m1 0h1m4 0h1m-37 1h4m5 0h1m3 0h1m3 0h1m4 0h1m1 0h1m5 0h1m2 0h4m-37 1h1m2 0h1m1 0h3m1 0h1m2 0h5m2 0h2m1 0h3m2 0h1m2 0h2m4 0h1m-37 1h1m1 0h3m2 0h1m1 0h1m3 0h2m1 0h1m1 0h1m2 0h1m1 0h1m2 0h3m3 0h2m1 0h1m-36 1h1m1 0h2m2 0h1m2 0h1m1 0h2m2 0h1m3 0h3m2 0h2m1 0h1m1 0h1m2 0h5m-33 1h2m2 0h1m2 0h3m8 0h1m5 0h2m1 0h1m1 0h3m-30 1h1m2 0h2m1 0h3m1 0h1m3 0h1m1 0h2m1 0h3m2 0h2m2 0h1m-32 1h1m1 0h1m1 0h1m1 0h1m1 0h2m2 0h2m2 0h4m4 0h1m3 0h1m2 0h1m-35 1h1m2 0h2m1 0h2m3 0h1m1 0h1m1 0h2m2 0h1m3 0h1m1 0h4m2 0h4m1 0h1m-37 1h1m1 0h1m1 0h2m1 0h2m1 0h3m5 0h1m1 0h1m4 0h1m6 0h2m2 0h1m-36 1h3m2 0h3m1 0h2m3 0h3m1 0h1m6 0h8m-32 1h3m3 0h4m2 0h3m1 0h2m2 0h2m1 0h1m1 0h1m4 0h1m1 0h1m-34 1h1m1 0h4m1 0h3m2 0h1m1 0h2m1 0h1m2 0h3m3 0h1m1 0h3m1 0h1m1 0h2m-36 1h1m1 0h1m3 0h4m2 0h2m1 0h5m2 0h2m1 0h2m1 0h6m1 0h1m-32 1h2m4 0h1m1 0h3m3 0h2m3 0h1m5 0h2m3 0h1m-36 1h5m2 0h1m1 0h8m1 0h1m2 0h1m1 0h1m1 0h5m2 0h3m-35 1h2m2 0h1m1 0h3m1 0h1m3 0h2m1 0h1m1 0h4m1 0h4m1 0h2m2 0h4m-37 1h1m4 0h1m1 0h1m1 0h2m3 0h1m3 0h1m5 0h1m1 0h2m4 0h3m1 0h1m-37 1h1m3 0h7m2 0h2m4 0h1m2 0h5m1 0h7m1 0h1m-29 1h1m3 0h2m1 0h1m1 0h2m1 0h1m1 0h1m5 0h1m3 0h1m1 0h3m-37 1h7m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h1m3 0h1m-37 1h1m5 0h1m1 0h1m2 0h2m2 0h2m5 0h2m1 0h1m1 0h2m3 0h1m2 0h2m-37 1h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h3m7 0h7m3 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m6 0h1m1 0h7m1 0h1m1 0h4m2 0h1m1 0h2m-37 1h1m1 0h3m1 0h1m2 0h4m1 0h2m1 0h2m1 0h1m1 0h4m1 0h3m2 0h1m1 0h1m1 0h1m-37 1h1m5 0h1m3 0h1m4 0h1m1 0h1m2 0h1m2 0h2m4 0h2m1 0h5m-37 1h7m1 0h1m1 0h4m2 0h1m2 0h2m1 0h1m1 0h1m3 0h2m1 0h1m1 0h1m2 0h1"/></svg><b>Watch the 68-second video</b></span></a>
+          </div>
+        </div>
+        <span class="slide-no">07</span>
+      </div>
+    </section>
+
     <!-- 6 · Home Concierge -->
-    <section class="slide" id="home-concierge" data-title="Home Concierge" aria-label="Slide 7, Home Concierge">
+    <section class="slide" id="home-concierge" data-title="Home Concierge" aria-label="Slide 8, Home Concierge">
       <div class="card">
         <div class="in">
           <div class="prod">
@@ -1028,12 +1074,12 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">07</span>
+        <span class="slide-no">08</span>
       </div>
     </section>
 
     <!-- 7 · Realisa -->
-    <section class="slide" id="realisa" data-title="Realisa" aria-label="Slide 8, Realisa">
+    <section class="slide" id="realisa" data-title="Realisa" aria-label="Slide 9, Realisa">
       <div class="card">
         <div class="in">
           <div class="prod">
@@ -1069,12 +1115,12 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">08</span>
+        <span class="slide-no">09</span>
       </div>
     </section>
 
     <!-- 8 · How it works -->
-    <section class="slide" id="how" data-title="How it works" aria-label="Slide 9, How it works">
+    <section class="slide" id="how" data-title="How it works" aria-label="Slide 10, How it works">
       <div class="card">
         <div class="in">
           <span class="kicker anim"><i>06</i>How it works</span>
@@ -1101,12 +1147,12 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">09</span>
+        <span class="slide-no">10</span>
       </div>
     </section>
 
     <!-- 9 · Live demo: buyer -->
-    <section class="slide no-print" id="demo-buyer" data-title="Live demo: buyer" data-demo="1" aria-label="Slide 10, Live demo as a buyer">
+    <section class="slide no-print" id="demo-buyer" data-title="Live demo: buyer" data-demo="1" aria-label="Slide 11, Live demo as a buyer">
       <div class="card is-dark">
         <div class="in demo-in">
           <div class="demo-side">
@@ -1145,12 +1191,12 @@
             <button type="button" class="next-hint" hidden data-go="demo-agent">This is the agent side. Continue on the next slide →</button>
           </div>
         </div>
-        <span class="slide-no">10</span>
+        <span class="slide-no">11</span>
       </div>
     </section>
 
     <!-- 10 · Live demo: agent -->
-    <section class="slide no-print" id="demo-agent" data-title="Live demo: agent" data-demo="1" aria-label="Slide 11, Live demo as an agent">
+    <section class="slide no-print" id="demo-agent" data-title="Live demo: agent" data-demo="1" aria-label="Slide 12, Live demo as an agent">
       <div class="card is-dark">
         <div class="in demo-in">
           <div class="demo-side">
@@ -1188,7 +1234,7 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">11</span>
+        <span class="slide-no">12</span>
       </div>
     </section>
 
@@ -1212,12 +1258,12 @@
             <figure class="shot s2"><img src="uploads/pp-pdf-agent.jpg" alt="The agent dashboard with every buyer chat"><figcaption>Agent: every chat, with the AI's work</figcaption></figure>
           </div>
         </div>
-        <span class="slide-no">00</span>
+        <span class="slide-no">13</span>
       </div>
     </section>
 
     <!-- 12 · Vision -->
-    <section class="slide" id="vision" data-title="Vision" aria-label="Slide 12, Vision">
+    <section class="slide" id="vision" data-title="Vision" aria-label="Slide 13, Vision">
       <div class="card">
         <div class="in">
           <div class="vision">
@@ -1235,12 +1281,12 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">12</span>
+        <span class="slide-no">14</span>
       </div>
     </section>
 
     <!-- 12 · Thank you -->
-    <section class="slide" id="thanks" data-title="Thank you" aria-label="Slide 13, Thank you">
+    <section class="slide" id="thanks" data-title="Thank you" aria-label="Slide 14, Thank you">
       <div class="card is-dark">
         <div class="in end-in">
           <div class="end-grid">
@@ -1261,7 +1307,7 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">13</span>
+        <span class="slide-no">15</span>
       </div>
     </section>
   </main>
@@ -1270,7 +1316,7 @@
   <nav class="deck-bar" aria-label="Slide navigation">
     <i class="bar-progress" id="bar-progress"></i>
     <button type="button" class="nav-btn" id="prev" aria-label="Previous slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-    <span class="bar-count" id="bar-count"><b>1</b> / 13</span>
+    <span class="bar-count" id="bar-count"><b>1</b> / 14</span>
     <button type="button" class="nav-btn" id="next" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     <div class="pages" id="pages"></div>
     <span class="bar-hint"><kbd>←</kbd><kbd>→</kbd> to move</span>
@@ -1283,7 +1329,7 @@
 
   <!-- ===== Presenting on a phone ===== -->
   <div class="present-ui">
-    <span id="present-count">1 / 13</span>
+    <span id="present-count">1 / 14</span>
     <button type="button" id="present-x" aria-label="Stop presenting"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
   <span class="present-tip" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/></svg>Turn your phone for a bigger slide · swipe to move</span>
@@ -1432,6 +1478,7 @@
     function onEnter(id){
       if (printMode) return;   // keep the print state while pages are made
       if (id === 'hero') heroPlay();
+      if (id !== 'lead-capture' && lcVideo && !lcVideo.paused) lcVideo.pause();
       if (id === 'film') loadFilm();
       if (id === 'how') { stepCur = 0; renderStep(0, true); }
       else stopSteps();
@@ -1469,6 +1516,18 @@
         filmBtns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
         loadFilm();
       });
+    });
+
+    // Lead capture: the steps jump the video, and follow it while it plays
+    var lcVideo = document.getElementById('lc-video');
+    var lcBtns = [].slice.call(document.querySelectorAll('[data-seek]'));
+    lcBtns.forEach(function(b){
+      b.addEventListener('click', function(){ lcVideo.currentTime = +b.getAttribute('data-seek'); lcVideo.play().catch(function(){}); });
+    });
+    lcVideo.addEventListener('timeupdate', function(){
+      var t = lcVideo.currentTime, on = -1;
+      lcBtns.forEach(function(b, i){ if (t >= +b.getAttribute('data-seek') - .2) on = i; });
+      lcBtns.forEach(function(b, i){ b.classList.toggle('is-on', i === on && t < 59.5); });
     });
 
     // Ecosystem: highlight one side of the deal
