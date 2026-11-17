@@ -228,7 +228,7 @@ body{font-family:Inter,"DM Sans",system-ui,sans-serif;color:var(--ink);-webkit-f
     <img id="enlogo" src="../brand/Really_Wise_Logo.svg" alt="ReallyWise" class="abs" style="left:610px;top:300px;width:700px">
     <div class="abs" id="enh" style="left:0;right:0;top:530px;text-align:center;font-size:56px;font-weight:800;color:var(--navy);letter-spacing:-.02em">Meet Realisa, your AI Chief of Staff.</div>
     <div class="abs" id="ens" style="left:0;right:0;top:630px;text-align:center;font-size:28px;color:var(--muted)">Chief of Staff &nbsp;|&nbsp; Marketing Specialist &nbsp;|&nbsp; Transaction Coordinator &nbsp;|&nbsp; Administrative Assistant</div>
-    <div class="abs mono" id="enu" style="left:0;right:0;top:740px;text-align:center;font-size:36px;color:var(--green7);font-weight:500">reallywise.ai</div>
+    <div class="abs" id="enu" style="left:0;right:0;top:730px;display:flex;justify-content:center"><div id="cta" style="display:flex;align-items:center;gap:16px;background:var(--green);color:#fff;font-size:40px;font-weight:800;padding:24px 52px;border-radius:999px;box-shadow:0 24px 50px -18px rgba(11,181,99,.6)">Try it free at ReallyWise.ai <span style="font-size:40px">&#8594;</span></div></div>
   </section>
 
   <div id="cap"><span id="capt"></span></div>
@@ -257,12 +257,13 @@ const CUES = [
   {id:'handled',s:40.0, d:4.3, text:"Questions answered, showings booked, new clients onboarded. Even while you're out."},
   {id:'roles',  s:44.7, d:4.5, text:"Chief of Staff. Marketing Specialist. Transaction Coordinator. Admin Assistant."},
   {id:'end',    s:49.6, d:3.2, text:"Four roles. One Realisa. Only on ReallyWise."},
+  {id:'cta',    s:53.1, d:2.2, text:"Try it free at ReallyWise.ai."},
 ];
 if (window.CUE_OVERRIDE) CUES.forEach(c => { const o = window.CUE_OVERRIDE[c.id]; if (o) { c.s = o.s; c.d = o.d; } });
 const CI = Object.fromEntries(CUES.map(c => [c.id, c]));
 const C = id => CI[id].s, E = id => CI[id].s + CI[id].d;
 function phrase(id, k){ const parts = CI[id].text.split(/(?<=[.?])\s+/); const tot = parts.join('').length; let acc = 0; for(let i=0;i<k && i<parts.length;i++) acc += parts[i].length; return C(id) + CI[id].d*acc/tot; }
-const DURATION = E('end') + 2.4;
+const DURATION = E('cta') + 2.6;
 
 const $ = id => document.getElementById(id);
 const REALISA = '<svg viewBox="0 0 120 120"><circle fill="#012976" cx="60" cy="60" r="60"/><g transform="translate(24.3 26.9) scale(.098)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg>';
@@ -430,7 +431,9 @@ function render(t){
   }
   if(layer('en', t, b.end, 1e9, .3)){
     const q=eo(p(t,b.end+.1,b.end+.7)); set('enlogo', q, 0, 0, .9+.1*q);
-    pop('enh', t, phrase('end',1), .4); rise('ens', t, phrase('end',2), .4, 16); rise('enu', t, phrase('end',2)+.4, .4, 16);
+    pop('enh', t, phrase('end',1), .4); rise('ens', t, phrase('end',2), .4, 16);
+    pop('enu', t, C('cta')-.1, .45);
+    const pulse = t>C('cta')+.5 ? 1+.035*Math.sin((t-C('cta')-.5)*6) : 1; $('cta').style.transform=`scale(${pulse})`;
   }
 
   const cue = CUES.find(c => t>=c.s-.05 && t<c.s+c.d+.25);

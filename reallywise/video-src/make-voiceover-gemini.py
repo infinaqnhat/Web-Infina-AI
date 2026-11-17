@@ -14,7 +14,8 @@ cues = re.findall(r"\{id:'(\w+)',\s*s:[\d.]+,\s*d:[\d.]+,\s*text:\"([^\"]+)\"\}"
 os.makedirs(os.path.join(here, 'vo'), exist_ok=True)
 for cid, text in cues:
     if only and cid != only: continue
-    body = {"contents": [{"parts": [{"text": text}]}],  # no style prefix: TTS reads any instruction aloud
+    spoken = text.replace(".ai", " dot A.I.")  # say the domain the way people read it
+    body = {"contents": [{"parts": [{"text": spoken}]}],  # no style prefix: TTS reads any instruction aloud
             "generationConfig": {"responseModalities": ["AUDIO"],
                                  "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": voice}}}}}
     req = urllib.request.Request(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
