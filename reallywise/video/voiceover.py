@@ -51,7 +51,9 @@ def synth_gemini():
         if sr != SR:
             idx = np.arange(0, len(audio), sr / SR); audio = np.interp(idx, np.arange(len(audio)), audio).astype(np.float32)
         return audio
-    def words(t): return re.sub(r"[^a-z0-9 ]", ' ', t.lower().replace('-', ' ')).split()
+    def words(t):   # brand written either way counts as one word
+        t = re.sub(r"[^a-z0-9 ]", ' ', t.lower().replace('-', ' '))
+        return re.sub(r"\breally\s+wise\b", 'reallywise', t).split()
     def heard(audio):
         with tempfile.TemporaryDirectory() as d:
             f = os.path.join(d, 'c.wav'); sf.write(f, audio, SR, subtype='PCM_16')
@@ -60,7 +62,8 @@ def synth_gemini():
                      {'text': 'Transcribe this audio word for word. Output only the words.'}]}]})
         return parts[0]['text']
     def run(text):
-        spoken = text.replace('ReallyWise', 'Really Wise')   # the camel-case brand trips the voice up
+        # the camel-case brand trips the voice up, and the domain is read out
+        spoken = text.replace('ReallyWise.ai', 'Really Wise dot A I').replace('ReallyWise', 'Really Wise')
         body = {'contents': [{'parts': [{'text': g['style'] + '\n' + spoken}]}],
                 'generationConfig': {'responseModalities': ['AUDIO'], 'speechConfig': {
                     'voiceConfig': {'prebuiltVoiceConfig': {'voiceName': g['voice']}}}}}

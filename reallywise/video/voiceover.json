@@ -1,5 +1,5 @@
 {
- "duration": 68,
+ "duration": 70,
  "gemini": {
   "model": "gemini-3.8-flash-tts",
   "voice": "Laomedeia",
@@ -99,8 +99,12 @@
    "A scan starts the conversation."
   ],
   [
-   63.45,
+   62.6,
    "ReallyWise turns it into a booked viewing."
+  ],
+  [
+   66.0,
+   "Try it free at ReallyWise.ai."
   ]
  ],
  "gap": 0.4

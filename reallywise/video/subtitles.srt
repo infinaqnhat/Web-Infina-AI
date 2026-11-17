@@ -71,6 +71,10 @@ With the source, every question they asked, and an AI summary, so you know exact
 A scan starts the conversation.
 
 19
-00:01:04,310 --> 00:01:07,630
+00:01:03,640 --> 00:01:06,960
 ReallyWise turns it into a booked viewing.
+
+20
+00:01:07,060 --> 00:01:10,080
+Try it free at ReallyWise.ai.
 

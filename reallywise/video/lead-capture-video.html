@@ -218,12 +218,13 @@ h1,h2,h3{font-family:var(--f-head);letter-spacing:-.02em}
 .total b{font-family:'Montserrat',var(--f-head);font-size:46px;color:var(--navy-900);font-weight:800}
 
 /* ---------- Scene 6 ---------- */
-#s6 .lines{left:0;right:0;top:250px;text-align:center}
+#s6 .lines{left:0;right:0;top:200px;text-align:center;display:flex;flex-direction:column;gap:26px}
 #s6 h1{font-size:74px;line-height:1.18;font-weight:800;color:var(--navy-900)}
 #s6 h1 em{font-style:normal;color:var(--green-500)}
-#s6 .logo{left:50%;top:560px;width:540px;margin-left:-270px}
-#s6 .tagline{left:0;right:0;top:730px;text-align:center;font-size:28px;color:var(--ink-2)}
-#s6 .url{left:0;right:0;top:788px;text-align:center;font-family:var(--f-mono);font-size:26px;color:var(--navy-900)}
+#s6 .logo{left:50%;top:520px;width:500px;margin-left:-250px}
+#s6 .tagline{left:0;right:0;top:672px;text-align:center;font-size:28px;color:var(--ink-2)}
+#s6 .cta{left:0;right:0;top:770px;display:flex;justify-content:center}
+#s6 .cta span{display:inline-flex;align-items:center;gap:14px;height:84px;padding:0 40px;border-radius:999px;background:var(--green-500);color:#fff;font-family:var(--f-head);font-weight:800;font-size:36px;box-shadow:0 16px 36px rgba(11,181,99,.35)}
 
 #cornerLogo{position:absolute;left:60px;top:46px;width:200px;z-index:20}
 #subs{position:absolute;left:0;right:0;bottom:22px;display:flex;justify-content:center;z-index:40;pointer-events:none}
@@ -544,11 +545,11 @@ h1,h2,h3{font-family:var(--f-head);letter-spacing:-.02em}
   <section class="scene light" id="s6" data-in="60.0" data-d="0.6">
     <div class="abs lines">
       <h1 data-in="60.2" data-fx="up">A scan starts the conversation.</h1>
-      <h1 data-in="63.45" data-fx="up"><em>ReallyWise turns it into a booked viewing.</em></h1>
+      <h1 data-in="62.6" data-fx="up"><em>ReallyWise turns it into a booked viewing.</em></h1>
     </div>
-    <img class="abs logo" src="../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="65.0" data-fx="up">
-    <div class="abs tagline" data-in="65.4" data-fx="up">Property Expert, the 24/7 AI expert for every listing</div>
-    <div class="abs url" data-in="65.7" data-fx="up">reallywise.ai</div>
+    <img class="abs logo" src="../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="64.6" data-fx="up">
+    <div class="abs tagline" data-in="65.0" data-fx="up">Property Expert, the 24/7 AI expert for every listing</div>
+    <div class="abs cta" data-in="66.0" data-fx="pop" data-d="0.6"><span>Try it free at ReallyWise.ai<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
   </section>
 
   <img id="cornerLogo" src="../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="5.0" data-out="59.6" data-fx="fade">
@@ -563,7 +564,7 @@ h1,h2,h3{font-family:var(--f-head);letter-spacing:-.02em}
 <script src="subtitles.js"></script>
 
 <script>
-const DESIGN_DURATION = 68;   // the timeline below is written in design seconds
+const DESIGN_DURATION = 70;   // the timeline below is written in design seconds
 const DURATION = window.VO_DURATION || DESIGN_DURATION;   // real length, set by voiceover.py
 // real time -> design time, so the picture waits for each voice-over line (TIMEWARP from subtitles.js)
 function toDesign(t) {
