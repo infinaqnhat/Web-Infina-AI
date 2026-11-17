@@ -776,8 +776,11 @@
     /* Closing band */
     .hp-close { background:var(--sand); text-align:center; }
     .hp-close .hp-pad { align-items:center; gap:32px; }
-    .hp-close p.big { margin:0; max-width:900px; font-family:var(--font-head); font-weight:800; font-size:clamp(26px,3.4vw,48px); line-height:1.1; letter-spacing:-.03em; }
-    .hp-close p.big span { color:var(--navy-500); }
+    .hp-close .hp-close-copy { display:flex; flex-direction:column; align-items:center; gap:20px; }
+    .hp-close .hp-kicker { color:var(--green-700); }
+    .hp-close .hp-close-note { margin:-12px 0 0; font-size:15px; line-height:22px; color:var(--muted); }
+    .hp-close .big { margin:0; max-width:900px; font-family:var(--font-head); font-weight:800; font-size:clamp(26px,3.4vw,48px); line-height:1.1; letter-spacing:-.03em; }
+    .hp-close .big span { color:var(--navy-500); }
 
     /* Motion: scroll-driven where supported, plain otherwise */
     @keyframes hp-rise { from{opacity:0;transform:translateY(36px)} to{opacity:1;transform:translateY(0)} }
@@ -948,8 +951,12 @@
 
     <section class="hp-close">
       <div class="hp-wrap hp-pad">
-        <p class="big hp-rv"><span>AI will take away your clients, and so will realtors using AI.</span> We're here to make sure that realtor is you.</p>
+        <div class="hp-close-copy hp-rv">
+          <div class="hp-kicker">win the AI era</div>
+          <h2 class="big"><span>The agents who win with AI will be the ones who use it first.</span> Make that you.</h2>
+        </div>
         <a class="hp-btn hp-btn-navy" href="#hero-create-qr">Create Property Expert <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        <p class="hp-close-note">Your first AI agent is ready in under a minute.</p>
       </div>
     </section>
   </div>
