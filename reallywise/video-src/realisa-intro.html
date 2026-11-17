@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Realisa Intro Clip</title>
+<meta name="viewport" content="width=1920">
+<!--
+  Source of uploads/realisa-intro.mp4. Every frame is a pure function of time:
+  render(t) sets the whole stage for second t. Open with ?t=12.5 to inspect a frame,
+  or ?play to preview in real time. Rendered by render-realisa-intro.mjs.
+-->
+<style>
+:root{
+  --navy:#012976;--navy7:#013A9E;--navy5:#33599F;--navy1:#E4E9F3;
+  --green:#0BB563;--green7:#067A43;--green1:#E2F6EC;
+  --amber:#A85F00;--amber1:#FBF0DF;--surface:#F4F6FB;--line:#DBE1EE;--ink:#0E1A3A;--muted:#4E5878;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--surface)}
+body{font-family:Inter,"DM Sans",system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--surface)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.45}
+.scene{position:absolute;inset:0;opacity:0;will-change:opacity,transform}
+.abs{position:absolute}
+.card{position:absolute;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 24px 60px -24px rgba(1,41,118,.22)}
+.mono{font-family:"DM Mono",ui-monospace,Menlo,monospace}
+.chip{position:absolute;left:120px;top:96px;display:flex;align-items:center;gap:14px;font-weight:700;font-size:26px;color:var(--navy)}
+.chip .n{font-family:"DM Mono",ui-monospace,monospace;color:var(--green7);background:var(--green1);border-radius:999px;padding:6px 16px;font-size:22px}
+.h{position:absolute;left:120px;top:150px;font-size:68px;font-weight:800;letter-spacing:-.02em;color:var(--navy);white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-size:18px;font-weight:600;white-space:nowrap}
+.pill.g{background:var(--green1);color:var(--green7)}
+.pill.n{background:var(--navy1);color:var(--navy)}
+.pill.a{background:var(--amber1);color:var(--amber)}
+.icon svg{width:100%;height:100%;display:block}
+.label{font-size:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.check{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;font-size:18px;font-weight:800;flex:none}
+.caret{display:inline-block;width:3px;height:1em;background:var(--green);vertical-align:-3px;margin-left:2px}
+
+/* scene 1 */
+.notif{position:absolute;left:1060px;width:700px;height:112px;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 40px -20px rgba(1,41,118,.25);display:flex;align-items:center;gap:20px;padding:0 26px}
+.notif .av{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;font-weight:800;font-size:24px;color:#fff;flex:none}
+.notif b{display:block;font-size:24px;color:var(--ink)}
+.notif span{display:block;font-size:20px;color:var(--muted);margin-top:4px}
+.notif i{margin-left:auto;font-style:normal;font-size:18px;color:var(--muted);align-self:flex-start;margin-top:22px}
+
+/* scene 3 */
+.row{position:absolute;left:40px;right:40px;height:92px;display:flex;align-items:center;gap:28px;border-top:1px solid var(--line)}
+.row .tm{width:120px;font-size:26px;color:var(--navy);font-weight:500}
+.row .tx b{display:block;font-size:26px}
+.row .tx span{display:block;font-size:20px;color:var(--muted);margin-top:4px}
+.row .pill{margin-left:auto}
+.reason{position:absolute;left:44px;right:44px;display:flex;gap:16px;align-items:center;font-size:24px;color:var(--ink)}
+
+/* scene 4 */
+.tile{position:absolute;width:430px;height:150px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 40px -24px rgba(1,41,118,.25);display:flex;align-items:flex-start;gap:20px;padding:22px 24px 0}
+.tile .ic{width:64px;height:64px;border-radius:16px;display:grid;place-items:center;flex:none}
+.tile .ic svg{width:34px;height:34px}
+.tile b{display:block;font-size:24px}
+.tile span{display:block;font-size:18px;color:var(--muted);margin-top:4px}
+.tile .st{position:absolute;left:108px;bottom:16px;font-size:16px;padding:4px 12px}
+
+/* scene 5 */
+.node{position:absolute;top:150px;width:300px;margin-left:-150px;text-align:center}
+.node .dot{width:44px;height:44px;border-radius:50%;margin:0 auto;display:grid;place-items:center;font-weight:800;color:#fff;font-size:22px;border:4px solid var(--line);background:#fff}
+.node b{display:block;margin-top:18px;font-size:24px}
+.node span{display:block;margin-top:6px;font-size:20px;color:var(--muted)}
+.doc{position:absolute;left:40px;right:40px;height:56px;display:flex;align-items:center;gap:16px;font-size:23px}
+.doc .pill{margin-left:auto}
+
+/* scene 6 */
+.mail{position:absolute;left:32px;right:32px;height:88px;display:flex;align-items:center;gap:20px;border-top:1px solid var(--line);padding:0 8px}
+.mail .ud{width:12px;height:12px;border-radius:50%;background:var(--navy7);flex:none}
+.mail .who{width:220px;font-weight:700;font-size:22px;flex:none}
+.mail .sub{font-size:21px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:420px}
+.mail .pill{margin-left:auto}
+.day{position:absolute;top:96px;width:108px;bottom:28px;border-left:1px dashed var(--line)}
+.day h4{text-align:center;font-size:18px;color:var(--muted);font-weight:600}
+.blk{position:absolute;left:6px;right:6px;border-radius:12px;padding:8px 10px;font-size:15px;font-weight:600;line-height:1.25}
+.stat{position:absolute;top:30px;width:200px;text-align:center}
+.stat b{display:block;font-family:Montserrat,Inter,sans-serif;font-size:64px;font-weight:800;color:var(--navy);line-height:1}
+.stat span{display:block;margin-top:12px;font-size:19px;color:var(--muted)}
+
+/* scene 7 */
+.role{position:absolute;width:520px;height:150px;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 20px 50px -24px rgba(1,41,118,.28);display:flex;align-items:center;gap:22px;padding:0 28px}
+.role .ic{width:76px;height:76px;border-radius:20px;background:var(--navy1);display:grid;place-items:center;flex:none}
+.role .ic svg{width:40px;height:40px}
+.role b{display:block;font-size:28px;color:var(--navy)}
+.role span{display:block;font-size:21px;color:var(--muted);margin-top:6px}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="grid"></div>
+
+  <!-- 1. Hook -->
+  <section class="scene" id="s1">
+    <div class="abs mono" id="s1t" style="left:140px;top:300px;font-size:30px;color:var(--green7);font-weight:500">TUESDAY, 6:47 AM</div>
+    <div class="abs" id="s1h" style="left:140px;top:360px;font-size:92px;line-height:1.05;font-weight:800;letter-spacing:-.03em;color:var(--navy)">Your day started<br>before you did.</div>
+    <div class="abs" id="s1s" style="left:140px;top:600px;font-size:32px;color:var(--muted);width:820px;line-height:1.4">Emails, showings, deadlines, listing posts.<br>And you haven't had coffee yet.</div>
+    <div id="s1n"></div>
+  </section>
+
+  <!-- 2. Meet Realisa -->
+  <section class="scene" id="s2" style="background:radial-gradient(1200px 700px at 50% 42%,#0A3C9A 0%,#012976 55%,#011B52 100%)">
+    <div class="abs" id="s2ring" style="left:810px;top:190px;width:300px;height:300px;border-radius:50%;border:2px solid rgba(11,181,99,.6)"></div>
+    <div class="abs icon realisa-ic" id="s2ic" style="left:860px;top:240px;width:200px;height:200px;filter:drop-shadow(0 20px 50px rgba(0,0,0,.35))"></div>
+    <div class="abs" id="s2h" style="left:0;right:0;top:530px;text-align:center;font-size:110px;font-weight:800;letter-spacing:-.03em;color:#fff">Meet Realisa.</div>
+    <div class="abs" id="s2s" style="left:0;right:0;top:680px;text-align:center;font-size:40px;font-weight:500;color:#BFD0F2">Your AI Chief of Staff, built for real estate agents.</div>
+    <div class="abs" id="s2c" style="left:0;right:0;top:790px;display:flex;justify-content:center;gap:18px"></div>
+  </section>
+
+  <!-- 3. Chief of Staff -->
+  <section class="scene" id="s3">
+    <div class="chip" id="s3c"><span class="n">01</span>Chief of Staff</div>
+    <div class="h" id="s3h">Your day, planned before you wake up.</div>
+    <div class="card" id="s3a" style="left:120px;top:290px;width:1000px;height:690px">
+      <div class="abs" style="left:40px;top:34px;display:flex;gap:18px;align-items:center">
+        <div class="icon realisa-ic" style="width:64px;height:64px"></div>
+        <div><b style="display:block;font-size:30px">Good morning, Alex. Here's your Tuesday.</b><span style="display:block;font-size:20px;color:var(--muted);margin-top:4px">Planned by Realisa at 6:00 AM from your inbox, calendar and pipeline</span></div>
+      </div>
+      <div id="s3rows"></div>
+    </div>
+    <div class="card" id="s3b" style="left:1160px;top:290px;width:640px;height:690px">
+      <div class="abs label" style="left:44px;top:44px;color:var(--green7)">Your one thing today</div>
+      <div class="abs" style="left:44px;top:84px;display:flex;align-items:center;gap:20px">
+        <img src="../uploads/testi-priya.jpg" style="width:84px;height:84px;border-radius:50%;object-fit:cover" alt="">
+        <div><b style="display:block;font-size:42px;color:var(--navy)">Call Maya Chen</b><span style="display:block;font-size:21px;color:var(--muted);margin-top:4px">Buyer, 42 Oak Lane</span></div>
+      </div>
+      <div id="s3why"></div>
+      <div class="abs" style="left:44px;right:44px;top:480px">
+        <div style="display:flex;justify-content:space-between;font-size:22px;font-weight:600"><span>Ready to make an offer</span><span class="mono" id="s3pct" style="color:var(--green7)">0%</span></div>
+        <div style="margin-top:14px;height:14px;border-radius:99px;background:var(--navy1);overflow:hidden"><div id="s3bar" style="height:100%;width:0;background:var(--green);border-radius:99px"></div></div>
+      </div>
+      <div class="abs" id="s3btn" style="left:44px;right:44px;top:570px;height:76px;border-radius:18px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:26px;font-weight:700">Call Maya now</div>
+    </div>
+  </section>
+
+  <!-- 4. Marketing Specialist -->
+  <section class="scene" id="s4">
+    <div class="chip"><span class="n">02</span>Marketing Specialist</div>
+    <div class="h">Listings that market themselves.</div>
+    <div class="card" id="s4p" style="left:120px;top:290px;width:760px;height:690px;overflow:hidden">
+      <img id="s4img" src="../uploads/property-148-maple-main.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      <div class="abs" style="left:0;right:0;bottom:0;height:260px;background:linear-gradient(transparent,rgba(1,27,82,.85))"></div>
+      <div class="abs" style="left:36px;top:32px"><span class="pill g" style="background:var(--green);color:#fff">New listing</span></div>
+      <div class="abs" style="left:36px;bottom:36px;color:#fff"><b style="display:block;font-size:40px">148 Maple Street</b><span style="display:block;font-size:22px;margin-top:8px;opacity:.9">4 bd &nbsp;|&nbsp; 3 ba &nbsp;|&nbsp; 2,450 sqft &nbsp;|&nbsp; $1,895,000</span></div>
+    </div>
+    <div class="card" id="s4d" style="left:920px;top:290px;width:880px;height:310px">
+      <div class="abs" style="left:36px;top:30px;display:flex;align-items:center;gap:14px"><span class="label">Listing description</span><span class="pill n">Written by Realisa</span></div>
+      <div class="abs" id="s4txt" style="left:36px;right:36px;top:86px;font-size:26px;line-height:1.5;color:var(--ink)"></div>
+    </div>
+    <div id="s4tiles"></div>
+  </section>
+
+  <!-- 5. Transaction Coordinator -->
+  <section class="scene" id="s5">
+    <div class="chip"><span class="n">03</span>Transaction Coordinator</div>
+    <div class="h">Contract to close. Nothing slips.</div>
+    <div class="card" id="s5t" style="left:120px;top:290px;width:1680px;height:320px">
+      <div class="abs" style="left:40px;top:32px;display:flex;align-items:center;gap:16px"><b style="font-size:28px">148 Maple Street</b><span style="color:var(--muted);font-size:22px">Buyer: the Nguyen family</span></div>
+      <div class="abs" id="s5days" style="right:40px;top:28px"><span class="pill g" style="font-size:20px">17 days to close</span></div>
+      <div class="abs" style="left:190px;width:1300px;top:170px;height:6px;border-radius:9px;background:var(--line)"></div>
+      <div class="abs" id="s5line" style="left:190px;width:0;top:170px;height:6px;border-radius:9px;background:var(--green)"></div>
+      <div id="s5nodes"></div>
+    </div>
+    <div class="card" id="s5m" style="left:120px;top:650px;width:1000px;height:330px">
+      <div class="abs" style="left:36px;top:28px;display:flex;align-items:center;gap:14px">
+        <div class="icon realisa-ic" style="width:44px;height:44px"></div>
+        <span style="font-size:22px"><b>Realisa</b> <span style="color:var(--muted)">to Jordan Reyes, lender</span></span>
+        <span id="s5sent" class="pill g" style="margin-left:24px">Sent</span>
+      </div>
+      <div class="abs" id="s5txt" style="left:36px;right:36px;top:100px;font-size:25px;line-height:1.5"></div>
+    </div>
+    <div class="card" id="s5d" style="left:1160px;top:650px;width:640px;height:330px">
+      <div class="abs label" style="left:40px;top:30px">Documents</div>
+      <div id="s5docs"></div>
+    </div>
+  </section>
+
+  <!-- 6. Administrative Assistant -->
+  <section class="scene" id="s6">
+    <div class="chip"><span class="n">04</span>Administrative Assistant</div>
+    <div class="h">The front desk, handled.</div>
+    <div class="card" id="s6i" style="left:120px;top:290px;width:1000px;height:690px">
+      <div class="abs" style="left:40px;top:34px;display:flex;align-items:center;gap:16px"><b style="font-size:30px">Inbox</b><span class="pill n" id="s6cnt">23 new</span></div>
+      <div id="s6mail"></div>
+    </div>
+    <div class="card" id="s6c" style="left:1160px;top:290px;width:640px;height:440px">
+      <div class="abs" style="left:36px;top:30px;font-size:26px;font-weight:700">This week</div>
+      <div id="s6days"></div>
+    </div>
+    <div class="card" id="s6s" style="left:1160px;top:760px;width:640px;height:220px">
+      <div class="stat" style="left:10px"><b id="s6a">0</b><span>emails answered</span></div>
+      <div class="stat" style="left:220px"><b id="s6b">0</b><span>showings booked</span></div>
+      <div class="stat" style="left:430px"><b id="s6c2">0</b><span>clients onboarded</span></div>
+    </div>
+  </section>
+
+  <!-- 7. Recap -->
+  <section class="scene" id="s7">
+    <div class="abs" id="s7h" style="left:0;right:0;top:90px;text-align:center;font-size:76px;font-weight:800;letter-spacing:-.03em;color:var(--navy)">Four roles. One Realisa.</div>
+    <svg class="abs" id="s7svg" style="left:0;top:0" width="1920" height="1080"></svg>
+    <div class="abs" id="s7glow" style="left:810px;top:440px;width:300px;height:300px;border-radius:50%;background:radial-gradient(rgba(11,181,99,.25),transparent 70%)"></div>
+    <div class="abs icon realisa-ic" id="s7ic" style="left:870px;top:500px;width:180px;height:180px;filter:drop-shadow(0 20px 40px rgba(1,41,118,.3))"></div>
+    <div id="s7roles"></div>
+    <div class="abs" id="s7s" style="left:0;right:0;top:960px;text-align:center;font-size:34px;color:var(--muted)">You focus on your clients. <b style="color:var(--navy)">Realisa handles the rest.</b></div>
+  </section>
+
+  <!-- 8. End card -->
+  <section class="scene" id="s8" style="background:#fff">
+    <img id="s8logo" src="../brand/Really_Wise_Logo.svg" alt="ReallyWise" class="abs" style="left:610px;top:330px;width:700px">
+    <div class="abs" id="s8h" style="left:0;right:0;top:560px;text-align:center;font-size:52px;font-weight:700;color:var(--navy);letter-spacing:-.02em">Realisa, your AI Chief of Staff.</div>
+    <div class="abs" id="s8s" style="left:0;right:0;top:650px;text-align:center;font-size:30px;color:var(--muted)">Chief of Staff &nbsp;|&nbsp; Marketing Specialist &nbsp;|&nbsp; Transaction Coordinator &nbsp;|&nbsp; Administrative Assistant</div>
+    <div class="abs mono" id="s8u" style="left:0;right:0;top:770px;text-align:center;font-size:34px;color:var(--green7);font-weight:500">reallywise.ai</div>
+  </section>
+</div>
+
+<script>
+const REALISA = '<svg viewBox="0 0 120 120"><circle fill="#012976" cx="60" cy="60" r="60"/><g transform="translate(24.3 26.9) scale(.098)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg>';
+document.querySelectorAll('.realisa-ic').forEach(e => e.innerHTML = REALISA);
+document.querySelector('#s2ic svg circle').setAttribute('fill', '#fff');
+document.querySelector('#s2ic svg path').setAttribute('fill', '#012976');
+document.querySelectorAll('#s2ic svg circle[cx="199"],#s2ic svg circle[cx="365"]').forEach(c => c.setAttribute('fill', '#fff'));
+
+const IC = {
+  cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+  mega:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M16 8a5 5 0 0 1 0 8M19 5a9 9 0 0 1 0 14"/></svg>',
+  doc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>',
+  inbox:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5h13L22 12v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z"/></svg>',
+  cam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>',
+  ad:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 15l3-6 3 6M8 13h4M16 9v6"/></svg>',
+  mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg>',
+  flyer:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 4l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-6h6v6"/></svg>',
+};
+
+/* ---------- build ---------- */
+const $ = id => document.getElementById(id);
+const NOTIFS = [
+  ['L','#013A9E','Jordan Reyes, lender','Appraisal docs needed by Friday','6:02'],
+  ['M','#0BB563','New lead: Maya Chen','Can I see 42 Oak Lane today?','6:15'],
+  ['S','#A85F00','Seller, 148 Maple','When do the listing photos go live?','6:31'],
+  ['T','#33599F','Bay Title Co.','Please confirm the wire instructions','6:40'],
+  ['@','#C23A2E','14 unread emails','3 showing requests, 2 offers, 9 more','6:47'],
+];
+$('s1n').innerHTML = NOTIFS.map((n,i)=>`<div class="notif" id="n${i}" style="top:${170+i*150}px"><div class="av" style="background:${n[1]}">${n[0]}</div><div><b>${n[2]}</b><span>${n[3]}</span></div><i class="mono">${n[4]}</i></div>`).join('');
+
+const ROLES = ['Chief of Staff','Marketing Specialist','Transaction Coordinator','Administrative Assistant'];
+$('s2c').innerHTML = ROLES.map((r,i)=>`<span class="pill" id="rc${i}" style="font-size:24px;padding:12px 24px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25)">${r}</span>`).join('');
+
+const DAY = [
+  ['8:30','Review 2 new offers','148 Maple Street, both above asking','Offers','a'],
+  ['10:00','Showing with Maya Chen','42 Oak Lane, second visit','Showing','n'],
+  ['12:30','Call Jordan Reyes, lender','Appraisal timing for 148 Maple','Call','n'],
+  ['3:00','Listing appointment','88 Lakeview Drive, seller wants a CMA','Listing','g'],
+  ['5:30','Follow-ups drafted for you','6 buyers, ready to send with one tap','Ready','g'],
+];
+$('s3rows').innerHTML = DAY.map((d,i)=>`<div class="row" id="r${i}" style="top:${140+i*104}px"><div class="tm mono">${d[0]}</div><div class="tx"><b>${d[1]}</b><span>${d[2]}</span></div><span class="pill ${d[4]}">${d[3]}</span></div>`).join('');
+const WHY = ['Viewed 42 Oak Lane 3 times this week','Asked about HOA fees and school ratings','Pre-approved up to $1.2M'];
+$('s3why').innerHTML = WHY.map((w,i)=>`<div class="reason" id="w${i}" style="top:${222+i*72}px"><span class="check">&#10003;</span>${w}</div>`).join('');
+
+const TILES = [
+  ['cam','#FDE9EF','#C2185B','Instagram post','Carousel, 6 photos + caption'],
+  ['ad','#E4E9F3','#013A9E','Facebook ad','Local buyers, $1.5M to $2M'],
+  ['mail','#E2F6EC','#067A43','Email to 214 buyers','Matched to their saved searches'],
+  ['flyer','#FBF0DF','#A85F00','Open house flyer','Saturday, 1 to 4 PM'],
+];
+$('s4tiles').innerHTML = TILES.map((t,i)=>`<div class="tile" id="t${i}" style="left:${920+(i%2)*450}px;top:${640+Math.floor(i/2)*170}px"><div class="ic" style="background:${t[1]};color:${t[2]}">${IC[t[0]]}</div><div><b>${t[3]}</b><span>${t[4]}</span></div><span class="st pill n" id="ts${i}">Drafting</span></div>`).join('');
+
+const NODES = [['Offer accepted','Nov 3'],['Inspection','Nov 10'],['Appraisal','Nov 19'],['Loan approval','Nov 26'],['Closing','Dec 4']];
+$('s5nodes').innerHTML = NODES.map((n,i)=>`<div class="node" id="nd${i}" style="left:${190+i*325}px;top:150px"><div class="dot" id="dd${i}"></div><b>${n[0]}</b><span id="ns${i}">${n[1]}</span></div>`).join('');
+const DOCS = [['Purchase agreement','Signed'],['Seller disclosures','3 of 3 signed'],['Inspection report','Filed'],['Wire instructions','Verified']];
+$('s5docs').innerHTML = DOCS.map((d,i)=>`<div class="doc" id="dc${i}" style="top:${84+i*58}px"><span class="check" id="dk${i}">&#10003;</span>${d[0]}<span class="pill g">${d[1]}</span></div>`).join('');
+
+const MAILS = [
+  ['Priya Shah','Is 42 Oak Lane still available?','Answered','g'],
+  ['Ken Watanabe','Can we see it Saturday morning?','Showing booked','g'],
+  ['Bay Title Co.','Prelim title report, 148 Maple','Filed to deal','n'],
+  ['Elena Wu','Looking for a 3 bed in Sunnyvale','Intake form sent','n'],
+  ['Marcus Bell','What are the HOA fees?','Answered','g'],
+  ['Dana Ortiz','Can we move our call to Thursday?','Rescheduled','a'],
+];
+$('s6mail').innerHTML = MAILS.map((m,i)=>`<div class="mail" id="m${i}" style="top:${110+i*92}px"><span class="ud" id="mu${i}"></span><span class="who">${m[0]}</span><span class="sub">${m[1]}</span><span class="pill ${m[3]}" id="mt${i}">${m[2]}</span></div>`).join('');
+const DAYS = ['Mon','Tue','Wed','Thu','Fri'];
+$('s6days').innerHTML = DAYS.map((d,i)=>`<div class="day" style="left:${36+i*116}px"><h4>${d}</h4></div>`).join('');
+const BLOCKS = [[0,60,'Showing<br>42 Oak','n'],[1,150,'Call<br>lender','n'],[2,40,'Showing<br>Lakeview','g'],[3,110,'Intake<br>Elena Wu','a'],[4,70,'Showing<br>Ken W.','g'],[3,230,'Open<br>house prep','n']];
+const BC = {n:['#E4E9F3','#013A9E'],g:['#E2F6EC','#067A43'],a:['#FBF0DF','#A85F00']};
+document.querySelectorAll('#s6days .day').forEach((el,i)=>{
+  BLOCKS.forEach((b,j)=>{ if(b[0]===i) el.insertAdjacentHTML('beforeend',`<div class="blk" id="b${j}" style="top:${b[1]}px;height:${b[3]==='a'?92:80}px;background:${BC[b[3]][0]};color:${BC[b[3]][1]}">${b[2]}</div>`); });
+});
+
+const RPOS = [[180,300],[1220,300],[180,700],[1220,700]];
+const RTXT = [['cal','Chief of Staff','Plans your day, every day'],['mega','Marketing Specialist','Markets every listing'],['doc','Transaction Coordinator','Keeps each deal on track'],['inbox','Administrative Assistant','Runs your front desk']];
+$('s7roles').innerHTML = RTXT.map((r,i)=>`<div class="role" id="ro${i}" style="left:${RPOS[i][0]}px;top:${RPOS[i][1]}px"><div class="ic" style="color:var(--navy)">${IC[r[0]]}</div><div><b>${r[1]}</b><span>${r[2]}</span></div></div>`).join('');
+$('s7svg').innerHTML = RPOS.map((p,i)=>{ const x = i%2 ? p[0] : p[0]+520, y = p[1]+75; return `<path id="ln${i}" d="M${x} ${y} L960 590" stroke="#0BB563" stroke-width="3" stroke-dasharray="6 10" fill="none"/>`; }).join('');
+
+/* ---------- time helpers ---------- */
+const cl = x => Math.max(0, Math.min(1, x));
+const p = (t,a,b) => cl((t-a)/(b-a));
+const eo = x => 1 - Math.pow(1-x, 3);
+const eb = x => { const c1=1.70158,c3=c1+1; return 1 + c3*Math.pow(x-1,3) + c1*Math.pow(x-1,2); };
+const eio = x => x<.5 ? 4*x*x*x : 1-Math.pow(-2*x+2,3)/2;
+function set(el, o, x=0, y=0, s=1){ if(typeof el==='string') el=$(el); el.style.opacity=o; el.style.transform=`translate(${x}px,${y}px) scale(${s})`; }
+function rise(el, t, a, d=.6, dy=40){ const q=eo(p(t,a,a+d)); set(el, q, 0, (1-q)*dy); return q; }
+function pop(el, t, a, d=.5){ const q=p(t,a,a+d); set(el, cl(q*2), 0, 0, .6+.4*eb(q)); return q; }
+function type(el, text, t, a, b){ const n=Math.round(text.length*p(t,a,b)); const done=t>=b+.6; el.innerHTML = text.slice(0,n) + (done ? '' : '<span class="caret"></span>'); }
+function scene(id, t, a, b, f=.5){
+  const el=$(id); const vin=p(t,a,a+f), vout=p(t,b-f,b); const o=Math.min(vin,1-vout);
+  el.style.visibility = o>0 ? 'visible':'hidden'; el.style.opacity=o;
+  el.style.transform=`scale(${1.03-.03*eo(vin)+.02*eio(vout)})`;
+  return o>0;
+}
+
+const T = {s1:[0,5.6], s2:[5.3,10.6], s3:[10.3,18.6], s4:[18.3,26.6], s5:[26.3,34.6], s6:[34.3,42.4], s7:[42.1,47.6], s8:[47.3,53]};
+const DURATION = 53;
+const DESC = "Sunlit 4-bedroom craftsman on a quiet, tree-lined street. A chef's kitchen with quartz counters, a private backyard made for summer evenings, and top-rated schools a short walk away.";
+const MSG = "Hi Jordan, the appraisal for 148 Maple is due Thursday. Can you confirm the appraiser's visit time? The sellers can open the house any morning this week.";
+
+function render(t){
+  // 1
+  if(scene('s1',t,...T.s1,.01)){
+    rise('s1t',t,.1); rise('s1h',t,.3,.7,50); rise('s1s',t,1.0);
+    NOTIFS.forEach((_,i)=>{ const a=.8+i*.55, q=eo(p(t,a,a+.55)); const shake = t>3.9 ? Math.sin(t*40+i)*3*p(t,3.9,4.2)*(1-p(t,4.8,5.2)) : 0; set('n'+i, q, (1-q)*160+shake, 0, 1); });
+  }
+  // 2
+  if(scene('s2',t,...T.s2)){
+    const q=p(t,5.6,6.4); set('s2ic', cl(q*2), 0, 0, .5+.5*eb(q));
+    const r=(t-6.0)%1.6/1.6; set('s2ring', t>6 ? (1-r)*.9 : 0, 0, 0, .7+r*.7);
+    rise('s2h',t,6.3,.7,50); rise('s2s',t,7.1);
+    ROLES.forEach((_,i)=>pop('rc'+i,t,8.0+i*.3));
+  }
+  // 3
+  if(scene('s3',t,...T.s3)){
+    rise('s3c',t,10.5); rise('s3h',t,10.7,.7,30);
+    rise('s3a',t,11.0,.7,60); rise('s3b',t,11.3,.7,60);
+    DAY.forEach((_,i)=>rise('r'+i,t,11.8+i*.38,.5,24));
+    WHY.forEach((_,i)=>rise('w'+i,t,14.0+i*.4,.5,20));
+    const b=eio(p(t,15.3,16.5)); $('s3bar').style.width=(87*b)+'%'; $('s3pct').textContent=Math.round(87*b)+'%';
+    const pr=p(t,17.0,17.4); $('s3btn').style.transform=`scale(${1-.05*Math.sin(pr*Math.PI)})`; $('s3btn').style.background = t>17.2 ? 'var(--green)' : 'var(--navy)'; $('s3btn').textContent = t>17.2 ? 'Calling Maya...' : 'Call Maya now';
+  }
+  // 4
+  if(scene('s4',t,...T.s4)){
+    rise('s4p',t,18.7,.7,60); $('s4img').style.transform=`scale(${1.12-.12*eo(p(t,18.5,26.5))})`;
+    rise('s4d',t,19.0,.7,60); type($('s4txt'),DESC,t,19.6,22.4);
+    TILES.forEach((_,i)=>{ rise('t'+i,t,22.4+i*.25,.5,30); const on=t>23.6+i*.35; const s=$('ts'+i); s.className='st pill '+(on?'g':'n'); s.innerHTML=on?'&#10003; Scheduled':'Drafting'; });
+  }
+  // 5
+  if(scene('s5',t,...T.s5)){
+    rise('s5t',t,26.7,.7,60);
+    const lw=eio(p(t,27.4,29.2)); $('s5line').style.width=(650*lw)+'px';
+    NODES.forEach((_,i)=>{ const at=27.3+i*.45; pop('nd'+i,t,at,.5); const d=$('dd'+i);
+      if(i<2 && t>27.6+i*.9){ d.style.background='var(--green)'; d.style.borderColor='var(--green)'; d.innerHTML='&#10003;'; }
+      else if(i===2 && t>29.2){ d.style.background='#F5A524'; d.style.borderColor='#FBE3B8'; d.innerHTML=''; d.style.boxShadow=`0 0 0 ${8+8*Math.abs(Math.sin(t*3))}px rgba(245,165,36,.18)`; $('ns2').innerHTML='<span style="color:var(--amber);font-weight:700">Due in 2 days</span>'; }
+      else { d.style.background='#fff'; d.style.borderColor='var(--line)'; d.innerHTML=''; d.style.boxShadow='none'; if(i===2) $('ns2').textContent='Nov 19'; }
+    });
+    rise('s5m',t,28.6,.7,60); rise('s5d',t,28.9,.7,60);
+    type($('s5txt'),MSG,t,29.6,32.2);
+    pop('s5sent',t,32.5,.4);
+    DOCS.forEach((_,i)=>rise('dc'+i,t,29.6+i*.5,.45,16));
+  }
+  // 6
+  if(scene('s6',t,...T.s6)){
+    rise('s6i',t,34.7,.7,60); rise('s6c',t,35.0,.7,60); rise('s6s',t,35.3,.7,60);
+    MAILS.forEach((_,i)=>{ rise('m'+i,t,35.2+i*.15,.45,16); const a=36.2+i*.42; pop('mt'+i,t,a,.4); set('mu'+i, 1-p(t,a,a+.3)); });
+    const left=Math.max(0, 23-Math.floor(23*p(t,36.2,38.8))); $('s6cnt').textContent = left ? left+' new' : 'All caught up'; $('s6cnt').className='pill '+(left?'n':'g');
+    BLOCKS.forEach((_,j)=>{ const a=36.6+j*.38, q=eo(p(t,a,a+.45)); set('b'+j, q, 0, (1-q)*-30); });
+    const c=eo(p(t,37.6,40.0)); $('s6a').textContent=Math.round(23*c); $('s6b').textContent=Math.round(4*c); $('s6c2').textContent=Math.round(2*c);
+  }
+  // 7
+  if(scene('s7',t,...T.s7)){
+    rise('s7h',t,42.4,.7,30);
+    const q=p(t,42.5,43.2); set('s7ic', cl(q*2), 0, 0, .5+.5*eb(q)); set('s7glow', cl(q*2), 0, 0, 1+.08*Math.sin(t*3));
+    RPOS.forEach((_,i)=>{ const a=43.0+i*.3; rise('ro'+i,t,a,.55,30); const ln=$('ln'+i); ln.style.opacity=p(t,a+.2,a+.6); ln.style.strokeDashoffset = -t*30; });
+    rise('s7s',t,44.8,.7,20);
+  }
+  // 8
+  if(scene('s8',t,...T.s8,.6)){
+    const q=eo(p(t,47.6,48.6)); set('s8logo', q, 0, 0, .92+.08*q);
+    rise('s8h',t,48.4,.7,30); rise('s8s',t,49.0,.7,20); rise('s8u',t,49.6,.7,20);
+  }
+}
+window.render = render; window.DURATION = DURATION;
+
+const qs = new URLSearchParams(location.search);
+if(qs.has('play')){ const t0=performance.now(); (function loop(){ render(((performance.now()-t0)/1000)%DURATION); requestAnimationFrame(loop); })(); }
+else render(parseFloat(qs.get('t')||'0'));
+</script>
+</body>
+</html>

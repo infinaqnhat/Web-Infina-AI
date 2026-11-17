@@ -42,6 +42,7 @@ Defaults used for the landing page, change them in one place if the answer diffe
 | `realsalex-mockups/` | Dashboard, deal room and email mockups | `realsalex-mockups/` |
 | `wordpress-theme/infina-ai-news/` | News blog block theme | `wordpress-theme/infina-ai-news/` |
 | `uploads/` | Only the images, video and PDF these pages reference | `uploads/` |
+| `video-src/` | Source of `uploads/realisa-intro.mp4` (53s, 1080p): the animated page `realisa-intro.html` (open with `?play` to preview, `?t=12` for one frame), `gen-music.py` (procedural music bed, no samples) and `render-realisa-intro.cjs` (Playwright frame render piped to ffmpeg). Rebuild: `python3 video-src/gen-music.py /tmp/m.wav 53 && node video-src/render-realisa-intro.cjs /tmp/m.wav uploads/realisa-intro.mp4` | new |
 
 ## Notes
 - Paths stay relative, so each page opens from this folder the same way it does from the root.
