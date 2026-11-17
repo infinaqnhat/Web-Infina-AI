@@ -6,9 +6,10 @@ Two voices are supported:
   python voiceover.py kokoro <model dir>  Kokoro TTS, offline (pip install kokoro-onnx soundfile; model
                                           files from https://github.com/thewh1teagle/kokoro-onnx/releases)
 Writes voiceover.m4a (the mixed track), subtitles.srt and subtitles.js (cues for the HTML page).
-A line that runs into the next cue is sped up slightly (at most 12%) so the timing holds.
+A line never overlaps the previous one: when a line runs long, it starts later and the picture waits for it
+(TIMEWARP in subtitles.js), so the read keeps its natural pace and stays in sync.
 """
-import base64, json, os, subprocess, sys, tempfile, time, urllib.request
+import base64, json, os, re, subprocess, sys, tempfile, time, urllib.request
 import numpy as np, soundfile as sf
 
 here = os.path.dirname(os.path.abspath(__file__))
@@ -29,32 +30,62 @@ def synth_kokoro():
 
 def synth_gemini():
     g = cfg['gemini']; key = os.environ['GEMINI_API_KEY']
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{g['model']}:generateContent"
+    base = 'https://generativelanguage.googleapis.com/v1beta/models/'
+    def call(model, body):
+        for attempt in range(5):
+            try:
+                req = urllib.request.Request(base + model + ':generateContent', json.dumps(body).encode(),
+                                             {'Content-Type': 'application/json', 'x-goog-api-key': key})
+                return json.load(urllib.request.urlopen(req, timeout=120))['candidates'][0]['content']['parts']
+            except Exception as e:
+                print(f'  retry {attempt + 1}: {e}'); time.sleep(4 * (attempt + 1))
+        raise SystemExit('Gemini request failed')
+    def decode(part):
+        raw = base64.b64decode(part['inlineData']['data']); mime = part['inlineData'].get('mimeType', '')
+        if 'wav' in mime:   # a full WAV file: read it as one, so the header and metadata chunks are not played
+            import io
+            audio, sr = sf.read(io.BytesIO(raw), dtype='float32')
+            if audio.ndim > 1: audio = audio.mean(axis=1)
+        else:               # raw 16-bit PCM, audio/L16;rate=24000
+            audio, sr = np.frombuffer(raw, dtype='<i2').astype(np.float32) / 32768, 24000
+        if sr != SR:
+            idx = np.arange(0, len(audio), sr / SR); audio = np.interp(idx, np.arange(len(audio)), audio).astype(np.float32)
+        return audio
+    def words(t): return re.sub(r"[^a-z0-9 ]", ' ', t.lower().replace('-', ' ')).split()
+    def heard(audio):
+        with tempfile.TemporaryDirectory() as d:
+            f = os.path.join(d, 'c.wav'); sf.write(f, audio, SR, subtype='PCM_16')
+            data = base64.b64encode(open(f, 'rb').read()).decode()
+        parts = call(g['check_model'], {'contents': [{'parts': [{'inlineData': {'mimeType': 'audio/wav', 'data': data}},
+                     {'text': 'Transcribe this audio word for word. Output only the words.'}]}]})
+        return parts[0]['text']
     def run(text):
         body = {'contents': [{'parts': [{'text': g['style'] + '\n' + text}]}],
                 'generationConfig': {'responseModalities': ['AUDIO'], 'speechConfig': {
                     'voiceConfig': {'prebuiltVoiceConfig': {'voiceName': g['voice']}}}}}
-        for attempt in range(5):
-            try:
-                req = urllib.request.Request(url, json.dumps(body).encode(), {'Content-Type': 'application/json', 'x-goog-api-key': key})
-                data = json.load(urllib.request.urlopen(req, timeout=120))
-                pcm = base64.b64decode(data['candidates'][0]['content']['parts'][0]['inlineData']['data'])
-                return np.frombuffer(pcm, dtype='<i2').astype(np.float32) / 32768
-            except Exception as e:
-                print(f'retry {attempt + 1} for "{text[:30]}": {e}'); time.sleep(4 * (attempt + 1))
-        raise SystemExit('Gemini TTS failed')
+        want = [w for w in words(text.replace('ReallyWise', 'really wise'))]
+        for attempt in range(4):   # the TTS sometimes reads part of the notes aloud: check and retry
+            audio = decode(call(g['model'], body)[0])
+            if len(clean(audio)) / SR > 0.55 * len(want) + 2.0:   # long silences or a repeated read
+                print(f'  attempt {attempt + 1}: {len(audio) / SR:.1f}s is too long for {len(want)} words'); continue
+            got = words(heard(audio).replace('ReallyWise', 'really wise').replace('Reallywise', 'really wise'))
+            extra = len(got) - len(want)
+            if abs(extra) <= 1 and len(set(want) - set(got)) <= 1: return audio
+            print(f'  attempt {attempt + 1} heard: {" ".join(got)[:80]}')
+        raise SystemExit(f'TTS kept misreading: {text}')
     return run
 
-def fit(audio, slot):
-    """Speed a clip up (pitch kept) when it is longer than its slot, by at most 12%."""
-    d = len(audio) / SR
-    if d <= slot: return audio
-    tempo = min(1.12, d / slot)
-    with tempfile.TemporaryDirectory() as t:
-        a, b = os.path.join(t, 'a.wav'), os.path.join(t, 'b.wav')
-        sf.write(a, audio, SR)
-        subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', a, '-af', f'atempo={tempo:.3f}', b], check=True)
-        return sf.read(b, dtype='float32')[0]
+def clean(audio):
+    """Removes DC offset, trims the silence at both ends and fades the edges, so lines join without clicks."""
+    audio = audio - audio.mean()
+    w = int(SR * 0.02); n = len(audio) // w
+    db = np.array([20 * np.log10(np.sqrt(np.mean(audio[i * w:(i + 1) * w] ** 2)) + 1e-9) for i in range(n)])
+    on = np.where(db > -45)[0]
+    a, b = max(0, on[0] * w - int(SR * 0.04)), min(len(audio), (on[-1] + 1) * w + int(SR * 0.12))
+    audio = audio[a:b].copy()
+    fi, fo = int(SR * 0.01), int(SR * 0.08)
+    audio[:fi] *= np.linspace(0, 1, fi); audio[-fo:] *= np.linspace(1, 0, fo)
+    return audio
 
 _synth = synth_gemini() if ENGINE == 'gemini' else synth_kokoro()
 CACHE = os.environ.get('VO_CACHE', os.path.join(here, '.vo-cache'))
@@ -67,22 +98,26 @@ def synth(text):
     if os.path.exists(f): return sf.read(f, dtype='float32')[0]
     audio = _synth(text); os.makedirs(CACHE, exist_ok=True); sf.write(f, audio, SR); return audio
 TOTAL = cfg.get('duration', 68)
-mix = np.zeros(int(TOTAL * SR), dtype=np.float32)
 subs = []
-prev_end = 0.0
-for i, (t, text) in enumerate(cfg['cues']):
-    t = max(t, prev_end + 0.2)          # a line never starts before the previous one has finished
-    nxt = cfg['cues'][i + 1][0] if i + 1 < len(cfg['cues']) else TOTAL
-    audio = synth(text)
-    nz = np.where(np.abs(audio) > 0.01)[0]
-    audio = audio[max(0, nz[0] - 600): nz[-1] + 2400]
-    audio = fit(audio, nxt - 0.15 - t)
-    s = int(t * SR); mix[s:s + len(audio)] += audio[:len(mix) - s]
-    end = prev_end = t + len(audio) / SR
-    shift = t - cfg['cues'][i][0]
-    print(f'{t:5.2f}s  {len(audio) / SR:4.2f}s' + (f'  (+{shift:.2f}s)' if shift > 0.005 else '') + f'  {text[:60]}')
-    subs.append([round(t, 2), round(min(end + 0.3, nxt + max(0, end + 0.2 - nxt) - 0.05), 2), text])
-if prev_end > TOTAL: print(f'warning: the voice-over ends at {prev_end:.2f}s, after the video ({TOTAL}s)')
+GAP = cfg.get('gap', 0.4)
+clips, prev_end, shift = [], 0.0, 0.0
+for i, (d, text) in enumerate(cfg['cues']):
+    audio = clean(synth(text))
+    t = max(d + shift, prev_end + GAP)   # real start: the design time plus any delay so far
+    shift = t - d
+    prev_end = t + len(audio) / SR
+    clips.append((d, t, audio, text))
+    print(f'{d:5.2f} -> {t:5.2f}s  {len(audio) / SR:4.2f}s  {text[:60]}')
+TOTAL_REAL = round(max(TOTAL + shift, prev_end + 1.5), 2)
+# warp: [design time, real time] anchors; the page plays design time t_d at real time warp(t_d)
+WARP = [[0, 0]] + [[round(d, 3), round(t, 3)] for d, t, _, _ in clips] + [[TOTAL, TOTAL_REAL]]
+mix = np.zeros(int(TOTAL_REAL * SR) + SR, dtype=np.float32)
+for i, (d, t, audio, text) in enumerate(clips):
+    s = int(t * SR); mix[s:s + len(audio)] += audio
+    end = t + len(audio) / SR
+    nxt = clips[i + 1][1] if i + 1 < len(clips) else TOTAL_REAL
+    subs.append([round(t, 2), round(min(end + 0.3, nxt - 0.05), 2), text])
+mix = mix[:int(TOTAL_REAL * SR)]
 mix = mix / max(1e-6, np.abs(mix).max()) * 0.89
 with tempfile.TemporaryDirectory() as d:
     wav = os.path.join(d, 'vo.wav'); sf.write(wav, mix, SR)
@@ -93,5 +128,8 @@ def ts(x):
 with open(os.path.join(here, 'subtitles.srt'), 'w') as f:
     for n, (a, b, text) in enumerate(subs, 1): f.write(f'{n}\n{ts(a)} --> {ts(b)}\n{text}\n\n')
 with open(os.path.join(here, 'subtitles.js'), 'w') as f:
-    f.write('// Generated by voiceover.py from voiceover.json. [start, end, text] in seconds.\nwindow.SUBTITLES = ' + json.dumps(subs, indent=1) + ';\n')
-print('cues', len(subs), 'last ends', subs[-1][1])
+    f.write('// Generated by voiceover.py from voiceover.json. Times are real seconds in the final video.\n'
+            '// SUBTITLES: [start, end, text]. TIMEWARP: [design time, real time] anchors. DURATION: real length.\n'
+            'window.SUBTITLES = ' + json.dumps(subs, indent=1) + ';\nwindow.TIMEWARP = ' + json.dumps(WARP) +
+            ';\nwindow.VO_DURATION = ' + json.dumps(TOTAL_REAL) + ';\n')
+print('cues', len(subs), 'video length', TOTAL_REAL)

@@ -3,7 +3,8 @@
  "gemini": {
   "model": "gemini-3.8-flash-tts",
   "voice": "Laomedeia",
-  "style": "# AUDIO PROFILE: Maya, voice-over artist from the San Francisco Bay Area\n\n### DIRECTOR'S NOTES\nStyle: upbeat SaaS product intro video. Excited, confident, smiling. Energetic emphasis on the key words.\nAccent: natural Northern California, Bay Area.\nPace: brisk and punchy.\n\n### TRANSCRIPT"
+  "style": "### DIRECTOR'S NOTES\nVoice: a young woman from the San Francisco Bay Area, natural Northern California accent.\nStyle: SaaS product intro video. Warm, excited and confident, with a smile in the voice and clear emphasis on the key words.\nPace: moderate and unhurried. Articulate every word clearly, with short natural pauses at commas. Excited, but never rushed.\n\n### TRANSCRIPT (read only this)",
+  "check_model": "gemini-3.5-flash"
  },
  "kokoro": {
   "voice": "af_heart",
@@ -86,5 +87,6 @@
    63.45,
    "ReallyWise turns it into a booked viewing."
   ]
- ]
+ ],
+ "gap": 0.4
 }
