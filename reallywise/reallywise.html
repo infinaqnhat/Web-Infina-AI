@@ -595,33 +595,42 @@
     .hp-ai.is-side { transform:none; }
     .hp-ai.is-side .tail { left:-6px; bottom:auto; top:22px; }
     @media (prefers-reduced-motion:reduce){ .hp-ai .d3 { fill:#0BB563 !important; } .hp-ai .d { opacity:1 !important; } }
-    /* The fight */
+    /* Why we built ReallyWise: two cards, side by side, with a small flow diagram in each */
     .hp-fight { background:var(--sand); }
-    .hp-fight-word { display:flex; flex-direction:column; gap:8px; }
-    .hp-fight-word p { margin:0; font-family:var(--font-head); font-weight:700; font-size:clamp(22px,2.6vw,36px); line-height:1.15; }
-    .hp-word { margin:0; align-self:flex-start; position:relative; font-family:var(--font-head); font-weight:800; font-size:clamp(40px,7.4vw,108px); line-height:1; letter-spacing:-.04em; }
-    .hp-strike { position:absolute; left:-1%; right:-1%; top:54%; height:.075em; border-radius:999px; background:var(--accent); transform-origin:left center; }
-    .hp-two { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr)); gap:24px 72px; }
-    .hp-two p { margin:0; font-size:clamp(17px,1.4vw,20px); line-height:1.5; }
-    .hp-steps { margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:32px 40px; }
-    .hp-steps li { display:flex; flex-direction:column; gap:12px; padding-top:20px; border-top:2px solid var(--accent); }
-    .hp-steps .n { font-family:var(--font-accent); font-weight:800; font-size:clamp(36px,3.4vw,48px); line-height:1; color:var(--navy-500); }
-    .hp-steps h3 { margin:0; font-family:var(--font-head); font-weight:700; font-size:22px; line-height:28px; }
-    .hp-steps p { margin:0; font-size:16px; line-height:24px; color:var(--muted); }
-
-    /* The fight section fits one screen on desktop (its padding is the same as every other section): sizes follow the viewport height as well as the width */
-    @media (min-width:901px){
-      .hp-fight .hp-pad { gap:clamp(14px,3vh,40px); }
-      .hp-fight .hp-word { font-size:clamp(40px,min(7.4vw,12vh),108px); }
-      .hp-fight .hp-fight-word p { font-size:clamp(20px,min(2.6vw,3.6vh),36px); }
-      .hp-fight .hp-two { gap:16px 72px; }
-      .hp-fight .hp-two p { font-size:clamp(15px,min(1.4vw,2.3vh),20px); line-height:1.45; }
-      .hp-fight .hp-steps { gap:24px 40px; }
-      .hp-fight .hp-steps li { gap:clamp(6px,1.2vh,12px); padding-top:clamp(12px,2vh,20px); }
-      .hp-fight .hp-steps .n { font-size:clamp(28px,min(3.4vw,5vh),48px); }
-      .hp-fight .hp-steps h3 { font-size:clamp(17px,2.6vh,22px); line-height:1.25; }
-      .hp-fight .hp-steps p { font-size:clamp(13.5px,2vh,16px); line-height:1.45; }
-    }
+    .hp-fight .hp-kicker { color:var(--green-700); }
+    .hp-fight .hp-intro { display:flex; flex-direction:column; align-items:center; text-align:center; gap:20px; }
+    .hp-fight .hp-h2 { font-size:clamp(32px,3.9vw,54px); line-height:1.06; }
+    .hp-fight .hp-lead { color:var(--muted); max-width:760px; text-wrap:balance; }
+    .hp-vs { display:grid; grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr); align-items:stretch; }
+    .hp-vs-card { display:flex; flex-direction:column; gap:12px; padding:clamp(24px,3vw,36px); border-radius:16px; box-sizing:border-box; }
+    .hp-vs-card h3 { margin:0; font-family:var(--font-head); font-weight:700; font-size:clamp(22px,2vw,28px); line-height:1.2; letter-spacing:-.01em; }
+    .hp-vs-card p { margin:0; font-size:16px; line-height:24px; }
+    .hp-vs-tag { font-family:var(--font-mono); font-weight:500; font-size:14px; line-height:20px; }
+    .hp-vs-them { background:#fff; border:1.5px dashed #BAC4DC; color:var(--muted); }
+    .hp-vs-them h3 { color:var(--muted); }
+    .hp-vs-them .hp-vs-tag { color:var(--muted); }
+    .hp-vs-us { background:var(--accent); color:#fff; box-shadow:var(--shadow); }
+    .hp-vs-us p { color:var(--on-navy); }
+    .hp-vs-us .hp-vs-tag { color:var(--tint); }
+    .hp-vs-mid { grid-column:2; grid-row:1; align-self:center; justify-self:center; z-index:2; width:44px; height:44px; border-radius:50%; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-weight:500; font-size:13px; color:var(--muted); }
+    .hp-flow { margin-top:auto; padding-top:16px; display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+    .hp-flow svg { width:16px; height:16px; flex-shrink:0; stroke:currentColor; fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+    .hp-chip { display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; font-size:13px; line-height:18px; font-weight:600; white-space:nowrap; }
+    .hp-vs-them .hp-chip { background:var(--surface); border:1px solid var(--border); color:var(--muted); }
+    .hp-vs-them .hp-flow svg { color:#8E99B8; }
+    .hp-vs-them .hp-chip-off { opacity:.55; text-decoration:line-through; border-style:dashed; background:transparent; }
+    .hp-dash { width:22px; border-top:1.5px dashed #8E99B8; flex-shrink:0; }
+    .hp-vs-us .hp-chip { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.28); color:#fff; }
+    .hp-vs-us .hp-flow svg { color:var(--tint); }
+    .hp-vs-us .hp-chip-you { background:#fff; border-color:#fff; color:var(--accent); }
+    .hp-chip-you i { width:8px; height:8px; border-radius:50%; background:var(--green-500); display:block; }
+    @media (max-width:1180px){ .hp-flow { gap:6px; } .hp-chip { padding:4px 9px; font-size:12.5px; } .hp-dash { width:14px; } .hp-flow svg { width:14px; height:14px; } }
+    @media (max-width:1000px){ .hp-vs { grid-template-columns:minmax(0,1fr); grid-template-rows:auto 24px auto; } .hp-vs-mid { grid-column:1; grid-row:2; } .hp-vs-us { grid-row:3; } }
+    /* played once when the cards scroll into view; without it the final state is already there */
+    .hp-vs.is-in .hp-vs-them { animation:hp-swap .5s ease-out .1s both; }
+    .hp-vs.is-in .hp-vs-us { animation:hp-swap .5s ease-out .4s both; }
+    .hp-vs.is-in .hp-vs-them .hp-chip { animation:hp-swap .35s ease-out calc(.5s + var(--i) * .14s) both; }
+    .hp-vs.is-in .hp-vs-us .hp-chip { animation:hp-swap .35s ease-out calc(.8s + var(--i) * .14s) both; }
 
     /* Two endings */
     .hp-ends-head { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px 48px; }
@@ -795,11 +804,9 @@
     @keyframes hp-pop { 0%{transform:scale(0)} 70%{transform:scale(1.4)} 100%{transform:scale(1)} }
     @keyframes hp-swap { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
     @keyframes hp-unveil { from{clip-path:inset(100% 0 0 0 round 16px)} to{clip-path:inset(0 0 0 0 round 16px)} }
-    @keyframes hp-strike { from{transform:scaleX(0)} to{transform:scaleX(1)} }
     @keyframes hp-ping { 0%{box-shadow:0 0 0 0 rgba(11,181,99,.55)} 100%{box-shadow:0 0 0 14px rgba(11,181,99,0)} }
     @supports (animation-timeline: view()) {
       .hp-rv { animation:hp-rise linear both; animation-timeline:view(); animation-range:entry 0% entry 50%; }
-      .hp-sk { animation:hp-strike linear both; animation-timeline:view(); animation-range:entry 80% cover 45%; }
     }
     @media (max-width:700px){ .hp-switch { width:100%; } .hp-switch button { flex:1; padding:12px 8px; } .hp-btns .hp-btn { flex:1 1 100%; justify-content:center; } }
     @media (prefers-reduced-motion:reduce){
@@ -841,19 +848,30 @@
 
     <section class="hp-fight" id="fight">
       <div class="hp-wrap hp-pad">
-        <div class="hp-fight-word hp-rv">
-          <p>They have a word for you:</p>
-          <h2 class="hp-word">intermediary<span class="hp-strike hp-sk" aria-hidden="true"></span></h2>
+        <div class="hp-intro hp-rv">
+          <div class="hp-kicker">why we built ReallyWise</div>
+          <h2 class="hp-h2">We're in this fight with you.</h2>
+          <p class="hp-lead">Portals and chatbots are building AI to answer your buyers without you. We think that gets real estate wrong. The agent is the most valuable person in the deal. So we built AI that puts that power in your hands.</p>
         </div>
-        <div class="hp-two hp-rv">
-          <p>To the companies building AI for home buyers, an agent is a cost to remove. A buyer asks a machine, the machine answers, and the person who knows the street, the seller and the deal never hears about it.</p>
-          <p style="color:var(--muted)">It doesn't arrive as an announcement. It arrives as a quiet night with no calls. Here is how it goes.</p>
+        <div class="hp-vs" id="hp-vs">
+          <article class="hp-vs-card hp-vs-them">
+            <div class="hp-vs-tag">their AI</div>
+            <h3>Built to go around you.</h3>
+            <p>It answers your buyer, guesses, and sends the lead to whoever pays for it.</p>
+            <div class="hp-flow" aria-hidden="true">
+              <span class="hp-chip" style="--i:0">Buyer</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><span class="hp-chip" style="--i:1">Chatbot</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><span class="hp-chip" style="--i:2">Lead sold</span><span class="hp-dash"></span><span class="hp-chip hp-chip-off" style="--i:3">You</span>
+            </div>
+          </article>
+          <span class="hp-vs-mid" aria-hidden="true">vs</span>
+          <article class="hp-vs-card hp-vs-us">
+            <div class="hp-vs-tag">your AI, with ReallyWise</div>
+            <h3>Built to work for you.</h3>
+            <p>It answers under your name, shows its sources, and hands the buyer back to you.</p>
+            <div class="hp-flow" aria-hidden="true">
+              <span class="hp-chip" style="--i:0">Buyer</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><span class="hp-chip" style="--i:1">Your AI</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><span class="hp-chip hp-chip-you" style="--i:2"><i></i>You</span>
+            </div>
+          </article>
         </div>
-        <ol class="hp-steps hp-rv">
-          <li><span class="n">01</span><h3>Your buyer asks. Something else answers.</h3><p>It's late, they're curious, and you're asleep. They ask whatever is open on their phone.</p></li>
-          <li><span class="n">02</span><h3>The answer is a guess.</h3><p>Nobody checked it against the disclosure, the inspection or what you know about the seller.</p></li>
-          <li><span class="n">03</span><h3>You never find out they asked.</h3><p>Their interest becomes a lead, and the lead goes to whoever pays for it.</p></li>
-        </ol>
       </div>
     </section>
 
@@ -2669,6 +2687,12 @@
         if (!orbit) return;
         if (!('IntersectionObserver' in window)) { orbit.classList.add('is-in'); return; }
         new IntersectionObserver(function(en, io){ en.forEach(function(e){ if (e.isIntersecting) { orbit.classList.add('is-in'); io.disconnect(); } }); }, { threshold:0.25 }).observe(orbit);
+      })();
+      (function(){
+        var vs = document.getElementById('hp-vs');
+        if (!vs) return;
+        if (!('IntersectionObserver' in window)) { vs.classList.add('is-in'); return; }
+        new IntersectionObserver(function(en, io){ en.forEach(function(e){ if (e.isIntersecting) { vs.classList.add('is-in'); io.disconnect(); } }); }, { threshold:0.3 }).observe(vs);
       })();
       // Mission section: draw a line from each card into the hub, from their real positions
       (function(){
