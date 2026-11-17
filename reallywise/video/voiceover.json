@@ -1,11 +1,11 @@
 {
  "voice": "af_heart",
  "speed": 1.0,
- "duration": 68,
+ "duration": 70,
  "cues": [
   [
    0.4,
-   "What if every listing could answer buyers, day or night, and hand you the lead?"
+   "What if every listing could answer buyers, day or night, and hand you the viewing appointment?"
   ],
   [
    5.3,
@@ -49,7 +49,7 @@
   ],
   [
    33.2,
-   "The home opens with Realisa, an AI expert for this property."
+   "The home opens with ReallyWise Property Expert."
   ],
   [
    37.3,
@@ -61,7 +61,7 @@
   ],
   [
    43.5,
-   "When they're ready to see it, Realisa books the tour and takes their contact details."
+   "When they're ready to see it, Property Expert books the viewing and takes their contact details."
   ],
   [
    50.7,
@@ -69,15 +69,23 @@
   ],
   [
    53.4,
-   "With the source, every question they asked, and an AI summary, so you know exactly who to call."
+   "With the source, every question they asked, and an AI summary, so you know exactly what the buyer wants."
   ],
   [
-   59.9,
-   "Every scan starts a conversation. Every conversation is a lead."
+   59.8,
+   "Every scan is a conversation."
   ],
   [
-   64.3,
-   "ReallyWise Property Expert."
+   61.8,
+   "Conversation becomes a lead."
+  ],
+  [
+   63.8,
+   "Lead turns into a viewing."
+  ],
+  [
+   65.6,
+   "All handled by ReallyWise."
   ]
  ]
 }

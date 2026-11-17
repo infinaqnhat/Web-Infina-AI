@@ -2,8 +2,8 @@
 window.SUBTITLES = [
  [
   0.4,
-  4.7,
-  "What if every listing could answer buyers, day or night, and hand you the lead?"
+  5.25,
+  "What if every listing could answer buyers, day or night, and hand you the viewing appointment?"
  ],
  [
   5.3,
@@ -57,8 +57,8 @@ window.SUBTITLES = [
  ],
  [
   33.2,
-  37.25,
-  "The home opens with Realisa, an AI expert for this property."
+  36.31,
+  "The home opens with ReallyWise Property Expert."
  ],
  [
   37.3,
@@ -72,8 +72,8 @@ window.SUBTITLES = [
  ],
  [
   43.5,
-  48.29,
-  "When they're ready to see it, Realisa books the tour and takes their contact details."
+  48.68,
+  "When they're ready to see it, Property Expert books the viewing and takes their contact details."
  ],
  [
   50.7,
@@ -82,17 +82,27 @@ window.SUBTITLES = [
  ],
  [
   53.4,
-  59.17,
-  "With the source, every question they asked, and an AI summary, so you know exactly who to call."
+  59.62,
+  "With the source, every question they asked, and an AI summary, so you know exactly what the buyer wants."
  ],
  [
-  59.9,
-  64.15,
-  "Every scan starts a conversation. Every conversation is a lead."
+  59.8,
+  61.75,
+  "Every scan is a conversation."
  ],
  [
-  64.3,
-  66.39,
-  "ReallyWise Property Expert."
+  61.8,
+  63.75,
+  "Conversation becomes a lead."
+ ],
+ [
+  63.8,
+  65.55,
+  "Lead turns into a viewing."
+ ],
+ [
+  65.6,
+  67.63,
+  "All handled by ReallyWise."
  ]
 ];

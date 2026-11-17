@@ -1,6 +1,6 @@
 1
-00:00:00,400 --> 00:00:04,700
-What if every listing could answer buyers, day or night, and hand you the lead?
+00:00:00,400 --> 00:00:05,250
+What if every listing could answer buyers, day or night, and hand you the viewing appointment?
 
 2
 00:00:05,300 --> 00:00:11,580
@@ -43,8 +43,8 @@ Every channel is tracked.
 A buyer scans the code. No app, no sign-up.
 
 12
-00:00:33,200 --> 00:00:37,250
-The home opens with Realisa, an AI expert for this property.
+00:00:33,200 --> 00:00:36,310
+The home opens with ReallyWise Property Expert.
 
 13
 00:00:37,300 --> 00:00:40,550
@@ -55,22 +55,30 @@ The HOA? Answered from the HOA documents.
 The roof? Answered from the inspection report.
 
 15
-00:00:43,500 --> 00:00:48,290
-When they're ready to see it, Realisa books the tour and takes their contact details.
+00:00:43,500 --> 00:00:48,680
+When they're ready to see it, Property Expert books the viewing and takes their contact details.
 
 16
 00:00:50,700 --> 00:00:53,350
 Seconds later, the lead lands in your dashboard.
 
 17
-00:00:53,400 --> 00:00:59,170
-With the source, every question they asked, and an AI summary, so you know exactly who to call.
+00:00:53,400 --> 00:00:59,620
+With the source, every question they asked, and an AI summary, so you know exactly what the buyer wants.
 
 18
-00:00:59,900 --> 00:01:04,150
-Every scan starts a conversation. Every conversation is a lead.
+00:00:59,800 --> 00:01:01,750
+Every scan is a conversation.
 
 19
-00:01:04,300 --> 00:01:06,390
-ReallyWise Property Expert.
+00:01:01,800 --> 00:01:03,750
+Conversation becomes a lead.
+
+20
+00:01:03,800 --> 00:01:05,550
+Lead turns into a viewing.
+
+21
+00:01:05,600 --> 00:01:07,630
+All handled by ReallyWise.
 
