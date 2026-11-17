@@ -632,43 +632,6 @@
     .hp-vs.is-in .hp-vs-them .hp-chip { animation:hp-swap .35s ease-out calc(.5s + var(--i) * .14s) both; }
     .hp-vs.is-in .hp-vs-us .hp-chip { animation:hp-swap .35s ease-out calc(.8s + var(--i) * .14s) both; }
 
-    /* Two endings */
-    .hp-ends-head { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px 48px; }
-    .hp-ends-head > div:first-child { display:flex; flex-direction:column; gap:16px; }
-    .hp-ends-head h2 { font-size:clamp(30px,3.8vw,54px); line-height:1.06; }
-    .hp-ends-head h2 em { font-style:normal; color:var(--navy-500); }
-    .hp-ends-head p { margin:0; font-size:18px; line-height:28px; color:var(--muted); }
-    .hp-switch { display:flex; gap:4px; padding:4px; border-radius:10px; background:var(--surface); border:1px solid var(--border); }
-    .hp-switch button { min-height:48px; padding:12px 24px; border:0; border-radius:6px; cursor:pointer; font-family:var(--font-body); font-size:16px; line-height:24px; font-weight:600; background:transparent; color:var(--accent); }
-    .hp-switch button[aria-pressed="true"] { background:var(--accent); color:#fff; }
-    .hp-end { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr)); gap:24px; padding:clamp(16px,3vw,48px); border-radius:16px; background:var(--sand); }
-    .hp-chat { display:flex; flex-direction:column; gap:16px; min-height:380px; padding:24px; border-radius:16px; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow); }
-    .hp-chat-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-bottom:16px; border-bottom:1px solid var(--border); }
-    .hp-chat-who { display:flex; align-items:center; gap:12px; }
-    .hp-chat-av { width:36px; height:36px; border-radius:10px; background:var(--navy-100); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:var(--font-head); font-weight:700; font-size:13px; color:#fff; }
-    .hp-chat-av.me { background:var(--accent); }
-    .hp-chat-who b { display:block; font-size:14px; line-height:20px; font-weight:600; }
-    .hp-chat-who span { display:block; font-size:12px; line-height:16px; font-weight:500; color:var(--muted); }
-    .hp-chat time, .hp-src { font-family:var(--font-mono); font-weight:500; font-size:12px; line-height:16px; color:var(--muted); }
-    .hp-msg { align-self:flex-start; max-width:85%; padding:12px 16px; border-radius:10px; background:var(--surface); font-size:16px; line-height:24px; }
-    .hp-msg.me { align-self:flex-end; background:var(--accent); color:#fff; }
-    .hp-msg b { font-family:var(--font-mono); font-weight:500; }
-    .hp-stack { align-self:flex-start; max-width:85%; display:flex; flex-direction:column; gap:8px; }
-    .hp-stack .hp-msg { max-width:none; }
-    .hp-end.is-without .hp-d1 { animation:hp-swap .4s ease-out .8s both; }
-    .hp-end.is-with .hp-d1 { animation:hp-swap .4s ease-out .8s both; } .hp-end.is-with .hp-d2 { animation:hp-swap .4s ease-out 1.6s both; } .hp-end.is-with .hp-d3 { animation:hp-swap .4s ease-out 2.3s both; }
-    .hp-see { display:flex; flex-direction:column; justify-content:center; gap:20px; padding:clamp(8px,2vw,24px); animation:hp-swap .5s ease-out .2s both; }
-    .hp-end.is-with .hp-see { animation-delay:3s; }
-    .hp-see > span { font-size:14px; line-height:20px; font-weight:600; color:var(--muted); }
-    .hp-see .big { margin:0; font-family:var(--font-head); font-weight:800; font-size:clamp(40px,4.6vw,64px); line-height:1.02; letter-spacing:-.035em; }
-    .hp-see p { margin:0; font-size:18px; line-height:28px; color:var(--muted); }
-    .hp-alert { display:flex; flex-direction:column; gap:12px; padding:24px; border-radius:16px; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow); }
-    .hp-alert .t { display:flex; align-items:center; gap:8px; }
-    .hp-alert .t b { font-size:14px; line-height:20px; font-weight:600; color:var(--green-700); }
-    .hp-alert .big { font-size:clamp(24px,2.6vw,36px); line-height:1.12; letter-spacing:-.02em; font-weight:800; font-family:var(--font-head); margin:0; }
-    .hp-alert small { font-size:14px; line-height:20px; color:var(--muted); }
-    .hp-ends-note { margin:0; font-size:12px; line-height:16px; font-weight:500; color:var(--muted); }
-
     /* What a machine can't do */
     .hp-machine { background:var(--accent); color:#fff; overflow:hidden; }
     .hp-machine .hp-pad { gap:clamp(40px,6vw,80px); }
@@ -683,7 +646,7 @@
     .hp-job span { color:var(--tint); }
 
     /* Mission */
-    .hp-mission { background:var(--sand); }
+    .hp-mission { background:#fff; }
     .hp-mission .hp-kicker { color:var(--green-700); }
     .hp-mission .hp-h2 { font-size:clamp(32px,3.9vw,54px); line-height:1.06; }
     .hp-mission .hp-lead { color:var(--muted); max-width:none; text-wrap:balance; }
@@ -808,7 +771,7 @@
     @supports (animation-timeline: view()) {
       .hp-rv { animation:hp-rise linear both; animation-timeline:view(); animation-range:entry 0% entry 50%; }
     }
-    @media (max-width:700px){ .hp-switch { width:100%; } .hp-switch button { flex:1; padding:12px 8px; } .hp-btns .hp-btn { flex:1 1 100%; justify-content:center; } }
+    @media (max-width:700px){ .hp-btns .hp-btn { flex:1 1 100%; justify-content:center; } }
     @media (prefers-reduced-motion:reduce){
       #home-view *, #home-view *::before { animation:none !important; transition:none !important; }
       .hp-hero-media img { clip-path:none; }
@@ -875,71 +838,6 @@
       </div>
     </section>
 
-    <section class="hp-ends" id="endings">
-      <div class="hp-wrap hp-pad" style="gap:clamp(32px,4vw,48px)">
-        <div class="hp-ends-head hp-rv">
-          <div>
-            <h2 class="hp-h2">Same buyer. Same question. <em>Two endings.</em></h2>
-            <p>Switch between them. The only thing that changes is whether the AI works for you.</p>
-          </div>
-          <div class="hp-switch" role="group" aria-label="Choose an ending">
-            <button type="button" id="end-btn-without" aria-pressed="true">Without you</button>
-            <button type="button" id="end-btn-with" aria-pressed="false">With ReallyWise</button>
-          </div>
-        </div>
-
-        <div class="hp-end is-without" id="end-without">
-          <div class="hp-chat">
-            <div class="hp-chat-head"><div class="hp-chat-who"><span class="hp-chat-av" aria-hidden="true"></span><div><b>A general AI chatbot</b><span>Works for no one in this deal</span></div></div><time>11:42 PM</time></div>
-            <div class="hp-msg me">Is 1428 Maple Ave a good deal?</div>
-            <div class="hp-stack hp-d1"><div class="hp-msg">It seems reasonably priced for the area, but values vary. You may want to talk to a professional.</div><span class="hp-src">No source shown</span></div>
-            <div class="hp-msg hp-d1">Want me to match you with an agent near you?</div>
-          </div>
-          <div class="hp-see">
-            <span>What you see</span>
-            <p class="big">Nothing.</p>
-            <p>It's your listing. You know the foundation was repaired in 2022. Nobody asked you, and the buyer is about to be handed to an agent they have never met.</p>
-          </div>
-        </div>
-
-        <div class="hp-end is-with" id="end-with" hidden>
-          <div class="hp-chat">
-            <div class="hp-chat-head"><div class="hp-chat-who"><span class="hp-chat-av me" aria-hidden="true">AR</span><div><b>Alex Rivera's Home Concierge</b><span>Meridian Realty · Austin, TX</span></div></div><time>11:42 PM</time></div>
-            <div class="hp-msg me">Is 1428 Maple Ave a good deal?</div>
-            <div class="hp-stack hp-d1"><div class="hp-msg">Fair. It's listed at <b>$459/sqft</b>, <b>4%</b> below <b>12</b> nearby sales from the last <b>90</b> days. The seller disclosure notes foundation repairs completed in <b>2022</b>.</div><span class="hp-src">Source: Austin MLS · 12 comps within 0.5 mi · Seller disclosure · Estimate, not an appraisal</span></div>
-            <div class="hp-msg hp-d2">Alex knows this house. Want me to tell him you're interested?</div>
-            <div class="hp-msg me hp-d3">Yes, please.</div>
-          </div>
-          <div class="hp-see">
-            <span>What you see</span>
-            <div class="hp-alert">
-              <div class="t"><span class="hp-live" aria-hidden="true"></span><b>Ready to talk</b></div>
-              <p class="big">A buyer is asking about 1428 Maple Ave and wants to hear from you.</p>
-              <small>You can read every question and join the conversation at any point.</small>
-            </div>
-            <p>Your name was on the answer. The answer was right. And the buyer is yours before breakfast.</p>
-          </div>
-        </div>
-        <p class="hp-ends-note">Example conversation with sample listing data.</p>
-      </div>
-    </section>
-
-    <section class="hp-machine">
-      <div class="hp-wrap hp-pad">
-        <div class="hp-machine-top">
-          <h2 class="hp-h2 hp-rv"><span>AI can reach your client first.</span><span>It can't do what you do.</span></h2>
-          <div class="hp-photo"><img src="uploads/home-machine.jpg" alt="An agent standing beside a client in an office, reviewing papers together" loading="lazy"></div>
-        </div>
-        <div class="hp-lines hp-rv">
-          <p>You know why the house on the corner sat for 46 days.</p>
-          <p>You hear what a buyer means when they say "maybe."</p>
-          <p>You keep a deal alive when the inspection comes back ugly.</p>
-          <p>You pick up when it's the biggest check they will ever write.</p>
-        </div>
-        <p class="hp-job hp-rv"><span>That isn't a middleman. That's the job.</span> But it only counts if you're in the conversation when it starts.</p>
-      </div>
-    </section>
-
     <section class="hp-mission" id="mission">
       <div class="hp-wrap hp-pad">
         <div class="hp-intro hp-rv">
@@ -977,6 +875,22 @@
           </div>
         </div>
         <p class="hp-trust hp-rv">Every answer shows its source. We don't sell relationship data. Example conversations use sample listing data.</p>
+      </div>
+    </section>
+
+    <section class="hp-machine">
+      <div class="hp-wrap hp-pad">
+        <div class="hp-machine-top">
+          <h2 class="hp-h2 hp-rv"><span>AI can reach your client first.</span><span>It can't do what you do.</span></h2>
+          <div class="hp-photo"><img src="uploads/home-machine.jpg" alt="An agent standing beside a client in an office, reviewing papers together" loading="lazy"></div>
+        </div>
+        <div class="hp-lines hp-rv">
+          <p>You know why the house on the corner sat for 46 days.</p>
+          <p>You hear what a buyer means when they say "maybe."</p>
+          <p>You keep a deal alive when the inspection comes back ugly.</p>
+          <p>You pick up when it's the biggest check they will ever write.</p>
+        </div>
+        <p class="hp-job hp-rv"><span>That isn't a middleman. That's the job.</span> But it only counts if you're in the conversation when it starts.</p>
       </div>
     </section>
 
@@ -2628,7 +2542,7 @@
     // The logo goes home; the tab links, footer links and every Create button route through the hash.
     (function(){
       var body = document.body;
-      var HOME_IDS = { '#fight':1, '#mission':1, '#tools':1, '#endings':1 };
+      var HOME_IDS = { '#fight':1, '#mission':1, '#tools':1 };
       function parse(h){
         h = (h || '').toLowerCase();
         if (h === '#listing-agent' || h === '#listing' || h === '#hero-create-qr') return { view:'tab', slide:1, create:h === '#hero-create-qr' };
@@ -2779,32 +2693,6 @@
         window.addEventListener('resize', place);
         window.addEventListener('rw:route', place);
       })();
-
-      // "Two endings": the second ending shows itself once, a few seconds after it scrolls into view
-      var bW = document.getElementById('end-btn-without'), bR = document.getElementById('end-btn-with');
-      var eW = document.getElementById('end-without'), eR = document.getElementById('end-with');
-      if (bW && bR && eW && eR) {
-        var touched = false, timer = null;
-        function show(withIt){
-          bW.setAttribute('aria-pressed', String(!withIt)); bR.setAttribute('aria-pressed', String(withIt));
-          eW.hidden = withIt; eR.hidden = !withIt;
-        }
-        bW.addEventListener('click', function(){ touched = true; clearTimeout(timer); show(false); });
-        bR.addEventListener('click', function(){ touched = true; clearTimeout(timer); show(true); });
-        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if ('IntersectionObserver' in window && !reduce) {
-          var seen = false;
-          new IntersectionObserver(function(entries, io){
-            entries.forEach(function(en){
-              if (en.isIntersecting && !seen && !touched) {
-                seen = true;
-                timer = setTimeout(function(){ if (!touched) show(true); }, 4000);
-                io.disconnect();
-              }
-            });
-          }, { threshold:0.5 }).observe(eW);
-        }
-      }
     })();
   </script>
   <script>
