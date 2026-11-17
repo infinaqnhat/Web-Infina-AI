@@ -60,13 +60,14 @@ def synth_gemini():
                      {'text': 'Transcribe this audio word for word. Output only the words.'}]}]})
         return parts[0]['text']
     def run(text):
-        body = {'contents': [{'parts': [{'text': g['style'] + '\n' + text}]}],
+        spoken = text.replace('ReallyWise', 'Really Wise')   # the camel-case brand trips the voice up
+        body = {'contents': [{'parts': [{'text': g['style'] + '\n' + spoken}]}],
                 'generationConfig': {'responseModalities': ['AUDIO'], 'speechConfig': {
                     'voiceConfig': {'prebuiltVoiceConfig': {'voiceName': g['voice']}}}}}
         want = [w for w in words(text.replace('ReallyWise', 'really wise'))]
-        for attempt in range(4):   # the TTS sometimes reads part of the notes aloud: check and retry
+        for attempt in range(6):   # the TTS sometimes reads part of the notes aloud: check and retry
             audio = decode(call(g['model'], body)[0])
-            if len(clean(audio)) / SR > 0.55 * len(want) + 2.0:   # long silences or a repeated read
+            if len(clean(audio)) / SR > 0.6 * len(want) + 2.8:   # long silences or a repeated read
                 print(f'  attempt {attempt + 1}: {len(audio) / SR:.1f}s is too long for {len(want)} words'); continue
             got = words(heard(audio).replace('ReallyWise', 'really wise').replace('Reallywise', 'really wise'))
             extra = len(got) - len(want)
@@ -74,6 +75,14 @@ def synth_gemini():
             print(f'  attempt {attempt + 1} heard: {" ".join(got)[:80]}')
         raise SystemExit(f'TTS kept misreading: {text}')
     return run
+
+def tempo(audio, rate):
+    """Speeds a clip up (pitch kept) with ffmpeg's atempo."""
+    with tempfile.TemporaryDirectory() as t:
+        a, b = os.path.join(t, 'a.wav'), os.path.join(t, 'b.wav')
+        sf.write(a, audio, SR)
+        subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', a, '-af', f'atempo={rate}', b], check=True)
+        return sf.read(b, dtype='float32')[0]
 
 def clean(audio):
     """Removes DC offset, trims the silence at both ends and fades the edges, so lines join without clicks."""
@@ -100,14 +109,17 @@ def synth(text):
 TOTAL = cfg.get('duration', 68)
 subs = []
 GAP = cfg.get('gap', 0.4)
-clips, prev_end, shift = [], 0.0, 0.0
-for i, (d, text) in enumerate(cfg['cues']):
+clips, prev_end, prev_d, prev_t = [], 0.0, 0.0, 0.0
+for i, (d, text, *opt) in enumerate(cfg['cues']):
+    rate = (opt[0] if opt else {}).get('rate', 1.0)   # rate > 1 plays this line, and the picture leading to it, faster
     audio = clean(synth(text))
-    t = max(d + shift, prev_end + GAP)   # real start: the design time plus any delay so far
-    shift = t - d
-    prev_end = t + len(audio) / SR
+    if rate != 1.0: audio = tempo(audio, rate)
+    # real start: the picture runs at `rate` since the previous line, and waits if that line is still being read
+    t = max(prev_t + (d - prev_d) / rate, prev_end + GAP / rate)
+    prev_end, prev_d, prev_t = t + len(audio) / SR, d, t
     clips.append((d, t, audio, text))
-    print(f'{d:5.2f} -> {t:5.2f}s  {len(audio) / SR:4.2f}s  {text[:60]}')
+    print(f'{d:5.2f} -> {t:5.2f}s  {len(audio) / SR:4.2f}s' + (f'  x{rate}' if rate != 1 else '') + f'  {text[:60]}')
+shift = prev_t - prev_d
 TOTAL_REAL = round(max(TOTAL + shift, prev_end + 1.5), 2)
 # warp: [design time, real time] anchors; the page plays design time t_d at real time warp(t_d)
 WARP = [[0, 0]] + [[round(d, 3), round(t, 3)] for d, t, _, _ in clips] + [[TOTAL, TOTAL_REAL]]

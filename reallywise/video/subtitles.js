@@ -13,89 +13,89 @@ window.SUBTITLES = [
  ],
  [
   13.24,
-  16.42,
+  16.38,
   "Now put it everywhere buyers already are."
  ],
  [
-  16.52,
-  18.02,
+  16.43,
+  17.6,
   "On the yard sign."
  ],
  [
-  18.12,
-  19.52,
+  17.65,
+  18.79,
   "At the open house."
  ],
  [
-  20.42,
-  22.84,
+  19.42,
+  21.32,
   "In social posts and stories."
  ],
  [
-  22.94,
-  25.54,
+  21.37,
+  23.45,
   "In texts and emails to your sphere."
  ],
  [
-  25.79,
-  28.09,
+  23.56,
+  25.4,
   "On Just Listed postcards."
  ],
  [
-  28.19,
-  29.81,
+  25.86,
+  27.48,
   "And on your website."
  ],
  [
-  30.09,
-  32.11,
+  27.76,
+  29.78,
   "Every channel is tracked."
  ],
  [
-  32.21,
-  36.13,
+  29.88,
+  33.8,
   "A buyer scans the code. No app, no sign-up."
  ],
  [
-  36.23,
-  39.89,
-  "The home opens with ReallyWise Property Expert."
+  33.9,
+  37.02,
+  "The scan opens Property Expert, right on their phone."
  ],
  [
-  39.99,
-  43.33,
+  37.4,
+  40.74,
   "The HOA? Answered from the HOA documents."
  ],
  [
-  43.54,
-  46.58,
+  40.95,
+  43.99,
   "The roof? Answered from the inspection report."
  ],
  [
-  47.19,
-  52.51,
+  44.6,
+  49.92,
   "When they're ready to see it, Property Expert books the viewing and takes their contact details."
  ],
  [
-  53.39,
-  56.85,
+  50.8,
+  54.26,
   "Seconds later, the lead lands in your dashboard."
  ],
  [
-  56.95,
-  63.55,
+  54.36,
+  60.96,
   "With the source, every question they asked, and an AI summary, so you know exactly what the buyer wants."
  ],
  [
-  63.65,
-  66.13,
+  61.06,
+  63.54,
   "A scan starts the conversation."
  ],
  [
-  66.9,
-  70.22,
+  64.31,
+  67.63,
   "ReallyWise turns it into a booked viewing."
  ]
 ];
-window.TIMEWARP = [[0, 0], [0.4, 0.4], [5.3, 6.84], [11.7, 13.24], [14.95, 16.52], [16.2, 18.12], [18.5, 20.42], [20.95, 22.94], [23.8, 25.79], [26.1, 28.19], [28.0, 30.09], [30.1, 32.21], [33.8, 36.23], [37.3, 39.99], [40.85, 43.54], [44.5, 47.19], [50.7, 53.39], [54.1, 56.95], [60.2, 63.65], [63.45, 66.9], [68, 71.45]];
-window.VO_DURATION = 71.45;
+window.TIMEWARP = [[0, 0], [0.4, 0.4], [5.3, 6.84], [11.7, 13.24], [14.95, 16.428], [16.2, 17.652], [18.5, 19.421], [20.95, 21.368], [23.8, 23.56], [26.1, 25.86], [28.0, 27.76], [30.1, 29.88], [33.8, 33.9], [37.3, 37.4], [40.85, 40.95], [44.5, 44.6], [50.7, 50.8], [54.1, 54.36], [60.2, 61.06], [63.45, 64.31], [68, 68.86]];
+window.VO_DURATION = 68.86;
