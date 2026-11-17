@@ -500,7 +500,7 @@ h1,h2,h3{font-family:var(--f-head);letter-spacing:-.02em}
   </section>
 
   <!-- ================= Scene 5: agent gets the lead ================= -->
-  <section class="scene light" id="s5" data-in="50.4" data-out="59.4">
+  <section class="scene light" id="s5" data-in="50.4" data-out="60.0">
     <div class="abs copy">
       <div class="eyebrow" data-in="50.7" data-fx="up"><span class="num">4</span>Capture</div>
       <h2 class="h2" data-in="50.9" data-fx="up">You get the lead, with the full story.</h2>
@@ -541,20 +541,20 @@ h1,h2,h3{font-family:var(--f-head);letter-spacing:-.02em}
   </section>
 
   <!-- ================= Scene 6: outro ================= -->
-  <section class="scene light" id="s6" data-in="59.4" data-d="0.6">
+  <section class="scene light" id="s6" data-in="60.0" data-d="0.6">
     <div class="abs lines">
-      <h1 data-in="59.8" data-fx="up">A scan starts the conversation.</h1>
-      <h1 data-in="62.0" data-fx="up"><em>ReallyWise turns it into a booked viewing.</em></h1>
+      <h1 data-in="60.2" data-fx="up">A scan starts the conversation.</h1>
+      <h1 data-in="63.45" data-fx="up"><em>ReallyWise turns it into a booked viewing.</em></h1>
     </div>
-    <img class="abs logo" src="../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="64.4" data-fx="up">
-    <div class="abs tagline" data-in="64.8" data-fx="up">Property Expert, the 24/7 AI expert for every listing</div>
-    <div class="abs url" data-in="65.1" data-fx="up">reallywise.ai</div>
+    <img class="abs logo" src="../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="65.0" data-fx="up">
+    <div class="abs tagline" data-in="65.4" data-fx="up">Property Expert, the 24/7 AI expert for every listing</div>
+    <div class="abs url" data-in="65.7" data-fx="up">reallywise.ai</div>
   </section>
 
-  <img id="cornerLogo" src="../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="5.0" data-out="59.0" data-fx="fade">
+  <img id="cornerLogo" src="../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="5.0" data-out="59.6" data-fx="fade">
   <div id="subs"><span></span></div>
   <!-- stepper on top -->
-  <div id="stepper" data-in="5.0" data-out="59.0" data-fx="down">
+  <div id="stepper" data-in="5.0" data-out="59.6" data-fx="down">
     <div class="st"><i>1</i>Generate</div><div class="st"><i>2</i>Share</div><div class="st"><i>3</i>Chat</div><div class="st"><i>4</i>Capture</div>
   </div>
 </div>
@@ -642,7 +642,7 @@ const SHOW_SUBS = !new URLSearchParams(location.search).has('nosubs');
 function subsAt(t) {
   const box = document.getElementById('subs'), span = box.firstElementChild;
   // the outro shows its lines on screen, so the subtitles stay off there (they remain in subtitles.srt)
-  const cue = SHOW_SUBS && t < 59.4 && (window.SUBTITLES || []).find(c => t >= c[0] && t < c[1]);
+  const cue = SHOW_SUBS && t < 60.0 && (window.SUBTITLES || []).find(c => t >= c[0] && t < c[1]);
   if (!cue) { box.style.display = 'none'; return; }
   box.style.display = '';
   if (span.textContent !== cue[2]) span.textContent = cue[2];

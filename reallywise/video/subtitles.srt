@@ -1,76 +1,76 @@
 1
-00:00:00,400 --> 00:00:05,250
+00:00:00,400 --> 00:00:05,310
 What if every listing could answer buyers, day or night, and hand you the viewing appointment?
 
 2
-00:00:05,300 --> 00:00:11,580
+00:00:05,360 --> 00:00:11,670
 With ReallyWise Property Expert, one click creates a QR code and a smart link for your listing.
 
 3
-00:00:12,500 --> 00:00:14,750
+00:00:11,720 --> 00:00:14,970
 Now put it everywhere buyers already are.
 
 4
-00:00:14,800 --> 00:00:16,150
+00:00:15,020 --> 00:00:16,580
 On the yard sign.
 
 5
-00:00:16,200 --> 00:00:17,680
+00:00:16,630 --> 00:00:18,450
 At the open house.
 
 6
-00:00:18,500 --> 00:00:20,520
+00:00:18,500 --> 00:00:20,960
 In social posts and stories.
 
 7
-00:00:20,900 --> 00:00:23,070
+00:00:21,010 --> 00:00:23,820
 In texts and emails to your sphere.
 
 8
-00:00:23,300 --> 00:00:25,210
+00:00:23,870 --> 00:00:26,110
 On Just Listed postcards.
 
 9
-00:00:25,700 --> 00:00:27,090
+00:00:26,160 --> 00:00:28,030
 And on your website.
 
 10
-00:00:27,600 --> 00:00:29,290
+00:00:28,080 --> 00:00:30,140
 Every channel is tracked.
 
 11
-00:00:30,100 --> 00:00:33,150
+00:00:30,190 --> 00:00:33,820
 A buyer scans the code. No app, no sign-up.
 
 12
-00:00:33,200 --> 00:00:36,310
+00:00:33,870 --> 00:00:37,320
 The home opens with ReallyWise Property Expert.
 
 13
-00:00:37,300 --> 00:00:40,550
+00:00:37,370 --> 00:00:40,850
 The HOA? Answered from the HOA documents.
 
 14
-00:00:40,600 --> 00:00:43,390
+00:00:40,900 --> 00:00:44,510
 The roof? Answered from the inspection report.
 
 15
-00:00:43,500 --> 00:00:48,680
+00:00:44,560 --> 00:00:49,980
 When they're ready to see it, Property Expert books the viewing and takes their contact details.
 
 16
-00:00:50,700 --> 00:00:53,350
+00:00:50,700 --> 00:00:54,110
 Seconds later, the lead lands in your dashboard.
 
 17
-00:00:53,400 --> 00:00:59,620
+00:00:54,160 --> 00:01:00,210
 With the source, every question they asked, and an AI summary, so you know exactly what the buyer wants.
 
 18
-00:00:59,800 --> 00:01:01,860
+00:01:00,260 --> 00:01:03,450
 A scan starts the conversation.
 
 19
-00:01:02,000 --> 00:01:04,510
+00:01:03,500 --> 00:01:07,040
 ReallyWise turns it into a booked viewing.
 

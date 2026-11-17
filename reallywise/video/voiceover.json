@@ -1,7 +1,14 @@
 {
- "voice": "af_heart",
- "speed": 1.0,
  "duration": 68,
+ "gemini": {
+  "model": "gemini-3.8-flash-tts",
+  "voice": "Laomedeia",
+  "style": "# AUDIO PROFILE: Maya, voice-over artist from the San Francisco Bay Area\n\n### DIRECTOR'S NOTES\nStyle: upbeat SaaS product intro video. Excited, confident, smiling. Energetic emphasis on the key words.\nAccent: natural Northern California, Bay Area.\nPace: brisk and punchy.\n\n### TRANSCRIPT"
+ },
+ "kokoro": {
+  "voice": "af_heart",
+  "speed": 1.0
+ },
  "cues": [
   [
    0.4,
@@ -12,11 +19,11 @@
    "With ReallyWise Property Expert, one click creates a QR code and a smart link for your listing."
   ],
   [
-   12.5,
+   11.7,
    "Now put it everywhere buyers already are."
   ],
   [
-   14.8,
+   14.95,
    "On the yard sign."
   ],
   [
@@ -28,19 +35,19 @@
    "In social posts and stories."
   ],
   [
-   20.9,
+   20.95,
    "In texts and emails to your sphere."
   ],
   [
-   23.3,
+   23.8,
    "On Just Listed postcards."
   ],
   [
-   25.7,
+   26.1,
    "And on your website."
   ],
   [
-   27.6,
+   28.0,
    "Every channel is tracked."
   ],
   [
@@ -48,7 +55,7 @@
    "A buyer scans the code. No app, no sign-up."
   ],
   [
-   33.2,
+   33.8,
    "The home opens with ReallyWise Property Expert."
   ],
   [
@@ -56,11 +63,11 @@
    "The HOA? Answered from the HOA documents."
   ],
   [
-   40.6,
+   40.85,
    "The roof? Answered from the inspection report."
   ],
   [
-   43.5,
+   44.5,
    "When they're ready to see it, Property Expert books the viewing and takes their contact details."
   ],
   [
@@ -68,15 +75,15 @@
    "Seconds later, the lead lands in your dashboard."
   ],
   [
-   53.4,
+   54.1,
    "With the source, every question they asked, and an AI summary, so you know exactly what the buyer wants."
   ],
   [
-   59.8,
+   60.2,
    "A scan starts the conversation."
   ],
   [
-   62.0,
+   63.45,
    "ReallyWise turns it into a booked viewing."
   ]
  ]

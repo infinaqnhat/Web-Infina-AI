@@ -2,97 +2,97 @@
 window.SUBTITLES = [
  [
   0.4,
-  5.25,
+  5.31,
   "What if every listing could answer buyers, day or night, and hand you the viewing appointment?"
  ],
  [
-  5.3,
-  11.58,
+  5.36,
+  11.67,
   "With ReallyWise Property Expert, one click creates a QR code and a smart link for your listing."
  ],
  [
-  12.5,
-  14.75,
+  11.72,
+  14.97,
   "Now put it everywhere buyers already are."
  ],
  [
-  14.8,
-  16.15,
+  15.02,
+  16.58,
   "On the yard sign."
  ],
  [
-  16.2,
-  17.68,
+  16.63,
+  18.45,
   "At the open house."
  ],
  [
   18.5,
-  20.52,
+  20.96,
   "In social posts and stories."
  ],
  [
-  20.9,
-  23.07,
+  21.01,
+  23.82,
   "In texts and emails to your sphere."
  ],
  [
-  23.3,
-  25.21,
+  23.87,
+  26.11,
   "On Just Listed postcards."
  ],
  [
-  25.7,
-  27.09,
+  26.16,
+  28.03,
   "And on your website."
  ],
  [
-  27.6,
-  29.29,
+  28.08,
+  30.14,
   "Every channel is tracked."
  ],
  [
-  30.1,
-  33.15,
+  30.19,
+  33.82,
   "A buyer scans the code. No app, no sign-up."
  ],
  [
-  33.2,
-  36.31,
+  33.87,
+  37.32,
   "The home opens with ReallyWise Property Expert."
  ],
  [
-  37.3,
-  40.55,
+  37.37,
+  40.85,
   "The HOA? Answered from the HOA documents."
  ],
  [
-  40.6,
-  43.39,
+  40.9,
+  44.51,
   "The roof? Answered from the inspection report."
  ],
  [
-  43.5,
-  48.68,
+  44.56,
+  49.98,
   "When they're ready to see it, Property Expert books the viewing and takes their contact details."
  ],
  [
   50.7,
-  53.35,
+  54.11,
   "Seconds later, the lead lands in your dashboard."
  ],
  [
-  53.4,
-  59.62,
+  54.16,
+  60.21,
   "With the source, every question they asked, and an AI summary, so you know exactly what the buyer wants."
  ],
  [
-  59.8,
-  61.86,
+  60.26,
+  63.45,
   "A scan starts the conversation."
  ],
  [
-  62.0,
-  64.51,
+  63.5,
+  67.04,
   "ReallyWise turns it into a booked viewing."
  ]
 ];
