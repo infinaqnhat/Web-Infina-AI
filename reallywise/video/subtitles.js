@@ -87,22 +87,12 @@ window.SUBTITLES = [
  ],
  [
   59.8,
-  61.75,
-  "Every scan is a conversation."
+  61.86,
+  "A scan starts the conversation."
  ],
  [
-  61.8,
-  63.75,
-  "Conversation becomes a lead."
- ],
- [
-  63.8,
-  65.55,
-  "Lead turns into a viewing."
- ],
- [
-  65.6,
-  67.63,
-  "All handled by ReallyWise."
+  62.0,
+  64.51,
+  "ReallyWise turns it into a booked viewing."
  ]
 ];

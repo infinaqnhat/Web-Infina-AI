@@ -67,18 +67,10 @@ Seconds later, the lead lands in your dashboard.
 With the source, every question they asked, and an AI summary, so you know exactly what the buyer wants.
 
 18
-00:00:59,800 --> 00:01:01,750
-Every scan is a conversation.
+00:00:59,800 --> 00:01:01,860
+A scan starts the conversation.
 
 19
-00:01:01,800 --> 00:01:03,750
-Conversation becomes a lead.
-
-20
-00:01:03,800 --> 00:01:05,550
-Lead turns into a viewing.
-
-21
-00:01:05,600 --> 00:01:07,630
-All handled by ReallyWise.
+00:01:02,000 --> 00:01:04,510
+ReallyWise turns it into a booked viewing.
 
