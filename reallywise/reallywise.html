@@ -632,18 +632,35 @@
     .hp-vs.is-in .hp-vs-them .hp-chip { animation:hp-swap .35s ease-out calc(.5s + var(--i) * .14s) both; }
     .hp-vs.is-in .hp-vs-us .hp-chip { animation:hp-swap .35s ease-out calc(.8s + var(--i) * .14s) both; }
 
-    /* What a machine can't do */
-    .hp-machine { background:var(--accent); color:#fff; overflow:hidden; }
-    .hp-machine .hp-pad { gap:clamp(40px,6vw,80px); }
-    .hp-machine-top { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr)); gap:40px 72px; align-items:center; }
-    .hp-machine h2 { font-size:clamp(32px,4.2vw,60px); line-height:1.04; }
-    .hp-machine h2 span { display:block; } .hp-machine h2 span:first-child { color:var(--tint); }
-    .hp-photo { aspect-ratio:4/5; max-height:620px; width:100%; border-radius:16px; overflow:hidden; background:var(--sand); }
-    .hp-photo img { width:100%; height:100%; object-fit:cover; display:block; }
-    .hp-lines { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr)); gap:0 32px; }
-    .hp-lines p { margin:0; padding:24px 0; border-top:1px solid var(--navy-500); font-family:var(--font-head); font-weight:700; font-size:22px; line-height:28px; color:#fff; }
-    .hp-job { margin:0; max-width:none; text-align:justify; text-align-last:left; hyphens:manual; font-family:var(--font-head); font-weight:800; font-size:clamp(22px,2.6vw,36px); line-height:1.15; letter-spacing:-.02em; }
-    .hp-job span { color:var(--tint); }
+    /* You stay in control: three rules, always on */
+    .hp-control { background:var(--sand); }
+    .hp-control .hp-kicker { color:var(--green-700); }
+    .hp-ctl { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:clamp(32px,5vw,80px); align-items:center; }
+    .hp-ctl-copy { display:flex; flex-direction:column; gap:20px; }
+    .hp-control .hp-h2 { font-size:clamp(36px,4.6vw,64px); line-height:1.04; }
+    .hp-control .hp-h2 span { display:block; }
+    .hp-control .hp-lead { color:var(--muted); max-width:460px; }
+    .hp-rules { background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; }
+    .hp-rules-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 24px; border-bottom:1px solid var(--border); font-family:var(--font-head); font-size:16px; line-height:24px; }
+    .hp-rules-head b { font-weight:700; }
+    .hp-rules-pill { display:inline-flex; align-items:center; gap:6px; padding:3px 10px; border-radius:999px; background:var(--surface); font-family:var(--font-mono); font-weight:500; font-size:13px; line-height:18px; color:var(--muted); }
+    .hp-rules-pill svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+    .hp-rules ul { margin:0; padding:0; list-style:none; }
+    .hp-rule { display:grid; grid-template-columns:44px minmax(0,1fr) auto; gap:16px; align-items:center; padding:22px 24px; }
+    .hp-rule + .hp-rule { border-top:1px solid var(--border); }
+    .hp-rule-ic { width:44px; height:44px; border-radius:10px; background:var(--navy-100); display:flex; align-items:center; justify-content:center; }
+    .hp-rule-ic svg { width:24px; height:24px; stroke:var(--accent); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+    .hp-rule h3 { margin:0; font-family:var(--font-head); font-weight:700; font-size:18px; line-height:24px; }
+    .hp-rule p { margin:4px 0 0; font-size:15px; line-height:22px; color:var(--muted); }
+    .hp-tgl { position:relative; width:44px; height:26px; border-radius:999px; background:var(--green-500); flex-shrink:0; }
+    .hp-tgl::after { content:''; position:absolute; top:3px; right:3px; width:20px; height:20px; border-radius:50%; background:#fff; box-shadow:0 1px 2px rgba(1,41,118,.25); }
+    @keyframes hp-tgl-bg { from{ background:#C3CCE0; } to{ background:var(--green-500); } }
+    @keyframes hp-tgl-knob { from{ transform:translateX(-18px); } to{ transform:translateX(0); } }
+    /* the switches flip on one after the other when the panel scrolls into view; without it they are already on */
+    .hp-rules.is-in .hp-tgl { animation:hp-tgl-bg .3s ease-out calc(.5s + var(--i) * .4s) both; }
+    .hp-rules.is-in .hp-tgl::after { animation:hp-tgl-knob .3s ease-out calc(.5s + var(--i) * .4s) both; }
+    @media (max-width:900px){ .hp-ctl { grid-template-columns:minmax(0,1fr); } .hp-control .hp-lead { max-width:none; } .hp-control .hp-h2 span { display:inline; } }
+    @media (max-width:480px){ .hp-rule { grid-template-columns:36px minmax(0,1fr) auto; gap:12px; padding:18px 16px; } .hp-rule-ic { width:36px; height:36px; } .hp-rule-ic svg { width:20px; height:20px; } .hp-rules-head { padding:14px 16px; } }
 
     /* Mission */
     .hp-mission { background:#fff; }
@@ -878,19 +895,23 @@
       </div>
     </section>
 
-    <section class="hp-machine">
+    <section class="hp-control" id="control">
       <div class="hp-wrap hp-pad">
-        <div class="hp-machine-top">
-          <h2 class="hp-h2 hp-rv"><span>AI can reach your client first.</span><span>It can't do what you do.</span></h2>
-          <div class="hp-photo"><img src="uploads/home-machine.jpg" alt="An agent standing beside a client in an office, reviewing papers together" loading="lazy"></div>
+        <div class="hp-ctl">
+          <div class="hp-ctl-copy hp-rv">
+            <div class="hp-kicker">you stay in control</div>
+            <h2 class="hp-h2"><span>Your name.</span> <span>Your clients.</span> <span>Your call.</span></h2>
+            <p class="hp-lead">An AI that works for you answers to you. Every ReallyWise agent follows these rules.</p>
+          </div>
+          <div class="hp-rules hp-rv" id="hp-rules" role="group" aria-label="ReallyWise agent rules">
+            <div class="hp-rules-head"><b>ReallyWise agent rules</b><span class="hp-rules-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Always on</span></div>
+            <ul>
+          <li class="hp-rule" style="--i:0"><span class="hp-rule-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.5-1.5 1.8-2 3-2s2.5.5 3 2"/><path d="M14 10h4"/><path d="M14 13.5h3"/></svg></span><div><h3>Your name on every answer</h3><p>Buyers see you and your brokerage, never a portal.</p></div><span class="hp-tgl" aria-hidden="true"></span></li>
+          <li class="hp-rule" style="--i:1"><span class="hp-rule-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><div><h3>You see every question</h3><p>Read any conversation and step in at any time.</p></div><span class="hp-tgl" aria-hidden="true"></span></li>
+          <li class="hp-rule" style="--i:2"><span class="hp-rule-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3z"/><path d="m9 12 2 2 4-4"/></svg></span><div><h3>Your clients stay yours</h3><p>We never sell leads or relationship data.</p></div><span class="hp-tgl" aria-hidden="true"></span></li>
+            </ul>
+          </div>
         </div>
-        <div class="hp-lines hp-rv">
-          <p>You know why the house on the corner sat for 46 days.</p>
-          <p>You hear what a buyer means when they say "maybe."</p>
-          <p>You keep a deal alive when the inspection comes back ugly.</p>
-          <p>You pick up when it's the biggest check they will ever write.</p>
-        </div>
-        <p class="hp-job hp-rv"><span>That isn't a middleman. That's the job.</span> But it only counts if you're in the conversation when it starts.</p>
       </div>
     </section>
 
@@ -2601,6 +2622,12 @@
         if (!orbit) return;
         if (!('IntersectionObserver' in window)) { orbit.classList.add('is-in'); return; }
         new IntersectionObserver(function(en, io){ en.forEach(function(e){ if (e.isIntersecting) { orbit.classList.add('is-in'); io.disconnect(); } }); }, { threshold:0.25 }).observe(orbit);
+      })();
+      (function(){
+        var rules = document.getElementById('hp-rules');
+        if (!rules) return;
+        if (!('IntersectionObserver' in window)) { rules.classList.add('is-in'); return; }
+        new IntersectionObserver(function(en, io){ en.forEach(function(e){ if (e.isIntersecting) { rules.classList.add('is-in'); io.disconnect(); } }); }, { threshold:0.35 }).observe(rules);
       })();
       (function(){
         var vs = document.getElementById('hp-vs');
