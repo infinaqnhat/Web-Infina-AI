@@ -711,7 +711,7 @@
     .hp-art { margin-top:12px; padding:14px; border-radius:10px; background:var(--navy-100); display:flex; flex-direction:column; gap:8px; min-height:132px; box-sizing:border-box; font-family:var(--font-body); }
     .hp-art-head { display:flex; align-items:center; gap:8px; font-size:12px; line-height:16px; color:var(--accent); }
     .hp-art-head b { font-weight:600; }
-    .hp-art-head time, .hp-art-src, .hp-art-note { font-family:var(--font-mono); font-weight:500; font-size:11px; line-height:16px; color:var(--muted); }
+    .hp-art-head time, .hp-art-src { font-family:var(--font-mono); font-weight:500; font-size:11px; line-height:16px; color:var(--muted); }
     .hp-art-head time { margin-left:auto; }
     .hp-art-dot { width:8px; height:8px; border-radius:50%; background:var(--green-500); flex-shrink:0; }
     .hp-art-msg { padding:8px 12px; border-radius:10px; font-size:12.5px; line-height:17px; max-width:88%; }
@@ -719,18 +719,8 @@
     .hp-art-msg.ai { align-self:flex-start; background:#fff; color:var(--accent); display:flex; gap:8px; align-items:flex-start; }
     .hp-art-av { width:18px; height:18px; border-radius:6px; background:var(--accent); flex-shrink:0; display:block; }
     .hp-art-av svg { width:100%; height:100%; display:block; }
-    .hp-art-list { gap:6px; }
-    .hp-art-row { display:flex; align-items:center; gap:8px; padding:7px 10px; border-radius:6px; background:#fff; font-size:12.5px; line-height:16px; color:var(--accent); }
     .hp-art-ck { width:16px; height:16px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .hp-art-ck svg { width:10px; height:10px; fill:none; stroke:#fff; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
-    .hp-art-note { margin-top:2px; }
-    .hp-art-listing { padding:0; overflow:hidden; background:#fff; border:1px solid var(--border); gap:0; }
-    .hp-art-ph { position:relative; height:82px; background:var(--sand); }
-    .hp-art-ph img { width:100%; height:100%; object-fit:cover; display:block; }
-    .hp-art-lb { padding:8px 12px 10px; display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 10px; }
-    .hp-art-lb b { font-family:var(--font-head); font-weight:700; font-size:16px; line-height:20px; color:var(--accent); }
-    .hp-art-lb span { font-family:var(--font-mono); font-weight:500; font-size:11px; line-height:16px; color:var(--muted); }
-    .hp-art-lb em { font-style:normal; font-size:11px; line-height:16px; font-weight:600; color:var(--green-700); background:var(--green-100); border-radius:6px; padding:1px 8px; }
     /* roles: product tag, link, and the new illustrations */
     .hp-card-top { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:0; }
     .hp-card-tag { display:inline-flex; align-items:center; padding:2px 10px; border-radius:999px; background:var(--navy-100); color:var(--accent); font-family:var(--font-mono); font-weight:500; font-size:12px; line-height:16px; }
@@ -739,8 +729,6 @@
     #home-view .hp-card-link:hover { text-decoration:underline; }
     .hp-card .hp-card-link svg { width:16px; height:16px; }
     .hp-art-ck.pend { background:#fff; border:1.5px solid var(--navy-500); box-sizing:border-box; }
-    .hp-art-tag { position:absolute; left:8px; top:8px; padding:2px 10px; border-radius:999px; background:var(--accent); color:#fff; font-size:11px; line-height:16px; font-weight:600; }
-    .hp-art-chip { font-style:normal; padding:1px 9px; border-radius:999px; background:var(--navy-100); color:var(--accent); font-size:11px; line-height:16px; font-weight:600; align-self:center; }
     .hp-art-cal { gap:10px; }
     .hp-art-calhead { font-size:12px; line-height:16px; font-weight:600; color:var(--accent); }
     .hp-art-days { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:4px; }
@@ -754,11 +742,49 @@
     .hp-art-bk em { flex-shrink:0; display:inline-flex; align-items:center; gap:4px; font-style:normal; font-size:11px; line-height:16px; font-weight:600; color:var(--accent); background:var(--navy-100); border-radius:999px; padding:2px 8px; }
     .hp-art-bk em svg { width:10px; height:10px; fill:none; stroke:currentColor; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
     .hp-orbit.is-in .k1 { animation:hp-swap .4s ease-out .2s both; } .hp-orbit.is-in .k2 { animation:hp-swap .4s ease-out .6s both; } .hp-orbit.is-in .k3 { animation:hp-swap .4s ease-out 1s both; }
+    .hp-orbit .hp-art { min-height:0; }
+    .hp-tl { position:relative; display:grid; grid-template-columns:repeat(4,1fr); padding-top:2px; }
+    .hp-tl::before { content:''; position:absolute; left:12.5%; right:12.5%; top:9px; height:2px; background:#C3CCE0; }
+    .hp-tl::after { content:''; position:absolute; left:12.5%; width:25%; top:9px; height:2px; background:var(--accent); }
+    .hp-tl span { position:relative; display:flex; flex-direction:column; align-items:center; gap:6px; font-size:10.5px; line-height:14px; color:var(--muted); text-align:center; }
+    .hp-tl span i { width:14px; height:14px; border-radius:50%; background:#fff; border:2px solid #C3CCE0; box-sizing:border-box; position:relative; z-index:1; margin-top:2px; }
+    .hp-tl span.done i { background:var(--accent); border-color:var(--accent); }
+    .hp-tl span.now i { border-color:var(--accent); box-shadow:0 0 0 4px rgba(1,41,118,.14); }
+    .hp-tl span.now, .hp-tl span.done { color:var(--accent); font-weight:600; }
+    @media (min-width:1001px) and (max-width:1180px){ .hp-tl span { font-size:9px; letter-spacing:-.01em; } }
+    @media (min-width:1001px) and (max-width:1060px){ .hp-tl span { font-size:8px; letter-spacing:-.02em; } .hp-orbit .hp-art { padding:10px; } }
+    .hp-due { display:flex; align-items:center; gap:8px; margin-top:10px; padding:7px 10px; border-radius:6px; background:#fff; font-size:12px; line-height:16px; color:var(--accent); }
+    .hp-due time { margin-left:auto; font-family:var(--font-mono); font-weight:500; font-size:11px; color:var(--muted); }
+    .hp-set { display:grid; grid-template-columns:1.1fr .9fr .9fr; gap:8px; }
+    .hp-set > div { background:#fff; border-radius:6px; overflow:hidden; display:flex; flex-direction:column; border:1px solid var(--border); }
+    .hp-set .ph { height:54px; background:var(--sand); }
+    .hp-set .ph img { width:100%; height:100%; object-fit:cover; display:block; }
+    .hp-set .cap, .hp-set .fl, .hp-set .em { padding:8px; display:flex; flex-direction:column; gap:5px; flex:1; }
+    .hp-set .ln { height:4px; border-radius:2px; background:var(--border); } .hp-set .ln.s { width:60%; } .hp-set .ln.d { background:var(--navy-500); opacity:.55; width:80%; }
+    .hp-set > div > b { display:block; padding:0 8px 7px; font-size:10.5px; line-height:14px; color:var(--muted); font-weight:600; }
+    .hp-set .fl .t { font-family:var(--font-head); font-weight:800; font-size:11px; line-height:12px; color:var(--accent); }
+    .hp-set .fl .blk { height:22px; border-radius:3px; background:var(--navy-100); }
+    .hp-set .em .sub { font-size:10px; line-height:12px; font-weight:700; color:var(--accent); }
+    .hp-front { display:flex; flex-direction:column; gap:6px; }
+    .hp-front > div { display:flex; align-items:center; gap:8px; padding:7px 10px; border-radius:6px; background:#fff; font-size:12px; line-height:16px; color:var(--accent); }
+    .hp-front > div > span:nth-child(2) { flex:1; min-width:0; }
+    .hp-front em { font-style:normal; font-family:var(--font-mono); font-weight:500; font-size:10.5px; color:var(--muted); flex-shrink:0; }
+    .hp-front .ic { width:16px; height:16px; border-radius:50%; background:var(--accent); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+    .hp-front .ic svg { width:10px; height:10px; fill:none; stroke:#fff; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+    .hp-front .ic.pend { background:#fff; border:1.5px solid var(--navy-500); box-sizing:border-box; }
+    .hp-orbit.is-in .k4 { animation:hp-swap .4s ease-out 1.4s both; } .hp-orbit.is-in .a4 { animation:hp-swap .4s ease-out 1.7s both; } .hp-orbit.is-in .a5 { animation:hp-swap .4s ease-out 2.2s both; }
+    /* the two columns are as tall as each other: both stretch to the taller one and the spare room sits above each illustration */
+    @media (min-width:1001px){
+      .hp-orbit { align-items:stretch; }
+      .hp-orbit .hp-hub { align-self:center; }
+      .hp-col > .hp-card { flex:1 1 auto; grid-template-rows:auto auto 1fr; }
+      .hp-col > .hp-card:has(.hp-card-link) { grid-template-rows:auto auto 1fr auto; }
+      .hp-col > .hp-card > .hp-art { align-self:end; }
+    }
     /* played once when the card scrolls into view; the final state is the plain markup */
     @supports (animation-timeline: view()) { }
     .hp-orbit.is-in .a1 { animation:hp-swap .4s ease-out .1s both; } .hp-orbit.is-in .a2 { animation:hp-swap .4s ease-out .7s both; } .hp-orbit.is-in .a3 { animation:hp-swap .4s ease-out 1.2s both; }
     .hp-orbit.is-in .hp-art-dot { animation:hp-ping 1.8s ease-out .3s 2; }
-    .hp-orbit.is-in .r1 { animation:hp-swap .4s ease-out .2s both; } .hp-orbit.is-in .r2 { animation:hp-swap .4s ease-out .6s both; } .hp-orbit.is-in .r3 { animation:hp-swap .4s ease-out 1s both; }
     @media (prefers-reduced-motion:reduce){ .hp-orbit .hp-art *, .hp-orbit .hp-art { animation:none !important; } }
     .hp-card h3 { margin:0; font-family:var(--font-head); font-weight:700; font-size:20px; line-height:26px; }
     .hp-card p { margin:0; font-size:15px; line-height:22px; color:var(--muted); }
@@ -872,36 +898,32 @@
         <div class="hp-intro hp-rv">
           <div class="hp-kicker">your AI team</div>
           <h2 class="hp-h2">Arm every agent with a team of AI<span class="hp-dot" aria-hidden="true" style="animation:none"></span></h2>
-          <p class="hp-lead">Every brokerage runs on four roles. Give each one an AI teammate.</p>
+          <p class="hp-lead">Realisa coordinates your whole AI team: two agents for your clients and three for your office.</p>
         </div>
         <div class="hp-orbit hp-rv" id="hp-orbit">
           <svg class="hp-wires" id="hp-wires" aria-hidden="true"></svg>
           <div class="hp-col hp-col-l">
-          <div class="hp-card" data-side="l" data-i="0"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20c0 1.5-2 2-5 2"/></svg><div class="hp-card-top"><h3>ISA (inside sales agent)</h3><span class="hp-card-tag">Property Expert</span></div><p>Answers every buyer question, day or night, and brings the serious ones to you.</p><div class="hp-art hp-art-chat" aria-hidden="true">
+          <div class="hp-card" data-side="l" data-i="0"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20c0 1.5-2 2-5 2"/></svg><div class="hp-card-top"><h3>Property Expert</h3><span class="hp-card-tag">For listing agents</span></div><p>Answers every buyer question about a listing, day or night, and shows you who is ready to act.</p><div class="hp-art hp-art-chat" aria-hidden="true">
   <div class="hp-art-head"><span class="hp-art-dot"></span><b>New lead</b><time>11:42 PM</time></div>
   <div class="hp-art-msg me a1">Is 1428 Maple Ave still available?</div>
   <div class="hp-art-msg ai a2"><span class="hp-art-av"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#012976"/></g></svg></span><span>Yes, it is. Want to schedule a showing?</span></div>
   <div class="hp-art-src a3">Source: Austin MLS</div>
+  <div class="hp-art-msg me a4">Yes, please.</div>
+  <div class="hp-art-msg ai a5"><span class="hp-art-av"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#012976"/></g></svg></span><span>Done. Alex will confirm Saturday at 10:00.</span></div>
 </div><a class="hp-card-link" href="#listing-agent">See Property Expert <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
-          <div class="hp-card" data-side="l" data-i="1"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9z"/><path d="m9 14 2 2 4-4"/></svg><div class="hp-card-top"><h3>Transaction coordinator</h3><span class="hp-card-tag soon">Coming soon</span></div><p>Keeps every deadline and document moving from contract to closing.</p><div class="hp-art hp-art-list" aria-hidden="true">
-  <div class="hp-art-row r1"><span class="hp-art-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>Earnest money received</span></div>
-  <div class="hp-art-row r2"><span class="hp-art-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>Inspection scheduled</span></div>
-  <div class="hp-art-row r3"><span class="hp-art-ck pend"></span><span>Title ordered</span></div>
-  <div class="hp-art-note">Closing in 18 days</div>
-</div></div>
-          </div>
-          <div class="hp-hub" id="hp-hub"><img class="hp-hub-me" src="uploads/home-realtor.jpg" alt="A realtor, the person at the center of every conversation" width="500" height="500" loading="lazy"><span class="hp-hub-ai" role="img" aria-label="ReallyWise AI assistant"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#012976"/><circle class="d d1" cx="199" cy="338" r="56"/><circle class="d d2" cx="365" cy="338" r="56"/><circle class="d d3" cx="531" cy="338" r="56"/></g></svg></span><span class="hp-hub-cap">You, with your AI team</span></div>
-          <div class="hp-col hp-col-r">
-          <div class="hp-card" data-side="r" data-i="2"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l8 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M18 9a4 4 0 0 1 0 6"/></svg><div class="hp-card-top"><h3>Marketing coordinator</h3><span class="hp-card-tag soon">Coming soon</span></div><p>Turns each new listing into posts, flyers and emails in your voice.</p><div class="hp-art hp-art-listing" aria-hidden="true">
-  <div class="hp-art-ph"><img src="uploads/property-148-maple-main.jpg" alt="" loading="lazy"><span class="hp-art-tag">Just listed</span></div>
-  <div class="hp-art-lb"><b>$849,000</b><i class="hp-art-chip r1">Post</i><i class="hp-art-chip r2">Flyer</i><i class="hp-art-chip r3">Email</i></div>
-</div></div>
-          <div class="hp-card" data-side="r" data-i="3"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg><div class="hp-card-top"><h3>Administrative assistant</h3><span class="hp-card-tag">Home Concierge</span></div><p>Books tours, follows up and keeps every buyer's notes in one place, with you in the loop.</p><div class="hp-art hp-art-cal" aria-hidden="true">
+          <div class="hp-card" data-side="l" data-i="1"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg><div class="hp-card-top"><h3>Home Concierge</h3><span class="hp-card-tag">For buyer agents</span></div><p>Learns what each buyer cares about, helps them weigh every home and books tours, with you in the conversation.</p><div class="hp-art hp-art-cal" aria-hidden="true">
   <div class="hp-art-calhead">Tours this week</div>
   <div class="hp-art-days k1"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span class="on">Sat</span><span class="on">Sun</span></div>
   <div class="hp-art-bk k2"><time>Sat 10:00</time><div><b>1428 Maple Ave</b><small>Tour with Maya</small></div><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Booked</em></div>
   <div class="hp-art-bk k3"><time>Sun 2:00</time><div><b>77 Oak St</b><small>Tour with Daniel</small></div><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Booked</em></div>
+  <div class="hp-art-bk k4"><time>Notes</time><div><b>Priya</b><small>Likes backyards, under $900k</small></div><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Saved</em></div>
 </div><a class="hp-card-link" href="#buyer-agent">See Home Concierge <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
+          </div>
+          <div class="hp-hub" id="hp-hub"><img class="hp-hub-me" src="uploads/home-realtor.jpg" alt="A realtor, the person at the center of every conversation" width="500" height="500" loading="lazy"><span class="hp-hub-ai" role="img" aria-label="Realisa"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#012976"/><circle class="d d1" cx="199" cy="338" r="56"/><circle class="d d2" cx="365" cy="338" r="56"/><circle class="d d3" cx="531" cy="338" r="56"/></g></svg></span><span class="hp-hub-cap">You, with Realisa</span></div>
+          <div class="hp-col hp-col-r">
+          <div class="hp-card" data-side="r" data-i="2"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9z"/><path d="m9 14 2 2 4-4"/></svg><div class="hp-card-top"><h3>Transaction coordinator</h3><span class="hp-card-tag soon">Coming soon</span></div><p>Manages the paperwork, deadlines and messages between agents, lenders and title companies, from contract to closing.</p><div class="hp-art" aria-hidden="true"><div class="hp-tl k1"><span class="done"><i></i>Contract</span><span class="done"><i></i>Inspection</span><span class="now"><i></i>Appraisal</span><span><i></i>Closing</span></div><div class="hp-due k2"><span class="hp-art-ck pend"></span><span>Appraisal report due</span><time>Nov 24</time></div></div></div>
+          <div class="hp-card" data-side="r" data-i="3"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l8 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M18 9a4 4 0 0 1 0 6"/></svg><div class="hp-card-top"><h3>Marketing coordinator</h3><span class="hp-card-tag soon">Coming soon</span></div><p>Builds your listings, ads, social posts and branding for the brokerage and its agents.</p><div class="hp-art" aria-hidden="true"><div class="hp-set"><div class="k1"><div class="ph"><img src="uploads/property-148-maple-main.jpg" alt="" loading="lazy"></div><div class="cap"><div class="ln d"></div><div class="ln s"></div></div><b>Social post</b></div><div class="k2"><div class="fl"><span class="t">JUST LISTED</span><div class="blk"></div><div class="ln"></div><div class="ln s"></div></div><b>Flyer</b></div><div class="k3"><div class="em"><span class="sub">1428 Maple Ave</span><div class="ln d"></div><div class="ln"></div><div class="ln s"></div></div><b>Email</b></div></div></div></div>
+          <div class="hp-card" data-side="r" data-i="4"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg><div class="hp-card-top"><h3>Administrative assistant</h3><span class="hp-card-tag soon">Coming soon</span></div><p>Runs the front desk: scheduling, client intake and day-to-day office support.</p><div class="hp-art" aria-hidden="true"><div class="hp-front"><div class="k1"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>New client intake: Maya R.</span><em>Form received</em></div><div class="k2"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>Showing request: 1428 Maple Ave</span><em>Sat 10:00</em></div><div class="k3"><span class="ic pend"></span><span>Call back Daniel</span><em>4:30 PM</em></div></div></div></div>
           </div>
         </div>
         <p class="hp-trust hp-rv">Every answer shows its source. We don't sell relationship data. Example conversations use sample listing data.</p>
@@ -2664,11 +2686,17 @@
           var cx = h.left + h.width / 2 - o.left, cy = h.top + h.height / 2 - o.top, r = h.width / 2;
           orbit.querySelectorAll('.hp-card').forEach(function(card, i){
             var c = card.getBoundingClientRect(), left = card.getAttribute('data-side') === 'l';
-            var y = c.top + c.height / 2 - o.top, x1 = (left ? c.right : c.left) - o.left;
-            var midX = left ? (x1 + (cx - r)) / 2 : (x1 + (cx + r)) / 2;
-            // leave the card horizontally, step toward the hub centre line, then enter the hub at its side
-            var hubX = left ? cx - r : cx + r, hubY = cy + (y < cy ? -r * 0.42 : r * 0.42);
-            var d = 'M' + x1 + ' ' + y + ' H' + midX + ' V' + hubY + ' H' + hubX;
+            var y = c.top + c.height / 2 - o.top, x1 = (left ? c.right : c.left) - o.left, dy = y - cy, hubX, hubY, d;
+            if (Math.abs(dy) < r * 0.3) {
+              // level with the hub: one straight line to the hub edge at the same height
+              hubY = y; hubX = cx + (left ? -1 : 1) * Math.sqrt(r * r - dy * dy);
+              d = 'M' + x1 + ' ' + y + ' H' + hubX;
+            } else {
+              // leave the card horizontally, step toward the hub centre line, then enter the hub at its side
+              hubX = left ? cx - r : cx + r; hubY = cy + (y < cy ? -r * 0.42 : r * 0.42);
+              var midX = (x1 + hubX) / 2;
+              d = 'M' + x1 + ' ' + y + ' H' + midX + ' V' + hubY + ' H' + hubX;
+            }
             var p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); p.setAttribute('data-i', i);
             var dot = document.createElementNS(NS, 'circle'); dot.setAttribute('cx', x1); dot.setAttribute('cy', y); dot.setAttribute('r', 3.5); dot.setAttribute('data-i', i);
             var dot2 = document.createElementNS(NS, 'circle'); dot2.setAttribute('cx', hubX); dot2.setAttribute('cy', hubY); dot2.setAttribute('r', 3.5); dot2.setAttribute('data-i', i);
