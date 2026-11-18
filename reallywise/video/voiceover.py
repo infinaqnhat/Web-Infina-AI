@@ -1,7 +1,7 @@
 """Builds the voice-over and subtitles for lead-capture-video.html from voiceover.json.
 
 Two voices are supported:
-  python voiceover.py gemini              Google Gemini TTS (needs GEMINI_API_KEY in the environment;
+  python voiceover.py gemini [--dir product-tour]   Google Gemini TTS (needs GEMINI_API_KEY in the environment;
                                           the key is never written to disk by this script)
   python voiceover.py kokoro <model dir>  Kokoro TTS, offline (pip install kokoro-onnx soundfile; model
                                           files from https://github.com/thewh1teagle/kokoro-onnx/releases)
@@ -13,6 +13,10 @@ import base64, json, os, re, subprocess, sys, tempfile, time, urllib.request
 import numpy as np, soundfile as sf
 
 here = os.path.dirname(os.path.abspath(__file__))
+ARGS = sys.argv[1:]
+if '--dir' in ARGS:   # another video's folder, e.g. --dir product-tour (holds its own voiceover.json)
+    i = ARGS.index('--dir'); here = os.path.join(here, ARGS[i + 1]); del ARGS[i:i + 2]
+sys.argv = [sys.argv[0]] + ARGS
 cfg = json.load(open(os.path.join(here, 'voiceover.json')))
 ENGINE = sys.argv[1] if len(sys.argv) > 1 else 'gemini'
 SR = 24000
@@ -53,7 +57,10 @@ def synth_gemini():
         return audio
     def words(t):   # brand written either way counts as one word
         t = re.sub(r"[^a-z0-9 ]", ' ', t.lower().replace('-', ' '))
-        return re.sub(r"\breally\s+wise\b", 'reallywise', t).split()
+        t = re.sub(r"\breally\s+wise\b", 'reallywise', t)
+        for x, y in (('any time', 'anytime'), ('open house', 'openhouse'), ('sign ins', 'signins'), ('sign up', 'signup'), ('24 7', '247')):
+            t = t.replace(x, y)
+        return t.split()
     def heard(audio):
         with tempfile.TemporaryDirectory() as d:
             f = os.path.join(d, 'c.wav'); sf.write(f, audio, SR, subtype='PCM_16')
@@ -61,22 +68,39 @@ def synth_gemini():
         parts = call(g['check_model'], {'contents': [{'parts': [{'inlineData': {'mimeType': 'audio/wav', 'data': data}},
                      {'text': 'Transcribe this audio word for word. Output only the words.'}]}]})
         return parts[0]['text']
+    def limit(n): return 0.45 * n + 1.5          # slower than about 2.2 words a second means long pauses or a repeat
+    def first_read(audio):
+        """When a line is read twice, keep the part before the longest pause in the middle."""
+        w = int(SR * 0.02); n = len(audio) // w
+        quiet = [20 * np.log10(np.sqrt(np.mean(audio[i * w:(i + 1) * w] ** 2)) + 1e-9) < -45 for i in range(n)]
+        best, i = None, int(n * 0.3)
+        while i < int(n * 0.7):
+            if quiet[i]:
+                j = i
+                while j < n and quiet[j]: j += 1
+                if not best or j - i > best[1] - best[0]: best = (i, j)
+                i = j
+            else: i += 1
+        return audio[:best[0] * w + int(SR * 0.1)] if best else audio
     def run(text):
         # the camel-case brand trips the voice up, and the domain is read out
         spoken = text.replace('ReallyWise.ai', 'Really Wise dot A I').replace('ReallyWise', 'Really Wise')
-        body = {'contents': [{'parts': [{'text': g['style'] + '\n' + spoken}]}],
-                'generationConfig': {'responseModalities': ['AUDIO'], 'speechConfig': {
-                    'voiceConfig': {'prebuiltVoiceConfig': {'voiceName': g['voice']}}}}}
-        want = [w for w in words(text.replace('ReallyWise', 'really wise'))]
-        for attempt in range(6):   # the TTS sometimes reads part of the notes aloud: check and retry
-            audio = decode(call(g['model'], body)[0])
-            if len(clean(audio)) / SR > 0.6 * len(want) + 2.8:   # long silences or a repeated read
-                print(f'  attempt {attempt + 1}: {len(audio) / SR:.1f}s is too long for {len(want)} words'); continue
-            got = words(heard(audio).replace('ReallyWise', 'really wise').replace('Reallywise', 'really wise'))
-            extra = len(got) - len(want)
-            if abs(extra) <= 1 and len(set(want) - set(got)) <= 1: return audio
-            print(f'  attempt {attempt + 1} heard: {" ".join(got)[:80]}')
+        want = words(text)
+        models = [g['model']] * 3 + [g.get('fallback_model', g['model'])] * 3
+        for attempt, model in enumerate(models):
+            body = {'contents': [{'parts': [{'text': g['style'] + '\n' + spoken}]}],
+                    'generationConfig': {'responseModalities': ['AUDIO'], 'speechConfig': {
+                        'voiceConfig': {'prebuiltVoiceConfig': {'voiceName': g['voice']}}}}}
+            audio = decode(call(model, body)[0])
+            got = words(heard(audio))
+            if len(got) >= 1.7 * len(want) and got[:len(want)] == want:   # read twice: keep the first read
+                audio = first_read(audio); got = words(heard(audio))
+            ok_words = abs(len(got) - len(want)) <= 1 and len(set(want) - set(got)) <= 1
+            ok_len = len(clean(audio)) / SR <= limit(len(want))
+            if ok_words and ok_len: return audio
+            print(f'  attempt {attempt + 1} ({model}): ' + ('too slow, ' if not ok_len else '') + f'heard: {" ".join(got)[:70]}')
         raise SystemExit(f'TTS kept misreading: {text}')
+    run.limit = limit; run.words = words
     return run
 
 def tempo(audio, rate):
@@ -95,6 +119,19 @@ def clean(audio):
     on = np.where(db > -45)[0]
     a, b = max(0, on[0] * w - int(SR * 0.04)), min(len(audio), (on[-1] + 1) * w + int(SR * 0.12))
     audio = audio[a:b].copy()
+    # pauses inside a line longer than MAX_PAUSE are shortened to it, with short fades, so the read stays tight
+    MAX_PAUSE = cfg.get('max_pause', 0.35)
+    n = len(audio) // w
+    quiet = [20 * np.log10(np.sqrt(np.mean(audio[i * w:(i + 1) * w] ** 2)) + 1e-9) < -45 for i in range(n)]
+    keep, i = [], 0
+    while i < n:
+        j = i
+        while j < n and quiet[j] == quiet[i]: j += 1
+        seg = audio[i * w:j * w]
+        if quiet[i] and 0 < i and j < n and (j - i) * 0.02 > MAX_PAUSE:
+            half = int(SR * MAX_PAUSE / 2); seg = np.concatenate([seg[:half], seg[-half:]])
+        keep.append(seg); i = j
+    audio = np.concatenate(keep + [audio[n * w:]])
     fi, fo = int(SR * 0.01), int(SR * 0.08)
     audio[:fi] *= np.linspace(0, 1, fi); audio[-fo:] *= np.linspace(1, 0, fo)
     return audio
@@ -107,7 +144,11 @@ def synth(text):
     eng = cfg[ENGINE]
     h = hashlib.sha1(json.dumps([ENGINE, eng, text], sort_keys=True).encode()).hexdigest()[:16]
     f = os.path.join(CACHE, f'{ENGINE}-{h}.wav')
-    if os.path.exists(f): return sf.read(f, dtype='float32')[0]
+    if os.path.exists(f):
+        audio = sf.read(f, dtype='float32')[0]
+        lim = getattr(_synth, 'limit', None)
+        if not lim or len(clean(audio)) / SR <= lim(len(_synth.words(text))): return audio
+        print(f'  cached clip too slow, regenerating: {text[:50]}')
     audio = _synth(text); os.makedirs(CACHE, exist_ok=True); sf.write(f, audio, SR); return audio
 TOTAL = cfg.get('duration', 68)
 subs = []

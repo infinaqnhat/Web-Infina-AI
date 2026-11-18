@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Property Expert Product Tour</title>
+<meta name="description" content="Explainer video source: every feature of ReallyWise Property Expert, from setup to seller reports. Rendered to MP4 with ../render-video.mjs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-900:#012976; --navy-700:#013A9E; --navy-500:#33599F; --navy-100:#E4E9F3; --navy-hover:#011F59;
+  --green-500:#0bb563; --green-700:#067a43; --green-100:#e2f6ec; --sand-100:#f6f2ea;
+  --amber:#b8790f; --amber-100:#fdf1dc; --red:#c2410c; --red-100:#fde7dc;
+  --surface:#F4F6FB; --line:#DBE1EE; --ink:#0d1a36; --ink-2:#3a4762; --muted:#6b7690;
+  --f-head:'Inter',system-ui,sans-serif; --f-body:'DM Sans',system-ui,sans-serif; --f-mono:'DM Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#0b1430;overflow:hidden}
+body{font-family:var(--f-body);color:var(--ink);-webkit-font-smoothing:antialiased}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;background:var(--surface);transform-origin:0 0}
+.abs{position:absolute}
+.scene{position:absolute;inset:0;overflow:hidden;background:radial-gradient(1200px 700px at 85% 10%,#e7ecf7 0,rgba(231,236,247,0) 70%),var(--surface)}
+h1,h2,h3{font-family:var(--f-head);letter-spacing:-.02em}
+.mono{font-family:var(--f-mono)}
+.qr{background:#fff;display:block;color:var(--navy-900)}
+.qr svg{display:block;width:100%;height:100%}
+
+/* chrome shared by the chapter scenes */
+#cornerLogo{position:absolute;left:60px;top:44px;width:196px;z-index:20}
+#rail{position:absolute;right:64px;top:42px;display:flex;gap:6px;z-index:20}
+#rail span{font-size:14.5px;font-weight:700;color:var(--muted);padding:8px 13px;border-radius:999px;background:#fff;border:1px solid var(--line);white-space:nowrap}
+#rail span.on{background:var(--navy-900);border-color:var(--navy-900);color:#fff}
+#rail span.done{color:var(--green-700);border-color:#bfe8d2;background:var(--green-100)}
+
+.copy{position:absolute;left:96px;top:250px;width:500px}
+.eyebrow{font-weight:700;font-size:20px;color:var(--navy-500);display:flex;align-items:center;gap:12px}
+.eyebrow .num{width:34px;height:34px;border-radius:50%;background:var(--navy-900);color:#fff;display:grid;place-items:center;font-family:var(--f-head);font-size:17px}
+.h2{font-size:50px;line-height:1.08;font-weight:800;color:var(--navy-900);margin-top:16px;text-wrap:balance}
+.lead{font-size:22px;line-height:1.5;color:var(--ink-2);margin-top:20px}
+.points{margin-top:26px;display:flex;flex-direction:column;gap:14px}
+.pt{display:flex;gap:12px;align-items:flex-start;font-size:19px;line-height:1.4;color:var(--ink)}
+.pt i{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--green-100);color:var(--green-700);display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:800;margin-top:1px}
+
+/* app window */
+.win{position:absolute;left:650px;top:116px;width:1196px;height:860px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 28px 70px rgba(1,41,118,.13);overflow:hidden}
+.win .bar{height:42px;background:#eef1f8;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid var(--line)}
+.win .bar i{width:11px;height:11px;border-radius:50%;display:block}
+.win .bar i:nth-child(1){background:#f26b5b}.win .bar i:nth-child(2){background:#f5bf4f}.win .bar i:nth-child(3){background:#61c554}
+.win .bar span{margin-left:14px;font-family:var(--f-mono);font-size:13.5px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:4px 14px;border-radius:8px}
+.app{position:absolute;top:42px;left:0;right:0;bottom:0;display:flex}
+.side{width:196px;flex-shrink:0;border-right:1px solid var(--line);background:#fbfcfe;padding:16px 12px;display:flex;flex-direction:column;gap:4px}
+.side img{width:132px;margin:2px 8px 18px}
+.side b{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15.5px;color:var(--ink-2);padding:9px 12px;border-radius:10px}
+.side b.on{background:var(--navy-100);color:var(--navy-900);font-weight:700}
+.side b em{font-style:normal;margin-left:auto;background:var(--green-500);color:#fff;font-size:11.5px;padding:1px 7px;border-radius:999px}
+.side .me{margin-top:auto;display:flex;gap:10px;align-items:center;padding:10px;font-size:13.5px;color:var(--muted)}
+.side .me span{width:30px;height:30px;border-radius:50%;background:var(--navy-900);color:#fff;display:grid;place-items:center;font-weight:700;font-size:12px}
+.main{flex:1;position:relative;padding:22px 26px;overflow:hidden;min-width:0}
+.ph{display:flex;align-items:center;gap:14px}
+.ph img{width:64px;height:46px;border-radius:8px;object-fit:cover}
+.ph h3{font-size:22px;color:var(--navy-900);font-weight:800}
+.ph small{display:block;font-size:13.5px;color:var(--muted);font-weight:500}
+.tabs{display:flex;gap:22px;border-bottom:1px solid var(--line);margin-top:14px}
+.tabs b{font-size:14.5px;font-weight:600;color:var(--muted);padding:10px 0}
+.tabs b.on{color:var(--navy-900);box-shadow:inset 0 -3px 0 var(--navy-900)}
+.pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;font-weight:700;font-size:13px;padding:5px 11px;white-space:nowrap}
+.pill.live{background:var(--green-100);color:var(--green-700)}
+.pill.live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green-500)}
+.pill.draft{background:var(--navy-100);color:var(--navy-700)}
+.pill.amber{background:var(--amber-100);color:var(--amber)}
+.pill.navy{background:var(--navy-900);color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:11px;font-weight:700;font-size:15px;padding:0 16px;height:40px;border:1.5px solid transparent;white-space:nowrap;position:relative}
+.btn.navy{background:var(--navy-900);color:#fff}
+.btn.green{background:var(--green-500);color:#fff}
+.btn.ghost{background:#fff;color:var(--navy-900);border-color:var(--line)}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px}
+.lbl{font-size:12.5px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.row{display:flex;align-items:center;gap:12px}
+.sample{position:absolute;right:22px;top:24px;font-size:12px;font-weight:700;color:var(--muted);border:1px dashed var(--line);border-radius:6px;padding:3px 8px}
+.ring{position:absolute;inset:-3px;border:3px solid var(--green-500);border-radius:inherit;pointer-events:none}
+.sel{position:absolute;inset:-1.5px;border-radius:inherit;background:var(--navy-900);color:#fff;display:flex;align-items:center;justify-content:center}
+.caret::after{content:"";display:inline-block;width:2px;height:1.05em;background:currentColor;margin-left:2px;vertical-align:-3px}
+
+/* chat bits */
+.msgs{display:flex;flex-direction:column;justify-content:flex-end;gap:10px;overflow:hidden}
+.m{max-width:84%;font-size:15px;line-height:1.45;padding:11px 14px;border-radius:16px}
+.m.bot{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:5px}
+.m.me{align-self:flex-end;background:var(--navy-900);color:#fff;border-bottom-right-radius:5px}
+.m.you{align-self:flex-end;background:var(--green-500);color:#fff;border-bottom-right-radius:5px}
+.m .who{display:block;font-size:11.5px;font-weight:700;color:var(--muted);margin-bottom:3px}
+.m.me .who,.m.you .who{color:rgba(255,255,255,.75)}
+.src{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--navy-700);background:var(--navy-100);padding:3px 9px;border-radius:999px;margin-top:7px}
+.ins{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:9px 11px;margin-top:8px;font-size:14px}
+.ins i{font-style:normal;flex-shrink:0;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-weight:800;font-size:13px}
+.ins.ok i{background:var(--green-100);color:var(--green-700)} .ins.info i{background:var(--navy-100);color:var(--navy-700)} .ins.warn i{background:var(--amber-100);color:var(--amber)}
+.ins b{display:block;font-size:14.5px}
+.ins small{display:block;color:var(--muted);font-size:12.5px}
+.dots{align-self:flex-start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:flex;gap:5px}
+.dots i{width:8px;height:8px;border-radius:50%;background:#9aa6c2;display:block}
+.chipset{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.chip{position:relative;font-size:13.5px;font-weight:700;color:var(--navy-900);border:1.5px solid var(--line);border-radius:999px;padding:6px 12px;background:#fff}
+.tap{position:absolute;width:52px;height:52px;border-radius:50%;background:rgba(1,41,118,.16);border:2px solid rgba(1,41,118,.5);margin:-26px 0 0 -26px;z-index:30;pointer-events:none}
+#cursor{position:absolute;width:40px;height:40px;z-index:60;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))}
+.toast{position:absolute;display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 22px 50px rgba(1,41,118,.18);padding:16px 18px;z-index:40}
+.toast .ti{width:46px;height:46px;border-radius:12px;background:var(--green-500);color:#fff;display:grid;place-items:center;flex-shrink:0}
+.toast b{display:block;font-size:17px;color:var(--navy-900)}
+.toast span{font-size:14.5px;color:var(--ink-2)}
+.toast small{display:block;font-size:12px;color:var(--muted);font-weight:700}
+
+#subs{position:absolute;left:0;right:0;bottom:22px;display:flex;justify-content:center;z-index:70;pointer-events:none}
+#subs span{max-width:1760px;background:rgba(1,26,77,.9);color:#fff;font-weight:500;font-size:36px;line-height:1.3;padding:10px 24px;border-radius:12px;text-align:center}
+#hud{position:fixed;right:12px;bottom:10px;color:#8ea0c8;font:12px var(--f-mono);z-index:99}
+
+/* ---------- intro and outro ---------- */
+#s0 .logo{left:50%;top:250px;width:640px;margin-left:-320px}
+#s0 .kicker{left:0;right:0;top:420px;text-align:center;font-weight:700;font-size:26px;letter-spacing:.1em;color:var(--navy-500);text-transform:uppercase}
+#s0 h1{left:0;right:0;top:500px;text-align:center;font-size:84px;line-height:1.05;font-weight:800;color:var(--navy-900)}
+#s0 h1 em{font-style:normal;color:var(--green-500)}
+#s0 .sub{left:0;right:0;top:640px;text-align:center;font-size:32px;color:var(--ink-2)}
+#s10 .lines{left:0;right:0;top:200px;text-align:center;display:flex;flex-direction:column;gap:26px}
+#s10 h1{font-size:74px;line-height:1.18;font-weight:800;color:var(--navy-900)}
+#s10 h1 em{font-style:normal;color:var(--green-500)}
+#s10 .logo{left:50%;top:520px;width:500px;margin-left:-250px}
+#s10 .tagline{left:0;right:0;top:672px;text-align:center;font-size:28px;color:var(--ink-2)}
+#s10 .cta{left:0;right:0;top:770px;display:flex;justify-content:center}
+#s10 .cta span{display:inline-flex;align-items:center;gap:14px;height:84px;padding:0 40px;border-radius:999px;background:var(--green-500);color:#fff;font-family:var(--f-head);font-weight:800;font-size:36px;box-shadow:0 16px 36px rgba(11,181,99,.35)}
+
+/* ---------- 1 set up ---------- */
+#create{left:50%;top:120px;width:640px;margin-left:-320px;padding:34px;text-align:center}
+#create h3{font-size:28px;color:var(--navy-900)}
+#create p{color:var(--muted);margin-top:6px;font-size:16px}
+#create .field{margin-top:22px;height:56px;border:1.5px solid var(--navy-500);border-radius:12px;display:flex;align-items:center;padding:0 16px;font-family:var(--f-mono);font-size:15.5px;color:var(--ink);background:#f8faff;text-align:left}
+#create .field .ph0{color:#a2abbf;font-family:var(--f-body)}
+#create .btn{margin-top:14px;width:100%;height:54px;font-size:18px}
+.steps{margin-top:22px;display:flex;flex-direction:column;gap:12px;text-align:left}
+.step{display:flex;align-items:center;gap:12px;font-size:17px;font-weight:600;color:var(--ink)}
+.step .ck{position:relative;width:26px;height:26px;border-radius:50%;border:2px solid var(--line)}
+.step .ck b{position:absolute;inset:-2px;border-radius:50%;background:var(--green-500);color:#fff;display:grid;place-items:center;font-size:14px}
+.review-item{padding:16px 18px;margin-top:12px;position:relative}
+.review-item .k{display:flex;align-items:center;gap:10px}
+.review-item .k b{font-size:16.5px;color:var(--ink)}
+.review-item .k .t{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--navy-100);color:var(--navy-700)}
+.review-item .hear{font-size:13.5px;color:var(--muted);margin-top:8px}
+.review-item .hear b{color:var(--ink);font-weight:600}
+.opts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.opt{position:relative;border:1.5px solid var(--line);border-radius:10px;padding:8px 13px;font-size:14.5px;font-weight:600;background:#fff}
+.strike{text-decoration:line-through;color:var(--muted)}
+
+/* ---------- 2 knowledge ---------- */
+.kcol{position:absolute;top:150px;bottom:150px;padding:18px}
+.krow{display:flex;align-items:center;gap:12px;padding:11px 4px;border-bottom:1px solid #edf0f6;font-size:15.5px;font-weight:600;position:relative}
+.krow .ic{width:34px;height:34px;border-radius:9px;background:var(--navy-100);color:var(--navy-700);display:grid;place-items:center;flex-shrink:0}
+.krow .r{margin-left:auto}
+.vis{font-size:12.5px;font-weight:700;border:1.5px solid var(--line);border-radius:8px;padding:4px 9px;color:var(--ink-2)}
+.vis.priv{color:var(--red);border-color:#f5c9b5;background:var(--red-100)}
+.vis.req{color:var(--amber);border-color:#f0d9a8;background:var(--amber-100)}
+.vis.pub{color:var(--green-700);border-color:#bfe8d2;background:var(--green-100)}
+
+/* ---------- 3 share ---------- */
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px}
+.tbl th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:8px 6px;border-bottom:1px solid var(--line)}
+.tbl td{padding:10px 6px;border-bottom:1px solid #edf0f6}
+.tbl td.n{text-align:right;font-family:var(--f-mono)}
+.kit{padding:14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.kit .mock{width:100%;height:110px;border-radius:10px;background:var(--surface);display:grid;place-items:center}
+.kit b{font-size:14.5px}
+.kit small{font-size:12.5px;color:var(--muted)}
+.code{font-family:var(--f-mono);font-size:13px;background:#0f1b3d;color:#cfe0ff;border-radius:10px;padding:12px 14px;white-space:nowrap;overflow:hidden}
+
+/* ---------- 4 buyer page ---------- */
+.bp{position:absolute;inset:0;display:grid;grid-template-columns:262px 1fr 280px;gap:0}
+.bp .l{border-right:1px solid var(--line);padding:14px;display:flex;flex-direction:column;gap:10px}
+.bp .l .ph0{height:150px;border-radius:12px;background:url(../../uploads/property-123-main.jpg) center/cover;position:relative}
+.bp .l .ph0 span{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px}
+.bp .l h4{font-family:var(--f-head);font-size:17px;color:var(--navy-900)}
+.bp .l .pr{font-family:var(--f-head);font-weight:800;font-size:22px}
+.bp .l .st{font-size:12.5px;color:var(--muted)}
+.bp .nav b{display:block;font-size:13.5px;font-weight:600;color:var(--ink-2);padding:6px 10px;border-radius:8px}
+.bp .nav b.on{background:var(--navy-100);color:var(--navy-900)}
+.bp .c{display:flex;flex-direction:column;background:var(--surface);min-width:0}
+.bp .c .hd{display:flex;align-items:center;gap:10px;padding:12px 16px;background:#fff;border-bottom:1px solid var(--line)}
+.bp .c .hd img{width:34px;height:34px;border-radius:50%}
+.bp .c .hd b{display:block;font-size:15px;color:var(--navy-900)}
+.bp .c .hd small{font-size:12px;color:var(--green-700);font-weight:700}
+.bp .c .msgs{flex:1;padding:12px 16px}
+.bp .c .cmp{background:#fff;border-top:1px solid var(--line);padding:10px 14px}
+.bp .c .cmp div{height:40px;border:1.5px solid var(--line);border-radius:999px;display:flex;align-items:center;padding:0 16px;color:#a2abbf;font-size:14px}
+.bp .c .cmp small{display:block;font-size:11.5px;color:var(--muted);margin-top:6px;text-align:center}
+.bp .r{border-left:1px solid var(--line);padding:14px;display:flex;flex-direction:column;gap:12px}
+.bp .r .ki{position:relative;display:flex;gap:9px;font-size:13.5px;padding:9px;border-radius:10px;border:1px solid var(--line)}
+.bp .r .ki i{font-style:normal;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-weight:800;font-size:12px;flex-shrink:0}
+.bp .r .doc{display:flex;justify-content:space-between;font-size:13px;padding:7px 2px;border-bottom:1px solid #edf0f6}
+.bp .r .doc span{color:var(--muted);font-size:12px}
+
+/* ---------- 5 inbox ---------- */
+.inbox{position:absolute;inset:0;display:grid;grid-template-columns:300px 1fr 300px}
+.inbox .list{border-right:1px solid var(--line);padding:14px 12px;display:flex;flex-direction:column;gap:8px}
+.flt{display:flex;gap:6px;flex-wrap:wrap}
+.flt b{position:relative;font-size:12.5px;font-weight:700;border:1.5px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--ink-2)}
+.crow{position:relative;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:#fff}
+.crow b{display:block;font-size:14.5px}
+.crow small{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+.crow .pill{margin-top:7px;font-size:11.5px;padding:3px 8px}
+.crow.on{border-color:var(--navy-500);background:#f5f8ff}
+.inbox .chat{display:flex;flex-direction:column;background:var(--surface);min-width:0}
+.banner{position:relative;display:flex;align-items:center;gap:10px;padding:10px 16px;background:#fff;border-bottom:1px solid var(--line);font-size:14px;font-weight:600}
+.banner .btn{margin-left:auto;height:32px;font-size:13.5px}
+.inbox .chat .msgs{flex:1;padding:14px 16px}
+.aim{display:flex;gap:8px;align-items:center;font-size:11.5px;color:var(--muted);margin-top:6px}
+.aim b{background:var(--navy-100);color:var(--navy-700);padding:1px 6px;border-radius:5px;font-size:10.5px}
+.inbox .cmp{background:#fff;border-top:1px solid var(--line);padding:10px 14px}
+.inbox .cmp div{height:40px;border:1.5px solid var(--line);border-radius:999px;display:flex;align-items:center;padding:0 16px;color:#a2abbf;font-size:14px;white-space:nowrap;overflow:hidden}
+.inbox .cmp div.typing{color:var(--ink);border-color:var(--navy-500)}
+.inbox .det{border-left:1px solid var(--line);padding:14px;display:flex;flex-direction:column;gap:14px}
+.det .sec{font-size:14px;line-height:1.45}
+.det .sec .lbl{margin-bottom:5px}
+.det .sec b{color:var(--ink)}
+
+/* ---------- 7 showings ---------- */
+.panel{position:absolute;padding:18px 20px}
+.panel h4{font-family:var(--f-head);font-size:18px;color:var(--navy-900);display:flex;align-items:center;gap:10px}
+.kv{display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px solid #edf0f6}
+.kv span{color:var(--muted)}
+.quote{margin-top:10px;background:var(--surface);border-left:4px solid var(--navy-500);border-radius:8px;padding:10px 12px;font-size:15px;line-height:1.45}
+
+/* ---------- 8 pipeline ---------- */
+.kan{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.kan .col{background:var(--surface);border-radius:12px;padding:10px;min-height:206px;position:relative}
+.kan .col h5{font-size:13px;color:var(--ink-2);display:flex;justify-content:space-between;margin-bottom:8px;font-family:var(--f-body)}
+.deal{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px;margin-bottom:7px;position:relative}
+.deal b{display:block;font-size:13.5px}
+.deal small{color:var(--muted);font-size:12px}
+.deal.hi{border-color:var(--green-500);box-shadow:0 0 0 2px var(--green-100)}
+.fun{display:flex;flex-direction:column;gap:9px}
+.fun .f{display:grid;grid-template-columns:170px 1fr 64px;align-items:center;gap:10px;font-size:13.5px;font-weight:600}
+.fun .tr{height:16px;border-radius:999px;background:var(--navy-100);overflow:hidden}
+.fun .fl{height:100%;background:var(--navy-700);border-radius:999px;width:0}
+.fun .f.g .fl{background:var(--green-500)}
+.fun .v{font-family:var(--f-mono);text-align:right}
+
+/* ---------- 9 seller ---------- */
+.paper{position:absolute;background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 18px 40px rgba(1,41,118,.12);padding:30px 34px}
+.stat{background:var(--surface);border-radius:10px;padding:12px 14px}
+.stat b{display:block;font-family:'Montserrat',var(--f-head);font-size:30px;color:var(--navy-900)}
+.stat span{font-size:13px;color:var(--muted)}
+.phone{position:absolute;width:300px;height:560px;border-radius:44px;background:#0c1222;padding:12px;box-shadow:0 26px 60px rgba(1,41,118,.25)}
+.phone .scr{width:100%;height:100%;border-radius:34px;background:#f2f3f7;overflow:hidden;padding:56px 14px 14px;display:flex;flex-direction:column;gap:10px}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- ===== 0 intro ===== -->
+  <section class="scene" id="s0" data-in="0" data-out="7.6" data-d="0.01">
+    <img class="abs logo" src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="0.2" data-fx="zoom" data-d="0.8">
+    <div class="abs kicker" data-in="0.6" data-fx="up">Property Expert</div>
+    <h1 class="abs" data-in="2.6" data-fx="up" data-d="0.8">The <em>24/7 AI expert</em><br>for every listing.</h1>
+    <p class="abs sub" data-in="4.2" data-fx="up">Answers buyers. Books viewings. Hands you the lead.</p>
+  </section>
+
+  <!-- ===== 1 set up ===== -->
+  <section class="scene" id="s1" data-in="7.6" data-out="27.0">
+    <div class="copy">
+      <div class="eyebrow" data-in="8.0" data-fx="up"><span class="num">1</span>Set up</div>
+      <h2 class="h2" data-in="8.2" data-fx="up">Live in under a minute.</h2>
+      <p class="lead" data-in="8.6" data-fx="up">Paste a listing link. Review the draft. Publish.</p>
+      <div class="points">
+        <div class="pt" data-in="10.8" data-fx="left"><i>✓</i>No CRM connection, no upload needed</div>
+        <div class="pt" data-in="17.6" data-fx="left"><i>✓</i>Every home starts as a private draft</div>
+        <div class="pt" data-in="21.4" data-fx="left"><i>✓</i>You approve what buyers will hear</div>
+      </div>
+    </div>
+    <div class="win" data-in="8.0" data-fx="right" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/listings/new</span></div>
+      <div class="app">
+        <nav class="side" data-active="Listings"></nav>
+        <div class="main">
+          <!-- phase A: create -->
+          <div data-in="8.0" data-out="16.8" data-od="0.3">
+            <div class="abs card" id="create">
+              <h3>Create a Property Expert</h3>
+              <p>No setup. No upload. Your first one takes under a minute.</p>
+              <div class="field"><span class="ph0" data-in="0" data-out="10.0" data-od="0.05">Paste link to your listing</span><span class="caret" data-type="10.0,11.6" data-text="zillow.com/homedetails/123-Main-St-Austin-TX-78703"></span></div>
+              <div class="btn navy" id="createBtn">Create Property Expert →</div>
+              <div class="steps">
+                <div class="step" data-in="12.4" data-fx="up"><span class="ck"><b data-in="13.4" data-fx="pop">✓</b></span>Reading the listing</div>
+                <div class="step" data-in="13.4" data-fx="up"><span class="ck"><b data-in="14.4" data-fx="pop">✓</b></span>Generating your QR code</div>
+                <div class="step" data-in="14.4" data-fx="up"><span class="ck"><b data-in="15.4" data-fx="pop">✓</b></span>Preparing your yard sign design</div>
+              </div>
+              <div style="margin-top:18px" data-in="15.8" data-fx="pop"><span class="pill draft">Draft ready · only you can see it</span></div>
+            </div>
+          </div>
+          <!-- phase B: review -->
+          <div data-in="17.0" data-fx="up">
+            <div class="ph">
+              <img src="../../uploads/property-123-main.jpg" alt="">
+              <div><h3>123 Main Street</h3><small>Austin, TX 78703 · $895,000 · 3 bd · 2.5 ba</small></div>
+              <span style="margin-left:auto;position:relative">
+                <span class="pill draft" data-in="17.0" data-out="25.6" data-od="0.1">Draft</span>
+                <span class="pill live" data-in="25.6" data-fx="pop">Live</span>
+              </span>
+              <span class="btn navy" id="publishBtn">Publish…</span>
+            </div>
+            <div class="tabs"><b>Overview</b><b class="on">Review</b><b>Buyers</b><b>What AI knows</b><b>Marketing</b><b>Reports</b></div>
+            <div style="margin-top:16px;font-size:17px;font-weight:600">We read 25 details. <span style="color:var(--amber)">16 decisions need you.</span></div>
+            <div class="card review-item" data-in="18.4" data-fx="up">
+              <div class="k"><span class="t">Decide</span><b>Bedrooms: sources disagree</b></div>
+              <div class="opts"><span class="opt">Zillow: 4</span><span class="opt" id="optBeds">Seller disclosure: 3<span class="sel" data-in="21.6" data-fx="fade" data-d="0.15">Seller disclosure: 3 ✓</span></span></div>
+              <div class="hear">Buyers hear now: <b>3 bedrooms, from the seller disclosure</b></div>
+            </div>
+            <div class="card review-item" data-in="19.0" data-fx="up">
+              <div class="k"><span class="t">Check</span><b>Description wording (Fair Housing)</b></div>
+              <div style="margin-top:8px;font-size:14.5px"><span class="strike">"Perfect for a young family"</span> → "Room to grow, with a large fenced backyard"</div>
+              <div class="opts"><span class="opt" id="useSugg">Use suggestion<span class="sel" data-in="22.8" data-fx="fade" data-d="0.15">Suggestion used ✓</span></span><span class="opt">Keep mine</span></div>
+            </div>
+            <div class="card review-item" data-in="19.6" data-fx="up">
+              <div class="k"><span class="t">Check</span><b>Key facts buyers ask first</b></div>
+              <div style="margin-top:8px;font-size:14.5px">Roof is about 12 years old, from the inspection report (Jul 12, 2023)</div>
+              <div class="opts"><span class="opt" id="rightBtn">Right<span class="sel" data-in="23.8" data-fx="fade" data-d="0.15">Right ✓</span></span><span class="opt">Wrong</span></div>
+            </div>
+            <div class="toast" style="right:24px;bottom:24px" data-in="25.8" data-fx="up">
+              <span class="ti">✓</span><div><b>Your Property Expert is live.</b><span>Buyers can open it and chat.</span></div>
+            </div>
+          </div>
+          <div class="tap" data-in="11.95" data-out="12.15" data-fx="ripple" data-d="0.35" data-target="#createBtn"></div>
+          <div class="tap" data-in="21.45" data-out="21.65" data-fx="ripple" data-d="0.35" data-target="#optBeds"></div>
+          <div class="tap" data-in="22.65" data-out="22.85" data-fx="ripple" data-d="0.35" data-target="#useSugg"></div>
+          <div class="tap" data-in="23.65" data-out="23.85" data-fx="ripple" data-d="0.35" data-target="#rightBtn"></div>
+          <div class="tap" data-in="25.25" data-out="25.45" data-fx="ripple" data-d="0.35" data-target="#publishBtn"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2 knowledge ===== -->
+  <section class="scene" id="s2" data-in="27.0" data-out="43.8">
+    <div class="copy">
+      <div class="eyebrow" data-in="27.3" data-fx="up"><span class="num">2</span>What it knows</div>
+      <h2 class="h2" data-in="27.5" data-fx="up">Answers only from what it knows.</h2>
+      <p class="lead" data-in="27.8" data-fx="up">Public data syncs on its own. You add the rest and decide who sees it.</p>
+      <div class="points">
+        <div class="pt" data-in="36.8" data-fx="left"><i>✓</i>Every fact links to its source page</div>
+        <div class="pt" data-in="40.4" data-fx="left"><i>✓</i>Your guidance is repeated word for word</div>
+      </div>
+    </div>
+    <div class="win" data-in="27.3" data-fx="right" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/listings/123-main-street/knowledge</span></div>
+      <div class="app">
+        <nav class="side" data-active="Listings"></nav>
+        <div class="main">
+          <div class="ph"><img src="../../uploads/property-123-main.jpg" alt=""><div><h3>123 Main Street</h3><small>Live · Buyers can open it and chat.</small></div><span class="pill live" style="margin-left:auto">Assistant: On</span></div>
+          <div class="tabs"><b>Overview</b><b>Review</b><b>Buyers</b><b class="on">What AI knows</b><b>Marketing</b><b>Reports</b></div>
+          <div style="margin-top:14px;font-size:15px;color:var(--ink-2)">I answer buyers only from the two sources below. Anything I can't answer comes back to you.</div>
+          <div class="card kcol" style="left:26px;width:440px;top:186px;bottom:178px">
+            <div class="lbl">Public data · synced automatically</div>
+            <div class="krow" data-in="30.8" data-fx="left"><span class="ic">▤</span>MLS feed<span class="r pill live">Synced</span></div>
+            <div class="krow" data-in="31.4" data-fx="left"><span class="ic">⌂</span>County records and tax<span class="r pill live">Synced</span></div>
+            <div class="krow" data-in="32.0" data-fx="left"><span class="ic">✎</span>School district data<span class="r pill live">Synced</span></div>
+            <div class="krow" data-in="32.6" data-fx="left"><span class="ic">≈</span>Flood and hazard maps<span class="r pill live">Synced</span></div>
+            <div class="krow" data-in="33.2" data-fx="left"><span class="ic">$</span>Recent nearby sales<span class="r pill live">Synced</span></div>
+          </div>
+          <div class="card kcol" style="left:482px;right:26px;top:186px;bottom:178px">
+            <div class="lbl">Only you know · who sees it</div>
+            <div class="krow" data-in="36.8" data-fx="right"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg></span><div>Seller disclosure<small style="display:block;color:var(--muted);font-weight:500;font-size:12.5px">Jun 18, 2023 · 12 pages</small></div><span class="r vis pub">Buyers can see</span></div>
+            <div class="krow" data-in="37.2" data-fx="right"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg></span><div>Inspection report<small style="display:block;color:var(--muted);font-weight:500;font-size:12.5px">Jul 12, 2023 · 28 pages</small></div><span class="r vis pub">Buyers can see</span></div>
+            <div class="krow" data-in="37.6" data-fx="right"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg></span><div>HOA documents<small style="display:block;color:var(--muted);font-weight:500;font-size:12.5px">Jan 10, 2024 · 16 pages</small></div><span class="r vis pub">Buyers can see</span></div>
+            <div class="krow" data-in="38.0" data-fx="right"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg></span><div>Repair invoice<small style="display:block;color:var(--muted);font-weight:500;font-size:12.5px">Mar 3, 2022 · 4 pages</small></div><span class="r vis req">On request</span></div>
+            <div class="krow" data-in="38.4" data-fx="right"><span class="ic">✎</span><div>Your note<small style="display:block;color:var(--muted);font-weight:500;font-size:12.5px">Seller prefers to close after June 15</small></div><span class="r vis priv">Keep private</span></div>
+          </div>
+          <div class="card" style="position:absolute;left:26px;right:26px;bottom:24px;padding:16px 18px" data-in="40.4" data-fx="up">
+            <div class="row"><span class="lbl">Your guidance</span><span class="pill live">Live</span><span style="margin-left:auto;font-size:13.5px;color:var(--muted)">The assistant repeats these word for word and gives no advice of its own.</span></div>
+            <div class="quote" style="margin-top:10px">"For financing questions, please talk with your own lender. I'm happy to share the price and HOA details."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3 share ===== -->
+  <section class="scene" id="s3" data-in="43.8" data-out="56.2">
+    <div class="copy">
+      <div class="eyebrow" data-in="44.1" data-fx="up"><span class="num">3</span>Share</div>
+      <h2 class="h2" data-in="44.3" data-fx="up">One link. One QR. Every channel.</h2>
+      <p class="lead" data-in="44.6" data-fx="up">Print kit, channel links and a website widget, each tracked on its own.</p>
+    </div>
+    <div class="win" data-in="44.1" data-fx="right" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/listings/123-main-street/links</span></div>
+      <div class="app">
+        <nav class="side" data-active="Listings"></nav>
+        <div class="main">
+          <div class="ph"><img src="../../uploads/property-123-main.jpg" alt=""><div><h3>Links &amp; QR</h3><small>123 Main Street</small></div></div>
+          <div style="display:flex;gap:18px;margin-top:16px">
+            <div class="card" style="width:250px;padding:16px;text-align:center" data-in="46.4" data-fx="zoom">
+              <div class="qr" style="width:180px;height:180px;margin:0 auto"></div>
+              <div class="lbl" style="margin-top:10px">Listing link</div>
+              <div class="mono" style="font-size:14px;margin-top:4px;color:var(--navy-900)">reallywise.ai/l/123-main</div>
+            </div>
+            <div class="card" style="flex:1;padding:14px 16px;position:relative" data-in="47.0" data-fx="up">
+              <div class="row"><span class="lbl">Make a link for a channel</span><span class="sample" style="top:12px">sample data</span></div>
+              <table class="tbl" style="margin-top:4px">
+                <tr><th>Channel</th><th>Link</th><th style="text-align:right">Visits</th></tr>
+                <tr data-in="47.4" data-fx="fade"><td>Yard sign rider</td><td class="mono">…/123-main?c=yard</td><td class="n">412</td></tr>
+                <tr data-in="47.8" data-fx="fade"><td>Instagram</td><td class="mono">…/123-main?c=ig</td><td class="n">231</td></tr>
+                <tr data-in="48.2" data-fx="fade"><td>Website widget</td><td class="mono">…/123-main?c=web</td><td class="n">140</td></tr>
+                <tr data-in="48.6" data-fx="fade"><td>Open-house sign-in</td><td class="mono">…/123-main?c=openhouse</td><td class="n">96</td></tr>
+                <tr data-in="49.0" data-fx="fade"><td>Flyer</td><td class="mono">…/123-main?c=flyer</td><td class="n">58</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="lbl" style="margin-top:18px" data-in="49.4" data-fx="fade">Print kit · each QR is tracked separately</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px">
+            <div class="card kit" data-in="49.6" data-fx="up"><div class="mock"><div style="background:#fff;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.15);display:flex;align-items:center;gap:8px;padding:8px 12px"><div class="qr" style="width:46px;height:46px"></div><b style="font-size:13px;color:var(--navy-900)">Scan to ask AI<br>about this home</b></div></div><b>Yard sign rider</b><small>18 × 6 in</small></div>
+            <div class="card kit" data-in="49.9" data-fx="up"><div class="mock"><div style="width:78px;height:96px;background:#fff;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.15);padding:6px;display:flex;flex-direction:column;gap:4px;align-items:center"><div style="width:100%;height:34px;border-radius:3px;background:url(../../uploads/property-123-main.jpg) center/cover"></div><div class="qr" style="width:36px;height:36px"></div></div></div><b>Flyer</b><small>Letter size</small></div>
+            <div class="card kit" data-in="50.2" data-fx="up"><div class="mock"><div style="width:84px;height:96px;background:#fff;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.15);padding:7px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:9px;font-weight:800;color:var(--navy-900)">OPEN HOUSE<div class="qr" style="width:44px;height:44px"></div>Sign in here</div></div><b>Open-house sign-in</b><small>Visitors leave a contact</small></div>
+          </div>
+          <div class="card" style="margin-top:14px;padding:14px 16px" data-in="50.8" data-fx="up">
+            <div class="row"><span class="lbl">Your page and widget</span><span style="margin-left:auto;font-size:13px;color:var(--muted)">WordPress · Webflow · Wix · Squarespace</span></div>
+            <div class="code" style="margin-top:8px">&lt;script src="https://reallywise.ai/alex/widget.js" async&gt;&lt;/script&gt;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4 buyers ===== -->
+  <section class="scene" id="s4" data-in="56.2" data-out="83.6">
+    <div class="copy">
+      <div class="eyebrow" data-in="56.5" data-fx="up"><span class="num">4</span>For buyers</div>
+      <h2 class="h2" data-in="56.7" data-fx="up">Every buyer gets an expert.</h2>
+      <p class="lead" data-in="57.0" data-fx="up">A private chat for each buyer, open day and night.</p>
+      <div class="points">
+        <div class="pt" data-in="57.4" data-fx="left"><i>✓</i>No app, no login</div>
+        <div class="pt" data-in="63.4" data-fx="left"><i>✓</i>Every answer shows its source</div>
+        <div class="pt" data-in="72.0" data-fx="left"><i>✓</i>If the answer isn't in the data, it says so</div>
+        <div class="pt" data-in="76.4" data-fx="left"><i>✓</i>Books private showings</div>
+      </div>
+    </div>
+    <div class="win" data-in="56.5" data-fx="right" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>reallywise.ai/l/123-main</span></div>
+      <div class="app">
+        <div class="bp">
+          <div class="l">
+            <div class="ph0"><span>1 / 5</span></div>
+            <div><span class="pill live" style="font-size:11.5px">For sale</span></div>
+            <h4>123 Main Street</h4>
+            <div class="st">Austin, TX 78703</div>
+            <div class="pr">$895,000</div>
+            <div class="st">3 beds · 2.5 baths · 2,104 sq ft</div>
+            <div class="nav"><b class="on">Ask Property Expert</b><b>Overview</b><b>Neighborhood</b><b>Price &amp; comparables</b><b>Property details</b><b>Documents</b><b>Map &amp; nearby</b><b>Schedule a tour</b></div>
+          </div>
+          <div class="c">
+            <div class="hd"><img src="../../brand/reallywise-app-icon-color.svg" alt=""><div><b>Property Expert</b><small>● Online, replies instantly</small></div><span class="btn ghost" style="margin-left:auto;height:34px;font-size:13px">Talk to the agent</span></div>
+            <div class="msgs">
+              <div class="m bot" data-in="57.2" data-fx="up" data-d="0.4">Hi! I'm your Property Expert for 123 Main Street. Ask me anything about this home. I'll answer using the listing details, disclosures, inspection reports, HOA info, public records and more.</div>
+              <div class="m bot" data-in="59.8" data-fx="up" data-d="0.4">What type of buyer are you?
+                <div class="chipset"><span class="chip" id="ftb">First-time buyer<span class="sel" data-in="61.2" data-fx="fade" data-d="0.15">First-time buyer</span></span><span class="chip">Upgrade</span><span class="chip">Investment</span><span class="chip">Flip</span><span class="chip">Vacation home</span></div>
+              </div>
+              <div class="m me" data-in="62.6" data-fx="up" data-d="0.3">Are there any known issues with this property?</div>
+              <div class="dots" data-in="62.9" data-out="63.6" data-od="0.05" data-fx="fade" data-d="0.2"><i></i><i></i><i></i></div>
+              <div class="m bot" data-in="63.65" data-fx="up" data-d="0.4">Here's what the documents show:
+                <div class="ins ok"><i>✓</i><div><b>No major structural issues</b><small>Inspection report · Jul 12, 2023</small></div></div>
+                <div class="ins info"><i>i</i><div><b>Foundation repair completed in 2022</b><small>Lifetime transferable warranty · Repair invoice</small></div></div>
+                <div class="ins warn"><i>!</i><div><b>Roof is 12 years old</b><small>Fair condition, worth a closer look · Inspection report</small></div></div>
+              </div>
+              <div class="m me" data-in="68.4" data-fx="up" data-d="0.3">What's the HOA like?</div>
+              <div class="m bot" data-in="69.1" data-fx="up" data-d="0.4">HOA dues are $145 per month. They cover common-area landscaping, community pool access and exterior building insurance.<br><span class="src"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg> HOA documents · Jan 10, 2024</span></div>
+              <div class="m me" data-in="70.2" data-fx="up" data-d="0.3">How far is the elementary school?</div>
+              <div class="m bot" data-in="70.8" data-fx="up" data-d="0.4">Casis Elementary is 0.4 mi away and rated 9 out of 10.<br><span class="src"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg> School district data</span></div>
+              <div class="m me" data-in="72.2" data-fx="up" data-d="0.3">Is the street noisy at night?</div>
+              <div class="m bot" data-in="72.9" data-fx="up" data-d="0.4">That isn't in the documents for this home, so I won't guess. I've asked the listing agent and will let you know.<br><span class="src" style="background:var(--amber-100);color:var(--amber)">Sent to the agent</span></div>
+              <div class="m me" data-in="76.4" data-fx="up" data-d="0.3">Can I schedule a tour?</div>
+              <div class="m bot" data-in="77.0" data-fx="up" data-d="0.4">There are no open houses scheduled right now. You can request a private showing:
+                <div class="chipset"><span class="chip">Sat, 10:00 AM</span><span class="chip" id="slot2">Sat, 2:00 PM<span class="sel" data-in="78.8" data-fx="fade" data-d="0.15">Sat, 2:00 PM</span></span><span class="chip">Sun, 11:00 AM</span></div>
+              </div>
+              <div class="m me" data-in="79.3" data-fx="up" data-d="0.3">Sat, 2:00 PM works for me.</div>
+              <div class="m bot" data-in="80.1" data-fx="up" data-d="0.4">Done. I've sent your request for Sat, 2:00 PM to the listing agent. They'll confirm with you shortly.</div>
+            </div>
+            <div class="cmp"><div>Ask a follow-up question about this property...</div><small>Answers come from the listing documents. Estimates are not appraisals.</small></div>
+          </div>
+          <div class="r">
+            <div class="lbl">Key insights</div>
+            <div class="ki"><i style="background:var(--green-100);color:var(--green-700)">✓</i><div><b>No major structural issues</b></div><span class="ring" style="border-radius:10px" data-in="63.65" data-out="67.8"></span></div>
+            <div class="ki"><i style="background:var(--navy-100);color:var(--navy-700)">i</i><div><b>Foundation repair completed in 2022</b></div><span class="ring" style="border-radius:10px" data-in="63.65" data-out="67.8"></span></div>
+            <div class="ki"><i style="background:var(--amber-100);color:var(--amber)">!</i><div><b>Roof is 12 years old</b></div><span class="ring" style="border-radius:10px" data-in="63.65" data-out="67.8"></span></div>
+            <div class="lbl" style="margin-top:6px">Property documents</div>
+            <div>
+              <div class="doc">Seller disclosure<span>Jun 18, 2023</span></div>
+              <div class="doc">Inspection report<span>Jul 12, 2023</span></div>
+              <div class="doc">Repair invoice<span>Mar 3, 2022</span></div>
+              <div class="doc" style="position:relative">HOA documents<span>Jan 10, 2024</span><span class="ring" style="border-radius:6px;inset:-2px -6px" data-in="69.1" data-out="70.6"></span></div>
+              <div class="doc">Property survey<span>Feb 2, 2021</span></div>
+            </div>
+            <div class="lbl" style="margin-top:6px">Next steps</div>
+            <span class="btn navy" style="width:100%">Schedule a tour</span>
+            <span class="btn ghost" style="width:100%">Ask the agent a question</span>
+          </div>
+        </div>
+        <div class="tap" data-in="61.05" data-out="61.25" data-fx="ripple" data-d="0.35" data-target="#ftb"></div>
+        <div class="tap" data-in="78.65" data-out="78.85" data-fx="ripple" data-d="0.35" data-target="#slot2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5 inbox ===== -->
+  <section class="scene" id="s5" data-in="83.6" data-out="105.8">
+    <div class="copy">
+      <div class="eyebrow" data-in="83.9" data-fx="up"><span class="num">5</span>Your inbox</div>
+      <h2 class="h2" data-in="84.1" data-fx="up">Know who's serious. Step in any time.</h2>
+      <div class="points">
+        <div class="pt" data-in="84.4" data-fx="left"><i>✓</i>An alert the moment a buyer is ready</div>
+        <div class="pt" data-in="87.0" data-fx="left"><i>✓</i>Buyers who need you come first</div>
+        <div class="pt" data-in="91.4" data-fx="left"><i>✓</i>A quick read on every buyer</div>
+        <div class="pt" data-in="96.8" data-fx="left"><i>✓</i>Pause the assistant and take over</div>
+      </div>
+    </div>
+    <div class="win" data-in="83.9" data-fx="right" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/chats</span></div>
+      <div class="app">
+        <nav class="side" data-active="Chats" data-badge="2"></nav>
+        <div class="main" style="padding:0">
+          <div class="inbox">
+            <div class="list">
+              <div class="flt"><b>All</b><b id="needs">Needs you · 2<span class="sel" style="border-radius:999px" data-in="88.4" data-fx="fade" data-d="0.15">Needs you · 2</span></b><b>Listings</b><b>My page</b><b>Clients</b></div>
+              <div class="crow on" data-in="87.0" data-fx="up"><b>Buyer from your yard sign</b><small>123 Main Street, with your assistant</small><span class="pill navy">Ready to tour</span></div>
+              <div class="crow" data-in="87.3" data-fx="up"><b>Visitor from Instagram</b><small>123 Main Street, with your assistant</small><span class="pill amber">Wants to talk</span></div>
+              <div class="crow" data-in="87.6" data-fx="up" data-out="88.4" data-od="0.3"><b>Anonymous buyer #3</b><small>123 Main Street · first-time buyer</small><span class="pill draft">Exploring</span></div>
+              <div class="crow" data-in="87.9" data-fx="up" data-out="88.4" data-od="0.3"><b>Anonymous buyer #4</b><small>123 Main Street · asked about schools</small><span class="pill draft">Exploring</span></div>
+            </div>
+            <div class="chat">
+              <div class="banner"><span data-in="0" data-out="97.8" data-od="0.1">Assistant answers in this chat.</span><span class="btn ghost" id="turnOff" data-in="0" data-out="97.8" data-od="0.1">Turn off</span>
+                <span class="abs" style="left:16px;top:15px;color:var(--amber)" data-in="97.9" data-fx="fade">Assistant is paused in this chat. You joined this chat.</span></div>
+              <div class="msgs">
+                <div class="m me" style="align-self:flex-start;background:#fff;color:var(--ink);border:1px solid var(--line);border-bottom-left-radius:5px;border-bottom-right-radius:16px"><span class="who" style="color:var(--muted)">Buyer</span>Is the street noisy at night?</div>
+                <div class="m bot" style="align-self:flex-end;background:var(--navy-100);border:0;border-bottom-right-radius:5px;border-bottom-left-radius:16px"><span class="who">Your assistant</span>That isn't in the documents for this home, so I won't guess. I've asked the listing agent and will let you know.<div class="aim"><b>AI</b><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 10v11H3V10zM7 10l4-8a3 3 0 013 3v4h6a2 2 0 012 2l-2 8a2 2 0 01-2 2H7"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="transform:rotate(180deg)"><path d="M7 10v11H3V10zM7 10l4-8a3 3 0 013 3v4h6a2 2 0 012 2l-2 8a2 2 0 01-2 2H7"/></svg></div></div>
+                <div class="m me" style="align-self:flex-start;background:#fff;color:var(--ink);border:1px solid var(--line);border-bottom-left-radius:5px;border-bottom-right-radius:16px"><span class="who" style="color:var(--muted)">Buyer</span>Sat, 2:00 PM works for me.</div>
+                <div class="m bot" style="align-self:flex-end;background:var(--navy-100);border:0;border-bottom-right-radius:5px;border-bottom-left-radius:16px"><span class="who">Your assistant</span>Done. I've sent your request for Sat, 2:00 PM to the listing agent. They'll confirm with you shortly.<div class="aim"><b>AI</b><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 10v11H3V10zM7 10l4-8a3 3 0 013 3v4h6a2 2 0 012 2l-2 8a2 2 0 01-2 2H7"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="transform:rotate(180deg)"><path d="M7 10v11H3V10zM7 10l4-8a3 3 0 013 3v4h6a2 2 0 012 2l-2 8a2 2 0 01-2 2H7"/></svg></div></div>
+                <div class="m you" data-in="101.6" data-fx="up" data-d="0.3"><span class="who">You</span>Hi! This is Alex. Saturday at 2 works, I'll meet you at the house.</div>
+              </div>
+              <div class="cmp"><div data-in="0" data-out="98.6" data-od="0.05">Write a message...</div><div data-type="99.0,101.2" data-text="Hi! This is Alex. Saturday at 2 works, I'll meet you at the house." class="caret" data-in="98.6" data-out="101.5" data-od="0.05"></div><div data-in="101.5" data-fx="fade" data-d="0.05" style="display:none">Write a message...</div></div>
+            </div>
+            <div class="det">
+              <div class="sec" data-in="91.4" data-fx="up"><div class="lbl">Next step</div><b>Invite them to a showing</b><div class="row" style="margin-top:8px;gap:8px"><span class="btn ghost" style="height:32px;font-size:13px">Text</span><span class="btn ghost" style="height:32px;font-size:13px">Call</span></div></div>
+              <div class="sec" data-in="92.2" data-fx="up"><div class="lbl">How close they are</div><span class="pill navy">Ready to tour</span><div style="color:var(--muted);font-size:13px;margin-top:5px">Why: asked for a private showing on Saturday.</div></div>
+              <div class="sec" data-in="93.0" data-fx="up"><div class="lbl">What they told us</div>First-time buyer. Asked about known issues, the roof and the HOA. Wants a weekend showing.<div style="color:var(--muted);font-size:12px;margin-top:5px">Updated by AI just now · up to date</div></div>
+              <div class="sec" data-in="93.8" data-fx="up"><div class="lbl">How they got here</div><b>Scanned your yard sign QR</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="toast" style="right:20px;top:58px;width:430px" data-in="84.4" data-out="90.6" data-fx="down">
+        <span class="ti"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg></span><div><small>ReallyWise · now</small><b>New lead: ready to tour</b><span>A buyer asked about 123 Main Street: "Sat, 2:00 PM works for me."</span></div>
+      </div>
+      <div class="tap" data-in="88.25" data-out="88.45" data-fx="ripple" data-d="0.35" data-target="#needs"></div>
+      <div class="tap" data-in="97.65" data-out="97.85" data-fx="ripple" data-d="0.35" data-target="#turnOff"></div>
+    </div>
+  </section>
+
+  <!-- ===== 6 open questions ===== -->
+  <section class="scene" id="s6" data-in="105.8" data-out="117.8">
+    <div class="copy">
+      <div class="eyebrow" data-in="106.1" data-fx="up"><span class="num">6</span>Open questions</div>
+      <h2 class="h2" data-in="106.3" data-fx="up">What it can't answer comes to you.</h2>
+      <p class="lead" data-in="106.6" data-fx="up">Answer once. It becomes a note the assistant uses from then on.</p>
+    </div>
+    <div class="win" data-in="106.1" data-fx="right" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/listings/123-main-street/knowledge</span></div>
+      <div class="app">
+        <nav class="side" data-active="Listings"></nav>
+        <div class="main">
+          <div class="ph"><img src="../../uploads/property-123-main.jpg" alt=""><div><h3>123 Main Street</h3><small>How well the AI knows this home</small></div></div>
+          <div class="tabs"><b>Overview</b><b>Review</b><b>Buyers</b><b class="on">What AI knows</b><b>Marketing</b><b>Reports</b></div>
+          <div class="card" style="margin-top:16px;padding:18px 20px">
+            <div style="font-size:22px;font-weight:700;font-family:var(--f-head);color:var(--navy-900)">I can answer <span data-in="0" data-out="114.0" data-od="0.05">12</span><span data-in="114.0" data-fx="pop" data-d="0.4" style="color:var(--green-700)">13</span> of the 14 questions buyers asked me.</div>
+            <div style="height:12px;border-radius:999px;background:var(--navy-100);margin-top:12px;overflow:hidden"><div style="height:100%;border-radius:999px;background:var(--green-500);width:85.7%" data-in="0" data-out="114.0" data-od="0.05"></div><div style="height:100%;border-radius:999px;background:var(--green-500);width:0;margin-top:-12px" data-bar="114.0,0.6,0.929"></div></div>
+          </div>
+          <div class="lbl" style="margin-top:20px">Buyers asked, I could not answer</div>
+          <div class="card" style="margin-top:10px;padding:16px 18px;position:relative" data-in="106.8" data-fx="up">
+            <div class="row"><b style="font-size:17px">Is the street noisy at night?</b><span class="pill amber" style="margin-left:auto" data-in="0" data-out="113.6" data-od="0.1">Asked by 3 buyers</span><span class="pill live abs" style="right:18px;top:16px" data-in="113.7" data-fx="pop">Saved as a note</span></div>
+            <div style="margin-top:12px;min-height:92px;border:1.5px solid var(--navy-500);border-radius:12px;padding:12px 14px;font-size:16px;line-height:1.5;background:#f8faff"><span class="caret" data-type="109.8,112.4" data-text="Quiet residential street. Most traffic is school drop-off, 7:45 to 8:15 AM."></span></div>
+            <div class="row" style="margin-top:12px"><span class="vis pub">Buyers can see</span><span class="btn green" style="margin-left:auto" id="saveAns">Save answer for buyers</span><span class="btn ghost">Ask the seller</span><span class="btn ghost">Keep private</span></div>
+          </div>
+          <div class="card" style="margin-top:12px;padding:14px 18px" data-in="107.2" data-fx="up">
+            <div class="row"><b style="font-size:16px">Is the washer and dryer included?</b><span class="pill amber" style="margin-left:auto">Asked by 1 buyer</span></div>
+          </div>
+          <div class="toast" style="left:26px;right:26px;bottom:24px" data-in="113.8" data-fx="up">
+            <span class="ti">✓</span><div><b>Answer saved.</b><span>The assistant uses it from now on, and tells the 3 buyers who asked.</span></div>
+          </div>
+          <div class="tap" data-in="113.05" data-out="113.25" data-fx="ripple" data-d="0.35" data-target="#saveAns"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7 showings and offers ===== -->
+  <section class="scene" id="s7" data-in="117.8" data-out="135.8">
+    <div class="copy">
+      <div class="eyebrow" data-in="118.1" data-fx="up"><span class="num">7</span>Showings and offers</div>
+      <h2 class="h2" data-in="118.3" data-fx="up">On your hours. In your words.</h2>
+      <div class="points">
+        <div class="pt" data-in="118.6" data-fx="left"><i>✓</i>Showings follow your hours and calendar</div>
+        <div class="pt" data-in="123.0" data-fx="left"><i>✓</i>Offer instructions, repeated exactly</div>
+        <div class="pt" data-in="128.6" data-fx="left"><i>✓</i>Notify interested buyers in one click</div>
+      </div>
+    </div>
+    <div class="win" data-in="118.1" data-fx="right" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/listings/123-main-street/buyers</span></div>
+      <div class="app">
+        <nav class="side" data-active="Listings"></nav>
+        <div class="main">
+          <div class="ph"><img src="../../uploads/property-123-main.jpg" alt=""><div><h3>123 Main Street</h3><small>Buyers · Showings · Offer desk</small></div></div>
+          <div class="card panel" style="left:26px;top:96px;width:520px;height:330px" data-in="118.4" data-fx="up">
+            <h4>Showing requests</h4>
+            <div class="card" style="margin-top:12px;padding:12px 14px;position:relative">
+              <div class="row"><div><b style="font-size:15.5px">Buyer from your yard sign</b><div style="font-size:13.5px;color:var(--muted)">Sat, 2:00 PM · 45 min</div></div>
+                <span class="pill amber" style="margin-left:auto" data-in="0" data-out="120.8" data-od="0.1">Waiting for your OK</span><span class="pill live abs" style="right:14px;top:14px" data-in="120.9" data-fx="pop">Confirmed</span></div>
+              <div class="row" style="margin-top:10px;gap:8px"><span class="btn green" id="acceptBtn" style="height:34px;font-size:13.5px">Accept</span><span class="btn ghost" style="height:34px;font-size:13.5px">Decline</span><span class="btn ghost" style="height:34px;font-size:13.5px">Reschedule</span></div>
+            </div>
+            <div style="margin-top:12px">
+              <div class="kv"><span>Showing hours</span><b>Sat and Sun, 10 AM to 4 PM</b></div>
+              <div class="kv"><span>Length and notice</span><b>45 min · 2 hours ahead</b></div>
+              <div class="kv"><span>Auto-confirm</span><b>On · at most 4 a day</b></div>
+              <div class="kv" style="border:0"><span>Calendar</span><b data-in="0" data-out="121.2" data-od="0.1">Google Calendar connected</b><b class="abs" style="right:20px;color:var(--green-700)" data-in="121.3" data-fx="fade">✓ Added to Google Calendar</b></div>
+            </div>
+          </div>
+          <div class="card panel" style="left:562px;top:96px;right:26px;height:330px" data-in="123.0" data-fx="up">
+            <h4>Offer desk <span class="pill amber">Offer date set</span></h4>
+            <div class="lbl" style="margin-top:14px">Offer instructions</div>
+            <div class="quote">Offers are due Monday at 5:00 PM. Please include a pre-approval letter.</div>
+            <div style="font-size:12.5px;color:var(--muted);margin-top:6px">The assistant repeats them exactly and never adds advice.</div>
+            <div class="m me" style="margin:12px 0 0 auto;font-size:13.5px;padding:8px 12px;max-width:80%;display:block;width:fit-content" data-in="124.4" data-fx="up">How do I make an offer?</div>
+            <div class="m bot" style="margin-top:8px;font-size:13.5px;padding:8px 12px;max-width:92%" data-in="125.2" data-fx="up">The listing agent shared these instructions: "Offers are due Monday at 5:00 PM. Please include a pre-approval letter."</div>
+          </div>
+          <div class="card panel" style="left:26px;right:26px;top:442px;bottom:24px" data-in="128.6" data-fx="up">
+            <h4>Notify buyers</h4>
+            <div class="row" style="margin-top:10px;gap:8px;flex-wrap:wrap"><span style="font-size:13.5px;color:var(--muted)">Moments I watch for:</span><span class="pill live">Open house added</span><span class="pill draft">New disclosure</span><span class="pill draft">Offer deadline set</span><span class="pill draft">Back on market</span></div>
+            <div class="card" style="margin-top:14px;padding:14px 16px;position:relative">
+              <b style="font-size:16px">Tell interested buyers: Open house this Saturday, 1 to 4 PM</b>
+              <div style="font-size:14px;color:var(--ink-2);margin-top:6px">14 buyers asked to hear about this home. Buyers who have an agent are not emailed.</div>
+              <div class="row" style="margin-top:12px"><span class="btn green" id="send14">Send to 14 buyers</span><span class="btn ghost">Not this time</span><span class="pill live" style="margin-left:auto" data-in="131.2" data-fx="pop">Sent to 14 buyers</span></div>
+            </div>
+          </div>
+          <div class="tap" data-in="120.65" data-out="120.85" data-fx="ripple" data-d="0.35" data-target="#acceptBtn"></div>
+          <div class="tap" data-in="130.95" data-out="131.15" data-fx="ripple" data-d="0.35" data-target="#send14"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 8 pipeline and insights ===== -->
+  <section class="scene" id="s8" data-in="135.8" data-out="147.8">
+    <div class="copy">
+      <div class="eyebrow" data-in="136.1" data-fx="up"><span class="num">8</span>Pipeline and insights</div>
+      <h2 class="h2" data-in="136.3" data-fx="up">See every deal and every source.</h2>
+      <p class="lead" data-in="136.6" data-fx="up">Chats move deals forward. Insights show where buyers came from and what they ask.</p>
+    </div>
+    <div class="win" data-in="136.1" data-fx="right" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/pipeline</span></div>
+      <div class="app">
+        <nav class="side" data-active="Pipeline"></nav>
+        <div class="main">
+          <span class="sample">sample data</span>
+          <h3 style="font-size:20px;color:var(--navy-900)">Pipeline</h3>
+          <div class="kan" style="margin-top:10px">
+            <div class="col"><h5>New lead <span>3</span></h5><div class="deal"><b>Anonymous buyer #3</b><small>123 Main Street</small></div><div class="deal"><b>Visitor from Instagram</b><small>123 Main Street</small></div></div>
+            <div class="col"><h5>Engaged <span>2</span></h5><div class="deal hi" data-in="0" data-out="137.8" data-od="0.3"><b>Buyer from your yard sign</b><small>123 Main Street</small></div><div class="deal"><b>Priya Raman</b><small>580 Cowper St</small></div></div>
+            <div class="col"><h5>Showing booked <span>2</span></h5><div class="deal hi" data-in="138.0" data-fx="down"><b>Buyer from your yard sign</b><small>123 Main Street · Sat 2 PM</small></div><div class="deal"><b>Sarah Chen</b><small>2207 Bryant St</small></div></div>
+            <div class="col"><h5>Negotiating <span>1</span></h5><div class="deal"><b>Kevin &amp; Mai Nguyen</b><small>77 Oak Grove Ave</small></div></div>
+            <div class="col"><h5>Closed <span>1</span></h5><div class="deal"><b>David Kim</b><small>455 Hawthorne Ave</small></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:16px">
+            <div class="card" style="padding:16px 18px" data-in="139.4" data-fx="up">
+              <div class="lbl">Insights · last 30 days</div>
+              <div class="fun" style="margin-top:12px">
+                <div class="f"><span>Visitors</span><div class="tr"><div class="fl" data-bar="139.6,1.2,1"></div></div><span class="v" data-count="139.6,1.2,434">0</span></div>
+                <div class="f"><span>Chatted with the AI</span><div class="tr"><div class="fl" data-bar="139.8,1.2,0.19"></div></div><span class="v" data-count="139.8,1.2,19" data-suffix="%">0</span></div>
+                <div class="f"><span>Left their contact</span><div class="tr"><div class="fl" data-bar="140.0,1.2,0.065"></div></div><span class="v" data-count="140.0,1.2,6.5" data-suffix="%">0</span></div>
+                <div class="f g"><span>Asked to see the home</span><div class="tr"><div class="fl" data-bar="140.2,1.2,0.025"></div></div><span class="v" data-count="140.2,1.2,2.5" data-suffix="%">0</span></div>
+              </div>
+              <div class="lbl" style="margin-top:16px">Where visitors came from</div>
+              <div class="fun" style="margin-top:10px">
+                <div class="f"><span>Yard sign</span><div class="tr"><div class="fl" data-bar="140.6,1.0,0.44"></div></div><span class="v">44%</span></div>
+                <div class="f"><span>Instagram</span><div class="tr"><div class="fl" data-bar="140.7,1.0,0.25"></div></div><span class="v">25%</span></div>
+                <div class="f"><span>Website</span><div class="tr"><div class="fl" data-bar="140.8,1.0,0.15"></div></div><span class="v">15%</span></div>
+                <div class="f"><span>Open house</span><div class="tr"><div class="fl" data-bar="140.9,1.0,0.1"></div></div><span class="v">10%</span></div>
+              </div>
+            </div>
+            <div class="card" style="padding:16px 18px" data-in="140.4" data-fx="up">
+              <div class="lbl">What buyers asked most</div>
+              <div style="display:flex;flex-direction:column;gap:9px;margin-top:12px;font-size:15px">
+                <div class="row"><b>Roof condition</b><span style="margin-left:auto" class="mono">31</span></div>
+                <div class="row"><b>HOA fees and rules</b><span style="margin-left:auto" class="mono">24</span></div>
+                <div class="row"><b>Schools nearby</b><span style="margin-left:auto" class="mono">18</span></div>
+                <div class="row"><b>Offer timing</b><span style="margin-left:auto" class="mono">9</span></div>
+              </div>
+              <div class="lbl" style="margin-top:18px">What the AI did for you</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+                <div class="stat"><b data-count="141.0,1.2,512">0</b><span>Buyer messages answered</span></div>
+                <div class="stat"><b data-count="141.2,1.2,41">0</b><span>Chats after hours</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 9 sellers ===== -->
+  <section class="scene" id="s9" data-in="147.8" data-out="157.8">
+    <div class="copy">
+      <div class="eyebrow" data-in="148.1" data-fx="up"><span class="num">9</span>Sellers</div>
+      <h2 class="h2" data-in="148.3" data-fx="up">Sellers stay in the loop.</h2>
+      <p class="lead" data-in="148.6" data-fx="up">Weekly interest reports with counts only. Never buyer names, contacts or questions.</p>
+    </div>
+    <div class="win" data-in="148.1" data-fx="right" data-d="0.7" style="background:var(--surface)">
+      <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/listings/123-main-street/report/seller</span></div>
+      <div class="paper" style="left:40px;top:76px;width:700px;height:740px" data-in="148.6" data-fx="up">
+        <span class="sample" style="top:18px">sample data</span>
+        <img src="../../brand/Really_Wise_Logo_balanced.svg" alt="" style="width:150px">
+        <h3 style="font-size:28px;color:var(--navy-900);margin-top:18px">Weekly interest report</h3>
+        <div style="color:var(--muted);font-size:15px;margin-top:4px">123 Main Street · Nov 10 to Nov 16</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px">
+          <div class="stat"><b data-count="149.2,1.0,128">0</b><span>Visitors</span></div>
+          <div class="stat"><b data-count="149.4,1.0,31">0</b><span>Buyer chats</span></div>
+          <div class="stat"><b data-count="149.6,1.0,4">0</b><span>Showing requests</span></div>
+          <div class="stat"><b data-count="149.8,1.0,12">0</b><span>Open-house sign-ins</span></div>
+        </div>
+        <div class="lbl" style="margin-top:22px">What buyers ask about</div>
+        <div class="row" style="margin-top:10px;gap:8px"><span class="pill draft">Roof condition</span><span class="pill draft">HOA fees</span><span class="pill draft">Schools</span></div>
+        <div class="lbl" style="margin-top:22px">Note from Alex</div>
+        <div style="font-size:15px;margin-top:6px;line-height:1.5">Strong interest after the open house. Two buyers asked about offer timing.</div>
+        <div style="position:absolute;left:34px;right:34px;bottom:26px;border-top:1px solid var(--line);padding-top:12px;font-size:13px;color:var(--muted)">Counts only. This report contains no buyer names, contact details or question text.</div>
+      </div>
+      <div class="phone" style="left:800px;top:120px" data-in="150.2" data-fx="up">
+        <div class="scr">
+          <div style="text-align:center;font-size:12px;color:var(--muted);font-weight:700">Seller update · draft</div>
+          <div class="m you" style="max-width:92%;font-size:13.5px">Hi Mark and Linda, quick update on 123 Main: 31 buyer chats and 4 showing requests this week. Most questions were about the roof and HOA.</div>
+          <div style="font-size:12px;color:var(--green-700);font-weight:700;display:flex;flex-direction:column;gap:4px;margin-top:4px">
+            <span data-in="151.0" data-fx="left">✓ No buyer names</span><span data-in="151.3" data-fx="left">✓ No contact details</span><span data-in="151.6" data-fx="left">✓ No question wording</span>
+          </div>
+          <span class="btn navy" style="margin-top:auto">Text from my phone</span><span class="btn ghost">Email</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 10 outro ===== -->
+  <section class="scene" id="s10" data-in="157.8" data-d="0.6">
+    <div class="abs lines">
+      <h1 data-in="158.2" data-fx="up">A scan starts the conversation.</h1>
+      <h1 data-in="160.6" data-fx="up"><em>ReallyWise turns it into a booked viewing.</em></h1>
+    </div>
+    <img class="abs logo" src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="162.6" data-fx="up">
+    <div class="abs tagline" data-in="163.0" data-fx="up">Property Expert, the 24/7 AI expert for every listing</div>
+    <div class="abs cta" data-in="164.0" data-fx="pop" data-d="0.6"><span>Try it free at ReallyWise.ai<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+  </section>
+
+  <img id="cornerLogo" src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="7.6" data-out="157.4" data-fx="fade">
+  <div id="rail" data-in="7.6" data-out="157.4" data-fx="down"></div>
+  <svg id="cursor" viewBox="0 0 24 24"><path d="M4 2l16 9.5-7 1.6 4.2 7.4-3 1.6-4.2-7.4L5 19z" fill="#0d1a36" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+  <div id="subs"><span></span></div>
+</div>
+<div id="hud"></div>
+<audio id="vo" src="voiceover.m4a" preload="auto"></audio>
+<script src="subtitles.js" onerror="void 0"></script>
+<script>
+// build the repeated chrome before the player reads the timeline
+const NAV = ['Home', 'Chats', 'Pipeline', 'Listings', 'Buyers', 'Insights', 'Calendar', 'Settings'];
+document.querySelectorAll('nav.side').forEach(n => {
+  n.innerHTML = '<img src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise">' +
+    NAV.map(x => `<b class="${x === n.dataset.active ? 'on' : ''}">${x}${x === 'Chats' && n.dataset.badge ? `<em>${n.dataset.badge}</em>` : ''}</b>`).join('') +
+    '<div class="me"><span>AR</span>Alex Rivera<br>Rivera Homes</div>';
+});
+const CHAPTERS = [['Set up', 7.6], ['What it knows', 27.0], ['Share', 43.8], ['Buyers', 56.2], ['Inbox', 83.6], ['Open questions', 105.8], ['Showings & offers', 117.8], ['Pipeline', 135.8], ['Sellers', 147.8]];
+document.getElementById('rail').innerHTML = CHAPTERS.map(c => `<span>${c[0]}</span>`).join('');
+window.QR_PATH = 'M0 0.5h7m2 0h1m1 0h1m2 0h1m2 0h2m2 0h2m1 0h1m1 0h7M0 1.5h1m5 0h1m1 0h1m1 0h1m2 0h7m1 0h2m3 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h1m4 0h3m2 0h1m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m4 0h7m2 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m1 0h1m3 0h1m2 0h2m5 0h3m1 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m1 0h1m2 0h1m1 0h1m4 0h5m3 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 7.5h1m4 0h3m1 0h2m1 0h3M2 8.5h1m2 0h6m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h2m1 0h5M3 9.5h2m2 0h5m1 0h1m1 0h4m1 0h4m1 0h3m1 0h1m2 0h1M1 10.5h3m1 0h2m2 0h1m3 0h2m1 0h1m3 0h1m2 0h2m2 0h2m1 0h1m1 0h1M2 11.5h1m2 0h1m4 0h2m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m2 0h1m4 0h1M0 12.5h1m1 0h1m2 0h3m1 0h1m1 0h1m1 0h2m4 0h3m4 0h2m1 0h1m1 0h2M0 13.5h1m2 0h1m5 0h1m2 0h1m4 0h1m2 0h2m1 0h2m1 0h2m4 0h1M0 14.5h1m1 0h1m3 0h1m3 0h2m1 0h1m2 0h2m1 0h2m2 0h1m1 0h1m2 0h1m3 0h1M0 15.5h1m1 0h2m4 0h7m5 0h1m1 0h1m2 0h1m1 0h2M0 16.5h4m2 0h2m2 0h2m1 0h1m2 0h2m1 0h1m2 0h1m2 0h3m1 0h1m1 0h2M0 17.5h1m1 0h1m6 0h4m5 0h1m2 0h1m1 0h1m2 0h2m2 0h3M1 18.5h2m2 0h2m2 0h5m3 0h7m1 0h2m1 0h5M0 19.5h1m2 0h1m1 0h1m3 0h2m3 0h2m3 0h1m2 0h2m1 0h1m3 0h1m2 0h1M2 20.5h1m1 0h4m2 0h4m2 0h4m3 0h2m1 0h2m3 0h2M2 21.5h4m1 0h1m2 0h1m1 0h1m2 0h2m1 0h3m1 0h3m1 0h2m1 0h1m2 0h1M0 22.5h4m2 0h2m4 0h1m2 0h1m1 0h1m2 0h4m1 0h2m1 0h1m1 0h1m1 0h1M5 23.5h1m1 0h1m1 0h4m1 0h1m5 0h1m1 0h1m6 0h1m1 0h2M0 24.5h2m1 0h2m1 0h1m1 0h2m3 0h2m1 0h1m5 0h1m1 0h6m1 0h2M8 25.5h2m1 0h1m1 0h1m1 0h2m2 0h2m1 0h1m1 0h1m3 0h5M0 26.5h7m1 0h2m1 0h4m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h2m2 0h1M0 27.5h1m5 0h1m1 0h1m2 0h1m3 0h1m2 0h1m3 0h3m3 0h2m1 0h2M0 28.5h1m1 0h3m1 0h1m5 0h2m1 0h2m4 0h9M0 29.5h1m1 0h3m1 0h1m2 0h2m1 0h1m1 0h4m1 0h1m2 0h4m1 0h4m1 0h1M0 30.5h1m1 0h3m1 0h1m1 0h2m1 0h1m5 0h1m3 0h1m6 0h1m1 0h3M0 31.5h1m5 0h1m2 0h1m1 0h1m3 0h5m2 0h5m2 0h1M0 32.5h7m2 0h1m4 0h2m3 0h4m1 0h3m1 0h2m2 0h1';  // https://reallywise.ai/l/123-main, same code as the lead capture video
+window.VIDEO = {
+  duration: 168,
+  hideSubsAfter: 157.8,
+  // cursor: [design time, '#element'], null hides it
+  cursor: [[11.4, '#createBtn'], [12.2, '#createBtn'], [12.8, null], [20.8, '#optBeds'], [21.8, '#optBeds'], [22.6, '#useSugg'], [23.6, '#rightBtn'], [25.2, '#publishBtn'], [26.0, '#publishBtn']],
+  press: [[11.95, 12.15], [21.45, 21.65], [22.65, 22.85], [23.65, 23.85], [25.25, 25.45]],
+  onSeek(t) {
+    const idx = CHAPTERS.findIndex((c, i) => t >= c[1] && (i === CHAPTERS.length - 1 || t < CHAPTERS[i + 1][1]));
+    document.querySelectorAll('#rail span').forEach((s, i) => s.className = i === idx ? 'on' : i < idx ? 'done' : '');
+  }
+};
+</script>
+<script src="../video-engine.js"></script>
+</body>
+</html>

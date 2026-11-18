@@ -1,0 +1,157 @@
+{
+ "duration": 168,
+ "gemini": {
+  "model": "gemini-3.8-flash-tts",
+  "voice": "Laomedeia",
+  "style": "### DIRECTOR'S NOTES\nVoice: a young woman from the San Francisco Bay Area, natural Northern California accent.\nStyle: SaaS product intro video. Warm, excited and confident, with a smile in the voice and clear emphasis on the key words.\nPace: moderate and unhurried. Articulate every word clearly, with short natural pauses at commas. Excited, but never rushed.\n\n### TRANSCRIPT (read only this)",
+  "check_model": "gemini-3.5-flash",
+  "fallback_model": "gemini-2.5-pro-preview-tts"
+ },
+ "kokoro": {
+  "voice": "af_heart",
+  "speed": 1.0
+ },
+ "gap": 0.4,
+ "cues": [
+  [
+   0.4,
+   "Meet ReallyWise Property Expert."
+  ],
+  [
+   2.6,
+   "A 24/7 AI expert for every listing. It answers buyers, books viewings, and hands you the lead."
+  ],
+  [
+   8.4,
+   "Getting started takes under a minute."
+  ],
+  [
+   10.2,
+   "Paste your listing link. Property Expert reads the listing, generates your QR code, and prepares your yard sign."
+  ],
+  [
+   17.4,
+   "Every home starts as a private draft, so you review what it found first."
+  ],
+  [
+   21.2,
+   "Conflicting facts, Fair Housing wording, and the key facts buyers ask about."
+  ],
+  [
+   24.8,
+   "Then publish."
+  ],
+  [
+   27.6,
+   "Property Expert answers only from what it knows about this home."
+  ],
+  [
+   30.6,
+   "Public data syncs automatically: MLS, county records and taxes, schools, flood maps, and recent nearby sales."
+  ],
+  [
+   36.6,
+   "Add your documents and notes, and choose who sees each one."
+  ],
+  [
+   40.2,
+   "Your guidance is repeated word for word."
+  ],
+  [
+   44.3,
+   "Then share it everywhere."
+  ],
+  [
+   46.2,
+   "Every listing gets its own link and QR code, for yard signs, flyers, open house sign-ins, social posts, and your website."
+  ],
+  [
+   52.6,
+   "Each channel is tracked, so you know what works."
+  ],
+  [
+   56.6,
+   "On their side, buyers just scan or click, with no app and no login."
+  ],
+  [
+   59.6,
+   "They say what kind of buyer they are, and ask anything."
+  ],
+  [
+   62.8,
+   "Every answer comes from the listing documents, with the source right there."
+  ],
+  [
+   68.2,
+   "The HOA, the roof, the schools nearby."
+  ],
+  [
+   72.0,
+   "And if the answer isn't in the data, it says so, and asks you."
+  ],
+  [
+   76.2,
+   "When they're ready, it books a private showing."
+  ],
+  [
+   84.2,
+   "You get the lead the moment it happens."
+  ],
+  [
+   86.8,
+   "Every buyer chat lands in one inbox, with the ones who need you on top."
+  ],
+  [
+   91.2,
+   "See how close each buyer is, what they told us, and how they found the home."
+  ],
+  [
+   96.6,
+   "Want to step in? Pause the assistant and take over the chat, any time."
+  ],
+  [
+   106.2,
+   "Questions it couldn't answer come straight to you."
+  ],
+  [
+   109.4,
+   "Answer once, and Property Expert uses your answer from then on."
+  ],
+  [
+   118.2,
+   "Showing requests follow your showing hours and sync with your calendar."
+  ],
+  [
+   122.8,
+   "Set offer instructions once. The assistant repeats them exactly, and never gives advice."
+  ],
+  [
+   128.4,
+   "And when something changes, notify every interested buyer in one click."
+  ],
+  [
+   136.2,
+   "Your pipeline moves forward from the chats,"
+  ],
+  [
+   139.2,
+   "and Insights show where buyers came from, and what they ask most."
+  ],
+  [
+   148.2,
+   "Keep sellers in the loop with weekly interest reports. Counts only, no buyer names."
+  ],
+  [
+   158.2,
+   "A scan starts the conversation."
+  ],
+  [
+   160.6,
+   "ReallyWise turns it into a booked viewing."
+  ],
+  [
+   164.0,
+   "Try it free at ReallyWise.ai."
+  ]
+ ]
+}

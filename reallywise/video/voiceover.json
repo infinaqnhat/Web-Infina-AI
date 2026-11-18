@@ -4,7 +4,8 @@
   "model": "gemini-3.8-flash-tts",
   "voice": "Laomedeia",
   "style": "### DIRECTOR'S NOTES\nVoice: a young woman from the San Francisco Bay Area, natural Northern California accent.\nStyle: SaaS product intro video. Warm, excited and confident, with a smile in the voice and clear emphasis on the key words.\nPace: moderate and unhurried. Articulate every word clearly, with short natural pauses at commas. Excited, but never rushed.\n\n### TRANSCRIPT (read only this)",
-  "check_model": "gemini-3.5-flash"
+  "check_model": "gemini-3.5-flash",
+  "fallback_model": "gemini-2.5-pro-preview-tts"
  },
  "kokoro": {
   "voice": "af_heart",
