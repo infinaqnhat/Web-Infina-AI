@@ -1,56 +1,60 @@
 1
-00:00:00,400 --> 00:00:05,180
-It's 9:47 PM. A buyer is at your yard sign with a question.
+00:00:00,400 --> 00:00:07,040
+It's Saturday, 10:40 AM. A buyer stops at your yard sign with a question, and you're at another showing.
 
 2
-00:00:05,230 --> 00:00:07,330
-By morning, they've moved on.
+00:00:07,090 --> 00:00:09,790
+By the time you call back, they've moved on.
 
 3
-00:00:08,830 --> 00:00:15,910
+00:00:11,290 --> 00:00:18,370
 Meet ReallyWise Property Expert: an AI expert on every listing, working 24/7.
 
 4
-00:00:16,230 --> 00:00:23,510
+00:00:18,690 --> 00:00:25,970
 It answers every buyer instantly, day or night, straight from your disclosures, inspection report, and HOA docs.
 
 5
-00:00:23,560 --> 00:00:26,280
+00:00:26,020 --> 00:00:28,740
 With the source on every answer.
 
 6
-00:00:28,960 --> 00:00:33,910
+00:00:31,420 --> 00:00:36,370
 When a buyer is ready, it books the viewing, and sends you the lead on the spot.
 
 7
-00:00:38,160 --> 00:00:43,320
+00:00:40,620 --> 00:00:45,780
 Every chat lands in one inbox, so you know exactly who's serious, and what they want.
 
 8
-00:00:47,160 --> 00:00:54,910
-Getting started? Just paste your listing link. You're live in under a minute, with a QR code for your yard sign, flyers, and open house.
+00:00:49,620 --> 00:00:59,740
+And meet Realisa, your own AI assistant. Realisa flags who needs you, plans your day, and drafts replies and seller updates for you.
 
 9
-00:00:58,160 --> 00:01:02,320
-Every scan and click is tracked, so you see what brings buyers.
+00:00:59,790 --> 00:01:07,540
+Getting started? Just paste your listing link. You're live in under a minute, with a QR code for your yard sign, flyers, and open house.
 
 10
-00:01:06,160 --> 00:01:11,340
-Weekly seller reports show real buyer interest. That's how you win your next listing.
+00:01:10,790 --> 00:01:14,950
+Every scan and click is tracked, so you see what brings buyers.
 
 11
-00:01:15,160 --> 00:01:22,090
-And you stay in control. It answers only from facts you approve, and you can step in any time.
+00:01:18,790 --> 00:01:23,970
+Weekly seller reports show real buyer interest. That's how you win your next listing.
 
 12
-00:01:24,560 --> 00:01:26,800
-A scan starts the conversation.
+00:01:27,790 --> 00:01:34,720
+And you stay in control. It answers only from facts you approve, and you can step in any time.
 
 13
-00:01:26,960 --> 00:01:29,860
-ReallyWise turns it into a booked viewing.
+00:01:37,190 --> 00:01:39,430
+A scan starts the conversation.
 
 14
-00:01:30,160 --> 00:01:32,960
+00:01:39,590 --> 00:01:42,490
+ReallyWise turns it into a booked viewing.
+
+15
+00:01:42,790 --> 00:01:45,590
 Try it free at ReallyWise.ai.
 

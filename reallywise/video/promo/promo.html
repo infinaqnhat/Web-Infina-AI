@@ -62,14 +62,21 @@ h1,h2{font-family:var(--f-head);letter-spacing:-.025em}
 .demo{position:absolute;right:16px;bottom:14px;z-index:5;font-size:13px;font-weight:700;color:var(--muted);background:rgba(255,255,255,.92);border:1px dashed var(--line);border-radius:6px;padding:3px 8px}
 
 /* outro */
-#s9 .lines{left:0;right:0;top:200px;text-align:center;display:flex;flex-direction:column;gap:26px}
-#s9 h1{font-size:76px;line-height:1.15;font-weight:900;color:var(--navy-900)}
-#s9 h1 em{font-style:normal;color:var(--green-500)}
-#s9 .logo{left:50%;top:520px;width:500px;margin-left:-250px}
-#s9 .tagline{left:0;right:0;top:672px;text-align:center;font-size:28px;color:var(--ink-2)}
-#s9 .cta{left:0;right:0;top:770px;display:flex;justify-content:center}
-#s9 .cta span{display:inline-flex;align-items:center;gap:14px;height:88px;padding:0 44px;border-radius:999px;background:var(--green-500);color:#fff;font-family:var(--f-head);font-weight:800;font-size:38px;box-shadow:0 16px 36px rgba(11,181,99,.35)}
+#s10 .lines{left:0;right:0;top:200px;text-align:center;display:flex;flex-direction:column;gap:26px}
+#s10 h1{font-size:76px;line-height:1.15;font-weight:900;color:var(--navy-900)}
+#s10 h1 em{font-style:normal;color:var(--green-500)}
+#s10 .logo{left:50%;top:520px;width:500px;margin-left:-250px}
+#s10 .tagline{left:0;right:0;top:672px;text-align:center;font-size:28px;color:var(--ink-2)}
+#s10 .cta{left:0;right:0;top:770px;display:flex;justify-content:center}
+#s10 .cta span{display:inline-flex;align-items:center;gap:14px;height:88px;padding:0 44px;border-radius:999px;background:var(--green-500);color:#fff;font-family:var(--f-head);font-weight:800;font-size:38px;box-shadow:0 16px 36px rgba(11,181,99,.35)}
 
+.scene{perspective:1800px}
+.frame{transform-style:preserve-3d}
+.dim{position:absolute;inset:0;background:rgba(7,26,69,.5);opacity:0;z-index:4;pointer-events:none}
+.lift{position:absolute;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 36px 80px rgba(1,26,77,.45),0 0 0 4px var(--green-500);z-index:25}
+.lift i{position:absolute;inset:0;background-repeat:no-repeat;display:block}
+.h2 .w{display:inline-block;white-space:pre}
+#s0 .day{left:0;right:0;top:200px;text-align:center;font-family:var(--f-head);font-weight:800;font-size:40px;letter-spacing:.2em;color:#7ee2ad;text-transform:uppercase}
 #cornerLogo{position:absolute;left:96px;top:56px;width:210px;z-index:20}
 #prog{position:absolute;left:0;top:0;height:6px;background:var(--green-500);z-index:50;width:0}
 #subs{position:absolute;left:0;right:0;bottom:22px;display:flex;justify-content:center;z-index:70;pointer-events:none}
@@ -81,159 +88,157 @@ h1,h2{font-family:var(--f-head);letter-spacing:-.025em}
 <div id="stage">
 
   <!-- 0 hook -->
-  <section class="scene" id="s0" data-in="0" data-out="8.0" data-d="0.01">
-    <div class="photo" data-kb2="0,8.4,1.0,1.12"></div>
-    <div class="abs clock" data-in="0.3" data-fx="zoom" data-d="0.7">9:47 PM</div>
-    <div class="abs l1" data-in="1.4" data-fx="up">A buyer is at your yard sign with a question.</div>
-    <div class="abs l2" data-in="4.8" data-fx="up">By morning, they've moved on.</div>
+  <section class="scene" id="s0" data-in="0" data-out="10.4" data-d="0.01">
+    <div class="photo" data-kb2="0,10.8,1.0,1.1"></div>
+    <div class="abs day" data-in="0.3" data-fx="up">Saturday</div>
+    <div class="abs clock" data-in="0.5" data-fx="pop" data-d="0.7">10:40 AM</div>
+    <div class="abs l1" data-in="1.8" data-fx="up">A buyer stops at your yard sign with a question.<br>You're at another showing.</div>
+    <div class="abs l2" style="top:690px" data-in="6.6" data-fx="up">By the time you call back, they've moved on.</div>
   </section>
 
   <!-- 1 reveal -->
-  <section class="scene" id="s1" data-in="8.0" data-out="15.4">
-    <img class="abs logo" src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="8.3" data-fx="up">
-    <div class="abs kicker" data-in="8.6" data-fx="up">Property Expert</div>
-    <h1 class="abs" data-in="8.9" data-fx="up" data-d="0.7">An AI expert on every listing. <em>Working 24/7.</em></h1>
+  <section class="scene" id="s1" data-in="10.4" data-out="17.8">
+    <img class="abs logo" src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="10.7" data-fx="up">
+    <div class="abs kicker" data-in="11.0" data-fx="up">Property Expert</div>
+    <h1 class="abs" data-in="11.3" data-fx="up" data-d="0.7">An AI expert on every listing. <em>Working 24/7.</em></h1>
     <div class="abs chips">
-      <span class="chip" data-in="11.6" data-fx="pop"><i>●</i>Instant answers</span>
-      <span class="chip" data-in="11.9" data-fx="pop"><i>●</i>Booked viewings</span>
-      <span class="chip" data-in="12.2" data-fx="pop"><i>●</i>Qualified leads</span>
+      <span class="chip" data-in="14.0" data-fx="pop"><i>●</i>Instant answers</span>
+      <span class="chip" data-in="14.3" data-fx="pop"><i>●</i>Booked viewings</span>
+      <span class="chip" data-in="14.6" data-fx="pop"><i>●</i>Qualified leads</span>
     </div>
-    <div class="phone" style="left:1330px;top:110px" data-in="8.6" data-fx="up" data-d="0.8"><div class="scr" style="background-image:url(shots/phone-start.jpg)"></div></div>
+    <div class="phone" style="left:1330px;top:110px" data-in="11.0" data-fx="tilt" data-d="0.9"><div class="scr" style="background-image:url(shots/phone-start.jpg)"></div></div>
   </section>
 
   <!-- 2 instant answers -->
-  <section class="scene" id="s2" data-in="15.4" data-out="25.4">
-    <div class="copy">
-      <div class="num" data-in="15.7" data-fx="left">Answers every buyer</div>
-      <h2 class="h2" data-in="15.9" data-fx="up">Instant answers. <em>Day or night.</em></h2>
-      <p class="lead" data-in="16.4" data-fx="up">Straight from your disclosures, inspection report and HOA docs, with the source on every answer.</p>
-    </div>
-    <div class="frame" data-in="15.6" data-fx="zoom" data-d="0.7">
+  <section class="scene" id="s2" data-in="17.8" data-out="27.8">
+    <div class="copy"><div class="num" data-in="18.1" data-fx="left">Answers every buyer</div>
+      <h2 class="h2" data-words="18.3">Instant answers. <em>Day or night.</em></h2>
+      <p class="lead" data-in="19.2" data-fx="up">Straight from your disclosures, inspection report and HOA docs, with the source on every answer.</p></div>
+    <div class="frame" data-in="18.0" data-fx="tilt" data-d="0.9">
       <div class="bar"><i></i><i></i><i></i><span>reallywise.ai/l/123-main</span></div>
-      <div class="vp"><div class="shot" data-shot="buyer-issues" data-kb="16.2,22.5,1,1.45,answer">
-        <div class="hl" data-r="buyer-issues|answer|6" data-in="19.0" data-fx="fade"></div>
-      </div></div>
+      <div class="vp"><div class="shot" data-shot="buyer-issues" data-cam='[[18.0,0,0,1440,900],[19.4,320,20,780,560]]'></div><div class="dim"></div></div>
     </div>
-    <div class="callout" style="left:610px;top:820px" data-in="17.4" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><div>Online, replies instantly<small>Every buyer gets a private chat</small></div></div>
-    <div class="callout" style="left:1430px;top:110px" data-in="20.2" data-fx="pop"><span class="ic">✓</span><div>Every answer cites its source<small>Inspection report · Seller disclosure</small></div></div>
+    <div class="lift" data-crop="buyer-issues|400,345,600,140" data-w="720" data-at="1258,640" data-in="22.6" data-fx="lift" data-d="0.6"></div>
+    <div class="callout" style="left:610px;top:830px" data-in="20.0" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><div>Online, replies instantly<small>Every buyer gets a private chat</small></div></div>
+    <div class="callout" style="left:1360px;top:118px" data-in="23.2" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><div>Every answer cites its source<small>Inspection report · Jul 12, 2023</small></div></div>
   </section>
 
   <!-- 3 booked viewings -->
-  <section class="scene" id="s3" data-in="25.4" data-out="34.6">
-    <div class="copy">
-      <div class="num" data-in="25.7" data-fx="left">Books the viewing</div>
-      <h2 class="h2" data-in="25.9" data-fx="up">Questions become <em>booked viewings.</em></h2>
-      <p class="lead" data-in="26.4" data-fx="up">When a buyer is ready, it books a private showing and sends you the lead on the spot.</p>
-    </div>
-    <div class="frame" data-in="25.6" data-fx="zoom" data-d="0.7">
+  <section class="scene" id="s3" data-in="27.8" data-out="37.0">
+    <div class="copy"><div class="num" data-in="28.1" data-fx="left">Books the viewing</div>
+      <h2 class="h2" data-words="28.3">Questions become <em>booked viewings.</em></h2>
+      <p class="lead" data-in="29.2" data-fx="up">When a buyer is ready, it books a private showing and sends you the lead on the spot.</p></div>
+    <div class="frame" data-in="28.0" data-fx="tilt" data-d="0.9">
       <div class="bar"><i></i><i></i><i></i><span>reallywise.ai/l/123-main</span></div>
       <div class="vp">
-        <div class="shot" data-shot="buyer-booked" data-kb="26.0,30.0,1,1.4,Request a private showing" data-out="30.4" data-od="0.4">
-          <div class="hl" data-r="buyer-booked|@390,282,428,114" data-in="27.4" data-fx="fade"></div>
-        </div>
-        <div class="shot" data-shot="buyer-lead-toast" data-in="30.4" data-fx="fade" data-kb="30.4,33.4,1,1.7,New lead: ready to tour">
-          <div class="hl" data-r="buyer-lead-toast|New lead: ready to tour|toast" data-in="31.2" data-fx="fade"></div>
-        </div>
+        <div class="shot" data-shot="buyer-booked" data-cam='[[28.0,0,0,1440,900],[29.4,330,80,720,520]]' data-out="32.6" data-od="0.3"></div>
+        <div class="shot" data-shot="buyer-lead-toast" data-in="32.6" data-fx="fade" data-d="0.3" data-cam='[[32.6,0,0,1440,900]]'></div>
+        <div class="dim"></div>
       </div>
     </div>
-    <div class="callout" style="left:1380px;top:830px" data-in="31.4" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg></span><div>New lead: ready to tour<small>Straight to your phone and inbox</small></div></div>
+    <div class="lift" data-crop="buyer-booked|380,280,445,120" data-w="640" data-at="1258,560" data-in="30.4" data-out="32.4" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="buyer-lead-toast|1128,40,300,108" data-w="620" data-at="1258,520" data-in="33.4" data-fx="lift" data-d="0.6"></div>
+    <div class="callout" style="left:610px;top:830px" data-in="34.2" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg></span><div>The lead lands on your phone<small>"New lead: ready to tour"</small></div></div>
   </section>
 
-  <!-- 4 who's serious -->
-  <section class="scene" id="s4" data-in="34.6" data-out="43.6">
-    <div class="copy">
-      <div class="num" data-in="34.9" data-fx="left">Qualifies every lead</div>
-      <h2 class="h2" data-in="35.1" data-fx="up">Know who's <em>serious.</em></h2>
-      <p class="lead" data-in="35.6" data-fx="up">Every chat lands in one inbox, with how close each buyer is and what they want.</p>
-    </div>
-    <div class="frame" data-in="34.8" data-fx="zoom" data-d="0.7">
+  <!-- 4 inbox -->
+  <section class="scene" id="s4" data-in="37.0" data-out="46.0">
+    <div class="copy"><div class="num" data-in="37.3" data-fx="left">Qualifies every lead</div>
+      <h2 class="h2" data-words="37.5">Know who's <em>serious.</em></h2>
+      <p class="lead" data-in="38.3" data-fx="up">Every chat lands in one inbox, with how close each buyer is and what they want.</p></div>
+    <div class="frame" data-in="37.2" data-fx="tilt" data-d="0.9">
       <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/chats</span></div>
-      <div class="vp"><div class="shot" data-shot="admin-chat" data-kb="35.4,41.0,1,1.5,How close they are">
-        <div class="hl" data-r="admin-chat|How close they are|panel" data-in="37.6" data-fx="fade"></div>
-      </div></div>
+      <div class="vp"><div class="shot" data-shot="admin-chat" data-cam='[[37.2,0,0,1440,900]]'></div><div class="dim"></div></div>
     </div>
-    <div class="callout" style="left:610px;top:830px" data-in="38.6" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1 6.2L12 17.4 6.5 20.3l1-6.2L3 9.7l6.2-.9z"/></svg></span><div>Ready to tour · Wants to talk · Exploring<small>The ones who need you come first</small></div></div>
+    <div class="lift" data-crop="admin-chat|244,212,316,72" data-w="600" data-at="1080,430" data-in="39.0" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="admin-chat|1146,458,290,170" data-w="440" data-at="1500,690" data-in="40.8" data-fx="lift" data-d="0.6"></div>
+    <div class="callout" style="left:610px;top:830px" data-in="42.0" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1 6.2L12 17.4 6.5 20.3l1-6.2L3 9.7l6.2-.9z"/></svg></span><div>Ready to tour · Wants to talk · Exploring<small>The ones who need you come first</small></div></div>
   </section>
 
-  <!-- 5 live in a minute -->
-  <section class="scene" id="s5" data-in="43.6" data-out="54.6">
-    <div class="copy">
-      <div class="num" data-in="43.9" data-fx="left">Set up in a minute</div>
-      <h2 class="h2" data-in="44.1" data-fx="up">Paste a link. <em>You're live.</em></h2>
-      <p class="lead" data-in="44.6" data-fx="up">No setup, no upload. Get a QR code for your yard sign, flyers and open house.</p>
+  <!-- 5 Realisa -->
+  <section class="scene" id="s5" data-in="46.0" data-out="55.6">
+    <div class="copy"><div class="num" data-in="46.3" data-fx="left">Your AI assistant</div>
+      <h2 class="h2" data-words="46.5">Meet <em>Realisa.</em></h2>
+      <p class="lead" data-in="47.2" data-fx="up">Realisa flags who needs you, plans your day, and drafts replies and seller updates for you.</p></div>
+    <div class="frame" data-in="46.2" data-fx="tilt" data-d="0.9">
+      <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/assistant</span></div>
+      <div class="vp"><div class="shot" data-shot="dash-realisa" data-cam='[[46.2,0,0,1440,900]]'></div><div class="dim"></div></div>
     </div>
-    <div class="frame" data-in="43.8" data-fx="zoom" data-d="0.7">
+    <div class="lift" data-crop="dash-realisa|282,112,780,215" data-w="820" data-at="1258,430" data-in="48.0" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="dash-realisa|1092,625,295,165" data-w="430" data-at="1560,770" data-in="50.6" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="dash-realisa|278,565,640,100" data-w="620" data-at="1030,720" data-in="51.6" data-fx="lift" data-d="0.6"></div>
+  </section>
+
+  <!-- 6 live in a minute -->
+  <section class="scene" id="s6" data-in="55.6" data-out="66.6">
+    <div class="copy"><div class="num" data-in="55.9" data-fx="left">Set up in a minute</div>
+      <h2 class="h2" data-words="56.1">Paste a link. <em>You're live.</em></h2>
+      <p class="lead" data-in="57.0" data-fx="up">No setup, no upload. Get a QR code for your yard sign, flyers and open house.</p></div>
+    <div class="frame" data-in="55.8" data-fx="tilt" data-d="0.9">
       <div class="bar"><i></i><i></i><i></i><span>reallywise.ai</span></div>
       <div class="vp">
-        <div class="shot" data-shot="landing-paste" data-kb="44.2,48.0,1,1.35,btn" data-out="48.4" data-od="0.4"></div>
-        <div class="shot" data-shot="landing-live" data-in="48.4" data-fx="fade" data-kb="48.4,52.6,1.35,1.5,Your Property Expert is live.">
-          <div class="hl" data-r="landing-live|Your Property Expert is live.|live" data-in="49.6" data-fx="fade"></div>
-        </div>
+        <div class="shot" data-shot="landing-paste" data-cam='[[55.8,0,0,1440,900],[57.2,120,380,700,440]]' data-out="60.4" data-od="0.3"></div>
+        <div class="shot" data-shot="landing-live" data-in="60.4" data-fx="fade" data-d="0.3" data-cam='[[60.4,120,380,700,440]]'></div>
+        <div class="dim"></div>
       </div>
     </div>
-    <div class="callout" style="left:610px;top:830px" data-in="46.0" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></span><div>Under a minute<small>From listing link to live page</small></div></div>
+    <div class="lift" data-crop="landing-live|186,618,580,190" data-w="760" data-at="1258,560" data-in="61.4" data-fx="lift" data-d="0.6"></div>
+    <div class="callout" style="left:610px;top:830px" data-in="58.4" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></span><div>Under a minute<small>From listing link to live page</small></div></div>
   </section>
 
-  <!-- 6 insights -->
-  <section class="scene" id="s6" data-in="54.6" data-out="62.6">
-    <div class="copy">
-      <div class="num" data-in="54.9" data-fx="left">Measures every channel</div>
-      <h2 class="h2" data-in="55.1" data-fx="up">See what <em>brings buyers.</em></h2>
-      <p class="lead" data-in="55.6" data-fx="up">Every scan and click is tracked, from yard sign to Instagram.</p>
-    </div>
-    <div class="frame" data-in="54.8" data-fx="zoom" data-d="0.7">
+  <!-- 7 insights -->
+  <section class="scene" id="s7" data-in="66.6" data-out="74.6">
+    <div class="copy"><div class="num" data-in="66.9" data-fx="left">Measures every channel</div>
+      <h2 class="h2" data-words="67.1">See what <em>brings buyers.</em></h2>
+      <p class="lead" data-in="67.9" data-fx="up">Every scan and click is tracked, from yard sign to Instagram.</p></div>
+    <div class="frame" data-in="66.8" data-fx="tilt" data-d="0.9">
       <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/insights</span></div>
-      <div class="vp"><div class="shot" data-shot="dash-insights" data-kb="55.2,60.6,1,1.4,Chatted with the AI">
-        <div class="hl" data-r="dash-insights|Chatted with the AI|kpis" data-in="57.2" data-fx="fade"></div>
-      </div></div>
+      <div class="vp"><div class="shot" data-shot="dash-insights" data-cam='[[66.8,0,0,1440,900]]'></div><div class="dim"></div></div>
       <span class="demo">Demo account</span>
     </div>
+    <div class="lift" data-crop="dash-insights|300,320,960,90" data-w="900" data-at="1258,380" data-in="68.6" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="dash-insights|385,430,1000,125" data-w="900" data-at="1258,620" data-in="70.0" data-fx="lift" data-d="0.6"></div>
   </section>
 
-  <!-- 7 sellers -->
-  <section class="scene" id="s7" data-in="62.6" data-out="71.6">
-    <div class="copy">
-      <div class="num" data-in="62.9" data-fx="left">Wins listings</div>
-      <h2 class="h2" data-in="63.1" data-fx="up">Win your <em>next listing.</em></h2>
-      <p class="lead" data-in="63.6" data-fx="up">Weekly seller reports show real buyer interest. Counts only, never buyer names.</p>
-    </div>
-    <div class="frame" data-in="62.8" data-fx="zoom" data-d="0.7">
+  <!-- 8 sellers -->
+  <section class="scene" id="s8" data-in="74.6" data-out="83.6">
+    <div class="copy"><div class="num" data-in="74.9" data-fx="left">Wins listings</div>
+      <h2 class="h2" data-words="75.1">Win your <em>next listing.</em></h2>
+      <p class="lead" data-in="75.9" data-fx="up">Weekly seller reports show real buyer interest. Counts only, never buyer names.</p></div>
+    <div class="frame" data-in="74.8" data-fx="tilt" data-d="0.9">
       <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/listings/1482-elm-ct/report</span></div>
-      <div class="vp"><div class="shot" data-shot="dash-seller-report" data-kb="63.2,69.4,1,1.45,people viewed the listing page">
-        <div class="hl" data-r="dash-seller-report|@510,360,646,244" data-in="65.4" data-fx="fade"></div>
-      </div></div>
+      <div class="vp"><div class="shot" data-shot="dash-seller-report" data-cam='[[74.8,0,0,1440,900],[76.2,420,220,820,520]]'></div><div class="dim"></div></div>
       <span class="demo">Demo account</span>
     </div>
+    <div class="lift" data-crop="dash-seller-report|510,360,646,244" data-w="700" data-at="1258,560" data-in="78.0" data-fx="lift" data-d="0.6"></div>
+    <div class="callout" style="left:610px;top:830px" data-in="80.0" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><div>Counts only<small>No buyer names, contacts or questions</small></div></div>
   </section>
 
-  <!-- 8 control -->
-  <section class="scene" id="s8" data-in="71.6" data-out="81.0">
-    <div class="copy">
-      <div class="num" data-in="71.9" data-fx="left">You stay in control</div>
-      <h2 class="h2" data-in="72.1" data-fx="up">Your facts. <em>Your call.</em></h2>
-      <p class="lead" data-in="72.6" data-fx="up">It answers only from facts you approve, each linked to its source. Step in any time.</p>
-    </div>
-    <div class="frame" data-in="71.8" data-fx="zoom" data-d="0.7">
+  <!-- 9 control -->
+  <section class="scene" id="s9" data-in="83.6" data-out="93.0">
+    <div class="copy"><div class="num" data-in="83.9" data-fx="left">You stay in control</div>
+      <h2 class="h2" data-words="84.1">Your facts. <em>Your call.</em></h2>
+      <p class="lead" data-in="84.9" data-fx="up">It answers only from facts you approve, each linked to its source. Step in any time.</p></div>
+    <div class="frame" data-in="83.8" data-fx="tilt" data-d="0.9">
       <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/listings/1482-elm-ct/knowledge</span></div>
-      <div class="vp"><div class="shot" data-shot="dash-knowledge" data-kb="72.2,78.6,1,1.5,TDS, p. 3">
-        <div class="hl" data-r="dash-knowledge|TDS, p. 3|fact" data-in="74.6" data-fx="fade"></div>
-      </div></div>
+      <div class="vp"><div class="shot" data-shot="dash-knowledge" data-cam='[[83.8,0,0,1440,900],[85.2,300,250,1140,640]]'></div><div class="dim"></div></div>
     </div>
-    <div class="callout" style="left:610px;top:830px" data-in="75.6" data-fx="pop"><span class="ic">✓</span><div>Approve · Edit · Retract<small>Nothing reaches buyers without you</small></div></div>
+    <div class="lift" data-crop="dash-knowledge|490,412,700,190" data-w="820" data-at="1258,560" data-in="87.0" data-fx="lift" data-d="0.6"></div>
+    <div class="callout" style="left:610px;top:830px" data-in="88.2" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><div>Approve · Edit · Retract<small>Nothing reaches buyers without you</small></div></div>
   </section>
 
-  <!-- 9 outro -->
-  <section class="scene" id="s9" data-in="81.0" data-d="0.6">
+  <!-- 10 outro -->
+  <section class="scene" id="s10" data-in="93.0" data-d="0.6">
     <div class="abs lines">
-      <h1 data-in="81.4" data-fx="up">A scan starts the conversation.</h1>
-      <h1 data-in="83.8" data-fx="up"><em>ReallyWise turns it into a booked viewing.</em></h1>
+      <h1 data-in="93.4" data-fx="up">A scan starts the conversation.</h1>
+      <h1 data-in="95.8" data-fx="up"><em>ReallyWise turns it into a booked viewing.</em></h1>
     </div>
-    <img class="abs logo" src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="85.8" data-fx="up">
-    <div class="abs tagline" data-in="86.2" data-fx="up">Property Expert, the 24/7 AI expert for every listing</div>
-    <div class="abs cta" data-in="87.0" data-fx="pop" data-d="0.6"><span>Try it free at ReallyWise.ai<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    <img class="abs logo" src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="97.8" data-fx="up">
+    <div class="abs tagline" data-in="98.2" data-fx="up">Property Expert, the 24/7 AI expert for every listing</div>
+    <div class="abs cta" data-in="99.0" data-fx="pop" data-d="0.6"><span>Try it free at ReallyWise.ai<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
   </section>
 
-  <img id="cornerLogo" src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="15.4" data-out="80.6" data-fx="fade">
+  <img id="cornerLogo" src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="17.8" data-out="92.6" data-fx="fade">
   <div id="prog"></div>
   <div id="subs"><span></span></div>
 </div>
@@ -242,42 +247,66 @@ h1,h2{font-family:var(--f-head);letter-spacing:-.025em}
 <script src="subtitles.js" onerror="void 0"></script>
 <script src="shots/regions.js"></script>
 <script>
-// screenshots, highlight boxes and the slow zoom are laid out here, before the player reads the timeline
-const PAGE_W = 1440, PAGE_H = 900, VW = 1162, VH = 726;
+const PAGE_W = 1440, PAGE_H = 900, VW = 1162, VH = 726, K = VW / PAGE_W, TOTAL = 105;
 document.querySelectorAll('.shot').forEach(s => { s.style.backgroundImage = `url(shots/${s.dataset.shot}.jpg)`; });
-function box(shot, key) { const r = (window.REGIONS[shot] || {})[key]; if (!r) console.error('no region', shot, key); return r || [PAGE_W / 2, PAGE_H / 2, 0, 0]; }
-// highlight padding per kind: a number pads the text box; named kinds grow it to the surrounding card
-const GROW = { toast: [16, 14, 230, 92], panel: [16, 12, 60, 200], live: [70, 18, 120, 150], kpis: [-300, 24, 820, 120], stats: [22, 20, 300, 110], fact: [-430, 18, 520, 110] };
-document.querySelectorAll('.hl').forEach(h => {
-  const [shot, key, pad] = h.dataset.r.split('|');
-  let [x, y, w, hh] = key[0] === '@' ? key.slice(1).split(',').map(Number) : box(shot, key);   // @x,y,w,h: an exact box
-  if (key[0] === '@') {}
-  else if (GROW[pad]) { const [l, t, ww, hh2] = GROW[pad]; x -= Math.max(0, l) ; if (l < 0) x += l; y -= t; w += ww; hh += hh2; }
-  else { const p = +pad || 8; x -= p; y -= p; w += 2 * p; hh += 2 * p; }
-  y = Math.max(2, y);
-  Object.assign(h.style, { left: x / PAGE_W * 100 + '%', top: y / PAGE_H * 100 + '%', width: w / PAGE_W * 100 + '%', height: hh / PAGE_H * 100 + '%' });
+
+// headlines appear word by word
+document.querySelectorAll('.h2[data-words]').forEach(h => {
+  let t = +h.dataset.words;
+  const walk = node => [...node.childNodes].forEach(n => {
+    if (n.nodeType === 3) {
+      const frag = document.createDocumentFragment();
+      n.nodeValue.split(/(\s+)/).forEach(part => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+        const w = document.createElement('span'); w.className = 'w'; w.textContent = part;
+        w.dataset.in = t.toFixed(2); w.dataset.fx = 'word'; w.dataset.d = '0.45'; t += 0.09; frag.appendChild(w);
+      });
+      n.replaceWith(frag);
+    } else walk(n);
+  });
+  walk(h);
 });
-const KB = [...document.querySelectorAll('[data-kb]')].map(el => {
-  const [t0, t1, s0, s1, ...k] = el.dataset.kb.split(','); const [x, y, w, h] = box(el.dataset.shot, k.join(','));
-  return { el, t0: +t0, t1: +t1, s0: +s0, s1: +s1, fx: (x + w / 2) / PAGE_W, fy: (y + h / 2) / PAGE_H };
+
+// lifted cards: a crop of the screenshot, enlarged and floating over the dimmed frame
+document.querySelectorAll('.lift').forEach(l => {
+  const [shot, rect] = l.dataset.crop.split('|'); const [x, y, w, h] = rect.split(',').map(Number);
+  const W = +l.dataset.w, k = W / w, H = h * k; const [cx, cy] = l.dataset.at.split(',').map(Number);
+  Object.assign(l.style, { width: W + 'px', height: H + 'px', left: cx - W / 2 + 'px', top: cy - H / 2 + 'px' });
+  const i = document.createElement('i');
+  Object.assign(i.style, { backgroundImage: `url(shots/${shot}.jpg)`, backgroundSize: `${PAGE_W * k}px ${PAGE_H * k}px`, backgroundPosition: `${-x * k}px ${-y * k}px` });
+  l.appendChild(i);
 });
-const KB2 = [...document.querySelectorAll('[data-kb2]')].map(el => { const [t0, t1, s0, s1] = el.dataset.kb2.split(',').map(Number); return { el, t0, t1, s0, s1 }; });
-const ease = p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+
+// camera: snaps quickly between framings, then holds still so the UI is easy to read
+const CAMS = [...document.querySelectorAll('[data-cam]')].map(el => ({ el, keys: JSON.parse(el.dataset.cam) }));
+function frameFor([x, y, w, h]) {
+  const s = Math.max(1, Math.min(VW / (w * K), VH / (h * K)));
+  let tx = VW / 2 - (x + w / 2) * K * s, ty = VH / 2 - (y + h / 2) * K * s;
+  tx = Math.min(0, Math.max(VW - VW * s, tx)); ty = Math.min(0, Math.max(VH - VH * s, ty));
+  return [tx, ty, s];
+}
+const snap = p => 1 - Math.pow(1 - p, 4);
 const cl = v => Math.min(1, Math.max(0, v));
+const SCENES = [...document.querySelectorAll('section.scene')];
 window.VIDEO = {
-  duration: 93,
-  hideSubsAfter: 81.0,
+  duration: TOTAL,
+  hideSubsAfter: 93.0,
   onSeek(t) {
-    for (const k of KB) {
-      const p = ease(cl((t - k.t0) / (k.t1 - k.t0)));
-      const s = k.s0 + (k.s1 - k.s0) * p;
-      const fx = 0.5 + (k.fx - 0.5) * p, fy = 0.5 + (k.fy - 0.5) * p;   // drift from the middle to the focus
-      let tx = VW / 2 - fx * VW * s, ty = VH / 2 - fy * VH * s;
-      tx = Math.min(0, Math.max(VW - VW * s, tx)); ty = Math.min(0, Math.max(VH - VH * s, ty));
-      k.el.style.transform = `translate(${tx}px,${ty}px) scale(${s})`;
+    for (const c of CAMS) {
+      const ks = c.keys; let i = 0; while (i < ks.length - 1 && t >= ks[i + 1][0]) i++;
+      const cur = frameFor(ks[i].slice(1));
+      let out = cur;
+      if (i > 0) { const prev = frameFor(ks[i - 1].slice(1)), p = snap(cl((t - ks[i][0]) / 0.75)); out = prev.map((v, j) => v + (cur[j] - v) * p); }
+      c.el.style.transform = `translate(${out[0]}px,${out[1]}px) scale(${out[2]})`;
     }
-    for (const k of KB2) k.el.style.transform = `scale(${k.s0 + (k.s1 - k.s0) * cl((t - k.t0) / (k.t1 - k.t0))})`;
-    document.getElementById('prog').style.width = cl(t / 93) * 100 + '%';
+    for (const sc of SCENES) {   // dim the screenshot while a card is lifted out of it
+      const dim = sc.querySelector('.dim'); if (!dim) continue;
+      let o = 0; sc.querySelectorAll('.lift').forEach(l => { if (l.style.display !== 'none') o = Math.max(o, +l.style.opacity || 0); });
+      dim.style.opacity = o;
+    }
+    document.querySelectorAll('[data-kb2]').forEach(el => { const [t0, t1, s0, s1] = el.dataset.kb2.split(',').map(Number); el.style.transform = `scale(${s0 + (s1 - s0) * cl((t - t0) / (t1 - t0))})`; });
+    document.getElementById('prog').style.width = cl(t / TOTAL) * 100 + '%';
   }
 };
 </script>

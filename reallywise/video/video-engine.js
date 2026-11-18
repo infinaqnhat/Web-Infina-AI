@@ -53,7 +53,11 @@
     else if (fx === 'zoom') sc = `${0.94 + 0.06 * pin}`;
     else if (fx === 'pop') sc = `${0.4 + 0.6 * back(raw)}`;
     else if (fx === 'ripple') { sc = `${0.3 + raw * 1.2}`; op = (1 - raw) * (1 - pout); }
-    el.style.opacity = op; el.style.translate = tr; el.style.scale = sc;
+    let rot = 'none';
+    if (fx === 'tilt') { const q = back(raw); tr = `${(1 - q) * 120}px 0`; rot = `y ${-(1 - q) * 16}deg`; sc = `${0.92 + 0.08 * q}`; op = Math.min(1, raw * 3) * (1 - pout); }
+    else if (fx === 'lift') { const q = back(raw); tr = `0 ${(1 - q) * 40}px`; sc = `${0.82 + 0.18 * q}`; op = Math.min(1, raw * 2.5) * (1 - pout); }
+    else if (fx === 'word') { const q = back(raw); tr = `0 ${(1 - q) * 30}px`; op = Math.min(1, raw * 2) * (1 - pout); }
+    el.style.opacity = op; el.style.translate = tr; el.style.scale = sc; el.style.rotate = rot;
   }
 
   let CUR = [];

@@ -1,5 +1,5 @@
 {
- "duration": 93,
+ "duration": 105,
  "gemini": {
   "model": "gemini-3.8-flash-tts",
   "voice": "Laomedeia",
@@ -15,58 +15,62 @@
  "cues": [
   [
    0.4,
-   "It's 9:47 PM. A buyer is at your yard sign with a question."
+   "It's Saturday, 10:40 AM. A buyer stops at your yard sign with a question, and you're at another showing."
   ],
   [
-   4.8,
-   "By morning, they've moved on."
+   6.6,
+   "By the time you call back, they've moved on."
   ],
   [
-   8.4,
+   10.8,
    "Meet ReallyWise Property Expert: an AI expert on every listing, working 24/7."
   ],
   [
-   15.8,
+   18.2,
    "It answers every buyer instantly, day or night, straight from your disclosures, inspection report, and HOA docs."
   ],
   [
-   20.4,
+   22.8,
    "With the source on every answer."
   ],
   [
-   25.8,
+   28.2,
    "When a buyer is ready, it books the viewing, and sends you the lead on the spot."
   ],
   [
-   35.0,
+   37.4,
    "Every chat lands in one inbox, so you know exactly who's serious, and what they want."
   ],
   [
-   44.0,
+   46.4,
+   "And meet Realisa, your own AI assistant. Realisa flags who needs you, plans your day, and drafts replies and seller updates for you."
+  ],
+  [
+   56.0,
    "Getting started? Just paste your listing link. You're live in under a minute, with a QR code for your yard sign, flyers, and open house."
   ],
   [
-   55.0,
+   67.0,
    "Every scan and click is tracked, so you see what brings buyers."
   ],
   [
-   63.0,
+   75.0,
    "Weekly seller reports show real buyer interest. That's how you win your next listing."
   ],
   [
-   72.0,
+   84.0,
    "And you stay in control. It answers only from facts you approve, and you can step in any time."
   ],
   [
-   81.4,
+   93.4,
    "A scan starts the conversation."
   ],
   [
-   83.8,
+   95.8,
    "ReallyWise turns it into a booked viewing."
   ],
   [
-   87.0,
+   99.0,
    "Try it free at ReallyWise.ai."
   ]
  ]

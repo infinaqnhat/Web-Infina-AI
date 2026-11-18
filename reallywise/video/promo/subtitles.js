@@ -3,74 +3,79 @@
 window.SUBTITLES = [
  [
   0.4,
-  5.18,
-  "It's 9:47 PM. A buyer is at your yard sign with a question."
+  7.04,
+  "It's Saturday, 10:40 AM. A buyer stops at your yard sign with a question, and you're at another showing."
  ],
  [
-  5.23,
-  7.33,
-  "By morning, they've moved on."
+  7.09,
+  9.79,
+  "By the time you call back, they've moved on."
  ],
  [
-  8.83,
-  15.91,
+  11.29,
+  18.37,
   "Meet ReallyWise Property Expert: an AI expert on every listing, working 24/7."
  ],
  [
-  16.23,
-  23.51,
+  18.69,
+  25.97,
   "It answers every buyer instantly, day or night, straight from your disclosures, inspection report, and HOA docs."
  ],
  [
-  23.56,
-  26.28,
+  26.02,
+  28.74,
   "With the source on every answer."
  ],
  [
-  28.96,
-  33.91,
+  31.42,
+  36.37,
   "When a buyer is ready, it books the viewing, and sends you the lead on the spot."
  ],
  [
-  38.16,
-  43.32,
+  40.62,
+  45.78,
   "Every chat lands in one inbox, so you know exactly who's serious, and what they want."
  ],
  [
-  47.16,
-  54.91,
+  49.62,
+  59.74,
+  "And meet Realisa, your own AI assistant. Realisa flags who needs you, plans your day, and drafts replies and seller updates for you."
+ ],
+ [
+  59.79,
+  67.54,
   "Getting started? Just paste your listing link. You're live in under a minute, with a QR code for your yard sign, flyers, and open house."
  ],
  [
-  58.16,
-  62.32,
+  70.79,
+  74.95,
   "Every scan and click is tracked, so you see what brings buyers."
  ],
  [
-  66.16,
-  71.34,
+  78.79,
+  83.97,
   "Weekly seller reports show real buyer interest. That's how you win your next listing."
  ],
  [
-  75.16,
-  82.09,
+  87.79,
+  94.72,
   "And you stay in control. It answers only from facts you approve, and you can step in any time."
  ],
  [
-  84.56,
-  86.8,
+  97.19,
+  99.43,
   "A scan starts the conversation."
  ],
  [
-  86.96,
-  89.86,
+  99.59,
+  102.49,
   "ReallyWise turns it into a booked viewing."
  ],
  [
-  90.16,
-  92.96,
+  102.79,
+  105.59,
   "Try it free at ReallyWise.ai."
  ]
 ];
-window.TIMEWARP = [[0, 0], [0.4, 0.4], [4.8, 5.23], [8.4, 8.83], [15.8, 16.23], [20.4, 23.56], [25.8, 28.96], [35.0, 38.16], [44.0, 47.16], [55.0, 58.16], [63.0, 66.16], [72.0, 75.16], [81.4, 84.56], [83.8, 86.96], [87.0, 90.16], [93, 96.16]];
-window.VO_DURATION = 96.16;
+window.TIMEWARP = [[0, 0], [0.4, 0.4], [6.6, 7.09], [10.8, 11.29], [18.2, 18.69], [22.8, 26.02], [28.2, 31.42], [37.4, 40.62], [46.4, 49.62], [56.0, 59.79], [67.0, 70.79], [75.0, 78.79], [84.0, 87.79], [93.4, 97.19], [95.8, 99.59], [99.0, 102.79], [105, 108.79]];
+window.VO_DURATION = 108.79;

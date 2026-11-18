@@ -59,6 +59,7 @@ def synth_gemini():
         t = re.sub(r"[^a-z0-9 ]", ' ', t.lower().replace('-', ' '))
         t = re.sub(r"\breally\s+wise\b", 'reallywise', t)
         t = re.sub(r'\b([ap]) m\b', r'\1m', t)   # p.m. / PM
+        t = re.sub(r'\b(re[a-z]?|ri[a-z]?|ra[a-z]?)\s?lisa\b', 'realisa', t)   # the assistant's name, however it is spelled back
         for x, y in (('any time', 'anytime'), ('open house', 'openhouse'), ('sign ins', 'signins'), ('sign up', 'signup'), ('24 7', '247')):
             t = t.replace(x, y)
         return t.split()
@@ -85,7 +86,7 @@ def synth_gemini():
         return audio[:best[0] * w + int(SR * 0.1)] if best else audio
     def run(text):
         # the camel-case brand trips the voice up, and the domain is read out
-        spoken = text.replace('ReallyWise.ai', 'Really Wise dot A I').replace('ReallyWise', 'Really Wise')
+        spoken = text.replace('ReallyWise.ai', 'Really Wise dot A I').replace('ReallyWise', 'Really Wise').replace('Realisa', 'Rea Lisa')
         want = words(text)
         models = [g['model']] * 3 + [g.get('fallback_model', g['model'])] * 3
         for attempt, model in enumerate(models):

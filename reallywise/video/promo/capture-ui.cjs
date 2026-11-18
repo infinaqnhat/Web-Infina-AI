@@ -73,10 +73,16 @@ async function ask(pg, q, ms = 2600) { await pg.locator(`.follow-chip[data-q="${
     ['dashboard/properties/kit_elm/index.html', 'dash-listing'], ['dashboard/properties/kit_elm/knowledge/index.html', 'dash-knowledge'],
     ['dashboard/properties/kit_elm/kit/index.html', 'dash-printkit'], ['dashboard/properties/kit_elm/report/seller/index.html', 'dash-seller-report'],
     ['dashboard/properties/kit_elm/showings/index.html', 'dash-showings'], ['dashboard/properties/kit_elm/review/index.html', 'dash-review'],
+    ['dashboard/assistant/index.html', 'dash-realisa'],
   ]) {
     const texts = { 'dash-insights': ['Chatted with the AI', 'Asked to see the home', 'Visitors came to your'], 'dash-seller-report': ['people viewed the listing page', 'asked the AI assistant questions', 'Counts only.'],
       'dash-knowledge': ['What the assistant knows', 'TDS, p. 3', 'Waiting on the seller', 'Approve'], 'dash-chat': ['Thanks, Jordan', 'Needs you'], 'dash-home': ['Assistant on for'] }[name] || [];
-    pg = await open(b, file); await shot(pg, name, texts); await pg.close();
+    pg = await open(b, file);
+    // the export predates the rename of the agent's assistant: show it under its current name, Realisa
+    await pg.evaluate(() => { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+      while ((n = w.nextNode())) if (/\bHob\b/.test(n.nodeValue)) n.nodeValue = n.nodeValue.replace(/\bHob\b/g, 'Realisa');
+      document.querySelectorAll('[placeholder]').forEach(i => i.placeholder = i.placeholder.replace(/\bHob\b/g, 'Realisa')); });
+    await shot(pg, name, texts); await pg.close();
   }
   require('fs').writeFileSync(path.join(OUT, 'regions.js'), '// Boxes (CSS px on a 1440x900 page) of UI elements in each capture, written by capture-ui.cjs\nwindow.REGIONS = ' + JSON.stringify(REG) + ';\n');
   // the PNGs are converted to JPG afterwards: for f in shots/*.png; do ffmpeg -i "$f" -q:v 3 "${f%.png}.jpg"; done
