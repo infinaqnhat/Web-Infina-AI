@@ -707,7 +707,7 @@
     /* Card illustrations: small product UI, built from the brand components, flat Navy 100 panel */
     .hp-card { overflow:hidden; }
     .hp-card { display:grid; grid-template-columns:24px minmax(0,1fr); column-gap:12px; row-gap:12px; align-items:center; }
-    .hp-card > :not(svg):not(h3) { grid-column:1 / -1; }
+    .hp-card > :not(svg):not(.hp-card-top) { grid-column:1 / -1; }
     .hp-art { margin-top:12px; padding:14px; border-radius:10px; background:var(--navy-100); display:flex; flex-direction:column; gap:8px; min-height:132px; box-sizing:border-box; font-family:var(--font-body); }
     .hp-art-head { display:flex; align-items:center; gap:8px; font-size:12px; line-height:16px; color:var(--accent); }
     .hp-art-head b { font-weight:600; }
@@ -719,37 +719,46 @@
     .hp-art-msg.ai { align-self:flex-start; background:#fff; color:var(--accent); display:flex; gap:8px; align-items:flex-start; }
     .hp-art-av { width:18px; height:18px; border-radius:6px; background:var(--accent); flex-shrink:0; display:block; }
     .hp-art-av svg { width:100%; height:100%; display:block; }
-    .hp-art-stack { position:relative; min-height:136px; justify-content:center; gap:0; }
-    .hp-art-conv { display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:10px; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow); position:absolute; left:14px; right:14px; box-sizing:border-box; }
-    .hp-art-conv.c1 { top:70px; z-index:3; } .hp-art-conv.c2 { top:40px; left:22px; right:22px; z-index:2; padding:5px 12px; } .hp-art-conv.c3 { top:12px; left:30px; right:30px; z-index:1; padding:5px 12px; }
-    .hp-art-conv.c2 .hp-art-ini, .hp-art-conv.c3 .hp-art-ini { width:20px; height:20px; font-size:9.5px; }
-    .hp-art-ini { width:28px; height:28px; border-radius:50%; background:var(--navy-100); color:var(--accent); font-family:var(--font-head); font-weight:700; font-size:11px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .hp-art-ln { display:flex; flex-direction:column; gap:5px; flex:1; min-width:0; }
-    .hp-art-ln i { display:block; height:5px; border-radius:3px; background:var(--border); } .hp-art-ln i:first-child { width:70%; background:var(--navy-500); opacity:.55; }
-    .hp-art-pill { font-size:11px; line-height:16px; font-weight:600; color:var(--accent); background:var(--navy-100); border-radius:999px; padding:2px 8px; white-space:nowrap; }
     .hp-art-list { gap:6px; }
     .hp-art-row { display:flex; align-items:center; gap:8px; padding:7px 10px; border-radius:6px; background:#fff; font-size:12.5px; line-height:16px; color:var(--accent); }
     .hp-art-ck { width:16px; height:16px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .hp-art-ck svg { width:10px; height:10px; fill:none; stroke:#fff; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
-    .hp-art-row.r3 .hp-art-ck { background:var(--green-700); }
     .hp-art-note { margin-top:2px; }
     .hp-art-listing { padding:0; overflow:hidden; background:#fff; border:1px solid var(--border); gap:0; }
     .hp-art-ph { position:relative; height:82px; background:var(--sand); }
     .hp-art-ph img { width:100%; height:100%; object-fit:cover; display:block; }
-    .hp-art-ck.big { position:absolute; right:8px; top:8px; width:22px; height:22px; background:var(--accent); border:2px solid #fff; box-sizing:border-box; }
-    .hp-art-ck.big svg { width:11px; height:11px; }
     .hp-art-lb { padding:8px 12px 10px; display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 10px; }
     .hp-art-lb b { font-family:var(--font-head); font-weight:700; font-size:16px; line-height:20px; color:var(--accent); }
     .hp-art-lb span { font-family:var(--font-mono); font-weight:500; font-size:11px; line-height:16px; color:var(--muted); }
     .hp-art-lb em { font-style:normal; font-size:11px; line-height:16px; font-weight:600; color:var(--green-700); background:var(--green-100); border-radius:6px; padding:1px 8px; }
+    /* roles: product tag, link, and the new illustrations */
+    .hp-card-top { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:0; }
+    .hp-card-tag { display:inline-flex; align-items:center; padding:2px 10px; border-radius:999px; background:var(--navy-100); color:var(--accent); font-family:var(--font-mono); font-weight:500; font-size:12px; line-height:16px; }
+    .hp-card-tag.soon { background:transparent; border:1px dashed #BAC4DC; color:var(--muted); padding:1px 9px; }
+    #home-view .hp-card-link { display:inline-flex; align-items:center; gap:6px; justify-self:start; font-weight:600; font-size:14px; line-height:20px; color:var(--accent); text-decoration:none; }
+    #home-view .hp-card-link:hover { text-decoration:underline; }
+    .hp-card .hp-card-link svg { width:16px; height:16px; }
+    .hp-art-ck.pend { background:#fff; border:1.5px solid var(--navy-500); box-sizing:border-box; }
+    .hp-art-tag { position:absolute; left:8px; top:8px; padding:2px 10px; border-radius:999px; background:var(--accent); color:#fff; font-size:11px; line-height:16px; font-weight:600; }
+    .hp-art-chip { font-style:normal; padding:1px 9px; border-radius:999px; background:var(--navy-100); color:var(--accent); font-size:11px; line-height:16px; font-weight:600; align-self:center; }
+    .hp-art-cal { gap:10px; }
+    .hp-art-calhead { font-size:12px; line-height:16px; font-weight:600; color:var(--accent); }
+    .hp-art-days { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:4px; }
+    .hp-art-days span { padding:6px 0; border-radius:6px; background:#fff; text-align:center; font-family:var(--font-mono); font-weight:500; font-size:10.5px; line-height:14px; color:var(--muted); }
+    .hp-art-days span.on { background:var(--accent); color:#fff; }
+    .hp-art-bk { display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:6px; background:#fff; }
+    .hp-art-bk time { flex-shrink:0; width:62px; font-family:var(--font-mono); font-weight:500; font-size:11px; line-height:16px; color:var(--muted); }
+    .hp-art-bk div { flex:1; min-width:0; }
+    .hp-art-bk b { display:block; font-size:12.5px; line-height:16px; font-weight:600; color:var(--accent); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .hp-art-bk small { display:block; font-size:11px; line-height:15px; color:var(--muted); }
+    .hp-art-bk em { flex-shrink:0; display:inline-flex; align-items:center; gap:4px; font-style:normal; font-size:11px; line-height:16px; font-weight:600; color:var(--accent); background:var(--navy-100); border-radius:999px; padding:2px 8px; }
+    .hp-art-bk em svg { width:10px; height:10px; fill:none; stroke:currentColor; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+    .hp-orbit.is-in .k1 { animation:hp-swap .4s ease-out .2s both; } .hp-orbit.is-in .k2 { animation:hp-swap .4s ease-out .6s both; } .hp-orbit.is-in .k3 { animation:hp-swap .4s ease-out 1s both; }
     /* played once when the card scrolls into view; the final state is the plain markup */
     @supports (animation-timeline: view()) { }
     .hp-orbit.is-in .a1 { animation:hp-swap .4s ease-out .1s both; } .hp-orbit.is-in .a2 { animation:hp-swap .4s ease-out .7s both; } .hp-orbit.is-in .a3 { animation:hp-swap .4s ease-out 1.2s both; }
     .hp-orbit.is-in .hp-art-dot { animation:hp-ping 1.8s ease-out .3s 2; }
     .hp-orbit.is-in .r1 { animation:hp-swap .4s ease-out .2s both; } .hp-orbit.is-in .r2 { animation:hp-swap .4s ease-out .6s both; } .hp-orbit.is-in .r3 { animation:hp-swap .4s ease-out 1s both; }
-    .hp-orbit.is-in .c3 { animation:hp-swap .4s ease-out .1s both; } .hp-orbit.is-in .c2 { animation:hp-swap .4s ease-out .3s both; } .hp-orbit.is-in .c1 { animation:hp-swap .4s ease-out .5s both; }
-    .hp-orbit.is-in .hp-art-ck.big { animation:hp-pop .5s ease-out .6s both; }
-    @media (max-width:1000px){  .hp-art-stack { min-height:136px; } }
     @media (prefers-reduced-motion:reduce){ .hp-orbit .hp-art *, .hp-orbit .hp-art { animation:none !important; } }
     .hp-card h3 { margin:0; font-family:var(--font-head); font-weight:700; font-size:20px; line-height:26px; }
     .hp-card p { margin:0; font-size:15px; line-height:22px; color:var(--muted); }
@@ -861,37 +870,38 @@
     <section class="hp-mission" id="mission">
       <div class="hp-wrap hp-pad">
         <div class="hp-intro hp-rv">
-          <div class="hp-kicker">our mission</div>
+          <div class="hp-kicker">your AI team</div>
           <h2 class="hp-h2">Arm every agent with a team of AI<span class="hp-dot" aria-hidden="true" style="animation:none"></span></h2>
-          <p class="hp-lead">Everything we build is meant to put more of your time into the conversations that matter. Here is what that means in practice.</p>
+          <p class="hp-lead">Every brokerage runs on four roles. Give each one an AI teammate.</p>
         </div>
         <div class="hp-orbit hp-rv" id="hp-orbit">
           <svg class="hp-wires" id="hp-wires" aria-hidden="true"></svg>
           <div class="hp-col hp-col-l">
-          <div class="hp-card" data-side="l" data-i="0"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><h3>Capture every lead</h3><p>Every buyer question gets an answer, even when you're busy.</p><div class="hp-art hp-art-chat" aria-hidden="true">
+          <div class="hp-card" data-side="l" data-i="0"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20c0 1.5-2 2-5 2"/></svg><div class="hp-card-top"><h3>ISA (inside sales agent)</h3><span class="hp-card-tag">Property Expert</span></div><p>Answers every buyer question, day or night, and brings the serious ones to you.</p><div class="hp-art hp-art-chat" aria-hidden="true">
   <div class="hp-art-head"><span class="hp-art-dot"></span><b>New lead</b><time>11:42 PM</time></div>
   <div class="hp-art-msg me a1">Is 1428 Maple Ave still available?</div>
   <div class="hp-art-msg ai a2"><span class="hp-art-av"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#012976"/></g></svg></span><span>Yes, it is. Want to schedule a showing?</span></div>
   <div class="hp-art-src a3">Source: Austin MLS</div>
-</div></div>
-          <div class="hp-card" data-side="l" data-i="1"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><h3>Deepen every relationship</h3><p>You step in with the full context, not a cold call.</p><div class="hp-art hp-art-stack" aria-hidden="true">
-  <div class="hp-art-conv c3"><span class="hp-art-ini">B3</span><span class="hp-art-ln"><i></i><i></i></span></div>
-  <div class="hp-art-conv c2"><span class="hp-art-ini">B2</span><span class="hp-art-ln"><i></i><i></i></span></div>
-  <div class="hp-art-conv c1"><span class="hp-art-ini">B1</span><span class="hp-art-ln"><i></i><i></i></span><span class="hp-art-pill">Ready to tour</span></div>
+</div><a class="hp-card-link" href="#listing-agent">See Property Expert <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
+          <div class="hp-card" data-side="l" data-i="1"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9z"/><path d="m9 14 2 2 4-4"/></svg><div class="hp-card-top"><h3>Transaction coordinator</h3><span class="hp-card-tag soon">Coming soon</span></div><p>Keeps every deadline and document moving from contract to closing.</p><div class="hp-art hp-art-list" aria-hidden="true">
+  <div class="hp-art-row r1"><span class="hp-art-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>Earnest money received</span></div>
+  <div class="hp-art-row r2"><span class="hp-art-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>Inspection scheduled</span></div>
+  <div class="hp-art-row r3"><span class="hp-art-ck pend"></span><span>Title ordered</span></div>
+  <div class="hp-art-note">Closing in 18 days</div>
 </div></div>
           </div>
           <div class="hp-hub" id="hp-hub"><img class="hp-hub-me" src="uploads/home-realtor.jpg" alt="A realtor, the person at the center of every conversation" width="500" height="500" loading="lazy"><span class="hp-hub-ai" role="img" aria-label="ReallyWise AI assistant"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#012976"/><circle class="d d1" cx="199" cy="338" r="56"/><circle class="d d2" cx="365" cy="338" r="56"/><circle class="d d3" cx="531" cy="338" r="56"/></g></svg></span><span class="hp-hub-cap">You, with your AI team</span></div>
           <div class="hp-col hp-col-r">
-          <div class="hp-card" data-side="r" data-i="2"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2"/></svg><h3>Multiply your capacity</h3><p>You can help more buyers without working more hours.</p><div class="hp-art hp-art-list" aria-hidden="true">
-  <div class="hp-art-row r1"><span class="hp-art-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>HOA fees answered</span></div>
-  <div class="hp-art-row r2"><span class="hp-art-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>Inspection summary sent</span></div>
-  <div class="hp-art-row r3"><span class="hp-art-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>Flood zone checked</span></div>
-  <div class="hp-art-note">Done while you were at a showing</div>
+          <div class="hp-card" data-side="r" data-i="2"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l8 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M18 9a4 4 0 0 1 0 6"/></svg><div class="hp-card-top"><h3>Marketing coordinator</h3><span class="hp-card-tag soon">Coming soon</span></div><p>Turns each new listing into posts, flyers and emails in your voice.</p><div class="hp-art hp-art-listing" aria-hidden="true">
+  <div class="hp-art-ph"><img src="uploads/property-148-maple-main.jpg" alt="" loading="lazy"><span class="hp-art-tag">Just listed</span></div>
+  <div class="hp-art-lb"><b>$849,000</b><i class="hp-art-chip r1">Post</i><i class="hp-art-chip r2">Flyer</i><i class="hp-art-chip r3">Email</i></div>
 </div></div>
-          <div class="hp-card" data-side="r" data-i="3"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/><path d="m9 15 2 2 4-4"/></svg><h3>Close more deals</h3><p>You see who is ready and what worried them, so you know when to call.</p><div class="hp-art hp-art-listing" aria-hidden="true">
-  <div class="hp-art-ph"><img src="uploads/property-148-maple-main.jpg" alt="" loading="lazy"><span class="hp-art-ck big"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span></div>
-  <div class="hp-art-lb"><b>$849,000</b><span>3 bd · 2 ba · 1,850 sqft</span><em>4% under recent comps</em></div>
-</div></div>
+          <div class="hp-card" data-side="r" data-i="3"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg><div class="hp-card-top"><h3>Administrative assistant</h3><span class="hp-card-tag">Home Concierge</span></div><p>Books tours, follows up and keeps every buyer's notes in one place, with you in the loop.</p><div class="hp-art hp-art-cal" aria-hidden="true">
+  <div class="hp-art-calhead">Tours this week</div>
+  <div class="hp-art-days k1"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span class="on">Sat</span><span class="on">Sun</span></div>
+  <div class="hp-art-bk k2"><time>Sat 10:00</time><div><b>1428 Maple Ave</b><small>Tour with Maya</small></div><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Booked</em></div>
+  <div class="hp-art-bk k3"><time>Sun 2:00</time><div><b>77 Oak St</b><small>Tour with Daniel</small></div><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Booked</em></div>
+</div><a class="hp-card-link" href="#buyer-agent">See Home Concierge <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
           </div>
         </div>
         <p class="hp-trust hp-rv">Every answer shows its source. We don't sell relationship data. Example conversations use sample listing data.</p>
