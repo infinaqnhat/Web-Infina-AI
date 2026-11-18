@@ -58,6 +58,7 @@ def synth_gemini():
     def words(t):   # brand written either way counts as one word
         t = re.sub(r"[^a-z0-9 ]", ' ', t.lower().replace('-', ' '))
         t = re.sub(r"\breally\s+wise\b", 'reallywise', t)
+        t = re.sub(r'\b([ap]) m\b', r'\1m', t)   # p.m. / PM
         for x, y in (('any time', 'anytime'), ('open house', 'openhouse'), ('sign ins', 'signins'), ('sign up', 'signup'), ('24 7', '247')):
             t = t.replace(x, y)
         return t.split()
@@ -95,7 +96,7 @@ def synth_gemini():
             got = words(heard(audio))
             if len(got) >= 1.7 * len(want) and got[:len(want)] == want:   # read twice: keep the first read
                 audio = first_read(audio); got = words(heard(audio))
-            ok_words = abs(len(got) - len(want)) <= 1 and len(set(want) - set(got)) <= 1
+            ok_words = len(want) - 1 <= len(got) <= len(want) and len(set(got) - set(want)) == 0 and len(set(want) - set(got)) <= 1   # no extra words
             ok_len = len(clean(audio)) / SR <= limit(len(want))
             if ok_words and ok_len: return audio
             print(f'  attempt {attempt + 1} ({model}): ' + ('too slow, ' if not ok_len else '') + f'heard: {" ".join(got)[:70]}')

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Property Expert Promo</title>
+<meta name="description" content="Promo video source for ReallyWise Property Expert, built on screenshots of the real product UI. Rendered with ../render-video.mjs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-900:#012976; --navy-700:#013A9E; --navy-500:#33599F; --navy-100:#E4E9F3;
+  --green-500:#0bb563; --green-700:#067a43; --green-100:#e2f6ec;
+  --surface:#F4F6FB; --line:#DBE1EE; --ink:#0d1a36; --ink-2:#3a4762; --muted:#6b7690;
+  --f-head:'Inter',system-ui,sans-serif; --f-body:'DM Sans',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#0b1430;overflow:hidden}
+body{font-family:var(--f-body);color:var(--ink);-webkit-font-smoothing:antialiased}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;background:var(--surface);transform-origin:0 0}
+.abs{position:absolute}
+.scene{position:absolute;inset:0;overflow:hidden;background:radial-gradient(1100px 700px at 90% 0%,#e3eaf8 0,rgba(227,234,248,0) 70%),radial-gradient(800px 600px at 0% 100%,#e6f6ee 0,rgba(230,246,238,0) 70%),var(--surface)}
+h1,h2{font-family:var(--f-head);letter-spacing:-.025em}
+
+/* hook */
+#s0{background:#071a45}
+#s0 .photo{position:absolute;inset:0;background:url(../../uploads/property-123-main.jpg) center/cover;filter:brightness(.42) saturate(.9)}
+#s0 .clock{left:0;right:0;top:250px;text-align:center;font-family:var(--f-head);font-weight:900;font-size:190px;color:#fff;letter-spacing:-.04em}
+#s0 .l1{left:0;right:0;top:500px;text-align:center;font-family:var(--f-head);font-weight:700;font-size:56px;color:#fff}
+#s0 .l2{left:0;right:0;top:600px;text-align:center;font-family:var(--f-head);font-weight:700;font-size:56px;color:#7ee2ad}
+
+/* reveal */
+#s1 .logo{left:120px;top:250px;width:520px}
+#s1 .kicker{left:124px;top:380px;font-weight:700;font-size:26px;letter-spacing:.1em;color:var(--navy-500);text-transform:uppercase}
+#s1 h1{left:120px;top:440px;width:900px;font-size:86px;line-height:1.02;font-weight:900;color:var(--navy-900)}
+#s1 h1 em{font-style:normal;color:var(--green-500)}
+#s1 .chips{left:124px;top:690px;display:flex;gap:12px}
+.chip{display:inline-flex;align-items:center;gap:9px;height:50px;padding:0 20px;border-radius:999px;background:#fff;border:1px solid var(--line);font-weight:700;font-size:20px;color:var(--navy-900);box-shadow:0 8px 20px rgba(1,41,118,.06)}
+.chip i{font-style:normal;color:var(--green-500)}
+.phone{position:absolute;width:420px;height:860px;border-radius:64px;background:#0c1222;padding:14px;box-shadow:0 40px 80px rgba(1,41,118,.3)}
+.phone .scr{width:100%;height:100%;border-radius:50px;overflow:hidden;background:#fff center top/100% auto no-repeat}
+
+/* benefit scenes */
+.copy{position:absolute;left:96px;top:236px;width:540px}
+.num{font-family:var(--f-head);font-weight:800;font-size:22px;color:var(--green-700);display:flex;align-items:center;gap:12px}
+.num::before{content:"";width:40px;height:4px;border-radius:4px;background:var(--green-500)}
+.h2{font-size:70px;line-height:1.02;font-weight:900;color:var(--navy-900);margin-top:18px}
+.h2 em{font-style:normal;color:var(--green-500)}
+.lead{font-size:25px;line-height:1.45;color:var(--ink-2);margin-top:24px}
+.frame{position:absolute;left:676px;top:150px;width:1164px;height:765px;border-radius:18px;background:#fff;border:1px solid var(--line);box-shadow:0 36px 80px rgba(1,41,118,.18);overflow:hidden}
+.frame .bar{height:38px;background:#eef1f8;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 14px}
+.frame .bar i{width:11px;height:11px;border-radius:50%;display:block}
+.frame .bar i:nth-child(1){background:#f26b5b}.frame .bar i:nth-child(2){background:#f5bf4f}.frame .bar i:nth-child(3){background:#61c554}
+.frame .bar span{margin-left:12px;font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:3px 12px;border-radius:7px}
+.vp{position:absolute;left:0;top:38px;width:1162px;height:726px;overflow:hidden}
+.shot{position:absolute;left:0;top:0;width:1162px;height:726px;background-size:100% 100%;transform-origin:0 0}
+.hl{position:absolute;border:4px solid var(--green-500);border-radius:12px;box-shadow:0 0 0 9999px rgba(7,26,69,.28);pointer-events:none}
+.callout{position:absolute;display:flex;align-items:center;gap:14px;background:#fff;border-radius:18px;padding:16px 22px;box-shadow:0 24px 50px rgba(1,41,118,.22);z-index:30;font-weight:700;font-size:22px;color:var(--navy-900);white-space:nowrap}
+.callout .ic{width:44px;height:44px;border-radius:12px;background:var(--green-500);color:#fff;display:grid;place-items:center;font-size:22px;flex-shrink:0}
+.callout small{display:block;font-size:15px;font-weight:500;color:var(--muted)}
+.demo{position:absolute;right:16px;bottom:14px;z-index:5;font-size:13px;font-weight:700;color:var(--muted);background:rgba(255,255,255,.92);border:1px dashed var(--line);border-radius:6px;padding:3px 8px}
+
+/* outro */
+#s9 .lines{left:0;right:0;top:200px;text-align:center;display:flex;flex-direction:column;gap:26px}
+#s9 h1{font-size:76px;line-height:1.15;font-weight:900;color:var(--navy-900)}
+#s9 h1 em{font-style:normal;color:var(--green-500)}
+#s9 .logo{left:50%;top:520px;width:500px;margin-left:-250px}
+#s9 .tagline{left:0;right:0;top:672px;text-align:center;font-size:28px;color:var(--ink-2)}
+#s9 .cta{left:0;right:0;top:770px;display:flex;justify-content:center}
+#s9 .cta span{display:inline-flex;align-items:center;gap:14px;height:88px;padding:0 44px;border-radius:999px;background:var(--green-500);color:#fff;font-family:var(--f-head);font-weight:800;font-size:38px;box-shadow:0 16px 36px rgba(11,181,99,.35)}
+
+#cornerLogo{position:absolute;left:96px;top:56px;width:210px;z-index:20}
+#prog{position:absolute;left:0;top:0;height:6px;background:var(--green-500);z-index:50;width:0}
+#subs{position:absolute;left:0;right:0;bottom:22px;display:flex;justify-content:center;z-index:70;pointer-events:none}
+#subs span{max-width:1760px;background:rgba(1,26,77,.9);color:#fff;font-weight:500;font-size:36px;line-height:1.3;padding:10px 24px;border-radius:12px;text-align:center}
+#hud{position:fixed;right:12px;bottom:10px;color:#8ea0c8;font:12px monospace;z-index:99}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- 0 hook -->
+  <section class="scene" id="s0" data-in="0" data-out="8.0" data-d="0.01">
+    <div class="photo" data-kb2="0,8.4,1.0,1.12"></div>
+    <div class="abs clock" data-in="0.3" data-fx="zoom" data-d="0.7">9:47 PM</div>
+    <div class="abs l1" data-in="1.4" data-fx="up">A buyer is at your yard sign with a question.</div>
+    <div class="abs l2" data-in="4.8" data-fx="up">By morning, they've moved on.</div>
+  </section>
+
+  <!-- 1 reveal -->
+  <section class="scene" id="s1" data-in="8.0" data-out="15.4">
+    <img class="abs logo" src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="8.3" data-fx="up">
+    <div class="abs kicker" data-in="8.6" data-fx="up">Property Expert</div>
+    <h1 class="abs" data-in="8.9" data-fx="up" data-d="0.7">An AI expert on every listing. <em>Working 24/7.</em></h1>
+    <div class="abs chips">
+      <span class="chip" data-in="11.6" data-fx="pop"><i>●</i>Instant answers</span>
+      <span class="chip" data-in="11.9" data-fx="pop"><i>●</i>Booked viewings</span>
+      <span class="chip" data-in="12.2" data-fx="pop"><i>●</i>Qualified leads</span>
+    </div>
+    <div class="phone" style="left:1330px;top:110px" data-in="8.6" data-fx="up" data-d="0.8"><div class="scr" style="background-image:url(shots/phone-start.jpg)"></div></div>
+  </section>
+
+  <!-- 2 instant answers -->
+  <section class="scene" id="s2" data-in="15.4" data-out="25.4">
+    <div class="copy">
+      <div class="num" data-in="15.7" data-fx="left">Answers every buyer</div>
+      <h2 class="h2" data-in="15.9" data-fx="up">Instant answers. <em>Day or night.</em></h2>
+      <p class="lead" data-in="16.4" data-fx="up">Straight from your disclosures, inspection report and HOA docs, with the source on every answer.</p>
+    </div>
+    <div class="frame" data-in="15.6" data-fx="zoom" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>reallywise.ai/l/123-main</span></div>
+      <div class="vp"><div class="shot" data-shot="buyer-issues" data-kb="16.2,22.5,1,1.45,answer">
+        <div class="hl" data-r="buyer-issues|answer|6" data-in="19.0" data-fx="fade"></div>
+      </div></div>
+    </div>
+    <div class="callout" style="left:610px;top:820px" data-in="17.4" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><div>Online, replies instantly<small>Every buyer gets a private chat</small></div></div>
+    <div class="callout" style="left:1430px;top:110px" data-in="20.2" data-fx="pop"><span class="ic">✓</span><div>Every answer cites its source<small>Inspection report · Seller disclosure</small></div></div>
+  </section>
+
+  <!-- 3 booked viewings -->
+  <section class="scene" id="s3" data-in="25.4" data-out="34.6">
+    <div class="copy">
+      <div class="num" data-in="25.7" data-fx="left">Books the viewing</div>
+      <h2 class="h2" data-in="25.9" data-fx="up">Questions become <em>booked viewings.</em></h2>
+      <p class="lead" data-in="26.4" data-fx="up">When a buyer is ready, it books a private showing and sends you the lead on the spot.</p>
+    </div>
+    <div class="frame" data-in="25.6" data-fx="zoom" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>reallywise.ai/l/123-main</span></div>
+      <div class="vp">
+        <div class="shot" data-shot="buyer-booked" data-kb="26.0,30.0,1,1.4,Request a private showing" data-out="30.4" data-od="0.4">
+          <div class="hl" data-r="buyer-booked|@390,282,428,114" data-in="27.4" data-fx="fade"></div>
+        </div>
+        <div class="shot" data-shot="buyer-lead-toast" data-in="30.4" data-fx="fade" data-kb="30.4,33.4,1,1.7,New lead: ready to tour">
+          <div class="hl" data-r="buyer-lead-toast|New lead: ready to tour|toast" data-in="31.2" data-fx="fade"></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout" style="left:1380px;top:830px" data-in="31.4" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg></span><div>New lead: ready to tour<small>Straight to your phone and inbox</small></div></div>
+  </section>
+
+  <!-- 4 who's serious -->
+  <section class="scene" id="s4" data-in="34.6" data-out="43.6">
+    <div class="copy">
+      <div class="num" data-in="34.9" data-fx="left">Qualifies every lead</div>
+      <h2 class="h2" data-in="35.1" data-fx="up">Know who's <em>serious.</em></h2>
+      <p class="lead" data-in="35.6" data-fx="up">Every chat lands in one inbox, with how close each buyer is and what they want.</p>
+    </div>
+    <div class="frame" data-in="34.8" data-fx="zoom" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/chats</span></div>
+      <div class="vp"><div class="shot" data-shot="admin-chat" data-kb="35.4,41.0,1,1.5,How close they are">
+        <div class="hl" data-r="admin-chat|How close they are|panel" data-in="37.6" data-fx="fade"></div>
+      </div></div>
+    </div>
+    <div class="callout" style="left:610px;top:830px" data-in="38.6" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1 6.2L12 17.4 6.5 20.3l1-6.2L3 9.7l6.2-.9z"/></svg></span><div>Ready to tour · Wants to talk · Exploring<small>The ones who need you come first</small></div></div>
+  </section>
+
+  <!-- 5 live in a minute -->
+  <section class="scene" id="s5" data-in="43.6" data-out="54.6">
+    <div class="copy">
+      <div class="num" data-in="43.9" data-fx="left">Set up in a minute</div>
+      <h2 class="h2" data-in="44.1" data-fx="up">Paste a link. <em>You're live.</em></h2>
+      <p class="lead" data-in="44.6" data-fx="up">No setup, no upload. Get a QR code for your yard sign, flyers and open house.</p>
+    </div>
+    <div class="frame" data-in="43.8" data-fx="zoom" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>reallywise.ai</span></div>
+      <div class="vp">
+        <div class="shot" data-shot="landing-paste" data-kb="44.2,48.0,1,1.35,btn" data-out="48.4" data-od="0.4"></div>
+        <div class="shot" data-shot="landing-live" data-in="48.4" data-fx="fade" data-kb="48.4,52.6,1.35,1.5,Your Property Expert is live.">
+          <div class="hl" data-r="landing-live|Your Property Expert is live.|live" data-in="49.6" data-fx="fade"></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout" style="left:610px;top:830px" data-in="46.0" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></span><div>Under a minute<small>From listing link to live page</small></div></div>
+  </section>
+
+  <!-- 6 insights -->
+  <section class="scene" id="s6" data-in="54.6" data-out="62.6">
+    <div class="copy">
+      <div class="num" data-in="54.9" data-fx="left">Measures every channel</div>
+      <h2 class="h2" data-in="55.1" data-fx="up">See what <em>brings buyers.</em></h2>
+      <p class="lead" data-in="55.6" data-fx="up">Every scan and click is tracked, from yard sign to Instagram.</p>
+    </div>
+    <div class="frame" data-in="54.8" data-fx="zoom" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/insights</span></div>
+      <div class="vp"><div class="shot" data-shot="dash-insights" data-kb="55.2,60.6,1,1.4,Chatted with the AI">
+        <div class="hl" data-r="dash-insights|Chatted with the AI|kpis" data-in="57.2" data-fx="fade"></div>
+      </div></div>
+      <span class="demo">Demo account</span>
+    </div>
+  </section>
+
+  <!-- 7 sellers -->
+  <section class="scene" id="s7" data-in="62.6" data-out="71.6">
+    <div class="copy">
+      <div class="num" data-in="62.9" data-fx="left">Wins listings</div>
+      <h2 class="h2" data-in="63.1" data-fx="up">Win your <em>next listing.</em></h2>
+      <p class="lead" data-in="63.6" data-fx="up">Weekly seller reports show real buyer interest. Counts only, never buyer names.</p>
+    </div>
+    <div class="frame" data-in="62.8" data-fx="zoom" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/listings/1482-elm-ct/report</span></div>
+      <div class="vp"><div class="shot" data-shot="dash-seller-report" data-kb="63.2,69.4,1,1.45,people viewed the listing page">
+        <div class="hl" data-r="dash-seller-report|@510,360,646,244" data-in="65.4" data-fx="fade"></div>
+      </div></div>
+      <span class="demo">Demo account</span>
+    </div>
+  </section>
+
+  <!-- 8 control -->
+  <section class="scene" id="s8" data-in="71.6" data-out="81.0">
+    <div class="copy">
+      <div class="num" data-in="71.9" data-fx="left">You stay in control</div>
+      <h2 class="h2" data-in="72.1" data-fx="up">Your facts. <em>Your call.</em></h2>
+      <p class="lead" data-in="72.6" data-fx="up">It answers only from facts you approve, each linked to its source. Step in any time.</p>
+    </div>
+    <div class="frame" data-in="71.8" data-fx="zoom" data-d="0.7">
+      <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/listings/1482-elm-ct/knowledge</span></div>
+      <div class="vp"><div class="shot" data-shot="dash-knowledge" data-kb="72.2,78.6,1,1.5,TDS, p. 3">
+        <div class="hl" data-r="dash-knowledge|TDS, p. 3|fact" data-in="74.6" data-fx="fade"></div>
+      </div></div>
+    </div>
+    <div class="callout" style="left:610px;top:830px" data-in="75.6" data-fx="pop"><span class="ic">✓</span><div>Approve · Edit · Retract<small>Nothing reaches buyers without you</small></div></div>
+  </section>
+
+  <!-- 9 outro -->
+  <section class="scene" id="s9" data-in="81.0" data-d="0.6">
+    <div class="abs lines">
+      <h1 data-in="81.4" data-fx="up">A scan starts the conversation.</h1>
+      <h1 data-in="83.8" data-fx="up"><em>ReallyWise turns it into a booked viewing.</em></h1>
+    </div>
+    <img class="abs logo" src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="85.8" data-fx="up">
+    <div class="abs tagline" data-in="86.2" data-fx="up">Property Expert, the 24/7 AI expert for every listing</div>
+    <div class="abs cta" data-in="87.0" data-fx="pop" data-d="0.6"><span>Try it free at ReallyWise.ai<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+  </section>
+
+  <img id="cornerLogo" src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise" data-in="15.4" data-out="80.6" data-fx="fade">
+  <div id="prog"></div>
+  <div id="subs"><span></span></div>
+</div>
+<div id="hud"></div>
+<audio id="vo" src="voiceover.m4a" preload="auto"></audio>
+<script src="subtitles.js" onerror="void 0"></script>
+<script src="shots/regions.js"></script>
+<script>
+// screenshots, highlight boxes and the slow zoom are laid out here, before the player reads the timeline
+const PAGE_W = 1440, PAGE_H = 900, VW = 1162, VH = 726;
+document.querySelectorAll('.shot').forEach(s => { s.style.backgroundImage = `url(shots/${s.dataset.shot}.jpg)`; });
+function box(shot, key) { const r = (window.REGIONS[shot] || {})[key]; if (!r) console.error('no region', shot, key); return r || [PAGE_W / 2, PAGE_H / 2, 0, 0]; }
+// highlight padding per kind: a number pads the text box; named kinds grow it to the surrounding card
+const GROW = { toast: [16, 14, 230, 92], panel: [16, 12, 60, 200], live: [70, 18, 120, 150], kpis: [-300, 24, 820, 120], stats: [22, 20, 300, 110], fact: [-430, 18, 520, 110] };
+document.querySelectorAll('.hl').forEach(h => {
+  const [shot, key, pad] = h.dataset.r.split('|');
+  let [x, y, w, hh] = key[0] === '@' ? key.slice(1).split(',').map(Number) : box(shot, key);   // @x,y,w,h: an exact box
+  if (key[0] === '@') {}
+  else if (GROW[pad]) { const [l, t, ww, hh2] = GROW[pad]; x -= Math.max(0, l) ; if (l < 0) x += l; y -= t; w += ww; hh += hh2; }
+  else { const p = +pad || 8; x -= p; y -= p; w += 2 * p; hh += 2 * p; }
+  y = Math.max(2, y);
+  Object.assign(h.style, { left: x / PAGE_W * 100 + '%', top: y / PAGE_H * 100 + '%', width: w / PAGE_W * 100 + '%', height: hh / PAGE_H * 100 + '%' });
+});
+const KB = [...document.querySelectorAll('[data-kb]')].map(el => {
+  const [t0, t1, s0, s1, ...k] = el.dataset.kb.split(','); const [x, y, w, h] = box(el.dataset.shot, k.join(','));
+  return { el, t0: +t0, t1: +t1, s0: +s0, s1: +s1, fx: (x + w / 2) / PAGE_W, fy: (y + h / 2) / PAGE_H };
+});
+const KB2 = [...document.querySelectorAll('[data-kb2]')].map(el => { const [t0, t1, s0, s1] = el.dataset.kb2.split(',').map(Number); return { el, t0, t1, s0, s1 }; });
+const ease = p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+const cl = v => Math.min(1, Math.max(0, v));
+window.VIDEO = {
+  duration: 93,
+  hideSubsAfter: 81.0,
+  onSeek(t) {
+    for (const k of KB) {
+      const p = ease(cl((t - k.t0) / (k.t1 - k.t0)));
+      const s = k.s0 + (k.s1 - k.s0) * p;
+      const fx = 0.5 + (k.fx - 0.5) * p, fy = 0.5 + (k.fy - 0.5) * p;   // drift from the middle to the focus
+      let tx = VW / 2 - fx * VW * s, ty = VH / 2 - fy * VH * s;
+      tx = Math.min(0, Math.max(VW - VW * s, tx)); ty = Math.min(0, Math.max(VH - VH * s, ty));
+      k.el.style.transform = `translate(${tx}px,${ty}px) scale(${s})`;
+    }
+    for (const k of KB2) k.el.style.transform = `scale(${k.s0 + (k.s1 - k.s0) * cl((t - k.t0) / (k.t1 - k.t0))})`;
+    document.getElementById('prog').style.width = cl(t / 93) * 100 + '%';
+  }
+};
+</script>
+<script src="../video-engine.js"></script>
+</body>
+</html>
