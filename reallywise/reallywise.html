@@ -794,13 +794,15 @@
     .hp-values .hp-pad { gap:clamp(36px,4vw,56px); }
     .hp-values .hp-kicker { color:var(--tint); }
     .hp-values .hp-h2 { max-width:900px; font-size:clamp(32px,4.6vw,64px); line-height:1.05; }
-    .hp-vals { margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:32px; }
-    .hp-vals li { display:flex; flex-direction:column; gap:12px; padding-top:24px; border-top:2px solid var(--navy-500); }
+    .hp-vals { margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px 28px; }
+    .hp-vals li { display:grid; grid-template-columns:auto minmax(0,1fr); align-items:center; align-content:start; column-gap:12px; row-gap:12px; padding-top:24px; border-top:2px solid var(--navy-500); }
     .hp-vals svg { width:28px; height:28px; stroke:#fff; fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
-    .hp-vals h3 { margin:0; font-family:var(--font-head); font-weight:700; font-size:22px; line-height:28px; color:#fff; }
-    .hp-vals p { margin:0; font-size:16px; line-height:24px; color:var(--on-navy); }
-    @media (max-width:1000px){ .hp-vals { grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px 28px; } }
-    @media (max-width:560px){ .hp-vals { grid-template-columns:minmax(0,1fr); gap:28px; } }
+    .hp-vals h3 { margin:0; white-space:nowrap; font-family:var(--font-head); font-weight:700; font-size:22px; line-height:28px; color:#fff; }
+    .hp-vals p { grid-column:1 / -1; margin:0; font-size:16px; line-height:24px; color:var(--on-navy); }
+    /* four columns when the column is wide enough for the longest title (Deepen every relationship) on one line next to its icon */
+    @media (min-width:1280px){ .hp-vals { grid-template-columns:repeat(4,minmax(0,1fr)); gap:32px; } .hp-vals li { column-gap:10px; } .hp-vals svg { width:24px; height:24px; } .hp-vals h3 { font-size:18px; line-height:24px; } }
+    @media (max-width:700px){ .hp-vals { grid-template-columns:minmax(0,1fr); gap:28px; } }
+    @media (max-width:420px){ .hp-vals svg { width:24px; height:24px; } .hp-vals h3 { font-size:19px; } }
 
     /* Closing band */
     .hp-close { background:#fff; text-align:center; }
