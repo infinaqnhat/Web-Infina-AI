@@ -1,0 +1,31 @@
+import os,sys
+sys.path.insert(0,os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from common import *
+N='#1b2a4a'
+def spons(): return '<div style="font-size:14px;color:#667085;margin-bottom:6px">Sponsored</div>'
+a1=('<div class="paper sh" style="left:70px;top:90px;width:700px;height:330px;border-radius:12px;padding:26px 32px"><div style="font-size:15px;color:#667085;font-weight:700;margin-bottom:10px"><span style="border:1px solid #98a2b3;border-radius:4px;padding:1px 6px;margin-right:8px">Ad</span>example.com/home-value</div>'
+ '<div style="font-size:30px;color:#1a56db;font-weight:600;line-height:1.25">What could your home sell for today?</div><div style="font-size:21px;color:#1d2433;margin-top:12px;line-height:1.45">Free home value review. Request it in two minutes.</div><div style="margin-top:20px"><span class="chip" style="background:#e8f0fe;color:#1a56db;border-radius:8px">Request a review</span></div><div style="margin-top:22px;font-size:18px;color:#1a56db;border-top:1px solid #e4e7ec;padding-top:14px">What homes like yours sold for &middot; How we price &middot; Contact</div></div>')
+def social(x,y,img,head,body,cta):
+    return ('<div class="paper sh" style="left:%dpx;top:%dpx;width:700px;height:330px;border-radius:12px"><div class="photo" style="position:absolute;left:0;top:0;width:290px;height:330px;background-image:url(%s.jpg)"></div>'%(x,y,img)
+     +'<div style="position:absolute;left:316px;right:24px;top:22px">'+spons()+'<div style="font-size:26px;font-weight:800;color:'+N+';line-height:1.25">'+head+'</div><div style="font-size:19px;color:#475467;margin-top:10px;line-height:1.45">'+body+'</div><div style="margin-top:16px"><span class="chip" style="background:#e0613a;color:#fff;border-radius:8px">'+cta+'</span></div></div></div>')
+a2=social(830,90,'ph_living','Buying your first home? Start with the real costs.','Free guide to closing costs and down payment options.','Download')
+a3=social(70,470,'ph_house','Just sold on Maple Street in 12 days','See what nearby homes are selling for. Message us for a free report.','Send message')
+a4=social(830,470,'ph_condo','Open house this Saturday, 1 to 3 p.m.','Three bedrooms, fenced yard. Get directions and details.','Get directions')
+lab=lambda x,y,t:'<div class="abs" style="left:%dpx;top:%dpx;font-size:15px;font-weight:800;letter-spacing:.12em;color:#52627f">%s</div>'%(x,y,t)
+adv_examples=page(lab(70,66,'WIN SELLERS (SEARCH AD)')+lab(830,66,'WIN FIRST-TIME BUYERS (SOCIAL AD)')+a1+a2+lab(70,446,'SHOW LOCAL RESULTS (SOCIAL AD)')+lab(830,446,'PROMOTE A LISTING (SOCIAL AD)')+a3+a4+'<div class="abs" style="left:70px;top:830px;font-size:19px;color:#475467">One audience, one offer, one action. No claims you cannot prove and nothing about who a home is &ldquo;right for&rdquo;.</div>','Four ads you can adapt',note='Sample ads. Replace area and facts with your own.')
+# metrics
+def node(x,w,big,small,sub,col):
+    return '<div class="paper sh" style="left:%dpx;top:210px;width:%dpx;height:300px;border-radius:14px"><div style="background:%s;color:#fff;padding:14px 20px;font-size:17px;font-weight:800;letter-spacing:.08em">%s</div><div style="padding:22px 20px"><div style="font-size:48px;font-weight:800;color:%s">%s</div><div style="font-size:19px;color:#475467;margin-top:8px;line-height:1.4">%s</div></div></div>'%(x,w,col,small,N,big,sub)
+n=node(70,270,'$900','AD SPEND','Over 30 days','#475467')+node(380,270,'30','LEADS','Cost per lead: $30','#14808a')+node(690,270,'6','APPOINTMENTS','Lead to appointment: 20%','#1b2a4a')+node(1000,270,'2','SIGNED CLIENTS','Appointment to client: 33%','#7c5cc4')+node(1310,220,'1','CLOSING','Cost per closing: $900','#e0613a')
+arrows=''.join('<div class="abs" style="left:%dpx;top:340px;font-size:36px;color:#98a2b3;font-weight:800">&rarr;</div>'%x for x in (342,652,962,1272))
+adv_metrics=page(n+arrows+'<div class="abs" style="left:70px;top:570px;width:1460px;font-size:25px;font-weight:600;color:'+N+';line-height:1.5">A $30 lead sounds cheap. A $900 closing is the number that tells you whether the channel is worth keeping.</div><div class="abs" style="left:70px;top:680px;width:1460px;font-size:21px;color:#475467;line-height:1.5">Four numbers: cost per lead, lead-to-appointment rate, appointment-to-client rate and cost per closing. Mark closings later, after the sale, so each ad gets credit when it earns it.</div>','Four numbers to track for any ad',note='Sample numbers, not real results.')
+# test
+S=[('1','Pick one offer','A home value review for sellers or a buyer guide for first-time buyers. Test one at a time.'),('2','Start with a small budget','An amount you can afford to lose over 30 days. Keep it steady rather than changing it daily.'),('3','Define success first','For example: 20 leads, 8 conversations, 2 appointments.'),('4','Track the source','Tag every lead with its ad and campaign, and mark closings later.'),('5','Review at 30 and 90 days','Keep what produced appointments at a cost you can sustain. Change one thing at a time.')]
+c=''
+for i,(k,t,d) in enumerate(S):
+    x=60+i*300
+    c+='<div class="paper sh" style="left:%dpx;top:170px;width:280px;height:330px;border-radius:14px"><div class="num" style="left:22px;top:22px;width:42px;height:42px;font-size:21px">%s</div><div style="position:absolute;left:22px;right:22px;top:88px"><div style="font-size:26px;font-weight:800;color:%s;line-height:1.2">%s</div><div style="font-size:20px;color:#475467;margin-top:12px;line-height:1.45">%s</div></div></div>'%(x,k,N,t,d)
+bar='<div class="abs" style="left:60px;top:560px;width:1480px;height:12px;background:#d6dce8;border-radius:6px"></div><div class="abs" style="left:60px;top:560px;width:493px;height:12px;background:#14808a;border-radius:6px"></div><div class="abs" style="left:60px;top:584px;font-size:18px;font-weight:700;color:#14808a">Day 1</div><div class="abs" style="left:520px;top:584px;font-size:18px;font-weight:700;color:#14808a">Day 30: first review</div><div class="abs" style="left:1450px;top:584px;font-size:18px;font-weight:700;color:#667085">Day 90</div>'
+adv_test=page(c+bar,'Test one offer in 30 days',note='')
+SC=dict(adv_examples=adv_examples,adv_metrics=adv_metrics,adv_test=adv_test)
+if __name__=='__main__': render(sel(sys.argv,SC))

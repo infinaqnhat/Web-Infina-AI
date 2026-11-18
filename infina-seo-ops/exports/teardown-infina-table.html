@@ -1,0 +1,2388 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>teardown-infina-table</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--ifn-primary: #0055FF; 
+--ifn-brand-dark: #0041CC;
+--ifn-ink: #1A1A1A; 
+--ifn-fg-2: #555555; 
+--ifn-muted: #6C6C6C; 
+--ifn-border: #F1F3F5; 
+--ifn-border-str: #E0E0E0; 
+--ifn-surface: #F5F6F8; 
+--ifn-blue-bg: #E2EDFF; 
+--ifn-blue-tint: #EDF2FF; 
+--ifn-blue-50: #E6EEFF;
+--ifn-success: #2ECC71;
+--ifn-warning: #FFC107;
+--ifn-error: #F44336;
+--ifn-footer-label: "Confidential"; 
+--ifn-font: 'Be Vietnam Pro', 'Nunito', -apple-system, sans-serif;
+--ifn-accent: 'Inter Tight', 'Be Vietnam Pro', sans-serif; 
+--ifn-label: 'Manrope', 'Be Vietnam Pro', sans-serif; 
+}
+
+@page {
+size: letter; 
+margin: 16mm 12.7mm 12.7mm 12.7mm; 
+@top-left { content: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgdmlld0JveD0iMCAwIDEzMzMuMzMzMyA2MTIuNTg4MDEiCiAgIGhlaWdodD0iNDQiCiAgIHdpZHRoPSI5NiIKICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgaWQ9InN2ZzIiCiAgIHZlcnNpb249IjEuMSI+PG1ldGFkYXRhCiAgICAgaWQ9Im1ldGFkYXRhOCI+PHJkZjpSREY+PGNjOldvcmsKICAgICAgICAgcmRmOmFib3V0PSIiPjxkYzpmb3JtYXQ+aW1hZ2Uvc3ZnK3htbDwvZGM6Zm9ybWF0PjxkYzp0eXBlCiAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIgLz48L2NjOldvcms+PC9yZGY6UkRGPjwvbWV0YWRhdGE+PGRlZnMKICAgICBpZD0iZGVmczYiPjxjbGlwUGF0aAogICAgICAgaWQ9ImNsaXBQYXRoMTgiCiAgICAgICBjbGlwUGF0aFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGgKICAgICAgICAgaWQ9InBhdGgxNiIKICAgICAgICAgZD0iTSAwLDQ1OS40NDEgSCAxMDAwIFYgMCBIIDAgWiIgLz48L2NsaXBQYXRoPjxsaW5lYXJHcmFkaWVudAogICAgICAgaWQ9ImxpbmVhckdyYWRpZW50NDQiCiAgICAgICBzcHJlYWRNZXRob2Q9InBhZCIKICAgICAgIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoMTEzLjA0ODE2LDExMy4wNDgxNiwxMTMuMDQ4MTYsLTExMy4wNDgxNiwxNjYuMDUwOTYsMTcyLjIzMzk1KSIKICAgICAgIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIgogICAgICAgeTI9IjAiCiAgICAgICB4Mj0iMSIKICAgICAgIHkxPSIwIgogICAgICAgeDE9IjAiPjxzdG9wCiAgICAgICAgIGlkPSJzdG9wMzYiCiAgICAgICAgIG9mZnNldD0iMCIKICAgICAgICAgc3R5bGU9InN0b3Atb3BhY2l0eToxO3N0b3AtY29sb3I6IzAwNmRmZiIgLz48c3RvcAogICAgICAgICBpZD0ic3RvcDM4IgogICAgICAgICBvZmZzZXQ9IjAuMTEzNjUxIgogICAgICAgICBzdHlsZT0ic3RvcC1vcGFjaXR5OjE7c3RvcC1jb2xvcjojMDA2ZGZmIiAvPjxzdG9wCiAgICAgICAgIGlkPSJzdG9wNDAiCiAgICAgICAgIG9mZnNldD0iMC45NDkyODUiCiAgICAgICAgIHN0eWxlPSJzdG9wLW9wYWNpdHk6MTtzdG9wLWNvbG9yOiMwMGM2ZmYiIC8+PHN0b3AKICAgICAgICAgaWQ9InN0b3A0MiIKICAgICAgICAgb2Zmc2V0PSIxIgogICAgICAgICBzdHlsZT0ic3RvcC1vcGFjaXR5OjE7c3RvcC1jb2xvcjojMDBjNmZmIiAvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoCiAgICAgICBpZD0iY2xpcFBhdGg1NCIKICAgICAgIGNsaXBQYXRoVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aAogICAgICAgICBpZD0icGF0aDUyIgogICAgICAgICBkPSJNIDAsNDU5LjQ0MSBIIDEwMDAgViAwIEggMCBaIiAvPjwvY2xpcFBhdGg+PC9kZWZzPjxnCiAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMS4zMzMzMzMzLDAsMCwtMS4zMzMzMzMzLDAsNjEyLjU4OCkiCiAgICAgaWQ9ImcxMCI+PGcKICAgICAgIGlkPSJnMTIiPjxnCiAgICAgICAgIGNsaXAtcGF0aD0idXJsKCNjbGlwUGF0aDE4KSIKICAgICAgICAgaWQ9ImcxNCI+PGcKICAgICAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNjIuNzg1MiwxOTQuODc1NSkiCiAgICAgICAgICAgaWQ9ImcyMCI+PHBhdGgKICAgICAgICAgICAgIGlkPSJwYXRoMjIiCiAgICAgICAgICAgICBzdHlsZT0iZmlsbDojMjYzMzRjO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICAgICAgZD0ibSAwLDAgLTE3LjQ5LDU2Ljg4NSBjIC0wLjE0LDAuNDY3IC0wLjI4MSwwLjkzMiAtMC40MjksMS4zOTUgbCAtMC4xNzQsMC41NjYgLTAuMDA5LC0wLjAyNiBjIC05LjUwOSwyOC44NDkgLTM2LjY2NCw0OS42NzcgLTY4LjcsNDkuNjc3IC0yNS4yMDEsMCAtNDcuMzkyLC0xMi44ODIgLTYwLjM0NCwtMzIuNDE5IGwgMTAuNTAyLC0xMC41MDMgYyAyLjI0NiwzLjgwNyA0LjkyLDcuMzM5IDcuOTUyLDEwLjUyNCBsIDEuOTYsMS45NiBjIDAuNTkyLDAuNTYxIDEuMTk0LDEuMTEyIDEuODE2LDEuNjUzIDEwLjE3Nyw4LjkyMSAyMy41MTgsMTQuMzIxIDM4LjExNCwxNC4zMjEgMzEuOTU5LDAgNTcuODY1LC0yNS45MDYgNTcuODY1LC01Ny44NjUgMCwtMzEuOTU5IC0yNS45MDYsLTU3Ljg2NCAtNTcuODY1LC01Ny44NjQgLTIxLjIyLDAgLTM5Ljc3NywxMS40MjIgLTQ5Ljg0MiwyOC40NTcgbCAtMTAuNTAyLC0xMC41MDMgYyAxMi45NTIsLTE5LjU0NyAzNS4xNDMsLTMyLjQyOCA2MC4zNDQsLTMyLjQyOCBoIDcyLjMzOSBWIDAgWiIgLz48L2c+PC9nPjwvZz48ZwogICAgICAgaWQ9ImcyNCI+PGcKICAgICAgICAgaWQ9ImcyNiI+PGcKICAgICAgICAgICBpZD0iZzMyIj48ZwogICAgICAgICAgICAgaWQ9ImczNCI+PHBhdGgKICAgICAgICAgICAgICAgaWQ9InBhdGg0NiIKICAgICAgICAgICAgICAgc3R5bGU9ImZpbGw6dXJsKCNsaW5lYXJHcmFkaWVudDQ0KTtzdHJva2U6bm9uZSIKICAgICAgICAgICAgICAgZD0ibSAyNDUuNjM5LDI2MS42MDMgLTIwLjc3NCwtMjAuNzc1IC0yMC43NzYsMjAuNzc1IGMgLTE2Ljg3MiwxNi44NzIgLTQ0LjIzNywxNi44NzIgLTYxLjExLDAgdiAwIGMgLTE2Ljg4MywtMTYuODcyIC0xNi44ODMsLTQ0LjIzOSAwLC02MS4xMTEgdiAwIGMgMTYuODczLC0xNi44ODMgNDQuMjM4LC0xNi44ODMgNjEuMTEsMCB2IDAgbCAyMC43NzYsMjAuNzc1IDIwLjc3NCwtMjAuNzc1IGMgMTYuODczLC0xNi44ODMgNDQuMjM4LC0xNi44ODMgNjEuMTExLDAgdiAwIGMgMTYuODczLDE2Ljg3MiAxNi44NzMsNDQuMjM5IDAsNjEuMTExIHYgMCBjIC04LjQzNiw4LjQzNiAtMTkuNDk2LDEyLjY1NCAtMzAuNTU1LDEyLjY1NCB2IDAgYyAtMTEuMDYsMCAtMjIuMTIsLTQuMjE4IC0zMC41NTYsLTEyLjY1NCBtIDkuNzgxLC01MS4zMzEgLTIwLjc3NSwyMC43NzUgMjAuNzc1LDIwLjc3NSBjIDExLjQ3NiwxMS40NjYgMzAuMDczLDExLjQ2NiA0MS41NDksMCB2IDAgYyAxMS40NzYsLTExLjQ3NSAxMS40NzYsLTMwLjA3NCAwLC00MS41NSB2IDAgYyAtNS43MzgsLTUuNzM4IC0xMy4yNTYsLTguNjA3IC0yMC43NzQsLTguNjA3IHYgMCBjIC03LjUxOSwwIC0xNS4wMzcsMi44NjkgLTIwLjc3NSw4LjYwNyBtIC0xMDIuNjYsMCBjIC0xMS40NzYsMTEuNDc2IC0xMS40NzYsMzAuMDc1IDAsNDEuNTUgdiAwIGMgMTEuNDc2LDExLjQ2NiAzMC4wNzMsMTEuNDY2IDQxLjU0OSwwIHYgMCBsIDIwLjc3NSwtMjAuNzc1IC0yMC43NzUsLTIwLjc3NSBjIC01LjczOCwtNS43MzggLTEzLjI1NiwtOC42MDcgLTIwLjc3NSwtOC42MDcgdiAwIGMgLTcuNTE4LDAgLTE1LjAzNiwyLjg2OSAtMjAuNzc0LDguNjA3IiAvPjwvZz48L2c+PC9nPjwvZz48ZwogICAgICAgaWQ9Imc0OCI+PGcKICAgICAgICAgY2xpcC1wYXRoPSJ1cmwoI2NsaXBQYXRoNTQpIgogICAgICAgICBpZD0iZzUwIj48cGF0aAogICAgICAgICAgIGlkPSJwYXRoNTYiCiAgICAgICAgICAgc3R5bGU9ImZpbGw6IzI2MzM0YztmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgICBkPSJtIDM5OS44OTgsMjYwLjE1NSBoIDE3LjY1NCB2IC0xMDEuNDUgaCAtMTcuNjU0IHogbSA4LjkyOCwxOC40NjIgYyAtMy4zODIsMCAtNi4yMjIsMS4xNDkgLTguNTIsMy40NSAtMi4zMDIsMi4yOTkgLTMuNDUxLDUuMDczIC0zLjQ1MSw4LjMyIDAsMy4yNDcgMS4xNDksNi4wNTEgMy40NTEsOC40MjEgMi4yOTgsMi4zNjQgNS4xMzgsMy41NDkgOC41MiwzLjU0OSAzLjI0NywwIDYuMDE4LC0xLjE4NSA4LjMxOSwtMy41NDkgMi4yOTgsLTIuMzcgMy40NTEsLTUuMTc0IDMuNDUxLC04LjQyMSAwLC0zLjI0NyAtMS4xNTMsLTYuMDIxIC0zLjQ1MSwtOC4zMiAtMi4zMDEsLTIuMzAxIC01LjA3MiwtMy40NSAtOC4zMTksLTMuNDUiIC8+PGcKICAgICAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0OTEuOTcyNywyNjIuNzkyKSIKICAgICAgICAgICBpZD0iZzU4Ij48cGF0aAogICAgICAgICAgICAgaWQ9InBhdGg2MCIKICAgICAgICAgICAgIHN0eWxlPSJmaWxsOiMyNjMzNGM7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgICAgICBkPSJtIDAsMCBjIDExLjg5OCwwIDIxLjQzNywtMy43NTMgMjguNjA2LC0xMS4yNjEgNy4xNywtNy41MDYgMTAuNzU2LC0xNy42ODcgMTAuNzU2LC0zMC41MzcgdiAtNjIuMjg4IEggMjEuNzA4IHYgNjEuMjczIGMgMCw4LjI1MSAtMi4yMzIsMTQuNjQ0IC02LjY5NCwxOS4xNzQgLTQuNDY1LDQuNTMxIC0xMC42MjEsNi44IC0xOC40NjUsNi44IC04Ljc5NSwwIC0xNS44OTYsLTIuNzQyIC0yMS4zMDQsLTguMjE4IC01LjQxMSwtNS40OCAtOC4xMTYsLTEzLjg5OCAtOC4xMTYsLTI1LjI2MSB2IC01My43NjggaCAtMTcuNjUgViAtMi42MzcgaCAxNy42NSB2IC0xNC42MSBDIC0yNS43MDQsLTUuNzUyIC0xNC43NDgsMCAwLDAiIC8+PC9nPjxnCiAgICAgICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjMyLjIxMjksMjYwLjE1NTIpIgogICAgICAgICAgIGlkPSJnNjIiPjxwYXRoCiAgICAgICAgICAgICBpZD0icGF0aDY0IgogICAgICAgICAgICAgc3R5bGU9ImZpbGw6IzI2MzM0YztmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgICAgIGQ9Im0gMCwwIHYgLTEwMS40NSBoIC0xNy42NTMgdiA4NC40MDcgSCAtNTUuMTkgdiAtODQuNDA3IGggLTE3LjY1MSB2IDg0LjQwNyBIIC04OS4wNzIgViAwIGggMTYuMjMxIHYgMy4wNDMgYyAwLDI2Ljc4MiAxNC44MTEsNDAuMTczIDQ0LjQzNSw0MC4xNzMgNS41NDYsMCAxMi41MSwtMC44NzkgMjAuODk3LC0yLjYzNiBWIDI0LjU0OCBjIC04LjI1LDEuMDg0IC0xNS4yMTgsMS42MjUgLTIwLjg5NywxLjYyNSAtOS4xOTksMCAtMTUuOTYzLC0xLjcyMyAtMjAuMjksLTUuMTczIC00LjMzLC0zLjQ1MSAtNi40OTQsLTkuNDM3IC02LjQ5NCwtMTcuOTU3IGwgMCwtMy4wNDMgeiIgLz48L2c+PGcKICAgICAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3MDYuNTU1NywyNjIuNzkyKSIKICAgICAgICAgICBpZD0iZzY2Ij48cGF0aAogICAgICAgICAgICAgaWQ9InBhdGg2OCIKICAgICAgICAgICAgIHN0eWxlPSJmaWxsOiMyNjMzNGM7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICAgICAgICBkPSJtIDAsMCBjIDExLjg5OCwwIDIxLjQzNiwtMy43NTMgMjguNjA2LC0xMS4yNjEgNy4xNywtNy41MDYgMTAuNzU1LC0xNy42ODcgMTAuNzU1LC0zMC41MzcgdiAtNjIuMjg4IEggMjEuNzA4IHYgNjEuMjczIGMgMCw4LjI1MSAtMi4yMzIsMTQuNjQ0IC02LjY5NCwxOS4xNzQgLTQuNDY1LDQuNTMxIC0xMC42MjEsNi44IC0xOC40NjUsNi44IC04Ljc5NSwwIC0xNS44OTcsLTIuNzQyIC0yMS4zMDQsLTguMjE4IC01LjQxMSwtNS40OCAtOC4xMTYsLTEzLjg5OCAtOC4xMTYsLTI1LjI2MSB2IC01My43NjggaCAtMTcuNjUgViAtMi42MzcgaCAxNy42NSB2IC0xNC42MSBDIC0yNS43MDQsLTUuNzUyIC0xNC43NDgsMCAwLDAiIC8+PC9nPjxnCiAgICAgICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODE1LjkxNSwxNzMuMTExOCkiCiAgICAgICAgICAgaWQ9Imc3MCI+PHBhdGgKICAgICAgICAgICAgIGlkPSJwYXRoNzIiCiAgICAgICAgICAgICBzdHlsZT0iZmlsbDojMjYzMzRjO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgICAgICAgZD0ibSAwLDAgYyAxMC4yNzksMCAxOC44NzEsMy40OCAyNS43NywxMC40NDcgNi44OTcsNi45NjcgMTAuMzQ0LDE1LjU4OSAxMC4zNDQsMjUuODcyIDAsMTAuMjc2IC0zLjQ0NywxOC45MDEgLTEwLjM0NCwyNS44NjggLTYuODk5LDYuOTY3IC0xNS40OTEsMTAuNDUgLTI1Ljc3LDEwLjQ1IC0xMC4xNDYsMCAtMTguNjY1LC0zLjQ4MyAtMjUuNTY2LC0xMC40NSAtNi44OTgsLTYuOTY3IC0xMC4zNDYsLTE1LjU5MiAtMTAuMzQ2LC0yNS44NjggMCwtMTAuMjgzIDMuNDQ4LC0xOC45MDUgMTAuMzQ2LC0yNS44NzIgQyAtMTguNjY1LDMuNDggLTEwLjE0NiwwIDAsMCBNIDM2LjExNCw4Ny4wNDMgSCA1My43NjkgViAtMTQuNDA2IEggMzYuMTE0IFYgMy4wNDMgYyAtOC43OTIsLTEzLjM5MSAtMjEuNTc2LC0yMC4wODYgLTM4LjM0NiwtMjAuMDg2IC0xNC4yMDQsMCAtMjYuMzA5LDUuMTcxIC0zNi4zMTksMTUuNTIgLTEwLjAxMSwxMC4zNDggLTE1LjAxNCwyMi45NiAtMTUuMDE0LDM3Ljg0MiAwLDE0Ljg3NiA1LjAwMywyNy40OTMgMTUuMDE0LDM3LjgzOCAxMC4wMSwxMC4zNDkgMjIuMTE1LDE1LjUyMyAzNi4zMTksMTUuNTIzIDE2Ljc3LDAgMjkuNTU0LC02LjY5NSAzOC4zNDYsLTIwLjA4NiB6IiAvPjwvZz48L2c+PC9nPjwvZz48L3N2Zz4=); vertical-align: middle; }
+@bottom-left { content: var(--ifn-footer-label); color: var(--ifn-muted); font-family: var(--ifn-font); font-size: 8pt; }
+@bottom-right{ content: counter(page) " / " counter(pages); color: var(--ifn-muted); font-family: var(--ifn-font); font-size: 8pt; }
+}
+body {
+font-family: var(--ifn-font);
+color: var(--ifn-ink);
+font-size: 10.5pt;
+font-weight: 400;
+line-height: 1.6; 
+}
+
+h1, h2, h3, h4, h5 { font-family: var(--ifn-font); page-break-after: avoid; }
+h1.title { font-size: 18pt; font-weight: 700; color: var(--ifn-primary); background: none; padding: 0; text-align: left; margin: 0 0 .3em; } 
+
+h1 { font-size: 14pt; font-weight: 700; color: #FFFFFF; background: var(--ifn-primary); padding: .25em .5em; margin: 1em 0 .5em; }
+h2 { font-size: 12pt; font-weight: 700; color: var(--ifn-primary); margin-top: 1.2em; } 
+h3 { font-size: 13pt; font-weight: 700; color: var(--ifn-ink); margin-top: 1em; } 
+h4 { font-size: 11pt; font-weight: 700; font-style: italic; color: var(--ifn-fg-2); margin-top: 1em; } 
+h5 { font-size: 10.5pt; font-weight: 400; color: #003FBF; } 
+a { color: var(--ifn-primary); text-decoration: none; }
+strong { font-weight: 700; }
+
+code {
+font-family: "SF Mono", "Menlo", "Consolas", monospace;
+font-size: .88em;
+font-weight: 500;
+color: var(--ifn-brand-dark); 
+background: var(--ifn-blue-50); 
+padding: .05em .35em;
+border-radius: 5px;
+white-space: nowrap;
+}
+
+pre { background: var(--ifn-surface); border: 1px solid var(--ifn-border); border-radius: 12px; padding: .8em 1em; overflow-x: auto; font-size: 9pt; line-height: 1.45; }
+pre code { color: var(--ifn-ink); background: none; border: none; padding: 0; font-weight: 400; white-space: pre; }
+
+blockquote { border-left: 3px solid var(--ifn-primary); background: var(--ifn-blue-bg); margin: 1em 0; padding: .6em 1em; border-radius: 12px; color: var(--ifn-ink); }
+
+table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: 9.5pt; }
+th, td { border: 1px solid var(--ifn-border-str); padding: .45em .6em; text-align: left; vertical-align: top; }
+thead th { background: var(--ifn-blue-tint); color: var(--ifn-brand-dark); font-weight: 600; }
+tbody tr:nth-child(even) { background: var(--ifn-surface); }
+table, tr, img { page-break-inside: avoid; }
+img { max-width: 100%; height: auto; }
+hr { border: none; border-top: 1px solid var(--ifn-border-str); margin: 1.6em 0; }
+</style>
+</head>
+<body>
+<h1 id="infina.ainews-bảng-mảng-nội-dung-mỗi-url-một-dòng">infina.ai/news:
+bảng mảng nội dung, mỗi URL một dòng</h1>
+<p>Crawl 2026-10-09 qua WP REST API. <strong>147 bài publish, 135 bài
+thật</strong> (12 stub 301 tách riêng ở cuối file). Không có bài
+draft/scheduled/pending nào tại thời điểm crawl.</p>
+<p>Cùng format với <code>teardown-followupboss-table.md</code> để đặt
+cạnh nhau mà so. Kết luận chiến lược của đối thủ ở
+<code>teardown-followupboss.md</code>, phương pháp ở
+<code>competitor-pillar-teardown.md</code>. File này là dữ liệu thô của
+<strong>site mình</strong>, dạng bảng để tự soi.</p>
+<h2 id="đọc-bảng-này-thế-nào">Đọc bảng này thế nào</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cột</th>
+<th>Nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vai trò</td>
+<td>Lấy nguyên nhãn trong <code>content-plan.md</code>.
+<code>PILLAR</code> in đậm. Bài không có trong plan để trống thành
+<code>cluster</code></td>
+</tr>
+<tr class="even">
+<td>URL</td>
+<td><code>#ID</code> là post ID trong WordPress, dùng thẳng được với
+<code>update_post</code></td>
+</tr>
+<tr class="odd">
+<td>IN</td>
+<td>Số <strong>bài khác</strong> trỏ vào, đếm trong thân bài. Link đi
+qua stub 301 đã quy về đích thật và ghi rõ
+<code>(n qua stub)</code></td>
+</tr>
+<tr class="even">
+<td>Chữ</td>
+<td>Đếm sau khi bóc hết thẻ HTML khỏi <code>content.rendered</code>. Xấp
+xỉ</td>
+</tr>
+<tr class="odd">
+<td>Sửa lần cuối</td>
+<td>Trường <code>modified</code> của REST API</td>
+</tr>
+<tr class="even">
+<td>FOCUS_KW đã log</td>
+<td>Lấy từ <code>references/used-keywords.md</code>, <strong>không
+phải</strong> đọc từ Rank Math. ⚠️ nghĩa là dòng đó trong log ghi nguồn
+là “suy đoán từ slug” chứ không phải tracker</td>
+</tr>
+<tr class="odd">
+<td>Pillar bài trỏ lên</td>
+<td>✅ = có trỏ lên pillar của chính cụm mình. ↗ = chỉ trỏ lên pillar
+của cụm khác. ❌ = không trỏ lên pillar nào</td>
+</tr>
+<tr class="even">
+<td>Post title</td>
+<td>H1 thật của bài</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tám-điều-phải-biết-trước-khi-dùng-số-trong-bảng">Tám điều phải
+biết trước khi dùng số trong bảng</h2>
+<p><strong>1. Cụm ở đây là dữ liệu thật, không phải suy đoán.</strong>
+Khác hẳn bảng FUB. Với FUB mình phải suy thành viên cụm từ link graph vì
+không có file plan nào. Với site mình thì <code>content-plan.md</code>
+là nguồn đúng, nên cột Vai trò và việc một bài thuộc cụm nào đều đọc
+thẳng từ bảng trong file đó. Chỗ nào phải suy thì có ghi rõ ở điều 2 và
+3.</p>
+<p><strong>2. 52 bài không nằm trong bảng cụm nào của plan.</strong> Đây
+không phải lỗi crawl. <code>content-plan.md</code> tự khai ngay dòng đầu
+là nó chỉ bao 86 bài evergreen và <strong>loại bài News ra khỏi phạm
+vi</strong>. Nên 40 bài News real estate và 11 bài AI/tech nằm ngoài 8
+cụm là đúng thiết kế của plan, không phải thiếu sót khi dựng bảng này.
+Cái đáng chú ý là hệ quả của nó, xem điều 6.</p>
+<p><strong>3. Hai chỗ plan ghi trong prose nhưng quên ghi vào
+bảng.</strong> <code>#247 crm-for-real-estate-agents</code> được plan
+ghi rõ ở phần vá mồ côi là “bài cluster thật chứ không phải News”, thuộc
+Cụm 2, nhưng <strong>không có dòng nào trong bảng Cụm 2</strong>. Mình
+đã xếp nó vào Cụm 2 theo prose và đánh dấu Vai trò là
+<code>cluster (thiếu ở bảng plan)</code>. Tương tự <code>#1529</code>
+được mô tả trong phần prose của Cụm 1 nhưng pillar mà nó khai lại là
+<code>#214</code> của Cụm 2, nên mình để nó ở nhóm News chưa gắn cụm
+thay vì tự chọn hộ.</p>
+<p><strong>4. <code>#223</code> nằm ở hai cụm và đó là chủ ý của
+plan.</strong> Bảng Cụm 2 ghi vai trò nó là “Cross-link → Cụm 7”, bảng
+Cụm 7 ghi nó là bài giải thích pain-point. Mình xếp nó về Cụm 7 và giữ
+nguyên ghi chú cross-link. Site mình là lưới chứ không phải cây, nên sẽ
+còn gặp kiểu này.</p>
+<p><strong>5. Cột FOCUS_KW không phải đọc từ Rank Math.</strong> WP REST
+<strong>không phơi</strong> focus keyword của Rank Math ra ngoài, kiểm
+tra rồi: trường <code>meta</code> chỉ có <code>{&quot;footnotes&quot;: &quot;&quot;}</code>.
+Nên cột này lấy từ <code>used-keywords.md</code>, tức là một file ghi
+tay. Hệ quả: <strong>118/135 bài có keyword log, 17 bài không
+có</strong>, và trong 118 bài đó <strong>13 bài ghi nguồn là “suy đoán
+từ slug”</strong> chứ không phải lấy từ tracker. Dùng cột này để khoanh
+vùng chủ đề, đừng dùng làm bằng chứng về cái gì đang set thật trong Rank
+Math.</p>
+<p><strong>6. Cột IN của site mình sạch hơn cột IN của FUB, vì lý do kỹ
+thuật.</strong> Với FUB mình phải trừ tay 3 link template. Ở đây
+<code>content.rendered</code> chỉ trả về thân bài, menu và footer của
+theme không lọt vào, nên không có gì phải trừ. Đổi lại con số sẽ
+<strong>thấp hơn</strong> số link thật mà người đọc nhìn thấy trên
+trang, vì thiếu phần điều hướng của theme.</p>
+<p><strong>7. Số chữ lệch 1-3% so với vài con số đã ghi trong
+<code>content-plan.md</code>.</strong> Ví dụ <code>#1529</code> ở đây là
+1.031 còn plan ghi 1.019, <code>#89</code> ở đây 3.888 còn plan ghi
+3.991. Nguyên nhân là cách bóc thẻ khác nhau, chỗ thì tính chữ trong
+bảng và caption, chỗ thì không. Dùng để so tương đối giữa các bài trong
+chính file này thì được, đừng dùng để cãi nhau với số trong file
+khác.</p>
+<p><strong>8. Dash trong cột Post title là chữ của bài, giữ
+nguyên.</strong> Có đúng 1 bài còn em dash trong tiêu đề là
+<code>#299</code>. Quy tắc không dùng dash áp cho bài mình viết mới,
+không áp cho việc trích lại tiêu đề đang có. Dòng này là để biết mà đi
+sửa, không phải để sửa trong bảng.</p>
+<h2 id="tóm-tắt-10-nhóm">Tóm tắt 10 nhóm</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 6%" />
+<col style="width: 33%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 12%" />
+<col style="width: 9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cụm</th>
+<th>Trang</th>
+<th>Pillar</th>
+<th>Tổng chữ</th>
+<th>Mồ côi</th>
+<th>Không trỏ pillar nào</th>
+<th>Thiếu FOCUS_KW</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cụm 1: Chatbot / Conversational AI</td>
+<td>13</td>
+<td><code>best-chatbot-customer-service-real-estate</code> (26 IN, 3,888
+chữ); <code>best-conversational-ai-chatbot-for-real-estate</code> (9 IN,
+2,993 chữ)</td>
+<td>20,922</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Cụm 2: CRM Software</td>
+<td>25</td>
+<td><code>best-crm-for-real-estate</code> (52 IN, 4,287 chữ);
+<code>ai-intent-layer-for-real-estate-crm</code> (13 IN, 742 chữ)</td>
+<td>31,549</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Cụm 3: Website Builder / IDX</td>
+<td>13</td>
+<td><code>real-estate-website-builder</code> (25 IN, 2,985 chữ)</td>
+<td>15,113</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Cụm 4: AI Voice / Virtual Assistant / Receptionist</td>
+<td>6</td>
+<td><code>best-ai-voice-assistants-for-real-estate</code> (11 IN, 2,219
+chữ)</td>
+<td>7,195</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Cụm 5: Website / Web Design</td>
+<td>6</td>
+<td><code>website-design-for-real-estate-agents</code> (5 IN, 1,799
+chữ)</td>
+<td>6,805</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Cụm 6: Landing Pages</td>
+<td>6</td>
+<td><code>real-estate-landing-page-guide</code> (5 IN, 1,873 chữ)</td>
+<td>8,316</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Cụm 7: Lead Generation / Follow-up Automation</td>
+<td>9</td>
+<td><code>real-estate-lead-follow-up-automation-guide</code> (17 IN,
+2,453 chữ)</td>
+<td>8,208</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>Cụm 8: Compliance / Legal / Risk</td>
+<td>6</td>
+<td><code>tcpa-compliance-for-real-estate-agents</code> (15 IN, 1,904
+chữ)</td>
+<td>6,017</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Bài News real estate chưa gắn cụm trong plan</td>
+<td>40</td>
+<td>không có</td>
+<td>29,224</td>
+<td>0</td>
+<td>19</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>Ngoài chủ đề real estate (AI/tech)</td>
+<td>11</td>
+<td>không có</td>
+<td>2,780</td>
+<td>11</td>
+<td>11</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ba thứ đáng nhìn nhất trong bảng tóm tắt này.</strong></p>
+<p><strong>Cột “Không trỏ pillar nào” là cột đau nhất.</strong> 8 cụm
+trong plan đều sạch: 0 bài nào không trỏ lên pillar. Nhưng nhóm News 40
+bài thì có <strong>19 bài không trỏ lên bất kỳ pillar nào</strong>, và
+nhóm AI/tech thì cả 11 bài đều vậy. Nghĩa là việc sửa link nội bộ từ
+trước tới giờ mới chỉ chạm tới phần nằm trong plan, còn gần nửa số bài
+News thì chưa.</p>
+<p><strong>Cột “Mồ côi” giờ chỉ còn đúng 11 bài AI/tech.</strong> Toàn
+bộ 8 cụm và cả 40 bài News đều đã có ít nhất 1 link vào, sau đợt vá mồ
+côi ngày 09/10. 11 bài còn lại không sửa được bằng link vì chúng không
+thuộc chủ đề nào của site.</p>
+<p><strong>Pillar nhẹ <code>ai-intent-layer-for-real-estate-crm</code>
+đang gánh 13 link vào với 742 chữ.</strong> Nó có 7 thẻ H2 trên 10 đoạn
+văn, tức là gần như mỗi H2 chỉ có 1 đoạn. Đây là pillar mỏng nhất site,
+và nó lại đang nhận nhiều link hơn 6 trong 10 pillar còn lại. So để
+thấy: pillar Cụm 2 chính có 52 link vào và 4.287 chữ.</p>
+<hr />
+<h2 id="cụm-1-chatbot-conversational-ai-13-trang-20922-chữ">Cụm 1:
+Chatbot / Conversational AI (13 trang, 20,922 chữ)</h2>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 19%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Vai trò</th>
+<th>URL</th>
+<th>IN</th>
+<th>Chữ</th>
+<th>Sửa lần cuối</th>
+<th>FOCUS_KW đã log</th>
+<th>Pillar bài trỏ lên</th>
+<th>Post title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pillar B</strong></td>
+<td><a href="https://infina.ai/news/best-chatbot-customer-service-real-estate/">#89
+/best-chatbot-customer-service-real-estate</a></td>
+<td>26</td>
+<td>3,888</td>
+<td>2026-10-08</td>
+<td><code>chatbot customer service real estate</code></td>
+<td><em>(là pillar)</em></td>
+<td>15 Best Chatbot Customer Service Tools for Real Estate Teams
+(2026)</td>
+</tr>
+<tr class="even">
+<td>So sánh</td>
+<td><a href="https://infina.ai/news/chatbot-vs-conversational-ai-real-estate/">#123
+/chatbot-vs-conversational-ai-real-estate</a></td>
+<td>10</td>
+<td>1,697</td>
+<td>2026-10-08</td>
+<td><code>chatbot vs conversational ai real estate</code></td>
+<td>✅ <code>best-chatbot-customer-service-real-estate</code>,
+<code>best-conversational-ai-chatbot-for-real-estate</code>; ↗
+<code>best-ai-voice-assistants-for-real-estate</code></td>
+<td>Chatbot vs Conversational AI: What’s the Difference and Which Does
+Real Estate Need?</td>
+</tr>
+<tr class="odd">
+<td><strong>Pillar A</strong></td>
+<td><a href="https://infina.ai/news/best-conversational-ai-chatbot-for-real-estate/">#1056
+/best-conversational-ai-chatbot-for-real-estate</a></td>
+<td>9</td>
+<td>2,993</td>
+<td>2026-10-08</td>
+<td><code>best conversational ai chatbot for real estate</code></td>
+<td><em>(là pillar)</em></td>
+<td>Best Conversational AI Chatbots for Real Estate Agents in 2026</td>
+</tr>
+<tr class="even">
+<td>Định nghĩa (HUB)</td>
+<td><a href="https://infina.ai/news/what-is-a-conversational-chatbot-real-estate/">#172
+/what-is-a-conversational-chatbot-real-estate</a></td>
+<td>9</td>
+<td>1,428</td>
+<td>2026-10-09</td>
+<td><code>conversational chatbot</code></td>
+<td>✅ <code>best-chatbot-customer-service-real-estate</code>,
+<code>best-conversational-ai-chatbot-for-real-estate</code></td>
+<td>What Is a Conversational Chatbot? A Real Estate Agent’s Guide
+(2026)</td>
+</tr>
+<tr class="odd">
+<td>Review/list (HUB)</td>
+<td><a href="https://infina.ai/news/best-chatbot-builder-real-estate/">#117
+/best-chatbot-builder-real-estate</a></td>
+<td>7</td>
+<td>2,469</td>
+<td>2026-10-08</td>
+<td><code>chatbot builder real estate</code></td>
+<td>✅ <code>best-chatbot-customer-service-real-estate</code>,
+<code>best-conversational-ai-chatbot-for-real-estate</code>; ↗
+<code>best-ai-voice-assistants-for-real-estate</code></td>
+<td>10 Best Chatbot Builders for Real Estate Agents in 2026</td>
+</tr>
+<tr class="even">
+<td>So sánh</td>
+<td><a href="https://infina.ai/news/gohighlevel-chatbot-vs-dedicated-real-estate-chatbot/">#138
+/gohighlevel-chatbot-vs-dedicated-real-estate-chatbot</a></td>
+<td>7</td>
+<td>1,522</td>
+<td>2026-10-08</td>
+<td><code>gohighlevel chatbot</code></td>
+<td>✅ <code>best-chatbot-customer-service-real-estate</code>,
+<code>best-conversational-ai-chatbot-for-real-estate</code>; ↗
+<code>best-ai-voice-assistants-for-real-estate</code></td>
+<td>GoHighLevel Chatbot vs Dedicated Real Estate Chatbots: Which Does
+Your Team Actually Need?</td>
+</tr>
+<tr class="odd">
+<td>So sánh/thay thế</td>
+<td><a href="https://infina.ai/news/zendesk-sunshine-conversations-alternative-real-estate/">#189
+/zendesk-sunshine-conversations-alternative-real-estate</a></td>
+<td>5</td>
+<td>1,050</td>
+<td>2026-10-08</td>
+<td><code>zendesk sunshine conversations alternative</code></td>
+<td>✅ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>Zendesk Sunshine Conversations Alternative for Real Estate Chatbots
+(2026)</td>
+</tr>
+<tr class="even">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/ai-chatbot-mls-data-security-risk-brokerages/">#1146
+/ai-chatbot-mls-data-security-risk-brokerages</a></td>
+<td>4</td>
+<td>777</td>
+<td>2026-10-01</td>
+<td><code>ai chatbot mls data security risk brokerages</code></td>
+<td>✅ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>A CRMLS Test Shows How Easily an AI Chatbot Can Leak Your MLS
+Data</td>
+</tr>
+<tr class="odd">
+<td>So sánh</td>
+<td><a href="https://infina.ai/news/ai-chat-vs-sms-real-estate/">#1071
+/ai-chat-vs-sms-real-estate</a></td>
+<td>2</td>
+<td>1,334</td>
+<td>2026-10-08</td>
+<td><code>ai chat vs sms real estate</code></td>
+<td>✅ <code>best-chatbot-customer-service-real-estate</code>,
+<code>best-conversational-ai-chatbot-for-real-estate</code></td>
+<td>AI Chat vs SMS Follow-Up for Real Estate: Which Converts More
+Leads?</td>
+</tr>
+<tr class="even">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/ai-chatbot-mortgage-document-errors-real-estate-agents/">#1114
+/ai-chatbot-mortgage-document-errors-real-estate-agents</a></td>
+<td>2</td>
+<td>786</td>
+<td>2026-10-01</td>
+<td><code>ai chatbot mortgage document errors real estate agents</code></td>
+<td>✅ <code>best-conversational-ai-chatbot-for-real-estate</code></td>
+<td>A New Study Found AI Got 1 in 4 Mortgage Document Checks Wrong</td>
+</tr>
+<tr class="odd">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/ai-disclosure-rules-for-real-estate-chatbots/">#1050
+/ai-disclosure-rules-for-real-estate-chatbots</a></td>
+<td>2</td>
+<td>888</td>
+<td>2026-10-01</td>
+<td><code>ai disclosure rules for real estate chatbots</code></td>
+<td>✅ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>EU AI Act Disclosure Rules Are Already Changing Your Real Estate
+Chatbot</td>
+</tr>
+<tr class="even">
+<td>So sánh</td>
+<td><a href="https://infina.ai/news/chatbot-vs-live-agent-real-estate/">#1078
+/chatbot-vs-live-agent-real-estate</a></td>
+<td>2</td>
+<td>1,329</td>
+<td>2026-10-08</td>
+<td><code>chatbot vs live agent real estate</code></td>
+<td>✅ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>Chatbot vs Live Agent for Real Estate: Response Time and Conversion
+Compared</td>
+</tr>
+<tr class="odd">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/real-estate-chatbot-that-reads-listing-photos/">#1100
+/real-estate-chatbot-that-reads-listing-photos</a></td>
+<td>2</td>
+<td>761</td>
+<td>2026-10-09</td>
+<td><code>real estate chatbot that reads listing photos</code></td>
+<td>✅ <code>best-chatbot-customer-service-real-estate</code>,
+<code>best-conversational-ai-chatbot-for-real-estate</code></td>
+<td>This Chatbot Reads Your Listing Photos to Stop 47 Calls a Week</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cụm-2-crm-software-25-trang-31549-chữ">Cụm 2: CRM Software (25
+trang, 31,549 chữ)</h2>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 19%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Vai trò</th>
+<th>URL</th>
+<th>IN</th>
+<th>Chữ</th>
+<th>Sửa lần cuối</th>
+<th>FOCUS_KW đã log</th>
+<th>Pillar bài trỏ lên</th>
+<th>Post title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pillar chính (ĐÃ ĐỔI 01/10)</strong></td>
+<td><a href="https://infina.ai/news/best-crm-for-real-estate/">#207
+/best-crm-for-real-estate</a></td>
+<td>52</td>
+<td>4,287</td>
+<td>2026-10-08</td>
+<td><code>best crm for real estate</code></td>
+<td><em>(là pillar)</em></td>
+<td>Best Real Estate Agent CRM Software in 2026 (Compared)</td>
+</tr>
+<tr class="even">
+<td>Định nghĩa (khác góc)</td>
+<td><a href="https://infina.ai/news/ai-crm-real-estate/">#214
+/ai-crm-real-estate</a></td>
+<td>22</td>
+<td>1,700</td>
+<td>2026-10-08</td>
+<td><code>ai crm</code></td>
+<td>✅ <code>ai-intent-layer-for-real-estate-crm</code>,
+<code>best-crm-for-real-estate</code>; ↗
+<code>best-chatbot-customer-service-real-estate</code></td>
+<td>AI CRM for Real Estate: How Agents Use AI to Convert More Leads
+(2026)</td>
+</tr>
+<tr class="odd">
+<td><strong>Pillar nhẹ (RealSaleX)</strong></td>
+<td><a href="https://infina.ai/news/ai-intent-layer-for-real-estate-crm/">#1232
+/ai-intent-layer-for-real-estate-crm</a></td>
+<td>13</td>
+<td>742</td>
+<td>2026-10-07</td>
+<td><code>ai intent layer for real estate crm</code></td>
+<td><em>(là pillar)</em></td>
+<td>AI Intent Layer for Real Estate CRM: What It Adds</td>
+</tr>
+<tr class="even">
+<td>Sub-topic: pipeline</td>
+<td><a href="https://infina.ai/news/crm-pipeline-management/">#277
+/crm-pipeline-management</a></td>
+<td>12</td>
+<td>1,674</td>
+<td>2026-10-07</td>
+<td><code>crm pipeline</code></td>
+<td>✅ <code>best-crm-for-real-estate</code></td>
+<td>CRM Pipeline Management: Build a Sales Pipeline That Actually
+Closes</td>
+</tr>
+<tr class="odd">
+<td>Sub-topic: marketing (strategy)</td>
+<td><a href="https://infina.ai/news/crm-marketing-real-estate/">#263
+/crm-marketing-real-estate</a></td>
+<td>9</td>
+<td>1,350</td>
+<td>2026-10-01</td>
+<td><code>crm marketing</code></td>
+<td>✅ <code>best-crm-for-real-estate</code></td>
+<td>CRM Marketing for Real Estate: How to Turn Your Database into a Deal
+Machine</td>
+</tr>
+<tr class="even">
+<td>Định nghĩa (beginner)</td>
+<td><a href="https://infina.ai/news/crm-management-real-estate-agents-beginners-guide/">#405
+/crm-management-real-estate-agents-beginners-guide</a></td>
+<td>6</td>
+<td>1,145</td>
+<td>2026-10-07</td>
+<td><code>crm management</code></td>
+<td>✅ <code>best-crm-for-real-estate</code></td>
+<td>CRM Software 101: A Beginner’s Guide for Real Estate Agents</td>
+</tr>
+<tr class="odd">
+<td>Review (brand cụ thể) RealSaleX</td>
+<td><a href="https://infina.ai/news/follow-up-boss-real-estate-crm/">#1449
+/follow-up-boss-real-estate-crm</a></td>
+<td>6</td>
+<td>1,534</td>
+<td>2026-10-08</td>
+<td><code>follow up boss real estate crm</code></td>
+<td>✅ <code>ai-intent-layer-for-real-estate-crm</code>,
+<code>best-crm-for-real-estate</code>; ↗
+<code>real-estate-lead-follow-up-automation-guide</code></td>
+<td>Follow Up Boss Real Estate CRM Review: Pricing, Features, and the
+Follow-Up Gap</td>
+</tr>
+<tr class="even">
+<td>Review/list (niche: teams)</td>
+<td><a href="https://infina.ai/news/best-crm-for-real-estate-teams-2026/">#419
+/best-crm-for-real-estate-teams-2026</a></td>
+<td>5</td>
+<td>1,191</td>
+<td>2026-10-04</td>
+<td><code>best crm for real estate teams 2026</code> ⚠️</td>
+<td>✅ <code>best-crm-for-real-estate</code></td>
+<td>Best CRM for Real Estate Teams: Top Picks for 2026</td>
+</tr>
+<tr class="odd">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/ai-agent-integration-for-real-estate-crm-platforms/">#1026
+/ai-agent-integration-for-real-estate-crm-platforms</a></td>
+<td>4</td>
+<td>868</td>
+<td>2026-10-02</td>
+<td><code>ai agent integration for real estate crm platforms</code></td>
+<td>✅ <code>ai-intent-layer-for-real-estate-crm</code>,
+<code>best-crm-for-real-estate</code></td>
+<td>Rechat Just Let Claude and ChatGPT Run Real Estate CRM Workflows
+Directly</td>
+</tr>
+<tr class="even">
+<td>Buying guide (BOF)</td>
+<td><a href="https://infina.ai/news/best-crm-buying-guide-real-estate-agents/">#444
+/best-crm-buying-guide-real-estate-agents</a></td>
+<td>4</td>
+<td>1,123</td>
+<td>2026-08-11</td>
+<td><code>best crm</code></td>
+<td>✅ <code>best-crm-for-real-estate</code></td>
+<td>Best CRM for Real Estate Agents: A Buyer’s Guide (2026)</td>
+</tr>
+<tr class="odd">
+<td>Định nghĩa (niche RE)</td>
+<td><a href="https://infina.ai/news/what-does-crm-mean-in-real-estate/">#1458
+/what-does-crm-mean-in-real-estate</a></td>
+<td>4</td>
+<td>1,130</td>
+<td>2026-10-08</td>
+<td><code>what does crm mean in real estate</code></td>
+<td>✅ <code>best-crm-for-real-estate</code></td>
+<td>What Does CRM Mean in Real Estate? A Plain-English Guide for
+Agents</td>
+</tr>
+<tr class="even">
+<td>Định nghĩa</td>
+<td><a href="https://infina.ai/news/what-is-crm-software/">#230
+/what-is-crm-software</a></td>
+<td>4</td>
+<td>1,604</td>
+<td>2026-10-03</td>
+<td><code>what is crm software</code></td>
+<td>✅ <code>best-crm-for-real-estate</code></td>
+<td>What Is CRM Software? Complete Guide for Businesses in 2026</td>
+</tr>
+<tr class="odd">
+<td>So sánh (MOF) RealSaleX</td>
+<td><a href="https://infina.ai/news/customer-engagement-platform-vs-crm/">#1487
+/customer-engagement-platform-vs-crm</a></td>
+<td>3</td>
+<td>1,338</td>
+<td>2026-10-08</td>
+<td><code>customer engagement platform vs crm</code></td>
+<td>✅ <code>ai-intent-layer-for-real-estate-crm</code>,
+<code>best-crm-for-real-estate</code>; ↗
+<code>real-estate-lead-follow-up-automation-guide</code>,
+<code>tcpa-compliance-for-real-estate-agents</code></td>
+<td>Customer Engagement Platform vs CRM for Real Estate: Where Each One
+Stops</td>
+</tr>
+<tr class="even">
+<td>Review/list (niche: broker)</td>
+<td><a href="https://infina.ai/news/real-estate-broker-crm/">#1462
+/real-estate-broker-crm</a></td>
+<td>3</td>
+<td>1,580</td>
+<td>2026-10-09</td>
+<td><code>real estate broker crm</code></td>
+<td>✅ <code>ai-intent-layer-for-real-estate-crm</code>,
+<code>best-crm-for-real-estate</code>; ↗
+<code>real-estate-lead-follow-up-automation-guide</code>,
+<code>tcpa-compliance-for-real-estate-agents</code></td>
+<td>Real Estate Broker CRM: What Brokerages Need That Agent CRMs
+Miss</td>
+</tr>
+<tr class="odd">
+<td>Review/list (niche: free)</td>
+<td><a href="https://infina.ai/news/best-free-crm-for-real-estate-agents/">#438
+/best-free-crm-for-real-estate-agents</a></td>
+<td>2</td>
+<td>1,175</td>
+<td>2026-10-08</td>
+<td><code>free crm for real estate</code></td>
+<td>✅ <code>best-crm-for-real-estate</code></td>
+<td>Best Free CRM for Real Estate Agents in 2026</td>
+</tr>
+<tr class="even">
+<td>Review (brand cụ thể) RealSaleX</td>
+<td><a href="https://infina.ai/news/cinc-crm-review-real-estate/">#1234
+/cinc-crm-review-real-estate</a></td>
+<td>2</td>
+<td>607</td>
+<td>2026-10-02</td>
+<td><code>cinc crm review</code></td>
+<td>✅ <code>ai-intent-layer-for-real-estate-crm</code>,
+<code>best-crm-for-real-estate</code></td>
+<td>CINC CRM Review: Pricing, Features, and Buyer Follow-Up Gaps</td>
+</tr>
+<tr class="odd">
+<td>Sub-topic: marketing (định nghĩa)</td>
+<td><a href="https://infina.ai/news/crm-marketing-software-real-estate-guide/">#450
+/crm-marketing-software-real-estate-guide</a></td>
+<td>2</td>
+<td>985</td>
+<td>2026-08-11</td>
+<td><code>crm marketing software</code></td>
+<td>✅ <code>best-crm-for-real-estate</code></td>
+<td>What Is CRM Marketing Software? A Guide for Real Estate Teams</td>
+</tr>
+<tr class="even">
+<td>Bridge → Cụm 3</td>
+<td><a href="https://infina.ai/news/crm-with-website-builder-real-estate/">#585
+/crm-with-website-builder-real-estate</a></td>
+<td>2</td>
+<td>1,149</td>
+<td>2026-10-08</td>
+<td><code>crm with website builder</code></td>
+<td>✅ <code>best-crm-for-real-estate</code>; ↗
+<code>real-estate-website-builder</code></td>
+<td>CRM with Website Builder: Best Integrated Platforms for Real Estate
+Teams</td>
+</tr>
+<tr class="odd">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/ai-crm-assistant-brokerage-merger-rollout-agents/">#1171
+/ai-crm-assistant-brokerage-merger-rollout-agents</a></td>
+<td>1</td>
+<td>861</td>
+<td>2026-10-02</td>
+<td><code>ai crm assistant brokerage merger rollout agents</code></td>
+<td>✅ <code>ai-intent-layer-for-real-estate-crm</code></td>
+<td>Real’s AI CRM Assistant Leo Is About to Meet 180,000 New RE/MAX
+Agents</td>
+</tr>
+<tr class="even">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/arm-borrower-tracking-real-estate-agent-crm/">#1323
+/arm-borrower-tracking-real-estate-agent-crm</a></td>
+<td>1</td>
+<td>570</td>
+<td>2026-10-02</td>
+<td>–</td>
+<td>✅ <code>best-crm-for-real-estate</code></td>
+<td>Nearly 10% of Borrowers Are Now Choosing ARMs as Rates Top 7%</td>
+</tr>
+<tr class="odd">
+<td>cluster (thiếu ở bảng plan)</td>
+<td><a href="https://infina.ai/news/crm-for-real-estate-agents/">#247
+/crm-for-real-estate-agents</a></td>
+<td>1</td>
+<td>1,704</td>
+<td>2026-08-10</td>
+<td><code>crm for real estate agents</code> ⚠️</td>
+<td>✅ <code>best-crm-for-real-estate</code></td>
+<td>CRM for Real Estate Agents: How to Choose the Right One in 2026</td>
+</tr>
+<tr class="even">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/exp-nexus-crm-software-cost-reduction-agents/">#1184
+/exp-nexus-crm-software-cost-reduction-agents</a></td>
+<td>1</td>
+<td>741</td>
+<td>2026-10-02</td>
+<td><code>exp nexus crm software cost reduction agents</code></td>
+<td>✅ <code>best-crm-for-real-estate</code></td>
+<td>eXp Realty Says Its All-in-One AI Platform Cuts Software Costs by
+70%</td>
+</tr>
+<tr class="odd">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/open-ai-protocol-real-estate-crm-brokerages/">#1329
+/open-ai-protocol-real-estate-crm-brokerages</a></td>
+<td>1</td>
+<td>558</td>
+<td>2026-10-02</td>
+<td>–</td>
+<td>✅ <code>ai-intent-layer-for-real-estate-crm</code>,
+<code>best-crm-for-real-estate</code></td>
+<td>Lofty Launches an MCP Server So Any AI Can Plug Into Its CRM</td>
+</tr>
+<tr class="even">
+<td>Bridge → Cụm 3</td>
+<td><a href="https://infina.ai/news/real-estate-crm-with-idx/">#643
+/real-estate-crm-with-idx</a></td>
+<td>1</td>
+<td>752</td>
+<td>2026-10-08</td>
+<td><code>real estate crm with idx</code></td>
+<td>✅ <code>best-crm-for-real-estate</code>; ↗
+<code>real-estate-website-builder</code></td>
+<td>Real Estate CRM with IDX Integration: Best Platforms in 2026</td>
+</tr>
+<tr class="odd">
+<td>Listicle chiến lược (TOF) RealSaleX</td>
+<td><a href="https://infina.ai/news/real-estate-customer-engagement-strategies/">#1488
+/real-estate-customer-engagement-strategies</a></td>
+<td>1</td>
+<td>1,181</td>
+<td>2026-10-06</td>
+<td><code>real estate customer engagement</code></td>
+<td>✅ <code>ai-intent-layer-for-real-estate-crm</code>,
+<code>best-crm-for-real-estate</code>; ↗
+<code>real-estate-lead-follow-up-automation-guide</code>,
+<code>tcpa-compliance-for-real-estate-agents</code></td>
+<td>Real Estate Customer Engagement: 7 Tactics That Earn a Reply</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cụm-3-website-builder-idx-13-trang-15113-chữ">Cụm 3: Website
+Builder / IDX (13 trang, 15,113 chữ)</h2>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 19%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Vai trò</th>
+<th>URL</th>
+<th>IN</th>
+<th>Chữ</th>
+<th>Sửa lần cuối</th>
+<th>FOCUS_KW đã log</th>
+<th>Pillar bài trỏ lên</th>
+<th>Post title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pillar</strong></td>
+<td><a href="https://infina.ai/news/real-estate-website-builder/">#546
+/real-estate-website-builder</a></td>
+<td>25</td>
+<td>2,985</td>
+<td>2026-10-08</td>
+<td><code>real estate website builder</code></td>
+<td><em>(là pillar)</em></td>
+<td>Best Real Estate Website Builders for Agents and Brokers (2026)</td>
+</tr>
+<tr class="even">
+<td>Định nghĩa (broker)</td>
+<td><a href="https://infina.ai/news/broker-idx-guide/">#598
+/broker-idx-guide</a></td>
+<td>9</td>
+<td>2,328</td>
+<td>2026-10-08</td>
+<td><code>broker idx</code></td>
+<td>✅ <code>real-estate-website-builder</code>; ↗
+<code>best-crm-for-real-estate</code></td>
+<td>What Is Broker IDX? Complete Guide for Real Estate Agents
+(2026)</td>
+</tr>
+<tr class="odd">
+<td>Review/list (roundup, HUB)</td>
+<td><a href="https://infina.ai/news/idx-website-for-realtors/">#610
+/idx-website-for-realtors</a></td>
+<td>8</td>
+<td>834</td>
+<td>2026-10-08</td>
+<td><code>idx website for realtors</code></td>
+<td>✅ <code>real-estate-website-builder</code>; ↗
+<code>best-crm-for-real-estate</code></td>
+<td>Best IDX Website for Realtors: Top Platforms Reviewed (2026)</td>
+</tr>
+<tr class="even">
+<td>How-to (kỹ thuật)</td>
+<td><a href="https://infina.ai/news/idx-mls-real-estate-guide/">#622
+/idx-mls-real-estate-guide</a></td>
+<td>3</td>
+<td>781</td>
+<td>2026-10-09</td>
+<td><code>idx mls</code></td>
+<td>✅ <code>real-estate-website-builder</code>; ↗
+<code>best-crm-for-real-estate</code></td>
+<td>IDX MLS: How the Data Feed Powers Real Estate Agent Websites</td>
+</tr>
+<tr class="odd">
+<td>Review (niche: solo agent)</td>
+<td><a href="https://infina.ai/news/real-estate-agent-website-builder/">#567
+/real-estate-agent-website-builder</a></td>
+<td>3</td>
+<td>1,155</td>
+<td>2026-10-08</td>
+<td><code>real estate agent website builder</code></td>
+<td>✅ <code>real-estate-website-builder</code>; ↗
+<code>best-crm-for-real-estate</code></td>
+<td>Best Real Estate Agent Website Builder for Solo Agents in 2026</td>
+</tr>
+<tr class="even">
+<td>Review (niche: realtor)</td>
+<td><a href="https://infina.ai/news/best-website-builder-for-realtors/">#561
+/best-website-builder-for-realtors</a></td>
+<td>2</td>
+<td>1,011</td>
+<td>2026-10-08</td>
+<td><code>best website builder for realtors</code></td>
+<td>✅ <code>real-estate-website-builder</code>; ↗
+<code>best-crm-for-real-estate</code></td>
+<td>Best Website Builder for Realtors: Top Picks Reviewed (2026)</td>
+</tr>
+<tr class="odd">
+<td>How-to (kỹ thuật)</td>
+<td><a href="https://infina.ai/news/idx-feed-real-estate-setup/">#631
+/idx-feed-real-estate-setup</a></td>
+<td>2</td>
+<td>688</td>
+<td>2026-10-08</td>
+<td><code>idx feed</code></td>
+<td>✅ <code>real-estate-website-builder</code>; ↗
+<code>best-crm-for-real-estate</code></td>
+<td>IDX Feed: What It Is and How to Set It Up on Your Website</td>
+</tr>
+<tr class="even">
+<td>Định nghĩa (chung)</td>
+<td><a href="https://infina.ai/news/idx-real-estate-definition-guide/">#604
+/idx-real-estate-definition-guide</a></td>
+<td>2</td>
+<td>987</td>
+<td>2026-10-08</td>
+<td><code>idx real estate</code></td>
+<td>✅ <code>real-estate-website-builder</code>; ↗
+<code>best-crm-for-real-estate</code></td>
+<td>What Is IDX in Real Estate? Definition, Setup, and How It Works</td>
+</tr>
+<tr class="odd">
+<td>Examples/inspiration</td>
+<td><a href="https://infina.ai/news/idx-real-estate-websites-examples/">#616
+/idx-real-estate-websites-examples</a></td>
+<td>2</td>
+<td>723</td>
+<td>2026-10-08</td>
+<td><code>idx real estate websites</code></td>
+<td>✅ <code>real-estate-website-builder</code>; ↗
+<code>best-crm-for-real-estate</code></td>
+<td>IDX Real Estate Websites: Best Examples and What Makes Them
+Work</td>
+</tr>
+<tr class="even">
+<td>Buying guide</td>
+<td><a href="https://infina.ai/news/real-estate-agent-websites-with-idx/">#655
+/real-estate-agent-websites-with-idx</a></td>
+<td>2</td>
+<td>673</td>
+<td>2026-10-08</td>
+<td><code>real estate agent websites with idx</code></td>
+<td>✅ <code>real-estate-website-builder</code>; ↗
+<code>best-crm-for-real-estate</code></td>
+<td>Real Estate Agent Websites with IDX: What to Look For Before You
+Buy</td>
+</tr>
+<tr class="odd">
+<td>Review (niche: investor)</td>
+<td><a href="https://infina.ai/news/best-website-builder-real-estate-investors/">#579
+/best-website-builder-real-estate-investors</a></td>
+<td>1</td>
+<td>997</td>
+<td>2026-10-08</td>
+<td><code>best website builder for real estate investors</code></td>
+<td>✅ <code>real-estate-website-builder</code>; ↗
+<code>best-crm-for-real-estate</code></td>
+<td>Best Website Builder for Real Estate Investors in 2026</td>
+</tr>
+<tr class="even">
+<td>Review (niche: free)</td>
+<td><a href="https://infina.ai/news/free-real-estate-website-builder/">#573
+/free-real-estate-website-builder</a></td>
+<td>1</td>
+<td>1,093</td>
+<td>2026-10-08</td>
+<td><code>free real estate website builder</code></td>
+<td>✅ <code>real-estate-website-builder</code>; ↗
+<code>best-crm-for-real-estate</code></td>
+<td>Free Real Estate Website Builder: What You Get vs. What You Pay
+For</td>
+</tr>
+<tr class="odd">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/off-mls-listings-on-agent-idx-websites/">#1473
+/off-mls-listings-on-agent-idx-websites</a></td>
+<td>1</td>
+<td>858</td>
+<td>2026-10-03</td>
+<td><code>off mls listings on agent idx websites</code></td>
+<td>✅ <code>real-estate-website-builder</code></td>
+<td>Compass Gave an MLS Until October 6, and Agent Search Sites Are
+Caught in the Middle</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cụm-4-ai-voice-virtual-assistant-receptionist-6-trang-7195-chữ">Cụm
+4: AI Voice / Virtual Assistant / Receptionist (6 trang, 7,195 chữ)</h2>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 19%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Vai trò</th>
+<th>URL</th>
+<th>IN</th>
+<th>Chữ</th>
+<th>Sửa lần cuối</th>
+<th>FOCUS_KW đã log</th>
+<th>Pillar bài trỏ lên</th>
+<th>Post title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pillar</strong> (refresh #147)</td>
+<td><a href="https://infina.ai/news/best-ai-voice-assistants-for-real-estate/">#147
+/best-ai-voice-assistants-for-real-estate</a></td>
+<td>11</td>
+<td>2,219</td>
+<td>2026-10-02</td>
+<td><code>ai voice assistants for real estate</code></td>
+<td><em>(là pillar)</em></td>
+<td>7 Best AI Voice Assistants for Real Estate Agents in 2026</td>
+</tr>
+<tr class="even">
+<td>Review/list (phát hiện thêm 01/10)</td>
+<td><a href="https://infina.ai/news/best-ai-virtual-assistant-real-estate/">#110
+/best-ai-virtual-assistant-real-estate</a></td>
+<td>7</td>
+<td>1,771</td>
+<td>2026-10-08</td>
+<td><code>ai virtual assistant real estate</code></td>
+<td>✅ <code>best-ai-voice-assistants-for-real-estate</code>; ↗
+<code>best-chatbot-customer-service-real-estate</code></td>
+<td>7 Best AI Virtual Assistants for Real Estate Agents in 2026</td>
+</tr>
+<tr class="odd">
+<td>Support/how-to → bắc cầu Cụm 7</td>
+<td><a href="https://infina.ai/news/ai-outbound-calling-real-estate-lead-follow-up/">#1213
+/ai-outbound-calling-real-estate-lead-follow-up</a></td>
+<td>5</td>
+<td>914</td>
+<td>2026-10-09</td>
+<td><code>ai outbound calling real estate lead follow up</code></td>
+<td>✅ <code>best-ai-voice-assistants-for-real-estate</code>; ↗
+<code>tcpa-compliance-for-real-estate-agents</code></td>
+<td>AI Outbound Calling for Real Estate: How It Works in 2026</td>
+</tr>
+<tr class="even">
+<td>So sánh</td>
+<td><a href="https://infina.ai/news/ai-receptionist-vs-human-receptionist-real-estate/">#1217
+/ai-receptionist-vs-human-receptionist-real-estate</a></td>
+<td>2</td>
+<td>709</td>
+<td>2026-09-15</td>
+<td><code>ai receptionist vs human receptionist real estate</code></td>
+<td>✅ <code>best-ai-voice-assistants-for-real-estate</code>; ↗
+<code>tcpa-compliance-for-real-estate-agents</code></td>
+<td>AI Receptionist vs Human Receptionist for Real Estate: Cost &amp;
+ROI</td>
+</tr>
+<tr class="odd">
+<td>Buying guide</td>
+<td><a href="https://infina.ai/news/ai-answering-service-for-real-estate/">#1219
+/ai-answering-service-for-real-estate</a></td>
+<td>1</td>
+<td>686</td>
+<td>2026-09-15</td>
+<td><code>ai answering service for real estate</code></td>
+<td>✅ <code>best-ai-voice-assistants-for-real-estate</code>; ↗
+<code>tcpa-compliance-for-real-estate-agents</code></td>
+<td>AI Answering Service for Real Estate: How to Choose the Right
+One</td>
+</tr>
+<tr class="even">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/ai-voice-calls-for-listing-price-updates/">#1467
+/ai-voice-calls-for-listing-price-updates</a></td>
+<td>1</td>
+<td>896</td>
+<td>2026-10-02</td>
+<td><code>ai voice calls for listing price updates</code></td>
+<td>✅ <code>best-ai-voice-assistants-for-real-estate</code>; ↗
+<code>tcpa-compliance-for-real-estate-agents</code></td>
+<td>Nearly 1 in 5 Homes Cut Price in September, and Agents Are Running
+Out of Call Hours</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cụm-5-website-web-design-6-trang-6805-chữ">Cụm 5: Website / Web
+Design (6 trang, 6,805 chữ)</h2>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 19%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Vai trò</th>
+<th>URL</th>
+<th>IN</th>
+<th>Chữ</th>
+<th>Sửa lần cuối</th>
+<th>FOCUS_KW đã log</th>
+<th>Pillar bài trỏ lên</th>
+<th>Post title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pillar (HUB)</strong></td>
+<td><a href="https://infina.ai/news/website-design-for-real-estate-agents/">#975
+/website-design-for-real-estate-agents</a></td>
+<td>5</td>
+<td>1,799</td>
+<td>2026-10-08</td>
+<td><code>website design for real estate agents</code></td>
+<td><em>(là pillar)</em></td>
+<td>Website Design for Real Estate Agents: What Actually Works in
+2026</td>
+</tr>
+<tr class="even">
+<td>Examples/inspiration</td>
+<td><a href="https://infina.ai/news/best-real-estate-website-design/">#981
+/best-real-estate-website-design</a></td>
+<td>1</td>
+<td>1,015</td>
+<td>2026-10-08</td>
+<td><code>best real estate website design</code></td>
+<td>✅ <code>website-design-for-real-estate-agents</code>; ↗
+<code>best-crm-for-real-estate</code>,
+<code>real-estate-website-builder</code></td>
+<td>Best Real Estate Website Design: 8 Examples to Model in 2026</td>
+</tr>
+<tr class="odd">
+<td>Review (niche: luxury)</td>
+<td><a href="https://infina.ai/news/luxury-real-estate-website-design/">#1011
+/luxury-real-estate-website-design</a></td>
+<td>1</td>
+<td>1,086</td>
+<td>2026-10-08</td>
+<td><code>luxury real estate website design</code></td>
+<td>✅ <code>website-design-for-real-estate-agents</code>; ↗
+<code>best-crm-for-real-estate</code>,
+<code>real-estate-website-builder</code></td>
+<td>Luxury Real Estate Website Design: Features That Signal Premium to
+Buyers</td>
+</tr>
+<tr class="even">
+<td>Review (niche: broker)</td>
+<td><a href="https://infina.ai/news/real-estate-broker-website-design/">#1005
+/real-estate-broker-website-design</a></td>
+<td>1</td>
+<td>1,001</td>
+<td>2026-10-08</td>
+<td><code>real estate broker website design</code></td>
+<td>✅ <code>website-design-for-real-estate-agents</code>; ↗
+<code>best-crm-for-real-estate</code>,
+<code>real-estate-website-builder</code></td>
+<td>Real Estate Broker Website Design: What Brokerage Sites Actually
+Need</td>
+</tr>
+<tr class="odd">
+<td>Buying guide (agency)</td>
+<td><a href="https://infina.ai/news/real-estate-web-design-companies/">#999
+/real-estate-web-design-companies</a></td>
+<td>1</td>
+<td>941</td>
+<td>2026-10-08</td>
+<td><code>real estate web design companies</code></td>
+<td>✅ <code>website-design-for-real-estate-agents</code>; ↗
+<code>best-crm-for-real-estate</code>,
+<code>real-estate-website-builder</code></td>
+<td>Real Estate Web Design Companies: How to Choose the Right One</td>
+</tr>
+<tr class="even">
+<td>Decision (build vs buy)</td>
+<td><a href="https://infina.ai/news/web-design-for-real-estate-agents/">#993
+/web-design-for-real-estate-agents</a></td>
+<td>1</td>
+<td>963</td>
+<td>2026-10-08</td>
+<td><code>web design for real estate agents</code></td>
+<td>✅ <code>website-design-for-real-estate-agents</code>; ↗
+<code>best-crm-for-real-estate</code>,
+<code>real-estate-website-builder</code></td>
+<td>Web Design for Real Estate Agents: DIY vs. Hiring a Designer</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cụm-6-landing-pages-6-trang-8316-chữ">Cụm 6: Landing Pages (6
+trang, 8,316 chữ)</h2>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 19%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Vai trò</th>
+<th>URL</th>
+<th>IN</th>
+<th>Chữ</th>
+<th>Sửa lần cuối</th>
+<th>FOCUS_KW đã log</th>
+<th>Pillar bài trỏ lên</th>
+<th>Post title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Niche: open house</td>
+<td><a href="https://infina.ai/news/open-house-landing-page/">#918
+/open-house-landing-page</a></td>
+<td>5</td>
+<td>1,724</td>
+<td>2026-10-08</td>
+<td><code>open house landing page</code></td>
+<td>✅ <code>real-estate-landing-page-guide</code>; ↗
+<code>best-crm-for-real-estate</code>,
+<code>real-estate-website-builder</code></td>
+<td>Open House Landing Page: How to Build One That Actually Captures
+Leads</td>
+</tr>
+<tr class="even">
+<td><strong>Pillar</strong></td>
+<td><a href="https://infina.ai/news/real-estate-landing-page-guide/">#930
+/real-estate-landing-page-guide</a></td>
+<td>5</td>
+<td>1,873</td>
+<td>2026-10-08</td>
+<td><code>real estate landing page</code></td>
+<td><em>(là pillar)</em></td>
+<td>Real Estate Landing Page: Types, Elements, and How to Build One That
+Converts</td>
+</tr>
+<tr class="odd">
+<td>Niche: seller chung</td>
+<td><a href="https://infina.ai/news/seller-landing-pages-real-estate/">#942
+/seller-landing-pages-real-estate</a></td>
+<td>3</td>
+<td>1,038</td>
+<td>2026-10-08</td>
+<td><code>seller landing pages real estate</code></td>
+<td>✅ <code>real-estate-landing-page-guide</code>; ↗
+<code>best-crm-for-real-estate</code>,
+<code>real-estate-website-builder</code></td>
+<td>Seller Landing Pages Real Estate: Types That Convert and How to
+Build Them</td>
+</tr>
+<tr class="even">
+<td>Niche: home valuation</td>
+<td><a href="https://infina.ai/news/home-valuation-landing-page/">#936
+/home-valuation-landing-page</a></td>
+<td>2</td>
+<td>1,167</td>
+<td>2026-10-08</td>
+<td><code>home valuation landing page</code></td>
+<td>✅ <code>real-estate-landing-page-guide</code>; ↗
+<code>best-crm-for-real-estate</code>,
+<code>real-estate-website-builder</code></td>
+<td>Home Valuation Landing Page: How to Build One That Converts Seller
+Leads</td>
+</tr>
+<tr class="odd">
+<td>Evaluation/MOF (cluster hợp lệ)</td>
+<td><a href="https://infina.ai/news/high-converting-real-estate-landing-pages/">#948
+/high-converting-real-estate-landing-pages</a></td>
+<td>1</td>
+<td>1,292</td>
+<td>2026-10-08</td>
+<td><code>high converting real estate landing pages</code></td>
+<td>✅ <code>real-estate-landing-page-guide</code>; ↗
+<code>best-crm-for-real-estate</code>,
+<code>real-estate-website-builder</code></td>
+<td>High Converting Real Estate Landing Pages: What Makes Them Work in
+2026</td>
+</tr>
+<tr class="even">
+<td>Niche: agent chung</td>
+<td><a href="https://infina.ai/news/real-estate-agent-landing-page/">#924
+/real-estate-agent-landing-page</a></td>
+<td>1</td>
+<td>1,222</td>
+<td>2026-10-08</td>
+<td><code>real estate agent landing page</code></td>
+<td>✅ <code>real-estate-landing-page-guide</code>; ↗
+<code>best-crm-for-real-estate</code></td>
+<td>Real Estate Agent Landing Page: What to Include and How to Convert
+Visitors</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cụm-7-lead-generation-follow-up-automation-9-trang-8208-chữ">Cụm
+7: Lead Generation / Follow-up Automation (9 trang, 8,208 chữ)</h2>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 19%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Vai trò</th>
+<th>URL</th>
+<th>IN</th>
+<th>Chữ</th>
+<th>Sửa lần cuối</th>
+<th>FOCUS_KW đã log</th>
+<th>Pillar bài trỏ lên</th>
+<th>Post title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pillar</strong></td>
+<td><a href="https://infina.ai/news/real-estate-lead-follow-up-automation-guide/">#1223
+/real-estate-lead-follow-up-automation-guide</a></td>
+<td>17</td>
+<td>2,453</td>
+<td>2026-10-07</td>
+<td><code>real estate lead follow-up automation</code></td>
+<td><em>(là pillar)</em></td>
+<td>Real Estate Lead Follow-Up Automation: The Complete 2026 Guide</td>
+</tr>
+<tr class="even">
+<td>Giải thích/pain-point = refresh #223</td>
+<td><a href="https://infina.ai/news/real-estate-agent-crm-speed-to-lead/">#223
+/real-estate-agent-crm-speed-to-lead</a></td>
+<td>13</td>
+<td>1,517</td>
+<td>2026-10-09</td>
+<td><code>real estate agent crm</code></td>
+<td>✅ <code>real-estate-lead-follow-up-automation-guide</code>; ↗
+<code>best-crm-for-real-estate</code></td>
+<td>Speed-to-Lead 2026: How Real Estate Agent CRM Closes the 15-Hour
+Gap</td>
+</tr>
+<tr class="odd">
+<td>Buying guide/how-to</td>
+<td><a href="https://infina.ai/news/how-to-set-up-automated-lead-follow-up-real-estate/">#1227
+/how-to-set-up-automated-lead-follow-up-real-estate</a></td>
+<td>4</td>
+<td>539</td>
+<td>2026-09-15</td>
+<td><code>automated lead follow-up for real estate</code></td>
+<td>✅ <code>real-estate-lead-follow-up-automation-guide</code></td>
+<td>Automated Lead Follow-Up for Real Estate: A 5-Step Setup Guide</td>
+</tr>
+<tr class="even">
+<td>Review/list</td>
+<td><a href="https://infina.ai/news/best-lead-generation-software-for-realtors/">#1225
+/best-lead-generation-software-for-realtors</a></td>
+<td>3</td>
+<td>587</td>
+<td>2026-10-08</td>
+<td><code>lead generation software for realtors</code></td>
+<td>✅ <code>real-estate-lead-follow-up-automation-guide</code></td>
+<td>Best Lead Generation Software for Realtors in 2026</td>
+</tr>
+<tr class="odd">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/database-reactivation-ai-seller-leads-real-estate-agents/">#1122
+/database-reactivation-ai-seller-leads-real-estate-agents</a></td>
+<td>2</td>
+<td>760</td>
+<td>2026-10-02</td>
+<td><code>database reactivation ai seller leads real estate agents</code></td>
+<td>✅ <code>real-estate-lead-follow-up-automation-guide</code></td>
+<td>Your Next Listing Is Probably Already Sitting in Your CRM</td>
+</tr>
+<tr class="even">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/seller-lead-prioritization-real-estate-pipeline/">#1278
+/seller-lead-prioritization-real-estate-pipeline</a></td>
+<td>2</td>
+<td>583</td>
+<td>2026-10-02</td>
+<td>–</td>
+<td>✅ <code>real-estate-lead-follow-up-automation-guide</code></td>
+<td>Sellers Now Outnumber Buyers by 57.9%, the Widest Gap on Record</td>
+</tr>
+<tr class="odd">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/buyer-lead-nurture-campaign-real-estate-agents/">#1272
+/buyer-lead-nurture-campaign-real-estate-agents</a></td>
+<td>1</td>
+<td>568</td>
+<td>2026-09-19</td>
+<td>–</td>
+<td>✅ <code>real-estate-lead-follow-up-automation-guide</code></td>
+<td>Realtor.com Just Named the Best Week to Buy in 2026, and Everyone
+Read It</td>
+</tr>
+<tr class="even">
+<td>Kênh cụ thể</td>
+<td><a href="https://infina.ai/news/facebook-lead-gen-for-realtors/">#1229
+/facebook-lead-gen-for-realtors</a></td>
+<td>1</td>
+<td>532</td>
+<td>2026-09-15</td>
+<td><code>facebook lead gen for realtors</code></td>
+<td>✅ <code>real-estate-lead-follow-up-automation-guide</code>; ↗
+<code>best-ai-voice-assistants-for-real-estate</code></td>
+<td>Facebook Lead Gen for Realtors: Turning Ad Leads Into Showings</td>
+</tr>
+<tr class="odd">
+<td>Hỗ trợ</td>
+<td><a href="https://infina.ai/news/real-estate-contact-form-conversion-rate/">#521
+/real-estate-contact-form-conversion-rate</a></td>
+<td>1</td>
+<td>669</td>
+<td>2026-10-08</td>
+<td><code>real estate contact form conversion rate</code></td>
+<td>✅ <code>real-estate-lead-follow-up-automation-guide</code>; ↗
+<code>best-chatbot-customer-service-real-estate</code></td>
+<td>Real Estate Contact Forms Are Losing the Highest-Intent Leads</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cụm-8-compliance-legal-risk-6-trang-6017-chữ">Cụm 8: Compliance
+/ Legal / Risk (6 trang, 6,017 chữ)</h2>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 19%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Vai trò</th>
+<th>URL</th>
+<th>IN</th>
+<th>Chữ</th>
+<th>Sửa lần cuối</th>
+<th>FOCUS_KW đã log</th>
+<th>Pillar bài trỏ lên</th>
+<th>Post title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pillar (nhẹ)</strong></td>
+<td><a href="https://infina.ai/news/tcpa-compliance-for-real-estate-agents/">#237
+/tcpa-compliance-for-real-estate-agents</a></td>
+<td>15</td>
+<td>1,904</td>
+<td>2026-10-07</td>
+<td><code>tcpa compliance for real estate agents</code></td>
+<td><em>(là pillar)</em></td>
+<td>TCPA Compliance for Real Estate Agents: What Is Actually in Force
+for AI Texting and Calling</td>
+</tr>
+<tr class="even">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/ai-hallucination-risk-real-estate-listings/">#475
+/ai-hallucination-risk-real-estate-listings</a></td>
+<td>4</td>
+<td>976</td>
+<td>2026-10-07</td>
+<td><code>ai hallucination risk real estate listings</code></td>
+<td>✅ <code>tcpa-compliance-for-real-estate-agents</code></td>
+<td>AI-Written Listing Descriptions Are Creating Fair Housing Liability:
+Here’s What to Check</td>
+</tr>
+<tr class="odd">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/ai-decision-making-compliance-real-estate-agents/">#492
+/ai-decision-making-compliance-real-estate-agents</a></td>
+<td>3</td>
+<td>707</td>
+<td>2026-08-24</td>
+<td><code>ai decision making compliance real estate agents</code></td>
+<td>✅ <code>tcpa-compliance-for-real-estate-agents</code></td>
+<td>Colorado’s New AI Law Sets a Deadline for Automated Decisions in
+Real Estate</td>
+</tr>
+<tr class="even">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/seller-impersonation-fraud-prevention-real-estate-agents/">#1260
+/seller-impersonation-fraud-prevention-real-estate-agents</a></td>
+<td>2</td>
+<td>636</td>
+<td>2026-10-07</td>
+<td>–</td>
+<td>✅ <code>tcpa-compliance-for-real-estate-agents</code></td>
+<td>Seller Impersonation Fraud Attempts Just Doubled. Here Is How to
+Catch It Earlier</td>
+</tr>
+<tr class="odd">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/how-agents-protect-clients-from-wire-fraud/">#1481
+/how-agents-protect-clients-from-wire-fraud</a></td>
+<td>1</td>
+<td>923</td>
+<td>2026-10-07</td>
+<td><code>how agents protect clients from wire fraud</code></td>
+<td>✅ <code>tcpa-compliance-for-real-estate-agents</code></td>
+<td>Two Wire Fraud Companies Just Merged, and the Agent Is Still the
+Weak Link</td>
+</tr>
+<tr class="even">
+<td>Hỗ trợ (News)</td>
+<td><a href="https://infina.ai/news/private-listing-marketing-rules/">#1501
+/private-listing-marketing-rules</a></td>
+<td>1</td>
+<td>871</td>
+<td>2026-10-08</td>
+<td><code>private listing marketing rules</code></td>
+<td>✅ <code>tcpa-compliance-for-real-estate-agents</code></td>
+<td>Three States Now Force Private Listings Public the Moment You Market
+Them</td>
+</tr>
+</tbody>
+</table>
+<h2 id="bài-news-real-estate-chưa-gắn-cụm-trong-plan-40-trang-29224-chữ">Bài
+News real estate chưa gắn cụm trong plan (40 trang, 29,224 chữ)</h2>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 19%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Vai trò</th>
+<th>URL</th>
+<th>IN</th>
+<th>Chữ</th>
+<th>Sửa lần cuối</th>
+<th>FOCUS_KW đã log</th>
+<th>Pillar bài trỏ lên</th>
+<th>Post title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-assistant-instead-of-software-stack-real-estate-agents/">#1106
+/ai-assistant-instead-of-software-stack-real-estate-agents</a></td>
+<td>2</td>
+<td>777</td>
+<td>2026-08-27</td>
+<td><code>ai assistant instead of software stack real estate agents</code></td>
+<td><strong>❌ không</strong></td>
+<td>Before You Buy Software Number 12, Ask Your AI Assistant to Replace
+It</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-citation-content-real-estate-agent-websites/">#1140
+/ai-citation-content-real-estate-agent-websites</a></td>
+<td>2</td>
+<td>748</td>
+<td>2026-10-08</td>
+<td><code>ai citation content real estate agent websites</code></td>
+<td>↗ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>A 50-Year Broker’s Advice on What Actually Gets an AI Citation</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-isa-conversion-rates-real-estate/">#390
+/ai-isa-conversion-rates-real-estate</a></td>
+<td>2</td>
+<td>686</td>
+<td>2026-08-20</td>
+<td><code>ai isa conversion rates real estate</code></td>
+<td>↗ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>AI ISAs Are Delivering 3x Higher Conversion Rates for Real Estate
+Teams</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-training-gap-for-real-estate-agents/">#481
+/ai-training-gap-for-real-estate-agents</a></td>
+<td>2</td>
+<td>714</td>
+<td>2026-08-14</td>
+<td><code>ai training gap for real estate agents</code></td>
+<td><strong>❌ không</strong></td>
+<td>70% of Agents Want More AI Training: Here’s the Confidence Gap
+Behind That Number</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-usage-without-measurable-impact-real-estate-agents/">#1093
+/ai-usage-without-measurable-impact-real-estate-agents</a></td>
+<td>2</td>
+<td>742</td>
+<td>2026-08-25</td>
+<td><code>ai usage without measurable impact real estate agents</code></td>
+<td><strong>❌ không</strong></td>
+<td>41% of Agents Use AI. Almost Half Say It Changed Nothing.</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/autonomous-ai-workforce-real-estate-teams/">#461
+/autonomous-ai-workforce-real-estate-teams</a></td>
+<td>2</td>
+<td>703</td>
+<td>2026-08-12</td>
+<td><code>autonomous ai workforce real estate teams</code></td>
+<td><strong>❌ không</strong></td>
+<td>Real Estate’s Next AI Shift: From Chatbots to an AI Workforce for
+Real Estate Teams</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/agentic-ai-risk-concerns-real-estate-brokerage-leaders/">#1128
+/agentic-ai-risk-concerns-real-estate-brokerage-leaders</a></td>
+<td>1</td>
+<td>729</td>
+<td>2026-08-30</td>
+<td><code>agentic ai risk concerns real estate brokerage leaders</code></td>
+<td><strong>❌ không</strong></td>
+<td>Brokerage Leaders’ AI Worry Score Just Jumped, and Agentic AI Is
+Why</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-academy-role-based-learning-mls-subscribers/">#1203
+/ai-academy-role-based-learning-mls-subscribers</a></td>
+<td>1</td>
+<td>711</td>
+<td>2026-09-13</td>
+<td><code>ai academy role based learning mls subscribers</code></td>
+<td><strong>❌ không</strong></td>
+<td>Bright MLS Is Building an AI Academy for 100,000 Agents</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-back-office-automation-real-estate-brokerages/">#1254
+/ai-back-office-automation-real-estate-brokerages</a></td>
+<td>1</td>
+<td>598</td>
+<td>2026-10-09</td>
+<td>–</td>
+<td><strong>❌ không</strong></td>
+<td>53% of Brokerages Now Plan AI for Back-Office Work, Up From 23% in
+2024</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-backoffice-transaction-management-real-estate/">#498
+/ai-backoffice-transaction-management-real-estate</a></td>
+<td>1</td>
+<td>658</td>
+<td>2026-08-17</td>
+<td><code>ai backoffice transaction management real estate</code></td>
+<td><strong>❌ không</strong></td>
+<td>Inside Real Estate’s ComplianceAI Shows Where Back Office AI Is
+Headed</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-chief-of-staff-for-real-estate-agents/">#1302
+/ai-chief-of-staff-for-real-estate-agents</a></td>
+<td>1</td>
+<td>572</td>
+<td>2026-09-24</td>
+<td>–</td>
+<td><strong>❌ không</strong></td>
+<td>SERHANT. Unveils Dot, an AI That Runs Agents’ Days Without Being
+Asked</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-comparative-market-analysis-minutes-real-estate-agents/">#1178
+/ai-comparative-market-analysis-minutes-real-estate-agents</a></td>
+<td>1</td>
+<td>810</td>
+<td>2026-09-08</td>
+<td><code>ai comparative market analysis minutes real estate agents</code></td>
+<td><strong>❌ không</strong></td>
+<td>Compass Says Its AI Just Cut CMA Prep From 90 Minutes to 15</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-contract-data-extraction-closing-automation-agents/">#1209
+/ai-contract-data-extraction-closing-automation-agents</a></td>
+<td>1</td>
+<td>749</td>
+<td>2026-10-08</td>
+<td><code>ai contract data extraction closing automation agents</code></td>
+<td>↗ <code>best-crm-for-real-estate</code></td>
+<td>HomeSmart’s AI Now Reads a Contract and Automates the Closing Behind
+It</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-data-readiness-for-real-estate-brokerages/">#504
+/ai-data-readiness-for-real-estate-brokerages</a></td>
+<td>1</td>
+<td>680</td>
+<td>2026-08-17</td>
+<td><code>ai data readiness for real estate brokerages</code></td>
+<td><strong>❌ không</strong></td>
+<td>AI’s Impact on Real Estate Is Shrinking, and Bad Data Is Why</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-deployment-maturity-real-estate-firms/">#1020
+/ai-deployment-maturity-real-estate-firms</a></td>
+<td>1</td>
+<td>1,128</td>
+<td>2026-08-25</td>
+<td><code>ai deployment maturity real estate firms</code></td>
+<td><strong>❌ không</strong></td>
+<td>Only 9% of Real Estate Firms Have Actually Scaled Their AI, New
+Survey Finds</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-digital-human-brokerage-website-adoption/">#1165
+/ai-digital-human-brokerage-website-adoption</a></td>
+<td>1</td>
+<td>825</td>
+<td>2026-09-06</td>
+<td><code>ai digital human brokerage website adoption</code></td>
+<td><strong>❌ không</strong></td>
+<td>A Real Brokerage Just Put an AI Avatar Named Mae on Its Website</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-drafted-messages-agent-approval/">#1529
+/ai-drafted-messages-agent-approval</a></td>
+<td>1</td>
+<td>1,031</td>
+<td>2026-10-09</td>
+<td><code>ai drafted messages agent approval</code></td>
+<td>↗ <code>ai-intent-layer-for-real-estate-crm</code>,
+<code>real-estate-lead-follow-up-automation-guide</code>,
+<code>tcpa-compliance-for-real-estate-agents</code></td>
+<td>Realtor.com’s New AI Drafts the Message, Then Waits for You to
+Approve It</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-flat-fee-brokerage-model-real-estate-agents/">#1034
+/ai-flat-fee-brokerage-model-real-estate-agents</a></td>
+<td>1</td>
+<td>872</td>
+<td>2026-10-08</td>
+<td><code>ai flat fee brokerage model real estate agents</code></td>
+<td><strong>❌ không</strong></td>
+<td>TurboHome’s AI Hybrid Model Just Cut a Home Buying Commission by
+Thousands</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-home-valuation-tool-real-estate-agent-website/">#1308
+/ai-home-valuation-tool-real-estate-agent-website</a></td>
+<td>1</td>
+<td>582</td>
+<td>2026-10-09</td>
+<td>–</td>
+<td>↗ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>37% of Buyers Would Let AI Handle a Home Purchase With Minimal Human
+Help</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-job-substitution-risk-real-estate-agents/">#513
+/ai-job-substitution-risk-real-estate-agents</a></td>
+<td>1</td>
+<td>771</td>
+<td>2026-10-08</td>
+<td><code>ai job substitution risk real estate agents</code></td>
+<td>↗ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>Harvard Study Puts a Number on AI’s Threat to Real Estate Agent
+Jobs</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-likely-to-sell-alerts-real-estate-agents/">#1296
+/ai-likely-to-sell-alerts-real-estate-agents</a></td>
+<td>1</td>
+<td>530</td>
+<td>2026-09-23</td>
+<td>–</td>
+<td><strong>❌ không</strong></td>
+<td>Compass Got 15,000 Agents to Generate 97,000 AI Conversations in
+Weeks</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-listing-visualization-feature-real-estate-agents/">#1335
+/ai-listing-visualization-feature-real-estate-agents</a></td>
+<td>1</td>
+<td>508</td>
+<td>2026-09-29</td>
+<td>–</td>
+<td><strong>❌ không</strong></td>
+<td>Interactive Room Visualization Is Driving Up to 170% More Showing
+Requests</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-post-tour-follow-up-assistant-real-estate-crm/">#1341
+/ai-post-tour-follow-up-assistant-real-estate-crm</a></td>
+<td>1</td>
+<td>673</td>
+<td>2026-10-01</td>
+<td>–</td>
+<td>↗ <code>ai-intent-layer-for-real-estate-crm</code></td>
+<td>A $4B AI Housing Startup Just Automated the Post-Tour Follow-Up
+Text</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-powered-follow-up-messages-real-estate-agents/">#1290
+/ai-powered-follow-up-messages-real-estate-agents</a></td>
+<td>1</td>
+<td>535</td>
+<td>2026-09-22</td>
+<td>–</td>
+<td>↗ <code>real-estate-lead-follow-up-automation-guide</code></td>
+<td>NAR’s 2026 Report Shows AI Use Climbing, but Concentrated in One
+Place</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-property-research-tools-real-estate-teams/">#899
+/ai-property-research-tools-real-estate-teams</a></td>
+<td>1</td>
+<td>651</td>
+<td>2026-10-08</td>
+<td><code>ai property research tools real estate teams</code></td>
+<td>↗ <code>best-crm-for-real-estate</code></td>
+<td>ATTOM’s New AI Agents Let You Ask Property Questions in Plain
+English</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-relationship-manager-for-real-estate-leads/">#1284
+/ai-relationship-manager-for-real-estate-leads</a></td>
+<td>1</td>
+<td>568</td>
+<td>2026-09-21</td>
+<td>–</td>
+<td>↗ <code>best-conversational-ai-chatbot-for-real-estate</code></td>
+<td>Real Brokerage’s Leo 2.0 Is Holding Hundreds of Conversations at
+Once</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-video-marketing-automation-real-estate-agents/">#1152
+/ai-video-marketing-automation-real-estate-agents</a></td>
+<td>1</td>
+<td>700</td>
+<td>2026-09-04</td>
+<td><code>ai video marketing automation real estate agents</code></td>
+<td><strong>❌ không</strong></td>
+<td>Keller Williams Just Gave Agents an AI Tool That Claims to Save 10
+Hours a Week</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-visibility-reddit-seeding-backlash-real-estate-agents/">#1134
+/ai-visibility-reddit-seeding-backlash-real-estate-agents</a></td>
+<td>1</td>
+<td>773</td>
+<td>2026-10-09</td>
+<td><code>ai visibility reddit seeding backlash real estate agents</code></td>
+<td>↗ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>Agents Are Seeding Reddit to Win ChatGPT Recommendations, and Reddit
+Just Pushed Back</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/answer-engine-optimization-for-real-estate-agents/">#293
+/answer-engine-optimization-for-real-estate-agents</a></td>
+<td>1</td>
+<td>780</td>
+<td>2026-10-08</td>
+<td><code>answer engine optimization for real estate agents</code></td>
+<td>↗ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>Why 91% of Real Estate Agents Are Invisible to AI Search (And What
+to Do About It)</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/chatgpt-app-mortgage-matchup-real-estate-agent-visibility/">#1191
+/chatgpt-app-mortgage-matchup-real-estate-agent-visibility</a></td>
+<td>1</td>
+<td>770</td>
+<td>2026-10-08</td>
+<td><code>chatgpt app mortgage matchup real estate agent visibility</code></td>
+<td>↗ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>UWM’s New ChatGPT App Shows Where AI Search Is Headed for Agents
+Too</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/chatgpt-sycophantic-pricing-advice-real-estate-agents/">#1158
+/chatgpt-sycophantic-pricing-advice-real-estate-agents</a></td>
+<td>1</td>
+<td>866</td>
+<td>2026-10-08</td>
+<td><code>chatgpt sycophantic pricing advice real estate agents</code></td>
+<td>↗ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>Coldwell Banker’s CEO Just Called ChatGPT ‘Sycophantic’ About Home
+Prices</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/cost-per-lead-for-real-estate-agents/">#1415
+/cost-per-lead-for-real-estate-agents</a></td>
+<td>1</td>
+<td>805</td>
+<td>2026-10-08</td>
+<td>–</td>
+<td>↗ <code>real-estate-lead-follow-up-automation-guide</code></td>
+<td>The Average Cost Per Lead for Real Estate Agents Just Hit $503</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/declining-ai-trust-real-estate-agents/">#299
+/declining-ai-trust-real-estate-agents</a></td>
+<td>1</td>
+<td>709</td>
+<td>2026-08-20</td>
+<td><code>declining ai trust real estate agents</code></td>
+<td><strong>❌ không</strong></td>
+<td>Homebuyer Trust in AI Just Dropped 14 Points — What That Means for
+Real Estate Agents</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/embedded-ai-real-estate-brokerage-platforms/">#528
+/embedded-ai-real-estate-brokerage-platforms</a></td>
+<td>1</td>
+<td>675</td>
+<td>2026-10-08</td>
+<td><code>embedded ai real estate brokerage platforms</code></td>
+<td>↗ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>Lone Wolf Just Bet the Future of Real Estate AI Isn’t a Separate
+App</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/financing-readiness-signals-for-real-estate-buyer-leads/">#1317
+/financing-readiness-signals-for-real-estate-buyer-leads</a></td>
+<td>1</td>
+<td>534</td>
+<td>2026-09-26</td>
+<td>–</td>
+<td>↗ <code>ai-intent-layer-for-real-estate-crm</code></td>
+<td>Down Payments Just Hit a Four-Year Q2 Low While Payments Jumped
+74%</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/google-home-listing-ads-real-estate-agent-leads/">#1266
+/google-home-listing-ads-real-estate-agent-leads</a></td>
+<td>1</td>
+<td>579</td>
+<td>2026-10-08</td>
+<td>–</td>
+<td>↗ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>Google Just Took Home Listing Ads Nationwide, and Zillow Stock
+Dropped</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/mls-ai-conversational-search-broker-attribution-agents/">#1197
+/mls-ai-conversational-search-broker-attribution-agents</a></td>
+<td>1</td>
+<td>752</td>
+<td>2026-09-11</td>
+<td><code>mls ai conversational search broker attribution agents</code></td>
+<td><strong>❌ không</strong></td>
+<td>Northwest MLS Just Launched an AI Home Search With Zero Ads and Zero
+Lead Forms</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/mortgage-rate-spike-real-estate-agent-response/">#1243
+/mortgage-rate-spike-real-estate-agent-response</a></td>
+<td>1</td>
+<td>575</td>
+<td>2026-10-08</td>
+<td>–</td>
+<td>↗ <code>best-crm-for-real-estate</code></td>
+<td>Mortgage Rates Just Hit a 52-Week High: What It Means for Agent
+Response Times</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/real-estate-ai-adoption-statistics-2026/">#286
+/real-estate-ai-adoption-statistics-2026</a></td>
+<td>1</td>
+<td>824</td>
+<td>2026-10-08</td>
+<td><code>real estate ai adoption statistics 2026</code></td>
+<td>↗ <code>best-chatbot-customer-service-real-estate</code></td>
+<td>Real Estate’s AI Holdouts Are Nearly Extinct: What the 2026 Adoption
+Data Means for Agents Still on the Fence</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/real-estate-ai-pricing-per-task/">#1609
+/real-estate-ai-pricing-per-task</a></td>
+<td>1</td>
+<td>1,331</td>
+<td>2026-10-09</td>
+<td><code>real estate ai pricing</code></td>
+<td>↗ <code>real-estate-lead-follow-up-automation-guide</code></td>
+<td>Rechat’s AI Keeps Doing More Work. The Price Has Not Moved.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ngoài-chủ-đề-real-estate-aitech-11-trang-2780-chữ">Ngoài chủ đề
+real estate (AI/tech) (11 trang, 2,780 chữ)</h2>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 19%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Vai trò</th>
+<th>URL</th>
+<th>IN</th>
+<th>Chữ</th>
+<th>Sửa lần cuối</th>
+<th>FOCUS_KW đã log</th>
+<th>Pillar bài trỏ lên</th>
+<th>Post title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-cannot-learn-while-it-works/">#41
+/ai-cannot-learn-while-it-works</a></td>
+<td>0</td>
+<td>323</td>
+<td>2026-07-31</td>
+<td><code>ai cannot learn while it works</code> ⚠️</td>
+<td><strong>❌ không</strong></td>
+<td>AI cannot learn while it works</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/ai-just-moved-from-a-separate-tab-into-your-slack/">#31
+/ai-just-moved-from-a-separate-tab-into-your-slack</a></td>
+<td>0</td>
+<td>191</td>
+<td>2026-07-31</td>
+<td><code>ai just moved from a separate tab into your slack</code>
+⚠️</td>
+<td><strong>❌ không</strong></td>
+<td>AI just moved from a separate tab into your Slack</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/claude-code-has-500000-lines-of-code-only-1-6-of-it-is-actually-ai/">#34
+/claude-code-has-500000-lines-of-code-only-1-6-of-it-is-actually-ai</a></td>
+<td>0</td>
+<td>468</td>
+<td>2026-07-31</td>
+<td><code>claude code has 500000 lines of code only 1 6 of it is actually ai</code>
+⚠️</td>
+<td><strong>❌ không</strong></td>
+<td>Claude Code has 500,000 lines of code. Only 1.6% of it is actually
+AI</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/claude-code-just-shipped-artifacts/">#50
+/claude-code-just-shipped-artifacts</a></td>
+<td>0</td>
+<td>66</td>
+<td>2026-07-31</td>
+<td><code>claude code just shipped artifacts</code> ⚠️</td>
+<td><strong>❌ không</strong></td>
+<td>Claude Code just shipped Artifacts</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/claude-fable-5-is-back/">#14
+/claude-fable-5-is-back</a></td>
+<td>0</td>
+<td>195</td>
+<td>2026-07-30</td>
+<td><code>claude fable 5 is back</code> ⚠️</td>
+<td><strong>❌ không</strong></td>
+<td>Claude Fable 5 is back</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/genai-economy-first-revenue-number/">#1
+/genai-economy-first-revenue-number</a></td>
+<td>0</td>
+<td>291</td>
+<td>2026-08-17</td>
+<td><code>genai economy first revenue number</code> ⚠️</td>
+<td><strong>❌ không</strong></td>
+<td>The GenAI economy just got its first real revenue number</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/is-openai-in-trouble/">#53
+/is-openai-in-trouble</a></td>
+<td>0</td>
+<td>88</td>
+<td>2026-07-31</td>
+<td><code>is openai in trouble</code> ⚠️</td>
+<td><strong>❌ không</strong></td>
+<td>Is OpenAI in trouble?</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/microsoft-just-sent-6000-engineers-into-enterprise-buildings/">#44
+/microsoft-just-sent-6000-engineers-into-enterprise-buildings</a></td>
+<td>0</td>
+<td>313</td>
+<td>2026-07-31</td>
+<td><code>microsoft just sent 6000 engineers into enterprise buildings</code>
+⚠️</td>
+<td><strong>❌ không</strong></td>
+<td>Microsoft just sent 6,000 engineers into enterprise buildings</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/most-ai-tools-stop-working-when-you-close-your-laptop/">#47
+/most-ai-tools-stop-working-when-you-close-your-laptop</a></td>
+<td>0</td>
+<td>354</td>
+<td>2026-07-31</td>
+<td><code>most ai tools stop working when you close your laptop</code>
+⚠️</td>
+<td><strong>❌ không</strong></td>
+<td>Most AI tools stop working when you close your laptop</td>
+</tr>
+<tr class="even">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/the-u-s-governments-reported-ban-on-foreign-access-to-anthropics-models/">#37
+/the-u-s-governments-reported-ban-on-foreign-access-to-anthropics-models</a></td>
+<td>0</td>
+<td>84</td>
+<td>2026-07-31</td>
+<td><code>the u s governments reported ban on foreign access to anthropics models</code>
+⚠️</td>
+<td><strong>❌ không</strong></td>
+<td>The U.S. government’s reported ban on foreign access to Anthropic’s
+models</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td><a href="https://infina.ai/news/yc-spring-2026-the-agent-economy-has-actuaries-now/">#26
+/yc-spring-2026-the-agent-economy-has-actuaries-now</a></td>
+<td>0</td>
+<td>407</td>
+<td>2026-07-31</td>
+<td><code>yc spring 2026 the agent economy has actuaries now</code>
+⚠️</td>
+<td><strong>❌ không</strong></td>
+<td>YC Spring 2026: The Agent Economy Has Actuaries Now</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="phụ-lục-12-stub-301">Phụ lục: 12 stub 301</h2>
+<p>Đây vẫn là 12 post thật trong WordPress nhưng trang của chúng trả 301
+chứ không phải 200, nên không tính vào 135 bài ở trên.</p>
+<p><strong>Cả 12 đều đang ở IN = 0, tức là không còn bài nào trỏ vào
+slug cũ nữa.</strong> Đây là kết quả của đợt sửa 02/10, lúc đó phát hiện
+#1026, #1184 và #1329 còn link qua slug stub và đã đổi sang trỏ thẳng.
+Nghĩa là 12 redirect này hiện chỉ còn phục vụ link từ bên ngoài site và
+backlink cũ, không phục vụ link nội bộ nào. Cũng vì vậy cột IN của 135
+bài ở trên không có dòng nào ghi “qua stub”.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>URL stub</th>
+<th>IN (vẫn còn bài trỏ vào)</th>
+<th>Redirect 301 tới</th>
+<th>Chữ còn lại</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://infina.ai/news/best-ai-chat-platform-real-estate/">#99
+/best-ai-chat-platform-real-estate</a></td>
+<td>0</td>
+<td><code>best-chatbot-customer-service-real-estate</code></td>
+<td>46</td>
+</tr>
+<tr class="even">
+<td><a href="https://infina.ai/news/best-ai-chatbot-for-real-estate-lead-capture/">#58
+/best-ai-chatbot-for-real-estate-lead-capture</a></td>
+<td>0</td>
+<td><code>best-chatbot-customer-service-real-estate</code></td>
+<td>51</td>
+</tr>
+<tr class="odd">
+<td><a href="https://infina.ai/news/best-ai-conversational-bot-for-real-estate/">#1069
+/best-ai-conversational-bot-for-real-estate</a></td>
+<td>0</td>
+<td><code>best-conversational-ai-chatbot-for-real-estate</code></td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td><a href="https://infina.ai/news/best-conversational-chatbot-for-real-estate/">#1063
+/best-conversational-chatbot-for-real-estate</a></td>
+<td>0</td>
+<td><code>best-conversational-ai-chatbot-for-real-estate</code></td>
+<td>65</td>
+</tr>
+<tr class="odd">
+<td><a href="https://infina.ai/news/best-crm-software-real-estate-agents/">#384
+/best-crm-software-real-estate-agents</a></td>
+<td>0</td>
+<td><code>best-crm-for-real-estate</code></td>
+<td>48</td>
+</tr>
+<tr class="even">
+<td><a href="https://infina.ai/news/best-idx-website-for-realtors/">#649
+/best-idx-website-for-realtors</a></td>
+<td>0</td>
+<td><code>idx-website-for-realtors</code></td>
+<td>43</td>
+</tr>
+<tr class="odd">
+<td><a href="https://infina.ai/news/best-real-estate-website-builder/">#553
+/best-real-estate-website-builder</a></td>
+<td>0</td>
+<td><code>real-estate-website-builder</code></td>
+<td>47</td>
+</tr>
+<tr class="even">
+<td><a href="https://infina.ai/news/conversational-chat-real-estate/">#196
+/conversational-chat-real-estate</a></td>
+<td>0</td>
+<td><code>what-is-a-conversational-chatbot-real-estate</code></td>
+<td>56</td>
+</tr>
+<tr class="odd">
+<td><a href="https://infina.ai/news/no-code-chatbot-platform-real-estate/">#1076
+/no-code-chatbot-platform-real-estate</a></td>
+<td>0</td>
+<td><code>best-chatbot-builder-real-estate</code></td>
+<td>45</td>
+</tr>
+<tr class="even">
+<td><a href="https://infina.ai/news/real-estate-website-builder-with-idx/">#637
+/real-estate-website-builder-with-idx</a></td>
+<td>0</td>
+<td><code>real-estate-website-builder</code></td>
+<td>72</td>
+</tr>
+<tr class="odd">
+<td><a href="https://infina.ai/news/realtor-website-design/">#987
+/realtor-website-design</a></td>
+<td>0</td>
+<td><code>website-design-for-real-estate-agents</code></td>
+<td>46</td>
+</tr>
+<tr class="even">
+<td><a href="https://infina.ai/news/top-crm-tools-for-real-estate-teams/">#412
+/top-crm-tools-for-real-estate-teams</a></td>
+<td>0</td>
+<td><code>best-crm-for-real-estate</code></td>
+<td>35</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
