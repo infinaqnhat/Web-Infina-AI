@@ -724,9 +724,16 @@
     .hp-card-top { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:0; }
     .hp-card-tag { display:inline-flex; align-items:center; padding:2px 10px; border-radius:999px; background:var(--navy-100); color:var(--accent); font-family:var(--font-mono); font-weight:500; font-size:12px; line-height:16px; }
     .hp-card-tag.soon { background:transparent; border:1px dashed #BAC4DC; color:var(--muted); padding:1px 9px; }
-    #home-view .hp-card-link { display:inline-flex; align-items:center; gap:6px; justify-self:start; font-weight:600; font-size:14px; line-height:20px; color:var(--accent); text-decoration:none; }
-    #home-view .hp-card-link:hover { text-decoration:underline; }
-    .hp-card .hp-card-link svg { width:16px; height:16px; }
+    /* the two product cards are clickable as a whole: the button is the CTA and its link covers the card */
+    .hp-card { position:relative; }
+    .hp-card:has(.hp-card-link) { cursor:pointer; }
+    #home-view .hp-card-link { display:flex; align-items:center; justify-content:space-between; gap:12px; box-sizing:border-box; width:100%; min-height:48px; margin-top:4px; padding:12px 20px; border-radius:10px; background:var(--accent); color:#fff; font-family:var(--font-head); font-weight:600; font-size:16px; line-height:24px; text-decoration:none; transition:background .2s ease; }
+    #home-view .hp-card-link::after { content:''; position:absolute; inset:0; border-radius:16px; }
+    #home-view .hp-card:hover .hp-card-link, #home-view .hp-card-link:focus-visible { background:var(--navy-700); }
+    #home-view .hp-card-link:focus-visible { outline:none; }
+    #home-view .hp-card:has(.hp-card-link:focus-visible) { outline:2px solid var(--green-700); outline-offset:3px; }
+    .hp-card .hp-card-link svg { width:20px; height:20px; stroke:#fff; transition:transform .2s ease; }
+    #home-view .hp-card:hover .hp-card-link svg { transform:translateX(4px); }
     .hp-art-ck.pend { background:#fff; border:1.5px solid var(--navy-500); box-sizing:border-box; }
     .hp-art-cal { gap:10px; }
     .hp-art-calhead { font-size:12px; line-height:16px; font-weight:600; color:var(--accent); }
@@ -921,14 +928,14 @@
   <div class="hp-art-src a3">Source: Austin MLS</div>
   <div class="hp-art-msg me a4">Yes, please.</div>
   <div class="hp-art-msg ai a5"><span class="hp-art-av"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#012976"/></g></svg></span><span>Done. Alex will confirm Saturday at 10:00.</span></div>
-</div><a class="hp-card-link" href="#listing-agent">See Property Expert <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
+</div><a class="hp-card-link" href="#listing-agent">Meet Property Expert <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
           <div class="hp-card" data-side="l" data-i="1"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg><div class="hp-card-top"><h3>Home Concierge</h3><span class="hp-card-tag">For buyer agents</span></div><p>Learns what each buyer cares about, helps them weigh every home and books tours, with you in the conversation.</p><div class="hp-art hp-art-cal" aria-hidden="true">
   <div class="hp-art-calhead">Tours this week</div>
   <div class="hp-art-days k1"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span class="on">Sat</span><span class="on">Sun</span></div>
   <div class="hp-art-bk k2"><time>Sat 10:00</time><div><b>1428 Maple Ave</b><small>Tour with Maya</small></div><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Booked</em></div>
   <div class="hp-art-bk k3"><time>Sun 2:00</time><div><b>77 Oak St</b><small>Tour with Daniel</small></div><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Booked</em></div>
   <div class="hp-art-bk k4"><time>Notes</time><div><b>Priya</b><small>Likes backyards, under $900k</small></div><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Saved</em></div>
-</div><a class="hp-card-link" href="#buyer-agent">See Home Concierge <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
+</div><a class="hp-card-link" href="#buyer-agent">Meet Home Concierge <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
           </div>
           <div class="hp-hub" id="hp-hub"><img class="hp-hub-me" src="uploads/home-realtor.jpg" alt="A realtor, the person at the center of every conversation" width="500" height="500" loading="lazy"><span class="hp-hub-ai" role="img" aria-label="Realisa"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#012976"/><circle class="d d1" cx="199" cy="338" r="56"/><circle class="d d2" cx="365" cy="338" r="56"/><circle class="d d3" cx="531" cy="338" r="56"/></g></svg></span><span class="hp-hub-cap">You, with Realisa</span></div>
           <div class="hp-col hp-col-r">
