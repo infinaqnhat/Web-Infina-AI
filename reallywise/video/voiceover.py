@@ -119,7 +119,7 @@ def clean(audio):
     w = int(SR * 0.02); n = len(audio) // w
     db = np.array([20 * np.log10(np.sqrt(np.mean(audio[i * w:(i + 1) * w] ** 2)) + 1e-9) for i in range(n)])
     on = np.where(db > -45)[0]
-    a, b = max(0, on[0] * w - int(SR * 0.04)), min(len(audio), (on[-1] + 1) * w + int(SR * 0.12))
+    a, b = max(0, on[0] * w - int(SR * 0.04)), min(len(audio), (on[-1] + 1) * w + int(SR * 0.25))   # keep soft endings such as -ing
     audio = audio[a:b].copy()
     # pauses inside a line longer than MAX_PAUSE are shortened to it, with short fades, so the read stays tight
     MAX_PAUSE = cfg.get('max_pause', 0.35)
@@ -134,7 +134,7 @@ def clean(audio):
             half = int(SR * MAX_PAUSE / 2); seg = np.concatenate([seg[:half], seg[-half:]])
         keep.append(seg); i = j
     audio = np.concatenate(keep + [audio[n * w:]])
-    fi, fo = int(SR * 0.01), int(SR * 0.08)
+    fi, fo = int(SR * 0.01), int(SR * 0.05)
     audio[:fi] *= np.linspace(0, 1, fi); audio[-fo:] *= np.linspace(1, 0, fo)
     return audio
 
