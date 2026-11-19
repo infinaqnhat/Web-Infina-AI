@@ -735,18 +735,20 @@
     .hp-card .hp-card-link svg { width:20px; height:20px; stroke:#fff; transition:transform .2s ease; }
     #home-view .hp-card:hover .hp-card-link svg { transform:translateX(4px); }
     .hp-art-ck.pend { background:#fff; border:1.5px solid var(--navy-500); box-sizing:border-box; }
-    .hp-art-cal { gap:10px; }
-    .hp-art-calhead { font-size:12px; line-height:16px; font-weight:600; color:var(--accent); }
-    .hp-art-days { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:4px; }
-    .hp-art-days span { padding:6px 0; border-radius:6px; background:#fff; text-align:center; font-family:var(--font-mono); font-weight:500; font-size:10.5px; line-height:14px; color:var(--muted); }
-    .hp-art-days span.on { background:var(--accent); color:#fff; }
-    .hp-art-bk { display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:6px; background:#fff; }
-    .hp-art-bk time { flex-shrink:0; width:62px; font-family:var(--font-mono); font-weight:500; font-size:11px; line-height:16px; color:var(--muted); }
-    .hp-art-bk div { flex:1; min-width:0; }
-    .hp-art-bk b { display:block; font-size:12.5px; line-height:16px; font-weight:600; color:var(--accent); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .hp-art-bk small { display:block; font-size:11px; line-height:15px; color:var(--muted); }
-    .hp-art-bk em { flex-shrink:0; display:inline-flex; align-items:center; gap:4px; font-style:normal; font-size:11px; line-height:16px; font-weight:600; color:var(--accent); background:var(--navy-100); border-radius:999px; padding:2px 8px; }
-    .hp-art-bk em svg { width:10px; height:10px; fill:none; stroke:currentColor; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+    .hp-art-cmp { gap:10px; }
+    .hp-art-ttl { font-size:12px; line-height:16px; font-weight:600; color:var(--accent); }
+    .hp-cmp { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+    .hp-cmp-col { background:#fff; border-radius:8px; border:1px solid var(--border); overflow:hidden; display:flex; flex-direction:column; padding-bottom:12px; }
+    .hp-cmp-col.best { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent); }
+    .hp-cmp .ph { position:relative; height:72px; background:var(--sand); }
+    .hp-cmp .ph img { width:100%; height:100%; object-fit:cover; display:block; }
+    .hp-cmp .tag { position:absolute; left:6px; top:6px; padding:1px 8px; border-radius:999px; background:var(--accent); color:#fff; font-size:10px; line-height:14px; font-weight:600; }
+    .hp-cmp-col b { display:block; padding:8px 10px 0; font-size:12px; line-height:16px; font-weight:600; color:var(--accent); }
+    .hp-cmp-col i { display:block; padding:0 10px 8px; font-style:normal; font-family:var(--font-mono); font-weight:500; font-size:11px; line-height:16px; color:var(--muted); }
+    .hp-cmp ul { margin:0; padding:0 10px; list-style:none; display:flex; flex-direction:column; gap:7px; }
+    .hp-cmp li { display:flex; align-items:center; gap:6px; font-size:11px; line-height:14px; color:var(--accent); }
+    .hp-cmp li .hp-art-ck { width:14px; height:14px; }
+    .hp-cmp li .hp-art-ck svg { width:9px; height:9px; }
     .hp-orbit.is-in .k1 { animation:hp-swap .4s ease-out .2s both; } .hp-orbit.is-in .k2 { animation:hp-swap .4s ease-out .6s both; } .hp-orbit.is-in .k3 { animation:hp-swap .4s ease-out 1s both; }
     .hp-orbit .hp-art { min-height:0; }
     .hp-tl { position:relative; display:grid; grid-template-columns:repeat(4,1fr); padding-top:2px; }
@@ -778,7 +780,7 @@
     .hp-front .ic { width:16px; height:16px; border-radius:50%; background:var(--accent); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
     .hp-front .ic svg { width:10px; height:10px; fill:none; stroke:#fff; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
     .hp-front .ic.pend { background:#fff; border:1.5px solid var(--navy-500); box-sizing:border-box; }
-    .hp-orbit.is-in .k4 { animation:hp-swap .4s ease-out 1.4s both; } .hp-orbit.is-in .a4 { animation:hp-swap .4s ease-out 1.7s both; } .hp-orbit.is-in .a5 { animation:hp-swap .4s ease-out 2.2s both; }
+    .hp-orbit.is-in .a4 { animation:hp-swap .4s ease-out 1.7s both; } .hp-orbit.is-in .a5 { animation:hp-swap .4s ease-out 2.2s both; }
     /* the two columns are as tall as each other: both stretch to the taller one and the spare room sits above each illustration */
     @media (min-width:1001px){
       .hp-orbit { align-items:stretch; }
@@ -929,12 +931,12 @@
   <div class="hp-art-msg me a4">Yes, please.</div>
   <div class="hp-art-msg ai a5"><span class="hp-art-av"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#012976"/></g></svg></span><span>Done. Alex will confirm Saturday at 10:00.</span></div>
 </div><a class="hp-card-link" href="#listing-agent">Meet Property Expert <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
-          <div class="hp-card" data-side="l" data-i="1"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg><div class="hp-card-top"><h3>Home Concierge</h3><span class="hp-card-tag">For buyer agents</span></div><p>Learns what each buyer cares about, helps them weigh every home and books tours, with you in the conversation.</p><div class="hp-art hp-art-cal" aria-hidden="true">
-  <div class="hp-art-calhead">Tours this week</div>
-  <div class="hp-art-days k1"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span class="on">Sat</span><span class="on">Sun</span></div>
-  <div class="hp-art-bk k2"><time>Sat 10:00</time><div><b>1428 Maple Ave</b><small>Tour with Maya</small></div><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Booked</em></div>
-  <div class="hp-art-bk k3"><time>Sun 2:00</time><div><b>77 Oak St</b><small>Tour with Daniel</small></div><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Booked</em></div>
-  <div class="hp-art-bk k4"><time>Notes</time><div><b>Priya</b><small>Likes backyards, under $900k</small></div><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Saved</em></div>
+          <div class="hp-card" data-side="l" data-i="1"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><div class="hp-card-top"><h3>Home Concierge</h3><span class="hp-card-tag">For buyer agents</span></div><p>Learns what each buyer cares about, helps them weigh every home and books tours, with you in the conversation.</p><div class="hp-art hp-art-cmp" aria-hidden="true">
+  <div class="hp-art-ttl">Maya's shortlist</div>
+  <div class="hp-cmp">
+    <div class="hp-cmp-col best k1"><div class="ph"><img src="uploads/property-148-maple-main.jpg" alt="" loading="lazy"><span class="tag k3">Best fit</span></div><b>1428 Maple Ave</b><i>$849,000</i><ul><li><span class="hp-art-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Fenced backyard</li><li><span class="hp-art-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>12 min commute</li><li><span class="hp-art-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Under $900k</li></ul></div>
+    <div class="hp-cmp-col k2"><div class="ph"><img src="uploads/property-oaklane-42.jpg" alt="" loading="lazy"></div><b>42 Oak Lane</b><i>$812,000</i><ul><li><span class="hp-art-ck pend"></span>No backyard</li><li><span class="hp-art-ck pend"></span>25 min commute</li><li><span class="hp-art-ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Under $900k</li></ul></div>
+  </div>
 </div><a class="hp-card-link" href="#buyer-agent">Meet Home Concierge <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
           </div>
           <div class="hp-hub" id="hp-hub"><img class="hp-hub-me" src="uploads/home-realtor.jpg" alt="A realtor, the person at the center of every conversation" width="500" height="500" loading="lazy"><span class="hp-hub-ai" role="img" aria-label="Realisa"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#012976"/><circle class="d d1" cx="199" cy="338" r="56"/><circle class="d d2" cx="365" cy="338" r="56"/><circle class="d d3" cx="531" cy="338" r="56"/></g></svg></span><span class="hp-hub-cap">You, with Realisa</span></div>
