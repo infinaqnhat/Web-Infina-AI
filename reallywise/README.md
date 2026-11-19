@@ -10,7 +10,7 @@ duplicate of the root files. The brand source of truth is `brand/`.
 |---|---|
 | `reallywise.html`, `nav.js`, `footer.js` | Done. One page with three views: the homepage (no hash), the listing agents tab (`#listing-agent`) and the buyer agents tab (`#buyer-agent`). The logo and `#home` go to the homepage; `#mission`, `#fight`, `#tools` and `#endings` are homepage anchors (reachable by link, not from the menu). `nav.js` and `footer.js` are the `rw-nav` and `rw-footer` components and only serve ReallyWise pages |
 | `property-expert-demo-tour.html`, `property-expert-admin-demo-tour.html` | Done (assistant name Realisa kept) |
-| `property-expert-presentation.html` | Done. MVP pitch deck: Property Expert and Realisa only (no Home Concierge), built around one proposition, turn every conversation into a booked viewing. 13 slides on the web, 10 PDF pages (`uploads/ReallyWise-Property-Expert-Presentation.pdf`). Plays the three Property Expert videos: promo, product tour and lead capture |
+| `property-expert-presentation.html` | Done. MVP pitch deck: Property Expert and Realisa only (no Home Concierge), built around the ReallyWise mission: capture every lead and turn it into a hot lead (a booked viewing), deepen every relationship, multiply your capacity, close more deals. Light hero with `uploads/home-hero-agent.jpg`. 14 slides on the web, 11 PDF pages (`uploads/ReallyWise-Property-Expert-Presentation.pdf`). Plays the three Property Expert videos: promo, product tour and lead capture |
 | everything else | Not started |
 
 Navy on the landing page follows guideline v2: Navy 900 `#012976`, Navy 700 `#013A9E`, Navy 500 `#33599F`, Navy 100 `#E4E9F3` (hover navy `#011F59` is derived).
