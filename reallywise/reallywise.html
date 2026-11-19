@@ -720,6 +720,22 @@
     .hp-art-av svg { width:100%; height:100%; display:block; }
     .hp-art-ck { width:16px; height:16px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .hp-art-ck svg { width:10px; height:10px; fill:none; stroke:#fff; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+    /* Realisa: one agent for the office work, three capabilities inside one card */
+    .hp-realisa { display:flex; flex-direction:column; gap:0; }
+    .hp-rl-head { display:grid; grid-template-columns:48px minmax(0,1fr); column-gap:14px; row-gap:12px; align-items:center; padding-bottom:20px; }
+    .hp-rl-mark { width:48px; height:48px; border-radius:12px; background:var(--navy-100); display:flex; align-items:center; justify-content:center; }
+    .hp-rl-mark svg { width:34px; height:34px; stroke:none; fill:none; }
+    .hp-rl-mark .d { fill:#fff; } .hp-rl-mark .d3 { fill:var(--green-500); }
+    .hp-realisa .hp-rl-head h3 { font-size:24px; line-height:30px; }
+    .hp-rl-head > p { grid-column:1 / -1; }
+    .hp-rl-row { flex:1 1 auto; display:flex; flex-direction:column; gap:8px; padding:18px 0; border-top:1px solid var(--border); }
+    .hp-rl-row:last-child { padding-bottom:0; }
+    .hp-rl-lab { display:flex; align-items:center; gap:10px; }
+    .hp-rl-lab .ic { width:32px; height:32px; border-radius:8px; background:var(--navy-100); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .hp-rl-lab svg { width:18px; height:18px; }
+    .hp-rl-lab b { font-family:var(--font-head); font-weight:700; font-size:16px; line-height:22px; color:var(--accent); }
+    .hp-card .hp-rl-row > p { margin:0; font-size:14px; line-height:20px; }
+    .hp-rl-row > .hp-art { margin-top:auto; align-self:stretch; }
     /* roles: product tag, link, and the new illustrations */
     .hp-card-top { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:0; }
     .hp-card-tag { display:inline-flex; align-items:center; padding:2px 10px; border-radius:999px; background:var(--navy-100); color:var(--accent); font-family:var(--font-mono); font-weight:500; font-size:12px; line-height:16px; }
@@ -918,7 +934,7 @@
         <div class="hp-intro hp-rv">
           <div class="hp-kicker">your AI team</div>
           <h2 class="hp-h2">Arm every agent with a team of AI<span class="hp-dot" aria-hidden="true" style="animation:none"></span></h2>
-          <p class="hp-lead">Realisa coordinates your whole AI team: two agents for your clients and three for your office.</p>
+          <p class="hp-lead">Two agents talk to your clients. Realisa runs the work behind them.</p>
         </div>
         <div class="hp-orbit hp-rv" id="hp-orbit">
           <svg class="hp-wires" id="hp-wires" aria-hidden="true"></svg>
@@ -939,11 +955,14 @@
   </div>
 </div><a class="hp-card-link" href="#buyer-agent">Meet Home Concierge <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
           </div>
-          <div class="hp-hub" id="hp-hub"><img class="hp-hub-me" src="uploads/home-realtor.jpg" alt="A realtor, the person at the center of every conversation" width="500" height="500" loading="lazy"><span class="hp-hub-ai" role="img" aria-label="Realisa"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#012976"/><circle class="d d1" cx="199" cy="338" r="56"/><circle class="d d2" cx="365" cy="338" r="56"/><circle class="d d3" cx="531" cy="338" r="56"/></g></svg></span><span class="hp-hub-cap">You, with Realisa</span></div>
+          <div class="hp-hub" id="hp-hub"><img class="hp-hub-me" src="uploads/home-realtor.jpg" alt="A realtor, the person at the center of every conversation" width="500" height="500" loading="lazy"><span class="hp-hub-ai" role="img" aria-label="Realisa"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#012976"/><circle class="d d1" cx="199" cy="338" r="56"/><circle class="d d2" cx="365" cy="338" r="56"/><circle class="d d3" cx="531" cy="338" r="56"/></g></svg></span><span class="hp-hub-cap">You, with your AI team</span></div>
           <div class="hp-col hp-col-r">
-          <div class="hp-card" data-side="r" data-i="2"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9z"/><path d="m9 14 2 2 4-4"/></svg><div class="hp-card-top"><h3>Transaction coordinator</h3><span class="hp-card-tag soon">Coming soon</span></div><p>Manages the paperwork, deadlines and messages between agents, lenders and title companies, from contract to closing.</p><div class="hp-art" aria-hidden="true"><div class="hp-tl k1"><span class="done"><i></i>Contract</span><span class="done"><i></i>Inspection</span><span class="now"><i></i>Appraisal</span><span><i></i>Closing</span></div><div class="hp-due k2"><span class="hp-art-ck pend"></span><span>Appraisal report due</span><time>Nov 24</time></div></div></div>
-          <div class="hp-card" data-side="r" data-i="3"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l8 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M18 9a4 4 0 0 1 0 6"/></svg><div class="hp-card-top"><h3>Marketing coordinator</h3><span class="hp-card-tag soon">Coming soon</span></div><p>Builds your listings, ads, social posts and branding for the brokerage and its agents.</p><div class="hp-art" aria-hidden="true"><div class="hp-set"><div class="k1"><div class="ph"><img src="uploads/property-148-maple-main.jpg" alt="" loading="lazy"></div><div class="cap"><div class="ln d"></div><div class="ln s"></div></div><b>Social post</b></div><div class="k2"><div class="fl"><span class="t">JUST LISTED</span><div class="blk"></div><div class="ln"></div><div class="ln s"></div></div><b>Flyer</b></div><div class="k3"><div class="em"><span class="sub">1428 Maple Ave</span><div class="ln d"></div><div class="ln"></div><div class="ln s"></div></div><b>Email</b></div></div></div></div>
-          <div class="hp-card" data-side="r" data-i="4"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg><div class="hp-card-top"><h3>Administrative assistant</h3><span class="hp-card-tag soon">Coming soon</span></div><p>Runs the front desk: scheduling, client intake and day-to-day office support.</p><div class="hp-art" aria-hidden="true"><div class="hp-front"><div class="k1"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>New client intake: Maya R.</span><em>Form received</em></div><div class="k2"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>Showing request: 1428 Maple Ave</span><em>Sat 10:00</em></div><div class="k3"><span class="ic pend"></span><span>Call back Daniel</span><em>4:30 PM</em></div></div></div></div>
+          <div class="hp-card hp-realisa" data-side="r" data-i="2">
+            <div class="hp-rl-head"><span class="hp-rl-mark"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#012976"/><circle class="d d1" cx="199" cy="338" r="56"/><circle class="d d2" cx="365" cy="338" r="56"/><circle class="d d3" cx="531" cy="338" r="56"/></g></svg></span><div class="hp-card-top"><h3>Realisa</h3><span class="hp-card-tag soon">Coming soon</span></div><p>Keeps your deals moving: the paperwork and deadlines, the marketing and the front desk.</p></div>
+            <div class="hp-rl-row"><div class="hp-rl-lab"><span class="ic"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9z"/><path d="m9 14 2 2 4-4"/></svg></span><b>Transaction coordinator</b></div><p>Paperwork, deadlines and messages, from contract to closing.</p><div class="hp-art" aria-hidden="true"><div class="hp-tl k1"><span class="done"><i></i>Contract</span><span class="done"><i></i>Inspection</span><span class="now"><i></i>Appraisal</span><span><i></i>Closing</span></div><div class="hp-due k2"><span class="hp-art-ck pend"></span><span>Appraisal report due</span><time>Nov 24</time></div></div></div>
+            <div class="hp-rl-row"><div class="hp-rl-lab"><span class="ic"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l8 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M18 9a4 4 0 0 1 0 6"/></svg></span><b>Marketing coordinator</b></div><p>Listings, ads, social posts and branding for your brokerage.</p><div class="hp-art" aria-hidden="true"><div class="hp-set"><div class="k1"><div class="ph"><img src="uploads/property-148-maple-main.jpg" alt="" loading="lazy"></div><div class="cap"><div class="ln d"></div><div class="ln s"></div></div><b>Social post</b></div><div class="k2"><div class="fl"><span class="t">JUST LISTED</span><div class="blk"></div><div class="ln"></div><div class="ln s"></div></div><b>Flyer</b></div><div class="k3"><div class="em"><span class="sub">1428 Maple Ave</span><div class="ln d"></div><div class="ln"></div><div class="ln s"></div></div><b>Email</b></div></div></div></div>
+            <div class="hp-rl-row"><div class="hp-rl-lab"><span class="ic"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span><b>Administrative assistant</b></div><p>Scheduling, client intake and day-to-day office support.</p><div class="hp-art" aria-hidden="true"><div class="hp-front"><div class="k1"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>New client intake: Maya R.</span><em>Form received</em></div><div class="k2"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span>Showing request: 1428 Maple Ave</span><em>Sat 10:00</em></div><div class="k3"><span class="ic pend"></span><span>Call back Daniel</span><em>4:30 PM</em></div></div></div></div>
+          </div>
           </div>
         </div>
       </div>
@@ -2666,7 +2685,7 @@
       (function(){
         var orbit = document.getElementById('hp-orbit'), svg = document.getElementById('hp-wires'), hub = document.getElementById('hp-hub');
         if (!orbit || !svg || !hub) return;
-        var NS = 'http://www.w3.org/2000/svg', paths = [], dots = [];
+        var NS = 'http://www.w3.org/2000/svg', paths = [], dots = [], GAP = 10; // breathing room between a connector end and the card or hub it meets
         function draw(){
           svg.textContent = ''; paths = []; dots = [];
           if (window.innerWidth <= 1000 || orbit.getBoundingClientRect().width === 0) return;
@@ -2674,14 +2693,14 @@
           var cx = h.left + h.width / 2 - o.left, cy = h.top + h.height / 2 - o.top, r = h.width / 2;
           orbit.querySelectorAll('.hp-card').forEach(function(card, i){
             var c = card.getBoundingClientRect(), left = card.getAttribute('data-side') === 'l';
-            var y = c.top + c.height / 2 - o.top, x1 = (left ? c.right : c.left) - o.left, dy = y - cy, hubX, hubY, d;
+            var y = c.top + c.height / 2 - o.top, x1 = (left ? c.right + GAP : c.left - GAP) - o.left, dy = y - cy, hubX, hubY, d;
             if (Math.abs(dy) < r * 0.3) {
               // level with the hub: one straight line to the hub edge at the same height
-              hubY = y; hubX = cx + (left ? -1 : 1) * Math.sqrt(r * r - dy * dy);
+              hubY = y; hubX = cx + (left ? -1 : 1) * (Math.sqrt(r * r - dy * dy) + GAP);
               d = 'M' + x1 + ' ' + y + ' H' + hubX;
             } else {
               // leave the card horizontally, step toward the hub centre line, then enter the hub at its side
-              hubX = left ? cx - r : cx + r; hubY = cy + (y < cy ? -r * 0.42 : r * 0.42);
+              hubX = (left ? cx - r : cx + r) + (left ? -GAP : GAP); hubY = cy + (y < cy ? -r * 0.42 : r * 0.42);
               var midX = (x1 + hubX) / 2;
               d = 'M' + x1 + ' ' + y + ' H' + midX + ' V' + hubY + ' H' + hubX;
             }
