@@ -162,11 +162,12 @@ for i, (d, text, *opt) in enumerate(cfg['cues']):
     if rate != 1.0: audio = tempo(audio, rate)
     # real start: the picture runs at `rate` since the previous line, and waits if that line is still being read
     t = max(prev_t + (d - prev_d) / rate, prev_end + GAP / rate)
+    if cfg.get('tight') and i > 0: t = prev_end + GAP / rate   # no silence between lines: the picture is shortened to match
     prev_end, prev_d, prev_t = t + len(audio) / SR, d, t
     clips.append((d, t, audio, text))
     print(f'{d:5.2f} -> {t:5.2f}s  {len(audio) / SR:4.2f}s' + (f'  x{rate}' if rate != 1 else '') + f'  {text[:60]}')
 shift = prev_t - prev_d
-TOTAL_REAL = round(max(TOTAL + shift, prev_end + 1.5), 2)
+TOTAL_REAL = round(prev_end + cfg['tail'], 2) if cfg.get('tail') else round(max(TOTAL + shift, prev_end + 1.5), 2)
 # warp: [design time, real time] anchors; the page plays design time t_d at real time warp(t_d)
 WARP = [[0, 0]] + [[round(d, 3), round(t, 3)] for d, t, _, _ in clips] + [[TOTAL, TOTAL_REAL]]
 mix = np.zeros(int(TOTAL_REAL * SR) + SR, dtype=np.float32)

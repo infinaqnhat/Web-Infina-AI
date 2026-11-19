@@ -2,80 +2,80 @@
 // SUBTITLES: [start, end, text]. TIMEWARP: [design time, real time] anchors. DURATION: real length.
 window.SUBTITLES = [
  [
-  0.4,
-  7.04,
+  0.45,
+  7.09,
   "It's Saturday, 10:40 AM. A buyer stops at your yard sign with a question, and you're at another showing."
  ],
  [
-  7.09,
-  9.79,
+  7.24,
+  9.94,
   "By the time you call back, they've moved on."
  ],
  [
-  11.29,
-  18.37,
+  10.09,
+  17.17,
   "Meet ReallyWise Property Expert: an AI expert on every listing, working 24/7."
  ],
  [
-  18.69,
-  25.97,
+  17.32,
+  24.6,
   "It answers every buyer instantly, day or night, straight from your disclosures, inspection report, and HOA docs."
  ],
  [
-  26.02,
-  28.74,
+  24.75,
+  27.47,
   "With the source on every answer."
  ],
  [
-  31.42,
-  36.37,
+  27.62,
+  32.57,
   "When a buyer is ready, it books the viewing, and sends you the lead on the spot."
  ],
  [
-  40.62,
-  45.78,
+  32.72,
+  37.88,
   "Every chat lands in one inbox, so you know exactly who's serious, and what they want."
  ],
  [
-  49.62,
-  59.74,
+  38.03,
+  48.15,
   "And meet Realisa, your own AI assistant. Realisa flags who needs you, plans your day, and drafts replies and seller updates for you."
  ],
  [
-  59.79,
-  67.54,
+  48.3,
+  56.05,
   "Getting started? Just paste your listing link. You're live in under a minute, with a QR code for your yard sign, flyers, and open house."
  ],
  [
-  70.79,
-  74.95,
+  56.2,
+  60.36,
   "Every scan and click is tracked, so you see what brings buyers."
  ],
  [
-  78.79,
-  83.97,
+  60.51,
+  65.69,
   "Weekly seller reports show real buyer interest. That's how you win your next listing."
  ],
  [
-  87.79,
-  94.72,
+  65.84,
+  72.77,
   "And you stay in control. It answers only from facts you approve, and you can step in any time."
  ],
  [
-  97.19,
-  99.43,
+  72.92,
+  75.16,
   "A scan starts the conversation."
  ],
  [
-  99.59,
-  102.49,
+  75.31,
+  78.21,
   "ReallyWise turns it into a booked viewing."
  ],
  [
-  102.79,
-  105.59,
+  78.36,
+  81.16,
   "Try it free at ReallyWise.ai."
  ]
 ];
-window.TIMEWARP = [[0, 0], [0.4, 0.4], [6.6, 7.09], [10.8, 11.29], [18.2, 18.69], [22.8, 26.02], [28.2, 31.42], [37.4, 40.62], [46.4, 49.62], [56.0, 59.79], [67.0, 70.79], [75.0, 78.79], [84.0, 87.79], [93.4, 97.19], [95.8, 99.59], [99.0, 102.79], [105, 108.79]];
-window.VO_DURATION = 108.79;
+window.TIMEWARP = [[0, 0], [0.4, 0.45], [6.6, 7.24], [10.8, 10.09], [18.2, 17.32], [22.8, 24.75], [28.2, 27.62], [37.4, 32.72], [46.4, 38.03], [56.0, 48.3], [67.0, 56.2], [75.0, 60.51], [84.0, 65.84], [93.4, 72.92], [95.8, 75.31], [99.0, 78.36], [105, 84.06]];
+window.VO_DURATION = 84.06;

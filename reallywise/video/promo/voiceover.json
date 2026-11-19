@@ -11,7 +11,7 @@
   "voice": "af_heart",
   "speed": 1.0
  },
- "gap": 0.35,
+ "gap": 0.45,
  "cues": [
   [
    0.4,
@@ -73,5 +73,7 @@
    99.0,
    "Try it free at ReallyWise.ai."
   ]
- ]
+ ],
+ "tight": true,
+ "tail": 3.2
 }
