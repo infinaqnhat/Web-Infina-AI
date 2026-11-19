@@ -1,0 +1,13 @@
+      body:not(.view-slides) .hl-in { flex-direction:column; align-items:stretch; padding:30px 18px 40px; gap:24px; }
+      body:not(.view-slides) .hl-h { font-size:34px; }
+      body:not(.view-slides) .hl-sub { font-size:17px; }
+      body:not(.view-slides) .hl-p { font-size:15px; }
+      body:not(.view-slides) .hl-visual { flex:none; height:440px; }
+      body:not(.view-slides) .hl-photo { left:0; width:100%; }
+      body:not(.view-slides) .hl-chat { left:10px; bottom:12px; width:250px !important; }
+      body:not(.view-slides) .hero-light .toast { right:10px; top:12px; width:230px; }
+      body:not(.view-slides) .team { grid-template-columns:1fr; gap:12px; }
+      body:not(.view-slides) .team-link i { width:2px; height:28px; }
+      body:not(.view-slides) .team-link i::before, body:not(.view-slides) .team-link i::after { display:none; }
+      body:not(.view-slides) .props { grid-template-columns:1fr; }
+      body:not(.view-slides) .prop + .prop::before { display:none; }

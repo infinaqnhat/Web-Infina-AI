@@ -11,6 +11,7 @@ duplicate of the root files. The brand source of truth is `brand/`.
 | `reallywise.html`, `nav.js`, `footer.js` | Done. One page with three views: the homepage (no hash), the listing agents tab (`#listing-agent`) and the buyer agents tab (`#buyer-agent`). The logo and `#home` go to the homepage; `#mission`, `#fight`, `#tools` and `#endings` are homepage anchors (reachable by link, not from the menu). `nav.js` and `footer.js` are the `rw-nav` and `rw-footer` components and only serve ReallyWise pages |
 | `property-expert-demo-tour.html`, `property-expert-admin-demo-tour.html` | Done (assistant name Realisa kept) |
 | `property-expert-presentation.html` | Done. MVP pitch deck: Property Expert and Realisa only (no Home Concierge), built around the ReallyWise mission: capture every lead and turn it into a hot lead (a booked viewing), deepen every relationship, multiply your capacity, close more deals. Light hero with `uploads/home-hero-agent.jpg`. One Capture and convert slide (from a conversation to a hot lead) and a Realisa slide with its intro video. 13 slides on the web, 10 PDF pages (`uploads/ReallyWise-Property-Expert-Presentation.pdf`). Plays the Property Expert promo and lead capture videos and the Realisa intro |
+| `property-expert-presentation-v1.html` | Saved v1 of the MVP deck (Nov 19, 2026), frozen; its PDF is `uploads/ReallyWise-Property-Expert-Presentation-v1.pdf` and the git tag is `reallywise-mvp-deck-v1`. Edit `property-expert-presentation.html` for new versions |
 | everything else | Not started |
 
 Navy on the landing page follows guideline v2: Navy 900 `#012976`, Navy 700 `#013A9E`, Navy 500 `#33599F`, Navy 100 `#E4E9F3` (hover navy `#011F59` is derived).
@@ -47,6 +48,7 @@ Defaults used for the landing page, change them in one place if the answer diffe
 | `uploads/` | Only the images, video and PDF these pages reference | `uploads/` |
 
 ## Notes
+- The MVP deck is generated: edit `deck-src/property-expert-slides.html` (slides) or `deck-src/build-property-expert-presentation.py` (brand styles, scripts), then run `python3 reallywise/deck-src/build-property-expert-presentation.py` and rebuild its PDF. The build reuses the root `product-presentation.html` for the slide engine and the live demo slides.
 - Paths stay relative, so each page opens from this folder the same way it does from the root.
 - The WordPress theme keeps its original folder name and `style.css` header for now. Rename both before installing
   it next to the original theme, or the two will conflict.
