@@ -10,6 +10,7 @@ duplicate of the root files. The brand source of truth is `brand/`.
 |---|---|
 | `reallywise.html`, `nav.js`, `footer.js` | Done. One page with three views: the homepage (no hash), the listing agents tab (`#listing-agent`) and the buyer agents tab (`#buyer-agent`). The logo and `#home` go to the homepage; `#mission`, `#fight`, `#tools` and `#endings` are homepage anchors (reachable by link, not from the menu). `nav.js` and `footer.js` are the `rw-nav` and `rw-footer` components and only serve ReallyWise pages |
 | `property-expert-demo-tour.html`, `property-expert-admin-demo-tour.html` | Done (assistant name Realisa kept) |
+| `property-expert-presentation.html` | Done. MVP pitch deck: Property Expert and Realisa only (no Home Concierge), built around one proposition, turn every conversation into a booked viewing. 13 slides on the web, 10 PDF pages (`uploads/ReallyWise-Property-Expert-Presentation.pdf`). Plays the three Property Expert videos: promo, product tour and lead capture |
 | everything else | Not started |
 
 Navy on the landing page follows guideline v2: Navy 900 `#012976`, Navy 700 `#013A9E`, Navy 500 `#33599F`, Navy 100 `#E4E9F3` (hover navy `#011F59` is derived).
@@ -38,7 +39,8 @@ Defaults used for the landing page, change them in one place if the answer diffe
 | `property-expert-demo*.html`, `property-expert-admin-demo*.html` | Six demo pages: notification flow, long Hob tour, short tour, each with its admin page | same names at the root |
 | `dashboard/` | Static export of the agent dashboard (62 pages) | `dashboard/` |
 | `investor-overview.html`, `product-presentation.html` | Pitch pages | same names at the root |
-| `scripts/build-presentation-pdf.mjs` | Builds `uploads/AI-Property-Product-Presentation.pdf` from the presentation | `scripts/` |
+| `scripts/build-presentation-pdf.mjs` | Builds a PDF from a presentation page: `node scripts/build-presentation-pdf.mjs [page] [pdf name]`, defaults to `product-presentation.html` and `AI-Property-Product-Presentation.pdf` | `scripts/` |
+| `uploads/property-expert-promo.mp4`, `-product-tour.mp4`, `-lead-capture.mp4` and their posters | The Property Expert videos (1:12 promo, 3:00 product tour, 1:11 lead capture) | the video artifacts |
 | `realsalex-mockups/` | Dashboard, deal room and email mockups | `realsalex-mockups/` |
 | `wordpress-theme/infina-ai-news/` | News blog block theme | `wordpress-theme/infina-ai-news/` |
 | `uploads/` | Only the images, video and PDF these pages reference | `uploads/` |
@@ -47,4 +49,4 @@ Defaults used for the landing page, change them in one place if the answer diffe
 - Paths stay relative, so each page opens from this folder the same way it does from the root.
 - The WordPress theme keeps its original folder name and `style.css` header for now. Rename both before installing
   it next to the original theme, or the two will conflict.
-- Rebuild the PDF from this folder with `node scripts/build-presentation-pdf.mjs` (Playwright with Chromium required).
+- Rebuild the PDFs from this folder with `node scripts/build-presentation-pdf.mjs` and `node scripts/build-presentation-pdf.mjs property-expert-presentation.html ReallyWise-Property-Expert-Presentation.pdf` (Playwright with Chromium required).
