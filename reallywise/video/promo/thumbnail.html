@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Property Expert Thumbnail</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=DM+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* Thumbnail / poster for the promo video. Rendered to ../../uploads/property-expert-promo-thumbnail.jpg by render-thumbnail.cjs */
+:root{--navy:#012976;--green:#0bb563;--surface:#F4F6FB;--line:#DBE1EE;--ink2:#3a4762}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;font-family:'DM Sans',system-ui,sans-serif;background:radial-gradient(1100px 700px at 90% 0%,#dfe7f8 0,rgba(223,231,248,0) 70%),radial-gradient(900px 700px at 0% 100%,#dff5ea 0,rgba(223,245,234,0) 70%),var(--surface);position:relative}
+.logo{position:absolute;left:110px;top:120px;width:430px}
+.kick{position:absolute;left:114px;top:236px;font-family:'Inter';font-weight:800;font-size:26px;letter-spacing:.12em;color:#33599F;text-transform:uppercase}
+h1{position:absolute;left:108px;top:300px;width:760px;font-family:'Inter';font-weight:900;font-size:86px;line-height:1.0;letter-spacing:-.03em;color:var(--navy)}
+h1 em{font-style:normal;color:var(--green)}
+.chips{position:absolute;left:112px;top:690px;display:flex;flex-wrap:wrap;gap:14px;width:760px}
+.chip{display:inline-flex;align-items:center;gap:10px;height:58px;padding:0 24px;border-radius:999px;background:#fff;border:1px solid var(--line);font-weight:700;font-size:24px;color:var(--navy);box-shadow:0 8px 20px rgba(1,41,118,.07)}
+.chip i{width:12px;height:12px;border-radius:50%;background:var(--green)}
+.win{position:absolute;left:930px;top:150px;width:1060px;height:700px;border-radius:20px;background:#fff;border:1px solid var(--line);box-shadow:0 40px 90px rgba(1,41,118,.22);overflow:hidden;transform:perspective(1800px) rotateY(-10deg) rotateX(2deg)}
+.win .bar{height:40px;background:#eef1f8;border-bottom:1px solid var(--line);display:flex;gap:7px;align-items:center;padding:0 16px}
+.win .bar i{width:12px;height:12px;border-radius:50%}
+.win .shot{position:absolute;top:40px;left:0;right:0;bottom:0;background:url(shots/buyer-booked.jpg) left top/1060px auto no-repeat}
+.phone{position:absolute;left:900px;top:340px;width:310px;height:636px;border-radius:52px;background:#0c1222;padding:12px;box-shadow:0 40px 80px rgba(1,41,118,.35)}
+.phone div{width:100%;height:100%;border-radius:40px;background:#fff url(shots/phone-start.jpg) center top/100% auto no-repeat}
+.toast{position:absolute;left:1340px;top:690px;display:flex;gap:16px;align-items:center;background:#fff;border-radius:22px;padding:20px 26px;box-shadow:0 30px 60px rgba(1,41,118,.25);border:3px solid var(--green)}
+.toast .ic{width:56px;height:56px;border-radius:16px;background:var(--green);display:grid;place-items:center}
+.toast b{display:block;font-family:'Inter';font-weight:800;font-size:28px;color:var(--navy)}
+.toast span{font-size:20px;color:var(--ink2)}
+.play{position:absolute;left:1370px;top:330px;width:150px;height:150px;border-radius:50%;background:rgba(1,41,118,.92);display:grid;place-items:center;box-shadow:0 20px 50px rgba(1,41,118,.4)}
+.play::after{content:"";margin-left:12px;border-left:46px solid #fff;border-top:30px solid transparent;border-bottom:30px solid transparent}
+.dur{position:absolute;left:1386px;top:500px;font-family:'Inter';font-weight:800;font-size:22px;color:var(--navy);background:#fff;border-radius:999px;padding:6px 16px;box-shadow:0 8px 20px rgba(1,41,118,.15)}
+</style>
+</head>
+<body>
+  <img class="logo" src="../../brand/Really_Wise_Logo_balanced.svg" alt="ReallyWise">
+  <div class="kick">Property Expert</div>
+  <h1>Turn every listing into <em>booked viewings.</em></h1>
+  <div class="chips"><span class="chip"><i></i>Answers buyers 24/7</span><span class="chip"><i></i>Books viewings</span><span class="chip"><i></i>Qualified leads</span></div>
+  <div class="win"><div class="bar"><i style="background:#f26b5b"></i><i style="background:#f5bf4f"></i><i style="background:#61c554"></i></div><div class="shot"></div></div>
+  <div class="phone"><div></div></div>
+  <div class="toast"><span class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg></span><div><b>New lead: ready to tour</b><span>123 Main Street · Sat, 2:00 PM</span></div></div>
+  <div class="play"></div>
+  <div class="dur">Watch · 1 min</div>
+</body>
+</html>

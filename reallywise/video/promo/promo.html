@@ -72,8 +72,10 @@ h1,h2{font-family:var(--f-head);letter-spacing:-.025em}
 
 .scene{perspective:1800px}
 .frame{transform-style:preserve-3d}
-.dim{position:absolute;inset:0;background:rgba(7,26,69,.5);opacity:0;z-index:4;pointer-events:none}
-.lift{position:absolute;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 36px 80px rgba(1,26,77,.45),0 0 0 4px var(--green-500);z-index:25}
+.dim{position:absolute;inset:0;background:rgba(7,26,69,.32);opacity:0;z-index:4;pointer-events:none}
+.lift{position:absolute;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 30px 70px rgba(1,26,77,.4),0 0 0 4px var(--green-500);z-index:25}
+.mark{position:absolute;border:4px solid var(--green-500);border-radius:12px;z-index:24;box-shadow:0 0 0 6px rgba(11,181,99,.18);pointer-events:none}
+.link{position:absolute;inset:0;z-index:23;pointer-events:none;overflow:visible}
 .lift i{position:absolute;inset:0;background-repeat:no-repeat;display:block}
 .h2 .w{display:inline-block;white-space:pre}
 #s0 .day{left:0;right:0;top:200px;text-align:center;font-family:var(--f-head);font-weight:800;font-size:40px;letter-spacing:.2em;color:#7ee2ad;text-transform:uppercase}
@@ -116,9 +118,9 @@ h1,h2{font-family:var(--f-head);letter-spacing:-.025em}
       <p class="lead" data-in="19.2" data-fx="up">Straight from your disclosures, inspection report and HOA docs, with the source on every answer.</p></div>
     <div class="frame" data-in="18.0" data-fx="tilt" data-d="0.9">
       <div class="bar"><i></i><i></i><i></i><span>reallywise.ai/l/123-main</span></div>
-      <div class="vp"><div class="shot" data-shot="buyer-issues" data-cam='[[18.0,0,0,1440,900],[19.4,320,20,780,560]]'></div><div class="dim"></div></div>
+      <div class="vp"><div class="shot" data-shot="buyer-issues" data-cam='[[18.0,0,0,1440,900]]'></div><div class="dim"></div></div>
     </div>
-    <div class="lift" data-crop="buyer-issues|400,345,600,140" data-w="720" data-at="1258,640" data-in="22.6" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="buyer-issues|400,345,600,140" data-w="720" data-at="1300,770" data-in="22.6" data-fx="lift" data-d="0.6"></div>
     <div class="callout" style="left:610px;top:830px" data-in="20.0" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><div>Online, replies instantly<small>Every buyer gets a private chat</small></div></div>
     <div class="callout" style="left:1360px;top:118px" data-in="23.2" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><div>Every answer cites its source<small>Inspection report · Jul 12, 2023</small></div></div>
   </section>
@@ -131,13 +133,13 @@ h1,h2{font-family:var(--f-head);letter-spacing:-.025em}
     <div class="frame" data-in="28.0" data-fx="tilt" data-d="0.9">
       <div class="bar"><i></i><i></i><i></i><span>reallywise.ai/l/123-main</span></div>
       <div class="vp">
-        <div class="shot" data-shot="buyer-booked" data-cam='[[28.0,0,0,1440,900],[29.4,330,80,720,520]]' data-out="32.6" data-od="0.3"></div>
+        <div class="shot" data-shot="buyer-booked" data-cam='[[28.0,0,0,1440,900]]' data-out="32.6" data-od="0.3"></div>
         <div class="shot" data-shot="buyer-lead-toast" data-in="32.6" data-fx="fade" data-d="0.3" data-cam='[[32.6,0,0,1440,900]]'></div>
         <div class="dim"></div>
       </div>
     </div>
-    <div class="lift" data-crop="buyer-booked|380,280,445,120" data-w="640" data-at="1258,560" data-in="30.4" data-out="32.4" data-fx="lift" data-d="0.6"></div>
-    <div class="lift" data-crop="buyer-lead-toast|1128,40,300,108" data-w="620" data-at="1258,520" data-in="33.4" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="buyer-booked|380,280,445,120" data-w="640" data-at="1200,690" data-in="30.4" data-out="32.4" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="buyer-lead-toast|1128,40,300,108" data-w="620" data-at="1300,520" data-in="33.4" data-fx="lift" data-d="0.6"></div>
     <div class="callout" style="left:610px;top:830px" data-in="34.2" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg></span><div>The lead lands on your phone<small>"New lead: ready to tour"</small></div></div>
   </section>
 
@@ -150,8 +152,8 @@ h1,h2{font-family:var(--f-head);letter-spacing:-.025em}
       <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/chats</span></div>
       <div class="vp"><div class="shot" data-shot="admin-chat" data-cam='[[37.2,0,0,1440,900]]'></div><div class="dim"></div></div>
     </div>
-    <div class="lift" data-crop="admin-chat|244,212,316,72" data-w="600" data-at="1080,430" data-in="39.0" data-fx="lift" data-d="0.6"></div>
-    <div class="lift" data-crop="admin-chat|1146,458,290,170" data-w="440" data-at="1500,690" data-in="40.8" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="admin-chat|244,212,316,72" data-w="600" data-at="1250,560" data-in="39.0" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="admin-chat|1146,458,290,170" data-w="440" data-at="1340,820" data-in="40.8" data-fx="lift" data-d="0.6"></div>
     <div class="callout" style="left:610px;top:830px" data-in="42.0" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1 6.2L12 17.4 6.5 20.3l1-6.2L3 9.7l6.2-.9z"/></svg></span><div>Ready to tour · Wants to talk · Exploring<small>The ones who need you come first</small></div></div>
   </section>
 
@@ -164,9 +166,9 @@ h1,h2{font-family:var(--f-head);letter-spacing:-.025em}
       <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/assistant</span></div>
       <div class="vp"><div class="shot" data-shot="dash-realisa" data-cam='[[46.2,0,0,1440,900]]'></div><div class="dim"></div></div>
     </div>
-    <div class="lift" data-crop="dash-realisa|282,112,780,215" data-w="820" data-at="1258,430" data-in="48.0" data-fx="lift" data-d="0.6"></div>
-    <div class="lift" data-crop="dash-realisa|1092,625,295,165" data-w="430" data-at="1560,770" data-in="50.6" data-fx="lift" data-d="0.6"></div>
-    <div class="lift" data-crop="dash-realisa|278,565,640,100" data-w="620" data-at="1030,720" data-in="51.6" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="dash-realisa|282,112,780,215" data-w="820" data-at="1258,640" data-in="48.0" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="dash-realisa|1092,625,295,165" data-w="430" data-at="1300,650" data-in="50.6" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="dash-realisa|278,565,640,100" data-w="620" data-at="1160,860" data-in="51.6" data-fx="lift" data-d="0.6"></div>
   </section>
 
   <!-- 6 live in a minute -->
@@ -177,12 +179,12 @@ h1,h2{font-family:var(--f-head);letter-spacing:-.025em}
     <div class="frame" data-in="55.8" data-fx="tilt" data-d="0.9">
       <div class="bar"><i></i><i></i><i></i><span>reallywise.ai</span></div>
       <div class="vp">
-        <div class="shot" data-shot="landing-paste" data-cam='[[55.8,0,0,1440,900],[57.2,120,380,700,440]]' data-out="60.4" data-od="0.3"></div>
-        <div class="shot" data-shot="landing-live" data-in="60.4" data-fx="fade" data-d="0.3" data-cam='[[60.4,120,380,700,440]]'></div>
+        <div class="shot" data-shot="landing-paste" data-cam='[[55.8,0,0,1440,900]]' data-out="60.4" data-od="0.3"></div>
+        <div class="shot" data-shot="landing-live" data-in="60.4" data-fx="fade" data-d="0.3" data-cam='[[60.4,0,0,1440,900]]'></div>
         <div class="dim"></div>
       </div>
     </div>
-    <div class="lift" data-crop="landing-live|186,618,580,190" data-w="760" data-at="1258,560" data-in="61.4" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="landing-live|186,618,580,190" data-w="760" data-at="1440,470" data-in="61.4" data-fx="lift" data-d="0.6"></div>
     <div class="callout" style="left:610px;top:830px" data-in="58.4" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></span><div>Under a minute<small>From listing link to live page</small></div></div>
   </section>
 
@@ -196,8 +198,8 @@ h1,h2{font-family:var(--f-head);letter-spacing:-.025em}
       <div class="vp"><div class="shot" data-shot="dash-insights" data-cam='[[66.8,0,0,1440,900]]'></div><div class="dim"></div></div>
       <span class="demo">Demo account</span>
     </div>
-    <div class="lift" data-crop="dash-insights|300,320,960,90" data-w="900" data-at="1258,380" data-in="68.6" data-fx="lift" data-d="0.6"></div>
-    <div class="lift" data-crop="dash-insights|385,430,1000,125" data-w="900" data-at="1258,620" data-in="70.0" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="dash-insights|300,320,960,90" data-w="900" data-at="1258,640" data-in="68.6" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="dash-insights|290,430,1100,125" data-w="940" data-at="1258,790" data-in="70.0" data-fx="lift" data-d="0.6"></div>
   </section>
 
   <!-- 8 sellers -->
@@ -207,10 +209,10 @@ h1,h2{font-family:var(--f-head);letter-spacing:-.025em}
       <p class="lead" data-in="75.9" data-fx="up">Weekly seller reports show real buyer interest. Counts only, never buyer names.</p></div>
     <div class="frame" data-in="74.8" data-fx="tilt" data-d="0.9">
       <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/listings/1482-elm-ct/report</span></div>
-      <div class="vp"><div class="shot" data-shot="dash-seller-report" data-cam='[[74.8,0,0,1440,900],[76.2,420,220,820,520]]'></div><div class="dim"></div></div>
+      <div class="vp"><div class="shot" data-shot="dash-seller-report" data-cam='[[74.8,0,0,1440,900]]'></div><div class="dim"></div></div>
       <span class="demo">Demo account</span>
     </div>
-    <div class="lift" data-crop="dash-seller-report|510,360,646,244" data-w="700" data-at="1258,560" data-in="78.0" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="dash-seller-report|510,360,646,244" data-w="600" data-at="1350,330" data-in="78.0" data-fx="lift" data-d="0.6"></div>
     <div class="callout" style="left:610px;top:830px" data-in="80.0" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><div>Counts only<small>No buyer names, contacts or questions</small></div></div>
   </section>
 
@@ -221,9 +223,9 @@ h1,h2{font-family:var(--f-head);letter-spacing:-.025em}
       <p class="lead" data-in="84.9" data-fx="up">It answers only from facts you approve, each linked to its source. Step in any time.</p></div>
     <div class="frame" data-in="83.8" data-fx="tilt" data-d="0.9">
       <div class="bar"><i></i><i></i><i></i><span>app.reallywise.ai/listings/1482-elm-ct/knowledge</span></div>
-      <div class="vp"><div class="shot" data-shot="dash-knowledge" data-cam='[[83.8,0,0,1440,900],[85.2,300,250,1140,640]]'></div><div class="dim"></div></div>
+      <div class="vp"><div class="shot" data-shot="dash-knowledge" data-cam='[[83.8,0,0,1440,900]]'></div><div class="dim"></div></div>
     </div>
-    <div class="lift" data-crop="dash-knowledge|490,412,700,190" data-w="820" data-at="1258,560" data-in="87.0" data-fx="lift" data-d="0.6"></div>
+    <div class="lift" data-crop="dash-knowledge|490,412,700,190" data-w="820" data-at="1258,330" data-in="87.0" data-fx="lift" data-d="0.6"></div>
     <div class="callout" style="left:610px;top:830px" data-in="88.2" data-fx="pop"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><div>Approve · Edit · Retract<small>Nothing reaches buyers without you</small></div></div>
   </section>
 
@@ -276,6 +278,34 @@ document.querySelectorAll('.lift').forEach(l => {
   const i = document.createElement('i');
   Object.assign(i.style, { backgroundImage: `url(shots/${shot}.jpg)`, backgroundSize: `${PAGE_W * k}px ${PAGE_H * k}px`, backgroundPosition: `${-x * k}px ${-y * k}px` });
   l.appendChild(i);
+});
+
+// each card: a circle on the feature in the screenshot, a line to the card, and the cards of a scene follow one another
+const FX = 677, FY = 189;   // where the screenshot starts on the stage (frame left + border, frame top + address bar)
+document.querySelectorAll('section.scene').forEach(sc => {
+  const lifts = [...sc.querySelectorAll('.lift')].sort((a, b) => a.dataset.in - b.dataset.in);
+  lifts.forEach((l, n) => {
+    if (!l.dataset.out && lifts[n + 1]) { l.dataset.out = (+lifts[n + 1].dataset.in - 0.45).toFixed(2); l.dataset.od = '0.3'; }
+    const [x, y, w, h] = l.dataset.crop.split('|')[1].split(',').map(Number);
+    const r = { left: FX + x * K - 6, top: FY + y * K - 6, width: w * K + 12, height: h * K + 12 };
+    const mk = document.createElement('div'); mk.className = 'mark';
+    Object.assign(mk.style, { left: r.left + 'px', top: r.top + 'px', width: r.width + 'px', height: r.height + 'px' });
+    mk.dataset.in = (+l.dataset.in - 0.45).toFixed(2); mk.dataset.fx = 'pop'; mk.dataset.d = '0.4';
+    if (l.dataset.out) { mk.dataset.out = l.dataset.out; mk.dataset.od = '0.3'; }
+    // connector between the facing edges of the circle and the card
+    const c = { left: parseFloat(l.style.left), top: parseFloat(l.style.top), width: parseFloat(l.style.width), height: parseFloat(l.style.height) };
+    let p1, p2;
+    if (c.top >= r.top + r.height) { p1 = [r.left + r.width / 2, r.top + r.height]; p2 = [c.left + c.width / 2, c.top]; }
+    else if (c.top + c.height <= r.top) { p1 = [r.left + r.width / 2, r.top]; p2 = [c.left + c.width / 2, c.top + c.height]; }
+    else if (c.left >= r.left + r.width) { p1 = [r.left + r.width, r.top + r.height / 2]; p2 = [c.left, c.top + c.height / 2]; }
+    else { p1 = [r.left, r.top + r.height / 2]; p2 = [c.left + c.width, c.top + c.height / 2]; }
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.setAttribute('class', 'link');
+    svg.setAttribute('width', 1920); svg.setAttribute('height', 1080);
+    svg.innerHTML = `<line x1="${p1[0]}" y1="${p1[1]}" x2="${p2[0]}" y2="${p2[1]}" stroke="#0bb563" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 9"/><circle cx="${p1[0]}" cy="${p1[1]}" r="7" fill="#0bb563"/><circle cx="${p2[0]}" cy="${p2[1]}" r="7" fill="#0bb563"/>`;
+    svg.dataset.in = (+l.dataset.in - 0.15).toFixed(2); svg.dataset.fx = 'fade'; svg.dataset.d = '0.3';
+    if (l.dataset.out) { svg.dataset.out = l.dataset.out; svg.dataset.od = '0.3'; }
+    l.before(mk, svg);
+  });
 });
 
 // camera: snaps quickly between framings, then holds still so the UI is easy to read
