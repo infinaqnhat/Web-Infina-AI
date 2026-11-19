@@ -595,6 +595,19 @@
       body:not(.view-slides) .step p { font-size:13.5px; }
       body:not(.view-slides) .four { grid-template-columns:1fr; }
       body:not(.view-slides) .deck-brand span { display:none; }
+      body:not(.view-slides) .hl-in { flex-direction:column; align-items:stretch; padding:30px 18px 40px; gap:24px; }
+      body:not(.view-slides) .hl-h { font-size:34px; }
+      body:not(.view-slides) .hl-sub { font-size:17px; }
+      body:not(.view-slides) .hl-p { font-size:15px; }
+      body:not(.view-slides) .hl-visual { flex:none; height:440px; }
+      body:not(.view-slides) .hl-photo { left:0; width:100%; }
+      body:not(.view-slides) .hl-chat { left:10px; bottom:12px; width:250px !important; }
+      body:not(.view-slides) .hero-light .toast { right:10px; top:12px; width:230px; }
+      body:not(.view-slides) .team { grid-template-columns:1fr; gap:12px; }
+      body:not(.view-slides) .team-link i { width:2px; height:28px; }
+      body:not(.view-slides) .team-link i::before, body:not(.view-slides) .team-link i::after { display:none; }
+      body:not(.view-slides) .props { grid-template-columns:1fr; }
+      body:not(.view-slides) .prop + .prop::before { display:none; }
       /* lead capture */
       body:not(.view-slides) .lc-in { flex-direction:column; align-items:stretch; gap:18px; }
       body:not(.view-slides) .lc-side { width:auto; }
@@ -693,6 +706,78 @@
     .film video { position:absolute; inset:0; width:100%; height:100%; background:#000; }
     .t-card.is-answer .ic { background:var(--green-light); color:var(--green); }
 
+    /* Hero, light: copy on white, the viewing photo on the right */
+    .hero-light { background:linear-gradient(120deg, #ffffff 0%, #ffffff 46%, #F4F6FB 100%); }
+    .hl-in { flex-direction:row; align-items:center; gap:calc(var(--u)*3); padding:calc(var(--u)*3.6) calc(var(--u)*3.6) calc(var(--u)*3.6) calc(var(--u)*5); }
+    .hl-copy { flex:1.05; display:flex; flex-direction:column; min-width:0; }
+    .hl-badge { align-self:flex-start; display:inline-flex; align-items:center; gap:calc(var(--u)*.7); padding:calc(var(--u)*.45) calc(var(--u)*1) calc(var(--u)*.45) calc(var(--u)*.45); border-radius:999px; background:var(--green-light); color:var(--green); font-size:calc(var(--u)*1); font-weight:700; }
+    .hl-badge b { background:var(--green); color:#fff; padding:calc(var(--u)*.2) calc(var(--u)*.7); border-radius:999px; font-size:calc(var(--u)*.85); letter-spacing:.04em; }
+    .hl-h { font-family:var(--font-display); font-size:calc(var(--u)*4.2); line-height:1.04; letter-spacing:-.035em; font-weight:800; color:var(--accent); margin-top:calc(var(--u)*1.8); }
+    .hl-h span { display:block; color:var(--insight); }
+    .hl-sub { font-size:calc(var(--u)*1.6); font-weight:600; color:var(--accent); margin-top:calc(var(--u)*1.4); line-height:1.35; }
+    .hl-p { font-size:calc(var(--u)*1.2); color:var(--fg-secondary); margin-top:calc(var(--u)*.9); max-width:34em; }
+    .hl-pills { display:flex; flex-wrap:wrap; gap:calc(var(--u)*.6); margin-top:calc(var(--u)*1.4); }
+    .hl-pills span { display:inline-flex; align-items:center; gap:calc(var(--u)*.5); font-size:calc(var(--u)*1); font-weight:700; color:var(--accent); padding:calc(var(--u)*.45) calc(var(--u)*.9); border-radius:999px; background:#fff; border:1px solid var(--border); }
+    .hl-pills i { width:calc(var(--u)*.6); height:calc(var(--u)*.6); border-radius:50%; background:var(--insight); }
+    .hero-light .hero-ctas { margin-top:calc(var(--u)*2); }
+    .hl-visual { position:relative; flex:.95; align-self:stretch; min-width:0; }
+    .hl-photo { position:absolute; top:0; bottom:0; right:0; left:calc(var(--u)*4); width:calc(100% - var(--u)*4); height:100%; object-fit:cover; object-position:60% center; border-radius:calc(var(--u)*2); box-shadow:0 30px 60px -30px rgba(1,30,90,.45); }
+    .hl-chat { position:absolute; left:0; bottom:calc(var(--u)*2.4); width:calc(var(--u)*22) !important; }
+    .hl-chat .live-body { min-height:0 !important; padding:calc(var(--u)*1); gap:calc(var(--u)*.6); }
+    .hl-chat .live-head { padding:calc(var(--u)*.8) calc(var(--u)*1); }
+    .hero-light .toast { left:auto; right:calc(var(--u)*1.4); top:calc(var(--u)*1.6); bottom:auto; width:calc(var(--u)*20); }
+    /* Your AI team */
+    .team { flex:1; min-height:0; display:grid; grid-template-columns:1fr calc(var(--u)*9) 1fr; align-items:stretch; margin-top:calc(var(--u)*2); }
+    .team-card { display:flex; flex-direction:column; gap:calc(var(--u)*.9); padding:calc(var(--u)*1.8); border-radius:calc(var(--u)*1.6); background:#fff; border:1px solid var(--border); box-shadow:var(--shadow-card); }
+    .team-top { display:flex; align-items:center; gap:calc(var(--u)*1); }
+    .team-ic, .team-mark { width:calc(var(--u)*3.4); height:calc(var(--u)*3.4); border-radius:calc(var(--u)*1); flex-shrink:0; }
+    .team-ic { display:flex; align-items:center; justify-content:center; background:var(--green-light); color:var(--green); }
+    .team-ic svg { width:50%; height:50%; }
+    .team-top small { display:block; font-size:calc(var(--u)*.85); font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--green); }
+    .team-top h3 { font-size:calc(var(--u)*2); color:var(--accent); letter-spacing:-.02em; line-height:1.1; }
+    .team-card > p { font-size:calc(var(--u)*1.12); color:var(--fg-secondary); line-height:1.5; }
+    .team-chat { display:flex; flex-direction:column; gap:calc(var(--u)*.4); padding:calc(var(--u)*.9); border-radius:calc(var(--u)*1); background:var(--surface); }
+    .team-chat span { max-width:88%; font-size:calc(var(--u)*.92); line-height:1.4; padding:calc(var(--u)*.45) calc(var(--u)*.8); border-radius:calc(var(--u)*.9); }
+    .team-chat .u { align-self:flex-end; background:var(--accent); color:#fff; }
+    .team-chat .a { align-self:flex-start; background:#fff; color:var(--fg); border:1px solid var(--border); }
+    .team-list { list-style:none; display:flex; flex-direction:column; gap:calc(var(--u)*.5); margin-top:auto; }
+    .team-list li { display:flex; align-items:center; gap:calc(var(--u)*.6); font-size:calc(var(--u)*1); font-weight:600; color:var(--fg); }
+    .team-list li span { width:calc(var(--u)*1.6); height:calc(var(--u)*1.6); border-radius:50%; background:var(--green-light); color:var(--green); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .team-list li span svg { width:55%; height:55%; }
+    .team-card.is-navy { background:var(--accent); border-color:var(--accent); }
+    .team-card.is-navy .team-top small { color:var(--sky); }
+    .team-card.is-navy .team-top h3 { color:#fff; }
+    .team-card.is-navy > p { color:rgba(255,255,255,.82); }
+    .team-card.is-navy .team-chat { background:rgba(255,255,255,.08); }
+    .team-card.is-navy .team-chat .a { background:rgba(255,255,255,.12); color:#fff; border-color:rgba(255,255,255,.18); }
+    .team-card.is-navy .team-chat .u { background:var(--insight); }
+    .team-card.is-navy .team-list li { color:#fff; }
+    .team-card.is-navy .team-list li span { background:rgba(255,255,255,.14); color:var(--sky); }
+    .team-mark { background:#fff; padding:calc(var(--u)*.2); }
+    .team-link { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:calc(var(--u)*.6); text-align:center; }
+    .team-link span { font-size:calc(var(--u)*.85); font-weight:800; color:var(--green); line-height:1.3; padding:0 calc(var(--u)*.4); }
+    .team-link i { width:70%; height:2px; background:var(--insight); position:relative; }
+    .team-link i::before, .team-link i::after { content:''; position:absolute; top:50%; width:calc(var(--u)*.7); height:calc(var(--u)*.7); margin-top:calc(var(--u)*-.37); border-top:2px solid var(--insight); }
+    .team-link i::before { left:0; border-left:2px solid var(--insight); transform:rotate(-45deg); }
+    .team-link i::after { right:0; border-right:2px solid var(--insight); transform:rotate(45deg); }
+    /* The proposition */
+    .props { flex:1; min-height:0; display:grid; grid-template-columns:1.25fr 1fr 1fr 1fr; gap:calc(var(--u)*1.2); margin-top:calc(var(--u)*2.4); }
+    .prop { position:relative; display:flex; flex-direction:column; gap:calc(var(--u)*.6); padding:calc(var(--u)*1.7); border-radius:calc(var(--u)*1.5); background:#fff; border:1px solid var(--border); }
+    .prop + .prop::before { content:''; position:absolute; left:calc(var(--u)*-1.05); top:calc(var(--u)*2.4); width:calc(var(--u)*.9); height:calc(var(--u)*.9); border-top:2px solid var(--insight); border-right:2px solid var(--insight); transform:rotate(45deg); }
+    .prop i { font-style:normal; width:calc(var(--u)*2.6); height:calc(var(--u)*2.6); border-radius:50%; background:var(--accent); color:#fff; font-weight:800; font-size:calc(var(--u)*1.1); display:flex; align-items:center; justify-content:center; }
+    .prop small { margin-top:calc(var(--u)*.6); font-size:calc(var(--u)*.85); font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--green); }
+    .prop h3 { font-size:calc(var(--u)*1.5); line-height:1.2; color:var(--accent); letter-spacing:-.015em; }
+    .prop p { font-size:calc(var(--u)*1.02); color:var(--fg-secondary); line-height:1.5; }
+    .prop em { margin-top:auto; align-self:flex-start; font-style:normal; font-size:calc(var(--u)*.85); font-weight:700; color:var(--accent); background:var(--accent-light); padding:calc(var(--u)*.3) calc(var(--u)*.8); border-radius:999px; }
+    .prop.is-key { background:var(--accent); border-color:var(--accent); }
+    .prop.is-key i { background:var(--insight); }
+    .prop.is-key small { color:var(--sky); }
+    .prop.is-key h3 { color:#fff; font-size:calc(var(--u)*1.75); }
+    .prop.is-key p { color:rgba(255,255,255,.85); }
+    .prop.is-key em { background:rgba(255,255,255,.14); color:#fff; }
+    .props-note { margin-top:calc(var(--u)*1.2); font-size:calc(var(--u)*1.1); color:var(--fg-secondary); }
+    .props-note b { color:var(--accent); }
+
     /* ===== Print and PDF: one 16:9 page per slide, interactive slides become links and codes ===== */
     .print-only, .print-note { display:none !important; }
     .print-note a { color:#fff; font-weight:700; text-decoration:underline; text-underline-offset:3px; }
@@ -782,41 +867,39 @@
 
     <!-- 1 · Hero -->
     <section class="slide" id="hero" data-title="ReallyWise" aria-label="Slide 1, ReallyWise">
-      <div class="card is-dark">
-        <div class="in hero-in">
-          <div class="hero-bg" aria-hidden="true"></div>
-          <div class="hero-copy">
-            <span class="hero-badge anim"><b>MVP</b>Product Presentation · Property Expert + Realisa</span>
-            <p class="hero-product anim d1">ReallyWise Property Expert</p>
-            <h1 class="hero-h anim d1">Turn every conversation into a <span>booked viewing.</span></h1>
-            <p class="hero-sub anim d2">An AI expert on every listing. An AI assistant for every agent.</p>
-            <p class="hero-p anim d2">Buyers ask Property Expert anything, day or night, and book a private showing when they are ready. Realisa tells the agent who needs them, plans the day and drafts the replies.</p>
+      <div class="card hero-light">
+        <div class="in hl-in">
+          <div class="hl-copy">
+            <span class="hl-badge anim"><b>MVP</b>Property Expert + Realisa</span>
+            <h1 class="hl-h anim d1">Capture every lead. <span>Turn it into a booked viewing.</span></h1>
+            <p class="hl-sub anim d2">Then deepen every relationship, multiply your capacity and close more deals.</p>
+            <p class="hl-p anim d2">ReallyWise gives every listing agent an AI expert on each listing and an AI assistant for the day, working under the agent's name.</p>
+            <div class="hl-pills anim d2"><span><i></i>Property Expert</span><span><i></i>Realisa, your AI assistant</span></div>
             <div class="hero-ctas anim d3">
               <button type="button" class="btn btn-blue" data-go="film">Start the presentation
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-              <button type="button" class="btn btn-glass" data-go="demo-buyer">Jump to the live demo</button>
+              <button type="button" class="btn btn-ghost" data-go="demo-buyer">Jump to the live demo</button>
             </div>
           </div>
-          <div class="hero-stage" aria-hidden="true">
-            <div class="live">
+          <div class="hl-visual anim d1" aria-hidden="true">
+            <img class="hl-photo" src="uploads/home-hero-agent.jpg" alt="">
+            <div class="live hl-chat">
               <div class="live-head">
                 <img src="uploads/property-123-main-thumb.jpg" alt="">
-                <div><b>123 Main Street</b><span>Property Expert · Austin, TX</span></div>
+                <div><b>123 Main Street</b><span>Property Expert</span></div>
                 <span class="live-badge">LIVE</span>
               </div>
               <div class="live-body" id="hero-chat">
-                <div class="lc lc-user">Is the roof in good shape?</div>
-                <div class="lc lc-bot">The inspection report notes the roof is about 12 years old and in fair condition.</div>
-                <div class="lc cite"><span class="ic info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 8v5M12 16h.01"/></svg></span><div><b>Roof is 12 years old</b><p>Fair condition, consider a review.</p><span class="src">Inspection Report · Jul 12, 2023</span></div></div>
-                <div class="lc lc-user">Can I schedule a tour?</div>
-                <div class="lc slots-card"><b>Request a private showing</b><div class="slots"><span>Sat, 10:00 AM</span><span class="is-on">Sat, 2:00 PM</span><span>Sun, 11:00 AM</span></div></div>
+                <div class="lc lc-user">Can I see it this weekend?</div>
+                <div class="lc slots-card"><b>Request a private showing</b><div class="slots"><span>Sat, 10:00 AM</span><span class="is-on">Sat, 2:00 PM</span></div></div>
                 <div class="lc lc-user">Sat, 2:00 PM works for me.</div>
+                <div class="lc lc-bot">Done. Your request is with the listing agent.</div>
                 <div class="typing" hidden><i></i><i></i><i></i></div>
               </div>
             </div>
             <div class="toast" id="hero-toast">
               <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg></span>
-              <div><small>REALLYWISE · NOW</small><b>Viewing booked</b><p>Sat, 2:00 PM at 123 Main Street. The lead is in your inbox.</p></div>
+              <div><small>HOT LEAD · NOW</small><b>Viewing booked, Sat 2:00 PM</b><p>Jordan Lee · 123 Main Street. The full chat is in your inbox.</p></div>
             </div>
           </div>
         </div>
@@ -853,10 +936,10 @@
           <span class="kicker anim">Contents</span>
           <h2 class="h anim d1">What we will cover</h2>
           <div class="toc anim d2">
-            <button type="button" class="toc-item" data-go="problem"><i>01</i><b>The problem</b><span>A buyer at your yard sign, and nobody to answer</span></button>
-            <button type="button" class="toc-item" data-go="how"><i>02</i><b>How it works</b><span>From a question to a booked viewing</span></button>
-            <button type="button" class="toc-item" data-go="property-expert"><i>03</i><b>Property Expert</b><span>An AI expert on every listing, 24/7</span></button>
-            <button type="button" class="toc-item" data-go="viewings"><i>04</i><b>Booked viewings</b><span>Questions become private showings</span></button>
+            <button type="button" class="toc-item" data-go="team"><i>01</i><b>Your AI team</b><span>Property Expert and Realisa</span></button>
+            <button type="button" class="toc-item" data-go="proposition"><i>02</i><b>The proposition</b><span>Capture, convert, deepen, multiply, close</span></button>
+            <button type="button" class="toc-item" data-go="how"><i>03</i><b>How it works</b><span>From a question to a booked viewing</span></button>
+            <button type="button" class="toc-item" data-go="property-expert"><i>04</i><b>Property Expert</b><span>Cited answers and booked viewings</span></button>
             <button type="button" class="toc-item" data-go="lead-capture"><i>05</i><b>Lead capture</b><span>One QR code, every channel, every lead</span></button>
             <button type="button" class="toc-item" data-go="realisa"><i>06</i><b>Realisa</b><span>The agent's own AI assistant</span></button>
             <button type="button" class="toc-item is-demo" data-go="demo-buyer"><em>Interactive</em><i>07</i><b>Live demo: buyer</b><span>Ask and book like a real buyer</span></button>
@@ -867,30 +950,35 @@
       </div>
     </section>
 
-    <!-- 4 · The problem -->
-    <section class="slide" id="problem" data-title="The problem" aria-label="Slide 4, The problem">
+    <!-- 4 · Your AI team -->
+    <section class="slide" id="team" data-title="Your AI team" aria-label="Slide 4, Your AI team">
       <div class="card">
         <div class="in">
-          <span class="kicker anim"><i>01</i>The problem</span>
-          <h2 class="h anim d1">Saturday, 10:40 AM. A buyer is at your yard sign.</h2>
-          <div class="three">
-            <article class="t-card is-problem anim d2">
-              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-              <small>The moment</small>
-              <h3>They have a question. You are showing a home across town.</h3>
-              <p>Buyers ask at the curb, late at night and on weekends. When nobody answers in minutes, the interest goes cold and another home gets the showing.</p>
+          <span class="kicker anim"><i>01</i>Your AI team</span>
+          <h2 class="h anim d1">Two products. One agent, with a team of AI.</h2>
+          <p class="sub anim d1">Property Expert talks to your buyers. Realisa runs the work behind it. Both work under your name.</p>
+          <div class="team anim d2">
+            <article class="team-card">
+              <div class="team-top"><span class="team-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1z"/></svg></span><div><small>Talks to your buyers</small><h3>Property Expert</h3></div></div>
+              <p>An AI expert on every listing. Answers every buyer question day or night, with sources, books the viewing and shows you who is ready to act.</p>
+              <div class="team-chat" aria-hidden="true">
+                <span class="u">Is 1428 Maple Ave still available?</span>
+                <span class="a">Yes, it is. Want to schedule a showing?</span>
+                <span class="u">Yes, please.</span>
+                <span class="a">Done. Alex will confirm Saturday at 10:00.</span>
+              </div>
+              <ul class="team-list"><li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>QR code on the yard sign, link everywhere else</li><li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Turns questions into booked viewings</li></ul>
             </article>
-            <article class="t-card is-answer anim d3">
-              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span>
-              <small>Our answer</small>
-              <h3>An AI expert on the listing answers right then.</h3>
-              <p>Property Expert answers from the home's own documents, with sources, never a guess. Realisa keeps the agent on top of every buyer who needs a person.</p>
-            </article>
-            <article class="t-card is-flywheel anim d4">
-              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg></span>
-              <small>The outcome</small>
-              <h3>Conversations become booked viewings.</h3>
-              <p>When a buyer is ready, Property Expert books a private showing and sends the agent the lead on the spot, with the full chat.</p>
+            <div class="team-link" aria-hidden="true"><span>Hot leads and full context</span><i></i></div>
+            <article class="team-card is-navy">
+              <div class="team-top"><img class="team-mark" src="brand/reallywise-app-icon.svg" alt=""><div><small>Works for you</small><h3>Realisa</h3></div></div>
+              <p>Your own AI assistant. Tells you which buyers need you, plans your day around showings and drafts your replies to buyers.</p>
+              <div class="team-chat" aria-hidden="true">
+                <span class="a">Since 9 PM yesterday I answered 3 questions. Two chats need you.</span>
+                <span class="u">Plan my day.</span>
+                <span class="a">11:00 Showing, Kevin &amp; Mai. 2:00 Showing, Jordan Lee. I drafted both confirmations.</span>
+              </div>
+              <ul class="team-list"><li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Who needs you, and why</li><li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Replies and seller updates in your voice</li></ul>
             </article>
           </div>
         </div>
@@ -898,11 +986,54 @@
       </div>
     </section>
 
-    <!-- 5 · How it works -->
-    <section class="slide" id="how" data-title="How it works" aria-label="Slide 5, How it works">
+    <!-- 5 · The proposition -->
+    <section class="slide" id="proposition" data-title="The proposition" aria-label="Slide 5, The proposition">
       <div class="card">
         <div class="in">
-          <span class="kicker anim"><i>02</i>How it works</span>
+          <span class="kicker anim"><i>02</i>The proposition</span>
+          <h2 class="h anim d1">From the first question to a closed deal.</h2>
+          <div class="props anim d2">
+            <article class="prop is-key">
+              <i>1</i>
+              <small>Capture and convert</small>
+              <h3>Capture every lead. Turn it into a hot lead.</h3>
+              <p>Every buyer question gets an answer, even when you are busy. When a buyer is ready, Property Expert books the viewing: a hot lead, not a phone number.</p>
+              <em>Property Expert</em>
+            </article>
+            <article class="prop">
+              <i>2</i>
+              <small>Deepen</small>
+              <h3>Deepen every relationship.</h3>
+              <p>You step in with the full context: what they asked, what worried them and how they found the home. Never a cold call.</p>
+              <em>Property Expert + inbox</em>
+            </article>
+            <article class="prop">
+              <i>3</i>
+              <small>Multiply</small>
+              <h3>Multiply your capacity.</h3>
+              <p>Realisa tells you who needs you, plans your day and drafts your replies, so you help more buyers without working more hours.</p>
+              <em>Realisa</em>
+            </article>
+            <article class="prop">
+              <i>4</i>
+              <small>Close</small>
+              <h3>Close more deals.</h3>
+              <p>You see who is ready and what is holding them back, so you know when to call and what to say.</p>
+              <em>Property Expert + Realisa</em>
+            </article>
+          </div>
+          <p class="props-note anim d3"><b>The MVP measure:</b> how many buyer conversations turn into booked viewings.</p>
+        </div>
+        <span class="slide-no">05</span>
+      </div>
+    </section>
+
+
+    <!-- 5 · How it works -->
+    <section class="slide" id="how" data-title="How it works" aria-label="Slide 6, How it works">
+      <div class="card">
+        <div class="in">
+          <span class="kicker anim"><i>03</i>How it works</span>
           <h2 class="h anim d1">From a question to a booked viewing.</h2>
           <div class="how anim d2">
             <div>
@@ -926,17 +1057,17 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">05</span>
+        <span class="slide-no">06</span>
       </div>
     </section>
 
     <!-- 6 · Property Expert -->
-    <section class="slide" id="property-expert" data-title="Property Expert" aria-label="Slide 6, Property Expert">
+    <section class="slide" id="property-expert" data-title="Property Expert" aria-label="Slide 7, Property Expert">
       <div class="card">
         <div class="in">
           <div class="prod">
             <div>
-              <span class="kicker anim"><i>03</i>The product</span>
+              <span class="kicker anim"><i>04</i>Product 1</span>
               <h2 class="h anim d1"><span class="brand-pre">ReallyWise</span>Property Expert</h2>
               <p class="tagline anim d1">An AI expert on every listing, working 24/7.</p>
               <div class="who anim d2"><span class="is-user">Used by: home buyers</span><span>Works for: the listing agent</span></div>
@@ -966,19 +1097,19 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">06</span>
+        <span class="slide-no">07</span>
       </div>
     </section>
 
     <!-- 7 · Booked viewings -->
-    <section class="slide" id="viewings" data-title="Booked viewings" aria-label="Slide 7, Booked viewings">
+    <section class="slide" id="viewings" data-title="Booked viewings" aria-label="Slide 8, Booked viewings">
       <div class="card">
         <div class="in">
           <div class="prod">
             <div>
-              <span class="kicker anim"><i>04</i>The proposition</span>
+              <span class="kicker anim"><i>04</i>Capture and convert</span>
               <h2 class="h anim d1">Questions become booked viewings.</h2>
-              <p class="tagline anim d1">When a buyer is ready, it books the viewing.</p>
+              <p class="tagline anim d1">A hot lead is a booked viewing.</p>
               <p class="sub anim d2">Property Expert offers a private showing inside the agent's showing hours, books the time the buyer picks and sends the agent the lead on the spot, with the full chat.</p>
               <ul class="checks anim d3">
                 <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Showing requests follow your hours and calendar</li>
@@ -1001,12 +1132,12 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">07</span>
+        <span class="slide-no">08</span>
       </div>
     </section>
 
     <!-- 8 · Lead capture -->
-    <section class="slide" id="lead-capture" data-title="Lead capture" aria-label="Slide 8, Lead capture">
+    <section class="slide" id="lead-capture" data-title="Lead capture" aria-label="Slide 9, Lead capture">
       <div class="card">
         <div class="in lc-in">
           <div class="lc-side">
@@ -1020,19 +1151,19 @@
             <a class="lc-print" href="https://infinaqnhat.github.io/Web-Infina-AI/reallywise/uploads/property-expert-lead-capture.mp4"><img src="uploads/property-expert-lead-capture-card.jpg" alt="The lead card: source, viewing request, questions and an AI summary"><span class="lc-qr"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45" class="qr-svg"><path fill="#fff" d="M0 0h45v45h-45z"/><path class="qrline" stroke="#012976" d="M2 2.5h7m1 0h3m1 0h1m1 0h3m2 0h2m2 0h1m4 0h1m1 0h2m2 0h7m-41 1h1m5 0h1m1 0h3m1 0h2m1 0h1m1 0h1m2 0h5m1 0h1m2 0h2m3 0h1m5 0h1m-41 1h1m1 0h3m1 0h1m3 0h1m1 0h5m1 0h1m2 0h2m1 0h2m2 0h1m1 0h1m3 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m1 0h2m1 0h3m1 0h1m2 0h1m1 0h6m1 0h1m1 0h1m4 0h1m1 0h3m1 0h1m-41 1h1m1 0h3m1 0h1m4 0h2m1 0h3m1 0h2m4 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-41 1h1m5 0h1m2 0h2m2 0h1m1 0h2m2 0h2m4 0h1m5 0h2m1 0h1m5 0h1m-41 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-33 1h1m1 0h1m1 0h6m2 0h1m8 0h2m1 0h1m-33 1h1m1 0h2m1 0h3m2 0h2m1 0h2m1 0h3m2 0h2m1 0h1m1 0h1m1 0h3m3 0h1m2 0h1m1 0h2m-36 1h1m1 0h7m2 0h1m2 0h3m1 0h1m1 0h2m1 0h9m1 0h3m-39 1h1m1 0h4m3 0h3m1 0h2m1 0h1m1 0h1m1 0h3m5 0h1m4 0h1m2 0h2m-40 1h1m1 0h1m1 0h1m3 0h4m1 0h4m1 0h3m4 0h3m4 0h2m1 0h2m2 0h2m-41 1h2m4 0h1m1 0h2m3 0h5m4 0h1m3 0h1m1 0h2m1 0h2m4 0h2m-39 1h3m1 0h2m2 0h1m1 0h2m1 0h2m2 0h1m5 0h1m2 0h3m2 0h1m2 0h1m5 0h1m-40 1h3m2 0h1m1 0h1m1 0h1m4 0h2m1 0h1m5 0h3m2 0h3m2 0h3m3 0h1m-41 1h2m1 0h3m2 0h2m8 0h5m1 0h1m1 0h3m3 0h1m1 0h4m-35 1h1m2 0h1m1 0h1m2 0h1m2 0h1m1 0h1m2 0h1m1 0h3m1 0h1m1 0h2m1 0h1m5 0h1m2 0h1m-40 1h4m3 0h4m1 0h1m3 0h2m2 0h1m2 0h1m1 0h3m2 0h1m1 0h2m1 0h1m2 0h1m-38 1h1m1 0h2m1 0h2m3 0h1m1 0h5m2 0h2m4 0h5m5 0h3m-37 1h1m4 0h4m2 0h2m1 0h1m5 0h2m2 0h4m3 0h1m1 0h1m1 0h2m1 0h1m-38 1h1m1 0h3m2 0h5m1 0h1m1 0h3m1 0h4m1 0h5m1 0h2m1 0h1m1 0h2m-40 1h2m1 0h1m3 0h1m1 0h2m1 0h1m2 0h1m2 0h3m1 0h2m4 0h3m1 0h5m2 0h2m-37 1h1m1 0h1m1 0h1m1 0h1m3 0h1m1 0h3m1 0h5m1 0h1m3 0h1m2 0h2m2 0h3m-39 1h4m2 0h3m3 0h1m1 0h2m1 0h3m1 0h6m3 0h3m1 0h2m2 0h1m-34 1h1m1 0h2m2 0h2m3 0h1m1 0h2m1 0h5m2 0h1m1 0h1m6 0h1m1 0h1m-38 1h1m4 0h1m4 0h4m2 0h1m4 0h1m1 0h4m1 0h2m1 0h1m2 0h2m1 0h1m-41 1h1m1 0h1m1 0h1m1 0h6m1 0h2m1 0h1m2 0h2m1 0h1m2 0h1m3 0h4m1 0h1m2 0h1m1 0h2m-41 1h1m1 0h1m1 0h1m8 0h2m1 0h1m4 0h2m1 0h1m1 0h2m2 0h3m3 0h2m1 0h1m-40 1h1m1 0h1m2 0h2m2 0h1m1 0h1m2 0h3m1 0h2m1 0h2m4 0h1m2 0h2m1 0h1m3 0h1m1 0h2m-40 1h3m4 0h1m1 0h3m1 0h2m1 0h3m1 0h2m1 0h2m1 0h1m4 0h2m1 0h1m2 0h1m-39 1h1m1 0h1m1 0h4m2 0h2m1 0h2m5 0h2m1 0h3m1 0h1m2 0h1m2 0h3m1 0h2m-36 1h2m2 0h1m1 0h1m4 0h2m1 0h2m1 0h1m3 0h1m1 0h4m2 0h1m1 0h1m1 0h1m1 0h3m-40 1h3m1 0h2m1 0h6m1 0h1m1 0h3m1 0h1m1 0h2m1 0h13m1 0h1m-33 1h2m6 0h1m1 0h3m1 0h2m2 0h1m1 0h1m3 0h1m3 0h2m1 0h2m-41 1h7m1 0h2m1 0h4m1 0h2m2 0h4m2 0h1m2 0h4m1 0h1m1 0h3m-39 1h1m5 0h1m1 0h3m2 0h2m1 0h1m1 0h2m1 0h2m1 0h2m1 0h2m1 0h1m1 0h1m3 0h1m-37 1h1m1 0h3m1 0h1m2 0h3m3 0h2m1 0h1m2 0h2m1 0h1m2 0h1m1 0h2m1 0h8m-40 1h1m1 0h3m1 0h1m1 0h3m1 0h3m2 0h3m5 0h5m1 0h2m3 0h4m-40 1h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h2m2 0h3m1 0h1m2 0h1m1 0h1m2 0h3m3 0h1m1 0h1m1 0h2m-41 1h1m5 0h1m5 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h2m2 0h1m2 0h1m-40 1h7m1 0h3m3 0h1m2 0h6m2 0h1m1 0h1m2 0h1m1 0h1m1 0h1m4 0h1"/></svg><b>Watch the 71-second video</b></span></a>
           </div>
         </div>
-        <span class="slide-no">08</span>
+        <span class="slide-no">09</span>
       </div>
     </section>
 
     <!-- 9 · Realisa -->
-    <section class="slide" id="realisa" data-title="Realisa" aria-label="Slide 9, Realisa">
+    <section class="slide" id="realisa" data-title="Realisa" aria-label="Slide 10, Realisa">
       <div class="card">
         <div class="in">
           <div class="prod">
             <div>
-              <span class="kicker anim"><i>06</i>The product</span>
+              <span class="kicker anim"><i>06</i>Product 2</span>
               <h2 class="h anim d1"><span class="brand-pre">ReallyWise</span>Realisa</h2>
-              <p class="tagline anim d1">Your own AI assistant.</p>
+              <p class="tagline anim d1">Your own AI assistant. Multiply your capacity.</p>
               <div class="who anim d2"><span>Used by: the listing agent</span></div>
               <p class="sub anim d2">Realisa tells you which buyers need you, plans your day and drafts your replies to buyers. Ask it anything about your buyers and your homes.</p>
               <ul class="checks anim d3">
@@ -1059,15 +1190,15 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">09</span>
+        <span class="slide-no">10</span>
       </div>
     </section>
 
     <!-- 10 · Built for the listing agent -->
-    <section class="slide" id="setup" data-title="Live in a minute" aria-label="Slide 10, Live in a minute">
+    <section class="slide" id="setup" data-title="Live in a minute" aria-label="Slide 11, Live in a minute">
       <div class="card">
         <div class="in">
-          <span class="kicker anim"><i>07</i>Built for the listing agent</span>
+          <span class="kicker anim">Built for the listing agent</span>
           <h2 class="h anim d1">Live in a minute. In control every day.</h2>
           <div class="four">
             <article class="t-card is-answer anim d2">
@@ -1096,16 +1227,16 @@
             </article>
           </div>
         </div>
-        <span class="slide-no">10</span>
+        <span class="slide-no">11</span>
       </div>
     </section>
 
     <!-- 9 · Live demo: buyer -->
-    <section class="slide no-print" id="demo-buyer" data-title="Live demo: buyer" data-demo="1" aria-label="Slide 11, Live demo as a buyer">
+    <section class="slide no-print" id="demo-buyer" data-title="Live demo: buyer" data-demo="1" aria-label="Slide 12, Live demo as a buyer">
       <div class="card is-dark">
         <div class="in demo-in">
           <div class="demo-side">
-            <span class="kicker anim"><i>08</i>Live demo · Interactive</span>
+            <span class="kicker anim"><i>07</i>Live demo · Interactive</span>
             <h2 class="h anim d1">Be the buyer.</h2>
             <p class="sub anim d1">The working Property Expert for 123 Main Street, Austin. Ask what a real buyer would ask, then book a viewing.</p>
             <ol class="how-to anim d2">
@@ -1140,16 +1271,16 @@
             <button type="button" class="next-hint" hidden data-go="demo-agent">This is the agent side. Continue on the next slide →</button>
           </div>
         </div>
-        <span class="slide-no">11</span>
+        <span class="slide-no">12</span>
       </div>
     </section>
 
     <!-- 10 · Live demo: agent -->
-    <section class="slide no-print" id="demo-agent" data-title="Live demo: agent" data-demo="1" aria-label="Slide 12, Live demo as an agent">
+    <section class="slide no-print" id="demo-agent" data-title="Live demo: agent" data-demo="1" aria-label="Slide 13, Live demo as an agent">
       <div class="card is-dark">
         <div class="in demo-in">
           <div class="demo-side">
-            <span class="kicker anim"><i>09</i>Live demo · Interactive</span>
+            <span class="kicker anim"><i>08</i>Live demo · Interactive</span>
             <h2 class="h anim d1">Now be the agent.</h2>
             <p class="sub anim d1">The agent dashboard: every buyer chat, the pipeline, buyers and insights, with sample data.</p>
             <ol class="how-to anim d2">
@@ -1183,7 +1314,7 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">12</span>
+        <span class="slide-no">13</span>
       </div>
     </section>
 
@@ -1192,7 +1323,7 @@
       <div class="card is-dark">
         <div class="in live-in">
           <div class="live-side">
-            <span class="kicker"><i>08</i>Try it yourself</span>
+            <span class="kicker"><i>07</i>Try it yourself</span>
             <h2 class="h">See it live.</h2>
             <p class="sub">On the web this deck is interactive: ask Property Expert as a buyer and book a viewing, then walk through the agent dashboard. Scan a code or click a link.</p>
             <div class="qr-row">
@@ -1212,7 +1343,7 @@
     </section>
 
     <!-- Thank you -->
-    <section class="slide" id="thanks" data-title="Thank you" aria-label="Slide 13, Thank you">
+    <section class="slide" id="thanks" data-title="Thank you" aria-label="Slide 14, Thank you">
       <div class="card is-dark">
         <div class="in end-in">
           <div class="end-grid">
@@ -1234,7 +1365,7 @@
             </div>
           </div>
         </div>
-        <span class="slide-no">13</span>
+        <span class="slide-no">14</span>
       </div>
     </section>
 
@@ -1244,7 +1375,7 @@
   <nav class="deck-bar" aria-label="Slide navigation">
     <i class="bar-progress" id="bar-progress"></i>
     <button type="button" class="nav-btn" id="prev" aria-label="Previous slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-    <span class="bar-count" id="bar-count"><b>1</b> / 13</span>
+    <span class="bar-count" id="bar-count"><b>1</b> / 14</span>
     <button type="button" class="nav-btn" id="next" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     <div class="pages" id="pages"></div>
     <span class="bar-hint"><kbd>←</kbd><kbd>→</kbd> to move</span>
@@ -1257,7 +1388,7 @@
 
   <!-- ===== Presenting on a phone ===== -->
   <div class="present-ui">
-    <span id="present-count">1 / 13</span>
+    <span id="present-count">1 / 14</span>
     <button type="button" id="present-x" aria-label="Stop presenting"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
   <span class="present-tip" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/></svg>Turn your phone for a bigger slide · swipe to move</span>
