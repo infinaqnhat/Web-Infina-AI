@@ -914,10 +914,9 @@
           <div class="film-side">
             <span class="kicker anim">The film</span>
             <h2 class="h anim d1">ReallyWise Property Expert, in one minute.</h2>
-            <p class="sub anim d1">A buyer at the yard sign, an instant answer, a booked viewing. Then the full product tour.</p>
+            <p class="sub anim d1">A buyer at the yard sign, an instant answer, a booked viewing.</p>
             <div class="film-pick anim d2" role="group" aria-label="Choose a video">
               <button type="button" data-video="uploads/property-expert-promo.mp4" data-poster="uploads/property-expert-promo-poster.jpg" aria-pressed="true"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z"/></svg></i><span>The story<small>1 min 12 s</small></span></button>
-              <button type="button" data-video="uploads/property-expert-product-tour.mp4" data-poster="uploads/property-expert-product-tour-poster.jpg" aria-pressed="false"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z"/></svg></i><span>Full product tour<small>3 min</small></span></button>
             </div>
             <p class="film-note anim d3">Turn the sound on. Arrow keys move slides when the video is not focused.</p>
           </div>
@@ -1566,6 +1565,7 @@
     // The film: two videos, picked with the buttons
     var filmVideo = document.getElementById('film-video');
     var filmBtns = [].slice.call(document.querySelectorAll('[data-video]'));
+    if (filmBtns.length < 2) filmBtns[0].parentNode.hidden = true;
     filmBtns.forEach(function(b){
       b.addEventListener('click', function(){
         filmBtns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
