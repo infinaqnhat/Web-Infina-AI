@@ -1,4 +1,6 @@
-// Builds uploads/AI-Property-Product-Presentation.pdf from product-presentation.html.
+// Builds a PDF from one of the presentation pages in this folder.
+// node scripts/build-presentation-pdf.mjs [page] [pdf name]
+// Defaults: product-presentation.html -> uploads/AI-Property-Product-Presentation.pdf
 // Each page is a sharp picture of one slide as it prints (16:9, interactive slides replaced
 // by the "See it live" page), with its links laid back on top so they stay clickable.
 // Pictures look the same in every PDF viewer, whatever fonts or effects it supports.
@@ -13,6 +15,8 @@ import { createRequire } from 'node:module';
 const { chromium } = createRequire(import.meta.url)('playwright');
 
 const root = fileURLToPath(new URL('..', import.meta.url));
+const pageName = process.argv[2] || 'product-presentation.html';
+const pdfName = process.argv[3] || 'AI-Property-Product-Presentation.pdf';
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.jpg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.woff2': 'font/woff2' };
 const W = 1280, H = 720;
 
@@ -32,7 +36,7 @@ const browser = await chromium.launch();
 
 // 1. Picture every printed slide at twice the size, and note where its links are
 const page = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 2 });
-await page.goto(`http://localhost:${port}/product-presentation.html`, { waitUntil: 'networkidle' });
+await page.goto(`http://localhost:${port}/${pageName}`, { waitUntil: 'networkidle' });
 await page.evaluate(() => document.fonts.ready);
 await page.evaluate(() => window.__preparePrint());
 await page.emulateMedia({ media: 'print' });
@@ -56,7 +60,7 @@ for (let i = 0; i < count; i++) {
 
 // 2. One PDF page per picture, with the links on top
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
-const html = `<!doctype html><html><head><meta charset="utf-8"><title>AI Property · Product Presentation · Infina AI</title><style>
+const html = `<!doctype html><html><head><meta charset="utf-8"><title>${pageName.replace(/\.html$/, '')}</title><style>
 @page { size:${W}px ${H}px; margin:0; }
 html, body { margin:0; padding:0; }
 .p { position:relative; width:${W}px; height:${H}px; break-after:page; overflow:hidden; }
@@ -67,7 +71,7 @@ html, body { margin:0; padding:0; }
   `<a href="${esc(l.href)}" style="left:${(l.x * 100).toFixed(3)}%;top:${(l.y * 100).toFixed(3)}%;width:${(l.w * 100).toFixed(3)}%;height:${(l.h * 100).toFixed(3)}%"></a>`).join('')}</div>`).join('')}</body></html>`;
 const doc = await browser.newPage({ viewport: { width: W, height: H } });
 await doc.setContent(html, { waitUntil: 'load' });
-const out = join(root, 'uploads', 'AI-Property-Product-Presentation.pdf');
+const out = join(root, 'uploads', pdfName);
 await doc.pdf({ path: out, width: `${W}px`, height: `${H}px`, printBackground: true, preferCSSPageSize: true });
 
 await browser.close();
