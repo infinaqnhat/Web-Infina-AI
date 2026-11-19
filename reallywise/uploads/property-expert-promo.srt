@@ -1,60 +1,60 @@
 1
-00:00:00,408 --> 00:00:05,515
+00:00:00,500 --> 00:00:07,140
 It's Saturday, 10:40 AM. A buyer stops at your yard sign with a question, and you're at another showing.
 
 2
-00:00:05,554 --> 00:00:07,631
+00:00:07,190 --> 00:00:09,890
 By the time you call back, they've moved on.
 
 3
-00:00:08,785 --> 00:00:14,231
+00:00:11,390 --> 00:00:18,470
 Meet ReallyWise Property Expert: an AI expert on every listing, working 24/7.
 
 4
-00:00:14,477 --> 00:00:20,077
+00:00:18,790 --> 00:00:26,070
 It answers every buyer instantly, day or night, straight from your disclosures, inspection report, and HOA docs.
 
 5
-00:00:20,115 --> 00:00:22,208
+00:00:26,120 --> 00:00:28,840
 With the source on every answer.
 
 6
-00:00:24,269 --> 00:00:28,077
+00:00:31,520 --> 00:00:36,470
 When a buyer is ready, it books the viewing, and sends you the lead on the spot.
 
 7
-00:00:31,346 --> 00:00:35,315
+00:00:40,720 --> 00:00:45,880
 Every chat lands in one inbox, so you know exactly who's serious, and what they want.
 
 8
-00:00:38,269 --> 00:00:46,054
+00:00:49,720 --> 00:00:59,840
 And meet Realisa, your own AI assistant. Realisa flags who needs you, plans your day, and drafts replies and seller updates for you.
 
 9
-00:00:46,092 --> 00:00:52,054
+00:00:59,890 --> 00:01:07,640
 Getting started? Just paste your listing link. You're live in under a minute, with a QR code for your yard sign, flyers, and open house.
 
 10
-00:00:54,554 --> 00:00:57,754
+00:01:10,890 --> 00:01:15,050
 Every scan and click is tracked, so you see what brings buyers.
 
 11
-00:01:00,708 --> 00:01:04,692
+00:01:18,890 --> 00:01:24,070
 Weekly seller reports show real buyer interest. That's how you win your next listing.
 
 12
-00:01:07,631 --> 00:01:12,962
+00:01:27,890 --> 00:01:34,820
 And you stay in control. It answers only from facts you approve, and you can step in any time.
 
 13
-00:01:14,862 --> 00:01:16,585
+00:01:37,290 --> 00:01:39,530
 A scan starts the conversation.
 
 14
-00:01:16,708 --> 00:01:18,938
+00:01:39,690 --> 00:01:42,590
 ReallyWise turns it into a booked viewing.
 
 15
-00:01:19,169 --> 00:01:21,323
+00:01:42,890 --> 00:01:45,690
 Try it free at ReallyWise.ai.
 
