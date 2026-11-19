@@ -29,5 +29,13 @@ const fs = require('fs'), path = require('path');
   ff.stdin.end();
   await new Promise(r => ff.on('close', r));
   await browser.close();
+  // Frame 0 is the cover scene: save it as the thumbnail and embed it as the MP4 cover art,
+  // so Slack and other players never show a blank preview.
+  const thumb = out.replace(/\.mp4$/, '-thumbnail.jpg'), tmp = out + '.tmp.mp4';
+  execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', out, '-frames:v', '1', '-q:v', '2', thumb]);
+  execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', out, '-i', thumb, '-map', '0', '-map', '1', '-c', 'copy',
+    '-disposition:v:1', 'attached_pic', '-movflags', '+faststart', tmp]);
+  fs.renameSync(tmp, out);
+  console.log('thumbnail', thumb);
   console.log('done', out);
 })();

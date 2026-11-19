@@ -114,6 +114,23 @@ body{font-family:Inter,"DM Sans",system-ui,sans-serif;color:var(--ink);-webkit-f
 <div id="stage">
   <div class="grid"></div>
 
+  <section class="layer" id="cv" style="background:#0b1f4d;overflow:hidden">
+    <img id="cvimg" src="../uploads/home-hero.jpg" alt="" class="abs" style="left:0;top:0;width:1920px;height:1080px;object-fit:cover">
+    <div class="abs" style="inset:0;background:linear-gradient(90deg,rgba(1,27,82,.92) 0%,rgba(1,27,82,.7) 40%,rgba(1,27,82,0) 66%)"></div>
+    <img src="../brand/Really_Wise_Logo_white.svg" alt="ReallyWise" class="abs" style="left:110px;top:90px;width:300px">
+    <div class="abs" style="left:110px;top:300px;display:flex;align-items:center;gap:22px">
+      <div class="icon" id="cvic" style="width:96px;height:96px"></div>
+      <div style="font-size:30px;font-weight:600;color:#BFD0F2">Your AI assistant for real estate agents</div>
+    </div>
+    <div class="abs" style="left:110px;top:420px;font-size:128px;line-height:1;font-weight:800;letter-spacing:-.035em;color:#fff">Meet Realisa.</div>
+    <div class="abs" style="left:110px;top:590px;font-size:52px;line-height:1.15;font-weight:800;letter-spacing:-.02em;color:#fff">You build the relationships.<br><span style="color:#4BE29A">Realisa handles the rest.</span></div>
+    <div class="abs" style="left:110px;top:800px;display:flex;gap:14px">
+      <span class="pill" style="font-size:22px;padding:10px 22px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3)">Planning</span>
+      <span class="pill" style="font-size:22px;padding:10px 22px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3)">Marketing</span>
+      <span class="pill" style="font-size:22px;padding:10px 22px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3)">Paperwork</span>
+      <span class="pill" style="font-size:22px;padding:10px 22px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3)">Admin</span>
+    </div>
+  </section>
   <section class="layer" id="iq"><div class="abs" id="iqt" style="left:0;right:0;top:300px;text-align:center;font-size:100px;line-height:1.1;font-weight:800;letter-spacing:-.03em;color:var(--navy)"></div></section>
   <section class="layer" id="im" style="background:radial-gradient(1200px 700px at 50% 42%,#0A3C9A 0%,#012976 55%,#011B52 100%)">
     <div class="abs" id="imring" style="left:830px;top:170px;width:260px;height:260px;border-radius:50%;border:2px solid rgba(11,181,99,.7)"></div>
@@ -247,7 +264,7 @@ body{font-family:Inter,"DM Sans",system-ui,sans-serif;color:var(--ink);-webkit-f
 <script>
 /* Voiceover cues. s = start, d = spoken length in seconds (estimates; cues.js overrides with real lengths). */
 const CUES = [
-  {id:'hook',   s:0.3,  d:3.4, text:"You became an agent to work with people. Not paperwork."},
+  {id:'hook',   s:1.9,  d:3.4, text:"You became an agent to work with people. Not paperwork."},
   {id:'meet',   s:4.0,  d:3.0, text:"Meet Realisa. Your AI assistant for real estate."},
   {id:'four',   s:7.3,  d:3.4, text:"Realisa takes care of the admin, the marketing and the paperwork."},
   {id:'plan',   s:11.0, d:2.6, text:"Every morning, your day is already planned."},
@@ -277,7 +294,7 @@ const $ = id => document.getElementById(id);
 const REALISA = '<svg viewBox="0 0 120 120"><circle fill="#012976" cx="60" cy="60" r="60"/><g transform="translate(24.3 26.9) scale(.098)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg>';
 const REALISA_INV = '<svg viewBox="0 0 120 120"><circle fill="#fff" cx="60" cy="60" r="60"/><g transform="translate(24.3 26.9) scale(.098)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#012976"/><circle cx="199" cy="338" r="56" fill="#fff"/><circle cx="365" cy="338" r="56" fill="#fff"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg>';
 document.querySelectorAll('.realisa-ic').forEach(e => e.innerHTML = REALISA);
-$('imic').innerHTML = REALISA_INV;
+$('imic').innerHTML = REALISA_INV; $('cvic').innerHTML = REALISA_INV;
 
 const IC = {
   home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 4l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></svg>',
@@ -336,7 +353,7 @@ function win(t, a, b, f=.25){ return Math.min(p(t,a,a+f), 1-p(t,b-f,b)); }
 function layer(id, t, a, b, f=.25){ const el=$(id), o=win(t,a,b,f); el.style.opacity=o; el.style.visibility=o>0?'visible':'hidden'; return o>0; }
 
 const B = () => ({
-  introQ: C('meet')-0.15, appIn: C('plan')-0.25,
+  cover: C('hook')-0.35, introQ: C('meet')-0.15, appIn: C('plan')-0.25,
   s1: C('plan')-0.25, s2: C('list')-0.05, s3: C('deal')-0.05, s4: C('desk')-0.05,
   recap: C('roles')-0.2, focus: C('focus')-0.2, end: C('end')-0.15,
 });
@@ -356,7 +373,8 @@ function where(target){ if(Array.isArray(target)) return target; const r=$(targe
 
 function render(t){
   const b = B();
-  if(layer('iq', t, -1, b.introQ, .2)){
+  if(layer('cv', t, -1, b.cover+.3, .3)){ $('cvimg').style.transform=`scale(${1.04+.04*p(t,0,b.cover+.3)})`; }
+  if(layer('iq', t, b.cover, b.introQ, .2)){
     const words = CI.hook.text.split(' '); const d = CI.hook.d*0.8/words.length;
     $('iqt').innerHTML = words.map((w,i)=>{ const q=p(t,C('hook')+i*d,C('hook')+i*d+.25); return (i===4||i===8?'<br>':'')+`<span style="display:inline-block;${i>=8?'color:var(--green)':''};opacity:${cl(q*2)};transform:translateY(${(1-eo(q))*30}px) scale(${.8+.2*eb(q)})">${w}</span>`; }).join(' ');
   }
@@ -462,7 +480,7 @@ function render(t){
   rip.style.left=pos[0]+'px'; rip.style.top=pos[1]+'px'; rip.style.opacity = vis>0 && rp<1 ? (1-rp) : 0; rip.style.transform=`scale(${.3+rp})`;
 }
 window.render = render; window.DURATION = DURATION;
-window.TIMELINE = () => { const b=B(); return { duration: DURATION, cues: CUES.map(c=>({id:c.id,s:c.s,d:c.d,text:c.text})), clicks: CLICKS(), whooshes: [b.introQ, b.appIn, b.s2, b.s3, b.s4, b.recap, b.focus, b.end] }; };
+window.TIMELINE = () => { const b=B(); return { duration: DURATION, cues: CUES.map(c=>({id:c.id,s:c.s,d:c.d,text:c.text})), clicks: CLICKS(), whooshes: [b.cover, b.introQ, b.appIn, b.s2, b.s3, b.s4, b.recap, b.focus, b.end] }; };
 
 const qs = new URLSearchParams(location.search);
 if(qs.has('play')){ const t0=performance.now(); (function loop(){ render(((performance.now()-t0)/1000)%DURATION); requestAnimationFrame(loop); })(); }
