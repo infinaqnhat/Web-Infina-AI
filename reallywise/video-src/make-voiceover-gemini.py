@@ -14,6 +14,7 @@ cues = re.findall(r"\{id:'(\w+)',\s*s:[\d.]+,\s*d:[\d.]+,\s*text:\"([^\"]+)\"\}"
 os.makedirs(os.path.join(here, 'vo'), exist_ok=True)
 for cid, text in cues:
     if only and cid != only: continue
+    text = os.environ.get('VO_TEXT', text)  # say something other than the cue text (e.g. half a line to splice)
     spoken = text.replace(".ai", " dot A.I.")  # say the domain the way people read it
     body = {"contents": [{"parts": [{"text": spoken}]}],  # no style prefix: TTS reads any instruction aloud
             "generationConfig": {"responseModalities": ["AUDIO"],
@@ -33,7 +34,7 @@ for cid, text in cues:
     if 'wav' in mt: open(raw, 'wb').write(pcm)  # already a WAV file
     else:
         with wave.open(raw, 'wb') as w: w.setnchannels(1); w.setsampwidth(2); w.setframerate(rate); w.writeframes(pcm)
-    out = os.path.join(here, 'vo', cid + '.wav')
+    out = os.environ.get('VO_OUT') or os.path.join(here, 'vo', cid + '.wav')
     trim = f"atempo={TEMPO},silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse"
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', raw, '-af', trim, '-ac', '1', '-ar', '44100', out], check=True)
     os.remove(raw)

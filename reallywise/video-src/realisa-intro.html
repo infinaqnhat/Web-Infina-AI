@@ -264,8 +264,8 @@ body{font-family:Inter,"DM Sans",system-ui,sans-serif;color:var(--ink);-webkit-f
 <script>
 /* Voiceover cues. s = start, d = spoken length in seconds (estimates; cues.js overrides with real lengths). */
 const CUES = [
-  {id:'hook',   s:1.9,  d:3.4, text:"You became an agent to work with people, not paperwork."},
-  {id:'meet',   s:4.0,  d:3.0, text:"Meet Realisa. Your AI assistant for real estate."},
+  {id:'hook',   s:1.9,  d:3.4, text:"You become an agent to help clients, not do paperwork."},
+  {id:'meet',   s:4.0,  d:3.0, text:"Meet Realisa. Your AI assistant for real estate agents."},
   {id:'four',   s:7.3,  d:3.4, text:"Realisa takes care of the admin, the marketing and the paperwork."},
   {id:'plan',   s:11.0, d:2.6, text:"Every morning, your day is already planned."},
   {id:'rank',   s:13.9, d:2.8, text:"So you know which clients need you most."},
@@ -375,8 +375,8 @@ function render(t){
   const b = B();
   if(layer('cv', t, -1, b.cover+.3, .3)){ $('cvimg').style.transform=`scale(${1.04+.04*p(t,0,b.cover+.3)})`; }
   if(layer('iq', t, b.cover, b.introQ, .2)){
-    const words = CI.hook.text.split(' '); const d = CI.hook.d*0.8/words.length;
-    $('iqt').innerHTML = words.map((w,i)=>{ const q=p(t,C('hook')+i*d,C('hook')+i*d+.25); return (i===4||i===8?'<br>':'')+`<span style="display:inline-block;${i>=8?'color:var(--green)':''};opacity:${cl(q*2)};transform:translateY(${(1-eo(q))*30}px) scale(${.8+.2*eb(q)})">${w}</span>`; }).join(' ');
+    const words = CI.hook.text.split(' '); const NOT = words.indexOf('not'); const d = CI.hook.d*0.8/words.length;
+    $('iqt').innerHTML = words.map((w,i)=>{ const q=p(t,C('hook')+i*d,C('hook')+i*d+.25); return (i===4||i===NOT?'<br>':'')+`<span style="display:inline-block;${i>=NOT?'color:var(--green)':''};opacity:${cl(q*2)};transform:translateY(${(1-eo(q))*30}px) scale(${.8+.2*eb(q)})">${w}</span>`; }).join(' ');
   }
   if(layer('im', t, b.introQ, b.appIn, .2)){
     const q=p(t,C('meet'),C('meet')+.45); set('imic', cl(q*2), 0, 0, .4+.6*eb(q));
