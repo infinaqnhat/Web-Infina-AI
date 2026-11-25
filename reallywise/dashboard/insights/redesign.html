@@ -122,15 +122,8 @@
       <button type="button">7 days</button><button type="button" class="on" aria-pressed="true">30 days</button><button type="button">90 days</button><button type="button">Custom</button>
     </div>
     <span class="ix-range" id="ix-range">Oct 26 – Nov 24 · Pacific time</span>
+    <button type="button" class="ix-btn ix-btn-primary ix-open-drawer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1 1"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1-1"/></svg>Create tracked link</button>
   </div>
-
-  <section class="ix-insight" aria-labelledby="ix-ins-t">
-    <div class="ix-insight-copy">
-      <h2 id="ix-ins-t"></h2>
-      <p id="ix-ins-p"></p>
-    </div>
-    <div class="ix-insight-cta" id="ix-ins-cta"></div>
-  </section>
 
   <section class="ix-funnel" id="ix-funnel" aria-label="Visitor funnel"></section>
 
@@ -208,11 +201,6 @@
   var d = S[state] || S.full; var low = state !== 'full';
   $('ix-date').textContent = d.date; $('ix-range').textContent = d.range;
   if (d.home) $('ix-home').innerHTML = '<option>' + d.home + '</option>';
-  // headline insight
-  $('ix-ins-t').textContent = d.title; $('ix-ins-p').innerHTML = d.sub;
-  $('ix-ins-cta').innerHTML = state === 'empty'
-    ? '<button type="button" class="ix-btn ix-btn-primary">' + COPY + 'Copy link</button><button type="button" class="ix-btn ix-btn-ghost ix-open-drawer">' + LINK + 'Create tracked link</button>'
-    : '<button type="button" class="ix-btn ix-btn-primary ix-open-drawer">' + LINK + 'Create tracked link</button>';
   // funnel
   var fx = '';
   d.steps.forEach(function(st, i){
