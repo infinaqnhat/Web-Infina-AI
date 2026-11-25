@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="en" class="_rRN1W_variable xGTdjq_variable -_Fr9q_variable W-RMEW_variable -812BW_variable Boeyiq_variable h-full antialiased light"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"/><meta name="theme-color" content="#171c27" media="(prefers-color-scheme: dark)"/><title>ReallyWise.ai · Agent dashboard</title><meta name="description" content="Your AI property expert"/><meta name="robots" content="noindex, nofollow"/><link rel="icon" href="../assets/img/infina-logo.svg"/><link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png"/><meta name="next-size-adjust" content=""/><link rel="stylesheet" href="../assets/chunks/1atibtho0vcmv.css"><link rel="stylesheet" href="../assets/chunks/20d4k_tf2vzzf.css"><link rel="stylesheet" href="../assets/chunks/3c4-ozf1dxam2.css"><style>.ix { --ix-r:var(--dr-radius-card,22px); --ix-c:var(--dr-radius-control,12px); font-family:var(--dr-font-body,inherit); color:var(--dr-ink); display:flex; flex-direction:column; gap:20px; padding:16px 16px 96px; min-width:0; }
+@media (min-width:640px){ .ix{ padding:32px 32px 40px; } } @media (min-width:1024px){ .ix{ padding:40px 44px 48px; gap:24px; } }
+.ix * { box-sizing:border-box; }
+.ix svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+.ix-sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+.ix-head { display:flex; flex-direction:column; gap:4px; }
+.ix-date { font-size:13px; line-height:18px; font-weight:500; color:var(--dr-ink-muted); }
+.ix h1 { margin:0; font-size:32px; line-height:40px; font-weight:700; letter-spacing:-.02em; }
+.ix-head p { margin:0; font-size:15px; line-height:22px; color:var(--dr-ink-muted); }
+.ix-muted { margin:0; font-size:14px; line-height:20px; color:var(--dr-ink-muted); }
+/* toolbar: one place for home, range and the main action */
+.ix-bar { position:sticky; top:0; z-index:6; display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; padding:10px 0; background:var(--dr-surface-page); }
+.ix-sel select, .ix-field select, .ix-field input { height:44px; min-width:170px; padding:0 36px 0 14px; border-radius:var(--ix-c); border:1px solid var(--dr-rule-strong,var(--dr-rule)); background:var(--dr-surface-panel); color:var(--dr-ink); font:inherit; font-size:14px; font-weight:600; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a0a8bb' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; }
+.ix-field input { background-image:none; padding-right:14px; font-weight:500; font-family:var(--dr-font-mono,monospace); }
+.ix-seg { display:inline-flex; padding:4px; gap:2px; border-radius:999px; background:var(--dr-rule); }
+.ix-seg button { min-height:36px; padding:0 14px; border:0; border-radius:999px; background:transparent; color:var(--dr-ink-muted); font:inherit; font-size:14px; font-weight:600; cursor:pointer; }
+.ix-seg button.on { background:var(--dr-surface-panel); color:var(--dr-ink); box-shadow:0 1px 2px #0003; }
+.ix-range { font-size:13px; color:var(--dr-ink-muted); margin-right:auto; }
+.ix-btn { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 18px; border-radius:var(--ix-c); font:inherit; font-size:14px; font-weight:700; cursor:pointer; border:1px solid transparent; white-space:nowrap; }
+.ix-btn-primary { background:var(--dr-accent); color:var(--dr-accent-ink); } .ix-btn-primary:hover { background:var(--dr-accent-hover); }
+.ix-btn-ghost { background:var(--dr-surface-panel); color:var(--dr-ink); border-color:var(--dr-rule-strong,var(--dr-rule)); } .ix-btn-ghost:hover { border-color:var(--dr-accent); color:var(--dr-accent-soft-ink); }
+/* headline insight and what to do next */
+.ix-insight { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px 24px; padding:22px 24px; border-radius:var(--ix-r); background:var(--dr-surface-panel); border:1px solid var(--dr-rule); border-left:4px solid var(--dr-accent); }
+.ix-insight-copy { display:flex; flex-direction:column; gap:6px; max-width:760px; }
+.ix-insight h2 { margin:0; font-size:22px; line-height:30px; font-weight:700; letter-spacing:-.01em; }
+.ix-insight p { margin:0; font-size:15px; line-height:22px; color:var(--dr-ink-muted); }
+.ix-insight p b { color:var(--dr-ink); }
+.ix-insight-cta { display:flex; gap:10px; flex-wrap:wrap; }
+/* funnel: one strip replaces the four tiles and the "what visitors did" bars */
+.ix-funnel { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border:1px solid var(--dr-rule); border-radius:var(--ix-r); background:var(--dr-surface-panel); overflow:hidden; }
+.ix-step { position:relative; display:flex; flex-direction:column; gap:6px; padding:18px 22px 20px; text-align:left; background:transparent; border:0; border-right:1px solid var(--dr-rule); color:inherit; font:inherit; cursor:pointer; }
+.ix-step:last-child { border-right:0; }
+.ix-step:hover { background:var(--dr-accent-tint-faint,var(--dr-accent-soft)); }
+.ix-step.on { background:var(--dr-accent-soft); box-shadow:inset 0 -3px 0 var(--dr-accent); }
+.ix-step:focus-visible { outline:2px solid var(--dr-accent); outline-offset:-2px; }
+.ix-step-l { font-size:13px; line-height:18px; font-weight:600; color:var(--dr-ink-muted); }
+.ix-step.on .ix-step-l { color:var(--dr-accent-soft-ink); }
+.ix-step-n { font-family:var(--dr-font-mono,monospace); font-size:38px; line-height:44px; font-weight:600; letter-spacing:-.02em; color:var(--dr-ink); }
+.ix-step-s { display:flex; align-items:center; flex-wrap:wrap; gap:6px 8px; font-size:13px; line-height:18px; color:var(--dr-ink-muted); min-height:22px; }
+.ix-bar2 { height:6px; border-radius:999px; background:var(--dr-rule); overflow:hidden; margin-top:6px; } .ix-bar2 i { display:block; height:100%; min-width:4px; border-radius:999px; background:var(--dr-accent); }
+.ix-chip { display:inline-flex; align-items:center; gap:3px; padding:1px 8px; border-radius:999px; font-size:12px; line-height:18px; font-weight:700; background:var(--dr-rule); color:var(--dr-ink-muted); }
+.ix-chip.up { background:var(--dr-good-soft); color:var(--dr-good); } .ix-chip svg { width:12px; height:12px; stroke-width:2.5; }
+.ix-arrow { position:absolute; right:-13px; top:50%; z-index:2; transform:translateY(-50%); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--dr-surface-panel); border:1px solid var(--dr-rule); color:var(--dr-ink-muted); }
+.ix-arrow svg { width:14px; height:14px; }
+.ix-step:last-child .ix-arrow { display:none; }
+.ix-conv { position:absolute; right:-6px; bottom:8px; z-index:2; transform:translateX(50%); font-family:var(--dr-font-mono,monospace); font-size:11px; color:var(--dr-ink-muted); background:var(--dr-surface-panel); padding:0 4px; }
+.ix-step:last-child .ix-conv { display:none; }
+/* cards */
+.ix-card { padding:22px 24px; border-radius:var(--ix-r); background:var(--dr-surface-panel); border:1px solid var(--dr-rule); min-width:0; }
+.ix-card h2 { margin:0; font-size:17px; line-height:24px; font-weight:700; }
+.ix-card-h { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:14px; }
+.ix-card-h small { display:block; margin-top:2px; font-size:13px; line-height:18px; color:var(--dr-ink-muted); font-weight:400; }
+.ix-legend { display:flex; gap:14px; font-size:12px; color:var(--dr-ink-muted); white-space:nowrap; } .ix-legend i { display:inline-block; width:18px; height:0; border-top:2px solid var(--dr-accent); vertical-align:middle; margin-right:6px; } .ix-legend i.d { border-top:2px dashed var(--dr-dash,#8fa3dc); }
+.ix-chart svg.c { width:100%; height:auto; display:block; overflow:visible; stroke-width:1; }
+.ix-chart .ax { stroke:var(--dr-rule); } .ix-chart .tx { fill:var(--dr-ink-muted); font-size:11px; stroke:none; font-family:var(--dr-font-mono,monospace); }
+.ix-cols { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:20px; align-items:start; } .ix-stack { display:flex; flex-direction:column; gap:20px; min-width:0; }
+@media (max-width:1100px){ .ix-cols { display:flex; flex-direction:column; } .ix-stack { display:contents; } #ix-sources{order:1} #ix-ai{order:2} #ix-q{order:3} #ix-homes{order:4} }
+/* sources table */
+.ix-tbl { width:100%; border-collapse:collapse; font-size:14px; }
+.ix-tbl th { padding:0 8px 8px 0; text-align:right; font-size:12px; line-height:16px; font-weight:600; color:var(--dr-ink-muted); white-space:nowrap; } .ix-tbl th:first-child, .ix-tbl td:first-child { text-align:left; }
+.ix-tbl td { padding:11px 8px 11px 0; border-top:1px solid var(--dr-rule); text-align:right; font-variant-numeric:tabular-nums; vertical-align:middle; }
+.ix-tbl td:first-child b { display:block; font-weight:600; } .ix-tbl .tag { display:inline-block; margin-top:2px; font-family:var(--dr-font-mono,monospace); font-size:11px; color:var(--dr-ink-muted); }
+.ix-vcell { display:flex; align-items:center; justify-content:flex-end; gap:10px; } .ix-vcell i { display:block; width:72px; height:6px; border-radius:999px; background:var(--dr-rule); overflow:hidden; } .ix-vcell i s { display:block; height:100%; background:var(--dr-chart-4,#93a3c2); text-decoration:none; }
+.ix-rate { font-weight:700; } .ix-best { display:inline-flex; margin-left:6px; padding:1px 8px; border-radius:999px; font-size:11px; font-weight:700; background:var(--dr-good-soft); color:var(--dr-good); }
+/* AI card */
+.ix-ai3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.ix-ai3 b { display:block; font-family:var(--dr-font-mono,monospace); font-size:30px; line-height:36px; font-weight:600; } .ix-ai3 span { font-size:12px; line-height:16px; color:var(--dr-ink-muted); }
+.ix-hours { margin-top:18px; }
+.ix-hours-bars { display:flex; align-items:flex-end; gap:3px; height:56px; } .ix-hours-bars i { flex:1; border-radius:3px 3px 0 0; background:var(--dr-rule-strong,var(--dr-rule)); min-height:3px; } .ix-hours-bars i.ah { background:var(--dr-accent); }
+.ix-hours-ax { display:flex; justify-content:space-between; margin-top:6px; font-family:var(--dr-font-mono,monospace); font-size:11px; color:var(--dr-ink-muted); }
+.ix-hours p { margin:10px 0 0; font-size:13px; line-height:18px; color:var(--dr-ink-muted); } .ix-hours p i { display:inline-block; width:10px; height:10px; border-radius:3px; background:var(--dr-accent); margin-right:6px; vertical-align:-1px; }
+/* questions + homes */
+.ix-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; }
+.ix-li { display:flex; align-items:center; gap:14px; padding:13px 0; border-top:1px solid var(--dr-rule); } .ix-li:first-child { border-top:0; padding-top:0; }
+.ix-li-main { flex:1; min-width:0; } .ix-li-main b { display:block; font-weight:600; font-size:15px; line-height:22px; } .ix-li-main small { font-size:13px; color:var(--dr-ink-muted); }
+.ix-pill { display:inline-flex; align-items:center; padding:2px 10px; border-radius:999px; font-size:12px; line-height:18px; font-weight:700; white-space:nowrap; background:var(--dr-good-soft); color:var(--dr-good); } .ix-pill.need { background:var(--dr-warn-soft); color:var(--dr-warn); }
+.ix-mini { display:inline-flex; align-items:center; min-height:36px; padding:0 12px; border-radius:10px; border:1px solid var(--dr-rule-strong,var(--dr-rule)); background:var(--dr-surface-panel); color:var(--dr-ink); font:inherit; font-size:13px; font-weight:700; cursor:pointer; }
+.ix svg.ix-spark { width:96px; height:28px; flex-shrink:0; } .ix-spark path { fill:none; stroke:var(--dr-accent); stroke-width:2; }
+.ix-empty { display:flex; flex-direction:column; gap:12px; align-items:flex-start; padding:6px 0; } .ix-empty h2 { font-size:19px; line-height:26px; }
+.ix-share { display:flex; gap:10px; flex-wrap:wrap; width:100%; } .ix-share code { flex:1; min-width:220px; display:flex; align-items:center; padding:0 14px; min-height:44px; border-radius:var(--ix-c); background:var(--dr-surface-page); border:1px solid var(--dr-rule); font-family:var(--dr-font-mono,monospace); font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.ix-act { display:flex; flex-direction:column; gap:0; } .ix-act .ix-li { align-items:flex-start; } .ix-dot { width:10px; height:10px; margin-top:7px; border-radius:50%; background:var(--dr-accent); flex-shrink:0; } .ix-act time { font-family:var(--dr-font-mono,monospace); font-size:12px; color:var(--dr-ink-muted); white-space:nowrap; margin-top:3px; }
+.ix-note { display:flex; gap:10px; align-items:flex-start; margin-top:14px; padding:12px 14px; border-radius:var(--ix-c); background:var(--dr-accent-soft); color:var(--dr-accent-soft-ink); font-size:14px; line-height:20px; } .ix-note svg { margin-top:1px; }
+.ix-all summary { list-style:none; display:flex; align-items:center; justify-content:space-between; gap:12px; cursor:pointer; } .ix-all summary::-webkit-details-marker { display:none; }
+.ix-all summary b { display:block; font-size:17px; line-height:24px; } .ix-all summary small { font-size:13px; color:var(--dr-ink-muted); } .ix-all[open] summary svg { transform:rotate(180deg); }
+.ix-all-body { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:14px; margin-top:16px; } .ix-all-body div { padding:12px 14px; border-radius:var(--ix-c); background:var(--dr-surface-page); } .ix-all-body b { display:block; font-family:var(--dr-font-mono,monospace); font-size:20px; } .ix-all-body span { font-size:12px; color:var(--dr-ink-muted); }
+/* drawer */
+.ix-scrim { position:fixed; inset:0; z-index:40; background:var(--dr-scrim,#0008); } .ix-scrim[hidden], .ix-drawer[hidden] { display:none; }
+.ix-drawer { position:fixed; top:0; right:0; bottom:0; z-index:41; width:min(440px,100vw); padding:24px; display:flex; flex-direction:column; gap:16px; background:var(--dr-surface-panel); border-left:1px solid var(--dr-rule); box-shadow:-20px 0 50px #0005; }
+.ix-drawer-head { display:flex; justify-content:space-between; align-items:center; } .ix-drawer h2 { margin:0; font-size:20px; } .ix-x { width:40px; height:40px; border-radius:10px; border:0; background:transparent; color:var(--dr-ink); cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.ix-field { display:flex; flex-direction:column; gap:6px; } .ix-field span { font-size:13px; font-weight:600; color:var(--dr-ink-muted); } .ix-field select, .ix-field input { width:100%; }
+.ix-chips { display:flex; gap:8px; flex-wrap:wrap; } .ix-chips button { min-height:34px; padding:0 12px; border-radius:999px; border:1px solid var(--dr-rule-strong,var(--dr-rule)); background:transparent; color:var(--dr-ink); font:inherit; font-family:var(--dr-font-mono,monospace); font-size:12px; cursor:pointer; }
+.ix-linkbox { display:flex; flex-direction:column; gap:10px; margin-top:4px; } .ix-linkbox code { padding:12px 14px; border-radius:var(--ix-c); background:var(--dr-surface-page); border:1px solid var(--dr-rule); font-family:var(--dr-font-mono,monospace); font-size:12.5px; word-break:break-all; }
+/* mobile: the funnel stacks, sections breathe */
+@media (max-width:900px){
+  .ix-funnel { grid-template-columns:minmax(0,1fr); }
+  .ix-step { flex-direction:row; flex-wrap:wrap; align-items:center; gap:2px 14px; border-right:0; border-bottom:1px solid var(--dr-rule); padding:14px 18px; }
+  .ix-step:last-child { border-bottom:0; } .ix-step-n { font-size:28px; line-height:34px; order:2; margin-left:auto; } .ix-step-l { order:1; } .ix-step-s { order:3; width:100%; } .ix-bar2 { order:4; width:100%; }
+  .ix-arrow, .ix-conv { display:none !important; }
+  .ix-insight { padding:18px; } .ix-insight h2 { font-size:19px; line-height:26px; }
+  .ix-bar { overflow-x:auto; flex-wrap:nowrap; } .ix-range { display:none; } .ix-btn { flex-shrink:0; }
+  .ix-ai3 b { font-size:24px; } .ix-all-body { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .ix-tbl th:nth-child(3), .ix-tbl td:nth-child(3), .ix-tbl th:nth-child(4), .ix-tbl td:nth-child(4) { display:none; } .ix-vcell i { display:none; }
+  .ix-card { padding:18px; }
+  .ix-card-h { flex-direction:column; align-items:stretch; }
+  .ix-card-h .ix-btn { align-self:flex-start; }
+  .ix-legend { flex-wrap:wrap; }
+  .ix-seg { flex-shrink:0; } .ix-seg button { padding:0 12px; white-space:nowrap; }
+  .ix-sel select { min-width:140px; }
+}
+</style></head><body class="h-full"><div hidden=""><!--$--><!--/$--></div><div class="min-h-full bg-surface text-foreground"><div class="flex min-h-dvh bg-surface"><aside aria-label="Sidebar" class="hidden shrink-0 flex-col gap-[18px] border-r border-border bg-card py-5 lg:sticky lg:top-0 lg:flex lg:h-dvh w-60 px-3.5"><div class="flex items-center justify-between"><a aria-label="ReallyWise.ai" class="flex h-9 items-baseline gap-1 px-2 pt-1 text-[20px] font-bold leading-7 tracking-[-0.02em] text-[color:var(--dr-accent)]" href="../chats/index.html">reallywise<span class="font-medium text-muted-foreground">.ai</span></a><button type="button" aria-label="Collapse sidebar" title="Collapse sidebar" class="flex size-9 shrink-0 items-center justify-center rounded-control text-muted-foreground hover:bg-surface hover:text-foreground"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left-close lucide-sidebar-close size-4" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path><path d="m16 15-3-3 3-3"></path></svg></button></div><button type="button" class="flex items-center gap-2.5 rounded-control text-left text-sm transition h-10 border border-border bg-surface font-normal text-muted-foreground hover:text-foreground px-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search size-4 shrink-0" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><span class="flex-1">Search</span><kbd class="font-sans text-xs text-muted-foreground">⌘K</kbd></button><nav aria-label="Dashboard" class="flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto"><a data-tour="nav-home" class="flex items-center gap-2.5 rounded-control text-left text-sm font-semibold transition relative h-10 px-3 text-muted-foreground hover:bg-surface hover:text-foreground" href="../home/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house lucide-home size-[18px] shrink-0" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span class="flex-1">Home</span></a><a data-tour="nav-chats" class="flex items-center gap-2.5 rounded-control text-left text-sm font-semibold transition relative h-10 px-3 text-muted-foreground hover:bg-surface hover:text-foreground" href="../chats/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle size-[18px] shrink-0" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg><span class="flex-1">Chats</span><span data-testid="chats-needs-badge" class="flex h-[22px] min-w-[22px] items-center justify-center rounded-full bg-needs px-1.5 text-xs font-bold tabular-nums text-needs-ink">2<span class="sr-only"> chats need you</span></span></a><a data-tour="nav-today" class="flex items-center gap-2.5 rounded-control text-left text-sm font-semibold transition relative h-10 px-3 text-muted-foreground hover:bg-surface hover:text-foreground" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-kanban lucide-kanban-square size-[18px] shrink-0" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M8 7v7"></path><path d="M12 7v4"></path><path d="M16 7v9"></path></svg><span class="flex-1">Pipeline</span></a><a data-tour="nav-homes" class="flex items-center gap-2.5 rounded-control text-left text-sm font-semibold transition relative h-10 px-3 text-muted-foreground hover:bg-surface hover:text-foreground" href="../properties/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-listings size-[18px] shrink-0" aria-hidden="true"><path d="M1.5 12.5 7 8l5.5 4.5"></path><path d="M3 11.5V21h8v-9.5"></path><path d="M11 8.5 16.5 4 22.5 9"></path><path d="M14.5 21H21V8"></path></svg><span class="flex-1">Listings</span></a><a data-tour="nav-buyers" class="flex items-center gap-2.5 rounded-control text-left text-sm font-semibold transition relative h-10 px-3 text-muted-foreground hover:bg-surface hover:text-foreground" href="../buyers/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users size-[18px] shrink-0" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg><span class="flex-1">Buyers</span></a><a data-tour="nav-insights" aria-current="page" class="flex items-center gap-2.5 rounded-control text-left text-sm font-semibold transition relative h-10 px-3 bg-primary text-primary-foreground" href="./index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-line lucide-line-chart size-[18px] shrink-0" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="m19 9-5 5-4-4-3 3"></path></svg><span class="flex-1">Insights</span></a></nav><div class="flex flex-col gap-1 border-t border-border pt-2.5"><div class="flex flex-col gap-1"><div class="flex items-center gap-1"><a class="flex items-center gap-2.5 rounded-control text-left text-sm font-semibold transition h-12 min-w-0 flex-1 px-3 text-muted-foreground hover:bg-surface hover:text-foreground" href="../settings/profile/index.html"><span aria-hidden="true" class="flex shrink-0 items-center justify-center rounded-full bg-primary font-semibold text-primary-foreground size-8 text-xs">AR</span><span class="flex min-w-0 flex-1 flex-col leading-[18px]"><span class="truncate">Alex Rivera</span><span class="truncate text-xs font-medium opacity-80">Rivera Homes</span></span></a></div></div><a data-tour="nav-settings" class="flex items-center gap-2.5 rounded-control text-left text-sm font-semibold transition relative h-10 px-3 text-muted-foreground hover:bg-surface hover:text-foreground" href="../settings/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings size-[18px] shrink-0" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"></path><circle cx="12" cy="12" r="3"></circle></svg><span class="flex-1">Settings</span></a><button type="button" role="switch" aria-checked="false" class="flex items-center gap-2.5 rounded-control text-left text-sm font-semibold transition h-10 text-muted-foreground hover:bg-surface hover:text-foreground px-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun size-[18px] shrink-0" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg><span class="flex-1">Dark mode</span><span aria-hidden="true" class="flex h-[22px] w-9 rounded-full p-0.5 transition-colors justify-start bg-[color:var(--dr-rule-strong)]"><span class="size-[18px] rounded-full bg-white"></span></span></button></div></aside><nav aria-label="Main" class="z-40 mx-auto grid h-[62px] max-w-md grid-cols-5 rounded-[31px] bg-glass p-1.5 shadow-glass backdrop-blur-[20px] backdrop-saturate-[1.8] lg:hidden fixed inset-x-4 bottom-(--dr-tabbar-bottom)"><a data-tour="nav-home" class="relative flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-[26px] text-[11px] font-semibold leading-[14px] text-muted-foreground transition-colors duration-(--dr-motion-fast) ease-standard aria-[current=page]:bg-[color:var(--dr-accent-soft)] aria-[current=page]:text-primary motion-reduce:transition-none" href="../home/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house lucide-home size-6" fill-opacity="0.16" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>Home</a><a data-tour="nav-chats" class="relative flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-[26px] text-[11px] font-semibold leading-[14px] text-muted-foreground transition-colors duration-(--dr-motion-fast) ease-standard aria-[current=page]:bg-[color:var(--dr-accent-soft)] aria-[current=page]:text-primary motion-reduce:transition-none" href="../chats/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle size-6" fill-opacity="0.16" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg>Chats</a><a data-tour="nav-today" class="relative flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-[26px] text-[11px] font-semibold leading-[14px] text-muted-foreground transition-colors duration-(--dr-motion-fast) ease-standard aria-[current=page]:bg-[color:var(--dr-accent-soft)] aria-[current=page]:text-primary motion-reduce:transition-none" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-kanban lucide-kanban-square size-6" fill-opacity="0.16" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M8 7v7"></path><path d="M12 7v4"></path><path d="M16 7v9"></path></svg>Pipeline</a><a data-tour="nav-homes" class="relative flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-[26px] text-[11px] font-semibold leading-[14px] text-muted-foreground transition-colors duration-(--dr-motion-fast) ease-standard aria-[current=page]:bg-[color:var(--dr-accent-soft)] aria-[current=page]:text-primary motion-reduce:transition-none" href="../properties/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-listings size-6" fill-opacity="0.16" aria-hidden="true"><path d="M1.5 12.5 7 8l5.5 4.5"></path><path d="M3 11.5V21h8v-9.5"></path><path d="M11 8.5 16.5 4 22.5 9"></path><path d="M14.5 21H21V8"></path></svg>Listings</a><a data-tour="nav-buyers" class="relative flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-[26px] text-[11px] font-semibold leading-[14px] text-muted-foreground transition-colors duration-(--dr-motion-fast) ease-standard aria-[current=page]:bg-[color:var(--dr-accent-soft)] aria-[current=page]:text-primary motion-reduce:transition-none" href="../buyers/index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users size-6" fill-opacity="0.16" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>Buyers</a></nav><div class="min-w-0 flex-1"><main class="ix" data-board="D-Insights-Redesign">
+  <header class="ix-head">
+    <span class="ix-date" id="ix-date">Tuesday, Nov 24 · 11:55 PM</span>
+    <h1>Insights</h1>
+    <p>How buyers find and use your pages, and what the AI did for you.</p>
+  </header>
+
+  <div class="ix-bar" role="toolbar" aria-label="Insights filters">
+    <label class="ix-sel"><span class="ix-sr">Home</span>
+      <select id="ix-home"><option>All homes</option></select>
+    </label>
+    <div class="ix-seg" role="group" aria-label="Date range" id="ix-seg">
+      <button type="button">7 days</button><button type="button" class="on" aria-pressed="true">30 days</button><button type="button">90 days</button><button type="button">Custom</button>
+    </div>
+    <span class="ix-range" id="ix-range">Oct 26 – Nov 24 · Pacific time</span>
+  </div>
+
+  <section class="ix-insight" aria-labelledby="ix-ins-t">
+    <div class="ix-insight-copy">
+      <h2 id="ix-ins-t"></h2>
+      <p id="ix-ins-p"></p>
+    </div>
+    <div class="ix-insight-cta" id="ix-ins-cta"></div>
+  </section>
+
+  <section class="ix-funnel" id="ix-funnel" aria-label="Visitor funnel"></section>
+
+  <section class="ix-card ix-chart" id="ix-chart"></section>
+
+  <div class="ix-cols">
+    <div class="ix-stack">
+      <section class="ix-card" id="ix-sources"></section>
+      <section class="ix-card" id="ix-homes"></section>
+    </div>
+    <div class="ix-stack">
+      <section class="ix-card" id="ix-ai"></section>
+      <section class="ix-card" id="ix-q"></section>
+    </div>
+  </div>
+
+  <details class="ix-card ix-all" id="ix-all">
+    <summary><span><b>All numbers</b><small>Every source, channel tag and campaign, with return, bounce and chat rates.</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="ix-all-body" id="ix-all-body"></div>
+  </details>
+
+  <div class="ix-scrim" id="ix-scrim" hidden></div>
+  <aside class="ix-drawer" id="ix-drawer" aria-label="Create tracked link" hidden>
+    <div class="ix-drawer-head"><h2>Create tracked link</h2><button type="button" class="ix-x" id="ix-close" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <p class="ix-muted">Tag a link with the place you will post it. Lowercase letters, digits and dashes, up to 32. One link per home, as many tags as you like.</p>
+    <label class="ix-field"><span>Link to</span><select><option>1482 Elm Ct</option><option>580 Cowper St</option><option>2207 Bryant St</option></select></label>
+    <label class="ix-field"><span>Channel tag</span><input id="ix-tag" value="open-house" maxlength="32" spellcheck="false"></label>
+    <div class="ix-chips" id="ix-chips"><button type="button">open-house</button><button type="button">yard-sign</button><button type="button">instagram</button><button type="button">email</button></div>
+    <div class="ix-linkbox"><code id="ix-link">https://reallywise.ai/a/alex-rivera?c=open-house</code><button type="button" class="ix-btn ix-btn-primary"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2"/></svg>Copy</button></div>
+  </aside>
+</main>
+</div></div><!--$--><!--/$--></div><section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text" aria-atomic="false" data-react-aria-top-layer="true"></section><script>(function(){
+  var qs = new URLSearchParams(location.search);
+  var state = qs.get('state') || 'full', theme = qs.get('theme'), stepIdx = +(qs.get('step') || 0);
+  var root = document.documentElement;
+  if (theme === 'dark') { root.classList.remove('light'); root.classList.add('dark'); } else { root.classList.add('light'); root.classList.remove('dark'); }
+  var $ = function(id){ return document.getElementById(id); };
+  var ARW = '<svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>';
+  var UP = '<svg viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></svg>';
+  var LINK = '<svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1 1"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1-1"/></svg>';
+  var COPY = '<svg viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2"/></svg>';
+  var INFO = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>';
+  function gen(total, seed, n){ var w = [], s = 0; for (var i = 0; i < n; i++){ var v = 1 + .55 * Math.sin(i / 3.1 + seed) + .35 * Math.sin(i / 1.3 + seed * 2) + (i / n) * .6; w.push(Math.max(.15, v)); s += w[i]; } return w.map(function(x){ return Math.round(x / s * total * 10) / 10; }); }
+  var S = {
+    full: {
+      date:'Tuesday, Oct 15 · 8:40 AM', range:'Sep 16 – Oct 15 · Pacific time', labels:['Sep 16','Oct 1','Oct 15'],
+      title:"434 visitors came to your 3 homes' pages and 28 left their contact, 7 more than the 30 days before.",
+      sub:'<b>Email to past clients</b> turns visitors into leads most often (10.5%). Share your link there more often.',
+      steps:[{k:'Visitors',n:434,prev:368,s:'612 visits',d:'+18%',share:1},{k:'Chatted with the AI',n:83,prev:70,s:'19% of visitors',d:'+19%',share:.19},{k:'Left their contact',n:28,prev:21,s:'6.5% of visitors',d:'+33%',share:.065},{k:'Asked to see the home',n:11,prev:8,s:'2.5% of visitors',d:'+3 vs 8',share:.025}],
+      conv:['19%','34%','39%'],
+      sources:[['Yard sign QR','yard-sign',151,28,12],['Zillow link','zillow',118,22,5],['Open house flyer','open-house',56,12,4],['Instagram ad','instagram',49,8,2],['Email to past clients','past-clients',38,9,4],['Direct or unknown','',22,4,1]], best:4,
+      ai:{chats:96,msgs:512,after:41,pct:43,hours:[2,1,0,0,1,1,2,4,9,12,14,13,11,10,12,13,12,10,9,8,10,12,9,5]},
+      q:[['How fast can the sellers close?',9,7,'1482 Elm Ct','ok'],['What are the school boundaries?',7,5,'1482 Elm Ct','ok'],['Is there an HOA?',6,6,'580 Cowper St','ok'],['Was the garage conversion permitted?',4,4,'1482 Elm Ct','need'],['When is the open house?',4,4,'580 Cowper St','ok']],
+      homes:[['1482 Elm Ct','+18%','212 visitors · 19% chatted · 15 contacts · 6 showing requests',1],['580 Cowper St','−11%','168 visitors · 20% chatted · 11 contacts · 4 showing requests',2],['2207 Bryant St','New','54 visitors · 17% chatted · 2 contacts · 1 showing request',3]],
+      all:[['Visits','612'],['Sessions per visitor','1.51'],['Return rate','22.4%'],['Bounce rate','41.5%'],['Messages per chat','5.3']]
+    },
+    low: {
+      date:'Tuesday, Nov 24 · 11:55 PM', range:'Oct 26 – Nov 24 · Pacific time', labels:['Oct 26','Nov 10','Nov 24'], home:'2712 Harvest Ln #194',
+      title:"1 visitor came to your home's page. No one left their contact yet.",
+      sub:'It is too early to read trends. Share your link in more places to learn which ones work.',
+      steps:[{k:'Visitors',n:1,s:'1 visit'},{k:'Chatted with the AI',n:1,s:'1 of 1 visitors'},{k:'Left their contact',n:0,s:'None yet'},{k:'Asked to see the home',n:0,s:'None yet'}],
+      sources:[['Shared link','whatsapp',1,1,0]], best:-1,
+      ai:{chats:1,msgs:1,after:1,pct:100,hours:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]},
+      q:[['hi',1,1,'2712 Harvest Ln #194','ok']], homes:null,
+      all:[['Visits','1'],['Sessions per visitor','n/a'],['Return rate','n/a'],['Bounce rate','n/a'],['Messages per chat','1']]
+    },
+    empty: {
+      date:'Tuesday, Nov 24 · 11:55 PM', range:'Oct 26 – Nov 24 · Pacific time', labels:['Oct 26','Nov 10','Nov 24'], home:'2712 Harvest Ln #194',
+      title:'No visitors yet.', sub:'Share your link and the first visits will show up here.',
+      steps:[{k:'Visitors',n:0,s:'Waiting for the first visit'},{k:'Chatted with the AI',n:0,s:'Waiting'},{k:'Left their contact',n:0,s:'Waiting'},{k:'Asked to see the home',n:0,s:'Waiting'}],
+      sources:[], best:-1, ai:{chats:0,msgs:0,after:0,pct:0,hours:[]}, q:[], homes:null,
+      all:[['Visits','0'],['Sessions per visitor','n/a'],['Return rate','n/a'],['Bounce rate','n/a'],['Messages per chat','n/a']]
+    }
+  };
+  var d = S[state] || S.full; var low = state !== 'full';
+  $('ix-date').textContent = d.date; $('ix-range').textContent = d.range;
+  if (d.home) $('ix-home').innerHTML = '<option>' + d.home + '</option>';
+  // headline insight
+  $('ix-ins-t').textContent = d.title; $('ix-ins-p').innerHTML = d.sub;
+  $('ix-ins-cta').innerHTML = state === 'empty'
+    ? '<button type="button" class="ix-btn ix-btn-primary">' + COPY + 'Copy link</button><button type="button" class="ix-btn ix-btn-ghost ix-open-drawer">' + LINK + 'Create tracked link</button>'
+    : '<button type="button" class="ix-btn ix-btn-primary ix-open-drawer">' + LINK + 'Create tracked link</button>';
+  // funnel
+  var fx = '';
+  d.steps.forEach(function(st, i){
+    var chip = (!low && st.d) ? '<span class="ix-chip up">' + UP + st.d + '</span>' : '';
+    var w = low ? (st.n ? 100 : 0) : Math.max(st.share * 100, 4);
+    fx += '<button type="button" class="ix-step' + (i === stepIdx ? ' on' : '') + '" data-i="' + i + '" aria-pressed="' + (i === stepIdx) + '">'
+      + '<span class="ix-step-l">' + st.k + '</span><span class="ix-step-n">' + st.n + '</span>'
+      + '<span class="ix-step-s">' + st.s + ' ' + chip + '</span>'
+      + '<span class="ix-bar2"><i style="width:' + w + '%"></i></span>'
+      + '<span class="ix-arrow">' + ARW + '</span>' + (!low && d.conv ? '<span class="ix-conv">' + d.conv[i] + '</span>' : '') + '</button>';
+  });
+  $('ix-funnel').innerHTML = fx;
+  // chart / activity / share
+  function renderChart(i){
+    var st = d.steps[i];
+    if (state === 'empty') {
+      $('ix-chart').innerHTML = '<div class="ix-empty"><h2>Share your link to get started</h2><p class="ix-muted">Post it where buyers will see it: your yard sign, flyers, Instagram, or an email to past clients. Use a tracked link for each, so you can see which one works.</p><div class="ix-share"><code>https://reallywise.ai/nhat/prop_39d9e8a03e42d3ca</code><button type="button" class="ix-btn ix-btn-ghost">' + COPY + 'Copy</button></div></div>';
+      return;
+    }
+    if (state === 'low') {
+      $('ix-chart').innerHTML = '<div class="ix-card-h"><div><h2>Latest activity</h2><small>Trends and percentages appear after about 10 visits.</small></div></div><ul class="ix-list ix-act"><li class="ix-li"><span class="ix-dot"></span><div class="ix-li-main"><b>A visitor chatted with the AI</b><small>Opened your page from a WhatsApp link, 2712 Harvest Ln #194. The AI answered 1 message.</small></div><time>Today · 11:42 PM</time></li></ul><div class="ix-note">' + INFO + '<span>No one has left their contact yet. A tracked link for each place you post shows you where visitors come from.</span></div>';
+      return;
+    }
+    var n = 30, cur = gen(st.n, i + 1, n), prev = gen(st.prev, i + 4, n);
+    var W = 880, H = 220, L = 34, B = 26, T = 10, R = 40, mx = Math.max.apply(null, cur.concat(prev));
+    var step = mx > 20 ? 5 : mx > 8 ? 2 : 1, top = Math.ceil(mx / step) * step;
+    var x = function(k){ return L + (W - L - R) * k / (n - 1); }, y = function(v){ return T + (H - T - B) * (1 - v / top); };
+    var path = function(a){ return a.map(function(v, k){ return (k ? 'L' : 'M') + x(k).toFixed(1) + ' ' + y(v).toFixed(1); }).join(' '); };
+    var grid = ''; for (var g = 0; g <= 2; g++){ var gv = top * g / 2, gy = y(gv); grid += '<line class="ax" x1="' + L + '" x2="' + (W - R) + '" y1="' + gy + '" y2="' + gy + '"/><text class="tx" x="' + (L - 8) + '" y="' + (gy + 4) + '" text-anchor="end">' + Math.round(gv) + '</text>'; }
+    var area = path(cur) + ' L' + x(n - 1) + ' ' + (H - B) + ' L' + x(0) + ' ' + (H - B) + ' Z';
+    var lastv = cur[n - 1], diff = st.n - st.prev;
+    $('ix-chart').innerHTML = '<div class="ix-card-h"><div><h2>' + st.k + ' · last 30 days</h2><small>' + st.n + ' in 30 days, ' + Math.abs(diff) + ' ' + (diff >= 0 ? 'more' : 'fewer') + ' than the 30 days before.</small></div><div class="ix-legend"><span><i></i>This period</span><span><i class="d"></i>30 days before</span></div></div>'
+      + '<svg class="c" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + st.k + ' over the last 30 days">' + grid
+      + '<path d="' + area + '" fill="var(--dr-accent-soft)" stroke="none" opacity=".7"/>'
+      + '<path d="' + path(prev) + '" fill="none" stroke="var(--dr-dash,#8fa3dc)" stroke-width="2" stroke-dasharray="5 5"/>'
+      + '<path d="' + path(cur) + '" fill="none" stroke="var(--dr-accent)" stroke-width="2.5" stroke-linejoin="round"/>'
+      + '<circle cx="' + x(n - 1) + '" cy="' + y(lastv) + '" r="4.5" fill="var(--dr-accent)" stroke="var(--dr-surface-panel)" stroke-width="2"/>'
+      + '<text class="tx" x="' + L + '" y="' + (H - 6) + '">' + d.labels[0] + '</text><text class="tx" x="' + (L + (W - L - R) / 2) + '" y="' + (H - 6) + '" text-anchor="middle">' + d.labels[1] + '</text><text class="tx" x="' + (W - R) + '" y="' + (H - 6) + '" text-anchor="end">' + d.labels[2] + '</text></svg>';
+  }
+  renderChart(stepIdx);
+  // sources, one table for source and channel tag
+  if (!d.sources.length) {
+    $('ix-sources').innerHTML = '<div class="ix-card-h"><div><h2>Where visitors came from</h2><small>Each visitor counts once, under the source of their first visit.</small></div></div><div class="ix-empty"><p class="ix-muted">No sources yet. Once visitors arrive, you will see where they came from.</p><button type="button" class="ix-btn ix-btn-ghost ix-open-drawer">' + LINK + 'Create tracked link</button></div>';
+  } else {
+    var mxv = Math.max.apply(null, d.sources.map(function(r){ return r[2]; })), rows = '';
+    d.sources.forEach(function(r, i){
+      var rate = r[2] ? (r[4] / r[2] * 100) : 0, rt = (low && r[2] < 10) ? '–' : rate.toFixed(1) + '%';
+      rows += '<tr><td><b>' + r[0] + (i === d.best ? '<span class="ix-best">Best rate</span>' : '') + '</b>' + (r[1] ? '<span class="tag">' + r[1] + '</span>' : '') + '</td><td><span class="ix-vcell"><i><s style="width:' + (r[2] / mxv * 100) + '%"></s></i>' + r[2] + '</span></td><td>' + r[3] + '</td><td>' + r[4] + '</td><td class="ix-rate">' + rt + '</td></tr>';
+    });
+    $('ix-sources').innerHTML = '<div class="ix-card-h"><div><h2>Where visitors came from</h2><small>Each visitor counts once, under the source and tag of their first visit.</small></div><button type="button" class="ix-btn ix-btn-ghost ix-open-drawer">' + LINK + 'Create tracked link</button></div><table class="ix-tbl"><thead><tr><th>Source</th><th>Visitors</th><th>Chats</th><th>Contacts</th><th>Contact rate</th></tr></thead><tbody>' + rows + '</tbody></table>';
+  }
+  // what the AI did, with the hours it answered
+  var a = d.ai, hb = '', mxh = Math.max.apply(null, a.hours.concat([1]));
+  a.hours.forEach(function(v, h){ hb += '<i class="' + ((h < 8 || h >= 20) ? 'ah' : '') + '" style="height:' + Math.max(v / mxh * 100, v ? 8 : 5) + '%"></i>'; });
+  $('ix-ai').innerHTML = '<div class="ix-card-h"><div><h2>What the AI did for you</h2><small>The assistant on your page answered these, day and night.</small></div></div><div class="ix-ai3"><div><b>' + a.chats + '</b><span>Chats</span></div><div><b>' + a.msgs + '</b><span>Buyer messages answered</span></div><div><b>' + a.after + '</b><span>Chats after hours</span></div></div>'
+    + (a.hours.length ? '<div class="ix-hours"><div class="ix-hours-bars" aria-hidden="true">' + hb + '</div><div class="ix-hours-ax"><span>12 am</span><span>8 am</span><span>8 pm</span><span>11 pm</span></div><p><i></i>' + (low ? 'Chats before 8 am, from 8 pm or on a weekend.' : a.pct + '% of chats had a message before 8 am, from 8 pm or on a weekend.') + '</p></div>' : '<p class="ix-muted" style="margin-top:14px">The AI answers while you are away. Numbers appear after the first chat.</p>');
+  // questions
+  if (!d.q.length) { $('ix-q').innerHTML = '<div class="ix-card-h"><div><h2>What buyers asked most</h2></div></div><p class="ix-muted">No questions yet. Buyer questions show up here after the first chat.</p>'; }
+  else {
+    var ql = ''; d.q.forEach(function(q){ ql += '<li class="ix-li"><div class="ix-li-main"><b>' + q[0] + '</b><small>Asked ' + q[1] + ' time' + (q[1] > 1 ? 's' : '') + ' by ' + q[2] + ' buyer' + (q[2] > 1 ? 's' : '') + ' · ' + q[3] + '</small></div>' + (q[4] === 'need' ? '<span class="ix-pill need">Needs you</span><button type="button" class="ix-mini">Add answer</button>' : '<span class="ix-pill">AI answered</span>') + '</li>'; });
+    $('ix-q').innerHTML = '<div class="ix-card-h"><div><h2>What buyers asked most</h2><small>This week so far, whatever the range above.</small></div></div><ul class="ix-list">' + ql + '</ul>';
+  }
+  // homes: only when there is more than one
+  if (!d.homes) { $('ix-homes').hidden = true; } else {
+    var hl = ''; d.homes.forEach(function(h, i){ var sp = gen(10, i + 2, 12), mxs = Math.max.apply(null, sp), pts = sp.map(function(v, k){ return (k ? 'L' : 'M') + (k * 96 / 11).toFixed(1) + ' ' + (26 - v / mxs * 22).toFixed(1); }).join(' ');
+      hl += '<li class="ix-li"><div class="ix-li-main"><b>' + h[0] + '</b><small>' + h[2] + '</small></div><svg class="ix-spark" viewBox="0 0 96 28" aria-hidden="true"><path d="' + pts + '"/></svg><span class="ix-chip ' + (h[1].charAt(0) === '+' ? 'up' : '') + '">' + h[1] + '</span></li>'; });
+    $('ix-homes').innerHTML = '<div class="ix-card-h"><div><h2>Your homes</h2><small>Busiest first. Open a home for its own numbers.</small></div></div><ul class="ix-list">' + hl + '</ul>';
+  }
+  // all numbers
+  var ab = ''; d.all.forEach(function(r){ ab += '<div><b>' + r[1] + '</b><span>' + r[0] + '</span></div>'; });
+  $('ix-all-body').innerHTML = ab + '<button type="button" class="ix-mini" style="grid-column:1/-1;justify-self:start">Export CSV</button>';
+  // interactions
+  $('ix-funnel').addEventListener('click', function(e){ var b = e.target.closest('.ix-step'); if (!b) return; var i = +b.dataset.i; [].forEach.call(document.querySelectorAll('.ix-step'), function(s){ s.classList.toggle('on', s === b); s.setAttribute('aria-pressed', s === b); }); renderChart(i); });
+  function openDrawer(){ $('ix-scrim').hidden = false; $('ix-drawer').hidden = false; }
+  function closeDrawer(){ $('ix-scrim').hidden = true; $('ix-drawer').hidden = true; }
+  document.addEventListener('click', function(e){ if (e.target.closest('.ix-open-drawer')) openDrawer(); });
+  $('ix-close').addEventListener('click', closeDrawer); $('ix-scrim').addEventListener('click', closeDrawer);
+  $('ix-chips').addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) { $('ix-tag').value = b.textContent; sync(); } });
+  function sync(){ $('ix-link').textContent = 'https://reallywise.ai/a/alex-rivera?c=' + ($('ix-tag').value || 'your-tag'); } $('ix-tag').addEventListener('input', sync);
+  if (qs.get('drawer') === '1') openDrawer();
+})();
+</script></body></html>
