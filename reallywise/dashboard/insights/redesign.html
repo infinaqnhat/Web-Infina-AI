@@ -309,8 +309,8 @@
     var mxv = 1; d.sources.forEach(function(r){ mxv = Math.max(mxv, r[2]); }); order.forEach(function(n){ mxv = Math.max(mxv, gs[n].v); });
     var tv = 0, tc = 0, tct = 0; d.sources.forEach(function(r){ tv += r[2]; tc += r[3]; tct += r[4]; });
     var best = -1, bestRate = -1; if (!low) d.sources.forEach(function(r, i){ var x = rate(r[2], r[4]); if (!r[6] && x > bestRate) { bestRate = x; best = i; } });
-    var cell = function(v){ return '<span class="ix-vcell"><i><s style="width:' + (v / mxv * 100) + '%"></s></i>' + v + '</span>'; };
-    var rows = '<tr class="ix-total"><td><b class="ix-nm"><span class="ix-nm-t">All sources</span></b></td><td><span class="ix-vcell"><i><s style="width:100%;background:var(--dr-accent)"></s></i>' + tv + '</span></td><td>' + tc + '</td><td>' + tct + '</td><td class="ix-rate">' + rt(tv, tct) + '</td></tr>', done = {};
+    var cell = function(v){ return '<span class="ix-vcell">' + v + '</span>'; };
+    var rows = '<tr class="ix-total"><td><b class="ix-nm"><span class="ix-nm-t">All sources</span></b></td><td><span class="ix-vcell">' + tv + '</span></td><td>' + tc + '</td><td>' + tct + '</td><td class="ix-rate">' + rt(tv, tct) + '</td></tr>', done = {};
     d.sources.forEach(function(r, i){
       if (r[6] && !done[r[6]]) {
         done[r[6]] = 1; var o = gs[r[6]], isOpen = openG[r[6]] !== false;
