@@ -604,31 +604,16 @@
         </nav>
 
         <div class="chat-thread" id="chat-thread">
-          <button class="m-persona-chip m-only" type="button" id="m-persona-chip" hidden>
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
-            <span id="m-persona-chip-label">First-time buyer</span>
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
           <div class="msg msg-bot">
             <span class="msg-avatar"><svg aria-hidden="true" viewBox="0 0 120 120"><circle fill="#012976" cx="60" cy="60" r="60"/><g transform="translate(24.3 26.9) scale(.098)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg></span>
             <div class="msg-body">
               <div class="msg-bubble">
                 <p class="msg-bubble-text">Hi! What would you like to know about the home?</p>
-                <span class="persona-label m-only">What type of buyer are you?</span>
-
-                <div class="m-persona-grid m-only" id="m-persona-grid">
-                  <button class="m-persona-tile" type="button" data-persona="First-time buyer"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>First-time buyer</button>
-                  <button class="m-persona-tile" type="button" data-persona="Upgrade"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Upgrade</button>
-                  <button class="m-persona-tile" type="button" data-persona="Investment"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M3 19h18"/></svg>Investment</button>
-                  <button class="m-persona-tile" type="button" data-persona="Flip"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 01-5.9 5.9L4 17v3h3l4.8-4.8a4.5 4.5 0 005.9-5.9l-2.6 2.6-2.1-2.1z"/></svg>Flip</button>
-                  <button class="m-persona-tile" type="button" data-persona="Vacation home"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11M12 11c0-4 3-7 8-7-1 4-4 7-8 7zM12 11C12 7 9 4 4 4c1 4 4 7 8 7z"/></svg>Vacation home</button>
-                </div>
 
                 <span class="m-suggest-label m-only">Try asking something like:</span>
                 <div class="m-suggest-list m-only" id="m-suggest-list">
                   <button class="m-suggest-row" type="button" data-q="Are there any known issues with this property?"><span>Are there any red flags?</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
                   <button class="m-suggest-row" type="button" data-q="Tell me more about the roof"><span>What repairs have been made?</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-                  <button class="m-suggest-row" type="button" data-q="What's the HOA like?"><span>What are the HOA rules and fees?</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
                 </div>
               </div>
             </div>
@@ -1122,26 +1107,8 @@
       btn.classList.add('is-active');
     });
 
-    // ===== Persona selection (desktop pills + mobile tiles share one state) =====
-    var personaChip = document.getElementById('m-persona-chip');
-    var personaChipLabel = document.getElementById('m-persona-chip-label');
-    function selectPersona(name){
-      chosenPersona = name;
-      document.querySelectorAll('.persona-pill, .m-persona-tile').forEach(function(b){
-        b.classList.toggle('is-active', b.getAttribute('data-persona') === name);
-      });
-      personaChipLabel.textContent = name;
-      personaChip.hidden = false;
-    }
-    document.getElementById('m-persona-grid').addEventListener('click', function(e){
-      var btn = e.target.closest('.m-persona-tile');
-      if (btn) selectPersona(btn.getAttribute('data-persona'));
-    });
-    personaChip.addEventListener('click', function(){
-      // Reopen the picker by scrolling back to the intro message
-      var grid = document.getElementById('m-persona-grid');
-      if (grid) grid.scrollIntoView({ behavior:'smooth', block:'center' });
-    });
+    // The buyer type is no longer asked in the chat; kept so the lead snapshot still has a field
+    function selectPersona(name){ chosenPersona = name; }
 
     // ===== Bottom sheets =====
     var backdrop = document.getElementById('sheet-backdrop');
