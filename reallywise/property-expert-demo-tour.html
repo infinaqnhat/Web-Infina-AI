@@ -614,14 +614,7 @@
             <div class="msg-body">
               <div class="msg-bubble">
                 <p class="msg-bubble-text">Hi! What would you like to know about the home?</p>
-                <span class="persona-label">What type of buyer are you?</span>
-                <div class="persona-row" id="persona-row">
-                  <button class="persona-pill" type="button" data-persona="First-time buyer">First-time buyer</button>
-                  <button class="persona-pill" type="button" data-persona="Upgrade">Upgrade</button>
-                  <button class="persona-pill" type="button" data-persona="Investment">Investment</button>
-                  <button class="persona-pill" type="button" data-persona="Flip">Flip</button>
-                  <button class="persona-pill" type="button" data-persona="Vacation home">Vacation home</button>
-                </div>
+                <span class="persona-label m-only">What type of buyer are you?</span>
 
                 <div class="m-persona-grid m-only" id="m-persona-grid">
                   <button class="m-persona-tile" type="button" data-persona="First-time buyer"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>First-time buyer</button>
@@ -644,14 +637,14 @@
         </div>
 
         <div class="chip-row" style="padding:0 22px;" id="chip-row-1">
-          <button class="follow-chip" type="button" data-q="Are there any known issues with this property?">Are there any known issues with this property?</button>
+          <span class="persona-label">What type of buyer are you?</span>
         </div>
         <div class="chip-row" style="padding:0 22px 12px;" id="chip-row-2">
-          <button class="follow-chip" type="button" data-q="Tell me more about the roof">Tell me more about the roof</button>
-          <button class="follow-chip" type="button" data-q="Any HVAC issues?">Any HVAC issues?</button>
-          <button class="follow-chip" type="button" data-q="What's the HOA like?">What's the HOA like?</button>
-          <button class="follow-chip" type="button" data-q="Should I be concerned?">Should I be concerned?</button>
-          <button class="follow-chip" type="button" data-q="Can I schedule a tour?">Can I schedule a tour?</button>
+          <button class="follow-chip" type="button" data-persona="First-time buyer" data-q="I'm a first-time buyer.">First-time buyer</button>
+          <button class="follow-chip" type="button" data-persona="Upgrade" data-q="I'm looking to upgrade.">Upgrade</button>
+          <button class="follow-chip" type="button" data-persona="Investment" data-q="I'm looking at this as an investment.">Investment</button>
+          <button class="follow-chip" type="button" data-persona="Flip" data-q="I'm thinking of flipping it.">Flip</button>
+          <button class="follow-chip" type="button" data-persona="Vacation home" data-q="I'm looking for a vacation home.">Vacation home</button>
         </div>
 
         <div class="chat-input-row">
@@ -1145,10 +1138,6 @@
       personaChipLabel.textContent = name;
       personaChip.hidden = false;
     }
-    document.getElementById('persona-row').addEventListener('click', function(e){
-      var btn = e.target.closest('.persona-pill');
-      if (btn) selectPersona(btn.getAttribute('data-persona'));
-    });
     document.getElementById('m-persona-grid').addEventListener('click', function(e){
       var btn = e.target.closest('.m-persona-tile');
       if (btn) selectPersona(btn.getAttribute('data-persona'));
@@ -1312,6 +1301,11 @@
 
     // Builds the reply as { html, plain }. `plain` is what the admin page shows.
     function buildReply(text, forced){
+      if (forced && forced.type === 'persona') {
+        var pt = "Thanks, I'll keep that in mind (" + forced.persona.toLowerCase() + "). What would you like to know about the home? You can start with one of these.";
+        swapQuestionChips();
+        return { html: '<p class="msg-bubble-text">' + esc(pt) + '</p>', plain: pt };
+      }
       if (forced && forced.type === 'confirm') {
         var t = "Done. I've sent your request for " + forced.slot + " to the listing agent. They'll confirm with you shortly, and I'm still here if you have more questions.";
         return { html: '<p class="msg-bubble-text">' + esc(t) + '</p>', plain: t };
@@ -1514,8 +1508,17 @@
     });
     document.getElementById('chip-row-2').addEventListener('click', function(e){
       var btn = e.target.closest('.follow-chip');
-      if (btn) askQuestion(btn.getAttribute('data-q'));
+      if (!btn) return;
+      var who = btn.getAttribute('data-persona');
+      if (who) { selectPersona(who); askQuestion(btn.getAttribute('data-q'), { type: 'persona', persona: who }); return; }
+      askQuestion(btn.getAttribute('data-q'));
     });
+    // once the buyer has said who they are, the suggestions turn into questions about the home
+    function swapQuestionChips(){
+      var r1 = document.getElementById('chip-row-1'), r2 = document.getElementById('chip-row-2');
+      r1.hidden = true;
+      r2.innerHTML = '<button class="follow-chip" type="button" data-q="Are there any known issues with this property?">Are there any known issues with this property?</button><button class="follow-chip" type="button" data-q="Tell me more about the roof">Tell me more about the roof</button><button class="follow-chip" type="button" data-q="What\'s the HOA like?">What\'s the HOA like?</button>';
+    }
     document.getElementById('m-suggest-list').addEventListener('click', function(e){
       var btn = e.target.closest('.m-suggest-row');
       if (btn) askQuestion(btn.getAttribute('data-q'));
