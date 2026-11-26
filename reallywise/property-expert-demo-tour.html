@@ -214,7 +214,8 @@
       .m-nav { display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border-light); background:#fff; flex-shrink:0; }
       .m-nav-btn { width:34px; height:34px; border-radius:50%; border:0; background:none; display:flex; align-items:center; justify-content:center; color:var(--fg); flex-shrink:0; }
       .m-nav-btn:hover { background:var(--surface); }
-      .m-nav-title { flex:1; min-width:0; text-align:center; }
+      .m-nav-title { flex:1; min-width:0; text-align:right; }
+      .m-nav-logo { display:block; flex-shrink:0; } .m-nav-logo img { height:26px; width:auto; display:block; }
       .m-nav-title b { display:block; font-size:15px; font-weight:700; color:var(--accent); }
       .m-nav-title span { display:block; font-size:12px; color:var(--muted); }
 
@@ -371,12 +372,12 @@
     .hob-tip[hidden] { display:none; }
     .hob-tip::after { content:''; position:absolute; right:-6px; top:50%; width:12px; height:12px; background:var(--accent); transform:translateY(-50%) rotate(45deg); border-radius:2px; }
     @media (max-width:1100px){
-      /* On mobile Realisa sits in the header, beside the actions button, so it never covers the composer */
-      .hob-btn { bottom:auto; top:10px; right:calc(max(0px, (100vw - 560px) / 2) + 56px); width:38px; height:38px; box-shadow:var(--shadow); }
-      .hob-btn svg { width:28px; height:28px; }
+      /* On mobile Realisa is a sticky helper widget at the bottom right, above the composer */
+      .hob-btn { bottom:calc(132px + env(safe-area-inset-bottom, 0px)); top:auto; right:14px; width:52px; height:52px; }
+      .hob-btn svg { width:100%; height:100%; }
       .hob-btn.is-nudge::before { inset:-4px; }
-      .hob-tip { bottom:auto; top:58px; right:calc(max(0px, (100vw - 560px) / 2) + 14px); }
-      .hob-tip::after { right:34px; top:-6px; transform:rotate(45deg); }
+      .hob-tip { bottom:calc(142px + env(safe-area-inset-bottom, 0px)); top:auto; right:76px; }
+      .hob-tip::after { right:-6px; top:50%; bottom:auto; transform:translateY(-50%) rotate(45deg); }
     }
     @media (prefers-reduced-motion:reduce){ .hob-btn.is-nudge::before { animation:none; } .hob-btn { transition:none; } }
 
@@ -500,7 +501,7 @@
 </head>
 <body>
   <header class="m-nav m-only">
-    <span class="m-nav-mark"><svg aria-hidden="true" viewBox="0 0 120 120"><rect fill="#012976" width="120" height="120" rx="27"/><g transform="translate(12 15.5) scale(.1317)"><path d="M315.724 25.1445C349.383 0.51079 395.249 1.00362 428.371 26.3545L694.545 230.078C711.85 243.323 722 263.873 722 285.665V479.592C722 532.611 679.019 575.592 626 575.592H307.944L140.286 687.991C131.649 693.781 120 687.624 120 677.226V575.592H103C49.9808 575.592 7.00014 532.611 7 479.592V286.605C7 264.284 17.6455 243.3 35.6582 230.117L315.724 25.1445Z" fill="#fff"/><circle cx="199" cy="338" r="56" fill="#012976"/><circle cx="365" cy="338" r="56" fill="#012976"/><circle cx="531" cy="338" r="56" fill="#0BB563"/></g></svg></span>
+    <a class="m-nav-logo" href="reallywise.html" aria-label="ReallyWise"><img src="brand/Really_Wise_Logo.svg" alt="ReallyWise"></a>
     <div class="m-nav-title">
       <b>123 Main Street</b>
       <span>Austin, TX 78703</span>
