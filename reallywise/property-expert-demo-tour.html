@@ -237,7 +237,12 @@
       .m-tab.is-active { background:var(--green-100); color:var(--green-700); }
       .m-tab.is-active svg { color:var(--green-700); }
 
-      body.is-chatting .m-hero { display:none; }
+      /* Once chatting, the hero scrolls out of view behind the sticky tabs.
+         This arrow sits on the header's bottom line and brings the photo back. */
+      .m-nav { position:relative; z-index:6; }
+      .m-peek-btn { position:absolute; left:50%; top:100%; width:30px; height:30px; margin:-15px 0 0 -15px; border-radius:50%; border:1px solid var(--border-light); background:#fff; color:var(--accent); display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(1,41,118,.14); cursor:pointer; opacity:0; visibility:hidden; transform:translateY(-4px); transition:opacity .2s, transform .2s, visibility .2s; }
+      .m-peek-btn:hover { background:var(--surface); }
+      .m-peek-btn.is-shown { opacity:1; visibility:visible; transform:none; }
       .chip-row { display:none; }
       /* The long opening question is offered as a suggestion row instead */
       #chip-row-1 { display:none; }
@@ -508,6 +513,9 @@
     </div>
     <button class="m-nav-btn" type="button" id="m-more" aria-label="More actions">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>
+    </button>
+    <button class="m-peek-btn" type="button" id="m-peek-btn" aria-label="Show the home photo">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
     </button>
   </header>
 
@@ -1220,7 +1228,28 @@
 
     var chatScroll = document.getElementById('chat-scroll');
     var chatThread = document.getElementById('chat-thread');
-    function scrollChatToBottom(){ chatScroll.scrollTop = chatScroll.scrollHeight; }
+    function scrollChatToBottom(){ fitThread(); chatScroll.scrollTop = chatScroll.scrollHeight; }
+
+    // ----- Mobile: bring the hero photo back after it scrolls away -----
+    var mHero = document.querySelector('.m-hero');
+    var mTabs = document.getElementById('m-tabs');
+    var mPeekBtn = document.getElementById('m-peek-btn');
+    var mobileMQ = window.matchMedia('(max-width:1100px)');
+    // While chatting, the thread is at least one screen tall, so the hero
+    // can always scroll fully out of view behind the sticky tabs.
+    function fitThread(){
+      var on = mobileMQ.matches && document.body.classList.contains('is-chatting');
+      chatThread.style.minHeight = on ? Math.max(0, chatScroll.clientHeight - mTabs.offsetHeight) + 'px' : '';
+    }
+    function updatePeek(){
+      var heroGone = mobileMQ.matches && chatScroll.scrollTop > mHero.offsetHeight * 0.6;
+      mPeekBtn.classList.toggle('is-shown', document.body.classList.contains('is-chatting') && heroGone);
+    }
+    chatScroll.addEventListener('scroll', updatePeek, { passive: true });
+    window.addEventListener('resize', function(){ fitThread(); updatePeek(); });
+    mPeekBtn.addEventListener('click', function(){
+      chatScroll.scrollTo({ top: 0, behavior: 'smooth' });
+    });
     function nowTime(){
       var d = new Date();
       var h = d.getHours() % 12 || 12;
