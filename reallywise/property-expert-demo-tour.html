@@ -237,7 +237,7 @@
       .m-tab.is-active svg { color:var(--green-700); }
 
       body.is-chatting .m-hero { display:none; }
-      body:not(.is-chatting) .chip-row { display:none; }
+      .chip-row { display:none; }
       /* The long opening question is offered as a suggestion row instead */
       #chip-row-1 { display:none; }
       .chip-row { padding-left:16px !important; padding-right:16px !important; }
@@ -610,11 +610,6 @@
               <div class="msg-bubble">
                 <p class="msg-bubble-text">Hi! What would you like to know about the home?</p>
 
-                <span class="m-suggest-label m-only">Try asking something like:</span>
-                <div class="m-suggest-list m-only" id="m-suggest-list">
-                  <button class="m-suggest-row" type="button" data-q="Are there any known issues with this property?"><span>Are there any red flags?</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-                  <button class="m-suggest-row" type="button" data-q="Tell me more about the roof"><span>What repairs have been made?</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-                </div>
               </div>
             </div>
           </div>
@@ -1217,7 +1212,7 @@
         summary: "If a rental strategy matters to you, this HOA's rules are worth discussing with the agent before you move forward."
       }
     };
-    var fallbackAnswer = "Let me check that for you, I'll have an answer with sources shortly. In this demo, try one of the suggested questions above to see a full example.";
+    var fallbackAnswer = "Let me check that for you, I'll have an answer with sources shortly. In this demo, try asking about the roof, known issues or the HOA to see a full example.";
     var talkAnswer = "Happy to help. I've flagged this for the listing agent so they can follow up with you directly. In the meantime, ask me anything about the home and I'll answer from the documents.";
     var tourIntro = "There are no open houses scheduled right now. The listing agent represents the seller, and you can request a private showing below.";
     var SHOWING_SLOTS = ['Sat, 10:00 AM', 'Sat, 2:00 PM', 'Sun, 11:00 AM'];
@@ -1481,10 +1476,6 @@
       r1.hidden = true;
       r2.innerHTML = '<button class="follow-chip" type="button" data-q="Are there any known issues with this property?">Are there any known issues with this property?</button><button class="follow-chip" type="button" data-q="Tell me more about the roof">Tell me more about the roof</button><button class="follow-chip" type="button" data-q="What\'s the HOA like?">What\'s the HOA like?</button>';
     }
-    document.getElementById('m-suggest-list').addEventListener('click', function(e){
-      var btn = e.target.closest('.m-suggest-row');
-      if (btn) askQuestion(btn.getAttribute('data-q'));
-    });
 
     var chatInput = document.getElementById('chat-input');
     function sendFromInput(){
@@ -1515,13 +1506,14 @@
       { kind: 'info', target: '#chat-thread .msg-bot',
         title: 'Buyers ask it anything',
         text: 'They chat here at any hour, even 2 AM. You stop answering the same questions again and again.' },
-      { kind: 'action', on: 'answered', target: ['#m-suggest-list', '#chip-row-2'],
+      { kind: 'action', on: 'answered', target: ['#chip-row-2', '.chat-input-row'],
         title: 'Try it as a buyer',
-        text: 'Play the buyer. <b>Tap a question</b> to see how it answers.' },
+        text: function(mobile){ return mobile ? 'Play the buyer. <b>Type a question</b> and send it to see how it answers.' : 'Play the buyer. <b>Tap a question</b> to see how it answers.'; } },
       { kind: 'info', target: lastBotMessage, skipIf: function(){ return answeredCount === 0; },
         title: 'Answers come from the documents',
         text: 'That answer is based on this home\'s own listing and documents, not a guess.' },
       { kind: 'action', on: 'answered', target: '.chat-input-row',
+        skipIf: function(){ return window.matchMedia('(max-width:1100px)').matches; },
         title: 'Now ask your own',
         text: '<b>Type any question</b> and send it. Try something a real buyer would ask, like "Is there a pool?"' },
       { kind: 'info', target: ['.talk-agent', '#m-more'],
